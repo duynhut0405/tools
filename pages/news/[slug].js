@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
+import Layout from '../../components/layout';
 import moment from 'moment';
 import { useRouter } from 'next/router';
 import ReactHtmlParser from 'react-html-parser';
@@ -17,7 +18,7 @@ function New() {
     });
   }, [getNewByUri]);
   return (
-    <React.Fragment>
+    <Layout>
       <Head>
         <title>{news.meta_title}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -35,7 +36,7 @@ function New() {
         </div>
         <div>{ReactHtmlParser(news.description)}</div>
       </div>
-    </React.Fragment>
+    </Layout>
   );
 }
 

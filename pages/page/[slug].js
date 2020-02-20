@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { map } from 'lodash';
+import Layout from '../../components/layout';
 import ReactHtmlParser from 'react-html-parser';
 import { getPageService } from '../../services/home';
 import { useRouter } from 'next/router';
@@ -21,18 +22,17 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <Layout>
       <Head>
         <title>{list.meta_title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>312</h1>
       <div className="container main_content">
         {map(list.pageBlocks, (values, index) => {
           return <div key={index}>{ReactHtmlParser(values.contentHtml)}</div>;
         })}
       </div>
-    </div>
+    </Layout>
   );
 }
 

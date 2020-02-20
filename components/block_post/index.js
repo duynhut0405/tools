@@ -1,28 +1,27 @@
-import React from "react";
-import { map } from "lodash";
+import React from 'react';
+import { map } from 'lodash';
 
 const fectData = [
   {
     id: 1,
-    date: "01/01/2019",
+    date: '01/01/2019',
     image:
-      "https://mbbank.com.vn/resources/files/NhaDauTu/thong-bao/thong-bao---471x340-logo-mbbank.jpg",
-    title:
-      " Thông báo danh sách khách hàng trúng thưởng CT vay mua nhà Nhận nay SH"
+      'https://mbbank.com.vn/resources/files/NhaDauTu/thong-bao/thong-bao---471x340-logo-mbbank.jpg',
+    title: ' Thông báo danh sách khách hàng trúng thưởng CT vay mua nhà Nhận nay SH'
   },
   {
     id: 2,
-    date: "01/01/2019",
+    date: '01/01/2019',
     image:
-      "https://mbbank.com.vn/resources/files/NhaDauTu/thong-bao/thong-bao---471x340-logo-mbbank.jpg",
-    title: " Ưu đãi lãi suất khi vay mua nhà trong tháng "
+      'https://mbbank.com.vn/resources/files/NhaDauTu/thong-bao/thong-bao---471x340-logo-mbbank.jpg',
+    title: ' Ưu đãi lãi suất khi vay mua nhà trong tháng '
   },
   {
     id: 3,
-    date: "01/01/2019",
+    date: '01/01/2019',
     image:
-      "https://mbbank.com.vn/resources/files/NhaDauTu/thong-bao/thong-bao---471x340-logo-mbbank.jpg",
-    title: "Tri ân khách hàng, tặng ngay 1 chỉ vàng khi vay mua nhà"
+      'https://mbbank.com.vn/resources/files/NhaDauTu/thong-bao/thong-bao---471x340-logo-mbbank.jpg',
+    title: 'Tri ân khách hàng, tặng ngay 1 chỉ vàng khi vay mua nhà'
   }
 ];
 

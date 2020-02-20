@@ -1,12 +1,13 @@
-import React from "react";
-import Head from "next/head";
-import { map } from "lodash";
-import NewItems from "../../components/news/Items";
-import { getNewService } from "../../services/news";
+import React from 'react';
+import Head from 'next/head';
+import Layout from '../../components/layout';
+import { map } from 'lodash';
+import NewItems from '../../components/news/Items';
+import { getNewService } from '../../services/news';
 
 function News({ list }) {
   return (
-    <React.Fragment>
+    <Layout>
       <Head>
         <title>News</title>
         <link rel="icon" href="/favicon.ico" />
@@ -19,6 +20,7 @@ function News({ list }) {
             if (values.is_sticky === 1) {
               return <NewItems data={values} key={values.newsId} />;
             }
+            return null;
           })}
         </div>
         <div>
@@ -27,16 +29,17 @@ function News({ list }) {
             if (values.is_sticky === 0) {
               return <NewItems data={values} key={values.newsId} />;
             }
+            return null;
           })}
         </div>
       </div>
-    </React.Fragment>
+    </Layout>
   );
 }
 
 News.getInitialProps = async ctx => {
   let list = [];
-  let res = await getNewService();
+  const res = await getNewService();
   if (res !== undefined && res.status === 200) {
     list = res.data;
   }

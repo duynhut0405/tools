@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { map, slice } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
@@ -11,14 +11,22 @@ function Post({ data }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const listNews = slice(data.news, 0, page);
+  //   slice(data.news, 0, page)
+  useEffect(() => {
+    if (listNews.length === data.news.length) {
+      setActive(true);
+    }
+  }, [page]);
 
   const showPage = () => {
-    if (!active) {
-      setPage(page + data.news.length);
-    } else {
+    setActive(false);
+    setPage(page + 3);
+    if (active) {
       setPage(3);
     }
   };
+
+  //   console.log(listNews);
   return (
     <div className="post_block mb-5 pt-4 mt-5">
       <div className="title">
@@ -45,14 +53,7 @@ function Post({ data }) {
         ))}
       </div>
       <div className="btn">
-        <button
-          onClick={() => {
-            setActive(!active);
-            showPage();
-          }}
-        >
-          {active === false ? 'Xem tất cả' : 'Thu gọn'}
-        </button>
+        <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
       </div>
     </div>
   );
