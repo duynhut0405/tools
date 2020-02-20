@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
-import Scrollspy from "../components/scrollspy";
 import Layout from "../components/layout";
 import { Carousel } from "react-responsive-carousel";
 import { HomeActions } from "../store/actions";
@@ -12,6 +11,11 @@ function Home({ getHome, list, silder }) {
   useEffect(() => {
     getHome("homepage");
   }, [getHome]);
+
+  const getItems = (index, item) => {
+    let url = item.props.children[0].props.href;
+    window.location.href = url;
+  };
 
   return (
     <Layout>
@@ -27,33 +31,37 @@ function Home({ getHome, list, silder }) {
         {!isEmpty(silder) && (
           <Carousel
             showThumbs={false}
-            // autoPlay={silder.autoPlay === 1 ? true : false}
+            autoPlay={silder.autoPlay === 1 ? true : false}
             interval={
               silder.autoPlaySpeed === undefined ? 3000 : silder.autoPlaySpeed
             }
             showArrows={silder.arrows === 1 ? true : false}
             showStatus={false}
             infiniteLoop={true}
+            onClickItem={getItems}
             emulateTouch
           >
             {map(silder.sliderSlides, (item, index) => (
-              <div key={index}>
-                <img src={item.image} alt="icon" />
-
-                <div className={`silder_content${item.options} silder_content`}>
+              <div key={index} className="silder_items">
+                <a href={item.callToActionUrl}>
+                  <img src={item.image} alt="icon" />
+                </a>
+                <div className={`silder_content ${item.options} container`}>
                   <p className="text_content1">{item.caption1}</p>
                   <p className="text_content2">{item.caption2}</p>
                   <p className="text_content3">{item.caption3}</p>
                   <button>
-                    <a href={item.callToActionUrl}>{item.callToActionText}</a>
+                    <a href={item.callToActionUrl}>
+                      {item.callToActionText === null
+                        ? "Xem chi tiết"
+                        : item.callToActionText}
+                    </a>
                   </button>
                 </div>
               </div>
             ))}
           </Carousel>
         )}
-
-        {/* <Scrollspy /> */}
         <div className="container">
           {map(list.pageBlocks, (values, index) => {
             return <div key={index}>{ReactHtmlParser(values.contentHtml)}</div>;
