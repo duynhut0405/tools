@@ -1,9 +1,9 @@
-import request from "../utils/request";
+import request from '../utils/request';
 
 const getAllSlider = () => {
   return request({
     url: '/slider',
-    method: "GET"
+    method: 'GET'
   })
     .then(res => {
       return res;

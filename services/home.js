@@ -1,9 +1,9 @@
-import request from "../utils/request";
+import request from '../utils/request';
 
 const getPageService = name => {
   return request({
     url: `/pages/name/${name}`,
-    method: "GET"
+    method: 'GET'
   })
     .then(res => {
       return res;

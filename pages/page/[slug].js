@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Head from "next/head";
-import { map } from "lodash";
-import ReactHtmlParser from "react-html-parser";
-import { getPageService } from "../../services/home";
-import { getNewByUri } from "../../services/news";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
+import { map } from 'lodash';
+import ReactHtmlParser from 'react-html-parser';
+import { getPageService } from '../../services/home';
+import { useRouter } from 'next/router';
 
 function Home() {
   const [list, setList] = useState([]);
@@ -12,13 +11,9 @@ function Home() {
 
   const getHome = async () => {
     const res = await getPageService(router.query.slug);
-    // const news = await getNewByUri(router.query.page);
     if (res && res.status === 200) {
       setList(res.data);
     }
-    // if (news && news.status === 200) {
-    //   router.push(`/news/${router.query.page}`);
-    // }
   };
 
   useEffect(() => {
