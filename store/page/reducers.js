@@ -5,7 +5,7 @@ const initialState = {
   silder: {}
 };
 
-const homeReducer = (state = initialState, action) => {
+const pageReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.GET_HOME_RESPONSE:
       return {
@@ -19,4 +19,4 @@ const homeReducer = (state = initialState, action) => {
   }
 };
 
-export default homeReducer;
+export default pageReducer;

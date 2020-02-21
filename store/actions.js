@@ -1,3 +1,3 @@
-import HomeActions from './home/actions';
+import PageActions from './page/actions';
 
-export { HomeActions };
+export { PageActions };

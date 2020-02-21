@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { map } from 'lodash';
-import { Carousel } from '../components/common';
+import { Carousel, BlockRender } from '../components/common';
 import Layout from '../components/layout';
-import { Post, Question } from '../components/block';
-import { HomeActions } from '../store/actions';
+import { PageActions } from '../store/actions';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -31,17 +29,7 @@ function Home({ list, silder, getHome }) {
       </Head>
       <div className="main_content">
         <Carousel silder={silder} />
-        <div className="container">
-          {map(list.pageBlocks, (values, index) => {
-            if (values.name === 'Block News') {
-              return <Post data={JSON.parse(values.content)} key={index} />;
-            }
-            if (values.name === 'Question') {
-              return <Question data={JSON.parse(values.content)} key={index} />;
-            }
-            return null;
-          })}
-        </div>
+        <BlockRender data={list.pageBlocks} />
       </div>
     </Layout>
   );
@@ -49,13 +37,13 @@ function Home({ list, silder, getHome }) {
 
 const mapStateToProp = state => {
   return {
-    list: state.HomeReducer.homedata,
-    silder: state.HomeReducer.silder
+    list: state.pageReducer.homedata,
+    silder: state.pageReducer.silder
   };
 };
 
 const mapDispatchToProps = {
-  getHome: HomeActions.getHomeAction
+  getHome: PageActions.getHomeAction
 };
 
 Home.propTypes = propTypes;

@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { map } from 'lodash';
+import { Carousel, BlockRender } from '../../components/common';
 import Layout from '../../components/layout';
-import ReactHtmlParser from 'react-html-parser';
-import { getPageService } from '../../services/home';
+import { PageActions } from '../../store/actions';
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-function Home() {
-  const [list, setList] = useState([]);
+const propTypes = {
+  list: PropTypes.object,
+  silder: PropTypes.array,
+  getPage: PropTypes.func
+};
+
+function Page({ list, silder, getPage }) {
   const router = useRouter();
 
-  const getHome = async () => {
-    const res = await getPageService(router.query.slug);
-    if (res && res.status === 200) {
-      setList(res.data);
-    }
-  };
-
   useEffect(() => {
-    getHome();
+    getPage(router.query.slug);
   }, []);
 
   return (
@@ -27,13 +26,25 @@ function Home() {
         <title>{list.meta_title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container main_content">
-        {map(list.pageBlocks, (values, index) => {
-          return <div key={index}>{ReactHtmlParser(values.contentHtml)}</div>;
-        })}
+      <div className="main_content">
+        <Carousel silder={silder} />
+        <BlockRender data={list.pageBlocks} />
       </div>
     </Layout>
   );
 }
 
-export default Home;
+const mapStateToProp = state => {
+  return {
+    list: state.pageReducer.homedata,
+    silder: state.pageReducer.silder
+  };
+};
+
+const mapDispatchToProps = {
+  getPage: PageActions.getHomeAction
+};
+
+Page.propTypes = propTypes;
+
+export default connect(mapStateToProp, mapDispatchToProps)(Page);

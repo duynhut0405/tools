@@ -1,22 +1,23 @@
 import actions from './actions';
 import { takeLatest, put, all, fork } from 'redux-saga/effects';
-import { getPageService } from '../../services/home';
+import { getPageService } from '../../services/page';
 
-function* homeSaga() {
-  yield takeLatest(actions.GET_HOME_REQUEST, function*() {
+function* pageSaga() {
+  yield takeLatest(actions.GET_HOME_REQUEST, function*(params) {
+    const { name } = params;
     try {
-      const res = yield getPageService('homepage');
+      const res = yield getPageService(name);
       if (res.status === 200) {
         yield put({ type: actions.GET_HOME_RESPONSE, data: res.data });
       } else {
-        console.log(res);
+        // console.log(res);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   });
 }
 
 export default function* rootSaga() {
-  yield all([fork(homeSaga)]);
+  yield all([fork(pageSaga)]);
 }
