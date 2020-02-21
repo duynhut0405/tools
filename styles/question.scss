@@ -60,6 +60,15 @@
       }
     }
   }
+  .title {
+    h2 {
+      color: #333333;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 24px;
+      text-align: center;
+    }
+  }
   .btn {
     display: flex;
     align-items: center;

@@ -27,6 +27,9 @@ function Questions({ data }) {
   };
   return (
     <div className="question">
+      <div className="title mb-4">
+        <h2>{data[0].title}</h2>
+      </div>
       {map(list, (item, index) => (
         <Question key={index} answer={item.answer} question={item.question} />
       ))}
