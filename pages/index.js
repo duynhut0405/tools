@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { map } from 'lodash';
 import { Carousel } from '../components/common';
 import Layout from '../components/layout';
-import { Post } from '../components/block';
+import { Post, Question } from '../components/block';
 import { HomeActions } from '../store/actions';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -18,6 +18,7 @@ function Home({ list, silder, getHome }) {
   useEffect(() => {
     getHome('homepage');
   }, [getHome]);
+
   return (
     <Layout>
       <Head>
@@ -34,6 +35,9 @@ function Home({ list, silder, getHome }) {
           {map(list.pageBlocks, (values, index) => {
             if (values.name === 'Block News') {
               return <Post data={JSON.parse(values.content)} key={index} />;
+            }
+            if (values.name === 'Question') {
+              return <Question data={JSON.parse(values.content)} key={index} />;
             }
             return null;
           })}

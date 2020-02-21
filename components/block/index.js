@@ -1,3 +1,4 @@
 import Post from './Post';
+import Question from './Question';
 
-export { Post };
+export { Post, Question };

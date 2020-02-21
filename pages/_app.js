@@ -1,12 +1,13 @@
-import App from "next/app";
-import React from "react";
-import { Provider } from "react-redux";
-import withRedux from "next-redux-wrapper";
-import withReduxSaga from "next-redux-saga";
-import store from "../store";
-import "../styles/index.scss";
-import "bootstrap/dist/css/bootstrap.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import App from 'next/app';
+import React from 'react';
+import { Provider } from 'react-redux';
+import withRedux from 'next-redux-wrapper';
+import withReduxSaga from 'next-redux-saga';
+import stores from '../store';
+// import '../utils/i18n';
+import '../styles/index.scss';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 class NextApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -26,4 +27,4 @@ class NextApp extends App {
   }
 }
 
-export default withRedux(store)(withReduxSaga(NextApp));
+export default withRedux(stores)(withReduxSaga(NextApp));

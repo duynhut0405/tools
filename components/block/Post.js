@@ -23,6 +23,7 @@ function Post({ data }) {
     setPage(page + 3);
     if (active) {
       setPage(3);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
