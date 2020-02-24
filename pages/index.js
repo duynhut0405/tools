@@ -5,6 +5,8 @@ import Layout from '../components/layout';
 import { PageActions } from '../store/actions';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 
 const propTypes = {
   list: Proptypes.object.isRequired,
@@ -13,6 +15,7 @@ const propTypes = {
 };
 
 function Home({ list, silder, getHome }) {
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     getHome('homepage');
   }, [getHome]);

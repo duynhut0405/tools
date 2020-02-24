@@ -19,13 +19,9 @@ module.exports = withCSS(
       }
     },
     {
-      exportPathMap: function() {
-        return {
-          '/': { page: '/' },
-          '/page/:slug': { page: '/page/:slug' },
-          '/news': { page: '/news' },
-          'news/:slug': { page: '/news/:slug' }
-        };
+      publicRuntimeConfig: {
+        localeSubpaths:
+          typeof process.env.LOCALE_SUBPATHS === 'string' ? process.env.LOCALE_SUBPATHS : 'none'
       }
     }
   )
