@@ -2,7 +2,8 @@ import Actions from './actions';
 
 const initialState = {
   homedata: {},
-  silder: []
+  silder: [],
+  middle: []
 };
 
 const pageReducer = (state = initialState, action) => {

@@ -7,6 +7,7 @@ import QRCODE from '../../public/images/QR_code.png';
 import LocationIcon from '../../public/images/svg/location.svg';
 import MailIcon from '../../public/images/svg/mail.svg';
 import PinIcon from '../../public/images/svg/pin.svg';
+import Link from 'next/link';
 import { map } from 'lodash';
 import { getAllMenu, getMenuItemById } from '../../services/menu';
 import PropTypes from 'prop-types';
@@ -71,9 +72,13 @@ function Layout({ children }) {
   const footerItem = data => {
     return map(data, (item, index) => (
       <li key={index}>
-        <a className={item.children.length > 0 ? 'title' : ''} href={`/page/${item.slugPages}`}>
+        <Link
+          className={item.children.length > 0 ? 'title' : ''}
+          href="/page/[...slug]"
+          as={`page/${item.slugPages}`}
+        >
           {item.name}
-        </a>
+        </Link>
         <ul>{footerItem(item.children)}</ul>
       </li>
     ));
@@ -85,7 +90,9 @@ function Layout({ children }) {
         <div className="col-sm-3" key={key}>
           <ul className="footer_partner">
             <li>
-              <a href={`/page/${values.slugPages}`}>{values.name}</a>
+              <Link href="/page/[...slug]" as={`page/${values.slugPages}`}>
+                {values.name}
+              </Link>
               <ul className="footer_children">{footerItem(values.children)}</ul>
             </li>
           </ul>
@@ -97,7 +104,9 @@ function Layout({ children }) {
   const nestChild = items => {
     return map(items, item => (
       <li key={item.id}>
-        <a href={`/page/${item.slugPages}`}>{item.name}</a>
+        <Link href="/page/[...slug]" as={`page/${item.slugPages}`}>
+          {item.name}
+        </Link>
         {item.children.length > 0 && (
           <div className="dropdown-content">{renderFooter(item.children)}</div>
         )}

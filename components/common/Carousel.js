@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Carousel } from 'react-responsive-carousel';
 
 const propType = {
-  silder: PropTypes.object.isRequired
+  silder: PropTypes.array.isRequired
 };
 
 function Carousels({ silder }) {
