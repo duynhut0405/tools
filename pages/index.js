@@ -16,7 +16,6 @@ function Home({ list, silder, getHome }) {
   useEffect(() => {
     getHome('homepage');
   }, [getHome]);
-
   return (
     <Layout>
       <Head>
