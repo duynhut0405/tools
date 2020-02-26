@@ -1,24 +1,25 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { Carousel, BlockRender } from '../components/common';
+import FormRate from '../components/formRate';
 import Layout from '../components/layout';
-import { PageActions } from '../store/actions';
+import { PageActions, RateActions } from '../store/actions';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import i18n from '../i18n';
 
 const propTypes = {
   list: Proptypes.object.isRequired,
-  silder: Proptypes.object.isRequired,
-  getHome: Proptypes.func.isRequired
+  silder: Proptypes.array.isRequired,
+  listRate: Proptypes.object.isRequired,
+  getHome: Proptypes.func.isRequired,
+  getRate: Proptypes.func.isRequired
 };
 
-function Home({ list, silder, getHome }) {
-  const { t, i18n } = useTranslation();
+function Home({ list, silder, listRate, getHome, getRate }) {
   useEffect(() => {
     getHome('homepage');
-  }, [getHome]);
+    getRate();
+  }, [getHome, getRate]);
   return (
     <Layout>
       <Head>
@@ -32,6 +33,7 @@ function Home({ list, silder, getHome }) {
       <div className="main_content">
         <Carousel silder={silder} />
         <BlockRender data={list.pageBlocks} />
+        <FormRate data={listRate} />
       </div>
     </Layout>
   );
@@ -40,12 +42,14 @@ function Home({ list, silder, getHome }) {
 const mapStateToProp = state => {
   return {
     list: state.pageReducer.homedata,
-    silder: state.pageReducer.silder
+    silder: state.pageReducer.silder,
+    listRate: state.rateReducer.data
   };
 };
 
 const mapDispatchToProps = {
-  getHome: PageActions.getHomeAction
+  getHome: PageActions.getHomeAction,
+  getRate: RateActions.getRateAction
 };
 
 Home.propTypes = propTypes;
