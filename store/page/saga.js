@@ -1,6 +1,6 @@
 import actions from './actions';
 import { takeLatest, put, all, fork } from 'redux-saga/effects';
-import { getPageService } from '../../services/page';
+import { getPageService, getPagesByIdService } from '../../services/page';
 import { filter } from 'lodash';
 
 function* pageSaga() {
@@ -23,7 +23,22 @@ function* pageSaga() {
     }
   });
 }
+function* pagesBySaga() {
+  yield takeLatest(actions.GET_PAGES_BY_ID_REQUEST, function*(params) {
+    const { data } = params;
+    try {
+      const res = yield getPagesByIdService(data);
+      if (res.status === 200) {
+        yield put({ type: actions.GET_PAGES_BY_ID_RESPONSE, data: res.data });
+      } else {
+        // console.log(res);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+}
 
 export default function* rootSaga() {
-  yield all([fork(pageSaga)]);
+  yield all([fork(pageSaga), fork(pagesBySaga)]);
 }
