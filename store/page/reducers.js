@@ -3,7 +3,8 @@ import Actions from './actions';
 const initialState = {
   homedata: {},
   silder: [],
-  middle: []
+  middle: [],
+  listPages: []
 };
 
 const pageReducer = (state = initialState, action) => {
@@ -14,7 +15,11 @@ const pageReducer = (state = initialState, action) => {
         homedata: action.data,
         silder: action.silder
       };
-
+    case Actions.GET_PAGES_BY_ID_RESPONSE:
+      return {
+        ...state,
+        listPages: action.data
+      };
     default:
       return state;
   }

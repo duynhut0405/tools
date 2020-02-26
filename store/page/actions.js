@@ -5,6 +5,14 @@ const Actions = {
   getHomeAction: name => ({
     type: Actions.GET_HOME_REQUEST,
     name
+  }),
+
+  GET_PAGES_BY_ID_REQUEST: 'GET_PAGES_BY_ID_REQUEST',
+  GET_PAGES_BY_ID_RESPONSE: 'GET_PAGES_BY_ID_RESPONSE',
+
+  getPagesById: data => ({
+    type: Actions.GET_PAGES_BY_ID_REQUEST,
+    data
   })
 };
 

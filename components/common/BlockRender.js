@@ -1,5 +1,15 @@
 import React from 'react';
-import { Icon, Images, Post, Product, Question, Repeat, SingerPost } from '../block';
+import {
+  Icon,
+  Images,
+  Post,
+  Product,
+  Question,
+  Repeat,
+  SingerPost,
+  Pages,
+  MiniTab
+} from '../block';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -31,6 +41,18 @@ function BlockRender({ data }) {
         }
         if (values.name === 'Question') {
           return <Question data={JSON.parse(values.content)} key={index} />;
+        }
+        if (values.name === 'Block Pages') {
+          return (
+            <Pages
+              type={JSON.parse(values.content).type}
+              data={JSON.parse(values.content)}
+              key={index}
+            />
+          );
+        }
+        if (values.name === 'Tab Mini') {
+          return <MiniTab data={JSON.parse(values.content)} key={index} />;
         }
         return null;
       })}
