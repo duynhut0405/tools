@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { map, slice } from 'lodash';
 import Proptypes from 'prop-types';
-import { connect } from 'react-redux';
-import { PageActions } from '../../store/actions';
+import { getPagesByIdService } from '../../services/page';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
-  listPages: Proptypes.array,
   getPageBlock: Proptypes.func,
   type: Proptypes.func
 };
 
-function Pages({ data, listPages, getPageBlock, type }) {
+function Pages({ data, type }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
-  const ids = map(data.pages, values => values.value);
+  const [listPage, setListPage] = useState([]);
 
-  useEffect(() => {
-    getPageBlock(ids);
-  }, [getPageBlock]);
-
-  const listNews = slice(listPages, 0, page);
-  //   slice(data.news, 0, page)
-  useEffect(() => {
-    if (listNews.length === listPages.length) {
-      setActive(true);
+  const getPageBlock = async () => {
+    const ids = map(data.pages, values => values.value);
+    const res = await getPagesByIdService(ids);
+    if (res && res.status === 200) {
+      setListPage(res.data);
     }
-  }, [page]);
+  };
+
+  useEffect(() => {
+    getPageBlock();
+  }, []);
+  console.log(listPage);
+  const listNews = slice(listPage, 0, page);
+  //   slice(data.news, 0, page)
+  // useEffect(() => {
+  //   if (listNews.length === listPages.length) {
+  //     setActive(true);
+  //   }
+  // }, [page]);
 
   const showPage = () => {
     setActive(false);
@@ -37,75 +43,60 @@ function Pages({ data, listPages, getPageBlock, type }) {
     }
   };
 
-  if (type === '1') {
+  if (type && type === '1') {
     return (
-      <div className="page_category">
-        <div className="post_block mb-5 pt-4 mt-5">
-          <div className="title">
-            <h2>{data.title}</h2>
+      <div className="list-5 row list-item">
+        <h2 className="ht">{data.title}</h2>
+
+        {map(listNews, item => (
+          <div className="col-md-4" key={item.newsId}>
+            <div className="img tRes_71">
+              <img className="lazy-hidden" data-lazy-type="image" src={item.baseImage} alt="icon" />
+            </div>
+            <div className="divtext">
+              <h4 className="title">{item.name}</h4>
+              <div className="desc line4">{item.meta_description}</div>
+            </div>
           </div>
-          <div className="row">
-            {map(listNews, item => (
-              <div className="col-sm-4 col-md-6 col-lg-4" key={item.newsId}>
-                <div className="post_content mb-3">
-                  <div style={{ height: '187px', width: '100%', overflow: 'hidden' }}>
-                    <img src={item.baseImage} alt="icon" />
-                  </div>
-                  <div className="content">
-                    <h4>{item.name}</h4>
-                    <p className="title">{item.meta_description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="btn">
-            <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
-          </div>
+        ))}
+
+        <div className="btn">
+          <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
         </div>
       </div>
     );
   }
   return (
-    <div className="page_category">
-      <div className="post_block mb-5 pt-4 mt-5">
-        <div className="title">
-          <h2>{data.title}</h2>
-        </div>
-        <div className="row">
-          {map(listNews, item => (
-            <div className="col-sm-6 col-md-6 col-lg-6" key={item.newsId}>
+    <section className="sec-tb">
+      <h2 className="ht">{data.title}</h2>
+      <div className="list-7  list-item row">
+        {map(listNews, item => (
+          <div className="col-md-6" key={item.newsId}>
+            <a href="#" className="item item-inline-table">
               <div className="post_content mb-3">
-                <div
-                  className="col-sm-3"
-                  style={{ height: '187px', width: '100%', overflow: 'hidden' }}
-                >
-                  <img src={item.baseImage} alt="icon" />
+                <div className="img">
+                  <img
+                    className="lazy-hidden"
+                    data-lazy-type="image"
+                    src={item.baseImage}
+                    alt="icon"
+                  />
                 </div>
-                <div className="content col-sm-9 ">
-                  <h4>{item.name}</h4>
-                  <p className="title">{item.meta_description}</p>
+                <div className="divtext">
+                  <h4 className="title line2">{item.name}</h4>
+                  <div className="desc line4">{item.meta_description}</div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-        <div className="btn">
-          <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
-        </div>
+            </a>
+          </div>
+        ))}
       </div>
-    </div>
+      <div className="btn">
+        <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
+      </div>
+    </section>
   );
 }
 Pages.propTypes = propTypes;
-const mapStateToProp = state => {
-  return {
-    listPages: state.pageReducer.listPages
-  };
-};
 
-const mapDispatchToProps = {
-  getPageBlock: PageActions.getPagesById
-};
-
-export default connect(mapStateToProp, mapDispatchToProps)(Pages);
+export default Pages;

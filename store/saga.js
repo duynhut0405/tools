@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
-import pageReducer from './page/saga';
+import pageSaga from './page/saga';
+import rateSaga from './rate/saga';
 
 export default function* rootSaga() {
-  yield all([pageReducer()]);
+  yield all([pageSaga(), rateSaga()]);
 }

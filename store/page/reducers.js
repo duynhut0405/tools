@@ -18,7 +18,7 @@ const pageReducer = (state = initialState, action) => {
     case Actions.GET_PAGES_BY_ID_RESPONSE:
       return {
         ...state,
-        listPages: action.data
+        listPages: [...state.listPages, action.data]
       };
     default:
       return state;

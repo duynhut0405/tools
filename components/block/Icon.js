@@ -9,7 +9,7 @@ const propTypes = {
 function Icon({ data }) {
   return (
     <div className="mutile_icon">
-      <p className="title">{data[0].title}</p>
+      {data !== null && <p className="title">{data[0].title || ''}</p>}
       <div className="row">
         {map(data, (items, index) => {
           return (
