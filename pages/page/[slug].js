@@ -19,7 +19,6 @@ function Page({ list, silder, getPage }) {
   useEffect(() => {
     getPage(router.query.slug);
   }, []);
-
   return (
     <Layout>
       <Head>
