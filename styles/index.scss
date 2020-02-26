@@ -17,7 +17,7 @@
 }
 
 #__next {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .main_content {
   margin-top: 80px;
@@ -38,4 +38,43 @@
 .entry-head {
   margin-bottom: 40px;
   position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: inherit;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 32px !important;
+  line-height: 1.4 !important;
+  text-transform: uppercase !important;
+}
+h2 {
+  font-size: 24px !important;
+  text-transform: uppercase !important;
+}
+h3 {
+  font-size: 18px !important;
+}
+h4 {
+  font-size: 16px !important;
+}
+h5 {
+  font-size: 16px !important;
+}
+h6 {
+  font-size: 16px !important;
 }
