@@ -8,36 +8,57 @@ const propTypes = {
 
 function Icon({ data }) {
   return (
-    <div className="mutile_icon">
-      {data !== null && <p className="title">{data[0].title || ''}</p>}
-      <div className="row">
-        {map(data, (items, index) => {
-          return (
-            <div className={`col-sm-${data[0].type} mb-5`} key={index}>
-              <div className="icon_items">
-                <div className="icon">
-                  <a href={items.url}>
-                    <img src={items.image} alt="icon" className="mb-3" />
-                  </a>
-                </div>
-                <div className="icon_title">
-                  <a href={items.url}>
-                    <p>{items.note_1}</p>
-                  </a>
-                </div>
-                <div className="icon_content">
-                  <p className="text_content">{items.note_2}</p>
-                  <p className="content_sub">{items.note_3}</p>
-                </div>
-                <div className="icon_button">
-                  <a href={items.url}>{items.text_action}</a>
-                </div>
+    <section className="sec-tb sec-h-1 group-ef">
+      <div className="container">
+        <div className="entry-head text-center">
+          <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
+        </div>
+        <div className="menuicon">
+          {data[0].type === '1' && (
+            <React.Fragment>
+              {map(data, (items, index) => {
+                return (
+                  <div className="item ef-img-t" key={index}>
+                    <a href={items.url} className="link">
+                      <div className="img">
+                        <img src={items.image} />
+                      </div>
+                      <div className="title">{items.note_1}</div>
+                    </a>
+                  </div>
+                );
+              })}
+            </React.Fragment>
+          )}
+          {data[0].type === '2' && (
+            <React.Fragment>
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div
+                      className={`col-sm-6 col-md-${data[0].column} efch-2 ef-img-t`}
+                      key={index}
+                    >
+                      <div className="item">
+                        <a href={items.url}>
+                          <div className="img ">
+                            <img className=" loaded loaded" src={items.image} />
+                          </div>
+                          <div className="divtext">
+                            <h4 className="title">{items.note_1}</h4>
+                            <div className="desc">{items.note_2}</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
-          );
-        })}
+            </React.Fragment>
+          )}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
