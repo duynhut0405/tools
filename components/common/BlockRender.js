@@ -19,7 +19,7 @@ const propTypes = {
 
 function BlockRender({ data }) {
   return (
-    <div className="container">
+    <>
       {map(data, (values, index) => {
         if (values.name === 'Block Icon') {
           return <Icon data={JSON.parse(values.content)} key={index} />;
@@ -56,7 +56,7 @@ function BlockRender({ data }) {
         }
         return null;
       })}
-    </div>
+    </>
   );
 }
 
