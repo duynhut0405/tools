@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Images, Post, Product, Question, Repeat, SingerPost } from '../block';
+import { Icon, Images, Post, Product, Question, Repeat, SingerPost, PostLayOut } from '../block';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -22,6 +22,9 @@ function BlockRender({ data }) {
         }
         if (values.name === 'Block News') {
           return <Post data={JSON.parse(values.content)} key={index} />;
+        }
+        if (values.name === 'Post LayOut') {
+          return <PostLayOut data={JSON.parse(values.content)} key={index} />;
         }
         if (values.name === 'Repeat') {
           return <Repeat data={JSON.parse(values.content)} key={index} />;

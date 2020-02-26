@@ -422,15 +422,15 @@
 }
 
 .post_block {
-  background-color: #fafafa;
+  // background-color: #fafafa;
   padding: 0 25px;
   .title {
     color: #333333;
-    font-size: 32px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
     letter-spacing: 1px;
     line-height: 39px;
-    text-align: center;
   }
   .post_content {
     border-radius: 8px;
