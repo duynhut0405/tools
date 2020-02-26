@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ItemsCarousel from 'react-items-carousel';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
 
@@ -7,6 +8,8 @@ const propTypes = {
 };
 
 function Icon({ data }) {
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 40;
   return (
     <section className="sec-tb sec-h-1 group-ef">
       <div className="container">
@@ -16,18 +19,71 @@ function Icon({ data }) {
         <div className="menuicon">
           {data[0].type === '1' && (
             <React.Fragment>
-              {map(data, (items, index) => {
-                return (
-                  <div className="item ef-img-t" key={index}>
-                    <a href={items.url} className="link">
-                      <div className="img">
-                        <img src={items.image} />
-                      </div>
-                      <div className="title">{items.note_1}</div>
-                    </a>
-                  </div>
-                );
-              })}
+              {data.length > 6 && (
+                <ItemsCarousel
+                  requestToChangeActive={setActiveItemIndex}
+                  activeItemIndex={activeItemIndex}
+                  alwaysShowChevrons
+                  numberOfCards={7}
+                  gutter={5}
+                  leftChevron={
+                    <button
+                      style={{
+                        height: '42px',
+                        width: '42px',
+                        borderRadius: '100%',
+                        fontSize: '16px',
+                        border: '1px solid #141ED2',
+                        color: '#141ED2',
+                        background: '#FFF'
+                      }}
+                    >
+                      {'<'}
+                    </button>
+                  }
+                  rightChevron={
+                    <button
+                      style={{
+                        height: '42px',
+                        width: '42px',
+                        borderRadius: '100%',
+                        fontSize: '16px',
+                        border: '1px solid #141ED2',
+                        color: '#141ED2',
+                        background: '#FFF'
+                      }}
+                    >
+                      {'>'}
+                    </button>
+                  }
+                  outsideChevron
+                  chevronWidth={chevronWidth}
+                >
+                  {map(data, (items, index) => (
+                    <div className="item ef-img-t item_carousel" key={index}>
+                      <a href={items.url} className="link">
+                        <div className="img">
+                          <img src={items.image} />
+                        </div>
+                        <div className="title">{items.note_1}</div>
+                      </a>
+                    </div>
+                  ))}
+                </ItemsCarousel>
+              )}
+              {data.length <= 6 &&
+                map(data, (items, index) => {
+                  return (
+                    <div className="item ef-img-t" key={index}>
+                      <a href={items.url} className="link">
+                        <div className="img">
+                          <img src={items.image} />
+                        </div>
+                        <div className="title">{items.note_1}</div>
+                      </a>
+                    </div>
+                  );
+                })}
             </React.Fragment>
           )}
           {data[0].type === '2' && (
