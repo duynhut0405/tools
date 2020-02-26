@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import stores from '../store';
-// import '../utils/i18n';
+import { appWithTranslation } from '../i18n';
 import '../styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -27,4 +27,4 @@ class NextApp extends App {
   }
 }
 
-export default withRedux(stores)(withReduxSaga(NextApp));
+export default withRedux(stores)(withReduxSaga(appWithTranslation(NextApp)));

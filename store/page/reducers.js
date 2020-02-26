@@ -2,7 +2,8 @@ import Actions from './actions';
 
 const initialState = {
   homedata: {},
-  silder: {}
+  silder: [],
+  middle: []
 };
 
 const pageReducer = (state = initialState, action) => {
@@ -11,7 +12,7 @@ const pageReducer = (state = initialState, action) => {
       return {
         ...state,
         homedata: action.data,
-        silder: action.data.sliders
+        silder: action.silder
       };
 
     default:

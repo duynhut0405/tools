@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from "react";
-import Logo from "../../public/images/logo.png";
-import PhoneIcon from "../../public/images/svg/phone.svg";
-import CHIcon from "../../public/images/svg/ch.svg";
-import StoreIcon from "../../public/images/app_store.jpg";
-import QRCODE from "../../public/images/QR_code.png";
-import LocationIcon from "../../public/images/svg/location.svg";
-import MailIcon from "../../public/images/svg/mail.svg";
-import PinIcon from "../../public/images/svg/pin.svg";
-import { map } from "lodash";
-import { getAllMenu, getMenuItemById } from "../../services/menu";
+import React, { useState, useEffect } from 'react';
+import Logo from '../../public/images/logo.png';
+import PhoneIcon from '../../public/images/svg/phone.svg';
+import CHIcon from '../../public/images/svg/ch.svg';
+import StoreIcon from '../../public/images/app_store.jpg';
+import QRCODE from '../../public/images/QR_code.png';
+import LocationIcon from '../../public/images/svg/location.svg';
+import MailIcon from '../../public/images/svg/mail.svg';
+import PinIcon from '../../public/images/svg/pin.svg';
+import Link from 'next/link';
+import { map } from 'lodash';
+import { getAllMenu, getMenuItemById } from '../../services/menu';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  children: PropTypes.node
+};
 
 function Layout({ children }) {
   const [header, setHeader] = useState({});
   const [footer, setFooter] = useState({});
   const [slider, setSlider] = useState({});
 
-  const nest = (items, id = null, link = "parentId") => {
+  const nest = (items, id = null, link = 'parentId') => {
     return items
       .filter(item => item[link] === id)
       .map(item => ({
@@ -33,21 +39,21 @@ function Layout({ children }) {
     const res = await getAllMenu();
     if (res && res.status === 200) {
       map(res.data, async values => {
-        if (values.position === "top") {
+        if (values.position === 'top') {
           const res1 = await getMenuItemById(values.id);
           if (res1 && res1.status === 200) {
-            let menuTopData = nest(res1.data);
+            const menuTopData = nest(res1.data);
             setHeader(menuTopData);
           }
         } else {
-          if (values.position === "bottom") {
+          if (values.position === 'bottom') {
             const res2 = await getMenuItemById(values.id);
             if (res2 && res2.status === 200) {
-              let data = nest(res2.data);
+              const data = nest(res2.data);
               setFooter(data);
             }
           } else {
-            if (values.position === "side") {
+            if (values.position === 'side') {
               const res3 = await getMenuItemById(values.id);
               if (res3 && res3.status === 200) {
                 setSlider(res3.data);
@@ -63,13 +69,17 @@ function Layout({ children }) {
     getMenu();
   }, []);
 
-  const nestChild = items => {
-    return map(items, item => (
-      <li key={item.id}>
-        <a href={`/page/${item.slugPages}`}>{item.name}</a>
-        {item.children.length > 0 && (
-          <div className="dropdown-content">{renderFooter(item.children)}</div>
-        )}
+  const footerItem = data => {
+    return map(data, (item, index) => (
+      <li key={index}>
+        <Link
+          className={item.children.length > 0 ? 'title' : ''}
+          href="/page/[...slug]"
+          as={`page/${item.slugPages}`}
+        >
+          {item.name}
+        </Link>
+        <ul>{footerItem(item.children)}</ul>
       </li>
     ));
   };
@@ -80,7 +90,9 @@ function Layout({ children }) {
         <div className="col-sm-3" key={key}>
           <ul className="footer_partner">
             <li>
-              <a href={`/page/${values.slugPages}`}>{values.name}</a>
+              <Link href="/page/[...slug]" as={`page/${values.slugPages}`}>
+                {values.name}
+              </Link>
               <ul className="footer_children">{footerItem(values.children)}</ul>
             </li>
           </ul>
@@ -89,19 +101,19 @@ function Layout({ children }) {
     });
   };
 
-  const footerItem = data => {
-    return map(data, (item, index) => (
-      <li key={index}>
-        <a
-          className={item.children.length > 0 ? "title" : ""}
-          href={`/page/${item.slugPages}`}
-        >
+  const nestChild = items => {
+    return map(items, item => (
+      <li key={item.id}>
+        <Link href="/page/[...slug]" as={`page/${item.slugPages}`}>
           {item.name}
-        </a>
-        <ul>{footerItem(item.children)}</ul>
+        </Link>
+        {item.children.length > 0 && (
+          <div className="dropdown-content">{renderFooter(item.children)}</div>
+        )}
       </li>
     ));
   };
+
   return (
     <div>
       <div className="header">
@@ -112,12 +124,7 @@ function Layout({ children }) {
                 <ul className="menu_top">
                   <li>
                     <a href="#">
-                      <img
-                        src={PinIcon}
-                        alt="pin_icon"
-                        width="15"
-                        className="mr-2"
-                      />
+                      <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" />
                       Điểm GD & ATM
                     </a>
                   </li>
@@ -179,12 +186,7 @@ function Layout({ children }) {
           <div className="row">
             <div className="col-sm-4 phone">
               <div>
-                <img
-                  src={PhoneIcon}
-                  alt="phone_icon"
-                  width="50"
-                  className="mr-4"
-                />
+                <img src={PhoneIcon} alt="phone_icon" width="50" className="mr-4" />
               </div>
               <div>
                 <p className="title">Gọi ngay</p>
@@ -196,12 +198,7 @@ function Layout({ children }) {
             </div>
             <div className="col-sm-4 phone email">
               <div>
-                <img
-                  src={MailIcon}
-                  alt="phone_icon"
-                  width="50"
-                  className="mr-4"
-                />
+                <img src={MailIcon} alt="phone_icon" width="50" className="mr-4" />
               </div>
               <div>
                 <p className="title">Gửi Email</p>
@@ -210,12 +207,7 @@ function Layout({ children }) {
             </div>
             <div className="col-sm-4 phone">
               <div>
-                <img
-                  src={LocationIcon}
-                  alt="phone_icon"
-                  width="50"
-                  className="mr-4"
-                />
+                <img src={LocationIcon} alt="phone_icon" width="50" className="mr-4" />
               </div>
               <div>
                 <p className="title">Tìm ATM giao dịch</p>
@@ -248,12 +240,7 @@ function Layout({ children }) {
                   <a href="#" className="mr-3">
                     <img src={CHIcon} alt="icon_app" width="120" />
                   </a>
-                  <img
-                    src={QRCODE}
-                    alt="icon_app"
-                    width="60"
-                    className="code_qr"
-                  />
+                  <img src={QRCODE} alt="icon_app" width="60" className="code_qr" />
                 </div>
               </div>
             </div>
@@ -264,12 +251,7 @@ function Layout({ children }) {
       <div className="footer">
         <div className="footer_wapper container">
           <div className="row mt-3">
-            <img
-              src={Logo}
-              alt="logo"
-              width="130"
-              title="Ngân Hàng TMCP Quân Đội"
-            />
+            <img src={Logo} alt="logo" width="130" title="Ngân Hàng TMCP Quân Đội" />
           </div>
           <div className="row ">
             <div className="col-sm-4">
@@ -293,12 +275,7 @@ function Layout({ children }) {
                   <a>Hãy gọi cho chúng tôi để được tư vấn 24/7</a>
                 </li>
                 <li>
-                  <img
-                    src={PhoneIcon}
-                    alt="phone_icon"
-                    width="25"
-                    className="mr-3"
-                  />
+                  <img src={PhoneIcon} alt="phone_icon" width="25" className="mr-3" />
                   <a className="phone" href="tel:1900545426">
                     1900545426
                   </a>
@@ -323,5 +300,7 @@ function Layout({ children }) {
     </div>
   );
 }
+
+Layout.propTypes = propTypes;
 
 export default Layout;

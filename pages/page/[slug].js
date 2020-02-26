@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 const propTypes = {
   list: PropTypes.object,
-  silder: PropTypes.array,
+  silder: PropTypes.object,
   getPage: PropTypes.func
 };
 
