@@ -5,7 +5,22 @@ import Question from './Question';
 import SingerPost from './SingerPost';
 import Repeat from './Repeat';
 import Product from './Product';
-import Pages from './Pages';
+import PostLayOut from './PostLayOut';
 import MiniTab from './MiniTab';
-
-export { Images, Post, Question, Icon, SingerPost, Repeat, Product, Pages, MiniTab };
+import Pages from './Pages';
+import MiniTabItem from './MiniTabItem';
+import Promotion from './Promotion';
+export {
+  Images,
+  Post,
+  Question,
+  Icon,
+  SingerPost,
+  Repeat,
+  Product,
+  PostLayOut,
+  Pages,
+  MiniTab,
+  MiniTabItem,
+  Promotion
+};

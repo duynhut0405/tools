@@ -10,7 +10,7 @@ const propTypes = {
 
 function FormRate({ data }) {
   return (
-    <section className="sec-b sec-tigia">
+    <section className="sec-b sec-tb sec-tigia">
       {data !== undefined && (
         <div className="container">
           <div className="row list-item">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ImageCenter, ImageLeft, ImageRight } from './Images/index';
 import { map } from 'lodash';
 import Propstype from 'prop-types';
 
@@ -8,49 +9,20 @@ const propTypes = {
 
 function Images({ data }) {
   return (
-    <div className="block_images">
-      <p className="title">{data[0].title}</p>
+    <>
+      <div className="entry-head text-center">
+        <h2 className="ht  efch-1 ef-img-t">{data[0].title}</h2>
+      </div>
       {map(data, (items, index) => {
         if (items.type === '1') {
-          return (
-            <div className="block_imege_left mb-5" key={index}>
-              <h2 className="title mb-5">{items.note_1}</h2>
-              <div className="row">
-                <div className="col-sm-7">
-                  <img src={items.image} alt="icon" />
-                </div>
-                <div className="col-sm-5">
-                  <p>{items.note_2}</p>
-                  <button>
-                    <a href={items.url === undefined ? '#' : items.url}>
-                      {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
-                    </a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
+          return <ImageLeft items={items} key={index} />;
         }
-        return (
-          <div className="block_imege_left mb-5" key={index}>
-            <h2 className="title mb-5">{items.note_1}</h2>
-            <div className="row">
-              <div className="col-sm-5">
-                <p>{items.note_2}</p>
-                <button>
-                  <a href={items.url === undefined ? '#' : items.url}>
-                    {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
-                  </a>
-                </button>
-              </div>
-              <div className="col-sm-7">
-                <img src={items.image} alt="icon" />
-              </div>
-            </div>
-          </div>
-        );
+        if (items.type === '2') {
+          return <ImageRight items={items} key={index} />;
+        }
+        return <ImageCenter items={items} key={index} />;
       })}
-    </div>
+    </>
   );
 }
 

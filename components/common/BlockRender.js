@@ -7,9 +7,12 @@ import {
   Question,
   Repeat,
   SingerPost,
+  PostLayOut,
   Pages,
-  MiniTab
+  MiniTab,
+  Promotion
 } from '../block';
+
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -38,6 +41,18 @@ function BlockRender({ data }) {
               key={index}
             />
           );
+        }
+        if (values.name === 'Post LayOut') {
+          return <PostLayOut data={JSON.parse(values.content)} key={index} />;
+        }
+        if (values.name === 'Promotion') {
+          return <Promotion data={JSON.parse(values.content)} key={index} />;
+        }
+        if (values.name === 'Pages') {
+          return <Pages data={JSON.parse(values.content)} key={index} />;
+        }
+        if (values.name === 'MiniTab') {
+          return <MiniTab data={JSON.parse(values.content)} key={index} />;
         }
         if (values.name === 'Repeat') {
           return <Repeat data={JSON.parse(values.content)} key={index} />;

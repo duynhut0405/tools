@@ -5,7 +5,7 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import stores from '../store';
 import { appWithTranslation } from '../i18n';
-// import '../styles/index.scss';
+import '../styles/block.scss';
 // import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/styles.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
