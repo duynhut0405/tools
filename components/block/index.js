@@ -9,7 +9,7 @@ import PostLayOut from './PostLayOut';
 import MiniTab from './MiniTab';
 import Pages from './Pages';
 import MiniTabItem from './MiniTabItem';
-
+import Promotion from './Promotion';
 export {
   Images,
   Post,
@@ -21,5 +21,6 @@ export {
   PostLayOut,
   Pages,
   MiniTab,
-  MiniTabItem
+  MiniTabItem,
+  Promotion
 };

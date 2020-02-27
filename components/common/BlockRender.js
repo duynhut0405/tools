@@ -9,7 +9,8 @@ import {
   SingerPost,
   PostLayOut,
   Pages,
-  MiniTab
+  MiniTab,
+  Promotion
 } from '../block';
 
 import { map } from 'lodash';
@@ -37,6 +38,9 @@ function BlockRender({ data }) {
         }
         if (values.name === 'Post LayOut') {
           return <PostLayOut data={JSON.parse(values.content)} key={index} />;
+        }
+        if (values.name === 'Promotion') {
+          return <Promotion data={JSON.parse(values.content)} key={index} />;
         }
         if (values.name === 'Pages') {
           return <Pages data={JSON.parse(values.content)} key={index} />;
