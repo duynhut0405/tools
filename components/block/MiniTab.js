@@ -13,8 +13,8 @@ function MiniTab({ data }) {
       <h2 className="ht">{data[0].title}</h2>
       <div className="cttab-v3   ">
         <div className="tab-menu">
-          {map(data, value => (
-            <div className="active">
+          {map(data, (value, index) => (
+            <div className={index === 1 ? 'active' : null}>
               <span>{value.tabtitle}</span>
             </div>
           ))}

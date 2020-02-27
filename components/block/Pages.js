@@ -25,7 +25,7 @@ function Pages({ data, type }) {
   useEffect(() => {
     getPageBlock();
   }, []);
-  console.log(listPage);
+
   const listNews = slice(listPage, 0, page);
   //   slice(data.news, 0, page)
   // useEffect(() => {

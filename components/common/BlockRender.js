@@ -31,7 +31,13 @@ function BlockRender({ data }) {
           return <SingerPost data={JSON.parse(values.content)} key={index} />;
         }
         if (values.name === 'Block News') {
-          return <Post data={JSON.parse(values.content)} key={index} />;
+          return (
+            <Post
+              type={JSON.parse(values.content).type}
+              data={JSON.parse(values.content)}
+              key={index}
+            />
+          );
         }
         if (values.name === 'Repeat') {
           return <Repeat data={JSON.parse(values.content)} key={index} />;
