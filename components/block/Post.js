@@ -60,9 +60,6 @@ function Post({ data, type }) {
       </div>
     );
   }
-  if (type === 2) {
-    return;
-  }
 }
 
 Post.propTypes = propTypes;
