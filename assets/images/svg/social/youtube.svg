@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>icon/social/youtube</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="08.-Icon-set" transform="translate(-645.000000, -781.000000)">
+            <g id="icon/social/youtube" transform="translate(646.000000, 782.000000)">
+                <g id="icon/social/twitter-copy">
+                    <g id="icon/social/facebook-copy">
+                        <g id="Group-2">
+                            <g id="icon/play-copy" stroke="#141ED2" stroke-width="1.5">
+                                <g id="play">
+                                    <circle id="Oval" cx="22.8174604" cy="22.8174604" r="22.8174604"></circle>
+                                </g>
+                            </g>
+                            <g id="facebook" transform="translate(12.000000, 16.000000)">
+                                <g id="Group" transform="translate(-0.000000, -0.000000)">
+                                    <g id="twitter">
+                                        <g transform="translate(0.000000, 0.000000)">
+                                            <g id="Group" transform="translate(-0.000000, -0.000000)">
+                                                <g id="youtube">
+                                                    <g transform="translate(0.000000, 0.000000)">
+                                                        <g id="Group" transform="translate(-0.000000, -0.000000)">
+                                                            <g id="Path">
+                                                                <path d="M20.1250001,2.51785717 C19.9091169,1.65534947 19.2483914,0.97418918 18.3928572,0.732142877 C16.8571429,0.357142875 10.7142858,0.357142875 10.7142858,0.357142875 C10.7142858,0.357142875 4.57142859,0.357142875 3.0357143,0.767857163 C2.18018015,1.00990347 1.51945466,1.69106376 1.30357144,2.55357146 C1.022513,4.11210317 0.885032082,5.69313375 0.892857147,7.27678577 C0.88283866,8.87236165 1.0203283,10.4654481 1.30357144,12.0357144 C1.54138421,12.8707647 2.19824453,13.5208532 3.0357143,13.7500001 C4.57142859,14.1607144 10.7142858,14.1607144 10.7142858,14.1607144 C10.7142858,14.1607144 16.8571429,14.1607144 18.3928572,13.7500001 C19.2483914,13.5079538 19.9091169,12.8267935 20.1250001,11.9642858 C20.4038904,10.4174898 20.5413627,8.84851279 20.5357144,7.27678577 C20.5457329,5.68120988 20.4082432,4.08812342 20.1250001,2.51785717 Z" fill="#141ED2"></path>
+                                                                <polygon fill="#FFFFFF" points="8.70535719 10.1964286 13.8392858 7.27678577 8.70535719 4.3571429"></polygon>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
