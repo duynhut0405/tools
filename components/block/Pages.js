@@ -91,8 +91,42 @@ function Pages({ data, type }) {
           </div>
         ))}
       </div>
-      <div className="btn">
-        <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
+      <div className="pages">
+        <ul className="page-numbers">
+          <li>
+            <a className="prev page-numbers" href="#">
+              <i className="icon-arrow-2 ix"></i>
+            </a>
+          </li>
+          <li>
+            <span aria-current="page" className="page-numbers current">
+              1
+            </span>
+          </li>
+          <li>
+            <a className="page-numbers" href="#">
+              2
+            </a>
+          </li>
+          <li>
+            <span className="page-numbers">...</span>
+          </li>
+          <li>
+            <a className="page-numbers" href="#">
+              8
+            </a>
+          </li>
+          <li>
+            <a className="page-numbers" href="#">
+              9
+            </a>
+          </li>
+          <li>
+            <a className="next page-numbers" href="#">
+              <i className="icon-arrow-2"></i>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
   );

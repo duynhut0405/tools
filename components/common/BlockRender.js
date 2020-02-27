@@ -10,7 +10,8 @@ import {
   PostLayOut,
   Pages,
   MiniTab,
-  Promotion
+  Promotion,
+  News
 } from '../block';
 
 import { map } from 'lodash';
@@ -35,7 +36,7 @@ function BlockRender({ data }) {
         }
         if (values.name === 'Block News') {
           return (
-            <Post
+            <News
               type={JSON.parse(values.content).type}
               data={JSON.parse(values.content)}
               key={index}
