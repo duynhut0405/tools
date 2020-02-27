@@ -13,6 +13,7 @@
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "classnames": "^2.2.6",
     "dom-parser": "^0.1.6",
     "html-dom-parser": "^0.2.3",
     "lodash": "^4.17.15",

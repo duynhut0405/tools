@@ -10,7 +10,8 @@ import {
   PostLayOut,
   Pages,
   MiniTab,
-  Promotion
+  Promotion,
+  News
 } from '../block';
 
 import { map } from 'lodash';
@@ -36,6 +37,15 @@ function BlockRender({ data }) {
               }
               if (values.name === 'Single Post') {
                 return <SingerPost data={JSON.parse(values.content)} key={index} />;
+              }
+              if (values.name === 'Block News') {
+                return (
+                  <News
+                    type={JSON.parse(values.content).type}
+                    data={JSON.parse(values.content)}
+                    key={index}
+                  />
+                );
               }
               if (values.name === 'Block News') {
                 return <Post data={JSON.parse(values.content)} key={index} />;
