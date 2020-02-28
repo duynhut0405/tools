@@ -8174,13 +8174,13 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   max-width: 450px;
 }
 
-.sec-download-pc form:first-child {
+.sec-download-pc form :first-child {
   display: table-cell;
   vertical-align: middle;
   width: 100%;
 }
 
-.sec-download-pc form:first-child .input {
+.sec-download-pc form :first-child .input {
   width: 100%;
   border-radius: 10px;
   margin-right: 10px;

@@ -124,7 +124,6 @@ function Layout({ children }) {
     ));
   };
 
-
   return (
     <div>
       <div id="panel">
@@ -284,6 +283,46 @@ function Layout({ children }) {
         </div>
       </div>
       {/* tải appp */}
+      <section className="sec-download-pc group-ef loaded">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6   efch-2 ef-img-r">
+              <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+              <form role="search" method="get" className="searchform " action="">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Nhập email để nhận thông tin"
+                    value=""
+                    name="s"
+                    className="input"
+                  />
+                </div>
+                <button type="submit" className="btn btn-2">
+                  Đăng ký
+                </button>
+              </form>
+            </div>
+            <div className="col-md-6   efch-3 ef-img-r">
+              <div className="wapp">
+                <span className="code">
+                  <img src="static/images/code.png" alt="" />
+                </span>
+                <div className="app">
+                  <p className="stitle">Hãy tải app ngay hôm nay</p>
+                  <a href="#">
+                    <img src="static/images/btt-google.svg" alt="" />
+                  </a>{' '}
+                  &nbsp;
+                  <a href="#">
+                    <img src="static/images/btt-chplay.svg" alt="" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <div className="app_wapper">
         <div className="container">
           <div className="row">
