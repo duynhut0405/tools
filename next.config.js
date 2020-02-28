@@ -3,37 +3,9 @@ const withCSS = require('@zeit/next-css');
 const withFonts = require('nextjs-fonts');
 const { getRouer } = require('./services/router');
 
-module.exports = withFonts(
-  withSass({
-    webpack(config, options) {
-      // custom webpack loaders if you need
-      return config;
-    }
-  })
-);
-
-module.exports = withCSS(
-  withSass({
-    webpack(config, options) {
-      config.module.rules.push({
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 100000
-          }
-        }
-      });
-
-      return config;
-    }
-  })
-);
-
-module.exports = {
+const nextJsConfig = {
   exportPathMap: async function() {
     const res = await getRouer();
-
     const router = res.data.reduce(
       (pages, data) =>
         Object.assign({}, pages, {
@@ -46,3 +18,22 @@ module.exports = {
     });
   }
 };
+module.exports = withSass(nextJsConfig);
+module.exports = withFonts(
+  withCSS(
+    withSass({
+      webpack(config, options) {
+        config.module.rules.push({
+          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 100000
+            }
+          }
+        });
+        return config;
+      }
+    })
+  )
+);
