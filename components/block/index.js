@@ -20,5 +20,5 @@ export {
   Pages,
   MiniTab,
   MiniTabItem,
-  News
+  News,
 };

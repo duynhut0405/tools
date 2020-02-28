@@ -45,9 +45,9 @@ function BlockRender({ data }) {
                   />
                 );
               }
-              if (values.name === 'Block News') {
-                return <Post data={JSON.parse(values.content)} key={index} />;
-              }
+              // if (values.name === 'Block News') {
+              //   return <Post data={JSON.parse(values.content)} key={index} />;
+              // }
               if (values.name === 'Pages') {
                 return <Pages data={JSON.parse(values.content)} key={index} />;
               }

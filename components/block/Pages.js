@@ -13,7 +13,6 @@ function Pages({ data, type }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const [listPage, setListPage] = useState([]);
-
   const getPageBlock = async () => {
     const ids = map(data.pages, values => values.value);
     const res = await getPagesByIdService(ids);
@@ -45,23 +44,63 @@ function Pages({ data, type }) {
 
   if (type && type === '1') {
     return (
-      <div className="list-5 row list-item">
-        <h2 className="ht">{data.title}</h2>
+      <div>
+        <div className="list-5 row list-item">
+          <h2 className="ht">{data.title}</h2>
 
-        {map(listNews, item => (
-          <div className="col-md-4" key={item.newsId}>
-            <div className="img tRes_71">
-              <img className="lazy-hidden" data-lazy-type="image" src={item.baseImage} alt="icon" />
+          {map(listNews, item => (
+            <div className="col-md-4" key={item.newsId}>
+              <div className="img tRes_71">
+                <img
+                  className="lazy-hidden"
+                  data-lazy-type="image"
+                  src={item.baseImage}
+                  alt="icon"
+                />
+              </div>
+              <div className="divtext">
+                <h4 className="title">{item.name}</h4>
+                <div className="desc line4">{item.meta_description}</div>
+              </div>
             </div>
-            <div className="divtext">
-              <h4 className="title">{item.name}</h4>
-              <div className="desc line4">{item.meta_description}</div>
-            </div>
-          </div>
-        ))}
-
-        <div className="btn">
-          <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
+          ))}
+        </div>
+        <div className="pages">
+          <ul className="page-numbers">
+            <li>
+              <a className="prev page-numbers" href="#">
+                <i className="icon-arrow-2 "></i>
+              </a>
+            </li>
+            <li>
+              <span aria-current="page" className="page-numbers current">
+                1
+              </span>
+            </li>
+            <li>
+              <a className="page-numbers" href="#">
+                2
+              </a>
+            </li>
+            <li>
+              <span className="page-numbers">...</span>
+            </li>
+            <li>
+              <a className="page-numbers" href="#">
+                8
+              </a>
+            </li>
+            <li>
+              <a className="page-numbers" href="#">
+                9
+              </a>
+            </li>
+            <li>
+              <a className="next page-numbers" href="#">
+                <i className="icon-arrow-2"></i>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     );
