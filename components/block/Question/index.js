@@ -26,19 +26,25 @@ function Questions({ data }) {
     }
   };
   return (
-    <div className="question">
-      <div className="title mb-4">
-        <h2>{data[0].title}</h2>
-      </div>
-      {map(list, (item, index) => (
-        <Question key={index} answer={item.answer} question={item.question} />
-      ))}
-      {data.length > 4 && (
-        <div className="btn">
-          <button onClick={() => show()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
+    <section className="sec-b sec-cauhoi">
+      <div className="container">
+        <div className="entry-head text-center">
+          <h2 className="ht ">{data[0].title || ''}</h2>
         </div>
-      )}
-    </div>
+        <div className="accodion accodion-1">
+          {map(list, (item, index) => (
+            <Question key={index} answer={item.answer} question={item.question} />
+          ))}
+        </div>
+        {data.length > 4 && (
+          <div className="text-center">
+            <button className="btn lg" onClick={() => show()}>
+              {active === false ? 'Xem thêm' : 'Thu gọn'}
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
