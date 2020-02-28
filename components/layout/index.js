@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../../public/images/logo.png';
-import PhoneIcon from '../../public/images/svg/phone.svg';
-import CHIcon from '../../public/images/svg/ch.svg';
-import StoreIcon from '../../public/images/app_store.jpg';
-import QRCODE from '../../public/images/QR_code.png';
-import LocationIcon from '../../public/images/svg/location.svg';
-import MailIcon from '../../public/images/svg/mail.svg';
-import PinIcon from '../../public/images/svg/pin.svg';
+// import Logo from '../../public/images/logo.png';
+// import PhoneIcon from '../../public/images/svg/phone.svg';
+// import CHIcon from '../../public/images/svg/ch.svg';
+// import StoreIcon from '../../public/images/app_store.jpg';
+// import QRCODE from '../../public/images/QR_code.png';
+// import LocationIcon from '../../public/images/svg/location.svg';
+// import MailIcon from '../../public/images/svg/mail.svg';
+// import PinIcon from '../../public/images/svg/pin.svg';
 import Link from 'next/link';
 import { map } from 'lodash';
 import { getAllMenu, getMenuItemById } from '../../services/menu';
@@ -124,7 +124,7 @@ function Layout({ children }) {
                 <ul className="menu_top">
                   <li>
                     <a href="#">
-                      <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" />
+                      {/* <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" /> */}
                       Điểm GD & ATM
                     </a>
                   </li>
@@ -162,7 +162,7 @@ function Layout({ children }) {
                 <ul className="menu_top">
                   <li>
                     <a href="/" className="logo">
-                      <img src={Logo} alt="logo" width="90" />
+                      {/* <img src={Logo} alt="logo" width="90" /> */}
                     </a>
                   </li>
                   {nestChild(header)}
@@ -186,7 +186,7 @@ function Layout({ children }) {
           <div className="row">
             <div className="col-sm-4 phone">
               <div>
-                <img src={PhoneIcon} alt="phone_icon" width="50" className="mr-4" />
+                {/* <img src={PhoneIcon} alt="phone_icon" width="50" className="mr-4" /> */}
               </div>
               <div>
                 <p className="title">Gọi ngay</p>
@@ -197,9 +197,7 @@ function Layout({ children }) {
               </div>
             </div>
             <div className="col-sm-4 phone email">
-              <div>
-                <img src={MailIcon} alt="phone_icon" width="50" className="mr-4" />
-              </div>
+              <div>{/* <img src={MailIcon} alt="phone_icon" width="50" className="mr-4" /> */}</div>
               <div>
                 <p className="title">Gửi Email</p>
                 <p className="subtitle">mb247@mbbank.com.vn</p>
@@ -207,7 +205,7 @@ function Layout({ children }) {
             </div>
             <div className="col-sm-4 phone">
               <div>
-                <img src={LocationIcon} alt="phone_icon" width="50" className="mr-4" />
+                {/* <img src={LocationIcon} alt="phone_icon" width="50" className="mr-4" /> */}
               </div>
               <div>
                 <p className="title">Tìm ATM giao dịch</p>
@@ -235,12 +233,12 @@ function Layout({ children }) {
                 <label>Hãy tải app ngay hôm nay</label>
                 <div className="app_content">
                   <a href="#" className="mr-3">
-                    <img src={StoreIcon} alt="icon_app" width="120" />
+                    {/* <img src={StoreIcon} alt="icon_app" width="120" /> */}
                   </a>
                   <a href="#" className="mr-3">
-                    <img src={CHIcon} alt="icon_app" width="120" />
+                    {/* <img src={CHIcon} alt="icon_app" width="120" /> */}
                   </a>
-                  <img src={QRCODE} alt="icon_app" width="60" className="code_qr" />
+                  {/* <img src={QRCODE} alt="icon_app" width="60" className="code_qr" /> */}
                 </div>
               </div>
             </div>
@@ -251,7 +249,7 @@ function Layout({ children }) {
       <div className="footer">
         <div className="footer_wapper container">
           <div className="row mt-3">
-            <img src={Logo} alt="logo" width="130" title="Ngân Hàng TMCP Quân Đội" />
+            {/* <img src={Logo} alt="logo" width="130" title="Ngân Hàng TMCP Quân Đội" /> */}
           </div>
           <div className="row ">
             <div className="col-sm-4">
@@ -275,7 +273,7 @@ function Layout({ children }) {
                   <a>Hãy gọi cho chúng tôi để được tư vấn 24/7</a>
                 </li>
                 <li>
-                  <img src={PhoneIcon} alt="phone_icon" width="25" className="mr-3" />
+                  {/* <img src={PhoneIcon} alt="phone_icon" width="25" className="mr-3" /> */}
                   <a className="phone" href="tel:1900545426">
                     1900545426
                   </a>

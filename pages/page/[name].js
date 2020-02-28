@@ -15,9 +15,8 @@ const propTypes = {
 
 function Page({ list, silder, getPage }) {
   const router = useRouter();
-
   useEffect(() => {
-    getPage(router.query.slug);
+    getPage(router.query.name);
   }, []);
   return (
     <Layout>
