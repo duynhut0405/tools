@@ -23,8 +23,5 @@ export {
   MiniTab,
   MiniTabItem,
   News,
-<<<<<<< HEAD
-=======
   TagProduct
->>>>>>> 8e9fa79c30758bc4ed6f9db56534160ff05371a2
 };
