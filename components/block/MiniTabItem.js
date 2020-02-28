@@ -23,7 +23,7 @@ function MiniTabItem({ data }) {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <div className="list-7  list-item row">
         {map(listPage, item => (
           <div className="col-md-6" key={item.newsId}>
