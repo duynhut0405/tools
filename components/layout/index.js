@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../../public/images/logo.png';
+import Logo from '../../public/images/logo.svg';
 import PhoneIcon from '../../public/images/svg/phone.svg';
 import CHIcon from '../../public/images/svg/ch.svg';
 import StoreIcon from '../../public/images/app_store.jpg';
@@ -103,18 +103,27 @@ function Layout({ children }) {
     });
   };
 
-  const nestChild = items => {
+  const renderChildMenu = items => {
     return map(items, item => (
       <li key={item.id}>
         <Link href="/page/[...slug]" as={`/page/${item.slug}`}>
-          {item.name}
+          <span>{item.name}</span>
         </Link>
-        {item.children.length > 0 && (
-          <div className="dropdown-content">{renderFooter(item.children)}</div>
-        )}
       </li>
     ));
   };
+
+  const nestChild = items => {
+    return map(items, item => (
+      <li key={item.id} className={item.children.length > 0 ? 'children' : 'no-children'}>
+        <Link href="/page/[...slug]" as={`/page/${item.slug}`}>
+          {item.name}
+        </Link>
+        {item.children.length > 0 && <ul>{renderChildMenu(item.children)} </ul>}
+      </li>
+    ));
+  };
+
 
   return (
     <div>
@@ -130,7 +139,7 @@ function Layout({ children }) {
                 </li>
                 <li>
                   <a href="#">
-                  <img src={BieuPhiIcon} alt="Bieu Phi" width="15" className="mr-2" /> Biểu phí
+                    <img src={BieuPhiIcon} alt="Bieu Phi" width="15" className="mr-2" /> Biểu phí
                   </a>
                 </li>
               </ul>
@@ -181,70 +190,62 @@ function Layout({ children }) {
           </div>
         </div>
       </div>
-      <div className="header">
-        <div className="header_top">
-          <div className="menu_wapper navbar-fixed-top container">
-            <div className="row">
-              <div className="col-sm-4">
-                <ul className="menu_top">
-                  <li>
-                    <a href="#">
-                      {/* <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" /> */}
-                      Điểm GD & ATM
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">Biểu phí</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-sm-8">
-                <ul className="menu_top menu_right">
-                  <li>
-                    <a href="#">Về MBBank</a>
-                  </li>
-                  <li>
-                    <a href="#">Nhà đầu tư</a>
-                  </li>
-                  <li>
-                    <a href="#">Nghề nghiệp</a>
-                  </li>
-                  <li>
-                    <a href="#">Liên hệ</a>
-                  </li>
-                  <li>
-                    <a href="#">Đăng nhập</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="header_menu">
-          <div className="menu_wapper container">
-            <div className="row">
-              <div className="col">
-                <ul className="menu_top">
-                  <li>
-                    <a href="/" className="logo">
-                      <img src={Logo} alt="logo" width="90" />
-                    </a>
-                  </li>
-                  {nestChild(header)}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="conetnt">{children}</div>
-      <div className="navbarside">
-        {map(slider, data => (
-          <a href={`/page/${data.slug}`} key={data.id}>
-            {data.name}
+      <header id="header" className="fixe" role="banner">
+        <div className="container">
+          <a href="./" id="logo">
+            <img src={Logo} alt="logo" />
           </a>
-        ))}
-      </div>
+          <div className="wrap-menu-header">
+            <ul className="menu-top-header" data-style="1">
+              {nestChild(header)}
+            </ul>
+          </div>
+          <div className="group-header">
+            <div className="item ilogin">
+              <ul className="menu line">
+                <li>
+                  <a href="#"> Đăng ký</a>
+                </li>
+                <li>
+                  <a href="#"> Đăng nhập</a>
+                </li>
+              </ul>
+            </div>
+            <div className="item ilang">
+              <div className="dropdown language">
+                <div className="title">
+                  <span>
+                    <img src="assets/images/flags/vn.png" alt="" />
+                  </span>
+                  <i className="icon-arrow-2 ib"></i>
+                </div>
+                <div className="content">
+                  <div className="inner">
+                    <ul className="menu">
+                      <li className="lang-en">
+                        <a href="#" hrefLang="en" title="English (en)">
+                          <img src="assets/images/flags/gb.png" alt="" /> <span>English</span>
+                        </a>
+                      </li>
+                      <li className="lang-vi active">
+                        <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
+                          <img src="assets/images/flags/vn.png" alt="" /> <span>Tiếng Việt</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="item imenu">
+              <span className="menu-btn x">
+                <span></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div className="conetnt">{children}</div>
       {/* contact */}
       <div className="contact">
         <div className="container">
@@ -262,7 +263,9 @@ function Layout({ children }) {
               </div>
             </div>
             <div className="col-sm-4 phone email">
-              <div><img src={MailIcon} alt="phone_icon" width="50" className="mr-4" /></div>
+              <div>
+                <img src={MailIcon} alt="phone_icon" width="50" className="mr-4" />
+              </div>
               <div>
                 <p className="title">Gửi Email</p>
                 <p className="subtitle">mb247@mbbank.com.vn</p>
