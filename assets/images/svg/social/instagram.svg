@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>icon/social/instagram</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="08.-Icon-set" transform="translate(-731.000000, -781.000000)">
+            <g id="icon/social/instagram" transform="translate(732.000000, 782.000000)">
+                <g id="icon/social/twitter-copy-2">
+                    <g id="icon/social/facebook-copy">
+                        <g id="Group-2">
+                            <g id="icon/play-copy" stroke="#141ED2" stroke-width="1.5">
+                                <g id="play">
+                                    <circle id="Oval" cx="22.8174604" cy="22.8174604" r="22.8174604"></circle>
+                                </g>
+                            </g>
+                            <g id="facebook" transform="translate(14.000000, 14.000000)">
+                                <g id="Group" transform="translate(-0.000000, -0.000000)">
+                                    <g id="twitter">
+                                        <g transform="translate(0.000000, 0.000000)">
+                                            <g id="Group" transform="translate(-0.000000, -0.000000)">
+                                                <g id="instagram">
+                                                    <g>
+                                                        <g id="Group" transform="translate(-0.000000, -0.000000)">
+                                                            <g>
+                                                                <rect id="Rectangle" stroke="#141ED2" stroke-width="1.5" x="0.666666675" y="0.666666675" width="16.6666668" height="16.6666668" rx="5"></rect>
+                                                                <path d="M12.3333334,8.47500005 C12.5442688,9.89747638 11.8191883,11.2948705 10.5346888,11.9413949 C9.25018939,12.5879194 7.69587385,12.3378089 6.6790325,11.3209676 C5.66219115,10.3041263 5.41208073,8.74981071 6.05860517,7.46531127 C6.7051296,6.18081183 8.10252372,5.45573133 9.52500005,5.6666667 C10.9774807,5.88205133 12.1179488,7.0225194 12.3333334,8.47500005 Z" id="Path" stroke="#141ED2" stroke-width="1.5"></path>
+                                                                <line x1="13.5833334" y1="4.41666669" x2="13.5833334" y2="4.41666669" id="Path" stroke="#D269AF" stroke-width="2"></line>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,143 @@
+#wrapper  { position: relative; z-index: 1;}
+
+
+.dropdown.language {
+  text-align: left;
+  .title {
+    padding: 0 10px;
+    i { font-size: 10px; display: inline-block;     margin-left: 5px; position: relative;    top: -2px;}
+  }
+  >.content { 
+    width: 150px; left: auto; right: -15px;
+    &:before { right: 40px; left: auto;  }
+  }
+}
+
+
+
+#panel {
+  background-color: #fff;  line-height: 38px; height: 40px; font-size: 13px; position: relative; z-index: 1001;
+  ul.menu {
+    &.line {
+      li:not(:first-child){
+        &:before {
+          background-color: #333; 
+        }
+      }
+    }
+  }
+
+  .row {
+    &>div:first-child {
+      background-color: #fff;
+      .menu {
+        li:before { display: none;}
+      }
+
+      a {
+        padding-left: 25px; position: relative;
+        img{@include middleY; left: 0;      }        
+      }
+
+
+    }
+  }
+
+
+
+}
+
+#header {
+  @extend .tss; background-color: $cl1;
+  #logo img { height: auto;}
+  .group-header {
+
+  }
+
+  .wrap-menu-header { @extend .tss;}
+  ul.menu {
+    &.line {
+      a { 
+        color: #fff;
+        &:hover { color: $cl4;}
+      }
+      li:not(:first-child){
+        &:before {
+          background-color: #fff; 
+        }
+      }
+    }
+  }
+
+
+
+  .dropdown.language {
+    i {color: #fff;}
+  }
+
+
+}
+
+
+.menu-btn { display: block;}
+
+@include min1200 {
+    .wrap-menu-header {
+        margin-left: 200px;
+    }
+    .group-header .imenu { display: none !important;}
+}
+@include max1199 {
+    .wrap-menu-header {
+      display: none !important;
+    }  
+    
+}
+
+
+
+
+// breadcrumbs
+.entry-breadcrumb {    line-height: 20px; padding: 15px 0; background-color:#F9F9F9; }
+.breadcrumbs {
+  margin:0; overflow: hidden;
+    &>.item {  
+      position: relative; float: left; 
+      &:not(:last-child) {
+        &:after { 
+          content: ""; display: inline-block;   margin: 0 15px;  width: 6px; height: 6px; background-color: $cl1; border-radius: 100%;
+        }
+      }
+    }  
+    span { color: $cl1; font-weight: 600;}
+    a {
+      &:hover { color: $color2;  }      
+    } 
+}
+
+
+
+@include max991 {
+  #panel { display: none;  }
+}
+@include min992 {
+  #header .group-header {
+    .ilang { display: none !important;}
+  } 
+}
+@include max767 {
+  #header .group-header {
+    .ilogin { display: none  !important;}
+  }
+}
+@include min992max1199 {
+  #header:not(.sticky) ~  .wrap-menu-mb { top: 100px; }
+}
+
+
+body.showMenu .menu-btn.x:before {
+  transform: translateY(7px) rotate(-45deg);
+}
+body.showMenu .menu-btn.x:after {
+    transform: translateY(-7px) rotate(45deg);
+}

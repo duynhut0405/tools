@@ -1,0 +1,89 @@
+// DEFAULT
+$color1: #141ED2;  
+$color2: #9BE6C8;
+$color3: #333333;
+$color4: #9BE6C8; 
+
+$color5: #1E1E1E;
+$color6: #A6A6A6;  
+$colorGray: #898989;
+
+
+$cl1: $color1;  
+$cl2: $color2;
+$cl3: $color3;  
+$cl4: $color4;  
+$cl5: $color5;  
+$cl6: $color6;  
+
+$section_pd : 70px;   
+$space-list-item : 30px;  
+
+
+//@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700|Roboto:100,300,400,400i,500,700,900&subset=vietnamese');
+
+
+
+@font-face {
+  font-family: 'Averta';
+  src: url(../fonts/averta/AvertaStdCY-Light.otf);
+  font-weight: 300;
+} 
+@font-face {
+  font-family: 'Averta';
+  src: url(../fonts/averta/AvertaStdCY-Regular.otf);
+  font-weight: normal;
+} 
+// @font-face {
+//   font-family: 'Averta';
+//   src: url(../fonts/averta/AvertaStdCY-Regular.otf);
+//   font-weight: 500;
+// } 
+@font-face {
+  font-family: 'Averta';
+  src: url(../fonts/averta/AvertaStdCY-Semibold.otf);
+  font-weight: 600;
+} 
+@font-face {
+  font-family: 'Averta';
+  src: url(../fonts/averta/AvertaStdCY-Bold.otf);
+  font-weight: 700;
+} 
+
+
+
+// Font 
+
+$font1 : "Averta",Helvetica,Arial,sans-serif;
+// $font2 : 'Quicksand', sans-serif;
+// $font3 : 'Roboto', sans-serif;
+
+
+// Font 
+$font2 : 'DINRoundOT Light', sans-serif;
+$font3 : 'DINRoundOT Medium', sans-serif;
+$font4 : 'DINRoundOT Bold', sans-serif;
+
+
+.font1 { font-family: $font1; }
+.font2 { font-family: $font2; }
+.font3 { font-family: $font3; }
+.font4 { font-family: $font4; }
+
+.tRes_140:before {
+    padding-top: 140% !important;
+}
+
+
+
+@import "variables/header";
+@import "variables/menu";
+@import "variables/form";
+@import "variables/slider";
+@import "variables/tabs";
+@import "variables/pagination";   
+@import "variables/thumb";   
+@import "variables/sub";   
+@import "variables/extend";
+
+

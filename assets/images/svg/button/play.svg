@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>icon/button/play</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="08.-Icon-set" transform="translate(-471.000000, -907.000000)" stroke="#141ED2">
+            <g id="icon/button/play" transform="translate(472.000000, 908.000000)">
+                <g id="icon/play">
+                    <g id="play" stroke-width="1.64285714">
+                        <circle id="Oval" cx="22.8174604" cy="22.8174604" r="22.8174604"></circle>
+                        <polygon id="Path" points="18.2539683 13.6904763 31.9444446 22.8174604 18.2539683 31.9444446"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
