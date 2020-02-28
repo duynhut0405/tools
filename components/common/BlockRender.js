@@ -7,10 +7,8 @@ import {
   Question,
   Repeat,
   SingerPost,
-  PostLayOut,
   Pages,
   MiniTab,
-  Promotion,
   News
 } from '../block';
 
@@ -46,15 +44,6 @@ function BlockRender({ data }) {
                     key={index}
                   />
                 );
-              }
-              if (values.name === 'Block News') {
-                return <Post data={JSON.parse(values.content)} key={index} />;
-              }
-              if (values.name === 'Post LayOut') {
-                return <PostLayOut data={JSON.parse(values.content)} key={index} />;
-              }
-              if (values.name === 'Promotion') {
-                return <Promotion data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Pages') {
                 return <Pages data={JSON.parse(values.content)} key={index} />;
