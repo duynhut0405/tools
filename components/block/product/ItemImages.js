@@ -3,7 +3,7 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.array
 };
 
 function ItemImages({ data }) {

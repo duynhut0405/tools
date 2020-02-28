@@ -299,7 +299,6 @@ function Layout({ children }) {
                     <input
                       type="text"
                       placeholder="Nhập email để nhận thông tin"
-                      value=""
                       name="s"
                       className="input"
                     />

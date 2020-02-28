@@ -6,7 +6,7 @@ import { getNewByIdService } from '../../services/news';
 const propTypes = {
   data: Proptypes.object.isRequired,
   getCategoryPage: Proptypes.func,
-  type: Proptypes.number
+  type: Proptypes.string
 };
 
 function News({ data, type }) {
@@ -23,7 +23,6 @@ function News({ data, type }) {
       setListCategory(res.data);
     }
   };
-  console.log(listCategory)
   useEffect(() => {
     getCategoryPage();
   }, []);
@@ -42,8 +41,8 @@ function News({ data, type }) {
           <h2>{data.title}</h2>
         </div>
         <div className="row">
-          {map(listNews, item => (
-            <div className="col-sm-4 col-md-6 col-lg-4" key={item.newsId}>
+          {map(listNews, (item, index) => (
+            <div className="col-sm-4 col-md-6 col-lg-4" key={index}>
               <div className="post_content mb-3">
                 <div style={{ height: '230px', width: '100%', overflow: 'hidden' }}>
                   <img src={item.base_image} alt="icon" />
@@ -81,8 +80,8 @@ function News({ data, type }) {
           <div className="row list-item">
             <div className="col-lg-8 ">
               <div className="list-5 row ">
-                {map(listNews, item => (
-                  <div className="col-md-6">
+                {map(listNews, (item, index) => (
+                  <div className="col-md-6" key={index}>
                     <a href="#" className="item efch-1 ef-img-l equal">
                       <div className="img tRes_71">
                         <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
@@ -99,8 +98,8 @@ function News({ data, type }) {
             </div>
             {/* 3tabs */}
             <div className="col-lg-4">
-              {map(listNewsTabs, item => (
-                <div className="list-6">
+              {map(listNewsTabs, (item, index) => (
+                <div className="list-6" key={index}>
                   <a
                     href="https://sapotacorp.com:8443/vi/api/news/"
                     className="item item-inline-table"
@@ -136,8 +135,8 @@ function News({ data, type }) {
             data-res="4,3,2,1"
             paramowl="margin=0"
           >
-            {map(listNews, item => (
-              <a href="#" className="item efch-1 ef-img-l equal">
+            {map(listNews, (item, index) => (
+              <a href="#" className="item efch-1 ef-img-l equal" key={index}>
                 <div className="img tRes_71">
                   <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
                 </div>
