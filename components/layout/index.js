@@ -162,7 +162,7 @@ function Layout({ children }) {
                     <div className="dropdown language">
                       <div className="title">
                         <span>
-                          <img src="static/flags/vn.png" alt="" />
+                          <img src="/static/flags/vn.png" alt="" />
                         </span>
                         <i className="icon-arrow-2 ib"></i>
                       </div>
@@ -171,12 +171,12 @@ function Layout({ children }) {
                           <ul className="menu">
                             <li className="lang-en">
                               <a href="#" hrefLang="en" title="English (en)">
-                                <img src="static/flags/gb.png" alt="" /> <span>English</span>
+                                <img src="/static/flags/gb.png" alt="" /> <span>English</span>
                               </a>
                             </li>
                             <li className="lang-vi active">
                               <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                                <img src="static/images/flags/vn.png" alt="" />{' '}
+                                <img src="/static/images/flags/vn.png" alt="" />{' '}
                                 <span>Tiếng Việt</span>
                               </a>
                             </li>
@@ -215,7 +215,7 @@ function Layout({ children }) {
                 <div className="dropdown language">
                   <div className="title">
                     <span>
-                      <img src="static/images/flags/vn.png" alt="" />
+                      <img src="/static/images/flags/vn.png" alt="" />
                     </span>
                     <i className="icon-arrow-2 ib"></i>
                   </div>
@@ -224,12 +224,12 @@ function Layout({ children }) {
                       <ul className="menu">
                         <li className="lang-en">
                           <a href="#" hrefLang="en" title="English (en)">
-                            <img src="static/images/flags/gb.png" alt="" /> <span>English</span>
+                            <img src="/static/images/flags/gb.png" alt="" /> <span>English</span>
                           </a>
                         </li>
                         <li className="lang-vi active">
                           <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                            <img src="static/images/flags/vn.png" alt="" /> <span>Tiếng Việt</span>
+                            <img src="/static/images/flags/vn.png" alt="" /> <span>Tiếng Việt</span>
                           </a>
                         </li>
                       </ul>
@@ -253,7 +253,7 @@ function Layout({ children }) {
               <div className="col-4 ">
                 <a className="item" href="#">
                   <span className="img">
-                    <img src="static/images/svg/t1.svg" alt="" />
+                    <img src="/static/images/svg/t1.svg" alt="" />
                   </span>
                   <div className="divtext">
                     <h4 className="title">Gọi ngay</h4>
@@ -266,7 +266,7 @@ function Layout({ children }) {
               <div className="col-4 ">
                 <a className="item" href="#">
                   <span className="img">
-                    <img src="static/images/svg/t2.svg" alt="" />
+                    <img src="/static/images/svg/t2.svg" alt="" />
                   </span>
                   <div className="divtext">
                     <h4 className="title">Gửi email</h4>
@@ -277,7 +277,7 @@ function Layout({ children }) {
               <div className="col-4 ">
                 <a className="item" href="#">
                   <span className="img">
-                    <img src="static/images/svg/t3.svg" alt="" />
+                    <img src="/static/images/svg/t3.svg" alt="" />
                   </span>
                   <div className="divtext">
                     <h4 className="title">Tìm ATm & Điểm GD</h4>
@@ -312,16 +312,16 @@ function Layout({ children }) {
               <div className="col-md-6   efch-3 ef-img-r">
                 <div className="wapp">
                   <span className="code">
-                    <img src="static/images/code.png" alt="" />
+                    <img src="/static/images/code.png" alt="" />
                   </span>
                   <div className="app">
                     <p className="stitle">Hãy tải app ngay hôm nay</p>
                     <a href="#">
-                      <img src="static/images/btt-google.svg" alt="" />
+                      <img src="/static/images/btt-google.svg" alt="" />
                     </a>{' '}
                     &nbsp;
                   <a href="#">
-                      <img src="static/images/btt-chplay.svg" alt="" />
+                      <img src="/static/images/btt-chplay.svg" alt="" />
                     </a>
                   </div>
                 </div>
@@ -337,7 +337,7 @@ function Layout({ children }) {
                   <div>
                     <a href="./" className="logo">
                       {' '}
-                      <img src="static/images/logo-blue.svg" alt="" />
+                      <img src="/static/images/logo-blue.svg" alt="" />
                     </a>
                   </div>
                   <h3>Ngân hàng TMCP Quân Đội</h3>
