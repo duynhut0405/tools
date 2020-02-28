@@ -1,6 +1,16 @@
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
+const withFonts = require('nextjs-fonts');
 const { getRouer } = require('./services/router');
+
+module.exports = withFonts(
+  withSass({
+    webpack(config, options) {
+      // custom webpack loaders if you need
+      return config;
+    }
+  })
+);
 
 module.exports = withCSS(
   withSass({
