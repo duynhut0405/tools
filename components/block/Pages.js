@@ -13,7 +13,6 @@ function Pages({ data, type }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const [listPage, setListPage] = useState([]);
-
   const getPageBlock = async () => {
     const ids = map(data.pages, values => values.value);
     const res = await getPagesByIdService(ids);
