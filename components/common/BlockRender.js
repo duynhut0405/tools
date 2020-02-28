@@ -2,14 +2,15 @@ import React from 'react';
 import {
   Icon,
   Images,
-  Post,
+  // Post,
   Product,
   Question,
   Repeat,
   SingerPost,
   Pages,
   MiniTab,
-  News
+  News,
+  TagProduct
 } from '../block';
 
 import { map } from 'lodash';
@@ -71,6 +72,9 @@ function BlockRender({ data }) {
               }
               if (values.name === 'Tab Mini') {
                 return <MiniTab data={JSON.parse(values.content)} key={index} />;
+              }
+              if (values.name === 'Sản phẩm nổi bật') {
+                return <TagProduct data={JSON.parse(values.content)} key={index} />;
               }
               return null;
             }
