@@ -19,6 +19,7 @@ function Post({ data, type }) {
     }
   }, [page]);
 
+
   const showPage = () => {
     setActive(false);
     setPage(page + 3);
@@ -28,7 +29,7 @@ function Post({ data, type }) {
     }
   };
 
-  if (type === 1) {
+  if (type === '1') {
     return (
       <div className="post_block mb-5 pt-4 mt-5">
         <div className="title">
@@ -60,7 +61,7 @@ function Post({ data, type }) {
       </div>
     );
   }
-  if (type === 3) {
+  if (type === '3') {
     return (
       <section className="sec-tb sec-h-4">
         <div className="container">
@@ -111,8 +112,8 @@ function Post({ data, type }) {
     );
   }
 
-  if (type === 4) {
-    reutnr(
+  if (type === '4') {
+    return (
       <section className="sec-tb sec-h-3 ">
         <div className="container">
           <div className="entry-head">

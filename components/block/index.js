@@ -8,4 +8,17 @@ import Product from './Product';
 import MiniTab from './MiniTab';
 import Pages from './Pages';
 import MiniTabItem from './MiniTabItem';
-export { Images, Post, Question, Icon, SingerPost, Repeat, Product, Pages, MiniTab, MiniTabItem };
+import News from './News';
+export {
+  Images,
+  Post,
+  Question,
+  Icon,
+  SingerPost,
+  Repeat,
+  Product,
+  Pages,
+  MiniTab,
+  MiniTabItem,
+  News
+};
