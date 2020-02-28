@@ -192,7 +192,7 @@ function Layout({ children }) {
         </div>
         <header id="header" className="fixe" role="banner">
           <div className="container">
-            <a href="./" id="logo">
+            <a href="/" id="logo">
               <img src={Logo} alt="logo" />
             </a>
             <div className="wrap-menu-header">
@@ -336,7 +336,6 @@ function Layout({ children }) {
                 <div className="widget widget-info">
                   <div>
                     <a href="./" className="logo">
-                      {' '}
                       <img src="/static/images/logo-blue.svg" alt="" />
                     </a>
                   </div>
