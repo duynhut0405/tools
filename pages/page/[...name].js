@@ -5,6 +5,7 @@ import Layout from '../../components/layout';
 import { PageActions } from '../../store/actions';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { withTranslation } from '../../i18n';
 import { connect } from 'react-redux';
 
 const propTypes = {
@@ -47,4 +48,8 @@ const mapDispatchToProps = {
 
 Page.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(Page);
+Page.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'page']
+});
+
+export default connect(mapStateToProp, mapDispatchToProps)(withTranslation('common')(Page));

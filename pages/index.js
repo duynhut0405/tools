@@ -4,6 +4,7 @@ import { Carousel, BlockRender } from '../components/common';
 import FormRate from '../components/formRate';
 import Layout from '../components/layout';
 import { PageActions, RateActions } from '../store/actions';
+import { withTranslation } from '../i18n';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -75,4 +76,8 @@ const mapDispatchToProps = {
 
 Home.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(Home);
+Home.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'home']
+});
+
+export default connect(mapStateToProp, mapDispatchToProps)(withTranslation('common')(Home));
