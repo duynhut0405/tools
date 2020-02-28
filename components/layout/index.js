@@ -215,7 +215,7 @@ function Layout({ children }) {
                 <div className="dropdown language">
                   <div className="title">
                     <span>
-                      <img src="assets/images/flags/vn.png" alt="" />
+                      <img src="static/images/flags/vn.png" alt="" />
                     </span>
                     <i className="icon-arrow-2 ib"></i>
                   </div>
@@ -224,12 +224,12 @@ function Layout({ children }) {
                       <ul className="menu">
                         <li className="lang-en">
                           <a href="#" hrefLang="en" title="English (en)">
-                            <img src="assets/images/flags/gb.png" alt="" /> <span>English</span>
+                            <img src="static/images/flags/gb.png" alt="" /> <span>English</span>
                           </a>
                         </li>
                         <li className="lang-vi active">
                           <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                            <img src="assets/images/flags/vn.png" alt="" /> <span>Tiếng Việt</span>
+                            <img src="static/images/flags/vn.png" alt="" /> <span>Tiếng Việt</span>
                           </a>
                         </li>
                       </ul>
