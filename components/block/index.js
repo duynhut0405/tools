@@ -5,11 +5,9 @@ import Question from './Question';
 import SingerPost from './SingerPost';
 import Repeat from './Repeat';
 import Product from './Product';
-import PostLayOut from './PostLayOut';
 import MiniTab from './MiniTab';
 import Pages from './Pages';
 import MiniTabItem from './MiniTabItem';
-import Promotion from './Promotion';
 import News from './News';
 export {
   Images,
@@ -19,10 +17,8 @@ export {
   SingerPost,
   Repeat,
   Product,
-  PostLayOut,
   Pages,
   MiniTab,
   MiniTabItem,
-  Promotion,
   News
 };
