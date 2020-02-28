@@ -75,7 +75,7 @@ function Layout({ children }) {
         <Link
           className={item.children.length > 0 ? 'title' : ''}
           href="/page/[...slug]"
-          as={`page/${item.slug}`}
+          as={`/page/${item.slug}`}
         >
           {item.name}
         </Link>
@@ -90,7 +90,7 @@ function Layout({ children }) {
         <div className="col-sm-3" key={key}>
           <ul className="footer_partner">
             <li>
-              <Link href="/page/[...slug]" as={`page/${values.slug}`}>
+              <Link href="/page/[...slug]" as={`/page/${values.slug}`}>
                 {values.name}
               </Link>
               <ul className="footer_children">{footerItem(values.children)}</ul>
@@ -104,7 +104,7 @@ function Layout({ children }) {
   const nestChild = items => {
     return map(items, item => (
       <li key={item.id}>
-        <Link href="/page/[...slug]" as={`page/${item.slug}`}>
+        <Link href="/page/[...slug]" as={`/page/${item.slug}`}>
           {item.name}
         </Link>
         {item.children.length > 0 && (
