@@ -77,7 +77,7 @@ function Layout({ children }) {
         <Link
           className={item.children.length > 0 ? 'title' : ''}
           href="/page/[...slug]"
-          as={`/page/${item.slug}`}
+          as={`/page/${item.slugPages}`}
         >
           {item.name}
         </Link>
@@ -92,7 +92,7 @@ function Layout({ children }) {
         <div className="col-sm-3" key={key}>
           <ul className="footer_partner">
             <li>
-              <Link href="/page/[...slug]" as={`/page/${values.slug}`}>
+              <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
                 {values.name}
               </Link>
               <ul className="footer_children">{footerItem(values.children)}</ul>
@@ -106,7 +106,7 @@ function Layout({ children }) {
   const renderChildMenu = items => {
     return map(items, item => (
       <li key={item.id}>
-        <Link href="/page/[...slug]" as={`/page/${item.slug}`}>
+        <Link href="/page/[...slug]" as={`/page/${item.slugPages}`}>
           <span>{item.name}</span>
         </Link>
       </li>
@@ -116,7 +116,7 @@ function Layout({ children }) {
   const nestChild = items => {
     return map(items, item => (
       <li key={item.id} className={item.children.length > 0 ? 'children' : 'no-children'}>
-        <Link href="/page/[...slug]" as={`/page/${item.slug}`}>
+        <Link href="/page/[...slug]" as={`/page/${item.slugPages}`}>
           {item.name}
         </Link>
         {item.children.length > 0 && <ul>{renderChildMenu(item.children)} </ul>}
@@ -135,12 +135,12 @@ function Layout({ children }) {
                   <li>
                     <a href="#">
                       <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" /> Điểm GD & ATM
-                  </a>
+                    </a>
                   </li>
                   <li>
                     <a href="#">
                       <img src={BieuPhiIcon} alt="Bieu Phi" width="15" className="mr-2" /> Biểu phí
-                  </a>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -259,7 +259,7 @@ function Layout({ children }) {
                     <h4 className="title">Gọi ngay</h4>
                     <div className="desc">
                       1900 545426 - (84-24) 3767 4050 <br /> (Từ nước ngoài)
-                  </div>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -306,7 +306,7 @@ function Layout({ children }) {
                   </div>
                   <button type="submit" className="btn btn-2">
                     Đăng ký
-                </button>
+                  </button>
                 </form>
               </div>
               <div className="col-md-6   efch-3 ef-img-r">
@@ -320,7 +320,7 @@ function Layout({ children }) {
                       <img src="/static/images/btt-google.svg" alt="" />
                     </a>{' '}
                     &nbsp;
-                  <a href="#">
+                    <a href="#">
                       <img src="/static/images/btt-chplay.svg" alt="" />
                     </a>
                   </div>
@@ -346,7 +346,7 @@ function Layout({ children }) {
                   <p>Hãy gọi cho chúng tôi để được tư vấn 24/7</p>
                   <div className="call">
                     <i className="icon-phone-1"></i> 1900 545426
-                </div>
+                  </div>
                 </div>
               </div>
 

@@ -23,7 +23,7 @@ module.exports = withFonts(
         const router = res.data.reduce(
           (pages, data) =>
             Object.assign({}, pages, {
-              [`/page/${data.slug}`]: { page: '/page/[name]' }
+              [`/page/${data.slug}`]: { page: '/page/[...name]' }
             }),
           {}
         );
