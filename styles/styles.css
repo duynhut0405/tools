@@ -1,8 +1,8 @@
 @charset "UTF-8";
 @font-face {
   font-family: 'icomoon';
-  src:  url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5');
-  src:  url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5#iefix') format('embedded-opentype'),
+  src: url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5');
+  src: url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5#iefix') format('embedded-opentype'),
     url('/static/fonts/icomoon/fonts/icomoon.ttf?suyyn5') format('truetype'),
     url('/static/fonts/icomoon/fonts/icomoon.woff?suyyn5') format('woff'),
     url('/static/fonts/icomoon/fonts/icomoon.svg?suyyn5#icomoon') format('svg');
@@ -7491,6 +7491,7 @@ ul.list-download li .down a:hover {
   padding: 25px 20px;
   color: #141ed2;
   height: 100%;
+  text-decoration: none;
 }
 
 .sec-h-2 .list-2 .item .img {
