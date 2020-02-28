@@ -27,7 +27,7 @@ function Post({ data, type }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
-  console.log(type);
+ 
   return (
     <div className="post_block mb-5 pt-4 mt-5">
       <div className="title">
