@@ -82,7 +82,7 @@ function News({ data, type }) {
               <div className="list-5 row ">
                 {map(listNews, (item, index) => (
                   <div className="col-md-6" key={index}>
-                    <a href="#" className="item efch-1 ef-img-l equal">
+                    <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l equal`}>
                       <div className="img tRes_71">
                         <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
                       </div>
@@ -136,7 +136,11 @@ function News({ data, type }) {
             paramowl="margin=0"
           >
             {map(listNews, (item, index) => (
-              <a href="#" className="item efch-1 ef-img-l equal" key={index}>
+              <a
+                href={`/news/${item.url}`}
+                className={`item efch-${index} ef-img-l equal`}
+                key={index}
+              >
                 <div className="img tRes_71">
                   <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
                 </div>
