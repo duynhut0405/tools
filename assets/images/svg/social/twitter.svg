@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>icon/social/twitter</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="08.-Icon-set" transform="translate(-559.000000, -781.000000)">
+            <g id="icon/social/twitter" transform="translate(560.000000, 782.000000)">
+                <g id="icon/social/facebook-copy">
+                    <g id="Group-2">
+                        <g id="icon/play-copy" stroke="#141ED2" stroke-width="1.5">
+                            <g id="play">
+                                <circle id="Oval" cx="22.8174604" cy="22.8174604" r="22.8174604"></circle>
+                            </g>
+                        </g>
+                        <g id="facebook" transform="translate(14.000000, 16.000000)" fill="#141ED2">
+                            <g id="Group" transform="translate(-0.000000, -0.000000)">
+                                <g id="twitter">
+                                    <g transform="translate(0.000000, 0.000000)">
+                                        <g id="Group" transform="translate(-0.000000, -0.000000)">
+                                            <g id="Path">
+                                                <path d="M18.3333334,0.00855211909 C17.5353209,0.571449961 16.6517566,1.0019765 15.7166667,1.28355213 C14.688633,0.101500281 13.031975,-0.31301929 11.5684013,0.245596649 C10.1048275,0.804212587 9.14566693,2.21713619 9.16666671,3.78355214 L9.16666671,4.61688548 C6.19222072,4.69401247 3.37668778,3.27686089 1.66666667,0.841885457 C1.66666667,0.841885457 -1.66666668,8.34188549 5.83333336,11.6752188 C4.11710632,12.8401908 2.07263077,13.4243266 0,13.3418855 C7.5,17.5085522 16.6666667,13.3418855 16.6666667,3.75855214 C16.6658993,3.52643017 16.6435813,3.2948808 16.6000001,3.06688547 C17.4505027,2.2281297 18.0506896,1.16914611 18.3333334,0.00855211909 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

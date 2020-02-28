@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="43px" viewBox="0 0 56 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Group 13</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="#-FOOTER" transform="translate(-578.000000, -63.000000)">
+            <g id="contact">
+                <g>
+                    <g id="Group-8">
+                        <g id="Group-38-Copy" transform="translate(535.000000, 25.000000)">
+                            <g id="Group-13" transform="translate(34.000000, 23.000000)">
+                                <rect id="Rectangle-10" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="72" height="72"></rect>
+                                <g id="phone" transform="translate(10.000000, 16.000000)" stroke="#141ED2" stroke-linecap="square" stroke-width="1.98">
+                                    <g id="mail">
+                                        <g id="Group-6">
+                                            <polygon id="Stroke-1" points="0.274420268 40.8257488 53.7663988 40.8257488 53.7663988 0.277181642 0.274420268 0.277181642"></polygon>
+                                            <polyline id="Stroke-3" points="2.25024619 1.76630886 27.020149 24.6667086 52.555997 1.38099302"></polyline>
+                                            <line x1="17.8619805" y1="24.6666208" x2="2.24868304" y2="39.1014824" id="Stroke-4"></line>
+                                            <line x1="51.7948281" y1="39.1012191" x2="36.1745833" y2="24.6663575" id="Stroke-5"></line>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
