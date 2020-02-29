@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../../public/images/logo.svg';
-import PhoneIcon from '../../public/images/svg/phone.svg';
-import CHIcon from '../../public/images/svg/ch.svg';
-import StoreIcon from '../../public/images/app_store.jpg';
-import QRCODE from '../../public/images/QR_code.png';
-import LocationIcon from '../../public/images/svg/location.svg';
-import MailIcon from '../../public/images/svg/mail.svg';
 import PinIcon from '../../public/images/svg/pin.svg';
 import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
+import { StickyContainer, Sticky } from 'react-sticky';
+import Widget from './Widget';
 import Link from 'next/link';
 import { map } from 'lodash';
 import { getAllMenu, getMenuItemById } from '../../services/menu';
+import { LayoutActions } from '../../store/actions';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const propTypes = {
-  children: PropTypes.node
+  settingFooter: PropTypes.object,
+  children: PropTypes.node,
+  getSettingFooter: PropTypes.func
 };
 
-function Layout({ children }) {
+function Layout({ children, settingFooter, getSettingFooter }) {
   const [header, setHeader] = useState({});
   const [footer, setFooter] = useState({});
   const [footermain, setFooterMain] = useState([{}, {}, {}, {}, {}, {}]);
@@ -77,6 +77,7 @@ function Layout({ children }) {
 
   useEffect(() => {
     getMenu();
+    getSettingFooter();
   }, []);
 
   const footerItem = data => {
@@ -340,21 +341,7 @@ function Layout({ children }) {
           <div className="container">
             <div className="row grid-space-10">
               <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                <div className="widget widget-info">
-                  <div>
-                    <a href="./" className="logo">
-                      <img src="/static/images/logo-blue.svg" alt="" />
-                    </a>
-                  </div>
-                  <h3>Ngân hàng TMCP Quân Đội</h3>
-                  <p>Toà nhà MBBank - Hội sở 21 Cát Linh, Đống Đa, Hà Nội</p>
-                  <p>Email: mb247@mbbank.com.vn</p>
-                  <p className="w6"> Swift code: MSCBVNVX</p>
-                  <p>Hãy gọi cho chúng tôi để được tư vấn 24/7</p>
-                  <div className="call">
-                    <i className="icon-phone-1"></i> 1900 545426
-                  </div>
-                </div>
+                <Widget data={settingFooter} />
               </div>
               <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t">
                 <div className="widget">
@@ -476,4 +463,14 @@ function Layout({ children }) {
 
 Layout.propTypes = propTypes;
 
-export default Layout;
+const mapStateToProps = state => {
+  return {
+    settingFooter: state.layoutReducer.settingFooter
+  };
+};
+
+const mapDispatchToProps = {
+  getSettingFooter: LayoutActions.getSettingFooterAction
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
