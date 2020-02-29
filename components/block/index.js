@@ -11,6 +11,7 @@ import MiniTabItem from './MiniTabItem';
 import News from './News';
 import Form from './Form';
 import TagProduct from './TagProduct';
+import MenuIntro from './MenuIntro';
 
 export {
   Images,
@@ -25,5 +26,6 @@ export {
   MiniTabItem,
   News,
   Form,
-  TagProduct
+  TagProduct,
+  MenuIntro
 };

@@ -81,6 +81,9 @@ function BlockRender({ data }) {
               if (values.name === 'Sản phẩm nổi bật') {
                 return <TagProduct data={JSON.parse(values.content)} key={index} />;
               }
+              if (values.name === 'MenuIntro') {
+                return <Form data={JSON.parse(values.content)} key={index} />;
+              }
               return null;
             }
           )}
