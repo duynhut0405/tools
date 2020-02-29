@@ -21,6 +21,7 @@ function Layout({ children, settingFooter, getSettingFooter }) {
   const [header, setHeader] = useState({});
   const [footer, setFooter] = useState({});
   const [footermain, setFooterMain] = useState([{}, {}, {}, {}, {}, {}]);
+  const [footerTop, setFooterTop] = useState([]);
   const [slider, setSlider] = useState({});
 
   const nest = (items, id = null, link = 'parentId') => {
@@ -66,6 +67,13 @@ function Layout({ children, settingFooter, getSettingFooter }) {
                 if (menufootermain && menufootermain.status === 200) {
                   const menufootermaindata = nest(menufootermain.data);
                   setFooterMain(menufootermaindata);
+                }
+              } else {
+                if (values.position === 'Menu footer top') {
+                  const menufooterTop = await getMenuItemById(values.id);
+                  if (menufooterTop && menufooterTop.status === 200) {
+                    setFooterTop(menufooterTop.data);
+                  }
                 }
               }
             }
@@ -132,7 +140,7 @@ function Layout({ children, settingFooter, getSettingFooter }) {
       </li>
     ));
   };
-
+  console.log(footerTop);
   return (
     <div>
       <div id="wrapper">
@@ -259,41 +267,19 @@ function Layout({ children, settingFooter, getSettingFooter }) {
         <section className="sec-cta">
           <div className="container">
             <div className="row center">
-              <div className="col-4 ">
-                <a className="item" href="#">
-                  <span className="img">
-                    <img src="/static/images/svg/t1.svg" alt="" />
-                  </span>
-                  <div className="divtext">
-                    <h4 className="title">Gọi ngay</h4>
-                    <div className="desc">
-                      1900 545426 - (84-24) 3767 4050 <br /> (Từ nước ngoài)
+              {map(footerTop, values => (
+                <div className="col-4 ">
+                  <a className="item" href={`/page/${values.slugPages}`}>
+                    <span className="img">
+                      <img src={values.icon} alt="" />
+                    </span>
+                    <div className="divtext">
+                      <h4 className="title">{values.name}</h4>
+                      <div className="desc">{values.description}</div>
                     </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-4 ">
-                <a className="item" href="#">
-                  <span className="img">
-                    <img src="/static/images/svg/t2.svg" alt="" />
-                  </span>
-                  <div className="divtext">
-                    <h4 className="title">Gửi email</h4>
-                    <div className="desc">mb247@mbbank.com.vn</div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-4 ">
-                <a className="item" href="#">
-                  <span className="img">
-                    <img src="/static/images/svg/t3.svg" alt="" />
-                  </span>
-                  <div className="divtext">
-                    <h4 className="title">Tìm ATm & Điểm GD</h4>
-                    <div className="desc">Tìm điểm giao dịch & ATM gần bạn</div>
-                  </div>
-                </a>
-              </div>
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </section>
