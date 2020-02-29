@@ -22,7 +22,6 @@ const propTypes = {
 };
 
 function BlockRender({ data }) {
-  console.log(data);
   return (
     <>
       {data !== undefined && (

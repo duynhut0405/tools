@@ -9,8 +9,7 @@ const propTypes = {
 };
 
 function Pages({ data, type }) {
-  const [page, setPage] = useState(3);
-  const [active, setActive] = useState(false);
+  const [page] = useState(3);
   const [listPage, setListPage] = useState([]);
   const getPageBlock = async () => {
     const ids = map(data.pages, values => values.value);
@@ -25,31 +24,17 @@ function Pages({ data, type }) {
   }, []);
 
   const listNews = slice(listPage, 0, page);
-  //   slice(data.news, 0, page)
-  // useEffect(() => {
-  //   if (listNews.length === listPages.length) {
-  //     setActive(true);
-  //   }
-  // }, [page]);
-
-  const showPage = () => {
-    setActive(false);
-    setPage(page + 3);
-    if (active) {
-      setPage(3);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
 
   if (type && type === '1') {
     return (
-      <div className="container">
-        <div className="list-5 row list-item">
+      <div className="container sec-tb">
+        <div className="entry-head text-center">
           <h2 className="ht">{data.title}</h2>
-
+        </div>
+        <div className="list-5 row list-item">
           {map(listNews, item => (
             <div className="col-md-4" key={item.newsId}>
-              <a href="#" className="item ">
+              <a href={`/page/${item.slug}`} className="item ">
                 <div className="img tRes_71">
                   <img
                     className="lazy-hidden"
@@ -68,39 +53,9 @@ function Pages({ data, type }) {
         </div>
         <div className="pages">
           <ul className="page-numbers">
-            <li>
-              <a className="prev page-numbers" href="#">
-                <i className="icon-arrow-2 "></i>
-              </a>
-            </li>
-            <li>
-              <span aria-current="page" className="page-numbers current">
-                1
-              </span>
-            </li>
-            <li>
-              <a className="page-numbers" href="#">
-                2
-              </a>
-            </li>
-            <li>
-              <span className="page-numbers">...</span>
-            </li>
-            <li>
-              <a className="page-numbers" href="#">
-                8
-              </a>
-            </li>
-            <li>
-              <a className="page-numbers" href="#">
-                9
-              </a>
-            </li>
-            <li>
-              <a className="next page-numbers" href="#">
-                <i className="icon-arrow-2"></i>
-              </a>
-            </li>
+            <a className="btn lg" href="#">
+              Xem tất cả
+            </a>
           </ul>
         </div>
       </div>
@@ -134,39 +89,9 @@ function Pages({ data, type }) {
         </div>
         <div className="pages">
           <ul className="page-numbers">
-            <li>
-              <a className="prev page-numbers" href="#">
-                <i className="icon-arrow-2 ix"></i>
-              </a>
-            </li>
-            <li>
-              <span aria-current="page" className="page-numbers current">
-                1
-              </span>
-            </li>
-            <li>
-              <a className="page-numbers" href="#">
-                2
-              </a>
-            </li>
-            <li>
-              <span className="page-numbers">...</span>
-            </li>
-            <li>
-              <a className="page-numbers" href="#">
-                8
-              </a>
-            </li>
-            <li>
-              <a className="page-numbers" href="#">
-                9
-              </a>
-            </li>
-            <li>
-              <a className="next page-numbers" href="#">
-                <i className="icon-arrow-2"></i>
-              </a>
-            </li>
+            <a className="btn lg" href="#">
+              Xem tất cả
+            </a>
           </ul>
         </div>
       </section>
