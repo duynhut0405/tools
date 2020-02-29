@@ -140,7 +140,7 @@ function Layout({ children, settingFooter, getSettingFooter }) {
       </li>
     ));
   };
-  console.log(footerTop);
+
   return (
     <div>
       <div id="wrapper">
