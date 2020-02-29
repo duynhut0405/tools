@@ -9,6 +9,7 @@ import MiniTab from './MiniTab';
 import Pages from './Pages';
 import MiniTabItem from './MiniTabItem';
 import News from './News';
+import Form from './Form';
 export {
   Images,
   Post,
@@ -20,5 +21,6 @@ export {
   Pages,
   MiniTab,
   MiniTabItem,
-  News
+  News,
+  Form
 };

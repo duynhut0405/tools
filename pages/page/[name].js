@@ -24,12 +24,10 @@ function Page({ list, silder, getPage }) {
         <title>{list.meta_title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main id="main" className="sec-tb ">
-        <div className="main_content">
-          <Carousel silder={silder} />
-          <BlockRender data={list.pageBlocks} />
-        </div>
-      </main>
+      <div className="main_content">
+        <Carousel silder={silder} />
+        <BlockRender data={list.pageBlocks} />
+      </div>
     </Layout>
   );
 }

@@ -9,7 +9,8 @@ import {
   SingerPost,
   Pages,
   MiniTab,
-  News
+  News,
+  Form
 } from '../block';
 
 import { map } from 'lodash';
@@ -20,6 +21,7 @@ const propTypes = {
 };
 
 function BlockRender({ data }) {
+  console.log(data);
   return (
     <>
       {data !== undefined && (
@@ -47,6 +49,9 @@ function BlockRender({ data }) {
               }
               if (values.name === 'Pages') {
                 return <Pages data={JSON.parse(values.content)} key={index} />;
+              }
+              if (values.name === 'Form đăng kí') {
+                return <Form data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'MiniTab') {
                 return <MiniTab data={JSON.parse(values.content)} key={index} />;

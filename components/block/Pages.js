@@ -5,7 +5,6 @@ import { getPagesByIdService } from '../../services/page';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
-  getPageBlock: Proptypes.func,
   type: Proptypes.func
 };
 
@@ -45,7 +44,7 @@ function Pages({ data, type }) {
 
   if (type && type === '1') {
     return (
-      <div>
+      <div className="container">
         <div className="list-5 row list-item">
           <h2 className="ht">{data.title}</h2>
 
@@ -107,68 +106,70 @@ function Pages({ data, type }) {
     );
   }
   return (
-    <section className="sec-tb">
-      <h2 className="ht">{data.title}</h2>
-      <div className="list-7  list-item row">
-        {map(listNews, item => (
-          <div className="col-md-6" key={item.newsId}>
-            <a href="#" className="item item-inline-table">
-              <div className="post_content mb-3">
-                <div className="img">
-                  <img
-                    className="lazy-hidden"
-                    data-lazy-type="image"
-                    src={item.baseImage}
-                    alt="icon"
-                  />
+    <div className="container">
+      <section className="sec-tb">
+        <h2 className="ht">{data.title}</h2>
+        <div className="list-7  list-item row">
+          {map(listNews, item => (
+            <div className="col-md-6" key={item.newsId}>
+              <a href="#" className="item item-inline-table">
+                <div className="post_content mb-3">
+                  <div className="img">
+                    <img
+                      className="lazy-hidden"
+                      data-lazy-type="image"
+                      src={item.baseImage}
+                      alt="icon"
+                    />
+                  </div>
+                  <div className="divtext">
+                    <h4 className="title line2">{item.name}</h4>
+                    <div className="desc line4">{item.meta_description}</div>
+                  </div>
                 </div>
-                <div className="divtext">
-                  <h4 className="title line2">{item.name}</h4>
-                  <div className="desc line4">{item.meta_description}</div>
-                </div>
-              </div>
-            </a>
-          </div>
-        ))}
-      </div>
-      <div className="pages">
-        <ul className="page-numbers">
-          <li>
-            <a className="prev page-numbers" href="#">
-              <i className="icon-arrow-2 ix"></i>
-            </a>
-          </li>
-          <li>
-            <span aria-current="page" className="page-numbers current">
-              1
-            </span>
-          </li>
-          <li>
-            <a className="page-numbers" href="#">
-              2
-            </a>
-          </li>
-          <li>
-            <span className="page-numbers">...</span>
-          </li>
-          <li>
-            <a className="page-numbers" href="#">
-              8
-            </a>
-          </li>
-          <li>
-            <a className="page-numbers" href="#">
-              9
-            </a>
-          </li>
-          <li>
-            <a className="next page-numbers" href="#">
-              <i className="icon-arrow-2"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
+              </a>
+            </div>
+          ))}
+        </div>
+        <div className="pages">
+          <ul className="page-numbers">
+            <li>
+              <a className="prev page-numbers" href="#">
+                <i className="icon-arrow-2 ix"></i>
+              </a>
+            </li>
+            <li>
+              <span aria-current="page" className="page-numbers current">
+                1
+              </span>
+            </li>
+            <li>
+              <a className="page-numbers" href="#">
+                2
+              </a>
+            </li>
+            <li>
+              <span className="page-numbers">...</span>
+            </li>
+            <li>
+              <a className="page-numbers" href="#">
+                8
+              </a>
+            </li>
+            <li>
+              <a className="page-numbers" href="#">
+                9
+              </a>
+            </li>
+            <li>
+              <a className="next page-numbers" href="#">
+                <i className="icon-arrow-2"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
   );
 }
 Pages.propTypes = propTypes;
