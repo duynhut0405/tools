@@ -22,6 +22,7 @@ const propTypes = {
 };
 
 function BlockRender({ data }) {
+  console.log(data);
   return (
     <>
       {data !== undefined && (
@@ -56,7 +57,7 @@ function BlockRender({ data }) {
               if (values.name === 'Form đăng kí') {
                 return <Form data={JSON.parse(values.content)} key={index} />;
               }
-              if (values.name === 'MiniTab') {
+              if (values.name === 'Category-mini-wtithtab') {
                 return <MiniTab data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Repeat') {
@@ -68,7 +69,7 @@ function BlockRender({ data }) {
               if (values.name === 'Question') {
                 return <Question data={JSON.parse(values.content)} key={index} />;
               }
-              if (values.name === 'Block Pages') {
+              if (values.name === 'Category') {
                 return (
                   <Pages
                     type={JSON.parse(values.content).type}
@@ -76,9 +77,6 @@ function BlockRender({ data }) {
                     key={index}
                   />
                 );
-              }
-              if (values.name === 'Tab Mini') {
-                return <MiniTab data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Sản phẩm nổi bật') {
                 return <TagProduct data={JSON.parse(values.content)} key={index} />;

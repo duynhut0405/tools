@@ -49,18 +49,20 @@ function Pages({ data, type }) {
 
           {map(listNews, item => (
             <div className="col-md-4" key={item.newsId}>
-              <div className="img tRes_71">
-                <img
-                  className="lazy-hidden"
-                  data-lazy-type="image"
-                  src={item.baseImage}
-                  alt="icon"
-                />
-              </div>
-              <div className="divtext">
-                <h4 className="title">{item.name}</h4>
-                <div className="desc line4">{item.meta_description}</div>
-              </div>
+              <a href="#" className="item ">
+                <div className="img tRes_71">
+                  <img
+                    className="lazy-hidden"
+                    data-lazy-type="image"
+                    src={item.baseImage}
+                    alt="icon"
+                  />
+                </div>
+                <div className="divtext">
+                  <h4 className="title">{item.name}</h4>
+                  <div className="desc line4">{item.meta_description}</div>
+                </div>
+              </a>
             </div>
           ))}
         </div>

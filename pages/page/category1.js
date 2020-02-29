@@ -25,9 +25,10 @@ function Page({ list, silder, getPage }) {
         <title>{list.meta_title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Carousel className="category" silder={silder} />
-      <BlockRender data={list.pageBlocks} />
+      <div className="main_content">
+        <Carousel className="category" silder={silder} />
+        <BlockRender data={list.pageBlocks} />
+      </div>
     </Layout>
   );
 }

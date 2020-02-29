@@ -20,21 +20,21 @@ function Form({ data }) {
   useEffect(() => {
     getFormByID();
   }, []);
-
+  console.log(formdata);
   return (
     <section className=" sec-tb sec-tuvan ">
       <div className="container">
-        <form className="form-tuvan ">
+        <form>
           <div>{ReactHtmlParser(formdata)}</div>
         </form>
-        <img
-          className=" br loaded loaded"
-          data-lazy-type="image"
-          data-lazy-src={data.image}
-          alt
-          src={data.image}
-        ></img>
       </div>
+      <img
+        className=" br loaded loaded"
+        data-lazy-type="image"
+        data-lazy-src={data.image}
+        alt
+        src={data.image}
+      ></img>
     </section>
   );
 }
