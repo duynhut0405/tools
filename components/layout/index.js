@@ -42,7 +42,7 @@ function Layout({ children, settingFooter, getSettingFooter }) {
     const res = await getAllMenu();
     if (res && res.status === 200) {
       map(res.data, async values => {
-        if (values.position === 'top') {
+        if (values.position === 'top2') {
           const res1 = await getMenuItemById(values.id);
           if (res1 && res1.status === 200) {
             const menuTopData = nest(res1.data);
@@ -132,11 +132,16 @@ function Layout({ children, settingFooter, getSettingFooter }) {
 
   const nestChild = items => {
     return map(items, item => (
-      <li key={item.id} className={item.children.length > 0 ? 'children' : 'no-children'}>
-        <Link href="/page/[...slug]" as={`/page/${item.slugPages}`}>
-          {item.name}
-        </Link>
-        {item.children.length > 0 && <ul>{renderChildMenu(item.children)} </ul>}
+      <li
+        key={item.id}
+        className={item.children.length > 0 ? 'children parent-showsub' : 'no-children'}
+      >
+        <a href={`/page/${item.slugPages}`}>
+          <span>{item.name}</span>
+        </a>
+        <div className="wrapul">
+          {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
+        </div>
       </li>
     ));
   };
