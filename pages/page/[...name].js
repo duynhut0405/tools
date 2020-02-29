@@ -17,7 +17,7 @@ const propTypes = {
 function Page({ list, silder, getPage }) {
   const router = useRouter();
   useEffect(() => {
-    getPage('ca-nhan');
+    getPage(router.query.name);
   }, []);
   return (
     <Layout>
