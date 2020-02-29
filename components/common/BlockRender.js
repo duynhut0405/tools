@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Icon,
   Images,
-  Post,
+  // Post,
   Product,
   Question,
   Repeat,
@@ -10,7 +10,8 @@ import {
   Pages,
   MiniTab,
   News,
-  Form
+  Form,
+  TagProduct
 } from '../block';
 
 import { map } from 'lodash';
@@ -21,7 +22,6 @@ const propTypes = {
 };
 
 function BlockRender({ data }) {
-  console.log(data);
   return (
     <>
       {data !== undefined && (
@@ -47,6 +47,9 @@ function BlockRender({ data }) {
                   />
                 );
               }
+              // if (values.name === 'Block News') {
+              //   return <Post data={JSON.parse(values.content)} key={index} />;
+              // }
               if (values.name === 'Pages') {
                 return <Pages data={JSON.parse(values.content)} key={index} />;
               }
@@ -76,6 +79,9 @@ function BlockRender({ data }) {
               }
               if (values.name === 'Tab Mini') {
                 return <MiniTab data={JSON.parse(values.content)} key={index} />;
+              }
+              if (values.name === 'Sản phẩm nổi bật') {
+                return <TagProduct data={JSON.parse(values.content)} key={index} />;
               }
               return null;
             }

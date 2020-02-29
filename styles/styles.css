@@ -1,4 +1,15 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'icomoon';
+  src: url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5');
+  src: url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5#iefix') format('embedded-opentype'),
+    url('/static/fonts/icomoon/fonts/icomoon.ttf?suyyn5') format('truetype'),
+    url('/static/fonts/icomoon/fonts/icomoon.woff?suyyn5') format('woff'),
+    url('/static/fonts/icomoon/fonts/icomoon.svg?suyyn5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 
 @font-face {
   font-family: 'Averta';
@@ -5648,14 +5659,6 @@ ul.page-numbers span.page-numbers:not(.current) {
   }
 }
 
-/* @font-face {
-    font-family: 'icomoon';
-    src: url("../fonts/icomoon/fonts/icomoon.eot?mhx2wc");
-    src: url("../fonts/icomoon/fonts/icomoon.eot?mhx2wc#iefix") format("embedded-opentype"), url("../fonts/icomoon/fonts/icomoon.ttf?mhx2wc") format("truetype"), url("../fonts/icomoon/fonts/icomoon.woff?mhx2wc") format("woff"), url("../fonts/icomoon/fonts/icomoon.svg?mhx2wc#icomoon") format("svg");
-    font-weight: normal;
-    font-style: normal
-} */
-
 [class*=' icon-'],
 [class^='icon-'] {
   font-family: 'icomoon' !important;
@@ -7488,6 +7491,7 @@ ul.list-download li .down a:hover {
   padding: 25px 20px;
   color: #141ed2;
   height: 100%;
+  text-decoration: none;
 }
 
 .sec-h-2 .list-2 .item .img {
@@ -8171,13 +8175,13 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   max-width: 450px;
 }
 
-.sec-download-pc form:first-child {
+.sec-download-pc form :first-child {
   display: table-cell;
   vertical-align: middle;
   width: 100%;
 }
 
-.sec-download-pc form:first-child .input {
+.sec-download-pc form :first-child .input {
   width: 100%;
   border-radius: 10px;
   margin-right: 10px;
