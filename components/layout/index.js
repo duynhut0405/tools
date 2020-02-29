@@ -5,7 +5,7 @@ import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Widget from './Widget';
 import Link from 'next/link';
-import { map } from 'lodash';
+import { map } from 'lodash'; 
 import { getAllMenu, getMenuItemById } from '../../services/menu';
 import { LayoutActions } from '../../store/actions';
 import PropTypes from 'prop-types';
