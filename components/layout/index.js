@@ -256,12 +256,13 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                                 <ul className="menu">
                                   <li className="lang-en">
                                     <a href="#" hrefLang="en" title="English (en)">
-                                      <img src="/static/images/flags/gb.png" alt="" /> <span>English</span>
+                                      <img src="/static/images/flags/gb.png" alt="" />
+                                      <span>English</span>
                                     </a>
                                   </li>
                                   <li className="lang-vi active">
                                     <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                                      <img src="/static/images/flags/vn.png" alt="" />{' '}
+                                      <img src="/static/images/flags/vn.png" alt="" />
                                       <span>Tiếng Việt</span>
                                     </a>
                                   </li>
@@ -322,7 +323,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                       </div>
                       <button type="submit" className="btn btn-2">
                         Đăng ký
-                    </button>
+                      </button>
                     </form>
                   </div>
                   <div className="col-md-6   efch-3 ef-img-r">
@@ -336,7 +337,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                           <img src="/static/images/btt-google.svg" alt="" />
                         </a>{' '}
                         &nbsp;
-                      <a href="#">
+                        <a href="#">
                           <img src="/static/images/btt-chplay.svg" alt="" />
                         </a>
                       </div>

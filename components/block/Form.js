@@ -20,7 +20,7 @@ function Form({ data }) {
   useEffect(() => {
     getFormByID();
   }, []);
-  console.log(formdata);
+
   return (
     <section className=" sec-tb sec-tuvan ">
       <div className="container">
