@@ -16,7 +16,7 @@ const propTypes = {
   settingFooter: PropTypes.object,
   children: PropTypes.node,
   getSettingFooter: PropTypes.func,
-  title: PropTypes.any.isRequired
+  title: PropTypes.any
 };
 
 function Layout({ children, settingFooter, getSettingFooter, title }) {
@@ -282,7 +282,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                 </div>
               )}
             </Sticky>
-            <div className="mcontent">{children}</div>
+            <div>{children}</div>
             {/* contact */}
             <section className="sec-cta">
               <div className="container">
@@ -290,7 +290,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                   {map(
                     footerTop.sort((a, b) => a.position - b.position),
                     values => (
-                      <div className="col-4 ">
+                      <div className="col-4" key={values.id}>
                         <a className="item" href={`/page/${values.slugPages}`}>
                           <span className="img">
                             <img src={values.icon} alt="" />
@@ -357,7 +357,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                       <h4 className="widget-title">{footermain[0].name}</h4>
                       <ul className="menu">
                         {map(footermain[0].children, values => (
-                          <li>
+                          <li key={values.id}>
                             <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
                               {values.name}
                             </Link>
@@ -371,7 +371,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                       <h4 className="widget-title">{footermain[1].name}</h4>
                       <ul className="menu">
                         {map(footermain[1].children, values => (
-                          <li>
+                          <li key={values.id}>
                             <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
                               {values.name}
                             </Link>
@@ -386,7 +386,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                       <h4 className="widget-title">{footermain[2].name}</h4>
                       <ul className="menu">
                         {map(footermain[2].children, values => (
-                          <li>
+                          <li key={values.id}>
                             <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
                               {values.name}
                             </Link>
@@ -398,7 +398,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                       <h4 className="widget-title">{footermain[3].name}</h4>
                       <ul className="menu">
                         {map(footermain[3].children, values => (
-                          <li>
+                          <li key={values.id}>
                             <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
                               {values.name}
                             </Link>
@@ -412,7 +412,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                       <h4 className="widget-title">{footermain[4].name}</h4>
                       <ul className="menu">
                         {map(footermain[4].children, values => (
-                          <li>
+                          <li key={values.id}>
                             <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
                               {values.name}
                             </Link>
