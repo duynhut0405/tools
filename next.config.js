@@ -18,16 +18,25 @@ module.exports = withFonts(
         });
         return config;
       },
-      exportPathMap: async function() {
+      exportPathMap: async function () {
         const res = await getRouer();
         const newResponse = await getNewRouter();
+        // console.log(newResponse.data);
+        // const newRouter = newResponse.data.reduce(
+        //   (news, data) =>
+        //     Object.assign({}, news, {
+        //       [`news/${data.url}`]: { news: '/news/[...slug]' }
+        //     }),
+        //   {}
+        // );
         const newRouter = newResponse.data.reduce(
           (news, data) =>
             Object.assign({}, news, {
-              [`news/${data.url}`]: { news: '/news/[...slug]' }
+              [`/news/${data.url}`]: { news: '/news/[...slug]' }
             }),
           {}
         );
+
         const router = res.data.reduce(
           (pages, data) =>
             Object.assign({}, pages, {
