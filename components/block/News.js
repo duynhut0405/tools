@@ -3,6 +3,7 @@ import { map, slice } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
+import { getCategoryByIdService } from '../../services/category';
 import ItemsCarousel from 'react-items-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -14,11 +15,20 @@ function News({ data, type }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const [listCategory, setListCategory] = useState([]);
+  const [slugCategory, setSlugCategory] = useState('');
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
   //   slice(data.news, 0, page)
+
+  const getCategoryById = async () => {
+    const res = await getCategoryByIdService(Number(data.category));
+    if (res && res.status === 200) {
+      setSlugCategory(res.data.slug);
+    }
+  };
+
   const getCategoryPage = async () => {
     const id = map(data.news, item => item.newsId);
     const res = await getNewByIdService(id);
@@ -28,6 +38,7 @@ function News({ data, type }) {
   };
   useEffect(() => {
     getCategoryPage();
+    getCategoryById();
   }, []);
   const showPage = () => {
     setActive(false);
@@ -130,7 +141,7 @@ function News({ data, type }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-            <a className="viewall" href="#">
+            <a className="viewall" href={`news/list/${slugCategory}`}>
               Xem tất cả <i className="icon-arrow-1"></i>
             </a>
           </div>
