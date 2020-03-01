@@ -4,6 +4,7 @@ import PinIcon from '../../public/images/svg/pin.svg';
 import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
 import Widget from './Widget';
 import Link from 'next/link';
+import { StickyContainer, Sticky } from 'react-sticky';
 import { map } from 'lodash';
 import { getAllMenu, getMenuItemById } from '../../services/menu';
 import { LayoutActions } from '../../store/actions';
@@ -118,7 +119,6 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
       </li>
     ));
   };
-  console.log(footerBot);
   return (
     <div>
       <Head>
@@ -150,309 +150,318 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
           crossOrigin="anonymous"
         ></script>
       </Head>
-      <div id="wrapper">
-        <div id="panel">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-5">
-                <ul className="menu line">
-                  <li>
-                    <a href={`/page/${headerTop[1].slugPages}`}>
-                      <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" />
-                      {headerTop[1].name}
-                    </a>
-                  </li>
-                  <li>
-                    <a href={`/page/${headerTop[0].slugPages}`}>
-                      <img src={BieuPhiIcon} alt="Bieu Phi" width="15" className="mr-2" />
-                      {headerTop[0].name}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-7">
-                <ul className="menu line text-right">
-                  <li>
-                    <a href={`/page/${headerTop[2].slugPages}`}>{headerTop[2].name}</a>
-                  </li>
-                  <li>
-                    <a href={`/page/${headerTop[3].slugPages}`}>{headerTop[3].name}</a>
-                  </li>
-                  <li>
-                    <a href={`/page/${headerTop[4].slugPages}`}>{headerTop[4].name}</a>
-                  </li>
-                  <li>
-                    <a href={`/page/${headerTop[5].slugPages}`}>{headerTop[5].name}</a>
-                  </li>
-                  <li>
-                    <div className="dropdown language">
-                      <div className="title">
-                        <span>
-                          <img src="/static/flags/vn.png" alt="" />
-                        </span>
-                        <i className="icon-arrow-2 ib"></i>
-                      </div>
-                      <div className="content">
-                        <div className="inner">
-                          <ul className="menu">
-                            <li className="lang-en">
-                              <a href="#" hrefLang="en" title="English (en)">
-                                <img src="/static/flags/gb.png" alt="" /> <span>English</span>
-                              </a>
-                            </li>
-                            <li className="lang-vi active">
-                              <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                                <img src="/static/images/flags/vn.png" alt="" />{' '}
-                                <span>Tiếng Việt</span>
-                              </a>
-                            </li>
-                          </ul>
+      <StickyContainer>
+        <div id="wrapper">
+          <div id="panel">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-5">
+                  <ul className="menu line">
+                    <li>
+                      <a href={`/page/${headerTop[1].slugPages}`}>
+                        <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" />
+                        {headerTop[1].name}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={`/page/${headerTop[0].slugPages}`}>
+                        <img src={BieuPhiIcon} alt="Bieu Phi" width="15" className="mr-2" />
+                        {headerTop[0].name}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="col-md-7">
+                  <ul className="menu line text-right">
+                    <li>
+                      <a href={`/page/${headerTop[2].slugPages}`}>{headerTop[2].name}</a>
+                    </li>
+                    <li>
+                      <a href={`/page/${headerTop[3].slugPages}`}>{headerTop[3].name}</a>
+                    </li>
+                    <li>
+                      <a href={`/page/${headerTop[4].slugPages}`}>{headerTop[4].name}</a>
+                    </li>
+                    <li>
+                      <a href={`/page/${headerTop[5].slugPages}`}>{headerTop[5].name}</a>
+                    </li>
+                    <li>
+                      <div className="dropdown language">
+                        <div className="title">
+                          <span>
+                            <img src="/static/flags/vn.png" alt="" />
+                          </span>
+                          <i className="icon-arrow-2 ib"></i>
+                        </div>
+                        <div className="content">
+                          <div className="inner">
+                            <ul className="menu">
+                              <li className="lang-en">
+                                <a href="#" hrefLang="en" title="English (en)">
+                                  <img src="/static/flags/gb.png" alt="" /> <span>English</span>
+                                </a>
+                              </li>
+                              <li className="lang-vi active">
+                                <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
+                                  <img src="/static/images/flags/vn.png" alt="" />{' '}
+                                  <span>Tiếng Việt</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <header id="header" className="fixe" role="banner">
-          <div className="container">
-            <a href="/" id="logo">
-              <img src={Logo} alt="logo" />
-            </a>
-            <div className="wrap-menu-header">
-              <ul className="menu-top-header" data-style="1">
-                {nestChild(header)}
-              </ul>
-            </div>
-            <div className="group-header">
-              <div className="item ilogin">
-                <ul className="menu line">
-                  <li>
-                    <a href="#"> Đăng ký</a>
-                  </li>
-                  <li>
-                    <a href="#"> Đăng nhập</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="item ilang">
-                <div className="dropdown language">
-                  <div className="title">
-                    <span>
-                      <img src="/static/images/flags/vn.png" alt="" />
-                    </span>
-                    <i className="icon-arrow-2 ib"></i>
-                  </div>
-                  <div className="content">
-                    <div className="inner">
-                      <ul className="menu">
-                        <li className="lang-en">
-                          <a href="#" hrefLang="en" title="English (en)">
-                            <img src="/static/images/flags/gb.png" alt="" /> <span>English</span>
-                          </a>
-                        </li>
-                        <li className="lang-vi active">
-                          <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                            <img src="/static/images/flags/vn.png" alt="" /> <span>Tiếng Việt</span>
-                          </a>
-                        </li>
+          <Sticky topOffset={40}>
+            {({ style }) => (
+              <div className="setzindex" style={style}>
+                <header id="header" role="banner">
+                  <div className="container">
+                    <a href="/" id="logo">
+                      <img src={Logo} alt="logo" />
+                    </a>
+                    <div className="wrap-menu-header">
+                      <ul className="menu-top-header" data-style="1">
+                        {nestChild(header)}
                       </ul>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div className="item imenu">
-                <span className="menu-btn x">
-                  <span></span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </header>
-        <div className="conetnt">{children}</div>
-        {/* contact */}
-        <section className="sec-cta">
-          <div className="container">
-            <div className="row center">
-              {map(
-                footerTop.sort((a, b) => a.position - b.position),
-                values => (
-                  <div className="col-4 ">
-                    <a className="item" href={`/page/${values.slugPages}`}>
-                      <span className="img">
-                        <img src={values.icon} alt="" />
-                      </span>
-                      <div className="divtext">
-                        <h4 className="title">{values.name}</h4>
-                        <div className="desc">{values.description}</div>
+                    <div className="group-header">
+                      <div className="item ilogin">
+                        <ul className="menu line">
+                          <li>
+                            <a href="#"> Đăng ký</a>
+                          </li>
+                          <li>
+                            <a href="#"> Đăng nhập</a>
+                          </li>
+                        </ul>
                       </div>
-                    </a>
+                      <div className="item ilang">
+                        <div className="dropdown language">
+                          <div className="title">
+                            <span>
+                              <img src="/static/images/flags/vn.png" alt="" />
+                            </span>
+                            <i className="icon-arrow-2 ib"></i>
+                          </div>
+                          <div className="content">
+                            <div className="inner">
+                              <ul className="menu">
+                                <li className="lang-en">
+                                  <a href="#" hrefLang="en" title="English (en)">
+                                    <img src="/static/images/flags/gb.png" alt="" /> <span>English</span>
+                                  </a>
+                                </li>
+                                <li className="lang-vi active">
+                                  <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
+                                    <img src="/static/images/flags/vn.png" alt="" />{' '}
+                                    <span>Tiếng Việt</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="item imenu">
+                        <span className="menu-btn x">
+                          <span></span>
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                )
-              )}
+                </header>
+              </div>
+            )}
+          </Sticky>
+          <div className="mcontent">{children}</div>
+          {/* contact */}
+          <section className="sec-cta">
+            <div className="container">
+              <div className="row center">
+                {map(
+                  footerTop.sort((a, b) => a.position - b.position),
+                  values => (
+                    <div className="col-4 ">
+                      <a className="item" href={`/page/${values.slugPages}`}>
+                        <span className="img">
+                          <img src={values.icon} alt="" />
+                        </span>
+                        <div className="divtext">
+                          <h4 className="title">{values.name}</h4>
+                          <div className="desc">{values.description}</div>
+                        </div>
+                      </a>
+                    </div>
+                  )
+                )}
+              </div>
             </div>
-          </div>
-        </section>
-        {/* tải appp */}
-        <section className="sec-download-pc group-ef loaded">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6   efch-2 ef-img-r">
-                <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
-                <form role="search" method="get" className="searchform " action="">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Nhập email để nhận thông tin"
-                      name="s"
-                      className="input"
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-2">
-                    Đăng ký
-                  </button>
-                </form>
-              </div>
-              <div className="col-md-6   efch-3 ef-img-r">
-                <div className="wapp">
-                  <span className="code">
-                    <img src="/static/images/code.png" alt="" />
-                  </span>
-                  <div className="app">
-                    <p className="stitle">Hãy tải app ngay hôm nay</p>
-                    <a href="#">
-                      <img src="/static/images/btt-google.svg" alt="" />
-                    </a>{' '}
-                    &nbsp;
-                    <a href="#">
-                      <img src="/static/images/btt-chplay.svg" alt="" />
-                    </a>
+          </section>
+          {/* tải appp */}
+          <section className="sec-download-pc group-ef loaded">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6   efch-2 ef-img-r">
+                  <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                  <form role="search" method="get" className="searchform " action="">
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Nhập email để nhận thông tin"
+                        name="s"
+                        className="input"
+                      />
+                    </div>
+                    <button type="submit" className="btn btn-2">
+                      Đăng ký
+                    </button>
+                  </form>
+                </div>
+                <div className="col-md-6   efch-3 ef-img-r">
+                  <div className="wapp">
+                    <span className="code">
+                      <img src="/static/images/code.png" alt="" />
+                    </span>
+                    <div className="app">
+                      <p className="stitle">Hãy tải app ngay hôm nay</p>
+                      <a href="#">
+                        <img src="/static/images/btt-google.svg" alt="" />
+                      </a>{' '}
+                      &nbsp;
+                      <a href="#">
+                        <img src="/static/images/btt-chplay.svg" alt="" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        <div id="footer-pc" className="group-ef loaded">
-          <div className="container">
-            <div className="row grid-space-10">
-              <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                <Widget data={settingFooter} />
-              </div>
-              <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t">
-                <div className="widget">
-                  <h4 className="widget-title">{footermain[0].name}</h4>
-                  <ul className="menu">
-                    {map(footermain[0].children, values => (
-                      <li>
-                        <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                          {values.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+          </section>
+          <div id="footer-pc" className="group-ef loaded">
+            <div className="container">
+              <div className="row grid-space-10">
+                <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                  <Widget data={settingFooter} />
                 </div>
-              </div>
-              <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t">
-                <div className="widget">
-                  <h4 className="widget-title">{footermain[1].name}</h4>
-                  <ul className="menu">
-                    {map(footermain[1].children, values => (
-                      <li>
-                        <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                          {values.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t">
+                  <div className="widget">
+                    <h4 className="widget-title">{footermain[0].name}</h4>
+                    <ul className="menu">
+                      {map(footermain[0].children, values => (
+                        <li>
+                          <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
+                            {values.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
+                <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t">
+                  <div className="widget">
+                    <h4 className="widget-title">{footermain[1].name}</h4>
+                    <ul className="menu">
+                      {map(footermain[1].children, values => (
+                        <li>
+                          <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
+                            {values.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
 
-              <div className="col-md-3 col-6 col-lg-2  efch-3 ef-img-t">
-                <div className="widget">
-                  <h4 className="widget-title">{footermain[2].name}</h4>
-                  <ul className="menu">
-                    {map(footermain[2].children, values => (
-                      <li>
-                        <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                          {values.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="col-md-3 col-6 col-lg-2  efch-3 ef-img-t">
+                  <div className="widget">
+                    <h4 className="widget-title">{footermain[2].name}</h4>
+                    <ul className="menu">
+                      {map(footermain[2].children, values => (
+                        <li>
+                          <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
+                            {values.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="widget">
+                    <h4 className="widget-title">{footermain[3].name}</h4>
+                    <ul className="menu">
+                      {map(footermain[3].children, values => (
+                        <li>
+                          <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
+                            {values.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className="widget">
-                  <h4 className="widget-title">{footermain[3].name}</h4>
-                  <ul className="menu">
-                    {map(footermain[3].children, values => (
-                      <li>
-                        <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                          {values.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="col-md-3 col-6  col-lg-2 efch-4 ef-img-t">
-                <div className="widget">
-                  <h4 className="widget-title">{footermain[4].name}</h4>
-                  <ul className="menu">
-                    {map(footermain[4].children, values => (
-                      <li>
-                        <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                          {values.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <div className="col-md-3 col-6  col-lg-2 efch-4 ef-img-t">
+                  <div className="widget">
+                    <h4 className="widget-title">{footermain[4].name}</h4>
+                    <ul className="menu">
+                      {map(footermain[4].children, values => (
+                        <li>
+                          <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
+                            {values.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                <ul className="blog-item-social ">
-                  <li>
-                    <a className="item" title="" target="_blank" href="#">
-                      <i className="icon-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="item" title="" target="_blank" href="#">
-                      <i className="icon-instagram"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="item" title="" target="_blank" href="#">
-                      <i className="icon-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="item" title="" target="_blank" href="#">
-                      <i className="icon-youtube-2"></i>
-                    </a>
-                  </li>
-                </ul>
+                  <ul className="blog-item-social ">
+                    <li>
+                      <a className="item" title="" target="_blank" href="#">
+                        <i className="icon-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a className="item" title="" target="_blank" href="#">
+                        <i className="icon-instagram"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a className="item" title="" target="_blank" href="#">
+                        <i className="icon-twitter"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a className="item" title="" target="_blank" href="#">
+                        <i className="icon-youtube-2"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className="line"></div>
-            <div className="row grid-space-10">
-              <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
-                <ul className="menu line">
-                  <li>
-                    <a href={`/page/${footerBot[1].slugPages}`}>{footerBot[1].name}</a>
-                  </li>
-                  <li>
-                    <a href={`/page/${footerBot[0].slugPages}`}>{footerBot[0].name}</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+              <div className="line"></div>
+              <div className="row grid-space-10">
+                <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
+                  <ul className="menu line">
+                    <li>
+                      <a href={`/page/${footerBot[1].slugPages}`}>{footerBot[1].name}</a>
+                    </li>
+                    <li>
+                      <a href={`/page/${footerBot[0].slugPages}`}>{footerBot[0].name}</a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
+                  <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </StickyContainer>
     </div>
   );
 }
