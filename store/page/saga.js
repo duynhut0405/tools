@@ -14,7 +14,12 @@ function* pageSaga() {
         for (let i = 0; i < silderData.length; i++) {
           silder = [...silder, ...JSON.parse(silderData[i].content)];
         }
-        yield put({ type: actions.GET_HOME_RESPONSE, data: res.data, silder });
+        yield put({
+          type: actions.GET_HOME_RESPONSE,
+          data: res.data,
+          silder,
+          menuMiddle: res.data.menuMiddle.menuItems
+        });
       } else {
         // console.log(res);
       }

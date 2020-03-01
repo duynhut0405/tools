@@ -6,6 +6,26 @@ a:hover {
   z-index: 999;
 }
 
-.pages a {
-  margin: 0 auto;
+.conetnt {
+  margin-top: 54px;
+}
+.react-multi-carousel-list .item {
+  width: 90%;
+}
+.react-multi-carousel-item {
+  margin-bottom: 5px;
+}
+.item-2 .btn .icon-image {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  left: 25px;
+}
+
+@media only screen and (max-width: 575px) {
+  .sec-h-2 .list-2 .item-2 .btn .icon-image {
+    display: none;
+  }
 }
