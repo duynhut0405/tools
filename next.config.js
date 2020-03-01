@@ -18,7 +18,7 @@ module.exports = withFonts(
         });
         return config;
       },
-      exportPathMap: async function () {
+      exportPathMap: async function() {
         const res = await getRouer();
         const newResponse = await getNewRouter();
         // console.log(newResponse.data);
@@ -32,7 +32,7 @@ module.exports = withFonts(
         const newRouter = newResponse.data.reduce(
           (pages, data) =>
             Object.assign({}, pages, {
-              [`/news/${data.url}`]: { news: '/news/[...slug]' }
+              [`/news/${data.url}`]: { page: '/news/[...slug]' }
             }),
           {}
         );
