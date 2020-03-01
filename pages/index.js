@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 const propTypes = {
   list: Proptypes.object.isRequired,
   silder: Proptypes.array.isRequired,
-  menuMiddle: Proptypes.array,
+  menuMiddle: Proptypes.object,
   listRate: Proptypes.object.isRequired,
   getHome: Proptypes.func.isRequired,
   getRate: Proptypes.func.isRequired
