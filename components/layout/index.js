@@ -118,7 +118,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
       </li>
     ));
   };
-  console.log(footerBot)
+  console.log(footerBot);
   return (
     <div>
       <Head>
@@ -276,19 +276,22 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
         <section className="sec-cta">
           <div className="container">
             <div className="row center">
-              {map(footerTop, values => (
-                <div className="col-4 ">
-                  <a className="item" href={`/page/${values.slugPages}`}>
-                    <span className="img">
-                      <img src={values.icon} alt="" />
-                    </span>
-                    <div className="divtext">
-                      <h4 className="title">{values.name}</h4>
-                      <div className="desc">{values.description}</div>
-                    </div>
-                  </a>
-                </div>
-              ))}
+              {map(
+                footerTop.sort((a, b) => a.position - b.position),
+                values => (
+                  <div className="col-4 ">
+                    <a className="item" href={`/page/${values.slugPages}`}>
+                      <span className="img">
+                        <img src={values.icon} alt="" />
+                      </span>
+                      <div className="divtext">
+                        <h4 className="title">{values.name}</h4>
+                        <div className="desc">{values.description}</div>
+                      </div>
+                    </a>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </section>
