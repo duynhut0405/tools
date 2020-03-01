@@ -30,8 +30,8 @@ module.exports = withFonts(
         //   {}
         // );
         const newRouter = newResponse.data.reduce(
-          (news, data) =>
-            Object.assign({}, news, {
+          (pages, data) =>
+            Object.assign({}, pages, {
               [`/news/${data.url}`]: { news: '/news/[...slug]' }
             }),
           {}
