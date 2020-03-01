@@ -21,7 +21,6 @@ module.exports = withFonts(
       exportPathMap: async function() {
         const res = await getRouer();
         const newResponse = await getNewRouter();
-        // console.log(newResponse.data);
         const newRouter = newResponse.data.reduce(
           (news, data) =>
             Object.assign({}, news, {
