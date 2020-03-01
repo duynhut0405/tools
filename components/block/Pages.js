@@ -107,7 +107,7 @@ function Pages({ data, type }) {
           <div className="list-7  list-item row">
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
-                <a href={`/page/${values.slug}`} className="item item-inline-table">
+                <a href={values.slug} className="item item-inline-table">
                   <div className="post_content mb-3">
                     <div className="img">
                       <img
@@ -128,7 +128,7 @@ function Pages({ data, type }) {
           </div>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <a key={index} className="tag" href={`/page/${values.url}`}>
+              <a key={index} className="tag" href={values.url}>
                 {values.name}
               </a>
             ))}
@@ -146,13 +146,13 @@ function Pages({ data, type }) {
           <ul className="cols-2 link2">
             {map(listPage, (values, index) => (
               <li key={index}>
-                <a href={`/page/${values.slug}`}>{values.name}</a>
+                <a href={values.slug}>{values.name}</a>
               </li>
             ))}
           </ul>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <a key={index} className="tag" href={`/page/${values.url}`}>
+              <a key={index} className="tag" href={values.url}>
                 {values.name}
               </a>
             ))}
