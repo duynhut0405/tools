@@ -3,6 +3,7 @@ import { map, slice } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
+import ItemsCarousel from 'react-items-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
   getCategoryPage: Proptypes.func,
@@ -15,6 +16,8 @@ function News({ data, type }) {
   const [listCategory, setListCategory] = useState([]);
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 40;
   //   slice(data.news, 0, page)
   const getCategoryPage = async () => {
     const id = map(data.news, item => item.newsId);
@@ -122,7 +125,6 @@ function News({ data, type }) {
   }
 
   if (type === '4') {
-    console.log(listCategory);
     return (
       <section className="sec-tb sec-h-3 ">
         <div className="container">
@@ -132,22 +134,74 @@ function News({ data, type }) {
               Xem tất cả <i className="icon-arrow-1"></i>
             </a>
           </div>
-          <div className="owl-carousel equalHeight s-nav nav-2 list-5">
-            {map(listCategory, (item, index) => (
-              <a
-                href={`/news/${item.url}`}
-                className={`item efch-${index} ef-img-l equal`}
-                key={index}
-              >
-                <div className="img tRes_71">
-                  <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
-                </div>
-                <div className="divtext">
-                  <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                  <h4 className="title">{item.title}</h4>
-                </div>
-              </a>
-            ))}
+          <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
+            <div className="owl-stage-outer">
+              <div className="owl-stage">
+                <ItemsCarousel
+                  requestToChangeActive={setActiveItemIndex}
+                  activeItemIndex={activeItemIndex}
+                  alwaysShowChevrons
+                  numberOfCards={4}
+                  gutter={5}
+                  leftChevron={
+                    <button
+                      style={{
+                        height: '42px',
+                        width: '42px',
+                        borderRadius: '100%',
+                        fontSize: '16px',
+                        border: '1px solid #141ED2',
+                        color: '#141ED2',
+                        background: '#FFF'
+                      }}
+                    >
+                      {'<'}
+                    </button>
+                  }
+                  rightChevron={
+                    <button
+                      style={{
+                        height: '42px',
+                        width: '42px',
+                        borderRadius: '100%',
+                        fontSize: '16px',
+                        border: '1px solid #141ED2',
+                        color: '#141ED2',
+                        background: '#FFF'
+                      }}
+                    >
+                      {'>'}
+                    </button>
+                  }
+                  outsideChevron
+                  chevronWidth={chevronWidth}
+                >
+                  {map(listCategory, (item, index) => (
+                    <div className="owl-item">
+                      <a
+                        href={`/news/${item.url}`}
+                        className={`item efch-${index} ef-img-l equal`}
+                        key={index}
+                        style={{ height: '378px', width: '262px' }}
+                      >
+                        <div className="img tRes_71">
+                          <img
+                            className="lazy-hidden"
+                            data-lazy-type="image"
+                            src={item.base_image}
+                            style={{ height: '187px' }}
+                          />
+                        </div>
+                        <div className="divtext">
+                          <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                          <h4 className="title">{item.title}</h4>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </ItemsCarousel>
+              </div>
+            </div>
           </div>
         </div>
       </section>
