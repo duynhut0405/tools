@@ -87,7 +87,7 @@ function News({ data, type }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-            <a className="viewall" href="https://sapotacorp.com:8443/vi/api/news/">
+            <a className="viewall" href={`news/list/${slugCategory}`}>
               Xem tất cả <i className="icon-arrow-1"></i>
             </a>
           </div>
@@ -134,7 +134,6 @@ function News({ data, type }) {
       </section>
     );
   }
-
   if (type === '4') {
     return (
       <section className="sec-tb sec-h-3 ">
