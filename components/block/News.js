@@ -152,12 +152,11 @@ function News({ data, type }) {
                         fontSize: '16px',
                         border: '1px solid #141ED2',
                         color: '#141ED2',
-                        background: '#FFF'
+                        background: '#FFF',
+                        display: 'none'
                       }}
                       id="back"
-                    >
-                      {'<'}
-                    </button>
+                    ></button>
                   }
                   rightChevron={
                     <button
@@ -168,12 +167,11 @@ function News({ data, type }) {
                         fontSize: '16px',
                         border: '1px solid #141ED2',
                         color: '#141ED2',
-                        background: '#FFF'
+                        background: '#FFF',
+                        display: 'none'
                       }}
                       id="next"
-                    >
-                      {'>'}
-                    </button>
+                    ></button>
                   }
                   outsideChevron
                   chevronWidth={chevronWidth}
