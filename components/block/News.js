@@ -34,6 +34,7 @@ function News({ data, type }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
   if (type === '1') {
     return (
       <div className="post_block mb-5 pt-4 mt-5">
@@ -121,6 +122,7 @@ function News({ data, type }) {
   }
 
   if (type === '4') {
+    console.log(listCategory);
     return (
       <section className="sec-tb sec-h-3 ">
         <div className="container">
@@ -130,12 +132,8 @@ function News({ data, type }) {
               Xem tất cả <i className="icon-arrow-1"></i>
             </a>
           </div>
-          <div
-            className="owl-carousel equalHeight s-nav nav-2 list-5"
-            data-res="4,3,2,1"
-            paramowl="margin=0"
-          >
-            {map(listNews, (item, index) => (
+          <div className="owl-carousel equalHeight s-nav nav-2 list-5">
+            {map(listCategory, (item, index) => (
               <a
                 href={`/news/${item.url}`}
                 className={`item efch-${index} ef-img-l equal`}
