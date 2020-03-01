@@ -23,4 +23,17 @@ const getRouer = () => {
     });
 };
 
-module.exports = { getRouer };
+const getNewRouter = () => {
+  return request({
+    url: `/news/findallnotpagination`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
+module.exports = { getRouer, getNewRouter };
