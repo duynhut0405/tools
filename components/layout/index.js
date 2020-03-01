@@ -10,6 +10,7 @@ import { getAllMenu, getMenuItemById } from '../../services/menu';
 import { LayoutActions } from '../../store/actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Head from 'next/head';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -19,9 +20,11 @@ const propTypes = {
 
 function Layout({ children, settingFooter, getSettingFooter }) {
   const [header, setHeader] = useState({});
-  const [footer, setFooter] = useState({});
   const [footermain, setFooterMain] = useState([{}, {}, {}, {}, {}, {}]);
   const [footerTop, setFooterTop] = useState([]);
+  const [headerTop, setHeaderTop] = useState([{}, {}, {}, {}, {}, {}]);
+  const [footerBot, setFooterBot] = useState([{}, {}]);
+
   const [slider, setSlider] = useState({});
 
   const nest = (items, id = null, link = 'parentId') => {
@@ -73,6 +76,20 @@ function Layout({ children, settingFooter, getSettingFooter }) {
                   const menufooterTop = await getMenuItemById(values.id);
                   if (menufooterTop && menufooterTop.status === 200) {
                     setFooterTop(menufooterTop.data);
+                  }
+                } else {
+                  if (values.position === 'top_top') {
+                    const menuHeaderTop = await getMenuItemById(values.id);
+                    if (menuHeaderTop && menuHeaderTop.status === 200) {
+                      setHeaderTop(menuHeaderTop.data);
+                    }
+                  } else {
+                    if (values.position === 'menu footer bottom') {
+                      const menuFooterBot = await getMenuItemById(values.id);
+                      if (menuFooterBot && menuFooterBot.status === 200) {
+                        setFooterBot(menuFooterBot.data);
+                      }
+                    }
                   }
                 }
               }
@@ -145,7 +162,6 @@ function Layout({ children, settingFooter, getSettingFooter }) {
       </li>
     ));
   };
-
   return (
     <div>
       <div id="wrapper">
@@ -155,13 +171,15 @@ function Layout({ children, settingFooter, getSettingFooter }) {
               <div className="col-md-5">
                 <ul className="menu line">
                   <li>
-                    <a href="#">
-                      <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" /> Điểm GD & ATM
+                    <a href={`/page/${headerTop[1].slugPages}`}>
+                      <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" />
+                      {headerTop[1].name}
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      <img src={BieuPhiIcon} alt="Bieu Phi" width="15" className="mr-2" /> Biểu phí
+                    <a href={`/page/${headerTop[0].slugPages}`}>
+                      <img src={BieuPhiIcon} alt="Bieu Phi" width="15" className="mr-2" />
+                      {headerTop[0].name}
                     </a>
                   </li>
                 </ul>
@@ -169,16 +187,16 @@ function Layout({ children, settingFooter, getSettingFooter }) {
               <div className="col-md-7">
                 <ul className="menu line text-right">
                   <li>
-                    <a href="#">Về MBBank</a>
+                    <a href={`/page/${headerTop[2].slugPages}`}>{headerTop[2].name}</a>
                   </li>
                   <li>
-                    <a href="#">Nhà đầu tư</a>
+                    <a href={`/page/${headerTop[3].slugPages}`}>{headerTop[3].name}</a>
                   </li>
                   <li>
-                    <a href="#">Nghề nghiệp</a>
+                    <a href={`/page/${headerTop[4].slugPages}`}>{headerTop[4].name}</a>
                   </li>
                   <li>
-                    <a href="#">Liên hệ</a>
+                    <a href={`/page/${headerTop[5].slugPages}`}>{headerTop[5].name}</a>
                   </li>
                   <li>
                     <div className="dropdown language">
@@ -432,12 +450,10 @@ function Layout({ children, settingFooter, getSettingFooter }) {
               <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
                 <ul className="menu line">
                   <li>
-                    {' '}
-                    <a href="#">Điều khoản sử dụng</a>{' '}
+                    <a href={`/page/${footerBot[1].slugPages}`}>{footerBot[1].name}</a>
                   </li>
                   <li>
-                    {' '}
-                    <a href="#">Bảo mật thông tin khách hàng</a>{' '}
+                    <a href={`/page/${footerBot[0].slugPages}`}>{footerBot[0].name}</a>
                   </li>
                 </ul>
               </div>
