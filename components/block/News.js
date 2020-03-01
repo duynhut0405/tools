@@ -154,6 +154,7 @@ function News({ data, type }) {
                         color: '#141ED2',
                         background: '#FFF'
                       }}
+                      id="back"
                     >
                       {'<'}
                     </button>
@@ -169,6 +170,7 @@ function News({ data, type }) {
                         color: '#141ED2',
                         background: '#FFF'
                       }}
+                      id="next"
                     >
                       {'>'}
                     </button>
@@ -200,6 +202,24 @@ function News({ data, type }) {
                     </div>
                   ))}
                 </ItemsCarousel>
+              </div>
+            </div>
+            <div className="owl-nav">
+              <div
+                className="owl-prev disabled"
+                onClick={() => {
+                  document.getElementById('back').click();
+                }}
+              >
+                <i className="icon-arrow-1 ix"></i>
+              </div>
+              <div
+                className="owl-next"
+                onClick={() => {
+                  document.getElementById('next').click();
+                }}
+              >
+                <i className="icon-arrow-1"></i>
               </div>
             </div>
           </div>
