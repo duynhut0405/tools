@@ -118,7 +118,6 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
       </li>
     ));
   };
-  console.log(footerBot);
   return (
     <div>
       <Head>

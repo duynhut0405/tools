@@ -11,7 +11,8 @@ import {
   MiniTab,
   News,
   Form,
-  TagProduct
+  TagProduct,
+  MenuIntro
 } from '../block';
 
 import { map } from 'lodash';
@@ -81,7 +82,7 @@ function BlockRender({ data }) {
                 return <TagProduct data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'MenuIntro') {
-                return <Form data={JSON.parse(values.content)} key={index} />;
+                return <MenuIntro data={JSON.parse(values.content)} key={index} />;
               }
               return null;
             }
