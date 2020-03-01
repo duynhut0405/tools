@@ -105,7 +105,7 @@ function Pages({ data, type }) {
         <div className="container">
           <h2 className="ht text-center">{data.title}</h2>
           <div className="list-7  list-item row">
-            {map(listNews, (values, index) => (
+            {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
                 <a href="#" className="item item-inline-table">
                   <div className="post_content mb-3">
@@ -144,7 +144,7 @@ function Pages({ data, type }) {
           <div className="max750"></div>
           <h2 className="ht text-center">{data.title}</h2>
           <ul className="cols-2 link2">
-            {map(listNews, (values, index) => (
+            {map(listPage, (values, index) => (
               <li key={index}>
                 <a href="#">{values.name}</a>
               </li>

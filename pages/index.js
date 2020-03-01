@@ -21,6 +21,7 @@ function Home({ list, silder, menuMiddle, listRate, getHome, getRate }) {
     getHome('homepage');
     getRate();
   }, [getHome, getRate]);
+
   return (
     <Layout title={list.meta_title}>
       <div className="main_content">
