@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 const propTypes = {
   list: PropTypes.object,
   silder: PropTypes.array,
-  menuMiddle: PropTypes.array,
+  menuMiddle: PropTypes.object,
   getPage: PropTypes.func
 };
 
