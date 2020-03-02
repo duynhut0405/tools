@@ -124,7 +124,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
     return map(data, (item, index) => {
       if (item.children.length > 0) {
         return (
-          <div className="widget">
+          <div className="widget" style={{ marginTop: 20 }}>
             <h4 className="widget-title">{item.name}</h4>
             <ul className="menu">{footerItem(item.children)}</ul>
           </div>
