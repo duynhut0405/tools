@@ -8,6 +8,7 @@ a:hover {
 }
 .setzindex {
   z-index: 999;
+  position: relative;
 }
 
 .mcontent {
