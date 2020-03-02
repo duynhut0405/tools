@@ -3,11 +3,9 @@ import Actions from './actions';
 const initialState = {
   homedata: {},
   silder: [],
-  menuMiddle: [],
+  menuMiddle: {},
   listPages: []
 };
-
-// menuMiddle
 
 const pageReducer = (state = initialState, action) => {
   switch (action.type) {

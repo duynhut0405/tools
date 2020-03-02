@@ -14,11 +14,11 @@ function* pageSaga() {
         for (let i = 0; i < silderData.length; i++) {
           silder = [...silder, ...JSON.parse(silderData[i].content)];
         }
+        // console.log(res.data.menuMiddle);
         yield put({
           type: actions.GET_HOME_RESPONSE,
           data: res.data,
-          silder,
-          menuMiddle: res.data.menuMiddle.menuItems
+          silder
         });
       } else {
         // console.log(res);

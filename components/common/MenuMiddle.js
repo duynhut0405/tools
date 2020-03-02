@@ -26,39 +26,76 @@ function MenuMiddle({ data }) {
     }
   };
   return (
-    <div className="menuicon sec-tb container">
-      <div className="entry-head text-center">
-        <h2 className="ht">{data.title}</h2>
-      </div>
+    <>
       {data !== null && (
-        <Carousel
-          responsive={responsive}
-          draggable
-          minimumTouchDrag={80}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          keyBoardControl={true}
-        >
-          {map(data.menuItems, (item, key) => {
-            return (
-              <div className={router.query.name === item.slug ? 'item active' : 'item'} key={key}>
-                <a href={`/page/${item.slug}`} className="link">
-                  <div className="img">
-                    <img
-                      className=" loaded loaded"
-                      data-lazy-type="image"
-                      data-lazy-src={item.icon}
-                      src={item.icon}
-                    />
-                  </div>
-                  <div className="title">{item.name}</div>
-                </a>
-              </div>
-            );
-          })}
-        </Carousel>
+        <div className="menuicon sec-tb container">
+          <div className="entry-head text-center">
+            <h2 className="ht">{data.title}</h2>
+          </div>
+          {data.menuItems !== undefined && data.menuItems.length >= 8 && (
+            <Carousel
+              responsive={responsive}
+              draggable
+              minimumTouchDrag={80}
+              ssr={true} // means to render carousel on server-side.
+              infinite={true}
+              keyBoardControl={true}
+            >
+              {map(
+                data.menuItems.sort((a, b) => a.position - b.position),
+                (item, key) => {
+                  return (
+                    <div
+                      className={router.query.name === item.slug ? 'item active' : 'item'}
+                      key={key}
+                    >
+                      <a href={`/page/${item.slug}`} className="link">
+                        <div className="img">
+                          <img
+                            className=" loaded loaded"
+                            data-lazy-type="image"
+                            data-lazy-src={item.icon}
+                            src={item.icon}
+                          />
+                        </div>
+                        <div className="title">{item.name}</div>
+                      </a>
+                    </div>
+                  );
+                }
+              )}
+            </Carousel>
+          )}
+          {data.menuItems !== undefined && data.menuItems.length < 8 && (
+            <div className="list-menu-middle">
+              {map(
+                data.menuItems.sort((a, b) => a.position - b.position),
+                (item, key) => {
+                  return (
+                    <div
+                      className={router.query.name === item.slug ? 'item active' : 'item'}
+                      key={key}
+                    >
+                      <a href={`/page/${item.slug}`} className="link">
+                        <div className="img">
+                          <img
+                            className=" loaded loaded"
+                            data-lazy-type="image"
+                            data-lazy-src={item.icon}
+                            src={item.icon}
+                          />
+                        </div>
+                        <div className="title">{item.name}</div>
+                      </a>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }
 

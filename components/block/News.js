@@ -187,7 +187,7 @@ function News({ data, type }) {
                   chevronWidth={chevronWidth}
                 >
                   {map(listCategory, (item, index) => (
-                    <div className="owl-item">
+                    <div className="owl-item" key={index}>
                       <a
                         href={`/news/${item.url}`}
                         className={`item efch-${index} ef-img-l equal`}

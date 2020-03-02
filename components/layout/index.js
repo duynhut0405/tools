@@ -16,7 +16,7 @@ const propTypes = {
   settingFooter: PropTypes.object,
   children: PropTypes.node,
   getSettingFooter: PropTypes.func,
-  title: PropTypes.any.isRequired
+  title: PropTypes.any
 };
 
 function Layout({ children, settingFooter, getSettingFooter, title }) {
@@ -344,7 +344,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                 </div>
               )}
             </Sticky>
-            <div className="mcontent">{children}</div>
+            <div>{children}</div>
             {/* contact */}
             <section className="sec-cta">
               <div className="container">
@@ -352,7 +352,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                   {map(
                     footerTop.sort((a, b) => a.position - b.position),
                     values => (
-                      <div className="col-4 ">
+                      <div className="col-4" key={values.id}>
                         <a className="item" href={`/page/${values.slugPages}`}>
                           <span className="img">
                             <img src={values.icon} alt="" />
@@ -395,11 +395,11 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                       </span>
                       <div className="app">
                         <p className="stitle">Hãy tải app ngay hôm nay</p>
-                        <a href="#">
+                        <a href="https://bit.ly/2v5ZsyP">
                           <img src="/static/images/btt-google.svg" alt="" />
                         </a>{' '}
                         &nbsp;
-                        <a href="#">
+                        <a href="https://apple.co/2AqB7ZM">
                           <img src="/static/images/btt-chplay.svg" alt="" />
                         </a>
                       </div>

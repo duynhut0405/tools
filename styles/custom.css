@@ -27,6 +27,12 @@ a:hover {
   -webkit-transform: translateY(-50%);
   left: 25px;
 }
+.list-menu-middle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 .react-multi-carousel-list .react-multiple-carousel__arrow--left::before,
 .react-multi-carousel-list .react-multiple-carousel__arrow--right::before {
   content: '\e900';
