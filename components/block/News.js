@@ -3,19 +3,32 @@ import { map, slice } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
+import { getCategoryByIdService } from '../../services/category';
+import ItemsCarousel from 'react-items-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
   getCategoryPage: Proptypes.func,
-  type: Proptypes.number
+  type: Proptypes.string
 };
 
 function News({ data, type }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const [listCategory, setListCategory] = useState([]);
+  const [slugCategory, setSlugCategory] = useState('');
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 40;
   //   slice(data.news, 0, page)
+
+  const getCategoryById = async () => {
+    const res = await getCategoryByIdService(Number(data.category));
+    if (res && res.status === 200) {
+      setSlugCategory(res.data.slug);
+    }
+  };
+
   const getCategoryPage = async () => {
     const id = map(data.news, item => item.newsId);
     const res = await getNewByIdService(id);
@@ -23,9 +36,9 @@ function News({ data, type }) {
       setListCategory(res.data);
     }
   };
-  console.log(listCategory)
   useEffect(() => {
     getCategoryPage();
+    getCategoryById();
   }, []);
   const showPage = () => {
     setActive(false);
@@ -35,6 +48,7 @@ function News({ data, type }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
   if (type === '1') {
     return (
       <div className="post_block mb-5 pt-4 mt-5">
@@ -42,8 +56,8 @@ function News({ data, type }) {
           <h2>{data.title}</h2>
         </div>
         <div className="row">
-          {map(listNews, item => (
-            <div className="col-sm-4 col-md-6 col-lg-4" key={item.newsId}>
+          {map(listNews, (item, index) => (
+            <div className="col-sm-4 col-md-6 col-lg-4" key={index}>
               <div className="post_content mb-3">
                 <div style={{ height: '230px', width: '100%', overflow: 'hidden' }}>
                   <img src={item.base_image} alt="icon" />
@@ -73,7 +87,7 @@ function News({ data, type }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-            <a className="viewall" href="https://sapotacorp.com:8443/vi/api/news/">
+            <a className="viewall" href={`news/list/${slugCategory}`}>
               Xem tất cả <i className="icon-arrow-1"></i>
             </a>
           </div>
@@ -81,9 +95,9 @@ function News({ data, type }) {
           <div className="row list-item">
             <div className="col-lg-8 ">
               <div className="list-5 row ">
-                {map(listNews, item => (
-                  <div className="col-md-6">
-                    <a href="#" className="item efch-1 ef-img-l equal">
+                {map(listNews, (item, index) => (
+                  <div className="col-md-6" key={index}>
+                    <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l equal`}>
                       <div className="img tRes_71">
                         <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
                       </div>
@@ -99,8 +113,8 @@ function News({ data, type }) {
             </div>
             {/* 3tabs */}
             <div className="col-lg-4">
-              {map(listNewsTabs, item => (
-                <div className="list-6">
+              {map(listNewsTabs, (item, index) => (
+                <div className="list-6" key={index}>
                   <a
                     href="https://sapotacorp.com:8443/vi/api/news/"
                     className="item item-inline-table"
@@ -120,33 +134,102 @@ function News({ data, type }) {
       </section>
     );
   }
-
   if (type === '4') {
     return (
       <section className="sec-tb sec-h-3 ">
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-            <a className="viewall" href="#">
+            <a className="viewall" href={`news/list/${slugCategory}`}>
               Xem tất cả <i className="icon-arrow-1"></i>
             </a>
           </div>
-          <div
-            className="owl-carousel equalHeight s-nav nav-2 list-5"
-            data-res="4,3,2,1"
-            paramowl="margin=0"
-          >
-            {map(listNews, item => (
-              <a href="#" className="item efch-1 ef-img-l equal">
-                <div className="img tRes_71">
-                  <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
-                </div>
-                <div className="divtext">
-                  <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                  <h4 className="title">{item.title}</h4>
-                </div>
-              </a>
-            ))}
+          <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
+            <div className="owl-stage-outer">
+              <div className="owl-stage">
+                <ItemsCarousel
+                  requestToChangeActive={setActiveItemIndex}
+                  activeItemIndex={activeItemIndex}
+                  alwaysShowChevrons
+                  numberOfCards={4}
+                  gutter={5}
+                  leftChevron={
+                    <button
+                      style={{
+                        height: '42px',
+                        width: '42px',
+                        borderRadius: '100%',
+                        fontSize: '16px',
+                        border: '1px solid #141ED2',
+                        color: '#141ED2',
+                        background: '#FFF',
+                        display: 'none'
+                      }}
+                      id="back"
+                    ></button>
+                  }
+                  rightChevron={
+                    <button
+                      style={{
+                        height: '42px',
+                        width: '42px',
+                        borderRadius: '100%',
+                        fontSize: '16px',
+                        border: '1px solid #141ED2',
+                        color: '#141ED2',
+                        background: '#FFF',
+                        display: 'none'
+                      }}
+                      id="next"
+                    ></button>
+                  }
+                  outsideChevron
+                  chevronWidth={chevronWidth}
+                >
+                  {map(listCategory, (item, index) => (
+                    <div className="owl-item" key={index}>
+                      <a
+                        href={`/news/${item.url}`}
+                        className={`item efch-${index} ef-img-l equal`}
+                        key={index}
+                        style={{ height: '378px', width: '262px' }}
+                      >
+                        <div className="img tRes_71">
+                          <img
+                            className="lazy-hidden"
+                            data-lazy-type="image"
+                            src={item.base_image}
+                            style={{ height: '187px' }}
+                          />
+                        </div>
+                        <div className="divtext">
+                          <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                          <h4 className="title">{item.title}</h4>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </ItemsCarousel>
+              </div>
+            </div>
+            <div className="owl-nav">
+              <div
+                className="owl-prev disabled"
+                onClick={() => {
+                  document.getElementById('back').click();
+                }}
+              >
+                <i className="icon-arrow-1 ix"></i>
+              </div>
+              <div
+                className="owl-next"
+                onClick={() => {
+                  document.getElementById('next').click();
+                }}
+              >
+                <i className="icon-arrow-1"></i>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -3,7 +3,7 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.array
 };
 
 function ItemIcon({ data }) {
@@ -42,13 +42,7 @@ function ItemIcon({ data }) {
               key={index}
             >
               <img
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  left: '25px',
-                  fontSize: '22px'
-                }}
+                className="icon-image"
                 data-lazy-type="image"
                 data-lazy-src={item.image}
                 src={item.image}

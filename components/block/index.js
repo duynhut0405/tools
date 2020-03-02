@@ -9,7 +9,9 @@ import MiniTab from './MiniTab';
 import Pages from './Pages';
 import MiniTabItem from './MiniTabItem';
 import News from './News';
+import Form from './Form';
 import TagProduct from './TagProduct';
+import MenuIntro from './MenuIntro';
 
 export {
   Images,
@@ -23,5 +25,7 @@ export {
   MiniTab,
   MiniTabItem,
   News,
-  TagProduct
+  Form,
+  TagProduct,
+  MenuIntro
 };

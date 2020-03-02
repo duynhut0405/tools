@@ -21,16 +21,10 @@ function Page({ list, silder, getPage }) {
 
   return (
     <Layout>
-      <Head>
-        <title>{list.meta_title}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main id="main" className="sec-tb ">
-        <div className="container">
-          <Carousel className="category" silder={silder} />
-          <BlockRender data={list.pageBlocks} />
-        </div>
-      </main>
+      <div className="main_content">
+        <Carousel className="category" silder={silder} />
+        <BlockRender data={list.pageBlocks} />
+      </div>
     </Layout>
   );
 }
