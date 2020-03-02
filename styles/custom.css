@@ -1,6 +1,54 @@
 html {
   scroll-behavior: smooth;
 }
+.table table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table table td,
+.table table th {
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+.table-full {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  font-size: 14px;
+  overflow: hidden;
+  min-width: 600px;
+}
+
+.table-full table td,
+.table-full table th {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.table-full table th {
+  background-color: #e0f0ff;
+  color: #333333;
+  font-size: 16px;
+  text-align: center;
+  height: 70px;
+}
+
+.table-full table th:nth-child(2) {
+  max-width: 300px;
+}
+
+.table-full table td {
+  height: 90px;
+  border-top: 2px solid #fff;
+}
+
+.table-full table td:not(:first-child) {
+  border-left: 2px solid #fff;
+}
 
 a:hover {
   text-decoration: none;
