@@ -6788,7 +6788,25 @@ body.showMenu .menu-btn.x:after {
 
 .menuicon {
   text-align: center;
+  display: flex;
+  position: relative;
+  left: 13%;
 }
+@media only screen and (max-width: 1024px){
+  .menuicon {
+    /* display: none; */
+    position: static;
+    left: none;
+  }
+}
+@media only screen and (max-width: 425px){
+  .menuicon {
+    display: block;
+    position: static;
+    left: none;
+  }
+}
+
 
 .menuicon .item {
   display: inline-block;
