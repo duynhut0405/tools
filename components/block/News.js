@@ -4,7 +4,8 @@ import moment from 'moment';
 import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
-import ItemsCarousel from 'react-items-carousel';
+
+import Carousel from 'react-multi-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
   getCategoryPage: Proptypes.func,
@@ -18,9 +19,21 @@ function News({ data, type }) {
   const [slugCategory, setSlugCategory] = useState('');
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const chevronWidth = 40;
-  //   slice(data.news, 0, page)
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
   const getCategoryById = async () => {
     const res = await getCategoryByIdService(Number(data.category));
@@ -147,44 +160,13 @@ function News({ data, type }) {
           <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
             <div className="owl-stage-outer">
               <div className="owl-stage">
-                <ItemsCarousel
-                  requestToChangeActive={setActiveItemIndex}
-                  activeItemIndex={activeItemIndex}
-                  alwaysShowChevrons
-                  numberOfCards={4}
-                  gutter={5}
-                  leftChevron={
-                    <button
-                      style={{
-                        height: '42px',
-                        width: '42px',
-                        borderRadius: '100%',
-                        fontSize: '16px',
-                        border: '1px solid #141ED2',
-                        color: '#141ED2',
-                        background: '#FFF',
-                        display: 'none'
-                      }}
-                      id="back"
-                    ></button>
-                  }
-                  rightChevron={
-                    <button
-                      style={{
-                        height: '42px',
-                        width: '42px',
-                        borderRadius: '100%',
-                        fontSize: '16px',
-                        border: '1px solid #141ED2',
-                        color: '#141ED2',
-                        background: '#FFF',
-                        display: 'none'
-                      }}
-                      id="next"
-                    ></button>
-                  }
-                  outsideChevron
-                  chevronWidth={chevronWidth}
+                <Carousel
+                  responsive={responsive}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
                 >
                   {map(listCategory, (item, index) => (
                     <div className="owl-item" key={index}>
@@ -209,27 +191,10 @@ function News({ data, type }) {
                       </a>
                     </div>
                   ))}
-                </ItemsCarousel>
+                </Carousel>
               </div>
             </div>
-            <div className="owl-nav">
-              <div
-                className="owl-prev disabled"
-                onClick={() => {
-                  document.getElementById('back').click();
-                }}
-              >
-                <i className="icon-arrow-1 ix"></i>
-              </div>
-              <div
-                className="owl-next"
-                onClick={() => {
-                  document.getElementById('next').click();
-                }}
-              >
-                <i className="icon-arrow-1"></i>
-              </div>
-            </div>
+            <div className="owl-nav"></div>
           </div>
         </div>
       </section>
