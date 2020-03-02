@@ -434,6 +434,245 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                 </div>
               </div>
             </div>
+            <section className="sec-download-mb">
+              <div className="wform">
+                <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                <form role="search" method="get" className="searchform " action="">
+                  <div className="aaa">
+                    <input
+                      type="text"
+                      placeholder="Nhập email để nhận thông tin"
+                      value=""
+                      name="s"
+                      className="input"
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-2">
+                    Đăng ký
+                  </button>
+                </form>
+              </div>
+              <div className="wdownload">
+                <span className="stitle">Tải app ngay</span>&nbsp;
+                <a href="#">
+                  <img src="static/images/btt-google-mb.svg" alt="" />
+                </a>{' '}
+                &nbsp;
+                <a href="#">
+                  <img src="static/images/btt-chplay-mb.svg" alt="" />
+                </a>
+              </div>
+            </section>
+            <div id="footer-mb" className=" group-ef loaded">
+              <div className="container">
+                <div className="widget widget-info">
+                  <div>
+                    <a href="./" className="logo">
+                      {' '}
+                      <img src="static/images/logo-blue.svg" alt="" />
+                    </a>
+                  </div>
+                  <h3>Ngân hàng TMCP Quân Đội</h3>
+                  <p>Toà nhà MBBank - Hội sở 21 Cát Linh, Đống Đa, Hà Nội</p>
+                  <p>Email: mb247@mbbank.com.vn</p>
+                  <p>Swift code: MSCBVNVX</p>
+                  <p className="w6">Hãy gọi cho chúng tôi để được tư vấn 24/7</p>
+                  <div className="call">
+                    <a className="phone" href="#">
+                      <i className="icon-phone-1"></i> 1900 545426
+                    </a>
+
+                    <ul className="blog-item-social ">
+                      <li>
+                        <a className="item" title="" target="_blank" href="#">
+                          <i className="icon-facebook"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a className="item" title="" target="_blank" href="#">
+                          <i className="icon-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a className="item" title="" target="_blank" href="#">
+                          <i className="icon-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a className="item" title="" target="_blank" href="#">
+                          <i className="icon-youtube-2"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="accodion accodion-0">
+                  <div className="accodion-tab ">
+                    <input type="checkbox" id="chck_mf" />
+                    <label className="accodion-title" htmlFor="chck_mf">
+                      <span> Mở rộng </span>{' '}
+                      <span className="triangle">
+                        <i className="icon-plus"></i>
+                      </span>{' '}
+                    </label>
+                    <div className="accodion-content">
+                      <div className="inner">
+                        <div className="row grid-space-10">
+                          <div className="col-md-3 col-6  efch-2 ef-img-t">
+                            <div className="widget">
+                              <h4 className="widget-title">Cá nhân</h4>
+                              <ul className="menu">
+                                <li>
+                                  <a href="#">Ngân hàng số</a>
+                                </li>
+                                <li>
+                                  <a href="#">Tiết kiệm</a>
+                                </li>
+                                <li>
+                                  <a href="#">Cho vay</a>
+                                </li>
+                                <li>
+                                  <a href="#">Thẻ</a>
+                                </li>
+                                <li>
+                                  <a href="#">Chuyển tiền thanh toán</a>
+                                </li>
+                                <li>
+                                  <a href="#">Bảo hiểm nhân thọ</a>
+                                </li>
+                                <li>
+                                  <a href="#">Sản phẩm khác</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div className="col-md-3 col-6  efch-2 ef-img-t">
+                            <div className="widget">
+                              <h4 className="widget-title">Doanh nghiệp</h4>
+                              <ul className="menu">
+                                <li>
+                                  <a href="#">Ngân hàng số</a>
+                                </li>
+                                <li>
+                                  <a href="#">Tài khoản và dịch vụ</a>
+                                </li>
+                                <li>
+                                  <a href="#">Tiền gửi</a>
+                                </li>
+                                <li>
+                                  <a href="#">Tín dụng và bảo lãnh</a>
+                                </li>
+                                <li>
+                                  <a href="#">Tài trợ thương mại</a>
+                                </li>
+                                <li>
+                                  <a href="#">Thị trường tiền tệ và vốn</a>
+                                </li>
+                                <li>
+                                  <a href="#">Dịch vụ khác</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div className="col-md-3 col-6  efch-3 ef-img-t">
+                            <div className="widget">
+                              <h4 className="widget-title">Khách hàng cao cấp</h4>
+                              <ul className="menu">
+                                <li>
+                                  <a href="#">Private</a>
+                                </li>
+                                <li>
+                                  <a href="#">Priorities</a>
+                                </li>
+                              </ul>
+                            </div>
+                            <div className="widget">
+                              <h4 className="widget-title">Liên hệ</h4>
+                              <ul className="menu">
+                                <li>
+                                  <a href="#">Chat trực tuyến</a>
+                                </li>
+                                <li>
+                                  <a href="#">Tìm điểm giao dịch</a>
+                                </li>
+                                <li>
+                                  <a href="#">Tổng đài 24/7</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div className="col-md-3 col-6  efch-4 ef-img-t">
+                            <div className="widget">
+                              <h4 className="widget-title">Về MBBank</h4>
+                              <ul className="menu">
+                                <li>
+                                  <a href="#">Về chúng tôi</a>
+                                </li>
+                                <li>
+                                  <a href="#">Nhà đầu tư</a>
+                                </li>
+                                <li>
+                                  <a href="#">Nghề nghiệp</a>
+                                </li>
+                                <li>
+                                  <a href="#">Liên hệ</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="menu-footer-mb">
+                <div className="row">
+                  <div className="col-3">
+                    <a className="item " href="#">
+                      <span className="img">
+                        {' '}
+                        <img src="static/images/svg/home.svg" alt="" />{' '}
+                      </span>
+                      <span className="name">Trang chủ</span>
+                    </a>
+                  </div>
+                  <div className="col-3">
+                    <a className="item" href="#">
+                      <span className="img">
+                        <img src="static/images/svg/folder.svg" alt="" />
+                      </span>
+                      <span className="name">Sản phẩm</span>
+                    </a>
+                  </div>
+                  <div className="col-3">
+                    <a className="item " href="#">
+                      <span className="img">
+                        <img src="static/images/svg/MB.svg" alt="" />
+                      </span>
+                      <span className="name">MB++</span>
+                    </a>
+                  </div>
+                  <div className="col-3">
+                    <a className="item " href="#">
+                      <span className="img">
+                        <img src="static/images/svg/giadinh.svg" alt="" />
+                      </span>
+                      <span className="name">Gia đình</span>
+                    </a>
+                  </div>
+                  <div className="col-3">
+                    <a className="item " href="#">
+                      <span className="img">
+                        <img src="static/images/svg/tienich.svg" alt="" />
+                      </span>
+                      <span className="name">Tiện ích</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </StickyContainer>

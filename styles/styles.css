@@ -8314,13 +8314,13 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   width: 100%;
 }
 
-.sec-download-mb form:first-child {
+.sec-download-mb form :first-child {
   display: table-cell;
   vertical-align: middle;
   width: 100%;
 }
 
-.sec-download-mb form:first-child .input {
+.sec-download-mb form :first-child .input {
   width: 100%;
   border-radius: 10px;
   margin-right: 10px;
