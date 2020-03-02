@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 a:hover {
   text-decoration: none;
   cursor: pointer;
@@ -23,31 +27,32 @@ a:hover {
   -webkit-transform: translateY(-50%);
   left: 25px;
 }
-.react-multi-carousel-list .react-multiple-carousel__arrow--left::before, .react-multi-carousel-list .react-multiple-carousel__arrow--right::before {
-  content: "\e900";
+.react-multi-carousel-list .react-multiple-carousel__arrow--left::before,
+.react-multi-carousel-list .react-multiple-carousel__arrow--right::before {
+  content: '\e900';
 }
 .react-multi-carousel-list .react-multiple-carousel__arrow::before {
-  color: #141ED2;
+  color: #141ed2;
 }
 .react-multi-carousel-list .react-multiple-carousel__arrow {
-  border: 1px solid #141ED2;
+  border: 1px solid #141ed2;
   background: #fff;
 }
 .react-multi-carousel-list .react-multiple-carousel__arrow::before {
   font-family: 'icomoon' !important;
 }
 .react-multi-carousel-list .react-multiple-carousel__arrow:hover {
-  color: #9BE6C8;
-  border-color: #9BE6C8;
+  color: #9be6c8;
+  border-color: #9be6c8;
   background: #fff;
 }
 .react-multi-carousel-list .react-multiple-carousel__arrow:hover::before {
-  color: #9BE6C8;
+  color: #9be6c8;
 }
 .react-multiple-carousel__arrow--left {
   -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 @media only screen and (max-width: 575px) {
   .sec-h-2 .list-2 .item-2 .btn .icon-image {

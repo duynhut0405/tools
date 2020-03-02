@@ -27,7 +27,7 @@ function Pages({ data, type }) {
 
   if (type && type === '1') {
     return (
-      <div className="container sec-tb">
+      <div className="container sec-tb" id={data.title}>
         <div className="entry-head text-center">
           <h2 className="ht">{data.title}</h2>
         </div>
@@ -63,7 +63,7 @@ function Pages({ data, type }) {
   }
   if (type && type === '2') {
     return (
-      <div className="container">
+      <div className="container" id={data.title}>
         <section className="sec-tb">
           <h2 className="ht">{data.title}</h2>
           <div className="list-7  list-item row">
@@ -101,7 +101,7 @@ function Pages({ data, type }) {
   }
   if (type && type === '3') {
     return (
-      <section className="sec-tb">
+      <section className="sec-tb" id={data.title}>
         <div className="container">
           <h2 className="ht text-center">{data.title}</h2>
           <div className="list-7  list-item row">
@@ -139,7 +139,7 @@ function Pages({ data, type }) {
   }
   if (type && type === '4') {
     return (
-      <section className="sec-tb bg-gray">
+      <section className="sec-tb bg-gray" id={data.title}>
         <div className="container">
           <div className="max750"></div>
           <h2 className="ht text-center">{data.title}</h2>

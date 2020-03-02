@@ -119,6 +119,68 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
       </li>
     ));
   };
+
+  const footerItem = data => {
+    return map(data, (item, index) => {
+      if (item.children.length > 0) {
+        return (
+          <div className="widget">
+            <h4 className="widget-title">{item.name}</h4>
+            <ul className="menu">{footerItem(item.children)}</ul>
+          </div>
+        );
+      }
+      return (
+        <li key={index}>
+          <Link
+            className={item.children.length > 0 ? 'title' : ''}
+            href="/page/[...slug]"
+            as={`/page/${item.slugPages}`}
+          >
+            {item.name}
+          </Link>
+        </li>
+      );
+    });
+  };
+
+  const renderFooter = items => {
+    return map(items, (values, key) => {
+      return (
+        <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t" key={key}>
+          <div className="widget">
+            <h4 className="widget-title">{values.name}</h4>
+            <ul className="menu">{footerItem(values.children)}</ul>
+          </div>
+          {key === items.length - 1 && (
+            <ul className="blog-item-social ">
+              <li>
+                <a className="item" title="" target="_blank" href="#">
+                  <i className="icon-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a className="item" title="" target="_blank" href="#">
+                  <i className="icon-instagram"></i>
+                </a>
+              </li>
+              <li>
+                <a className="item" title="" target="_blank" href="#">
+                  <i className="icon-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a className="item" title="" target="_blank" href="#">
+                  <i className="icon-youtube-2"></i>
+                </a>
+              </li>
+            </ul>
+          )}
+        </div>
+      );
+    });
+  };
+
   return (
     <div>
       <StickyContainer>
@@ -352,98 +414,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                   <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
                     <Widget data={settingFooter} />
                   </div>
-                  <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t">
-                    <div className="widget">
-                      <h4 className="widget-title">{footermain[0].name}</h4>
-                      <ul className="menu">
-                        {map(footermain[0].children, values => (
-                          <li>
-                            <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                              {values.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t">
-                    <div className="widget">
-                      <h4 className="widget-title">{footermain[1].name}</h4>
-                      <ul className="menu">
-                        {map(footermain[1].children, values => (
-                          <li>
-                            <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                              {values.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="col-md-3 col-6 col-lg-2  efch-3 ef-img-t">
-                    <div className="widget">
-                      <h4 className="widget-title">{footermain[2].name}</h4>
-                      <ul className="menu">
-                        {map(footermain[2].children, values => (
-                          <li>
-                            <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                              {values.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="widget">
-                      <h4 className="widget-title">{footermain[3].name}</h4>
-                      <ul className="menu">
-                        {map(footermain[3].children, values => (
-                          <li>
-                            <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                              {values.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="col-md-3 col-6  col-lg-2 efch-4 ef-img-t">
-                    <div className="widget">
-                      <h4 className="widget-title">{footermain[4].name}</h4>
-                      <ul className="menu">
-                        {map(footermain[4].children, values => (
-                          <li>
-                            <Link href="/page/[...slug]" as={`/page/${values.slugPages}`}>
-                              {values.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <ul className="blog-item-social ">
-                      <li>
-                        <a className="item" title="" target="_blank" href="#">
-                          <i className="icon-facebook"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a className="item" title="" target="_blank" href="#">
-                          <i className="icon-instagram"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a className="item" title="" target="_blank" href="#">
-                          <i className="icon-twitter"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a className="item" title="" target="_blank" href="#">
-                          <i className="icon-youtube-2"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  {renderFooter(footermain)}
                 </div>
                 <div className="line"></div>
                 <div className="row grid-space-10">
