@@ -333,11 +333,11 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                       </span>
                       <div className="app">
                         <p className="stitle">Hãy tải app ngay hôm nay</p>
-                        <a href="#">
+                        <a href="https://bit.ly/2v5ZsyP">
                           <img src="/static/images/btt-google.svg" alt="" />
                         </a>{' '}
                         &nbsp;
-                        <a href="#">
+                        <a href="https://apple.co/2AqB7ZM" >
                           <img src="/static/images/btt-chplay.svg" alt="" />
                         </a>
                       </div>
