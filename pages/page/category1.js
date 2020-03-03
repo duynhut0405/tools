@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
-import { Carousel, BlockRender } from '../../components/common';
+
+import { Carousel, BlockRender, DowloadCategory } from '../../components/common';
 import Layout from '../../components/layout';
 import { PageActions } from '../../store/actions';
 import PropTypes from 'prop-types';
@@ -24,6 +24,7 @@ function Page({ list, silder, getPage }) {
       <div className="main_content">
         <Carousel className="category" silder={silder} />
         <BlockRender data={list.pageBlocks} />
+        <DowloadCategory />
       </div>
     </Layout>
   );

@@ -2,7 +2,8 @@ import Action from './actions';
 
 const initialState = {
   data: [],
-  type: []
+  type: [],
+  urlVideo: {}
 };
 
 const regulationReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const regulationReducer = (state = initialState, action) => {
       return {
         ...state,
         type: action.data
+      };
+    case Action.GET_URL_VIDEO_RESPONSE:
+      return {
+        ...state,
+        urlVideo: action.data
       };
     default:
       return state;

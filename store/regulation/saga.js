@@ -1,6 +1,10 @@
 import actions from './actions';
 import { takeLatest, put, all, fork } from 'redux-saga/effects';
-import { fillRegulationServices, getTypeRegulationServices } from '../../services/regulation';
+import {
+  fillRegulationServices,
+  getTypeRegulationServices,
+  getUrlVideoService
+} from '../../services/regulation';
 
 function* searchRegulationSaga() {
   yield takeLatest(actions.SEARCH_REGULATION_REQUEST, function*(params) {
@@ -32,6 +36,22 @@ function* getTypeRegulationSaga() {
     }
   });
 }
+
+function* getUrlVideoSaga() {
+  yield takeLatest(actions.GET_URL_VIDEO_REQUEST, function*(params) {
+    const { data } = params;
+    try {
+      const res = yield getUrlVideoService(data);
+      if (res.status === 200) {
+        yield put({ type: actions.GET_URL_VIDEO_RESPONSE, data: res.data });
+      } else {
+        // console.log(res);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+}
 export default function* rootSaga() {
-  yield all([fork(searchRegulationSaga), fork(getTypeRegulationSaga)]);
+  yield all([fork(searchRegulationSaga), fork(getTypeRegulationSaga), fork(getUrlVideoSaga)]);
 }

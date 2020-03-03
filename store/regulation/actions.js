@@ -12,6 +12,14 @@ const Actions = {
   searchRegulationAction: data => ({
     type: Actions.SEARCH_REGULATION_REQUEST,
     data
+  }),
+
+  GET_URL_VIDEO_REQUEST: 'GET_URL_VIDEO_REQUEST',
+  GET_URL_VIDEO_RESPONSE: 'GET_URL_VIDEO_RESPONSE',
+
+  getUrlVideo: data => ({
+    type: Actions.GET_URL_VIDEO_REQUEST,
+    data
   })
 };
 

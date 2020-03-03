@@ -26,4 +26,17 @@ const fillRegulationServices = data => {
       return error.response.data;
     });
 };
-export { fillRegulationServices, getTypeRegulationServices };
+const getUrlVideoService = data => {
+  return request({
+    url: `/regulation/url/${data}`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
+export { fillRegulationServices, getTypeRegulationServices, getUrlVideoService };
