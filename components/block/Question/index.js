@@ -28,7 +28,7 @@ function Questions({ data }) {
   return (
     <section className="sec-b sec-cauhoi">
       <div className="container">
-        <div className="entry-head text-center">
+        <div className="entry-head text-center block-question-index">
           <h2 className="ht ">{data[0].title || ''}</h2>
         </div>
         <div className="accodion accodion-1">
