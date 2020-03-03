@@ -10,10 +10,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const propTypes = {
-  social: PropTypes.object
+  socialLink: PropTypes.object,
+  getSocialLink: PropTypes.func
 };
 
-function New({ social }) {
+function New({ socialLink, getSocialLink }) {
   const [news, setNews] = useState({});
   const [relatedPost, setRelatedPost] = useState([]);
   const router = useRouter();
@@ -31,8 +32,7 @@ function New({ social }) {
         }
       }
     });
-  }, [getNewByUri]);
-
+  }, [getNewByUri, getSocialLink]);
   return (
     <Layout title={news.meta_title}>
       <section className="banner-heading-3 next-shadow">
@@ -55,7 +55,7 @@ function New({ social }) {
           <div className=" max750">
             <div className="top-heading">
               <div className="date">{moment(news.created_at).format('DD/MM/YYYY')}</div>
-              <Social data={social} />
+              <Social data={socialLink} />
             </div>
 
             <div className="entry-content">{ReactHtmlParser(news.description)}</div>
