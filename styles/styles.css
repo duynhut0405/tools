@@ -13,25 +13,25 @@
 
 @font-face {
   font-family: 'Averta';
-  /* src: url(../fonts/averta/AvertaStdCY-Light.otf); */
+  src: url(/static/fonts/averta/AvertaStdCY-Light.otf);
   font-weight: 300;
 }
 
 @font-face {
   font-family: 'Averta';
-  /* src: url(../fonts/averta/AvertaStdCY-Regular.otf); */
+  src: url(/static/fonts/averta/AvertaStdCY-Regular.otf);
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Averta';
-  /* src: url(../fonts/averta/AvertaStdCY-Semibold.otf); */
+  src: url(/static/fonts/averta/AvertaStdCY-Semibold.otf);
   font-weight: 600;
 }
 
 @font-face {
   font-family: 'Averta';
-  /* src: url(../fonts/averta/AvertaStdCY-Bold.otf); */
+  src: url(/static/fonts/averta/AvertaStdCY-Bold.otf);
   font-weight: 700;
 }
 
@@ -6790,7 +6790,7 @@ body.showMenu .menu-btn.x:after {
   text-align: center;
   display: flex;
   position: relative;
-  left: 13%;
+  /* left: 13%; */
 }
 @media only screen and (max-width: 1024px){
   .menuicon {
@@ -8537,4 +8537,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   .sec-tb {
     padding: 30px 0;
   }
+}
+.list-menu-middle, .mauto {
+  margin: 0 auto;
 }

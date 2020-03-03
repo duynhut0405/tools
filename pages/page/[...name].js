@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { Carousel, BlockRender, MenuMiddle } from '../../components/common';
+import { Carousel, BlockRender, MenuMiddle, DowloadCategory } from '../../components/common';
 import Layout from '../../components/layout';
 import { PageActions } from '../../store/actions';
 import { useRouter } from 'next/router';
@@ -30,6 +30,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} />
         <BlockRender data={list.pageBlocks} />
+        {list.template === 4 && <DowloadCategory />}
       </div>
     </Layout>
   );

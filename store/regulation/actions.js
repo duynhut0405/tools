@@ -1,0 +1,18 @@
+const Actions = {
+  GET_TYPE_REGULATION_REQUEST: 'GET_TYPE_REGULATION_REQUEST',
+  GET_TYPE_REGULATION_RESPONSE: 'GET_TYPE_REGULATION_RESPONSE',
+
+  getTypeRegulationAction: () => ({
+    type: Actions.GET_TYPE_REGULATION_REQUEST
+  }),
+
+  SEARCH_REGULATION_REQUEST: 'SEARCH_REGULATION_REQUEST',
+  SEARCH_REGULATION_RESPONSE: 'SEARCH_REGULATION_RESPONSE',
+
+  searchRegulationAction: data => ({
+    type: Actions.SEARCH_REGULATION_REQUEST,
+    data
+  })
+};
+
+export default Actions;

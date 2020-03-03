@@ -8,7 +8,7 @@ const propTypes = {
 
 function ImageCenter({ items }) {
   return (
-    <section className="sec-tb sec-cskh">
+    <section className="sec-tb sec-cskh block-images-center">
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht ">{items.note_1}</h2>

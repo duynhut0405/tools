@@ -27,7 +27,7 @@ function Pages({ data, type }) {
 
   if (type && type === '1') {
     return (
-      <div className="container sec-tb" id={data.title}>
+      <div className="container sec-tb block-page" id={data.title}>
         <div className="entry-head text-center">
           <h2 className="ht">{data.title}</h2>
         </div>
@@ -51,50 +51,48 @@ function Pages({ data, type }) {
             </div>
           ))}
         </div>
-        <div className="pages">
+        {/* <div className="pages">
           <ul className="page-numbers">
             <a className="btn lg" href="#">
             {t('view.viewall')}
             </a>
           </ul>
-        </div>
+        </div> */}
       </div>
     );
   }
   if (type && type === '2') {
     return (
       <div className="container" id={data.title}>
-        <section className="sec-tb">
+        <section className="sec-tb  block-page block-type-2">
           <h2 className="ht">{data.title}</h2>
           <div className="list-7  list-item row">
             {map(listNews, item => (
               <div className="col-md-6" key={item.newsId}>
-                <a href="#" className="item item-inline-table">
-                  <div className="post_content mb-3">
-                    <div className="img">
-                      <img
-                        className="lazy-hidden"
-                        data-lazy-type="image"
-                        src={item.baseImage}
-                        alt="icon"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <h4 className="title line2">{item.name}</h4>
-                      <div className="desc line4">{item.meta_description}</div>
-                    </div>
+                <a href={`/page/${item.slug}`} className="item item-inline-table">
+                  <div className="img">
+                    <img
+                      className="lazy-hidden"
+                      data-lazy-type="image"
+                      src={item.baseImage}
+                      alt="icon"
+                    />
+                  </div>
+                  <div className="divtext">
+                    <h4 className="title line2">{item.name}</h4>
+                    <div className="desc line4">{item.meta_description}</div>
                   </div>
                 </a>
               </div>
             ))}
           </div>
-          <div className="pages">
+          {/* <div className="pages">
             <ul className="page-numbers">
               <a className="btn lg" href="#">
               {t('view.viewall')}
               </a>
             </ul>
-          </div>
+          </div> */}
         </section>
       </div>
     );
@@ -108,19 +106,17 @@ function Pages({ data, type }) {
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
                 <a href={values.slug} className="item item-inline-table">
-                  <div className="post_content mb-3">
-                    <div className="img">
-                      <img
-                        className="lazy-hidden"
-                        data-lazy-type="image"
-                        src={values.baseImage}
-                        alt="icon"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <h4 className="title line2">{values.name}</h4>
-                      <div className="desc line4">{values.meta_description}</div>
-                    </div>
+                  <div className="img">
+                    <img
+                      className="lazy-hidden"
+                      data-lazy-type="image"
+                      src={values.baseImage}
+                      alt="icon"
+                    />
+                  </div>
+                  <div className="divtext">
+                    <h4 className="title line2">{values.name}</h4>
+                    <div className="desc line4">{values.meta_description}</div>
                   </div>
                 </a>
               </div>

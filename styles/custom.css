@@ -114,3 +114,9 @@ a:hover {
     display: none;
   }
 }
+.sec-tuvan .rendered-form {
+  text-align: center;
+}
+.sec-tb {
+  padding: 15px 0;
+}
