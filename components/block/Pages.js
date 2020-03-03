@@ -69,7 +69,7 @@ function Pages({ data, type }) {
           <div className="list-7  list-item row">
             {map(listNews, item => (
               <div className="col-md-6" key={item.newsId}>
-                <a href="#" className="item item-inline-table">
+                <a href={`/page/${item.slug}`} className="item item-inline-table">
                   <div className="img">
                     <img
                       className="lazy-hidden"
