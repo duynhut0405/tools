@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../../public/images/logo.svg';
 import PinIcon from '../../public/images/svg/pin.svg';
 import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
 import Widget from './Widget';
 import Link from 'next/link';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { map } from 'lodash';
 import { getAllMenu, getMenuItemById } from '../../services/menu';
@@ -11,15 +13,31 @@ import { LayoutActions } from '../../store/actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
-
+import '../../styles/custom.css';
 const propTypes = {
   settingFooter: PropTypes.object,
   children: PropTypes.node,
   getSettingFooter: PropTypes.func,
   title: PropTypes.any
 };
+const useStyles = makeStyles({
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+  mobilemenu: {
+    h1: {
+      color: 'red',}
+  },
+});
 
 function Layout({ children, settingFooter, getSettingFooter, title }) {
+  const classes = useStyles();
+  const [state, setState] = React.useState({
+    right: false,
+  });
   const [header, setHeader] = useState({});
   const [footermain, setFooterMain] = useState([{}, {}, {}, {}, {}, {}]);
   const [footerTop, setFooterTop] = useState([]);
@@ -39,6 +57,23 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
         expanded: true
       }));
   };
+
+  const toggleDrawer = (side, open) => event => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [side]: open });
+  };
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+    </div>
+  );
 
   const getMenu = async () => {
     const res = await getAllMenu();
@@ -333,10 +368,19 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                             </div>
                           </div>
                         </div>
-                        <div className="item imenu">
-                          <span className="menu-btn x">
-                            <span></span>
-                          </span>
+                        <div className="item imenu mobilemenu">
+                            <button onClick={toggleDrawer('right', true)}>
+                              <span className="menu-btn x"></span>
+                            </button>
+                            <SwipeableDrawer
+                              anchor="right"
+                              open={state.right}
+                              onClose={toggleDrawer('right', false)}
+                              onOpen={toggleDrawer('right', true)}
+                              >
+                                <h1>ggvfg</h1>
+                                {sideList('right')}
+                            </SwipeableDrawer>
                         </div>
                       </div>
                     </div>

@@ -6847,6 +6847,9 @@ ul.menu {
   .group-header .imenu {
     display: none !important;
   }
+  .group-header .imenu ul li a h3{
+    color: red;
+  }
 }
 
 @media only screen and (max-width: 1199px) {
