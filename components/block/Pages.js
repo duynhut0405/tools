@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { map, slice } from 'lodash';
 import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
-
+import { useTranslation } from 'react-i18next';
 const propTypes = {
   data: Proptypes.object.isRequired,
   type: Proptypes.func
@@ -22,7 +22,7 @@ function Pages({ data, type }) {
   useEffect(() => {
     getPageBlock();
   }, []);
-
+  const { t } = useTranslation();
   const listNews = slice(listPage, 0, page);
 
   if (type && type === '1') {
@@ -54,7 +54,7 @@ function Pages({ data, type }) {
         <div className="pages">
           <ul className="page-numbers">
             <a className="btn lg" href="#">
-              Xem tất cả
+            {t('view.viewall')}
             </a>
           </ul>
         </div>
@@ -91,7 +91,7 @@ function Pages({ data, type }) {
           <div className="pages">
             <ul className="page-numbers">
               <a className="btn lg" href="#">
-                Xem tất cả
+              {t('view.viewall')}
               </a>
             </ul>
           </div>

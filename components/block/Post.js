@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { map, slice } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
-
+import { useTranslation } from 'react-i18next';
 const propTypes = {
   data: Proptypes.object.isRequired,
   type: Proptypes.number
 };
-
+const { t } = useTranslation();
 function Post({ data, type }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
@@ -66,7 +66,7 @@ function Post({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href="#">
-              Xem tất cả <i className="icon-arrow-1"></i>
+            {t('view.viewall')} <i className="icon-arrow-1"></i>
             </a>
           </div>
           {/* 2tabs main */}
@@ -117,7 +117,7 @@ function Post({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href="#">
-              Xem tất cả <i className="icon-arrow-1"></i>
+            {t('view.viewall')}<i className="icon-arrow-1"></i>
             </a>
           </div>
           <div
