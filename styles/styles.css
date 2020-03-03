@@ -6790,7 +6790,7 @@ body.showMenu .menu-btn.x:after {
   text-align: center;
   display: flex;
   position: relative;
-  left: 13%;
+  /* left: 13%; */
 }
 @media only screen and (max-width: 1024px){
   .menuicon {
@@ -8537,4 +8537,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   .sec-tb {
     padding: 30px 0;
   }
+}
+.list-menu-middle, .mauto {
+  margin: 0 auto;
 }

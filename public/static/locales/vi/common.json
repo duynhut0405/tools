@@ -1,3 +1,6 @@
 {
-    "news": "Tin tức"
+    "news": "Tin tức",
+    "view" : {
+        "viewall" : "View All"
+    }
 }

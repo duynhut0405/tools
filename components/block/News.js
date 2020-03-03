@@ -4,7 +4,7 @@ import moment from 'moment';
 import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
-
+import { useTranslation } from 'react-i18next';
 import Carousel from 'react-multi-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -19,6 +19,7 @@ function News({ data, type }) {
   const [slugCategory, setSlugCategory] = useState('');
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
+  const { t } = useTranslation();
 
   const responsive = {
     desktop: {
@@ -101,7 +102,7 @@ function News({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              Xem tất cả <i className="icon-arrow-1"></i>
+              {t('view.viewall')}<i className="icon-arrow-1"></i>
             </a>
           </div>
           {/* 2tabs main */}
@@ -126,9 +127,10 @@ function News({ data, type }) {
             </div>
             {/* 3tabs */}
             <div className="col-lg-4">
-              {map(listNewsTabs, (item, index) => (
-                <div className="list-6" key={index}>
+              <div className="list-6">
+                {map(listNewsTabs, (item, index) => (
                   <a
+                    key={index}
                     href="https://sapotacorp.com:8443/vi/api/news/"
                     className="item item-inline-table"
                   >
@@ -139,8 +141,8 @@ function News({ data, type }) {
                       <h4 className="title line4">{item.title}</h4>
                     </div>
                   </a>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -154,7 +156,7 @@ function News({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              Xem tất cả <i className="icon-arrow-1"></i>
+              {t('view.viewall')} <i className="icon-arrow-1"></i>
             </a>
           </div>
           <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
