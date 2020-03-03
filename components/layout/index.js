@@ -15,7 +15,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 import '../../styles/custom.css';
-import index from './ModalDrawer/index.js';
 const propTypes = {
   settingFooter: PropTypes.object,
   socialLink: PropTypes.object,
