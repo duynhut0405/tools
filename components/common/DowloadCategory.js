@@ -94,7 +94,7 @@ function DowloadCategory({
           </div>
         </div>
         <div className="boxwidget box-download-2">
-          <h2 className="widget-title">2019</h2>
+          <h2 className="widget-title">{year}</h2>
           <div className="row grid-space-60">
             <div className="col-lg-6">
               <div
