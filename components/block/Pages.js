@@ -51,13 +51,13 @@ function Pages({ data, type }) {
             </div>
           ))}
         </div>
-        <div className="pages">
+        {/* <div className="pages">
           <ul className="page-numbers">
             <a className="btn lg" href="#">
               Xem tất cả
             </a>
           </ul>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -88,13 +88,13 @@ function Pages({ data, type }) {
               </div>
             ))}
           </div>
-          <div className="pages">
+          {/* <div className="pages">
             <ul className="page-numbers">
               <a className="btn lg" href="#">
                 Xem tất cả
               </a>
             </ul>
-          </div>
+          </div> */}
         </section>
       </div>
     );

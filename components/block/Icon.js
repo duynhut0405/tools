@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ItemsCarousel from 'react-items-carousel';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
 
