@@ -5,7 +5,7 @@ import { getSettingFooterService } from '../../services/menu';
 function* getSettingFooterSaga() {
   yield takeLatest(actions.GET_SETTING_FOOTER_REQUEST, function*() {
     try {
-      const res = yield getSettingFooterService(name);
+      const res = yield getSettingFooterService();
       if (res.status === 200) {
         yield put({ type: actions.GET_SETTING_FOOTER_RESPONSE, data: res.data.general });
       } else {
