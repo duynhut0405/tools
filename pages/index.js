@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Carousel, BlockRender, MenuMiddle } from '../components/common';
+import { Carousel, BlockRender, MenuMiddle, DowloadCategory } from '../components/common';
 import FormRate from '../components/formRate';
 import Layout from '../components/layout';
 import { PageActions, RateActions } from '../store/actions';
@@ -21,7 +21,6 @@ function Home({ list, silder, menuMiddle, listRate, getHome, getRate }) {
     getHome('homepage');
     getRate();
   }, [getHome, getRate]);
-
   return (
     <Layout title={list.meta_title}>
       <div className="main_content">
@@ -29,6 +28,7 @@ function Home({ list, silder, menuMiddle, listRate, getHome, getRate }) {
         <MenuMiddle data={menuMiddle} />
         <BlockRender data={list.pageBlocks} />
         <FormRate data={listRate} />
+        {list.template === 4 && <DowloadCategory />}
       </div>
     </Layout>
   );
