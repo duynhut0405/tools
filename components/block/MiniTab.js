@@ -12,7 +12,7 @@ function MiniTab({ data }) {
 
   return (
     <div className="container">
-      <section className="sec-tb">
+      <section className="sec-tb block-minitab">
         <h2 className="ht">{data[0].title}</h2>
         <div className="cttab-v3   ">
           <div className="tab-menu">

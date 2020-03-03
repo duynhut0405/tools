@@ -10,7 +10,7 @@ function Icon({ data }) {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
   return (
-    <section className="sec-tb sec-h-1 group-ef">
+    <section className="sec-tb sec-h-1 group-ef block-icon">
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht">{data[0].title || ''}</h2>

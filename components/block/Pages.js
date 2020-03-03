@@ -27,7 +27,7 @@ function Pages({ data, type }) {
 
   if (type && type === '1') {
     return (
-      <div className="container sec-tb" id={data.title}>
+      <div className="container sec-tb block-page" id={data.title}>
         <div className="entry-head text-center">
           <h2 className="ht">{data.title}</h2>
         </div>
@@ -64,7 +64,7 @@ function Pages({ data, type }) {
   if (type && type === '2') {
     return (
       <div className="container" id={data.title}>
-        <section className="sec-tb">
+        <section className="sec-tb  block-page block-type-2">
           <h2 className="ht">{data.title}</h2>
           <div className="list-7  list-item row">
             {map(listNews, item => (
