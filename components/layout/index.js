@@ -10,19 +10,29 @@ import ModalDrawer from './ModalDrawer/index.js';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { map } from 'lodash';
-import { getAllMenu, getMenuItemById } from '../../services/menu';
-import { LayoutActions } from '../../store/actions';
+import { LayoutActions, MenuActions } from '../../store/actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 import '../../styles/custom.css';
+import index from './ModalDrawer/index.js';
 const propTypes = {
   settingFooter: PropTypes.object,
   socialLink: PropTypes.object,
   children: PropTypes.node,
   getSettingFooter: PropTypes.func,
   getSocialLink: PropTypes.func,
-  title: PropTypes.any
+  title: PropTypes.any,
+  menuHeader: PropTypes.array,
+  menuNav: PropTypes.array,
+  menuFooterTop: PropTypes.array,
+  menuFooterBottom: PropTypes.array,
+  menuFooterMain: PropTypes.array,
+  getMenuHeader: PropTypes.func,
+  getMenuNav: PropTypes.func,
+  getMenuFooterTop: PropTypes.func,
+  getMenuFooterMain: PropTypes.func,
+  getMenuFooterBottom: PropTypes.func
 };
 const useStyles = makeStyles({
   list: {
@@ -30,33 +40,31 @@ const useStyles = makeStyles({
   },
   fullList: {
     width: 'auto'
-  },
+  }
 });
 
-function Layout({ title, children, settingFooter, socialLink, getSettingFooter, getSocialLink }) {
+function Layout({
+  title,
+  children,
+  settingFooter,
+  socialLink,
+  getSettingFooter,
+  getSocialLink,
+  menuHeader,
+  menuNav,
+  menuFooterTop,
+  menuFooterBottom,
+  menuFooterMain,
+  getMenuHeader,
+  getMenuNav,
+  getMenuFooterTop,
+  getMenuFooterMain,
+  getMenuFooterBottom
+}) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false
   });
-  const [header, setHeader] = useState({});
-  const [footermain, setFooterMain] = useState([{}, {}, {}, {}, {}, {}]);
-  const [footerTop, setFooterTop] = useState([]);
-  const [headerTop, setHeaderTop] = useState([{}, {}, {}, {}, {}, {}]);
-  const [footerBot, setFooterBot] = useState([{}, {}]);
-
-  const nest = (items, id = null, link = 'parentId') => {
-    return items
-      .filter(item => item[link] === id)
-      .map(item => ({
-        ...item,
-        title: `${item.name}`,
-        children: nest(
-          items.sort((a, b) => a.position - b.position),
-          item.id
-        ),
-        expanded: true
-      }));
-  };
 
   const toggleDrawer = (side, open) => event => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -74,67 +82,12 @@ function Layout({ title, children, settingFooter, socialLink, getSettingFooter, 
     ></div>
   );
 
-  const getMenu = async () => {
-    const res = await getAllMenu();
-    if (res && res.status === 200) {
-      map(res.data, async values => {
-        if (values.position === 'top2') {
-          const res1 = await getMenuItemById(values.id);
-          if (res1 && res1.status === 200) {
-            const menuTopData = nest(res1.data);
-            setHeader(menuTopData);
-          }
-        } else {
-          if (values.position === 'bottom') {
-            const res2 = await getMenuItemById(values.id);
-            if (res2 && res2.status === 200) {
-              const data = nest(res2.data);
-              setFooter(data);
-            }
-          } else {
-            if (values.position === 'side') {
-              const res3 = await getMenuItemById(values.id);
-              if (res3 && res3.status === 200) {
-                setSlider(res3.data);
-              }
-            } else {
-              if (values.position === 'Menu footer main') {
-                const menufootermain = await getMenuItemById(values.id);
-                if (menufootermain && menufootermain.status === 200) {
-                  const menufootermaindata = nest(menufootermain.data);
-                  setFooterMain(menufootermaindata);
-                }
-              } else {
-                if (values.position === 'Menu footer top') {
-                  const menufooterTop = await getMenuItemById(values.id);
-                  if (menufooterTop && menufooterTop.status === 200) {
-                    setFooterTop(menufooterTop.data);
-                  }
-                } else {
-                  if (values.position === 'top_top') {
-                    const menuHeaderTop = await getMenuItemById(values.id);
-                    if (menuHeaderTop && menuHeaderTop.status === 200) {
-                      setHeaderTop(menuHeaderTop.data);
-                    }
-                  } else {
-                    if (values.position === 'menu footer bottom') {
-                      const menuFooterBot = await getMenuItemById(values.id);
-                      if (menuFooterBot && menuFooterBot.status === 200) {
-                        setFooterBot(menuFooterBot.data);
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      });
-    }
-  };
-
   useEffect(() => {
-    getMenu();
+    getMenuHeader();
+    getMenuNav();
+    getMenuFooterTop();
+    getMenuFooterMain();
+    getMenuFooterBottom();
     getSettingFooter();
     getSocialLink();
   }, []);
@@ -233,34 +186,44 @@ function Layout({ title, children, settingFooter, socialLink, getSettingFooter, 
                 <div className="row">
                   <div className="col-md-5">
                     <ul className="menu line">
-                      <li>
-                        <a href={`/page/${headerTop[1].slugPages}`}>
-                          <img src={PinIcon} alt="pin_icon" width="15" className="mr-2" />
-                          {headerTop[1].name}
-                        </a>
-                      </li>
-                      <li>
-                        <a href={`/page/${headerTop[0].slugPages}`}>
-                          <img src={BieuPhiIcon} alt="Bieu Phi" width="15" className="mr-2" />
-                          {headerTop[0].name}
-                        </a>
-                      </li>
+                      {map(
+                        menuHeader.sort((a, b) => a.position - b.position),
+                        // eslint-disable-next-line consistent-return
+                        (values, key) => {
+                          if (key < 2) {
+                            return (
+                              <li key={key}>
+                                <a href={`/page/${values.slugPages}`}>
+                                  <img
+                                    src={key === 0 ? PinIcon : BieuPhiIcon}
+                                    alt={key === 0 ? 'pin_icon' : 'bietphiIcon'}
+                                    width="15"
+                                    className="mr-2"
+                                  />
+                                  {values.name}
+                                </a>
+                              </li>
+                            );
+                          }
+                        }
+                      )}
                     </ul>
                   </div>
                   <div className="col-md-7">
                     <ul className="menu line text-right">
-                      <li>
-                        <a href={`/page/${headerTop[2].slugPages}`}>{headerTop[2].name}</a>
-                      </li>
-                      <li>
-                        <a href={`/page/${headerTop[3].slugPages}`}>{headerTop[3].name}</a>
-                      </li>
-                      <li>
-                        <a href={`/page/${headerTop[4].slugPages}`}>{headerTop[4].name}</a>
-                      </li>
-                      <li>
-                        <a href={`/page/${headerTop[5].slugPages}`}>{headerTop[5].name}</a>
-                      </li>
+                      {map(
+                        menuHeader.sort((a, b) => a.position - b.position),
+                        // eslint-disable-next-line consistent-return
+                        (values, key) => {
+                          if (key >= 2) {
+                            return (
+                              <li>
+                                <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                              </li>
+                            );
+                          }
+                        }
+                      )}
                       <li>
                         <div className="dropdown language">
                           <div className="title">
@@ -303,7 +266,7 @@ function Layout({ title, children, settingFooter, socialLink, getSettingFooter, 
                       </a>
                       <div className="wrap-menu-header">
                         <ul className="menu-top-header" data-style="1">
-                          {nestChild(header)}
+                          {nestChild(menuNav)}
                         </ul>
                       </div>
                       <div className="group-header">
@@ -371,7 +334,7 @@ function Layout({ title, children, settingFooter, socialLink, getSettingFooter, 
               <div className="container">
                 <div className="row center">
                   {map(
-                    footerTop.sort((a, b) => a.position - b.position),
+                    menuFooterTop.sort((a, b) => a.position - b.position),
                     values => (
                       <div className="col-4" key={values.id}>
                         <a className="item" href={`/page/${values.slugPages}`}>
@@ -435,18 +398,20 @@ function Layout({ title, children, settingFooter, socialLink, getSettingFooter, 
                   <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
                     <Widget data={settingFooter} />
                   </div>
-                  {renderFooter(footermain)}
+                  {renderFooter(menuFooterMain)}
                 </div>
                 <div className="line"></div>
                 <div className="row grid-space-10">
                   <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
                     <ul className="menu line">
-                      <li>
-                        <a href={`/page/${footerBot[1].slugPages}`}>{footerBot[1].name}</a>
-                      </li>
-                      <li>
-                        <a href={`/page/${footerBot[0].slugPages}`}>{footerBot[0].name}</a>
-                      </li>
+                      {map(
+                        menuFooterBottom.sort((a, b) => a.position - b.position),
+                        (values, key) => (
+                          <li key={key}>
+                            <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                          </li>
+                        )
+                      )}
                     </ul>
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
@@ -500,18 +465,22 @@ function Layout({ title, children, settingFooter, socialLink, getSettingFooter, 
                   <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
                     <Widget data={settingFooter} />
                   </div>
-                  {renderFooter(footermain)}
+                  {renderFooter(menuFooterMain)}
                 </div>
                 <div className="line"></div>
                 <div className="row grid-space-10">
                   <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
                     <ul className="menu line">
-                      <li>
-                        <a href={`/page/${footerBot[1].slugPages}`}>{footerBot[1].name}</a>
-                      </li>
-                      <li>
-                        <a href={`/page/${footerBot[0].slugPages}`}>{footerBot[0].name}</a>
-                      </li>
+                      {map(
+                        menuFooterBottom.sort((a, b) => a.position - b.position),
+                        (values, key) => {
+                          return (
+                            <li key={key}>
+                              <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                            </li>
+                          );
+                        }
+                      )}
                     </ul>
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
@@ -532,13 +501,23 @@ Layout.propTypes = propTypes;
 const mapStateToProps = state => {
   return {
     settingFooter: state.layoutReducer.settingFooter,
-    socialLink: state.layoutReducer.socialLink
+    socialLink: state.layoutReducer.socialLink,
+    menuHeader: state.menuReducer.header,
+    menuNav: state.menuReducer.nav,
+    menuFooterTop: state.menuReducer.footerTop,
+    menuFooterMain: state.menuReducer.footerMain,
+    menuFooterBottom: state.menuReducer.footerBottom
   };
 };
 
 const mapDispatchToProps = {
   getSettingFooter: LayoutActions.getSettingFooterAction,
-  getSocialLink: LayoutActions.getSocailinkAction
+  getSocialLink: LayoutActions.getSocailinkAction,
+  getMenuHeader: MenuActions.getMenuHeader,
+  getMenuNav: MenuActions.getMenuNav,
+  getMenuFooterTop: MenuActions.getMenuFooterTop,
+  getMenuFooterMain: MenuActions.getMenuFooterMain,
+  getMenuFooterBottom: MenuActions.getMenuFooterBottom
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

@@ -52,4 +52,23 @@ const getSocialLinkService = () => {
     });
 };
 
-export { getAllMenu, getMenuItemById, getSettingFooterService, getSocialLinkService };
+const getMenuItemByPosition = data => {
+  return request({
+    url: `menu/position/${data}`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
+export {
+  getAllMenu,
+  getMenuItemById,
+  getSettingFooterService,
+  getSocialLinkService,
+  getMenuItemByPosition
+};
