@@ -31,11 +31,6 @@ const useStyles = makeStyles({
   fullList: {
     width: 'auto'
   },
-  mobilemenu: {
-    h1: {
-      color: 'red'
-    }
-  }
 });
 
 function Layout({ title, children, settingFooter, socialLink, getSettingFooter, getSocialLink }) {
@@ -351,7 +346,7 @@ function Layout({ title, children, settingFooter, socialLink, getSettingFooter, 
                           </div>
                         </div>
                         <div className="item imenu mobilemenu">
-                          <button onClick={toggleDrawer('right', true)}>
+                          <button className="stylebuttonopen" onClick={toggleDrawer('right', true)}>
                             <span className="menu-btn x"></span>
                           </button>
                           <SwipeableDrawer

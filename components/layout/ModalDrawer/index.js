@@ -10,34 +10,41 @@ class index extends Component {
                         <div className="inner">
                             <ul className="menu">
                                 <li className="active children">
-                                    <a href="#"><span>Khách hàng cá nhân</span></a>
-                                    <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">01_demo_block</a></li>
-                                        <li><a href="#">01_demo_category</a></li>
-
-                                        <li className="children">
-                                            <a href="#">02_CN-San-pham-noi-bat</a>
-                                            <ul>
-                                                <li><a href="#">05_CN-SFNB-1</a></li>
-                                                <li><a href="#">06_CN-SFNB-2</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li><a href="#">03_CN-Tai-khoan</a></li>
-                                        <li><a href="#">04_CN-Ngan-hang-so</a></li>
-
-                                    </ul>
+                                    <a href="page/ca-nhan"><span>Khách hàng cá nhân</span></a>
                                 </li>
-                                <li className="children">
-                                    <a href="#"><span>Khách hàng doanh nghiệp</span></a>
-                                    <ul>
-                                        <li><a href="#">Doanh nghiệp vừa và nhỏ</a></li>
-                                        <li><a href="#">Doanh nghiệp lớn</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="page/homepage/ca-nhan-cao-cap"><span>Cá nhân cao cấp</span></a>
                                 </li>
-                                <li><a href="#"><span>Cá nhân cao cấp</span></a></li>
-                                <li><a href="#"><span>Blog</span></a></li>
+                                <li>
+                                    <a href="page/homepagedoanh-nghiep"><span>Khách hàng doanh nghiệp</span></a>
+                                </li>
+                                <li>
+                                    <a href="page/mb-ket-noi"><span>MB kết nối</span></a>
+                                </li>
+                                <li>
+                                    <a href="page/diem-giao-dich-atm"><span>Điểm GD & ATM</span></a>
+                                </li>
+                                <li>
+                                    <a href="page/bieu-phi"><span>Biểu phí</span></a>
+                                </li>
+                                <li>
+                                    <a href="page/homepageve-mbbank"><span>Về MBBank</span></a>
+                                </li>
+                                <li>
+                                    <a href="page/homepagenha-dau-tu"><span>Nhà đầu tư</span></a>
+                                </li>
+                                <li>
+                                    <a href="page/nghe--nghiep"><span>Nghề nghiệp</span></a>
+                                </li>
+                                <li>
+                                    <a href="page/lien-he"><span>Liên hệ</span></a>
+                                </li>
+                                <li>
+                                    <a href="#"><span>Đăng ký</span></a>
+                                </li>
+                                <li>
+                                    <a href="#"><span>Đăng nhập</span></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
