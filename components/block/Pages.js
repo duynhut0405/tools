@@ -70,18 +70,18 @@ function Pages({ data, type }) {
             {map(listNews, item => (
               <div className="col-md-6" key={item.newsId}>
                 <a href="#" className="item item-inline-table">
-                    <div className="img">
-                      <img
-                        className="lazy-hidden"
-                        data-lazy-type="image"
-                        src={item.baseImage}
-                        alt="icon"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <h4 className="title line2">{item.name}</h4>
-                      <div className="desc line4">{item.meta_description}</div>
-                    </div>
+                  <div className="img">
+                    <img
+                      className="lazy-hidden"
+                      data-lazy-type="image"
+                      src={item.baseImage}
+                      alt="icon"
+                    />
+                  </div>
+                  <div className="divtext">
+                    <h4 className="title line2">{item.name}</h4>
+                    <div className="desc line4">{item.meta_description}</div>
+                  </div>
                 </a>
               </div>
             ))}
@@ -106,18 +106,18 @@ function Pages({ data, type }) {
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
                 <a href={values.slug} className="item item-inline-table">
-                    <div className="img">
-                      <img
-                        className="lazy-hidden"
-                        data-lazy-type="image"
-                        src={values.baseImage}
-                        alt="icon"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <h4 className="title line2">{values.name}</h4>
-                      <div className="desc line4">{values.meta_description}</div>
-                    </div>
+                  <div className="img">
+                    <img
+                      className="lazy-hidden"
+                      data-lazy-type="image"
+                      src={values.baseImage}
+                      alt="icon"
+                    />
+                  </div>
+                  <div className="divtext">
+                    <h4 className="title line2">{values.name}</h4>
+                    <div className="desc line4">{values.meta_description}</div>
+                  </div>
                 </a>
               </div>
             ))}
