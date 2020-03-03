@@ -5,6 +5,7 @@ import PinIcon from '../../public/images/svg/pin.svg';
 import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
 import Widget from './Widget';
 import Link from 'next/link';
+import ModalDrawer from './ModalDrawer/index.js';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { map } from 'lodash';
@@ -378,7 +379,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                               onClose={toggleDrawer('right', false)}
                               onOpen={toggleDrawer('right', true)}
                               >
-                                <h1>ggvfg</h1>
+                                  <ModalDrawer />
                                 {sideList('right')}
                             </SwipeableDrawer>
                         </div>
