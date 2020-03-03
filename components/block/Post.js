@@ -7,12 +7,12 @@ const propTypes = {
   data: Proptypes.object.isRequired,
   type: Proptypes.number
 };
-const { t } = useTranslation();
 function Post({ data, type }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const listNews = slice(data.news, 0, page);
   //   slice(data.news, 0, page)
+  const { t } = useTranslation();
   useEffect(() => {
     if (listNews.length === data.news.length) {
       setActive(true);
