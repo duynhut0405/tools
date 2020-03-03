@@ -1,7 +1,8 @@
 import Action from './actions';
 
 const initialState = {
-  settingFooter: {}
+  settingFooter: {},
+  socialLink: {}
 };
 
 const layoutReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const layoutReducer = (state = initialState, action) => {
       return {
         ...state,
         settingFooter: action.data
+      };
+    case Action.GET_SOCIALINK_RESPONSE:
+      return {
+        ...state,
+        socialLink: action.data
       };
     default:
       return state;

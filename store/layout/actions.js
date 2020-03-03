@@ -4,6 +4,13 @@ const Actions = {
 
   getSettingFooterAction: () => ({
     type: Actions.GET_SETTING_FOOTER_REQUEST
+  }),
+
+  GET_SOCIALINK_REQUEST: 'GET_SOCIALINK_REQUEST',
+  GET_SOCIALINK_RESPONSE: 'GET_SOCIALINK_RESPONSE',
+
+  getSocailinkAction: () => ({
+    type: Actions.GET_SOCIALINK_REQUEST
   })
 };
 

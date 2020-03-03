@@ -4,6 +4,7 @@ import Logo from '../../public/images/logo.svg';
 import PinIcon from '../../public/images/svg/pin.svg';
 import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
 import Widget from './Widget';
+import { Social } from '../common';
 import Link from 'next/link';
 import ModalDrawer from './ModalDrawer/index.js';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -17,27 +18,30 @@ import Head from 'next/head';
 import '../../styles/custom.css';
 const propTypes = {
   settingFooter: PropTypes.object,
+  socialLink: PropTypes.object,
   children: PropTypes.node,
   getSettingFooter: PropTypes.func,
+  getSocialLink: PropTypes.func,
   title: PropTypes.any
 };
 const useStyles = makeStyles({
   list: {
-    width: 250,
+    width: 250
   },
   fullList: {
-    width: 'auto',
+    width: 'auto'
   },
   mobilemenu: {
     h1: {
-      color: 'red',}
-  },
+      color: 'red'
+    }
+  }
 });
 
-function Layout({ children, settingFooter, getSettingFooter, title }) {
+function Layout({ title, children, settingFooter, socialLink, getSettingFooter, getSocialLink }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    right: false,
+    right: false
   });
   const [header, setHeader] = useState({});
   const [footermain, setFooterMain] = useState([{}, {}, {}, {}, {}, {}]);
@@ -72,8 +76,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
-    >
-    </div>
+    ></div>
   );
 
   const getMenu = async () => {
@@ -138,6 +141,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
   useEffect(() => {
     getMenu();
     getSettingFooter();
+    getSocialLink();
   }, []);
 
   const nestChild = items => {
@@ -188,30 +192,7 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
             <h4 className="widget-title">{values.name}</h4>
             <ul className="menu">{footerItem(values.children)}</ul>
           </div>
-          {key === items.length - 1 && (
-            <ul className="blog-item-social ">
-              <li>
-                <a className="item" title="" target="_blank" href="#">
-                  <i className="icon-facebook"></i>
-                </a>
-              </li>
-              <li>
-                <a className="item" title="" target="_blank" href="#">
-                  <i className="icon-instagram"></i>
-                </a>
-              </li>
-              <li>
-                <a className="item" title="" target="_blank" href="#">
-                  <i className="icon-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a className="item" title="" target="_blank" href="#">
-                  <i className="icon-youtube-2"></i>
-                </a>
-              </li>
-            </ul>
-          )}
+          {key === items.length - 1 && <Social data={socialLink} />}
         </div>
       );
     });
@@ -370,18 +351,18 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                           </div>
                         </div>
                         <div className="item imenu mobilemenu">
-                            <button onClick={toggleDrawer('right', true)}>
-                              <span className="menu-btn x"></span>
-                            </button>
-                            <SwipeableDrawer
-                              anchor="right"
-                              open={state.right}
-                              onClose={toggleDrawer('right', false)}
-                              onOpen={toggleDrawer('right', true)}
-                              >
-                                  <ModalDrawer />
-                                {sideList('right')}
-                            </SwipeableDrawer>
+                          <button onClick={toggleDrawer('right', true)}>
+                            <span className="menu-btn x"></span>
+                          </button>
+                          <SwipeableDrawer
+                            anchor="right"
+                            open={state.right}
+                            onClose={toggleDrawer('right', false)}
+                            onOpen={toggleDrawer('right', true)}
+                          >
+                            <ModalDrawer />
+                            {sideList('right')}
+                          </SwipeableDrawer>
                         </div>
                       </div>
                     </div>
@@ -555,12 +536,14 @@ Layout.propTypes = propTypes;
 
 const mapStateToProps = state => {
   return {
-    settingFooter: state.layoutReducer.settingFooter
+    settingFooter: state.layoutReducer.settingFooter,
+    socialLink: state.layoutReducer.socialLink
   };
 };
 
 const mapDispatchToProps = {
-  getSettingFooter: LayoutActions.getSettingFooterAction
+  getSettingFooter: LayoutActions.getSettingFooterAction,
+  getSocialLink: LayoutActions.getSocailinkAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

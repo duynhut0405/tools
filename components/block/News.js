@@ -102,7 +102,7 @@ function News({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-            {t('view.viewall')}<i className="icon-arrow-1"></i>
+              {t('view.viewall')}<i className="icon-arrow-1"></i>
             </a>
           </div>
           {/* 2tabs main */}
@@ -127,9 +127,10 @@ function News({ data, type }) {
             </div>
             {/* 3tabs */}
             <div className="col-lg-4">
-              {map(listNewsTabs, (item, index) => (
-                <div className="list-6" key={index}>
+              <div className="list-6">
+                {map(listNewsTabs, (item, index) => (
                   <a
+                    key={index}
                     href="https://sapotacorp.com:8443/vi/api/news/"
                     className="item item-inline-table"
                   >
@@ -140,8 +141,8 @@ function News({ data, type }) {
                       <h4 className="title line4">{item.title}</h4>
                     </div>
                   </a>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -155,7 +156,7 @@ function News({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-            {t('view.viewall')} <i className="icon-arrow-1"></i>
+              {t('view.viewall')} <i className="icon-arrow-1"></i>
             </a>
           </div>
           <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">

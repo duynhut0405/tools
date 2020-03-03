@@ -15,6 +15,7 @@ function Post({ data, type }) {
 
   const { t } = useTranslation();
   //   slice(data.news, 0, page)
+
   useEffect(() => {
     if (listNews.length === data.news.length) {
       setActive(true);
@@ -68,7 +69,7 @@ function Post({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href="#">
-            {t('view.viewall')} <i className="icon-arrow-1"></i>
+              {t('view.viewall')} <i className="icon-arrow-1"></i>
             </a>
           </div>
           {/* 2tabs main */}
@@ -119,7 +120,8 @@ function Post({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href="#">
-            {t('view.viewall')}<i className="icon-arrow-1"></i>
+              {t('view.viewall')}
+              <i className="icon-arrow-1"></i>
             </a>
           </div>
           <div

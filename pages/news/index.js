@@ -1,17 +1,17 @@
 import React from 'react';
-import Head from 'next/head';
 import Layout from '../../components/layout';
 import { map } from 'lodash';
 import NewItems from '../../components/news/Items';
 import { getNewService } from '../../services/news';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  list: PropTypes.array
+};
 
 function News({ list }) {
   return (
-    <Layout>
-      <Head>
-        <title>News</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title={'News'}>
       <div className="container main_content">
         <h1 className="text-center">Tin tức</h1>
         <div className="mb-4">
@@ -37,7 +37,7 @@ function News({ list }) {
   );
 }
 
-News.getInitialProps = async ctx => {
+News.getInitialProps = async () => {
   let list = [];
   const res = await getNewService();
   if (res !== undefined && res.status === 200) {
@@ -45,5 +45,7 @@ News.getInitialProps = async ctx => {
   }
   return { list };
 };
+
+News.propTypes = propTypes;
 
 export default News;
