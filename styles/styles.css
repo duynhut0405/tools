@@ -8538,6 +8538,6 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
     padding: 30px 0;
   }
 }
-.list-menu-middle {
+.list-menu-middle, .mauto {
   margin: 0 auto;
 }
