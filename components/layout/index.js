@@ -206,7 +206,7 @@ function Layout({ title, children, settingFooter, socialLink, getSettingFooter, 
             <title>{title}</title>
             <link
               rel="icon"
-              href="https://www.mbbank.com.vn//images/icons/favicon.ico"
+              href="https://www.mbbank.com.vn/images/icons/favicon.ico"
               type="image/x-icon"
             />
             <link

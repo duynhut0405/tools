@@ -46,8 +46,8 @@ function New({ socialLink, getSocialLink }) {
         <img
           className="img br loaded loaded"
           data-lazy-type="image"
-          data-lazy-src={news.base_image}
-          src={news.base_image}
+          data-lazy-src="/static/images/heading-10.svg"
+          src="/static/images/heading-10.svg"
         />
       </section>
       <main id="main" className="sec-b page-news-detail">
