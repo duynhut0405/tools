@@ -60,8 +60,14 @@ function BlockRender({ data }) {
               if (values.name === 'Category-mini-wtithtab') {
                 return <MiniTab data={JSON.parse(values.content)} key={index} />;
               }
-              if (values.name === 'Repeat') {
-                return <Repeat data={JSON.parse(values.content)} key={index} />;
+              if (values.name === 'Table') {
+                return (
+                  <Repeat
+                    data={JSON.parse(values.content)}
+                    type={JSON.parse(values.content).type}
+                    key={index}
+                  />
+                );
               }
               if (values.name === 'Product') {
                 return <Product data={JSON.parse(values.content)} key={index} />;

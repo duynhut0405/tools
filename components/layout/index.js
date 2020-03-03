@@ -478,6 +478,71 @@ function Layout({ children, settingFooter, getSettingFooter, title }) {
                 </div>
               </div>
             </div>
+            <section className="sec-download-mb group-ef loaded">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-6   efch-2 ef-img-r">
+                    <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                    <form role="search" method="get" className="searchform " action="">
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Nhập email để nhận thông tin"
+                          name="s"
+                          className="input"
+                        />
+                      </div>
+                      <button type="submit" className="btn btn-2">
+                        Đăng ký
+                      </button>
+                    </form>
+                  </div>
+                  <div className="col-md-6   efch-3 ef-img-r">
+                    <div className="wapp">
+                      <span className="code">
+                        <img src="/static/images/code.png" alt="" />
+                      </span>
+                      <div className="app">
+                        <p className="stitle">Hãy tải app ngay hôm nay</p>
+                        <a href="https://bit.ly/2v5ZsyP">
+                          <img src="/static/images/btt-google.svg" alt="" />
+                        </a>{' '}
+                        &nbsp;
+                        <a href="https://apple.co/2AqB7ZM">
+                          <img src="/static/images/btt-chplay.svg" alt="" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div id="footer-mb" className="group-ef loaded">
+              <div className="container">
+                <div className="row grid-space-10">
+                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                    <Widget data={settingFooter} />
+                  </div>
+                  {renderFooter(footermain)}
+                </div>
+                <div className="line"></div>
+                <div className="row grid-space-10">
+                  <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
+                    <ul className="menu line">
+                      <li>
+                        <a href={`/page/${footerBot[1].slugPages}`}>{footerBot[1].name}</a>
+                      </li>
+                      <li>
+                        <a href={`/page/${footerBot[0].slugPages}`}>{footerBot[0].name}</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
+                    <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </StickyContainer>
