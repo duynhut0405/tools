@@ -203,6 +203,64 @@ function News({ data, type }) {
       </section>
     );
   }
+  if (type === '5') {
+    return (
+      <section className="sec-b" id={data.title}>
+        <div className="container">
+          <h2 className="">{data.title}</h2>
+          <p>{data.description}</p>
+          <div className="list-5 row list-item">
+            {map(listCategory, (item, index) => {
+              if (index < 3) {
+                return (
+                  <div className="col-md-4" key={index}>
+                    <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
+                      <div className="img tRes_71">
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          src={item.base_image}
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </div>
+                );
+              }
+            })}
+          </div>
+          <div className="list-5 row list-item">
+            {map(listCategory, (item, index) => {
+              if (index >= 3) {
+                return (
+                  <div className="col-md-3" key={index}>
+                    <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
+                      <div className="img tRes_71">
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          src={item.base_image}
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </div>
+                );
+              }
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
 News.propTypes = propTypes;
 
