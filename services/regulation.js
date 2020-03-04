@@ -39,4 +39,22 @@ const getUrlVideoService = data => {
     });
 };
 
-export { fillRegulationServices, getTypeRegulationServices, getUrlVideoService };
+const getRegulationPagation = (type, year, page) => {
+  return request({
+    url: `/regulation/pagination/${type}/${year}?number=10&page=${page}`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
+export {
+  fillRegulationServices,
+  getTypeRegulationServices,
+  getUrlVideoService,
+  getRegulationPagation
+};
