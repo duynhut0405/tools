@@ -24,7 +24,6 @@ function Pages({ data, type }) {
   }, []);
   const { t } = useTranslation();
   const listNews = slice(listPage, 0, page);
-
   if (type && type === '1') {
     return (
       <div className="container sec-tb block-page" id={data.title}>
