@@ -102,7 +102,8 @@ function News({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              {t('view.viewall')}<i className="icon-arrow-1"></i>
+              {t('view.viewall')}
+              <i className="icon-arrow-1"></i>
             </a>
           </div>
           {/* 2tabs main */}
@@ -197,6 +198,64 @@ function News({ data, type }) {
               </div>
             </div>
             <div className="owl-nav"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (type === '5') {
+    return (
+      <section className="sec-b" id={data.title}>
+        <div className="container">
+          <h2 className="">{data.title}</h2>
+          <p>{data.description}</p>
+          <div className="list-5 row list-item">
+            {map(listCategory, (item, index) => {
+              if (index < 3) {
+                return (
+                  <div className="col-md-4" key={index}>
+                    <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
+                      <div className="img tRes_71">
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          src={item.base_image}
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </div>
+                );
+              }
+            })}
+          </div>
+          <div className="list-5 row list-item">
+            {map(listCategory, (item, index) => {
+              if (index >= 3) {
+                return (
+                  <div className="col-md-3" key={index}>
+                    <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
+                      <div className="img tRes_71">
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          src={item.base_image}
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </div>
+                );
+              }
+            })}
           </div>
         </div>
       </section>
