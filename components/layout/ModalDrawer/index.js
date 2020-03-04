@@ -1,76 +1,54 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { map } from 'lodash';
+import classnames from 'classnames';
+const propTypes = {
+  menu: PropTypes.array
+};
 
-function ModalDrawer() {
+function ModalDrawer({ menu }) {
+  const [activeTab, setActiveTab] = useState(false);
+  const [indexMenu, setIndexMenu] = useState(null);
+  const nestChild = items => {
+    return map(items, item => (
+      <li
+        key={item.id}
+        className={classnames({
+          children: activeTab === false && indexMenu === item.id,
+          'children parent-showsub': activeTab === true && indexMenu === item.id
+        })}
+      >
+        {item.children.length > 0 && (
+          <span
+            className="showsubmenu icon-arrow-2 ib"
+            onClick={() => {
+              setActiveTab(!activeTab);
+              setIndexMenu(item.id);
+            }}
+          ></span>
+        )}
+        <a href={`/page/${item.slugPages}`}>
+          <span>{item.name}</span>
+        </a>
+        {item.children.length > 0 && (
+          <ul style={{ display: activeTab && indexMenu === item.id ? 'block' : 'none' }}>
+            {nestChild(item.children)}
+          </ul>
+        )}
+      </li>
+    ));
+  };
+
   return (
-    <div className="okdeno">
+    <div className="wrap-menu-mb">
       <div className="wrapul main">
         <div className="inner">
-          <ul className="menu">
-            <li className="active children">
-              <a href="page/ca-nhan">
-                <span>Khách hàng cá nhân</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/homepage/ca-nhan-cao-cap">
-                <span>Cá nhân cao cấp</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/homepagedoanh-nghiep">
-                <span>Khách hàng doanh nghiệp</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/mb-ket-noi">
-                <span>MB kết nối</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/diem-giao-dich-atm">
-                <span>Điểm GD & ATM</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/bieu-phi">
-                <span>Biểu phí</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/homepageve-mbbank">
-                <span>Về MBBank</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/homepagenha-dau-tu">
-                <span>Nhà đầu tư</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/nghe--nghiep">
-                <span>Nghề nghiệp</span>
-              </a>
-            </li>
-            <li>
-              <a href="page/lien-he">
-                <span>Liên hệ</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>Đăng ký</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>Đăng nhập</span>
-              </a>
-            </li>
-          </ul>
+          <ul className="menu">{nestChild(menu)}</ul>
         </div>
       </div>
     </div>
   );
 }
+ModalDrawer.propTypes = propTypes;
 
 export default ModalDrawer;

@@ -6,8 +6,8 @@ import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
 import Widget from './Widget';
 import { Social } from '../common';
 import Link from 'next/link';
-import ModalDrawer from './ModalDrawer/index.js';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import ModalDrawer from './ModalDrawer';
+
 import { StickyContainer, Sticky } from 'react-sticky';
 import { map } from 'lodash';
 import { LayoutActions, MenuActions } from '../../store/actions';
@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 import '../../styles/custom.css';
+import classnames from 'classnames';
 const propTypes = {
   settingFooter: PropTypes.object,
   socialLink: PropTypes.object,
@@ -60,26 +61,7 @@ function Layout({
   getMenuFooterMain,
   getMenuFooterBottom
 }) {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    right: false
-  });
-
-  const toggleDrawer = (side, open) => event => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setState({ ...state, [side]: open });
-  };
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    ></div>
-  );
+  const [activeDrawer, setActiveDrawwe] = useState(false);
 
   useEffect(() => {
     getMenuHeader();
@@ -146,144 +128,89 @@ function Layout({
   };
 
   return (
-    <div>
-      <StickyContainer>
-        <div>
-          <Head>
-            <title>{title}</title>
-            <link
-              rel="icon"
-              href="https://www.mbbank.com.vn/images/icons/favicon.ico"
-              type="image/x-icon"
-            />
-            <link
-              rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-              crossOrigin="anonymous"
-            />
-            <script
-              src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-              integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-              crossOrigin="anonymous"
-            ></script>
-            <script
-              src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-              integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-              crossOrigin="anonymous"
-            ></script>
-            <script
-              src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-              integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-              crossOrigin="anonymous"
-            ></script>
-          </Head>
+    <body className={classnames({ showMenu: activeDrawer })}>
+      <div>
+        <StickyContainer>
+          <div>
+            <Head>
+              <title>{title}</title>
+              <link
+                rel="icon"
+                href="https://www.mbbank.com.vn/images/icons/favicon.ico"
+                type="image/x-icon"
+              />
+              <link
+                rel="stylesheet"
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+                integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+                crossOrigin="anonymous"
+              />
+              <script
+                src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                crossOrigin="anonymous"
+              ></script>
+              <script
+                src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossOrigin="anonymous"
+              ></script>
+              <script
+                src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+                integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+                crossOrigin="anonymous"
+              ></script>
+            </Head>
 
-          <div id="wrapper">
-            <div id="panel">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-5">
-                    <ul className="menu line">
-                      {map(
-                        menuHeader.sort((a, b) => a.position - b.position),
-                        // eslint-disable-next-line consistent-return
-                        (values, key) => {
-                          if (key < 2) {
-                            return (
-                              <li key={key}>
-                                <a href={`/page/${values.slugPages}`}>
-                                  <img
-                                    src={key === 0 ? PinIcon : BieuPhiIcon}
-                                    alt={key === 0 ? 'pin_icon' : 'bietphiIcon'}
-                                    width="15"
-                                    className="mr-2"
-                                  />
-                                  {values.name}
-                                </a>
-                              </li>
-                            );
-                          }
-                        }
-                      )}
-                    </ul>
-                  </div>
-                  <div className="col-md-7">
-                    <ul className="menu line text-right">
-                      {map(
-                        menuHeader.sort((a, b) => a.position - b.position),
-                        // eslint-disable-next-line consistent-return
-                        (values, key) => {
-                          if (key >= 2) {
-                            return (
-                              <li>
-                                <a href={`/page/${values.slugPages}`}>{values.name}</a>
-                              </li>
-                            );
-                          }
-                        }
-                      )}
-                      <li>
-                        <div className="dropdown language">
-                          <div className="title">
-                            <span>
-                              <img src="/static/flags/vn.png" alt="" />
-                            </span>
-                            <i className="icon-arrow-2 ib"></i>
-                          </div>
-                          <div className="content">
-                            <div className="inner">
-                              <ul className="menu">
-                                <li className="lang-en">
-                                  <a href="#" hrefLang="en" title="English (en)">
-                                    <img src="/static/flags/gb.png" alt="" /> <span>English</span>
+            <div id="wrapper">
+              <div id="panel">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-5">
+                      <ul className="menu line">
+                        {map(
+                          menuHeader.sort((a, b) => a.position - b.position),
+                          // eslint-disable-next-line consistent-return
+                          (values, key) => {
+                            if (key < 2) {
+                              return (
+                                <li key={key}>
+                                  <a href={`/page/${values.slugPages}`}>
+                                    <img
+                                      src={key === 0 ? PinIcon : BieuPhiIcon}
+                                      alt={key === 0 ? 'pin_icon' : 'bietphiIcon'}
+                                      width="15"
+                                      className="mr-2"
+                                    />
+                                    {values.name}
                                   </a>
                                 </li>
-                                <li className="lang-vi active">
-                                  <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                                    <img src="/static/images/flags/vn.png" alt="" />{' '}
-                                    <span>Tiếng Việt</span>
-                                  </a>
+                              );
+                            }
+                          }
+                        )}
+                      </ul>
+                    </div>
+                    <div className="col-md-7">
+                      <ul className="menu line text-right">
+                        {map(
+                          menuHeader.sort((a, b) => a.position - b.position),
+                          // eslint-disable-next-line consistent-return
+                          (values, key) => {
+                            if (key >= 2) {
+                              return (
+                                <li>
+                                  <a href={`/page/${values.slugPages}`}>{values.name}</a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <Sticky topOffset={40}>
-              {({ style }) => (
-                <div className="setzindex" style={style}>
-                  <header id="header" role="banner">
-                    <div className="container">
-                      <a href="/" id="logo">
-                        <img src={Logo} alt="logo" />
-                      </a>
-                      <div className="wrap-menu-header">
-                        <ul className="menu-top-header" data-style="1">
-                          {nestChild(menuNav)}
-                        </ul>
-                      </div>
-                      <div className="group-header">
-                        <div className="item ilogin">
-                          <ul className="menu line">
-                            <li>
-                              <a href="#"> Đăng ký</a>
-                            </li>
-                            <li>
-                              <a href="#"> Đăng nhập</a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="item ilang">
+                              );
+                            }
+                          }
+                        )}
+                        <li>
                           <div className="dropdown language">
                             <div className="title">
                               <span>
-                                <img src="/static/images/flags/vn.png" alt="" />
+                                <img src="/static/flags/vn.png" alt="" />
                               </span>
                               <i className="icon-arrow-2 ib"></i>
                             </div>
@@ -292,13 +219,12 @@ function Layout({
                                 <ul className="menu">
                                   <li className="lang-en">
                                     <a href="#" hrefLang="en" title="English (en)">
-                                      <img src="/static/images/flags/gb.png" alt="" />
-                                      <span>English</span>
+                                      <img src="/static/flags/gb.png" alt="" /> <span>English</span>
                                     </a>
                                   </li>
                                   <li className="lang-vi active">
                                     <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                                      <img src="/static/images/flags/vn.png" alt="" />
+                                      <img src="/static/images/flags/vn.png" alt="" />{' '}
                                       <span>Tiếng Việt</span>
                                     </a>
                                   </li>
@@ -306,192 +232,247 @@ function Layout({
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="item imenu mobilemenu">
-                          <button className="stylebuttonopen" onClick={toggleDrawer('right', true)}>
-                            <span className="menu-btn x"></span>
-                          </button>
-                          <SwipeableDrawer
-                            anchor="right"
-                            open={state.right}
-                            onClose={toggleDrawer('right', false)}
-                            onOpen={toggleDrawer('right', true)}
-                          >
-                            <ModalDrawer />
-                            {sideList('right')}
-                          </SwipeableDrawer>
-                        </div>
-                      </div>
+                        </li>
+                      </ul>
                     </div>
-                  </header>
+                  </div>
                 </div>
-              )}
-            </Sticky>
-            <div>{children}</div>
-            {/* contact */}
-            <section className="sec-cta">
-              <div className="container">
-                <div className="row center">
-                  {map(
-                    menuFooterTop.sort((a, b) => a.position - b.position),
-                    values => (
-                      <div className="col-4" key={values.id}>
-                        <a className="item" href={`/page/${values.slugPages}`}>
-                          <span className="img">
-                            <img src={values.icon} alt="" />
-                          </span>
-                          <div className="divtext">
-                            <h4 className="title">{values.name}</h4>
-                            <div className="desc">{values.description}</div>
+              </div>
+              <Sticky topOffset={40}>
+                {({ style }) => (
+                  <div className="setzindex" style={style}>
+                    <header id="header" role="banner">
+                      <div className="container">
+                        <a href="/" id="logo">
+                          <img src={Logo} alt="logo" />
+                        </a>
+                        <div className="wrap-menu-header">
+                          <ul className="menu-top-header" data-style="1">
+                            {nestChild(menuNav)}
+                          </ul>
+                        </div>
+                        <div className="group-header">
+                          <div className="item ilogin">
+                            <ul className="menu line">
+                              <li>
+                                <a href="#"> Đăng ký</a>
+                              </li>
+                              <li>
+                                <a href="#"> Đăng nhập</a>
+                              </li>
+                            </ul>
                           </div>
-                        </a>
+                          <div className="item ilang">
+                            <div className="dropdown language">
+                              <div className="title">
+                                <span>
+                                  <img src="/static/images/flags/vn.png" alt="" />
+                                </span>
+                                <i className="icon-arrow-2 ib"></i>
+                              </div>
+                              <div className="content">
+                                <div className="inner">
+                                  <ul className="menu">
+                                    <li className="lang-en">
+                                      <a href="#" hrefLang="en" title="English (en)">
+                                        <img src="/static/images/flags/gb.png" alt="" />
+                                        <span>English</span>
+                                      </a>
+                                    </li>
+                                    <li className="lang-vi active">
+                                      <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
+                                        <img src="/static/images/flags/vn.png" alt="" />
+                                        <span>Tiếng Việt</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="item imenu mobilemenu">
+                            <button
+                              className="stylebuttonopen"
+                              onClick={() => {
+                                setActiveDrawwe(!activeDrawer);
+                              }}
+                            >
+                              <span className="menu-btn x"></span>
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                    )
-                  )}
-                </div>
-              </div>
-            </section>
-            {/* tải appp */}
-            <section className="sec-download-pc group-ef loaded">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-6   efch-2 ef-img-r">
-                    <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
-                    <form role="search" method="get" className="searchform " action="">
-                      <div>
-                        <input
-                          type="text"
-                          placeholder="Nhập email để nhận thông tin"
-                          name="s"
-                          className="input"
-                        />
-                      </div>
-                      <button type="submit" className="btn btn-2">
-                        Đăng ký
-                      </button>
-                    </form>
+                    </header>
                   </div>
-                  <div className="col-md-6   efch-3 ef-img-r">
-                    <div className="wapp">
-                      <span className="code">
-                        <img src="/static/images/code.png" alt="" />
-                      </span>
-                      <div className="app">
-                        <p className="stitle">Hãy tải app ngay hôm nay</p>
-                        <a href="https://bit.ly/2v5ZsyP">
-                          <img src="/static/images/btt-google.svg" alt="" />
-                        </a>{' '}
-                        &nbsp;
-                        <a href="https://apple.co/2AqB7ZM">
-                          <img src="/static/images/btt-chplay.svg" alt="" />
-                        </a>
+                )}
+              </Sticky>
+              <div>{children}</div>
+              {/* contact */}
+              <section className="sec-cta">
+                <div className="container">
+                  <div className="row center">
+                    {map(
+                      menuFooterTop.sort((a, b) => a.position - b.position),
+                      values => (
+                        <div className="col-4" key={values.id}>
+                          <a className="item" href={`/page/${values.slugPages}`}>
+                            <span className="img">
+                              <img src={values.icon} alt="" />
+                            </span>
+                            <div className="divtext">
+                              <h4 className="title">{values.name}</h4>
+                              <div className="desc">{values.description}</div>
+                            </div>
+                          </a>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              </section>
+              {/* tải appp */}
+              <section className="sec-download-pc group-ef loaded">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-6   efch-2 ef-img-r">
+                      <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                      <form role="search" method="get" className="searchform " action="">
+                        <div>
+                          <input
+                            type="text"
+                            placeholder="Nhập email để nhận thông tin"
+                            name="s"
+                            className="input"
+                          />
+                        </div>
+                        <button type="submit" className="btn btn-2">
+                          Đăng ký
+                        </button>
+                      </form>
+                    </div>
+                    <div className="col-md-6   efch-3 ef-img-r">
+                      <div className="wapp">
+                        <span className="code">
+                          <img src="/static/images/code.png" alt="" />
+                        </span>
+                        <div className="app">
+                          <p className="stitle">Hãy tải app ngay hôm nay</p>
+                          <a href="https://bit.ly/2v5ZsyP">
+                            <img src="/static/images/btt-google.svg" alt="" />
+                          </a>{' '}
+                          &nbsp;
+                          <a href="https://apple.co/2AqB7ZM">
+                            <img src="/static/images/btt-chplay.svg" alt="" />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
-            <div id="footer-pc" className="group-ef loaded">
-              <div className="container">
-                <div className="row grid-space-10">
-                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                    <Widget data={settingFooter} />
-                  </div>
-                  {renderFooter(menuFooterMain)}
-                </div>
-                <div className="line"></div>
-                <div className="row grid-space-10">
-                  <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
-                    <ul className="menu line">
-                      {map(
-                        menuFooterBottom.sort((a, b) => a.position - b.position),
-                        (values, key) => (
-                          <li key={key}>
-                            <a href={`/page/${values.slugPages}`}>{values.name}</a>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
-                  <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <section className="sec-download-mb group-ef loaded">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-6   efch-2 ef-img-r">
-                    <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
-                    <form role="search" method="get" className="searchform " action="">
-                      <div>
-                        <input
-                          type="text"
-                          placeholder="Nhập email để nhận thông tin"
-                          name="s"
-                          className="input"
-                        />
-                      </div>
-                      <button type="submit" className="btn btn-2">
-                        Đăng ký
-                      </button>
-                    </form>
-                  </div>
-                  <div className="col-md-6   efch-3 ef-img-r">
-                    <div className="wapp">
-                      <span className="code">
-                        <img src="/static/images/code.png" alt="" />
-                      </span>
-                      <div className="app">
-                        <p className="stitle">Hãy tải app ngay hôm nay</p>
-                        <a href="https://bit.ly/2v5ZsyP">
-                          <img src="/static/images/btt-google.svg" alt="" />
-                        </a>{' '}
-                        &nbsp;
-                        <a href="https://apple.co/2AqB7ZM">
-                          <img src="/static/images/btt-chplay.svg" alt="" />
-                        </a>
-                      </div>
+              </section>
+              <div id="footer-pc" className="group-ef loaded">
+                <div className="container">
+                  <div className="row grid-space-10">
+                    <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                      <Widget data={settingFooter} />
                     </div>
+                    {renderFooter(menuFooterMain)}
                   </div>
-                </div>
-              </div>
-            </section>
-            <div id="footer-mb" className="group-ef loaded">
-              <div className="container">
-                <div className="row grid-space-10">
-                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                    <Widget data={settingFooter} />
-                  </div>
-                  {renderFooter(menuFooterMain)}
-                </div>
-                <div className="line"></div>
-                <div className="row grid-space-10">
-                  <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
-                    <ul className="menu line">
-                      {map(
-                        menuFooterBottom.sort((a, b) => a.position - b.position),
-                        (values, key) => {
-                          return (
+                  <div className="line"></div>
+                  <div className="row grid-space-10">
+                    <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
+                      <ul className="menu line">
+                        {map(
+                          menuFooterBottom.sort((a, b) => a.position - b.position),
+                          (values, key) => (
                             <li key={key}>
                               <a href={`/page/${values.slugPages}`}>{values.name}</a>
                             </li>
-                          );
-                        }
-                      )}
-                    </ul>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                    <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
+                      <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                    </div>
                   </div>
-                  <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                </div>
+              </div>
+              <section className="sec-download-mb group-ef loaded">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-6   efch-2 ef-img-r">
+                      <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                      <form role="search" method="get" className="searchform " action="">
+                        <div>
+                          <input
+                            type="text"
+                            placeholder="Nhập email để nhận thông tin"
+                            name="s"
+                            className="input"
+                          />
+                        </div>
+                        <button type="submit" className="btn btn-2">
+                          Đăng ký
+                        </button>
+                      </form>
+                    </div>
+                    <div className="col-md-6   efch-3 ef-img-r">
+                      <div className="wapp">
+                        <span className="code">
+                          <img src="/static/images/code.png" alt="" />
+                        </span>
+                        <div className="app">
+                          <p className="stitle">Hãy tải app ngay hôm nay</p>
+                          <a href="https://bit.ly/2v5ZsyP">
+                            <img src="/static/images/btt-google.svg" alt="" />
+                          </a>{' '}
+                          &nbsp;
+                          <a href="https://apple.co/2AqB7ZM">
+                            <img src="/static/images/btt-chplay.svg" alt="" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div id="footer-mb" className="group-ef loaded">
+                <div className="container">
+                  <div className="row grid-space-10">
+                    <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                      <Widget data={settingFooter} />
+                    </div>
+                    {renderFooter(menuFooterMain)}
+                  </div>
+                  <div className="line"></div>
+                  <div className="row grid-space-10">
+                    <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
+                      <ul className="menu line">
+                        {map(
+                          menuFooterBottom.sort((a, b) => a.position - b.position),
+                          (values, key) => {
+                            return (
+                              <li key={key}>
+                                <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                              </li>
+                            );
+                          }
+                        )}
+                      </ul>
+                    </div>
+                    <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
+                      <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </StickyContainer>
-    </div>
+        </StickyContainer>
+      </div>
+      <ModalDrawer menu={menuNav} />
+    </body>
   );
 }
 
