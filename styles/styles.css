@@ -4299,6 +4299,7 @@ body.showMenu .menu-btn.x:before {
 .btn:hover {
   background-color: #9be6c8;
   border: 1px solid #9be6c8;
+  text-transform: none;
 }
 
 .round.btn {
@@ -6049,8 +6050,9 @@ h1 {
 
 .h2,
 h2 {
-  font-size: 24px;
+  font-size: 30px;
   text-transform: uppercase;
+  font-weight: bolder;
 }
 
 .h3,
@@ -6940,7 +6942,7 @@ body.showMenu .menu-btn.x:after {
 
 .list-1 .divtext {
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
   left: 0;
   right: 0;
   padding: 20px;
@@ -7542,6 +7544,7 @@ ul.list-download li .down a:hover {
 .sec-h-2 .list-2 .item-2 .btn:not(:hover) {
   background-color: #6182e7;
   border-color: #6182e7;
+  text-transform: none;
 }
 
 .sec-h-2 .list-2 .item-2 .btn i {
