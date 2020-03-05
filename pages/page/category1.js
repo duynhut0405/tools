@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'product-demo';
+  const name = 'bao-cao-tai-chinh';
 
   useEffect(() => {
     getPage(name);

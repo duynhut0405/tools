@@ -394,6 +394,83 @@ function News({ data, type, id }) {
       </section>
     );
   }
+  if (type === '9') {
+    return (
+      <section className="sec-b sec-h-4">
+        <div className="container">
+          <div className="entry-head">
+            <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+          </div>
+          <div className="row list-item">
+            <div className="col-lg-6 list-1">
+              {map(listCategory, (item, index) => {
+                if (index === 0) {
+                  return (
+                    <React.Fragment>
+                      <a href="#" className="item  tRes_56 video">
+                        {item.author_name === '' || item.author_name === null ? (
+                          <div>
+                            <img
+                              className=" loaded loaded"
+                              data-lazy-type="image"
+                              data-lazy-src="https://via.placeholder.com/262x187"
+                              src={item.base_image}
+                            ></img>
+                            <div className="divtext">
+                              <div className="date">
+                                {moment(item.created_at).format('DD-MM-YYYY')}
+                              </div>
+                              <h4 className="title line2">{item.title}</h4>
+                            </div>
+                          </div>
+                        ) : (
+                          <iframe src={item.author_name}></iframe>
+                        )}
+                      </a>
+                    </React.Fragment>
+                  );
+                }
+              })}
+            </div>
+            <div className="col-lg-6">
+              <div className="list-6-1">
+                {map(listCategory, (item, index) => {
+                  if (index > 0 && index < 3) {
+                    return (
+                      <React.Fragment>
+                        <a href="#" className="item item-inline-table">
+                          {item.author_name === null ? (
+                            <React.Fragment>
+                              <div className="img tRes_56 video cl">
+                                <img
+                                  className=" loaded loaded"
+                                  data-lazy-type="image"
+                                  src={item.base_image}
+                                />
+                              </div>
+                              <div className="divtext">
+                                <div className="date">
+                                  {moment(item.created_at).format('DD-MM-YYYY')}
+                                </div>
+                                <h4 className="title line2">{item.title}</h4>
+                                <div className="desc line3">{item.shortDescription}</div>
+                              </div>
+                            </React.Fragment>
+                          ) : (
+                            <iframe src={item.author_name}></iframe>
+                          )}
+                        </a>
+                      </React.Fragment>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
 News.propTypes = propTypes;
 
