@@ -30,6 +30,23 @@ const Actions = {
   getUrlVideo: data => ({
     type: Actions.GET_URL_VIDEO_REQUEST,
     data
+  }),
+
+  GET_REGULATION_BY_YEAR_REQUEST: 'GET_REGULATION_BY_YEAR_REQUEST',
+  GET_REGULATION_BY_YEAR_RESPONSE: 'GET_REGULATION_BY_YEAR_RESPONSE',
+
+  getRegulationByYear: (types, page) => ({
+    type: Actions.GET_REGULATION_BY_YEAR_REQUEST,
+    types,
+    page
+  }),
+
+  SEARCH_REGULATION_BY_YEAR_REQUEST: 'SEARCH_REGULATION_BY_YEAR_REQUEST',
+  SEARCH_REGULATION_BY_YEAR_RESPONSE: 'SEARCH_REGULATION_BY_YEAR_RESPONSE',
+
+  searchRegulationByYear: year => ({
+    type: Actions.SEARCH_REGULATION_BY_YEAR_REQUEST,
+    year
   })
 };
 

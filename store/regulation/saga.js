@@ -4,7 +4,8 @@ import {
   fillRegulationServices,
   getTypeRegulationServices,
   getUrlVideoService,
-  getRegulationPagation
+  getRegulationPagation,
+  getRegulationListYear
 } from '../../services/regulation';
 
 function* getRegulationSaga() {
@@ -69,11 +70,45 @@ function* getUrlVideoSaga() {
     }
   });
 }
+
+function* getRegulationByYearSaga() {
+  yield takeLatest(actions.GET_REGULATION_BY_YEAR_REQUEST, function*(params) {
+    const { types, page } = params;
+    try {
+      const res = yield getRegulationListYear(types, page);
+      if (res.status === 200) {
+        yield put({ type: actions.GET_REGULATION_BY_YEAR_RESPONSE, data: res.data });
+      } else {
+        // console.log(res);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+}
+
+function* searchRegulationByYearSaga() {
+  yield takeLatest(actions.SEARCH_REGULATION_BY_YEAR_REQUEST, function*(params) {
+    const { types, page } = params;
+    try {
+      const res = yield getRegulationListYear(types, page);
+      if (res.status === 200) {
+        yield put({ type: actions.SEARCH_REGULATION_BY_YEAR_RESPONSE, data: res.data });
+      } else {
+        // console.log(res);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+}
 export default function* rootSaga() {
   yield all([
     fork(searchRegulationSaga),
     fork(getTypeRegulationSaga),
     fork(getUrlVideoSaga),
-    fork(getRegulationSaga)
+    fork(getRegulationSaga),
+    fork(getRegulationByYearSaga),
+    fork(searchRegulationByYearSaga)
   ]);
 }
