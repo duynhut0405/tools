@@ -5,6 +5,7 @@ import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
 import { useTranslation } from 'react-i18next';
+import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -63,7 +64,6 @@ function News({ data, type }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
-
   if (type === '1') {
     return (
       <div className="post_block mb-5 pt-4 mt-5" id={data.title}>
@@ -156,7 +156,7 @@ function News({ data, type }) {
       <section className="sec-tb sec-h-3 " id={data.title}>
         <div className="container">
           <div className="entry-head">
-            <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+            <h2 className="ht efch-1 ef-img-t">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
               {t('view.viewall')} <i className="icon-arrow-1"></i>
             </a>
@@ -172,6 +172,7 @@ function News({ data, type }) {
                   infinite={true}
                   keyBoardControl={true}
                   arrows={false}
+                  renderButtonGroupOutside={true}
                   ref={ref => {
                     setRefCarousel(ref);
                   }}
@@ -182,7 +183,7 @@ function News({ data, type }) {
                         href={`/news/${item.url}`}
                         className={`item efch-${index} ef-img-l equal`}
                         key={index}
-                        style={{ height: '378px', width: '262px' }}
+                        style={{ height: '300px', width: '262px'}}
                       >
                         <div className="img tRes_71">
                           <img
@@ -194,7 +195,11 @@ function News({ data, type }) {
                         </div>
                         <div className="divtext">
                           <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                          <h4 className="title">{item.title}</h4>
+                          <h4 className="title">
+                            <ShowMoreText lines={1} more='' expanded={false} width={370}>
+                              {item.title}
+                            </ShowMoreText>
+                          </h4>
                         </div>
                       </a>
                     </div>
