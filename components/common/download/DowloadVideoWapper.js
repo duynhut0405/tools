@@ -10,21 +10,23 @@ const propTypes = {
   listRegulation: Proptypes.array.isRequired,
   typeRegulation: Proptypes.array.isRequired,
   seachRegulation: Proptypes.func.isRequired,
-  getTypeRegulation: Proptypes.func.isRequired
+  getTypeRegulation: Proptypes.func.isRequired,
+  searByYear: Proptypes.func
 };
 
 function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, getTypeRegulation }) {
   const [datatype, setDataType] = useState(1);
   const [page, setPage] = useState(0);
+  const [year, setYear] = useState(0);
 
   useEffect(() => {
-    seachRegulation(datatype, page);
+    seachRegulation(datatype, page, year);
     getTypeRegulation();
   }, [getTypeRegulation, seachRegulation]);
 
   useEffect(() => {
-    seachRegulation(datatype, page);
-  }, [datatype, page]);
+    seachRegulation(datatype, page, year);
+  }, [datatype, page, year]);
 
   return (
     <div className="accodion accodion-2 container sec-tb">
@@ -35,11 +37,14 @@ function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, ge
         setType={event => setDataType(event.target.value)}
       />
       {map(listRegulation, item => {
-        return (
-          <div className="sec-tb">
-            <DowloadVideo data={item.investors} year={item.year} isChecked />
-          </div>
-        );
+        if (item.investors.length > 0) {
+          return (
+            <div className="sec-tb" key={item.year}>
+              <DowloadVideo data={item.investors} year={item.year} isChecked />
+            </div>
+          );
+        }
+        return null;
       })}
       <Pagination
         page={page}
