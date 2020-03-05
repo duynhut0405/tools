@@ -24,9 +24,9 @@ function MiniTabItem({ data }) {
 
   return (
     <div className="container">
-      <div className="list-7  list-item row">
+      <div className="list-7  list-item row style-table-menu">
         {map(listPage, item => (
-          <div className="col-md-6" key={item.newsId}>
+          <div className="col-md-6 style-colum1" key={item.newsId}>
             <a href={`/page/${item.slug}`} className="item item-inline-table">
               <div className="img">
                 <img
@@ -38,7 +38,7 @@ function MiniTabItem({ data }) {
               </div>
               <div className="divtext">
                 <h4 className="title line2">{item.name}</h4>
-                <div className="desc line4">{item.meta_description}</div>
+                <div className="desc line4">{item.meta_description}..</div>
               </div>
             </a>
           </div>

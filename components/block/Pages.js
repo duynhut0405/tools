@@ -44,7 +44,7 @@ function Pages({ data, type }) {
                 </div>
                 <div className="divtext">
                   <h4 className="title">{item.name}</h4>
-                  <div className="desc line4">{item.meta_description}</div>
+                  <div className="desc line4">{item.meta_description}..</div>
                 </div>
               </a>
             </div>
@@ -64,11 +64,11 @@ function Pages({ data, type }) {
     return (
       <div className="container" id={data.title}>
         <section className="sec-tb  block-page block-type-2">
-          <h2 className="ht">{data.title}</h2>
+          <h2 className="ht styleht">{data.title}</h2>
           <div className="list-7  list-item row">
             {map(listNews, item => (
               <div className="col-md-6" key={item.newsId}>
-                <a href={`/page/${item.slug}`} className="item item-inline-table">
+                <a href={`/page/${item.slug}`} className="item item-inline-table style-colummb">
                   <div className="img">
                     <img
                       className="lazy-hidden"
@@ -79,7 +79,7 @@ function Pages({ data, type }) {
                   </div>
                   <div className="divtext">
                     <h4 className="title line2">{item.name}</h4>
-                    <div className="desc line4">{item.meta_description}</div>
+                    <div className="desc line4">{item.meta_description}..</div>
                   </div>
                 </a>
               </div>
