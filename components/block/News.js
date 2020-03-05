@@ -9,10 +9,11 @@ import Carousel from 'react-multi-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
   getCategoryPage: Proptypes.func,
-  type: Proptypes.string
+  type: Proptypes.string,
+  id: Proptypes.number
 };
 
-function News({ data, type }) {
+function News({ data, type, id }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const [listCategory, setListCategory] = useState([]);
@@ -66,7 +67,7 @@ function News({ data, type }) {
 
   if (type === '1') {
     return (
-      <div className="post_block mb-5 pt-4 mt-5" id={data.title}>
+      <div className="post_block mb-5 pt-4 mt-5" id={id}>
         <div className="title">
           <h2>{data.title}</h2>
         </div>
@@ -98,7 +99,7 @@ function News({ data, type }) {
   }
   if (type === '3') {
     return (
-      <section className="sec-tb sec-h-4" id={data.title}>
+      <section className="sec-tb sec-h-4" id={id}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
@@ -153,7 +154,7 @@ function News({ data, type }) {
   }
   if (type === '4') {
     return (
-      <section className="sec-tb sec-h-3 " id={data.title}>
+      <section className="sec-tb sec-h-3 " id={id}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
@@ -228,7 +229,7 @@ function News({ data, type }) {
   }
   if (type === '5') {
     return (
-      <section className="sec-b" id={data.title}>
+      <section className="sec-b" id={id}>
         <div className="container">
           <h2 className="">{data.title}</h2>
           <p>{data.description}</p>
@@ -289,7 +290,7 @@ function News({ data, type }) {
   }
   if (type === '6') {
     return (
-      <section className="sec-b sec-blog-2" id={data.title}>
+      <section className="sec-b sec-blog-2" id={id}>
         <div className="container">
           <h2 className="">{data.title}</h2>
           <div className="row list-item">
@@ -347,7 +348,7 @@ function News({ data, type }) {
   }
   if (type === '7') {
     return (
-      <section className="sec-b" id={data.title}>
+      <section className="sec-b" id={id}>
         <div className="container">
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => (
@@ -371,7 +372,7 @@ function News({ data, type }) {
   }
   if (type === '8') {
     return (
-      <section className="sec-b sec-h-4__" id={data.title}>
+      <section className="sec-b sec-h-4__" id={id}>
         <div className="container">
           <h2 className="">{data.title}</h2>
           <p className="cl5">{data.description}</p>

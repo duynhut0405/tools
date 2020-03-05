@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  id: PropTypes.number
 };
 
-function Repeat({ data, type }) {
+function Repeat({ data, type, id }) {
   const [listTable, setListTable] = useState([]);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ function Repeat({ data, type }) {
 
   if (type === '1') {
     return (
-      <section className=" sec-tb ">
+      <section className=" sec-tb " id={id}>
         <div className="container">
           <div className="table-responsive table table-full">
             {map(listTable, (items, index) => {
@@ -29,7 +30,7 @@ function Repeat({ data, type }) {
   }
   if (type && type === '2') {
     return (
-      <section className=" sec-tb ">
+      <section className=" sec-tb " id={id}>
         <div className="container">
           <div className="max950">
             <div className="row list-item">
@@ -46,7 +47,7 @@ function Repeat({ data, type }) {
   }
   if (type && type === '3') {
     return (
-      <section className=" sec-tb ">
+      <section className=" sec-tb " id={id}>
         <div className="container">
           <div className="max950">
             <div className="row list-item">
@@ -63,7 +64,7 @@ function Repeat({ data, type }) {
   }
   if (type && type === '4') {
     return (
-      <section className=" sec-tb ">
+      <section className=" sec-tb " id={id}>
         <div className="container">
           <div className="max950">
             <div className="row list-item">
