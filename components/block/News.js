@@ -284,6 +284,112 @@ function News({ data, type }) {
       </section>
     );
   }
+  if (type === '6') {
+    return (
+      <section className="sec-b sec-blog-2" id={data.title}>
+        <div className="container">
+          <h2 className="">{data.title}</h2>
+          <div className="row list-item">
+            <div className="col-lg-4">
+              <a href={data.url} className="item-banner  tRes ">
+                <img className=" loaded loaded" data-lazy-type="image" src={data.image} />
+              </a>
+            </div>
+            <div className="col-lg-8">
+              <div className="list-1-1  mb-30 ">
+                {map(listCategory, (item, index) => {
+                  if (index === 0) {
+                    return (
+                      <a href={`/news/${item.url}`} className="item  tRes_39 ">
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          src={item.base_image}
+                        />
+                        <div className="divtext">
+                          <h4 className="title line2">{item.title}</h4>
+                        </div>
+                      </a>
+                    );
+                  }
+                })}
+              </div>
+              <div className="list-5 row list-item">
+                {map(listCategory, (item, index) => {
+                  if (index > 0 && index < 3) {
+                    return (
+                      <div className="col-md-6">
+                        <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l `}>
+                          <div className="img tRes_51">
+                            <img
+                              className=" loaded loaded"
+                              data-lazy-type="image"
+                              src={item.base_image}
+                            />
+                          </div>
+                          <div className="divtext">
+                            <h4 className="title line2">{item.title}</h4>
+                          </div>
+                        </a>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (type === '7') {
+    return (
+      <section className="sec-b" id={data.title}>
+        <div className="container">
+          <div className="list-5 row list-item">
+            {map(listCategory, (item, index) => (
+              <div className="col-md-4" key={index}>
+                <a href="#" className={`item efch-${index} ef-img-l`}>
+                  <div className="img tRes_71">
+                    <img className=" loaded loaded" data-lazy-type="image" src={item.base_image} />
+                  </div>
+                  <div className="divtext">
+                    <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                    <h4 className="title line2">{item.title}</h4>
+                    <div className="desc line2">{item.shortDescription}</div>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (type === '8') {
+    return (
+      <section className="sec-b sec-h-4__" id={data.title}>
+        <div className="container">
+          <h2 className="">{data.title}</h2>
+          <p className="cl5">{data.description}</p>
+          <div className="list-5 list-5-1 row list-item">
+            {map(listCategory, (item, index) => (
+              <div className="col-md-4" key={index}>
+                <a href="#" className={`item efch-${index} ef-img-l equal`}>
+                  <div className="divtext">
+                    <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                    <h4 className="title line2">{item.title}</h4>
+                    <div className="desc line2">{item.shortDescription}</div>
+                    <span className="more cl1">Tìm hiểu thêm</span>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
 News.propTypes = propTypes;
 
