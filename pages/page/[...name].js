@@ -9,6 +9,7 @@ import {
   DowloadVideoWapper
 } from '../../components/common';
 import Layout from '../../components/layout';
+import Investors from '../../components/investors';
 import { PageActions } from '../../store/actions';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -27,6 +28,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
   useEffect(() => {
     getPage(router.query.name);
   }, []);
+  // console.log(list.name);
   return (
     <Layout>
       <Head>
@@ -36,6 +38,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
       <div className="main_content">
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} />
+        {list.name === 'Nhà đầu tư' && <Investors />}
         {list.name === 'Đại hội cổ đông' && <DowloadVideoWapper />}
         {list.name === 'Tài liệu nhà đầu tư' && <DowloadFileWapper />}
         {list.name === 'Báo cáo thường niên' && <DowloadFileWapper />}

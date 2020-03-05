@@ -4,13 +4,15 @@ import rateReducer from './rate/reducers';
 import layoutReducer from './layout/reducers';
 import regulationReducer from './regulation/reducers';
 import menuReducer from './menu/reducers';
+import investorsReducer from './investors/reducer';
 
 const reducers = combineReducers({
   pageReducer,
   rateReducer,
   layoutReducer,
   regulationReducer,
-  menuReducer
+  menuReducer,
+  investorsReducer
 });
 
 export default reducers;
