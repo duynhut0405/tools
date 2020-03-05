@@ -27,9 +27,7 @@ function Pages({ data, type }) {
   if (type && type === '1') {
     return (
       <div className="container sec-tb block-page" id={data.title}>
-        <div className="entry-head text-center">
-          <h2 className="ht">{data.title}</h2>
-        </div>
+        <div className="entry-head text-center">{/* <h2 className="ht">{data.title}</h2> */}</div>
         <div className="list-5 row list-item">
           {map(listNews, item => (
             <div className="col-md-4" key={item.newsId}>

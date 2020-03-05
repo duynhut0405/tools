@@ -18,7 +18,6 @@ function DowloadVideo({ year, data }) {
       }
     });
   }, [year]);
-
   return (
     <div className="boxwidget box-download-2">
       <h2 className="widget-title">{year}</h2>

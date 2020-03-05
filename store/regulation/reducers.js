@@ -4,7 +4,8 @@ const initialState = {
   listData: [],
   data: [],
   type: [],
-  urlVideo: {}
+  urlVideo: {},
+  listDataByYear: []
 };
 
 const regulationReducer = (state = initialState, action) => {
@@ -28,6 +29,11 @@ const regulationReducer = (state = initialState, action) => {
       return {
         ...state,
         urlVideo: action.data
+      };
+    case Action.GET_REGULATION_BY_YEAR_RESPONSE:
+      return {
+        ...state,
+        listDataByYear: action.data
       };
     default:
       return state;

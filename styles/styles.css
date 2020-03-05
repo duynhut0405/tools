@@ -686,7 +686,7 @@ html {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
-    max-width: 50%;
+    max-width: 49.9%;
   }
   .col-md-7 {
     -webkit-box-flex: 0;
@@ -7116,7 +7116,7 @@ body.showMenu .menu-btn.x:after {
 }
 
 .list-7 .item:hover .title {
-  color: #9be6c8;
+  color: #020318;
 }
 
 .list-7 .item + .item {
@@ -8190,7 +8190,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
 }
 
 .sec-download-pc .stitle {
-  font-weight: lighter;
+  font-weight: normal;
 }
 
 .sec-download-pc form {
