@@ -49,10 +49,10 @@ function MenuMiddle({ data }) {
                   (item, key) => {
                     return (
                       <div
-                        className={router.query.name === item.slug ? 'item active' : 'item'}
+                        className={router.query.name === item.slugPages ? 'item active' : 'item'}
                         key={key}
                       >
-                        <a href={`/page/${item.slug}`} className="link">
+                        <a href={`/page/${item.slugPages}`} className="link">
                           <div className="img">
                             <img
                               className=" loaded loaded"
@@ -76,10 +76,10 @@ function MenuMiddle({ data }) {
                   (item, key) => {
                     return (
                       <div
-                        className={router.query.name === item.slug ? 'item active' : 'item'}
+                        className={router.query.name === item.slugPages ? 'item active' : 'item'}
                         key={key}
                       >
-                        <a href={`/page/${item.slug}`} className="link">
+                        <a href={`/page/${item.slugPages}`} className="link">
                           <div className="img">
                             <img
                               className=" loaded loaded"

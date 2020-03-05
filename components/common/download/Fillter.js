@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   type: PropTypes.array,
+  center: PropTypes.bool,
   setDate: PropTypes.func,
   setType: PropTypes.func
 };
 
-function Filler({ type, setDate, setType }) {
+function Filler({ type, setDate, setType, center }) {
   return (
-    <div className="filter-category mb-5">
+    <div className={center ? 'filter-category mb-5 text-center' : 'filter-category mb-5'}>
       <select className="select mr-2" onChange={setDate}>
         <option value={2020}>2020</option>
         <option value={2021}>2021</option>
