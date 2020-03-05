@@ -30,6 +30,7 @@ function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, ge
   return (
     <div className="accodion accodion-2 container sec-tb">
       <Fillter
+        center
         type={typeRegulation}
         setDate={event => setYear(event.target.value)}
         setType={event => setDataType(event.target.value)}

@@ -52,9 +52,23 @@ const getRegulationPagation = (type, year, page) => {
     });
 };
 
+const getRegulationListYear = (type, page, year) => {
+  return request({
+    url: `/regulation/investors/${type}?number=10&page=${page}&year=${year}`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
 export {
   fillRegulationServices,
   getTypeRegulationServices,
   getUrlVideoService,
-  getRegulationPagation
+  getRegulationPagation,
+  getRegulationListYear
 };

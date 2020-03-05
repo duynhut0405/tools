@@ -30,7 +30,9 @@ function MenuMiddle({ data }) {
       {data !== null && (
         <div className="sec-tb">
           <div className="text-center common-menumiddle">
-            <h1 className="text-center">{data.title}</h1>
+            <h1 className="text-center" style={{ margin: '15px 0 15px 0' }}>
+              {data.title}
+            </h1>
           </div>
           <div className="menuicon container">
             {data.menuItems !== undefined && data.menuItems.length >= 8 && (
@@ -47,10 +49,10 @@ function MenuMiddle({ data }) {
                   (item, key) => {
                     return (
                       <div
-                        className={router.query.name === item.slug ? 'item active' : 'item'}
+                        className={router.query.name === item.slugPages ? 'item active' : 'item'}
                         key={key}
                       >
-                        <a href={`/page/${item.slug}`} className="link">
+                        <a href={`/page/${item.slugPages}`} className="link">
                           <div className="img">
                             <img
                               className=" loaded loaded"
@@ -74,10 +76,10 @@ function MenuMiddle({ data }) {
                   (item, key) => {
                     return (
                       <div
-                        className={router.query.name === item.slug ? 'item active' : 'item'}
+                        className={router.query.name === item.slugPages ? 'item active' : 'item'}
                         key={key}
                       >
-                        <a href={`/page/${item.slug}`} className="link">
+                        <a href={`/page/${item.slugPages}`} className="link">
                           <div className="img">
                             <img
                               className=" loaded loaded"
