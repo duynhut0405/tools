@@ -1,6 +1,7 @@
 import Action from './actions';
 
 const initialState = {
+  listData: [],
   data: [],
   type: [],
   urlVideo: {}
@@ -8,6 +9,11 @@ const initialState = {
 
 const regulationReducer = (state = initialState, action) => {
   switch (action.type) {
+    case Action.GET_REGULATION_PAGINATION_RESPONSE:
+      return {
+        ...state,
+        listData: action.data
+      };
     case Action.SEARCH_REGULATION_RESPONSE:
       return {
         ...state,

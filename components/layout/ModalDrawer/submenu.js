@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import classnames from 'classnames';
-import SubMenu from './submenu';
 const propTypes = {
   menu: PropTypes.array
 };
 
-function ModalDrawer({ menu }) {
+function SubMenu({ menu }) {
   const [activeTab, setActiveTab] = useState(false);
   const [indexMenu, setIndexMenu] = useState(null);
-
   const nestChild = items => {
     return map(items, item => (
       <li
@@ -41,16 +39,8 @@ function ModalDrawer({ menu }) {
     ));
   };
 
-  return (
-    <div className="wrap-menu-mb">
-      <div className="wrapul main">
-        <div className="inner">
-          <ul className="menu">{nestChild(menu)}</ul>
-        </div>
-      </div>
-    </div>
-  );
+  return nestChild(menu);
 }
-ModalDrawer.propTypes = propTypes;
+SubMenu.propTypes = propTypes;
 
-export default ModalDrawer;
+export default SubMenu;

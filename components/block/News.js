@@ -19,6 +19,7 @@ function News({ data, type }) {
   const [slugCategory, setSlugCategory] = useState('');
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
+  const [refCarousel, setRefCarousel] = useState(null);
   const { t } = useTranslation();
 
   const responsive = {
@@ -65,7 +66,7 @@ function News({ data, type }) {
 
   if (type === '1') {
     return (
-      <div className="post_block mb-5 pt-4 mt-5">
+      <div className="post_block mb-5 pt-4 mt-5" id={data.title}>
         <div className="title">
           <h2>{data.title}</h2>
         </div>
@@ -97,12 +98,13 @@ function News({ data, type }) {
   }
   if (type === '3') {
     return (
-      <section className="sec-tb sec-h-4">
+      <section className="sec-tb sec-h-4" id={data.title}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              {t('view.viewall')}<i className="icon-arrow-1"></i>
+              {t('view.viewall')}
+              <i className="icon-arrow-1"></i>
             </a>
           </div>
           {/* 2tabs main */}
@@ -118,7 +120,7 @@ function News({ data, type }) {
                       <div className="divtext">
                         <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                         <h4 className="title line2">{item.title}</h4>
-                        {/* <div className="desc line2">{item.description}</div> */}
+                        <div className="desc line2">{item.shortDescription}</div>
                       </div>
                     </a>
                   </div>
@@ -151,7 +153,7 @@ function News({ data, type }) {
   }
   if (type === '4') {
     return (
-      <section className="sec-tb sec-h-3 ">
+      <section className="sec-tb sec-h-3 " id={data.title}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
@@ -169,6 +171,10 @@ function News({ data, type }) {
                   ssr={true} // means to render carousel on server-side.
                   infinite={true}
                   keyBoardControl={true}
+                  arrows={false}
+                  ref={ref => {
+                    setRefCarousel(ref);
+                  }}
                 >
                   {map(listCategory, (item, index) => (
                     <div className="owl-item" key={index}>
@@ -196,7 +202,83 @@ function News({ data, type }) {
                 </Carousel>
               </div>
             </div>
-            <div className="owl-nav"></div>
+
+            <div className="owl-nav">
+              <div
+                className="owl-prev disabled"
+                onClick={() => {
+                  refCarousel.previous();
+                }}
+              >
+                <i className="icon-arrow-1 ix"></i>
+              </div>
+              <div
+                className="owl-next"
+                onClick={() => {
+                  refCarousel.next();
+                }}
+              >
+                <i className="icon-arrow-1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (type === '5') {
+    return (
+      <section className="sec-b" id={data.title}>
+        <div className="container">
+          <h2 className="">{data.title}</h2>
+          <p>{data.description}</p>
+          <div className="list-5 row list-item">
+            {map(listCategory, (item, index) => {
+              if (index < 3) {
+                return (
+                  <div className="col-md-4" key={index}>
+                    <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
+                      <div className="img tRes_71">
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          src={item.base_image}
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </div>
+                );
+              }
+            })}
+          </div>
+          <div className="list-5 row list-item">
+            {map(listCategory, (item, index) => {
+              if (index >= 3) {
+                return (
+                  <div className="col-md-3" key={index}>
+                    <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
+                      <div className="img tRes_71">
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          src={item.base_image}
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </div>
+                );
+              }
+            })}
           </div>
         </div>
       </section>
