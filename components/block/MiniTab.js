@@ -13,9 +13,9 @@ function MiniTab({ data }) {
   return (
     <div className="container">
       <section className="sec-tb block-minitab">
-        <h2 className="ht">{data[0].title}</h2>
+        <h2 className="ht styleht">{data[0].title}</h2>
         <div className="cttab-v3   ">
-          <div className="tab-menu">
+          <div className="tab-menu style-table-menu">
             {map(data, (value, index) => (
               <div
                 className={classnames({ active: activeTab === String(index) })}
