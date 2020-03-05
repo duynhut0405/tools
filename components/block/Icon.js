@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
-
+import ItemsCarousel from 'react-items-carousel';
 const propTypes = {
   data: Proptypes.array,
   id: Proptypes.id
@@ -10,7 +10,7 @@ const propTypes = {
 function Icon({ data, id }) {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
-  console.log(data);
+
   return (
     <section className="sec-tb sec-h-1 group-ef block-icon" id={id}>
       <div className="container">

@@ -13,12 +13,12 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'bao-cao-tai-chinh';
+  const name = 'tin-tuc';
 
   useEffect(() => {
     getPage(name);
   }, []);
-
+  console.log(list);
   return (
     <Layout>
       <div className="main_content">
