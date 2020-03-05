@@ -7116,7 +7116,7 @@ body.showMenu .menu-btn.x:after {
 }
 
 .list-7 .item:hover .title {
-  color: #9be6c8;
+  color: #020318;
 }
 
 .list-7 .item + .item {
@@ -8190,7 +8190,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
 }
 
 .sec-download-pc .stitle {
-  font-weight: lighter;
+  font-weight: normal;
 }
 
 .sec-download-pc form {
