@@ -19,6 +19,7 @@ function News({ data, type }) {
   const [slugCategory, setSlugCategory] = useState('');
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
+  const [refCarousel, setRefCarousel] = useState(null);
   const { t } = useTranslation();
 
   const responsive = {
@@ -170,6 +171,10 @@ function News({ data, type }) {
                   ssr={true} // means to render carousel on server-side.
                   infinite={true}
                   keyBoardControl={true}
+                  arrows={false}
+                  ref={ref => {
+                    setRefCarousel(ref);
+                  }}
                 >
                   {map(listCategory, (item, index) => (
                     <div className="owl-item" key={index}>
@@ -197,7 +202,25 @@ function News({ data, type }) {
                 </Carousel>
               </div>
             </div>
-            <div className="owl-nav"></div>
+
+            <div className="owl-nav">
+              <div
+                className="owl-prev disabled"
+                onClick={() => {
+                  refCarousel.previous();
+                }}
+              >
+                <i className="icon-arrow-1 ix"></i>
+              </div>
+              <div
+                className="owl-next"
+                onClick={() => {
+                  refCarousel.next();
+                }}
+              >
+                <i className="icon-arrow-1"></i>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -4299,7 +4299,7 @@ body.showMenu .menu-btn.x:before {
 .btn:hover {
   background-color: #9be6c8;
   border: 1px solid #9be6c8;
-  text-transform: none;
+  /* text-transform: none; */
 }
 
 .round.btn {
@@ -7116,7 +7116,7 @@ body.showMenu .menu-btn.x:after {
 }
 
 .list-7 .item:hover .title {
-  color: #9be6c8;
+  color: #020318;
 }
 
 .list-7 .item + .item {
@@ -7226,6 +7226,9 @@ ul.list-download li .down a:hover {
 
 .btn.radius-8 {
   border-radius: 8px;
+}
+.btn.radius-8 {
+  text-transform: none;
 }
 
 .btn-2:not(:hover) {
@@ -8187,7 +8190,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
 }
 
 .sec-download-pc .stitle {
-  font-weight: 300;
+  font-weight: normal;
 }
 
 .sec-download-pc form {
@@ -8214,6 +8217,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   vertical-align: middle;
   height: 45px;
   margin: 0 20px;
+  letter-spacing: 1px;
 }
 
 .sec-download-pc .wapp {

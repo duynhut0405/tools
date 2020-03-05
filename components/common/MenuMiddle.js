@@ -30,7 +30,9 @@ function MenuMiddle({ data }) {
       {data !== null && (
         <div className="sec-tb">
           <div className="text-center common-menumiddle">
-            <h1 className="text-center">{data.title}</h1>
+            <h1 className="text-center" style={{ margin: '15px 0 15px 0' }}>
+              {data.title}
+            </h1>
           </div>
           <div className="menuicon container">
             {data.menuItems !== undefined && data.menuItems.length >= 8 && (
