@@ -236,7 +236,10 @@ function News({ data, type }) {
             {map(listCategory, (item, index) => {
               // if (index < 3) {
               return (
-                <div className={`col-md-${data.column}`} key={index}>
+                <div
+                  className={data.column === undefined ? `col-md-4` : `col-md-${data.column}`}
+                  key={index}
+                >
                   <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
                     <div className="img tRes_71">
                       <img
