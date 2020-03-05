@@ -22,6 +22,7 @@ function MenuIntro({ data }) {
   useEffect(() => {
     getFormByID();
   }, []);
+  console.log(data.listBlock);
   return (
     <div>
       <section className=" sec-menu">
@@ -32,9 +33,7 @@ function MenuIntro({ data }) {
             </li>
             {map(data.listBlock, (values, index) => (
               <li key={index}>
-                <a href={`#${JSON.parse(values.content).title}`}>
-                  {JSON.parse(values.content).title}
-                </a>
+                <a href={`#${values.id}`}>{values.title}</a>
               </li>
             ))}
           </ul>

@@ -3,14 +3,16 @@ import { map } from 'lodash';
 import Proptypes from 'prop-types';
 
 const propTypes = {
-  data: Proptypes.array
+  data: Proptypes.array,
+  id: Proptypes.id
 };
 
-function Icon({ data }) {
+function Icon({ data, id }) {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
+  console.log(data);
   return (
-    <section className="sec-tb sec-h-1 group-ef block-icon">
+    <section className="sec-tb sec-h-1 group-ef block-icon" id={id}>
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht">{data[0].title || ''}</h2>

@@ -4,10 +4,11 @@ import Question from './Item';
 import Proptypes from 'prop-types';
 
 const propTypes = {
-  data: Proptypes.array
+  data: Proptypes.array,
+  id: Proptypes.number
 };
 
-function Questions({ data }) {
+function Questions({ data, id }) {
   const [page, setPage] = useState(4);
   const [active, setActive] = useState(false);
   const list = slice(data, 0, page);
@@ -26,7 +27,7 @@ function Questions({ data }) {
     }
   };
   return (
-    <section className="sec-b sec-cauhoi">
+    <section className="sec-b sec-cauhoi" id={id}>
       <div className="container">
         <div className="entry-head text-center block-question-index">
           <h2 className="ht ">{data[0].title || ''}</h2>
