@@ -18,7 +18,16 @@ function DowloadVideos() {
 
   return (
     <div>
-      <DowloadVideo />
+      {map(listRegulation, item => {
+        if (item.investors.length > 0) {
+          return (
+            <div className="sec-tb" key={item.year}>
+              <DowloadVideo data={item.investors} year={item.year} isChecked />
+            </div>
+          );
+        }
+        return null;
+      })}
     </div>
   );
 }
