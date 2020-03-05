@@ -457,7 +457,18 @@ function News({ data, type, id }) {
                               </div>
                             </React.Fragment>
                           ) : (
-                            <iframe src={item.author_name}></iframe>
+                            <React.Fragment>
+                              <div className="img tRes_56 video cl">
+                                <iframe src={item.author_name}></iframe>
+                              </div>
+                              <div className="divtext">
+                                <div className="date">
+                                  {moment(item.created_at).format('DD-MM-YYYY')}
+                                </div>
+                                <h4 className="title line2">{item.title}</h4>
+                                <div className="desc line3">{item.shortDescription}</div>
+                              </div>
+                            </React.Fragment>
                           )}
                         </a>
                       </React.Fragment>
