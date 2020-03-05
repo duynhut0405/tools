@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="27px" viewBox="0 0 32 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>04-giadinh</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="31.671" height="31.671"></rect>
+    </defs>
+    <g id="02.-Header---Footer---Banner" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="#-Footer" transform="translate(-247.000000, -2054.000000)">
+            <g id="#-FOOTER-Mb-2" transform="translate(0.000000, 955.000000)">
+                <g id="#-Bottom-bar" transform="translate(0.000000, 1085.000000)">
+                    <g id="Group-14-Copy-3" transform="translate(225.000000, 6.000000)">
+                        <g id="Group-4" transform="translate(14.000000, 5.000000)">
+                            <g id="04-giadinh" transform="translate(8.000000, 0.000000)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="Rectangle"></g>
+                                <g id="Group-16" mask="url(#mask-2)" stroke-linecap="round" stroke-linejoin="round">
+                                    <g transform="translate(1.377000, 4.131000)">
+                                        <g id="people" transform="translate(0.000000, 8.074227)">
+                                            <path d="M0,16.1484545 C0,13.1206193 4.03711364,13.1206193 6.05567045,11.1020625 C7.06494886,10.0927841 4.03711364,10.0927841 4.03711364,5.04639205 C4.03711364,1.68246711 5.38248176,0 8.07422727,0 C10.7659728,0 12.1113409,1.68246711 12.1113409,5.04639205 C12.1113409,10.0927841 9.08350568,10.0927841 10.0927841,11.1020625 C12.1113409,13.1206193 16.1484545,13.1206193 16.1484545,16.1484545 M15.8682942,13.0892219 C16.5307088,12.849145 17.0736078,12.6271487 17.4969911,12.4232328 C18.2380323,12.0663221 18.9529801,11.6617983 19.5127159,11.1020625 C20.5219943,10.0927841 17.4941591,10.0927841 17.4941591,5.04639205 C17.4941591,1.68246711 18.8395272,0 21.5312727,0 C24.2230182,0 25.5683864,1.68246711 25.5683864,5.04639205 C25.5683864,10.0927841 22.5405511,10.0927841 23.5498295,11.1020625 C25.5683864,13.1206193 29.6055,13.1206193 29.6055,16.1484545" id="Shape" stroke="#FFFFFF" stroke-width="1.377"></path>
+                                            <path d="M14.80275,13.4570455 C15.2956467,13.2906453 15.6508281,13.1680374 15.8682942,13.0892219" id="Path" stroke="#FFFFFF" stroke-width="1.377"></path>
+                                        </g>
+                                        <g id="home-alt2" transform="translate(2.018557, 0.000000)">
+                                            <polyline id="Shape" stroke="#FFFFFF" stroke-width="1.17045" points="25.164675 7.43501761 12.5823375 0 0 7.43501761"></polyline>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
