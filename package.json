@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "server": "cd out && serve -p 3000",
     "build": "next build && next export",
     "start": "next start",
     "postinstall": "next build"

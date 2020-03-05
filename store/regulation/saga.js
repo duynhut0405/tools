@@ -3,8 +3,25 @@ import { takeLatest, put, all, fork } from 'redux-saga/effects';
 import {
   fillRegulationServices,
   getTypeRegulationServices,
-  getUrlVideoService
+  getUrlVideoService,
+  getRegulationPagation
 } from '../../services/regulation';
+
+function* getRegulationSaga() {
+  yield takeLatest(actions.GET_REGULATION_PAGINATION_REQUEST, function*(params) {
+    const { types, year, page } = params;
+    try {
+      const res = yield getRegulationPagation(types, year, page);
+      if (res.status === 200) {
+        yield put({ type: actions.GET_REGULATION_PAGINATION_RESPONSE, data: res.data });
+      } else {
+        // console.log(res);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+}
 
 function* searchRegulationSaga() {
   yield takeLatest(actions.SEARCH_REGULATION_REQUEST, function*(params) {
@@ -53,5 +70,10 @@ function* getUrlVideoSaga() {
   });
 }
 export default function* rootSaga() {
-  yield all([fork(searchRegulationSaga), fork(getTypeRegulationSaga), fork(getUrlVideoSaga)]);
+  yield all([
+    fork(searchRegulationSaga),
+    fork(getTypeRegulationSaga),
+    fork(getUrlVideoSaga),
+    fork(getRegulationSaga)
+  ]);
 }
