@@ -353,7 +353,7 @@ function News({ data, type, id }) {
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
-                <a href="#" className={`item efch-${index} ef-img-l`}>
+                <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l`}>
                   <div className="img tRes_71">
                     <img className=" loaded loaded" data-lazy-type="image" src={item.base_image} />
                   </div>
@@ -379,7 +379,7 @@ function News({ data, type, id }) {
           <div className="list-5 list-5-1 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
-                <a href="#" className={`item efch-${index} ef-img-l equal`}>
+                <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l equal`}>
                   <div className="divtext">
                     <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                     <h4 className="title line2">{item.title}</h4>
@@ -407,7 +407,7 @@ function News({ data, type, id }) {
                 if (index === 0) {
                   return (
                     <React.Fragment>
-                      <a href="#" className="item  tRes_56 video">
+                      <a href={`/news/${item.url}`} className="item  tRes_56 video">
                         {item.author_name === '' || item.author_name === null ? (
                           <div>
                             <img
@@ -438,7 +438,7 @@ function News({ data, type, id }) {
                   if (index > 0 && index < 3) {
                     return (
                       <React.Fragment>
-                        <a href="#" className="item item-inline-table">
+                        <a href={`/news/${item.url}`} className="item item-inline-table">
                           {item.author_name === null ? (
                             <React.Fragment>
                               <div className="img tRes_56 video cl">

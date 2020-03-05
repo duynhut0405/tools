@@ -3,7 +3,6 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import { connect } from 'react-redux';
 
 const propTypes = {
   data: Proptypes.array.isRequired,
@@ -22,7 +21,6 @@ function MenuIntro({ data }) {
   useEffect(() => {
     getFormByID();
   }, []);
-  console.log(data.listBlock);
   return (
     <div>
       <section className=" sec-menu">
