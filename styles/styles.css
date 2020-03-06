@@ -4213,6 +4213,7 @@ body.showMenu .menu-btn.x:before {
   font-weight: 600;
   color: #333333;
   margin: 0;
+  border-bottom: 1px solid #979797;
 }
 
 .accodion-2 .accodion-tab > [class*='-title'] .triangle {
@@ -4236,7 +4237,7 @@ body.showMenu .menu-btn.x:before {
 }
 
 .accodion-2 .accodion-tab input:checked ~ [class*='-content'] {
-  border-top: 1px solid #979797;
+  /* border-top: 1px solid #979797; */
 }
 
 [class*='cttab'] > .tab-content {
