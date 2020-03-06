@@ -31,62 +31,89 @@ function Icon({ data, id }) {
     <React.Fragment>
       {data[0].type === '1' && (
         <React.Fragment>
-          <section className="sec-tb sec-h-1 group-ef block-icon" id={id}>
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht">{data[0].title || ''}</h2>
-              </div>
-              <div className="sec-b">
-                <div className="menuicon  owl-carousel   s-nav nav-2 owl-loaded owl-drag">
-                  <div className="owl-stage-outer">
-                    <div className="owl-stage">
-                      <Carousel
-                        responsive={responsive}
-                        draggable
-                        minimumTouchDrag={80}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        keyBoardControl={true}
-                        arrows={false}
-                        ref={ref => {
-                          setRefCarousel(ref);
+          {data.length > 8 && (
+            <section className="sec-tb sec-h-1 group-ef block-icon" id={id}>
+              <div className="container">
+                <div className="entry-head text-center">
+                  <h2 className="ht">{data[0].title || ''}</h2>
+                </div>
+                <div className="sec-b">
+                  <div className="menuicon  owl-carousel   s-nav nav-2 owl-loaded owl-drag">
+                    <div className="owl-stage-outer">
+                      <div className="owl-stage">
+                        <Carousel
+                          responsive={responsive}
+                          draggable
+                          minimumTouchDrag={80}
+                          ssr={true} // means to render carousel on server-side.
+                          infinite={true}
+                          keyBoardControl={true}
+                          arrows={false}
+                          ref={ref => {
+                            setRefCarousel(ref);
+                          }}
+                        >
+                          {map(data, (items, index) => (
+                            <div className="item ef-img-t item_carousel" key={index}>
+                              <a href={items.url} className="link">
+                                <div className="img">
+                                  <img src={items.image} />
+                                </div>
+                                <div className="title">{items.note_1}</div>
+                              </a>
+                            </div>
+                          ))}
+                        </Carousel>
+                      </div>
+                    </div>
+                    <div className="owl-nav">
+                      <div
+                        className="owl-prev disabled"
+                        onClick={() => {
+                          refCarousel.previous();
                         }}
                       >
-                        {map(data, (items, index) => (
-                          <div className="item ef-img-t item_carousel" key={index}>
-                            <a href={items.url} className="link">
-                              <div className="img">
-                                <img src={items.image} />
-                              </div>
-                              <div className="title">{items.note_1}</div>
-                            </a>
-                          </div>
-                        ))}
-                      </Carousel>
-                    </div>
-                  </div>
-                  <div className="owl-nav">
-                    <div
-                      className="owl-prev disabled"
-                      onClick={() => {
-                        refCarousel.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="owl-next"
-                      onClick={() => {
-                        refCarousel.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
+                        <i className="icon-arrow-1 ix"></i>
+                      </div>
+                      <div
+                        className="owl-next"
+                        onClick={() => {
+                          refCarousel.next();
+                        }}
+                      >
+                        <i className="icon-arrow-1"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
+          {data.length <= 8 && (
+            <section className="sec-tb sec-h-1 group-ef loaded">
+              <div className="container">
+                <div className="entry-head text-center">
+                  <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
+                </div>
+                <div className="menuicon">
+                  {map(data, (items, index) => (
+                    <div className={`item  efch-${index + 3} ef-img-t`} key={index}>
+                      <a href="#" className="link">
+                        <div className="img">
+                          <img
+                            className=" loaded loaded"
+                            data-lazy-type="image"
+                            src={items.image}
+                          />
+                        </div>
+                        <div className="title">{items.note_1}</div>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
         </React.Fragment>
       )}
       {data[0].type === '2' && (
