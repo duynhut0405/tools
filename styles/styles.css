@@ -6764,6 +6764,15 @@ body.showMenu .menu-btn.x:after {
 .sec-tigia .divquidoi .input-group .input-group-addon {
   padding: 0;
 }
+.sec-tigia .divquidoi .input-group .arrow{
+  position: relative;
+}
+.sec-tigia .divquidoi .input-group .icon-arrow-3 {
+  position: absolute;
+  left: 55px;
+  bottom: 12px;
+  transform: rotate(90deg);
+}
 
 .sec-tigia .divquidoi .input-group select {
   border-color: #d6d6d6;

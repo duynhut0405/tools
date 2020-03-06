@@ -25,8 +25,9 @@ function FormRate({ data }) {
                 <h2>Quy đổi ngoại tệ</h2>
                 <div>Chuyển từ</div>
                 <div className="input-group">
-                  <span className="input-group-addon none">
+                  <span className="input-group-addon none arrow">
                     <RateSelect data={data.exchangeRateDetail} />
+                    <i className="icon-arrow-3"></i>
                   </span>
                   <input className="input" placeholder="Số tiền" />
                 </div>
@@ -34,6 +35,7 @@ function FormRate({ data }) {
                 <div className="input-group">
                   <span className="input-group-addon none">
                     <RateSelect data={data.exchangeRateDetail} />
+                    <i className="icon-arrow-3"></i>
                   </span>
                   <input className="input" placeholder="Số tiền" />
                 </div>
