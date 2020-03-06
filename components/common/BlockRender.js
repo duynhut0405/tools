@@ -12,7 +12,8 @@ import {
   News,
   Form,
   TagProduct,
-  MenuIntro
+  MenuIntro,
+  Download
 } from '../block';
 
 import { map } from 'lodash';
@@ -64,6 +65,16 @@ function BlockRender({ data }) {
               if (values.name === 'Table') {
                 return (
                   <Repeat
+                    data={JSON.parse(values.content)}
+                    type={JSON.parse(values.content).type}
+                    key={index}
+                    id={values.id}
+                  />
+                );
+              }
+              if (values.name === 'Download') {
+                return (
+                  <Download
                     data={JSON.parse(values.content)}
                     type={JSON.parse(values.content).type}
                     key={index}
