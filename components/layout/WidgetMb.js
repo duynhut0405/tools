@@ -18,7 +18,7 @@ function Widget({ data, socialLink }) {
       </div>
       {ReactHtmlParser(data.footer_brief)}
       <div className="call">
-        <a href={`tel:${data.footer_address}`}>
+        <a href={`tel:${data.footer_address}`} className="phone">
           <i className="icon-phone-1"></i> {data.footer_address}
         </a>
         <Social data={socialLink} />

@@ -8,6 +8,8 @@ import Giadinh from '../../public/images/svg/giadinh.svg';
 import MB from '../../public/images/svg/MB.svg';
 import Tienich from '../../public/images/svg/tienich.svg';
 import Home from '../../public/images/svg/home.svg';
+import ChplayMB from '../../public/images/svg/btt-chplay-mb.svg';
+import GoogleMB from '../../public/images/svg/btt-google-mb.svg';
 import Widget from './Widget';
 import WidgetMB from './WidgetMb';
 import { Social } from '../common';
@@ -416,43 +418,34 @@ function Layout({
                   </div>
                 </div>
               </div>
-              <section className="sec-download-mb group-ef loaded">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-6   efch-2 ef-img-r">
-                      <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
-                      <form role="search" method="get" className="searchform " action="">
-                        <div>
-                          <input
-                            type="text"
-                            placeholder="Nhập email để nhận thông tin"
-                            name="s"
-                            className="input"
-                          />
-                        </div>
-                        <button type="submit" className="btn btn-2">
-                          Đăng ký
-                        </button>
-                      </form>
+              <section className="sec-download-mb">
+                <div className="wform">
+                  <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                  <form role="search" method="get" className="searchform " action="">
+                    <div className="aaa">
+                      <input
+                        type="text"
+                        placeholder="Nhập email để nhận thông tin"
+                        value=""
+                        name="s"
+                        className="input"
+                      />
                     </div>
-                    <div className="col-md-6   efch-3 ef-img-r">
-                      <div className="wapp">
-                        <span className="code">
-                          <img src="/static/images/code.png" alt="" />
-                        </span>
-                        <div className="app">
-                          <p className="stitle">Hãy tải app ngay hôm nay</p>
-                          <a href="https://bit.ly/2v5ZsyP">
-                            <img src="/static/images/btt-google.svg" alt="" />
-                          </a>{' '}
-                          &nbsp;
-                          <a href="https://apple.co/2AqB7ZM">
-                            <img src="/static/images/btt-chplay.svg" alt="" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+                    <button type="submit" className="btn btn-2">
+                      Đăng ký
+                    </button>
+                  </form>
+                </div>
+                <div className="wdownload">
+                  <span className="stitle">Tải app ngay</span>&nbsp;
+                  <a href="#">
+                    <img src={ChplayMB} alt="" />
+                  </a>{' '}
+                  &nbsp;
+                  <a href="#">
+                    <img src={GoogleMB} alt="" />
+                  </a>
                 </div>
               </section>
               <div id="footer-mb" className="group-ef loaded">
