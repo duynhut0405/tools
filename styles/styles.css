@@ -6789,25 +6789,24 @@ body.showMenu .menu-btn.x:after {
 }
 
 .menuicon {
-  text-align: center; 
+  text-align: center;
   position: relative;
   /* left: 13%; */
 }
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 1024px) {
   .menuicon {
     /* display: none; */
     position: static;
     left: none;
   }
 }
-@media only screen and (max-width: 425px){
+@media only screen and (max-width: 425px) {
   .menuicon {
     display: block;
     position: static;
     left: none;
   }
 }
-
 
 .menuicon .item {
   display: inline-block;
@@ -8544,6 +8543,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
     padding: 30px 0;
   }
 }
-.list-menu-middle, .mauto {
+.list-menu-middle,
+.mauto {
   margin: 0 auto;
 }
