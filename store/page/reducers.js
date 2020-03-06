@@ -4,7 +4,7 @@ const initialState = {
   homedata: {},
   silder: [],
   menuMiddle: {},
-  listPages: []
+  router: ''
 };
 
 const pageReducer = (state = initialState, action) => {
@@ -14,7 +14,8 @@ const pageReducer = (state = initialState, action) => {
         ...state,
         homedata: action.data,
         silder: action.silder,
-        menuMiddle: action.data.menuMiddle
+        menuMiddle: action.data.menuMiddle,
+        router: action.router
       };
     case Actions.GET_PAGES_BY_ID_RESPONSE:
       return {
