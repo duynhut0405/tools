@@ -104,7 +104,7 @@ function News({ data, type, id }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              {t('view.viewall')}
+              {t('view')}
               <i className="icon-arrow-1"></i>
             </a>
           </div>
@@ -159,7 +159,7 @@ function News({ data, type, id }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              {t('view.viewall')} <i className="icon-arrow-1"></i>
+              {t('view')} <i className="icon-arrow-1"></i>
             </a>
           </div>
           <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">

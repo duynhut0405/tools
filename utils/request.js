@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { getLang } from './localStorage';
 
 const request = axios.create({
-  baseURL: 'https://sapotacorp.com:8443/vi/api',
+  baseURL: `https://sapotacorp.com:8443/vi/api`,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -13,6 +14,8 @@ const request = axios.create({
 // before send request
 request.interceptors.request.use(
   config => {
+    // const lang = getLang();
+    config.baseURL = `https://sapotacorp.com:8443/${getLang()}/api`;
     return config;
   },
   error => {

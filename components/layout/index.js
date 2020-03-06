@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../../public/images/logo.svg';
 import PinIcon from '../../public/images/svg/pin.svg';
 import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
@@ -13,7 +12,6 @@ import GoogleMB from '../../public/images/svg/btt-google-mb.svg';
 import Widget from './Widget';
 import WidgetMB from './WidgetMb';
 import { Social } from '../common';
-import Link from 'next/link';
 import ModalDrawer from './ModalDrawer';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { map } from 'lodash';
@@ -23,6 +21,9 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 import '../../styles/custom.css';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
+import { setLang, getFlag } from '../../utils/localStorage';
+
 const propTypes = {
   settingFooter: PropTypes.object,
   socialLink: PropTypes.object,
@@ -41,14 +42,6 @@ const propTypes = {
   getMenuFooterMain: PropTypes.func,
   getMenuFooterBottom: PropTypes.func
 };
-const useStyles = makeStyles({
-  list: {
-    width: 250
-  },
-  fullList: {
-    width: 'auto'
-  }
-});
 
 function Layout({
   title,
@@ -69,6 +62,7 @@ function Layout({
   getMenuFooterBottom
 }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
+  const [flag, setFlag] = useState('vn');
 
   useEffect(() => {
     getMenuHeader();
@@ -79,6 +73,12 @@ function Layout({
     getSettingFooter();
     getSocialLink();
   }, []);
+
+  useEffect(() => {
+    setFlag(getFlag());
+  }, [getFlag]);
+
+  const { i18n } = useTranslation();
 
   const nestChild = items => {
     return map(items, item => (
@@ -100,7 +100,7 @@ function Layout({
     return map(data, (item, index) => {
       if (item.children.length > 0) {
         return (
-          <div className="widget" style={{ marginTop: 20 }}>
+          <div className="widget" style={{ marginTop: 20 }} key={index}>
             <h4 className="widget-title">{item.name}</h4>
             <ul className="menu">{footerItem(item.children)}</ul>
           </div>
@@ -108,13 +108,9 @@ function Layout({
       }
       return (
         <li key={index}>
-          <Link
-            className={item.children.length > 0 ? 'title' : ''}
-            href="/page/[...slug]"
-            as={`/page/${item.slugPages}`}
-          >
+          <a className={item.children.length > 0 ? 'title' : ''} href={`/page/${item.slugPages}`}>
             {item.name}
-          </Link>
+          </a>
         </li>
       );
     });
@@ -147,13 +143,19 @@ function Layout({
     });
   };
 
+  const changeLang = (lang, flags) => {
+    i18n.changeLanguage(lang);
+    setFlag(flags);
+    setLang(lang, flags);
+  };
+
   return (
     <body className={classnames({ showMenu: activeDrawer })}>
       <div>
         <StickyContainer>
           <div>
             <Head>
-              <title>{title}</title>
+              <title>{title || ''}</title>
               <link
                 rel="icon"
                 href="https://www.mbbank.com.vn/images/icons/favicon.ico"
@@ -219,7 +221,7 @@ function Layout({
                           (values, key) => {
                             if (key >= 2) {
                               return (
-                                <li>
+                                <li key={key}>
                                   <a href={`/page/${values.slugPages}`}>{values.name}</a>
                                 </li>
                               );
@@ -230,21 +232,24 @@ function Layout({
                           <div className="dropdown language">
                             <div className="title">
                               <span>
-                                <img src="/static/flags/vn.png" alt="" />
+                                <img src={`/static/flags/${flag}.png`} alt="" />
                               </span>
                               <i className="icon-arrow-2 ib"></i>
                             </div>
                             <div className="content">
                               <div className="inner">
                                 <ul className="menu">
-                                  <li className="lang-en">
-                                    <a href="#" hrefLang="en" title="English (en)">
+                                  <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
+                                    <a onClick={() => changeLang('en', 'gb')} title="English (en)">
                                       <img src="/static/flags/gb.png" alt="" /> <span>English</span>
                                     </a>
                                   </li>
-                                  <li className="lang-vi active">
-                                    <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
-                                      <img src="/static/images/flags/vn.png" alt="" />{' '}
+                                  <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
+                                    <a
+                                      onClick={() => changeLang('vi', 'vn')}
+                                      title="Tiếng Việt (vi)"
+                                    >
+                                      <img src="/static/images/flags/vn.png" alt="" />
                                       <span>Tiếng Việt</span>
                                     </a>
                                   </li>
@@ -286,21 +291,27 @@ function Layout({
                             <div className="dropdown language">
                               <div className="title">
                                 <span>
-                                  <img src="/static/images/flags/vn.png" alt="" />
+                                  <img src={`/static/flags/${flag}.png`} alt="" />
                                 </span>
                                 <i className="icon-arrow-2 ib"></i>
                               </div>
                               <div className="content">
                                 <div className="inner">
                                   <ul className="menu">
-                                    <li className="lang-en">
-                                      <a href="#" hrefLang="en" title="English (en)">
+                                    <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
+                                      <a
+                                        title="English (en)"
+                                        onClick={() => changeLang('en', 'gb')}
+                                      >
                                         <img src="/static/images/flags/gb.png" alt="" />
                                         <span>English</span>
                                       </a>
                                     </li>
-                                    <li className="lang-vi active">
-                                      <a href="#" hrefLang="vi" title="Tiếng Việt (vi)">
+                                    <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
+                                      <a
+                                        title="Tiếng Việt (vi)"
+                                        onClick={() => changeLang('vi', 'vn')}
+                                      >
                                         <img src="/static/images/flags/vn.png" alt="" />
                                         <span>Tiếng Việt</span>
                                       </a>
@@ -426,7 +437,6 @@ function Layout({
                       <input
                         type="text"
                         placeholder="Nhập email để nhận thông tin"
-                        value=""
                         name="s"
                         className="input"
                       />

@@ -23,6 +23,7 @@ function MiniTab({ data, id }) {
                 onClick={() => {
                   setActiveTab(String(index));
                 }}
+                key={index}
               >
                 <span>{value.tabtitle}</span>
               </div>
@@ -30,7 +31,7 @@ function MiniTab({ data, id }) {
           </div>
           <div className="tab-content">
             {map(data, (value, index) => (
-              <div className={classnames({ active: activeTab === String(index) })}>
+              <div className={classnames({ active: activeTab === String(index) })} key={index}>
                 <div className="tab-inner">
                   <div className="list-7  list-item row">
                     <MiniTabItem data={value} />

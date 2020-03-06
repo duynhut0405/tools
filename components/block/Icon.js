@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
-import ItemsCarousel from 'react-items-carousel';
 import Carousel from 'react-multi-carousel';
 
 const propTypes = {
   data: Proptypes.array,
-  id: Proptypes.id
+  id: Proptypes.number
 };
 
 function Icon({ data, id }) {

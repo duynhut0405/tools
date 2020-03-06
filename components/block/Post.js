@@ -77,7 +77,7 @@ function Post({ data, type }) {
             <div className="col-lg-8 ">
               <div className="list-5 row ">
                 {map(listNews, item => (
-                  <div className="col-md-6">
+                  <div className="col-md-6" key={item.newsId}>
                     <a href="#" className="item efch-<?php echo $i+1; ?> ef-img-l equal">
                       <div className="img tRes_71">
                         <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
@@ -95,7 +95,7 @@ function Post({ data, type }) {
             {/* 3tabs */}
             <div className="col-lg-4">
               {map(listNewsTabs, item => (
-                <div className="list-6">
+                <div className="list-6" key={item.newsId}>
                   <a href="#" className="item item-inline-table">
                     <div className="img">
                       <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
@@ -130,7 +130,11 @@ function Post({ data, type }) {
             paramowl="margin=0"
           >
             {map(listNews, item => (
-              <a href="#" className="item efch-<?php echo $i+1; ?> ef-img-l equal">
+              <a
+                href="#"
+                className="item efch-<?php echo $i+1; ?> ef-img-l equal"
+                key={item.newsId}
+              >
                 <div className="img tRes_71">
                   <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
                 </div>
