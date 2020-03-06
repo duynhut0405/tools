@@ -198,3 +198,10 @@ a:hover {
   max-height: 300px;
   overflow: auto;
 }
+
+.menu_item {
+  text-align: center;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
