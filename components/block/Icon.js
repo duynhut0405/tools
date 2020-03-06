@@ -5,7 +5,7 @@ import Carousel from 'react-multi-carousel';
 
 const propTypes = {
   data: Proptypes.array,
-  id: Proptypes.id
+  id: Proptypes.number
 };
 
 function Icon({ data, id }) {

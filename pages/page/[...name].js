@@ -27,10 +27,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
     <Layout title={list.meta_title}>
       <div className="main_content">
         <Carousel silder={silder} />
-        <MenuMiddle
-          data={menuMiddle}
-          query={name[0] === undefined || name[0] === null ? '' : name[0]}
-        />
+        <MenuMiddle data={menuMiddle} query={name === undefined || name === null ? '' : name[0]} />
         {list.name === 'Nhà đầu tư' && <Investors />}
         {list.name === 'Thông báo' && <Investors />}
         {list.name === 'Báo cáo tài chính' && <ListDowloadFIle type={1} />}
