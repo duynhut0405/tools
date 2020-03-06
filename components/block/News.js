@@ -5,7 +5,6 @@ import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
 import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../i18n';
 import Carousel from 'react-multi-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -47,8 +46,8 @@ function News({ data, type, id }) {
   };
 
   const getCategoryPage = async () => {
-    const idItems = map(data.news, item => item.newsId);
-    const res = await getNewByIdService(idItems);
+    const id = map(data.news, item => item.newsId);
+    const res = await getNewByIdService(id);
     if (res && res.status === 200) {
       setListCategory(res.data);
     }
@@ -105,7 +104,7 @@ function News({ data, type, id }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              {t('view')}
+              {t('view.viewall')}
               <i className="icon-arrow-1"></i>
             </a>
           </div>
@@ -160,7 +159,7 @@ function News({ data, type, id }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              {t('view')} <i className="icon-arrow-1"></i>
+              {t('view.viewall')} <i className="icon-arrow-1"></i>
             </a>
           </div>
           <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
@@ -204,7 +203,6 @@ function News({ data, type, id }) {
                 </Carousel>
               </div>
             </div>
-
             <div className="owl-nav">
               <div
                 className="owl-prev disabled"
@@ -317,7 +315,6 @@ function News({ data, type, id }) {
                       </a>
                     );
                   }
-                  return null;
                 })}
               </div>
               <div className="list-5 row list-item">
@@ -340,7 +337,6 @@ function News({ data, type, id }) {
                       </div>
                     );
                   }
-                  return null;
                 })}
               </div>
             </div>
@@ -433,7 +429,6 @@ function News({ data, type, id }) {
                     </React.Fragment>
                   );
                 }
-                return null;
               })}
             </div>
             <div className="col-lg-6">
@@ -478,7 +473,6 @@ function News({ data, type, id }) {
                       </React.Fragment>
                     );
                   }
-                  return null;
                 })}
               </div>
             </div>
@@ -490,8 +484,4 @@ function News({ data, type, id }) {
 }
 News.propTypes = propTypes;
 
-News.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'news']
-});
-
-export default withTranslation('common')(News);
+export default News;

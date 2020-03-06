@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'tin-tuc';
+  const name = 'product-demo';
 
   useEffect(() => {
     getPage(name);
