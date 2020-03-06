@@ -8,20 +8,17 @@ import { connect } from 'react-redux';
 
 const propTypes = {
   listRegulation: Proptypes.array.isRequired,
-  typeRegulation: Proptypes.array.isRequired,
-  seachRegulation: Proptypes.func.isRequired,
-  getTypeRegulation: Proptypes.func.isRequired,
-  searByYear: Proptypes.func
+  seachRegulation: Proptypes.func.isRequired
 };
 
 function DowloadVideos({ listRegulation, seachRegulation }) {
   const date = new Date();
-  const [datatype] = useState(1);
-  const [page] = useState(0);
+  const [datatype] = useState(2);
+  const [page] = useState(1);
   const [year] = useState(moment(date).format('YYYY'));
 
   useEffect(() => {
-    seachRegulation(datatype, page, year);
+    seachRegulation(datatype, 0, 10, page, year);
   }, [seachRegulation]);
 
   return (
@@ -50,16 +47,12 @@ function DowloadVideos({ listRegulation, seachRegulation }) {
 
 const mapStateToProp = state => {
   return {
-    listRegulation: state.regulationReducer.listDataByYear,
-    typeRegulation: state.regulationReducer.type,
-    urlVideo: state.regulationReducer.urlVideo
+    listRegulation: state.regulationReducer.listDataByYear
   };
 };
 
 const mapDispatchToProps = {
-  seachRegulation: RegulationActions.getRegulationByYear,
-  getTypeRegulation: RegulationActions.getTypeRegulationAction,
-  getUrlVideo: RegulationActions.getUrlVideo
+  seachRegulation: RegulationActions.getRegulationByYear
 };
 
 DowloadVideos.propTypes = propTypes;

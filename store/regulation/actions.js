@@ -35,11 +35,21 @@ const Actions = {
   GET_REGULATION_BY_YEAR_REQUEST: 'GET_REGULATION_BY_YEAR_REQUEST',
   GET_REGULATION_BY_YEAR_RESPONSE: 'GET_REGULATION_BY_YEAR_RESPONSE',
 
-  getRegulationByYear: (types, page, year) => ({
+  getRegulationByYear: (types, detailTypeId, number, page, year) => ({
     type: Actions.GET_REGULATION_BY_YEAR_REQUEST,
     types,
+    detailTypeId,
+    number,
     page,
     year
+  }),
+
+  GET_TYPE_REGULATION_BY_ID_REQUEST: 'GET_TYPE_REGULATION_BY_ID_REQUEST',
+  GET_TYPE_REGULATION_BY_ID_RESPONSE: 'GET_TYPE_REGULATION_BY_ID_RESPONSE',
+
+  getTypeRegulationByIDAction: id => ({
+    type: Actions.GET_TYPE_REGULATION_BY_ID_REQUEST,
+    id
   })
 };
 

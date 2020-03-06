@@ -194,3 +194,7 @@ a:hover {
   float: right;
   font-size: 18px;
 }
+.sec-dt-2 .list-download {
+  max-height: 300px;
+  overflow: auto;
+}
