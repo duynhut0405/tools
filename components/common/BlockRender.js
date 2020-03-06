@@ -31,13 +31,13 @@ function BlockRender({ data }) {
             data.sort((a, b) => a.position - b.position),
             (values, index) => {
               if (values.name === 'Block Icon') {
-                return <Icon data={JSON.parse(values.content)} key={index} />;
+                return <Icon id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Block Images') {
-                return <Images data={JSON.parse(values.content)} key={index} />;
+                return <Images id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Single Post') {
-                return <SingerPost data={JSON.parse(values.content)} key={index} />;
+                return <SingerPost id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Block News') {
                 return (
@@ -45,6 +45,7 @@ function BlockRender({ data }) {
                     type={JSON.parse(values.content).type}
                     data={JSON.parse(values.content)}
                     key={index}
+                    id={values.id}
                   />
                 );
               }
@@ -52,13 +53,13 @@ function BlockRender({ data }) {
               //   return <Post data={JSON.parse(values.content)} key={index} />;
               // }
               if (values.name === 'Pages') {
-                return <Pages data={JSON.parse(values.content)} key={index} />;
+                return <Pages id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Form đăng kí') {
-                return <Form data={JSON.parse(values.content)} key={index} />;
+                return <Form id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Category-mini-wtithtab') {
-                return <MiniTab data={JSON.parse(values.content)} key={index} />;
+                return <MiniTab id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Table') {
                 return (
@@ -66,14 +67,15 @@ function BlockRender({ data }) {
                     data={JSON.parse(values.content)}
                     type={JSON.parse(values.content).type}
                     key={index}
+                    id={values.id}
                   />
                 );
               }
               if (values.name === 'Product') {
-                return <Product data={JSON.parse(values.content)} key={index} />;
+                return <Product data={JSON.parse(values.content)} id={values.id} key={index} />;
               }
               if (values.name === 'Question') {
-                return <Question data={JSON.parse(values.content)} key={index} />;
+                return <Question data={JSON.parse(values.content)} id={values.id} key={index} />;
               }
               if (values.name === 'Category') {
                 return (
@@ -81,14 +83,15 @@ function BlockRender({ data }) {
                     type={JSON.parse(values.content).type}
                     data={JSON.parse(values.content)}
                     key={index}
+                    id={values.id}
                   />
                 );
               }
               if (values.name === 'Sản phẩm nổi bật') {
-                return <TagProduct data={JSON.parse(values.content)} key={index} />;
+                return <TagProduct data={JSON.parse(values.content)} key={index} id={values.id} />;
               }
               if (values.name === 'MenuIntro') {
-                return <MenuIntro data={JSON.parse(values.content)} key={index} />;
+                return <MenuIntro data={JSON.parse(values.content)} key={index} id={values.id} />;
               }
               return null;
             }

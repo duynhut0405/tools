@@ -5,10 +5,11 @@ import { getPagesByIdService } from '../../services/page';
 import { useTranslation } from 'react-i18next';
 const propTypes = {
   data: Proptypes.object.isRequired,
-  type: Proptypes.func
+  type: Proptypes.func,
+  id: Proptypes.number
 };
 
-function Pages({ data, type }) {
+function Pages({ data, type, id }) {
   const [page] = useState(3);
   const [listPage, setListPage] = useState([]);
   const getPageBlock = async () => {
@@ -26,7 +27,7 @@ function Pages({ data, type }) {
   const listNews = slice(listPage, 0, page);
   if (type && type === '1') {
     return (
-      <div className="container sec-tb block-page" id={data.title}>
+      <div className="container sec-tb block-page" id={id}>
         <div className="entry-head text-center">{/* <h2 className="ht">{data.title}</h2> */}</div>
         <div className="list-5 row list-item">
           {map(listNews, item => (
@@ -60,7 +61,7 @@ function Pages({ data, type }) {
   }
   if (type && type === '2') {
     return (
-      <div className="container" id={data.title}>
+      <div className="container" id={id}>
         <section className="sec-tb  block-page block-type-2">
           <h2 className="ht styleht">{data.title}</h2>
           <div className="list-7  list-item row">
@@ -96,7 +97,7 @@ function Pages({ data, type }) {
   }
   if (type && type === '3') {
     return (
-      <section className="sec-tb" id={data.title}>
+      <section className="sec-tb" id={id}>
         <div className="container">
           <h2 className="ht text-center">{data.title}</h2>
           <div className="list-7  list-item row">
@@ -132,7 +133,7 @@ function Pages({ data, type }) {
   }
   if (type && type === '4') {
     return (
-      <section className="sec-tb bg-gray" id={data.title}>
+      <section className="sec-tb bg-gray" id={id}>
         <div className="container">
           <div className="max750"></div>
           <h2 className="ht text-center">{data.title}</h2>

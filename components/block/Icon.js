@@ -1,89 +1,87 @@
 import React, { useState } from 'react';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
+import ItemsCarousel from 'react-items-carousel';
+import Carousel from 'react-multi-carousel';
 
 const propTypes = {
-  data: Proptypes.array
+  data: Proptypes.array,
+  id: Proptypes.id
 };
 
-function Icon({ data }) {
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const chevronWidth = 40;
+function Icon({ data, id }) {
+  const [refCarousel, setRefCarousel] = useState(null);
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 8
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 4
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2
+    }
+  };
+
   return (
-    <section className="sec-tb sec-h-1 group-ef block-icon">
+    <section className="sec-tb sec-h-1 group-ef block-icon" id={id}>
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht">{data[0].title || ''}</h2>
         </div>
-        <div className="menuicon">
-          <div className="mauto">
+        <div className="sec-b">
+          <div className="menuicon  owl-carousel   s-nav nav-2 owl-loaded owl-drag">
             {data[0].type === '1' && (
               <React.Fragment>
-                {data.length > 6 && (
-                  <ItemsCarousel
-                    requestToChangeActive={setActiveItemIndex}
-                    activeItemIndex={activeItemIndex}
-                    alwaysShowChevrons
-                    numberOfCards={7}
-                    gutter={5}
-                    leftChevron={
-                      <button
-                        style={{
-                          height: '42px',
-                          width: '42px',
-                          borderRadius: '100%',
-                          fontSize: '16px',
-                          border: '1px solid #141ED2',
-                          color: '#141ED2',
-                          background: '#FFF'
-                        }}
-                      >
-                        {'<'}
-                      </button>
-                    }
-                    rightChevron={
-                      <button
-                        style={{
-                          height: '42px',
-                          width: '42px',
-                          borderRadius: '100%',
-                          fontSize: '16px',
-                          border: '1px solid #141ED2',
-                          color: '#141ED2',
-                          background: '#FFF'
-                        }}
-                      >
-                        {'>'}
-                      </button>
-                    }
-                    outsideChevron
-                    chevronWidth={chevronWidth}
+                <div className="owl-stage-outer">
+                  <div className="owl-stage">
+                    <Carousel
+                      responsive={responsive}
+                      draggable
+                      minimumTouchDrag={80}
+                      ssr={true} // means to render carousel on server-side.
+                      infinite={true}
+                      keyBoardControl={true}
+                      arrows={false}
+                      ref={ref => {
+                        setRefCarousel(ref);
+                      }}
+                    >
+                      {map(data, (items, index) => (
+                        <div className="item ef-img-t item_carousel" key={index}>
+                          <a href={items.url} className="link">
+                            <div className="img">
+                              <img src={items.image} />
+                            </div>
+                            <div className="title">{items.note_1}</div>
+                          </a>
+                        </div>
+                      ))}
+                    </Carousel>
+                  </div>
+                </div>
+                <div className="owl-nav">
+                  <div
+                    className="owl-prev disabled"
+                    onClick={() => {
+                      refCarousel.previous();
+                    }}
                   >
-                    {map(data, (items, index) => (
-                      <div className="item ef-img-t item_carousel" key={index}>
-                        <a href={items.url} className="link">
-                          <div className="img">
-                            <img src={items.image} />
-                          </div>
-                          <div className="title">{items.note_1}</div>
-                        </a>
-                      </div>
-                    ))}
-                  </ItemsCarousel>
-                )}
-                {data.length <= 6 &&
-                  map(data, (items, index) => {
-                    return (
-                      <div className="item ef-img-t" key={index}>
-                        <a href={items.url} className="link">
-                          <div className="img">
-                            <img src={items.image} />
-                          </div>
-                          <div className="title">{items.note_1}</div>
-                        </a>
-                      </div>
-                    );
-                  })}
+                    <i className="icon-arrow-1 ix"></i>
+                  </div>
+                  <div
+                    className="owl-next"
+                    onClick={() => {
+                      refCarousel.next();
+                    }}
+                  >
+                    <i className="icon-arrow-1"></i>
+                  </div>
+                </div>
               </React.Fragment>
             )}
             {data[0].type === '2' && (

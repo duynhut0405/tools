@@ -3,7 +3,6 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import { connect } from 'react-redux';
 
 const propTypes = {
   data: Proptypes.array.isRequired,
@@ -32,9 +31,7 @@ function MenuIntro({ data }) {
             </li>
             {map(data.listBlock, (values, index) => (
               <li key={index}>
-                <a href={`#${JSON.parse(values.content).title}`}>
-                  {JSON.parse(values.content).title}
-                </a>
+                <a href={`#${values.id}`}>{values.title}</a>
               </li>
             ))}
           </ul>

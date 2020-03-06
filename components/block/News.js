@@ -5,14 +5,16 @@ import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
 import { useTranslation } from 'react-i18next';
+import { withTranslation } from '../../i18n';
 import Carousel from 'react-multi-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
   getCategoryPage: Proptypes.func,
-  type: Proptypes.string
+  type: Proptypes.string,
+  id: Proptypes.number
 };
 
-function News({ data, type }) {
+function News({ data, type, id }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const [listCategory, setListCategory] = useState([]);
@@ -45,8 +47,8 @@ function News({ data, type }) {
   };
 
   const getCategoryPage = async () => {
-    const id = map(data.news, item => item.newsId);
-    const res = await getNewByIdService(id);
+    const idItems = map(data.news, item => item.newsId);
+    const res = await getNewByIdService(idItems);
     if (res && res.status === 200) {
       setListCategory(res.data);
     }
@@ -66,7 +68,7 @@ function News({ data, type }) {
 
   if (type === '1') {
     return (
-      <div className="post_block mb-5 pt-4 mt-5" id={data.title}>
+      <div className="post_block mb-5 pt-4 mt-5" id={id}>
         <div className="title">
           <h2>{data.title}</h2>
         </div>
@@ -98,12 +100,12 @@ function News({ data, type }) {
   }
   if (type === '3') {
     return (
-      <section className="sec-tb sec-h-4" id={data.title}>
+      <section className="sec-tb sec-h-4" id={id}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              {t('view.viewall')}
+              {t('view')}
               <i className="icon-arrow-1"></i>
             </a>
           </div>
@@ -153,12 +155,12 @@ function News({ data, type }) {
   }
   if (type === '4') {
     return (
-      <section className="sec-tb sec-h-3 " id={data.title}>
+      <section className="sec-tb sec-h-3 " id={id}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
-              {t('view.viewall')} <i className="icon-arrow-1"></i>
+              {t('view')} <i className="icon-arrow-1"></i>
             </a>
           </div>
           <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
@@ -228,7 +230,7 @@ function News({ data, type }) {
   }
   if (type === '5') {
     return (
-      <section className="sec-b" id={data.title}>
+      <section className="sec-b" id={id}>
         <div className="container">
           <h2 className="">{data.title}</h2>
           <p>{data.description}</p>
@@ -289,7 +291,7 @@ function News({ data, type }) {
   }
   if (type === '6') {
     return (
-      <section className="sec-b sec-blog-2" id={data.title}>
+      <section className="sec-b sec-blog-2" id={id}>
         <div className="container">
           <h2 className="">{data.title}</h2>
           <div className="row list-item">
@@ -315,6 +317,7 @@ function News({ data, type }) {
                       </a>
                     );
                   }
+                  return null;
                 })}
               </div>
               <div className="list-5 row list-item">
@@ -337,6 +340,7 @@ function News({ data, type }) {
                       </div>
                     );
                   }
+                  return null;
                 })}
               </div>
             </div>
@@ -347,12 +351,12 @@ function News({ data, type }) {
   }
   if (type === '7') {
     return (
-      <section className="sec-b" id={data.title}>
+      <section className="sec-b" id={id}>
         <div className="container">
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
-                <a href="#" className={`item efch-${index} ef-img-l`}>
+                <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l`}>
                   <div className="img tRes_71">
                     <img className=" loaded loaded" data-lazy-type="image" src={item.base_image} />
                   </div>
@@ -371,14 +375,14 @@ function News({ data, type }) {
   }
   if (type === '8') {
     return (
-      <section className="sec-b sec-h-4__" id={data.title}>
+      <section className="sec-b sec-h-4__" id={id}>
         <div className="container">
           <h2 className="">{data.title}</h2>
           <p className="cl5">{data.description}</p>
           <div className="list-5 list-5-1 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
-                <a href="#" className={`item efch-${index} ef-img-l equal`}>
+                <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l equal`}>
                   <div className="divtext">
                     <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                     <h4 className="title line2">{item.title}</h4>
@@ -393,7 +397,101 @@ function News({ data, type }) {
       </section>
     );
   }
+  if (type === '9') {
+    return (
+      <section className="sec-b sec-h-4">
+        <div className="container">
+          <div className="entry-head">
+            <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+          </div>
+          <div className="row list-item">
+            <div className="col-lg-6 list-1">
+              {map(listCategory, (item, index) => {
+                if (index === 0) {
+                  return (
+                    <React.Fragment>
+                      <a href={`/news/${item.url}`} className="item  tRes_56 video">
+                        {item.author_name === '' || item.author_name === null ? (
+                          <div>
+                            <img
+                              className=" loaded loaded"
+                              data-lazy-type="image"
+                              data-lazy-src="https://via.placeholder.com/262x187"
+                              src={item.base_image}
+                            ></img>
+                            <div className="divtext">
+                              <div className="date">
+                                {moment(item.created_at).format('DD-MM-YYYY')}
+                              </div>
+                              <h4 className="title line2">{item.title}</h4>
+                            </div>
+                          </div>
+                        ) : (
+                          <iframe src={item.author_name}></iframe>
+                        )}
+                      </a>
+                    </React.Fragment>
+                  );
+                }
+                return null;
+              })}
+            </div>
+            <div className="col-lg-6">
+              <div className="list-6-1">
+                {map(listCategory, (item, index) => {
+                  if (index > 0 && index < 3) {
+                    return (
+                      <React.Fragment>
+                        <a href={`/news/${item.url}`} className="item item-inline-table">
+                          {item.author_name === null ? (
+                            <React.Fragment>
+                              <div className="img tRes_56 video cl">
+                                <img
+                                  className=" loaded loaded"
+                                  data-lazy-type="image"
+                                  src={item.base_image}
+                                />
+                              </div>
+                              <div className="divtext">
+                                <div className="date">
+                                  {moment(item.created_at).format('DD-MM-YYYY')}
+                                </div>
+                                <h4 className="title line2">{item.title}</h4>
+                                <div className="desc line3">{item.shortDescription}</div>
+                              </div>
+                            </React.Fragment>
+                          ) : (
+                            <React.Fragment>
+                              <div className="img tRes_56 video cl">
+                                <iframe src={item.author_name}></iframe>
+                              </div>
+                              <div className="divtext">
+                                <div className="date">
+                                  {moment(item.created_at).format('DD-MM-YYYY')}
+                                </div>
+                                <h4 className="title line2">{item.title}</h4>
+                                <div className="desc line3">{item.shortDescription}</div>
+                              </div>
+                            </React.Fragment>
+                          )}
+                        </a>
+                      </React.Fragment>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
 News.propTypes = propTypes;
 
-export default News;
+News.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'news']
+});
+
+export default withTranslation('common')(News);

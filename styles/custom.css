@@ -120,8 +120,8 @@ a:hover {
 .sec-tb {
   padding: 15px 0;
 }
-.stylebuttonopen{
-  background-color:#141ed2;
+.stylebuttonopen {
+  background-color: #141ed2;
   border: none;
 }
 
@@ -147,4 +147,50 @@ a:hover {
 .styleht {
   font-size: 24px;
   font-weight: bold;
+}
+
+.widget-ndt {
+  background-color: #f9f9f9;
+  overflow: hidden;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.08);
+  padding: 15px;
+  height: 100%;
+  font-size: 16px;
+}
+.widget-ndt .numbs {
+  color: #39c689;
+  position: relative;
+  padding-right: 70px;
+}
+.widget-ndt .desc {
+  color: #a6a6a6;
+  border-bottom: 1px solid #a6a6a6;
+  padding-bottom: 10px;
+}
+.widget-ndt ul.list {
+  list-style: none;
+}
+.widget-ndt .numbs .t1 {
+  font-size: 42px;
+  font-weight: 700;
+}
+.widget-ndt .numbs .t2 {
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  right: 0;
+  width: 70px;
+  font-weight: 600;
+}
+.widget-ndt ul.list .t1 {
+  float: left;
+}
+.widget-ndt ul.list .t2 {
+  float: right;
+  font-size: 18px;
 }

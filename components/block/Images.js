@@ -4,13 +4,14 @@ import { map } from 'lodash';
 import Propstype from 'prop-types';
 
 const propTypes = {
-  data: Propstype.array
+  data: Propstype.array,
+  id: Propstype.number
 };
 
-function Images({ data }) {
+function Images({ data, id }) {
   return (
     <>
-      <div className="entry-head text-center">
+      <div className="entry-head text-center" id={id}>
         <h2 className="ht  efch-1 ef-img-t">{data[0].title}</h2>
       </div>
       {map(data, (items, index) => {

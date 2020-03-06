@@ -1,6 +1,4 @@
 {
     "news": "News",
-    "view" : {
-        "viewall" : "View All"
-    }
+    "view": "View All"
 }

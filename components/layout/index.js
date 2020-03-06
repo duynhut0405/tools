@@ -3,11 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../../public/images/logo.svg';
 import PinIcon from '../../public/images/svg/pin.svg';
 import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
+import Folder from '../../public/images/svg/folder.svg';
+import Giadinh from '../../public/images/svg/giadinh.svg';
+import MB from '../../public/images/svg/MB.svg';
+import Tienich from '../../public/images/svg/tienich.svg';
+import Home from '../../public/images/svg/home.svg';
+import ChplayMB from '../../public/images/svg/btt-chplay-mb.svg';
+import GoogleMB from '../../public/images/svg/btt-google-mb.svg';
 import Widget from './Widget';
+import WidgetMB from './WidgetMb';
 import { Social } from '../common';
 import Link from 'next/link';
 import ModalDrawer from './ModalDrawer';
-
 import { StickyContainer, Sticky } from 'react-sticky';
 import { map } from 'lodash';
 import { LayoutActions, MenuActions } from '../../store/actions';
@@ -122,6 +129,19 @@ function Layout({
             <ul className="menu">{footerItem(values.children)}</ul>
           </div>
           {key === items.length - 1 && <Social data={socialLink} />}
+        </div>
+      );
+    });
+  };
+
+  const renderFooterMobile = items => {
+    return map(items, (values, key) => {
+      return (
+        <div className="col-md-3 col-6  efch-2 ef-img-t" key={key}>
+          <div className="widget">
+            <h4 className="widget-title">{values.name}</h4>
+            <ul className="menu">{footerItem(values.children)}</ul>
+          </div>
         </div>
       );
     });
@@ -398,71 +418,104 @@ function Layout({
                   </div>
                 </div>
               </div>
-              <section className="sec-download-mb group-ef loaded">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-6   efch-2 ef-img-r">
-                      <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
-                      <form role="search" method="get" className="searchform " action="">
-                        <div>
-                          <input
-                            type="text"
-                            placeholder="Nhập email để nhận thông tin"
-                            name="s"
-                            className="input"
-                          />
-                        </div>
-                        <button type="submit" className="btn btn-2">
-                          Đăng ký
-                        </button>
-                      </form>
+              <section className="sec-download-mb">
+                <div className="wform">
+                  <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                  <form role="search" method="get" className="searchform " action="">
+                    <div className="aaa">
+                      <input
+                        type="text"
+                        placeholder="Nhập email để nhận thông tin"
+                        value=""
+                        name="s"
+                        className="input"
+                      />
                     </div>
-                    <div className="col-md-6   efch-3 ef-img-r">
-                      <div className="wapp">
-                        <span className="code">
-                          <img src="/static/images/code.png" alt="" />
-                        </span>
-                        <div className="app">
-                          <p className="stitle">Hãy tải app ngay hôm nay</p>
-                          <a href="https://bit.ly/2v5ZsyP">
-                            <img src="/static/images/btt-google.svg" alt="" />
-                          </a>{' '}
-                          &nbsp;
-                          <a href="https://apple.co/2AqB7ZM">
-                            <img src="/static/images/btt-chplay.svg" alt="" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+                    <button type="submit" className="btn btn-2">
+                      Đăng ký
+                    </button>
+                  </form>
+                </div>
+                <div className="wdownload">
+                  <span className="stitle">Tải app ngay</span>&nbsp;
+                  <a href="#">
+                    <img src={ChplayMB} alt="" />
+                  </a>{' '}
+                  &nbsp;
+                  <a href="#">
+                    <img src={GoogleMB} alt="" />
+                  </a>
                 </div>
               </section>
               <div id="footer-mb" className="group-ef loaded">
                 <div className="container">
                   <div className="row grid-space-10">
                     <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                      <Widget data={settingFooter} />
+                      <WidgetMB data={settingFooter} socialLink={socialLink} />
                     </div>
-                    {renderFooter(menuFooterMain)}
                   </div>
-                  <div className="line"></div>
-                  <div className="row grid-space-10">
-                    <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
-                      <ul className="menu line">
-                        {map(
-                          menuFooterBottom.sort((a, b) => a.position - b.position),
-                          (values, key) => {
-                            return (
-                              <li key={key}>
-                                <a href={`/page/${values.slugPages}`}>{values.name}</a>
-                              </li>
-                            );
-                          }
-                        )}
-                      </ul>
+                  <div className="accodion accodion-0">
+                    <div className="accodion-tab ">
+                      <input type="checkbox" id="chck_mf" />
+                      <label className="accodion-title" htmlFor="chck_mf">
+                        <span> Mở rộng </span>{' '}
+                        <span className="triangle">
+                          <i className="icon-plus"></i>
+                        </span>
+                      </label>
+                      <div className="accodion-content">
+                        <div className="inner">
+                          <div className="row grid-space-10">
+                            {renderFooterMobile(menuFooterMain)}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                      <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                  </div>
+                </div>
+                <div className="menu-footer-mb">
+                  <div className="row">
+                    <div className="col-3">
+                      <a className="item " href="#">
+                        <span className="img">
+                          {' '}
+                          <img src={Home} alt="" />
+                        </span>
+                        <span className="name">Trang chủ</span>
+                      </a>
+                    </div>
+                    <div className="col-3">
+                      <a className="item" href="#">
+                        <span className="img">
+                          <img src={Folder} alt="" />
+                        </span>
+                        <span className="name">Sản phẩm</span>
+                      </a>
+                    </div>
+                    <div className="col-3">
+                      <a className="item " href="#">
+                        <span className="img">
+                          <img src={MB} alt="" />
+                        </span>
+                        <span className="name">MB++</span>
+                      </a>
+                    </div>
+                    <div className="col-3">
+                      <a className="item " href="#">
+                        <span className="img">
+                          <img src={Giadinh} alt="" />
+                        </span>
+                        <span className="name">Gia đình</span>
+                      </a>
+                    </div>
+                    <div className="col-3">
+                      <a className="item " href="#">
+                        <span className="img">
+                          <img src={Tienich} alt="" />
+                        </span>
+                        <span className="name">Tiện ích</span>
+                      </a>
                     </div>
                   </div>
                 </div>

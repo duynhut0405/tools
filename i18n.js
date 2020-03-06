@@ -2,7 +2,12 @@ import NextI18Next from 'next-i18next';
 
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: 'vi',
-  otherLanguages: ['vi']
+  lng: 'vi',
+  otherLanguages: ['vi'],
+  localeSubpaths: {
+    vi: 'vi',
+    en: 'en'
+  }
 });
 
 // NextI18NextInstance.i

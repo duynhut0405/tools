@@ -4,14 +4,15 @@ import Proptypes from 'prop-types';
 import MiniTabItem from './MiniTabItem';
 import classnames from 'classnames';
 const propTypes = {
-  data: Proptypes.object.isRequired
+  data: Proptypes.object.isRequired,
+  id: Proptypes.number
 };
 
-function MiniTab({ data }) {
+function MiniTab({ data, id }) {
   const [activeTab, setActiveTab] = useState('0');
 
   return (
-    <div className="container">
+    <div className="container" id={id}>
       <section className="sec-tb block-minitab">
         <h2 className="ht styleht">{data[0].title}</h2>
         <div className="cttab-v3   ">
