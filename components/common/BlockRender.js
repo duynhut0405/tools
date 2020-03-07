@@ -13,7 +13,8 @@ import {
   Form,
   TagProduct,
   MenuIntro,
-  Download
+  Download,
+  DetailPerson
 } from '../block';
 
 import { map } from 'lodash';
@@ -103,6 +104,11 @@ function BlockRender({ data }) {
               }
               if (values.name === 'MenuIntro') {
                 return <MenuIntro data={JSON.parse(values.content)} key={index} id={values.id} />;
+              }
+              if (values.name === 'Lãnh Đạo') {
+                return (
+                  <DetailPerson data={JSON.parse(values.content)} key={index} id={values.id} />
+                );
               }
               return null;
             }

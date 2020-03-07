@@ -4,7 +4,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  year: PropTypes.number,
+  year: PropTypes.string,
   fileIcon: PropTypes.bool,
   isChecked: PropTypes.bool,
   data: PropTypes.array

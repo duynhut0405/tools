@@ -13,6 +13,7 @@ import Form from './Form';
 import TagProduct from './TagProduct';
 import MenuIntro from './MenuIntro';
 import Download from './Download';
+import DetailPerson from './DetailPerson';
 
 export {
   Images,
@@ -29,5 +30,6 @@ export {
   Form,
   TagProduct,
   MenuIntro,
-  Download
+  Download,
+  DetailPerson
 };
