@@ -18,6 +18,7 @@ function Page({ list, silder, getPage }) {
   useEffect(() => {
     getPage(name);
   }, []);
+  console.log(list.pageBlocks)
   return (
     <Layout>
       <div className="main_content">

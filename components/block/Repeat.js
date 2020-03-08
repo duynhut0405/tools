@@ -36,7 +36,9 @@ function Repeat({ data, type, id }) {
             <div className="row list-item">
               {map(listTable, (items, index) => (
                 <div key={index} className="col-md-6">
-                  <div className="widget-default table ">{ReactHtmlParser(items.description)}</div>
+                  <div className="widget-default widget-content entry-content">
+                    {ReactHtmlParser(items.description)}
+                  </div>
                 </div>
               ))}
             </div>
