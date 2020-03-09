@@ -41,7 +41,14 @@ function Contact({ settingFooter, getSettingFooter }) {
               </div>
             </div>
             <div className="col-lg-8 col-md-6">
-              <GoogleMapReact center={center} zoom={9}></GoogleMapReact>
+              <GoogleMapReact
+                center={{
+                  lat: 59.95,
+                  lng: 30.33
+                }}
+                bootstrapURLKeys={'AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU'}
+                zoom={9}
+              ></GoogleMapReact>
             </div>
           </div>
         </div>
