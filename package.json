@@ -17,6 +17,7 @@
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
     "dom-parser": "^0.1.6",
+    "google-map-react": "^1.1.6",
     "html-dom-parser": "^0.2.3",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
