@@ -19,7 +19,7 @@ function Pagination({ page, setPage, next, previous }) {
         </li>
         <li>
           <span
-            className={page === 1 ? 'page-numbers current' : 'page-numbers'}
+            className={page === 1 || page === 0 ? 'page-numbers current' : 'page-numbers'}
             onClick={() => setPage(1)}
           >
             1

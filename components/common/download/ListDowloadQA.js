@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Fillter } from '../download';
+import moment from 'moment';
 import Question from './Question';
 import { Pagination } from '../../common';
 import { RegulationActions } from '../../../store/actions';
@@ -25,18 +26,18 @@ function ListDowloadQA({
   getTypeRegulation,
   seachRegulation
 }) {
+  const date = new Date();
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
-  const [year, setYear] = useState(0);
+  const [year, setYear] = useState(moment(date).format('YYYY'));
 
   useEffect(() => {
-    getTypeRegulation(type);
-    seachRegulation(type, 0, 10, 0, 0);
+    seachRegulation(type, year, page);
   }, [getTypeRegulation]);
 
   useEffect(() => {
-    seachRegulation(type, datatype, 10, page, year);
-  }, [page, year, datatype]);
+    seachRegulation(type, year, page);
+  }, [page]);
 
   return (
     <div className="accodion accodion-2 container sec-tb">
@@ -48,20 +49,19 @@ function ListDowloadQA({
           setType={event => setDataType(event.target.value)}
         />
       )}
-      {map(listRegulation, (item, index) => {
-        if (item.investors.length > 0) {
+      <section className="sec-b sec-cauhoi">
+        {map(listRegulation.investors, (item, index) => {
           return (
-            <div className="sec-tb" key={item.year}>
-              <Question
-                data={item.investors}
-                year={item.year}
-                isChecked={index === 0 ? true : false}
-              />
-            </div>
+            <Question
+              key={index}
+              answer={item.description}
+              question={item.name}
+              isChecked={index === 0 ? true : false}
+            />
           );
-        }
-        return null;
-      })}
+        })}
+      </section>
+
       <Pagination
         page={page}
         setPage={pageNumber => setPage(pageNumber)}
@@ -74,13 +74,13 @@ function ListDowloadQA({
 
 const mapStateToProp = state => {
   return {
-    listRegulation: state.regulationReducer.listDataByYear,
+    listRegulation: state.regulationReducer.listData,
     listType: state.regulationReducer.listTypeByID
   };
 };
 
 const mapDispatchToProps = {
-  seachRegulation: RegulationActions.getRegulationByYear,
+  seachRegulation: RegulationActions.getRegulation,
   getTypeRegulation: RegulationActions.getTypeRegulationByIDAction
 };
 

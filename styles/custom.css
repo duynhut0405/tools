@@ -309,8 +309,44 @@ a:hover {
 .mb-40 {
   margin-bottom: 40px;
 }
+.accodion-1 .accodion-tab {
+  margin-bottom: 30px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0 23px 0 rgba(20, 30, 210, 0.06);
+  box-shadow: 0 0 23px 0 rgba(20, 30, 210, 0.06);
+}
+
+.accodion-tab {
+  width: 100%;
+  overflow: hidden;
+}
 
 [class*='max'] {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+.accodion-1 .accodion-tab > [class*='-title'] {
+  padding: 15px 15px 15px 56px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0;
+}
+
+.accodion-tab > [class*='-title'] {
+  display: block;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+}
+
+.no-borber {
+  border-bottom: 0 !important;
+}
+
+@media only screen and (min-width: 992px) {
+  .accodion-1 .accodion-tab > [class*='-title'] {
+    padding: 30px 30px 30px 76px;
+  }
 }
