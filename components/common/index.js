@@ -6,6 +6,7 @@ import Social from './Social';
 import Pagination from './Pagination';
 import DowloadFileWapper from './download/DowloadFileWapper';
 import DowloadVideoWapper from './download/DowloadVideoWapper';
+import Contact from './Contact';
 
 export {
   Carousel,
@@ -15,5 +16,6 @@ export {
   Social,
   DowloadFileWapper,
   DowloadVideoWapper,
-  Pagination
+  Pagination,
+  Contact
 };

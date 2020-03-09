@@ -5,6 +5,7 @@ import Layout from '../../components/layout';
 import { PageActions } from '../../store/actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Contact } from '../../components/common';
 
 const propTypes = {
   list: PropTypes.object,
@@ -18,11 +19,11 @@ function Page({ list, silder, getPage }) {
   useEffect(() => {
     getPage(name);
   }, []);
-  console.log(list.pageBlocks)
   return (
     <Layout>
       <div className="main_content">
         <Carousel className="category" silder={silder} />
+        <Contact />
         <BlockRender data={list.pageBlocks} />
         <DowloadCategory />
       </div>
