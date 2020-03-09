@@ -18,7 +18,8 @@ function* pageSaga() {
         yield put({
           type: actions.GET_HOME_RESPONSE,
           data: res.data,
-          silder
+          silder,
+          router: name
         });
       } else {
         // console.log(res);

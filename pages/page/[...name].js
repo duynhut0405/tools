@@ -1,15 +1,9 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
-import {
-  Carousel,
-  BlockRender,
-  MenuMiddle,
-  DowloadCategory,
-  DowloadFileWapper,
-  DowloadVideoWapper
-} from '../../components/common';
+import { Carousel, BlockRender, MenuMiddle, DowloadCategory } from '../../components/common';
+import { ListDowloadFIle, ListDowloadVideo } from '../../components/common/download';
 import Layout from '../../components/layout';
 import Investors from '../../components/investors';
+import OtherNews from '../../components/otherNews';
 import { PageActions } from '../../store/actions';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -28,20 +22,21 @@ function Page({ list, silder, menuMiddle, getPage }) {
   useEffect(() => {
     getPage(router.query.name);
   }, []);
-  // console.log(list.name);
+
+  const { name } = router.query;
   return (
-    <Layout>
-      <Head>
-        <title>{list.meta_title}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title={list.meta_title}>
       <div className="main_content">
         <Carousel silder={silder} />
-        <MenuMiddle data={menuMiddle} />
+        <MenuMiddle data={menuMiddle} query={name === undefined || name === null ? '' : name[0]} />
         {list.name === 'Nhà đầu tư' && <Investors />}
-        {list.name === 'Đại hội cổ đông' && <DowloadVideoWapper />}
-        {list.name === 'Tài liệu nhà đầu tư' && <DowloadFileWapper />}
-        {list.name === 'Báo cáo thường niên' && <DowloadFileWapper />}
+        {list.name === 'Thông báo' && <Investors />}
+        {list.name === 'Báo cáo tài chính' && <ListDowloadFIle type={1} search />}
+        {list.name === 'Đại hội cổ đông' && <ListDowloadVideo type={2} />}
+        {list.name === 'Điều lệ' && <ListDowloadVideo type={3} />}
+        {list.name === 'Báo cáo thường niên' && <ListDowloadFIle type={4} search />}
+        {list.name === 'Tài liệu nhà đầu tư' && <ListDowloadFIle type={6} search />}
+        {list.name === 'Công bố thông tin khác' && <OtherNews />}
         <BlockRender data={list.pageBlocks} />
         {list.template === 4 && <DowloadCategory />}
       </div>

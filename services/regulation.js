@@ -13,6 +13,19 @@ const getTypeRegulationServices = () => {
     });
 };
 
+const getTypeRegulationByIDServices = id => {
+  return request({
+    url: `/regulation/type/${id}`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
 const fillRegulationServices = data => {
   return request({
     url: `/regulation/search`,
@@ -52,9 +65,9 @@ const getRegulationPagation = (type, year, page) => {
     });
 };
 
-const getRegulationListYear = (type, page, year) => {
+const getRegulationListYear = (type, detailTypeId, number, page, year) => {
   return request({
-    url: `/regulation/investors/${type}?number=10&page=${page}&year=${year}`,
+    url: `/regulation/investors/${type}?detailTypeId=${detailTypeId}&number=${number}&page=${page}&year=${year}`,
     method: 'GET'
   })
     .then(res => {
@@ -70,5 +83,6 @@ export {
   getTypeRegulationServices,
   getUrlVideoService,
   getRegulationPagation,
-  getRegulationListYear
+  getRegulationListYear,
+  getTypeRegulationByIDServices
 };

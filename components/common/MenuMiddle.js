@@ -1,16 +1,15 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { useRouter } from 'next/router';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  query: PropTypes.string
 };
 
-function MenuMiddle({ data }) {
-  const router = useRouter();
+function MenuMiddle({ data, query }) {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -49,10 +48,7 @@ function MenuMiddle({ data }) {
                   data.menuItems.sort((a, b) => a.position - b.position),
                   (item, key) => {
                     return (
-                      <div
-                        className={router.query.name === item.slugPages ? 'item active' : 'item'}
-                        key={key}
-                      >
+                      <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
                         <a href={`/page/${item.slugPages}`} className="link">
                           <div className="img">
                             <img
@@ -76,10 +72,7 @@ function MenuMiddle({ data }) {
                   data.menuItems.sort((a, b) => a.position - b.position),
                   (item, key) => {
                     return (
-                      <div
-                        className={router.query.name === item.slugPages ? 'item active' : 'item'}
-                        key={key}
-                      >
+                      <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
                         <a href={`/page/${item.slugPages}`} className="link">
                           <div className="img">
                             <img

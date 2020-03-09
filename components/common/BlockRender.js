@@ -12,7 +12,9 @@ import {
   News,
   Form,
   TagProduct,
-  MenuIntro
+  MenuIntro,
+  Download,
+  DetailPerson
 } from '../block';
 
 import { map } from 'lodash';
@@ -71,6 +73,16 @@ function BlockRender({ data }) {
                   />
                 );
               }
+              if (values.name === 'Download') {
+                return (
+                  <Download
+                    data={JSON.parse(values.content)}
+                    type={JSON.parse(values.content).type}
+                    key={index}
+                    id={values.id}
+                  />
+                );
+              }
               if (values.name === 'Product') {
                 return <Product data={JSON.parse(values.content)} id={values.id} key={index} />;
               }
@@ -92,6 +104,11 @@ function BlockRender({ data }) {
               }
               if (values.name === 'MenuIntro') {
                 return <MenuIntro data={JSON.parse(values.content)} key={index} id={values.id} />;
+              }
+              if (values.name === 'Lãnh Đạo') {
+                return (
+                  <DetailPerson data={JSON.parse(values.content)} key={index} id={values.id} />
+                );
               }
               return null;
             }

@@ -4,6 +4,7 @@ const initialState = {
   listData: [],
   data: [],
   type: [],
+  listTypeByID: [],
   urlVideo: {},
   listDataByYear: []
 };
@@ -35,6 +36,12 @@ const regulationReducer = (state = initialState, action) => {
         ...state,
         listDataByYear: action.data
       };
+    case Action.GET_TYPE_REGULATION_BY_ID_RESPONSE: {
+      return {
+        ...state,
+        listTypeByID: action.data
+      };
+    }
     default:
       return state;
   }

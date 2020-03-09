@@ -4,7 +4,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  year: PropTypes.number,
+  year: PropTypes.string,
   fileIcon: PropTypes.bool,
   isChecked: PropTypes.bool,
   data: PropTypes.array
@@ -34,6 +34,8 @@ function DowloadFile({ year, isChecked, fileIcon, data }) {
                   <span className="data">{moment(item.createdAt).format('DD-MM-YYYY')}</span>
                   {/* <span className="down">
                     <a href={item.urlFile}>
+                  <span className="down">
+                    <a href={item.urlFile} download>
                       <i className="icon-arrow-6 ib"></i>
                     </a>
                   </span> */}

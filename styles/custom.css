@@ -8,6 +8,41 @@ html {
   border-collapse: collapse;
   border-spacing: 0;
 }
+.widget-default h4 {
+  padding: 5px;
+  color: #333333;
+  background-color: #e0f0ff;
+  text-align: center;
+  margin: 0;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 60px;
+  line-height: normal;
+}
+.widget-default figure th {
+  text-align: left;
+  vertical-align: top;
+  border: 0;
+}
+
+.widget-default figure td {
+  text-align: left;
+  vertical-align: top;
+  border: 0;
+}
+
+/* .widget-default figure table td {
+  text-align: left;
+  vertical-align: top;
+} */
 
 .table table td,
 .table table th {
@@ -193,4 +228,89 @@ a:hover {
 .widget-ndt ul.list .t2 {
   float: right;
   font-size: 18px;
+}
+.sec-dt-2 .list-download {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.menu_item {
+  text-align: center;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.cttab-v3 .tab-menu {
+  margin-bottom: 30px;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  display: table;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.inline-table .c100 {
+  display: table-cell;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.inline-table.w100 {
+  width: 100%;
+}
+
+.inline-table {
+  display: inline-table;
+}
+
+.inline-table .ctext:first-child {
+  padding-right: 20px;
+}
+.inline-table .ctext {
+  width: 30px;
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  white-space: nowrap;
+}
+.searchform {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.searchform .textinput {
+  padding: 0 40px 0 15px;
+  height: 100%;
+  z-index: 2;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.searchform button {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  top: 0;
+  width: 35px;
+  cursor: pointer;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+[class*='max'] {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }

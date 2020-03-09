@@ -12,6 +12,8 @@ import News from './News';
 import Form from './Form';
 import TagProduct from './TagProduct';
 import MenuIntro from './MenuIntro';
+import Download from './Download';
+import DetailPerson from './DetailPerson';
 
 export {
   Images,
@@ -27,5 +29,7 @@ export {
   News,
   Form,
   TagProduct,
-  MenuIntro
+  MenuIntro,
+  Download,
+  DetailPerson
 };

@@ -30,11 +30,11 @@ function News({ data, type, id }) {
       items: 4
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 500 },
       items: 2
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 500, min: 0 },
       items: 1
     }
   };
@@ -133,11 +133,7 @@ function News({ data, type, id }) {
             <div className="col-lg-4">
               <div className="list-6">
                 {map(listNewsTabs, (item, index) => (
-                  <a
-                    key={index}
-                    href="https://sapotacorp.com:8443/vi/api/news/"
-                    className="item item-inline-table"
-                  >
+                  <a key={index} href={`/news/${item.url}`} className="item item-inline-table">
                     <div className="img">
                       <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
                     </div>

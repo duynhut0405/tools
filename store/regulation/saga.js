@@ -5,7 +5,8 @@ import {
   getTypeRegulationServices,
   getUrlVideoService,
   getRegulationPagation,
-  getRegulationListYear
+  getRegulationListYear,
+  getTypeRegulationByIDServices
 } from '../../services/regulation';
 
 function* getRegulationSaga() {
@@ -55,6 +56,22 @@ function* getTypeRegulationSaga() {
   });
 }
 
+function* getTypeRegulationByIDSaga() {
+  yield takeLatest(actions.GET_TYPE_REGULATION_BY_ID_REQUEST, function*(params) {
+    const { id } = params;
+    try {
+      const res = yield getTypeRegulationByIDServices(id);
+      if (res.status === 200) {
+        yield put({ type: actions.GET_TYPE_REGULATION_BY_ID_RESPONSE, data: res.data });
+      } else {
+        // console.log(res);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+}
+
 function* getUrlVideoSaga() {
   yield takeLatest(actions.GET_URL_VIDEO_REQUEST, function*(params) {
     const { data } = params;
@@ -73,9 +90,9 @@ function* getUrlVideoSaga() {
 
 function* getRegulationByYearSaga() {
   yield takeLatest(actions.GET_REGULATION_BY_YEAR_REQUEST, function*(params) {
-    const { types, page, year } = params;
+    const { types, detailTypeId, number, page, year } = params;
     try {
-      const res = yield getRegulationListYear(types, page, year);
+      const res = yield getRegulationListYear(types, detailTypeId, number, page, year);
       if (res.status === 200) {
         yield put({ type: actions.GET_REGULATION_BY_YEAR_RESPONSE, data: res.data });
       } else {
@@ -93,6 +110,7 @@ export default function* rootSaga() {
     fork(getTypeRegulationSaga),
     fork(getUrlVideoSaga),
     fork(getRegulationSaga),
-    fork(getRegulationByYearSaga)
+    fork(getRegulationByYearSaga),
+    fork(getTypeRegulationByIDSaga)
   ]);
 }

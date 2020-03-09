@@ -5,7 +5,7 @@ import { getPagesByIdService } from '../../services/page';
 import { useTranslation } from 'react-i18next';
 const propTypes = {
   data: Proptypes.object.isRequired,
-  type: Proptypes.func,
+  type: Proptypes.string,
   id: Proptypes.number
 };
 
