@@ -34,12 +34,12 @@ function Contact({ settingFooter, getSettingFooter }) {
               </div>
             </div>
             <div className="col-lg-8 col-md-6">
-              {!isNaN(Number(settingFooter.latitude)) && !isNaN(Number(settingFooter.latitude)) && (
+              {!isNaN(Number(settingFooter.latitude)) && (
                 <GoogleMapReact
                   bootstrapURLKeys={{ key: ' AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU' }}
                   center={{
                     lat: Number(settingFooter.latitude),
-                    lng: Number(settingFooter.latitude)
+                    lng: Number(settingFooter.longitude)
                   }}
                   zoom={9}
                 ></GoogleMapReact>
