@@ -70,7 +70,7 @@ function News({ data, type, id }) {
     return (
       <div className="post_block mb-5 pt-4 mt-5" id={id}>
         <div className="title">
-          <h2>{data.title}</h2>
+          <h2>{data === null ? '' : data.title}</h2>
         </div>
         <div className="row">
           {map(listNews, (item, index) => (
