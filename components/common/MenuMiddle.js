@@ -24,6 +24,7 @@ function MenuMiddle({ data, query }) {
       items: 2
     }
   };
+  console.log(data)
   return (
     <>
       {data !== null && (

@@ -1,4 +1,12 @@
 {
     "news": "Tin tức",
-    "view": "Xem tất cả"
+    "view": "Xem tất cả",
+    "question_answer": "Hỏi đáp",
+    "rating_report": "Báo cáo xếp hạng tín nhiệm",
+    "documents": "Tài liệu biểu mẫu",
+    "you_encounter_difficulties": "Bạn gặp phải khó khăn ?",
+    "year": "Năm",
+    "page_about": {
+        "title": "Giải thưởng & Thành tích"
+    }
 }

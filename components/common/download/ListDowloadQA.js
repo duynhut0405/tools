@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { DowloadFile, Fillter } from '../download';
+import { Fillter } from '../download';
+import Question from './Question';
 import { Pagination } from '../../common';
 import { RegulationActions } from '../../../store/actions';
 import { map } from 'lodash';
@@ -16,7 +17,7 @@ const propTypes = {
   seachRegulation: PropTypes.func
 };
 
-function ListDowloadFIle({
+function ListDowloadQA({
   type,
   listType,
   listRegulation,
@@ -51,7 +52,7 @@ function ListDowloadFIle({
         if (item.investors.length > 0) {
           return (
             <div className="sec-tb" key={item.year}>
-              <DowloadFile
+              <Question
                 data={item.investors}
                 year={item.year}
                 isChecked={index === 0 ? true : false}
@@ -83,6 +84,6 @@ const mapDispatchToProps = {
   getTypeRegulation: RegulationActions.getTypeRegulationByIDAction
 };
 
-ListDowloadFIle.propTypes = propTypes;
+ListDowloadQA.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(ListDowloadFIle);
+export default connect(mapStateToProp, mapDispatchToProps)(ListDowloadQA);

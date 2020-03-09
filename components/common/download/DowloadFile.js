@@ -32,11 +32,13 @@ function DowloadFile({ year, isChecked, fileIcon, data }) {
                     {item.name}
                   </span>
                   <span className="data">{moment(item.createdAt).format('DD-MM-YYYY')}</span>
+                  {/* <span className="down">
+                    <a href={item.urlFile}>
                   <span className="down">
                     <a href={item.urlFile} download>
                       <i className="icon-arrow-6 ib"></i>
                     </a>
-                  </span>
+                  </span> */}
                 </li>
               );
             })}

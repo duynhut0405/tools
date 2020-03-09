@@ -5,6 +5,7 @@ import DowloadFileWapper from './DowloadFileWapper';
 import DowloadVideoWapper from './DowloadVideoWapper';
 import ListDowloadFIle from './ListDowloadFIle';
 import ListDowloadVideo from './ListDowloadVideo';
+import ListDowloadQA from './ListDowloadQA';
 
 export {
   Fillter,
@@ -13,5 +14,6 @@ export {
   DowloadFileWapper,
   DowloadVideoWapper,
   ListDowloadFIle,
-  ListDowloadVideo
+  ListDowloadVideo,
+  ListDowloadQA
 };
