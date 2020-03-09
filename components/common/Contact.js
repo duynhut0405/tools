@@ -11,16 +11,9 @@ const propTypes = {
 };
 
 function Contact({ settingFooter, getSettingFooter }) {
-  const [center, setCenter] = useState(null);
-
   useEffect(() => {
     getSettingFooter();
   }, []);
-
-  useEffect(() => {
-    setCenter({ lat: Number(settingFooter.latitude), lng: Number(settingFooter.longitude) });
-  }, [settingFooter.latitude, settingFooter.longitude]);
-  console.log(center);
 
   return (
     <React.Fragment>
@@ -41,12 +34,12 @@ function Contact({ settingFooter, getSettingFooter }) {
               </div>
             </div>
             <div className="col-lg-8 col-md-6">
-              {!isNaN(settingFooter.latitude) && !isNaN(settingFooter.longitude) && (
+              {!isNaN(Number(settingFooter.latitude)) && !isNaN(Number(settingFooter.latitude)) && (
                 <GoogleMapReact
-                  // bootstrapURLKeys={{ key: ' AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU' }}
+                  bootstrapURLKeys={{ key: ' AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU' }}
                   center={{
-                    lat: 59.95,
-                    lng: 30.33
+                    lat: Number(settingFooter.latitude),
+                    lng: Number(settingFooter.latitude)
                   }}
                   zoom={9}
                 ></GoogleMapReact>

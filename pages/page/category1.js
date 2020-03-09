@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'bao-cao-tai-chinh';
+  const name = 'ca-nhan-mb';
 
   useEffect(() => {
     getPage(name);
