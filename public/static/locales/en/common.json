@@ -4,5 +4,9 @@
     "question_answer": "Question Answer",
     "rating_report": "Credit rating report",
     "documents": "Documents",
-    "you_encounter_difficulties": "You encounter difficulties ?"
+    "you_encounter_difficulties": "You encounter difficulties ?",
+    "year": "Year",
+    "page_about": {
+        "title": "Achievement & Award"
+    }
 }

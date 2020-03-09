@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Carousel, BlockRender, MenuMiddle, DowloadCategory } from '../../components/common';
 import { ListDowloadFIle, ListDowloadVideo } from '../../components/common/download';
 import Layout from '../../components/layout';
+import About from '../../components/about';
 import Investors from '../../components/investors';
 import OtherNews from '../../components/otherNews';
 import { PageActions } from '../../store/actions';
@@ -37,6 +38,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
         {list.name === 'Báo cáo thường niên' && <ListDowloadFIle type={4} search />}
         {list.name === 'Tài liệu nhà đầu tư' && <ListDowloadFIle type={6} search />}
         {list.name === 'Công bố thông tin khác' && <OtherNews />}
+        {list.name === 'Về MBBank' && <About />}
         <BlockRender data={list.pageBlocks} />
         {list.template === 4 && <DowloadCategory />}
       </div>
