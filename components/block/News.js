@@ -84,7 +84,7 @@ function News({ data, type, id }) {
                   </div>
                   <p className="title">{item.title}</p>
                   <p className="show">
-                    <a href={`/news/${item.url}`}>Xem thêm</a>
+                    <a href={`/news/${item.url}`}>{t('viewmore')}</a>
                   </p>
                 </div>
               </div>
@@ -389,7 +389,7 @@ function News({ data, type, id }) {
                     <h4 className="title line2">{item.title}</h4>
                     <div className="desc line2">{item.shortDescription}</div>
                     <span className="more cl1" style={{ display: 'block', paddingTop: '30px' }}>
-                      Tìm hiểu thêm
+                      {t('look_more')}
                     </span>
                   </div>
                 </a>
