@@ -32,7 +32,30 @@ html {
   vertical-align: top;
   border: 0;
 }
-
+.widget-contact {
+  border-radius: 8px;
+  height: 100%;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.08);
+  padding: 15px;
+}
+.widget-contact h3 {
+  color: #141ed2;
+  margin-bottom: 10px;
+}
+@media only screen and (min-width: 1200px) {
+  .widget-contact {
+    padding: 30px;
+  }
+  .widget-contact h3 {
+    margin-top: 30px;
+  }
+  .widget-contact .phone {
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
 .widget-default figure td {
   text-align: left;
   vertical-align: top;
