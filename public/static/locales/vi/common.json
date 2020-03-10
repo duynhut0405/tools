@@ -24,5 +24,12 @@
     "to": "Đến",
     "amount": "Số tiền",
     "updated_at": "Cập nhật tại thời điểm",
-    "date": "ngày"
+    "date": "ngày",
+    "extend": "Mở rộng",
+    "home": "Trang chủ",
+    "product": "Sản phẩm",
+    "family": "Gia đình",
+    "utilities": "Tiện ích",
+    "view more": "Xem thêm",
+    "look_more": "Tìm hiểu thêm"
 }

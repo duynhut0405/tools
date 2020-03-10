@@ -150,7 +150,7 @@ function Layout({
     setFlag(flags);
     setLang(lang, flags);
   };
-  const { t } = useTranslation();
+  
   return (
     <body className={classnames({ showMenu: activeDrawer })}>
       <div>
@@ -379,7 +379,7 @@ function Layout({
                           />
                         </div>
                         <button type="submit" className="btn btn-2">
-                          Đăng ký
+                          {t('registration')}
                         </button>
                       </form>
                     </div>
@@ -471,7 +471,7 @@ function Layout({
                     <div className="accodion-tab ">
                       <input type="checkbox" id="chck_mf" />
                       <label className="accodion-title" htmlFor="chck_mf">
-                        <span> Mở rộng </span>{' '}
+                        <span> {t('extend')} </span>{' '}
                         <span className="triangle">
                           <i className="icon-plus"></i>
                         </span>
@@ -494,7 +494,7 @@ function Layout({
                           {' '}
                           <img src={Home} alt="" />
                         </span>
-                        <span className="name">Trang chủ</span>
+                        <span className="name">{t('home')}</span>
                       </a>
                     </div>
                     <div className="col-3">
@@ -502,7 +502,7 @@ function Layout({
                         <span className="img">
                           <img src={Folder} alt="" />
                         </span>
-                        <span className="name">Sản phẩm</span>
+                        <span className="name">{t('product')}</span>
                       </a>
                     </div>
                     <div className="col-3">
@@ -518,7 +518,7 @@ function Layout({
                         <span className="img">
                           <img src={Giadinh} alt="" />
                         </span>
-                        <span className="name">Gia đình</span>
+                        <span className="name">{t('family')}</span>
                       </a>
                     </div>
                     <div className="col-3">
@@ -526,7 +526,7 @@ function Layout({
                         <span className="img">
                           <img src={Tienich} alt="" />
                         </span>
-                        <span className="name">Tiện ích</span>
+                        <span className="name">{t('utilities')}</span>
                       </a>
                     </div>
                   </div>

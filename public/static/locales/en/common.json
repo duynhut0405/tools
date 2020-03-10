@@ -23,5 +23,12 @@
     "to": "To",
     "ammout": "Amount of money",
     "updated_at": "Updated at the time of",
-    "date": "date"
+    "date": "date",
+    "extend": "Extend",
+    "home": "Home",
+    "product": "Product",
+    "family": "Family",
+    "utilities": "Utilities",
+    "view more": "View more",
+    "look_more": "Looking for more information"
 }
