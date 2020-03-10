@@ -1,20 +1,23 @@
 import React from 'react';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import { withTranslation } from '../../i18n';
 
 const propTypes = {
   data: PropTypes.array
 };
 
 function TableRate({ data }) {
+  const { t } = useTranslation();
   return (
     <table className="table table-borderless">
       <tbody>
         <tr>
-          <th>Mã NT</th>
-          <th>Mua tiền mặt</th>
-          <th>Mua chuyển khoản</th>
-          <th>Bán ra</th>
+          <th>{t('codeNT')}</th>
+          <th>{t('buycash')}</th>
+          <th>{t('transfer')}</th>
+          <th>{t('sold_out')}</th>
         </tr>
         {map(data, value => {
           return (
@@ -35,5 +38,8 @@ function TableRate({ data }) {
 }
 
 TableRate.propTypes = propTypes;
+TableRate.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'tableRate']
+});
 
-export default TableRate;
+export default withTranslation('common')(TableRate);
