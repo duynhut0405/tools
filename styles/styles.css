@@ -5299,7 +5299,7 @@ ul.page-numbers span.page-numbers:not(.current) {
 }
 
 .cl5 {
-  color: #1e1e1e;
+  color: #BABABA;
 }
 
 .cl6 {
@@ -6051,9 +6051,8 @@ h1 {
 
 .h2,
 h2 {
-  font-size: 30px;
+  font-size: 24px;
   text-transform: uppercase;
-  font-weight: bolder;
 }
 
 .h3,
