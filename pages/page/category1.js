@@ -14,11 +14,12 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'ca-nhan-mb';
+  const name = 'lien-he';
 
   useEffect(() => {
     getPage(name);
   }, []);
+
   return (
     <Layout>
       <div className="main_content">
