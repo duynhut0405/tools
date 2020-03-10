@@ -5,6 +5,8 @@ import Layout from '../../components/layout';
 import About from '../../components/about';
 import Investors from '../../components/investors';
 import OtherNews from '../../components/otherNews';
+import Transaction from '../../components/transaction';
+import { map } from 'lodash';
 import { PageActions } from '../../store/actions';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -20,16 +22,21 @@ const propTypes = {
 
 function Page({ list, silder, menuMiddle, getPage }) {
   const router = useRouter();
+  const { name } = router.query;
+  let routerUrl = null;
+  let params = '';
+  map(name, url => (params = `${params}/${url}`));
+  routerUrl = params.slice(1, params.length);
+
   useEffect(() => {
-    getPage(router.query.name);
+    getPage(routerUrl);
   }, []);
 
-  const { name } = router.query;
   return (
     <Layout title={list.meta_title}>
       <div className="main_content">
         <Carousel silder={silder} />
-        <MenuMiddle data={menuMiddle} query={name === undefined || name === null ? '' : name[0]} />
+        <MenuMiddle data={menuMiddle} query={routerUrl} />
         {list.name === 'Nhà đầu tư' && <Investors />}
         {list.name === 'Thông báo' && <Investors />}
         {list.name === 'Báo cáo tài chính' && <ListDowloadFIle type={1} search />}
@@ -39,6 +46,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
         {list.name === 'Tài liệu nhà đầu tư' && <ListDowloadFIle type={6} search />}
         {list.name === 'Công bố thông tin khác' && <OtherNews />}
         {list.name === 'Về MBBank' && <About />}
+        {list.name === 'Điểm giao dịch ATM' && <Transaction />}
         <BlockRender data={list.pageBlocks} />
         {list.template === 4 && <DowloadCategory />}
       </div>

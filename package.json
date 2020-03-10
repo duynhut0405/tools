@@ -37,6 +37,7 @@
     "react-owl-carousel2": "^0.3.0",
     "react-redux": "^7.2.0",
     "react-responsive-carousel": "^3.1.51",
+    "react-select": "^3.0.8",
     "react-sticky": "^6.0.3",
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3"

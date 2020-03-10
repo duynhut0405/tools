@@ -350,3 +350,92 @@ a:hover {
     padding: 30px 30px 30px 76px;
   }
 }
+
+.ajax-content-map {
+  padding: 40px;
+  /* position: relative;
+  z-index: 999; */
+}
+.fix-select {
+  z-index: 99;
+}
+
+.fix-select1 {
+  z-index: 90;
+}
+
+.ajax-content-map ul.menu li.active .item {
+  font-weight: 600;
+}
+
+.ajax-content-map ul.menu li.active .item:after {
+  content: '';
+}
+.ajax-content-map ul.menu .item:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #9be6c8;
+}
+
+.ajax-content-map ul.menu {
+  margin-bottom: 15px;
+}
+.ajax-content-map ul.menu .item {
+  color: #333333;
+  font-size: 16px;
+  text-align: center;
+  padding: 15px 5px;
+  line-height: normal;
+  display: block;
+  cursor: pointer;
+}
+
+.form-search-focus {
+  position: relative;
+  background: #f3f3f3;
+  border-radius: 10px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.form-search-focus input {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  z-index: 2;
+  border: none;
+  background-color: transparent;
+  display: block;
+  padding-left: 20px;
+  width: 100%;
+}
+
+.form-search-focus button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48px;
+  height: 100%;
+  border: none;
+  background: none;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1200px) {
+  .form-search-focus input {
+    opacity: 1;
+    padding-right: 48px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .form-search-focus input {
+    opacity: 1;
+    padding-right: 48px;
+  }
+}
