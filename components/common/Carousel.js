@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { map, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { Carousel } from 'react-responsive-carousel';
@@ -16,13 +16,14 @@ function Carousels({ silder, className }) {
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
-        <div className={className}>
+        <div className={className} style={{ boxShadow: '0px 2px 26px 0px rgba(0,0,0,0.09)' }}>
           <Carousel
             showThumbs={false}
             showStatus={false}
             infiniteLoop={true}
             onClickItem={getItems}
             emulateTouch
+            showIndicators={false}
           >
             {map(silder, (item, index) => (
               <div key={index} className="silder_items">
