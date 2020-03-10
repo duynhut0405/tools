@@ -18,9 +18,15 @@ export const setLang = (lang, flag) => {
 };
 
 export const getFlag = () => {
-  const flag = JSON.parse(localStorage.getItem('flag'));
-  if (flag) {
-    return flag;
+  try {
+    if (localStorage) {
+      const flag = JSON.parse(localStorage.getItem('flag'));
+      if (flag) {
+        return flag;
+      }
+    }
+  } catch (error) {
+    return 'vn';
   }
   return 'vn';
 };
