@@ -23,7 +23,6 @@ function News({ data, type, id }) {
   const listNewsTabs = slice(listCategory, 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
   const { t } = useTranslation();
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -104,6 +103,7 @@ function News({ data, type, id }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+            <p className="cl5">{data.description}</p>
             <a className="viewall" href={`news/list/${slugCategory}`}>
               {t('view')}
               <i className="icon-arrow-1"></i>
@@ -373,7 +373,7 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b sec-h-4__" id={id}>
         <div className="container">
-          <h2 className="">{data.title}</h2>
+          <h2 className="font">{data.title}</h2>
           <p className="cl5">{data.description}</p>
           <div className="list-5 list-5-1 row list-item">
             {map(listCategory, (item, index) => (
@@ -383,7 +383,9 @@ function News({ data, type, id }) {
                     <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                     <h4 className="title line2">{item.title}</h4>
                     <div className="desc line2">{item.shortDescription}</div>
-                    <span className="more cl1">Tìm hiểu thêm</span>
+                    <span className="more cl1" style={{ display: 'block', paddingTop: '30px' }}>
+                      Tìm hiểu thêm
+                    </span>
                   </div>
                 </a>
               </div>
