@@ -31,7 +31,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
   useEffect(() => {
     getPage(routerUrl);
   }, []);
-
+  console.log(name);
   return (
     <Layout title={list.meta_title}>
       <div className="main_content">
