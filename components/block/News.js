@@ -23,7 +23,6 @@ function News({ data, type, id }) {
   const listNewsTabs = slice(listCategory, 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
   const { t } = useTranslation();
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -104,6 +103,7 @@ function News({ data, type, id }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+            <p className="cl5">{data.description}</p>
             <a className="viewall" href={`news/list/${slugCategory}`}>
               {t('view')}
               <i className="icon-arrow-1"></i>
