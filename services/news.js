@@ -55,7 +55,7 @@ const getNewCategoryIdService = id => {
 
 const findAllByCategory = (id, page, year) => {
   return request({
-    url: `/news/findallbycategoryandyear/${id}?number=9&page=${page}&${year}`,
+    url: `/news/findallbycategoryandyear/${id}?number=9&page=${page}&year=${year}`,
     method: 'GET'
   })
     .then(res => {

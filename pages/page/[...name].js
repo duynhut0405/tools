@@ -5,6 +5,8 @@ import Layout from '../../components/layout';
 import About from '../../components/about';
 import Investors from '../../components/investors';
 import OtherNews from '../../components/otherNews';
+import Transaction from '../../components/transaction';
+import { map } from 'lodash';
 import { PageActions } from '../../store/actions';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -20,25 +22,31 @@ const propTypes = {
 
 function Page({ list, silder, menuMiddle, getPage }) {
   const router = useRouter();
+  const { name } = router.query;
+  let routerUrl = null;
+  let params = '';
+  map(name, url => (params = `${params}/${url}`));
+  routerUrl = params.slice(1, params.length);
+
   useEffect(() => {
-    getPage(router.query.name);
+    getPage(routerUrl);
   }, []);
 
-  const { name } = router.query;
   return (
     <Layout title={list.meta_title}>
       <div className="main_content">
         <Carousel silder={silder} />
-        <MenuMiddle data={menuMiddle} query={name === undefined || name === null ? '' : name[0]} />
-        {list.name === 'Nhà đầu tư' && <Investors />}
-        {list.name === 'Thông báo' && <Investors />}
-        {list.name === 'Báo cáo tài chính' && <ListDowloadFIle type={1} search />}
-        {list.name === 'Đại hội cổ đông' && <ListDowloadVideo type={2} />}
-        {list.name === 'Điều lệ' && <ListDowloadVideo type={3} />}
-        {list.name === 'Báo cáo thường niên' && <ListDowloadFIle type={4} search />}
-        {list.name === 'Tài liệu nhà đầu tư' && <ListDowloadFIle type={6} search />}
-        {list.name === 'Công bố thông tin khác' && <OtherNews />}
-        {list.name === 'Về MBBank' && <About />}
+        <MenuMiddle data={menuMiddle} query={routerUrl} />
+        {list.id === 34652 && <Investors />}
+        {list.id === 34653 && <Investors />}
+        {list.id === 34654 && <ListDowloadFIle type={1} search />}
+        {list.id === 34655 && <ListDowloadVideo type={2} />}
+        {list.id === 34656 && <ListDowloadVideo type={3} />}
+        {list.id === 34657 && <ListDowloadFIle type={4} search />}
+        {list.id === 34658 && <ListDowloadFIle type={6} search />}
+        {list.id === 34660 && <OtherNews />}
+        {list.id === 34217 && <About />}
+        {list.id === 34669 && <Transaction />}
         <BlockRender data={list.pageBlocks} />
         {list.template === 4 && <DowloadCategory />}
       </div>
@@ -61,7 +69,7 @@ const mapDispatchToProps = {
 Page.propTypes = propTypes;
 
 Page.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'page']
+  namespacesRequired: ['common', 'common']
 });
 
 export default connect(mapStateToProp, mapDispatchToProps)(withTranslation('common')(Page));

@@ -78,7 +78,7 @@ function Layout({
     setFlag(getFlag());
   }, [getFlag]);
 
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const nestChild = items => {
     return map(items, item => (
@@ -280,10 +280,10 @@ function Layout({
                           <div className="item ilogin">
                             <ul className="menu line">
                               <li>
-                                <a href="#"> Đăng ký</a>
+                                <a href="#">{t('registration')}</a>
                               </li>
                               <li>
-                                <a href="#"> Đăng nhập</a>
+                                <a href="#">{t('login')}</a>
                               </li>
                             </ul>
                           </div>
