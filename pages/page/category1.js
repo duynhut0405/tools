@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Carousel, BlockRender, DowloadCategory } from '../../components/common';
 import Layout from '../../components/layout';
@@ -14,11 +14,16 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'bao-cao-tai-chinh';
+  const name = 'lien-he';
+  const [input, setInput] = useState(null);
+  useEffect(() => {
+    setInput(document.getElementById('Name'));
+  }, []);
 
   useEffect(() => {
     getPage(name);
   }, []);
+  console.log(input);
   return (
     <Layout>
       <div className="main_content">

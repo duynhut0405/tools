@@ -9,6 +9,8 @@ const propTypes = {
 };
 
 function Form({ data }) {
+  const [input, setInput] = useState(null);
+
   const [formdata, setFormData] = useState([]);
   const getFormByID = async () => {
     const res = await getFormbuilderByIdService(data.formdata);
@@ -20,11 +22,11 @@ function Form({ data }) {
   useEffect(() => {
     getFormByID();
   }, []);
-
+  console.log(input);
   return (
     <section className=" sec-tb sec-tuvan ">
       <div className="container">
-        <form>
+        <form action="/action_page.php">
           <div>{ReactHtmlParser(formdata)}</div>
         </form>
       </div>

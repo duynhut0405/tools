@@ -51,7 +51,7 @@ const mapDispatchToProps = {
 Home.propTypes = propTypes;
 
 Home.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'home']
+  namespacesRequired: ['common', 'common']
 });
 
 export default connect(mapStateToProp, mapDispatchToProps)(withTranslation('common')(Home));

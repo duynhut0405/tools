@@ -6,6 +6,8 @@
     "documents": "Documents",
     "you_encounter_difficulties": "You encounter difficulties ?",
     "year": "Year",
+    "registration": "Sign up",
+    "login": "Sign in",
     "page_about": {
         "title": "Achievement & Award"
     },
@@ -21,7 +23,5 @@
     "to": "To",
     "ammout": "Amount of money",
     "updated_at": "Updated at the time of",
-    "date": "date",
-    "register": "Register",
-    "login": "Login"
+    "date": "date"
 }

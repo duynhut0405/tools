@@ -6,6 +6,7 @@ import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
+import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -23,7 +24,6 @@ function News({ data, type, id }) {
   const listNewsTabs = slice(listCategory, 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
   const { t } = useTranslation();
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -65,12 +65,11 @@ function News({ data, type, id }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
-
   if (type === '1') {
     return (
       <div className="post_block mb-5 pt-4 mt-5" id={id}>
         <div className="title">
-          <h2>{data.title}</h2>
+          <h2>{data === null ? '' : data.title}</h2>
         </div>
         <div className="row">
           {map(listNews, (item, index) => (
@@ -104,6 +103,7 @@ function News({ data, type, id }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+            <p className="cl5">{data.description}</p>
             <a className="viewall" href={`news/list/${slugCategory}`}>
               {t('view')}
               <i className="icon-arrow-1"></i>
@@ -154,7 +154,7 @@ function News({ data, type, id }) {
       <section className="sec-tb sec-h-3 " id={id}>
         <div className="container">
           <div className="entry-head">
-            <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+            <h2 className="ht efch-1 ef-img-t">{data.title}</h2>
             <a className="viewall" href={`news/list/${slugCategory}`}>
               {t('view')} <i className="icon-arrow-1"></i>
             </a>
@@ -170,6 +170,7 @@ function News({ data, type, id }) {
                   infinite={true}
                   keyBoardControl={true}
                   arrows={false}
+                  renderButtonGroupOutside={true}
                   ref={ref => {
                     setRefCarousel(ref);
                   }}
@@ -180,7 +181,7 @@ function News({ data, type, id }) {
                         href={`/news/${item.url}`}
                         className={`item efch-${index} ef-img-l equal`}
                         key={index}
-                        style={{ height: '378px', width: '262px' }}
+                        style={{ height: '300px', width: '262px'}}
                       >
                         <div className="img tRes_71">
                           <img
@@ -192,7 +193,11 @@ function News({ data, type, id }) {
                         </div>
                         <div className="divtext">
                           <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                          <h4 className="title">{item.title}</h4>
+                          <h4 className="title">
+                            <ShowMoreText lines={1} more='' expanded={false} width={370}>
+                              {item.title}
+                            </ShowMoreText>
+                          </h4>
                         </div>
                       </a>
                     </div>
@@ -373,7 +378,7 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b sec-h-4__" id={id}>
         <div className="container">
-          <h2 className="">{data.title}</h2>
+          <h2 className="font">{data.title}</h2>
           <p className="cl5">{data.description}</p>
           <div className="list-5 list-5-1 row list-item">
             {map(listCategory, (item, index) => (
@@ -383,7 +388,9 @@ function News({ data, type, id }) {
                     <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                     <h4 className="title line2">{item.title}</h4>
                     <div className="desc line2">{item.shortDescription}</div>
-                    <span className="more cl1">Tìm hiểu thêm</span>
+                    <span className="more cl1" style={{ display: 'block', paddingTop: '30px' }}>
+                      Tìm hiểu thêm
+                    </span>
                   </div>
                 </a>
               </div>

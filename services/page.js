@@ -2,8 +2,8 @@ import request from '../utils/request';
 
 const getPageService = name => {
   return request({
-    url: `/pages/name/${name}`,
-    method: 'GET'
+    url: `/pages/name?name=${name}`,
+    method: 'POST'
   })
     .then(res => {
       return res;
