@@ -23,6 +23,8 @@ import '../../styles/custom.css';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { setLang, getFlag } from '../../utils/localStorage';
+import { withTranslation } from '../../i18n';
+import { compose } from 'redux';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -148,7 +150,7 @@ function Layout({
     setFlag(flags);
     setLang(lang, flags);
   };
-
+  const { t } = useTranslation();
   return (
     <body className={classnames({ showMenu: activeDrawer })}>
       <div>
@@ -280,10 +282,10 @@ function Layout({
                           <div className="item ilogin">
                             <ul className="menu line">
                               <li>
-                                <a href="#"> Đăng ký</a>
+                                <a href="#">{t('register')}</a>
                               </li>
                               <li>
-                                <a href="#"> Đăng nhập</a>
+                                <a href="#">{t('login')}</a>
                               </li>
                             </ul>
                           </div>
@@ -366,12 +368,12 @@ function Layout({
                 <div className="container">
                   <div className="row">
                     <div className="col-md-6   efch-2 ef-img-r">
-                      <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                      <p className="stitle">{t('sign_up_promotional')}</p>
                       <form role="search" method="get" className="searchform " action="">
                         <div>
                           <input
                             type="text"
-                            placeholder="Nhập email để nhận thông tin"
+                            placeholder={t('enter_email')}
                             name="s"
                             className="input"
                           />
@@ -387,7 +389,7 @@ function Layout({
                           <img src="/static/images/code.png" alt="" />
                         </span>
                         <div className="app">
-                          <p className="stitle">Hãy tải app ngay hôm nay</p>
+                          <p className="stitle">{t('donwload_app_today')}</p>
                           <a href="https://apple.co/2AqB7ZM">
                             <img src="/static/images/btt-chplay.svg" alt="" />
                           </a>
@@ -431,12 +433,12 @@ function Layout({
               </div>
               <section className="sec-download-mb">
                 <div className="wform">
-                  <p className="stitle">Đăng ký nhận thông tin khuyến mãi</p>
+                  <p className="stitle">{t('sign_up_promotional')}</p>
                   <form role="search" method="get" className="searchform " action="">
                     <div className="aaa">
                       <input
                         type="text"
-                        placeholder="Nhập email để nhận thông tin"
+                        placeholder={t('enter_email')}
                         name="s"
                         className="input"
                       />
@@ -448,7 +450,7 @@ function Layout({
                   </form>
                 </div>
                 <div className="wdownload">
-                  <span className="stitle">Tải app ngay</span>&nbsp;
+                  <span className="stitle">{t('donwload_app_today')}</span>&nbsp;
                   <a href="#">
                     <img src={ChplayMB} alt="" />
                   </a>{' '}
@@ -563,4 +565,10 @@ const mapDispatchToProps = {
   getMenuFooterBottom: MenuActions.getMenuFooterBottom
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+Layout.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'layout']
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withTranslation('common'), withConnect)(Layout);

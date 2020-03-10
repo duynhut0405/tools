@@ -8,5 +8,20 @@
     "year": "Year",
     "page_about": {
         "title": "Achievement & Award"
-    }
+    },
+    "exchange_rate": "Exchange rate",
+    "sign_up_promotional": "Sign up to receive promotional information",
+    "donwload_app_today": "Download app today",
+    "enter_email": "Enter email to receive information",
+    "codeNT": "Code NT",
+    "buycash": "Buy cash",
+    "transfer": "Transfer",
+    "sold_out": "Sold out",
+    "transfer_from": "Transfer from",
+    "to": "To",
+    "ammout": "Amount of money",
+    "updated_at": "Updated at the time of",
+    "date": "date",
+    "register": "Register",
+    "login": "Login"
 }
