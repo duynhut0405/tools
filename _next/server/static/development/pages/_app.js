@@ -464,7 +464,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_custom_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_styles_custom_css__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var react_responsive_carousel_lib_styles_carousel_min_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-responsive-carousel/lib/styles/carousel.min.css */ "./node_modules/react-responsive-carousel/lib/styles/carousel.min.css");
 /* harmony import */ var react_responsive_carousel_lib_styles_carousel_min_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_responsive_carousel_lib_styles_carousel_min_css__WEBPACK_IMPORTED_MODULE_10__);
-var _jsxFileName = "F:\\MGROUP\\MBnextjs\\mb-frontend\\pages\\_app.js";
+var _jsxFileName = "/home/user/mb-frontend/pages/_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -525,6 +525,63 @@ class NextApp extends next_app__WEBPACK_IMPORTED_MODULE_0___default.a {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (next_redux_wrapper__WEBPACK_IMPORTED_MODULE_3___default()(_store__WEBPACK_IMPORTED_MODULE_5__["default"])(next_redux_saga__WEBPACK_IMPORTED_MODULE_4___default()(Object(_i18n__WEBPACK_IMPORTED_MODULE_6__["appWithTranslation"])(NextApp))));
+
+/***/ }),
+
+/***/ "./services/map.js":
+/*!*************************!*\
+  !*** ./services/map.js ***!
+  \*************************/
+/*! exports provided: getProvinceService, getDistrictService, searchBranchesService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProvinceService", function() { return getProvinceService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDistrictService", function() { return getDistrictService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchBranchesService", function() { return searchBranchesService; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/request */ "./utils/request.js");
+
+
+const url = 'https://sapotacorp.com:8443/api';
+
+const getProvinceService = () => {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    url: `${url}/province`,
+    method: 'GET'
+  }).then(res => {
+    return res;
+  }).catch(error => {
+    return error.response.data;
+  });
+};
+
+const getDistrictService = id => {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    url: `${url}/district/${id}`,
+    method: 'GET'
+  }).then(res => {
+    return res;
+  }).catch(error => {
+    return error.response.data;
+  });
+};
+
+const searchBranchesService = params => {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    url: `/network/search`,
+    method: 'GET',
+    params: params
+  }).then(res => {
+    return res;
+  }).catch(error => {
+    return error.response.data;
+  });
+};
+
+
 
 /***/ }),
 
@@ -1134,6 +1191,177 @@ function* getSocialLinkSaga() {
 
 function* rootSaga() {
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["fork"])(getSettingFooterSaga), Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["fork"])(getSocialLinkSaga)]);
+}
+
+/***/ }),
+
+/***/ "./store/map/actions.js":
+/*!******************************!*\
+  !*** ./store/map/actions.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const Actions = {
+  SEARCH_BRANCHES_REQUEST: 'SEARCH_BRANCHES_REQUEST',
+  SEARCH_BRANCHES_RESPONSE: 'SEARCH_BRANCHES_RESPONSE',
+  searchBranchesAction: params => ({
+    type: Actions.SEARCH_BRANCHES_REQUEST,
+    params
+  }),
+  GET_PROVINCE_REQUEST: 'GET_PROVINCE_REQUEST',
+  GET_PROVINCE_RESPONSE: 'GET_PROVINCE_RESPONSE',
+  getProvinceAction: () => ({
+    type: Actions.GET_PROVINCE_REQUEST
+  }),
+  GET_DISTRICT_REQUEST: 'GET_DISTRICT_REQUEST',
+  GET_DISTRICT_RESPONSE: 'GET_DISTRICT_RESPONSE',
+  getDistrictAction: id => ({
+    type: Actions.GET_DISTRICT_REQUEST,
+    id
+  })
+};
+/* harmony default export */ __webpack_exports__["default"] = (Actions);
+
+/***/ }),
+
+/***/ "./store/map/reducers.js":
+/*!*******************************!*\
+  !*** ./store/map/reducers.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./store/map/actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+const initialState = {
+  listBranches: [],
+  listProvince: [],
+  listDistrict: []
+};
+
+const mapReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["default"].SEARCH_BRANCHES_RESPONSE:
+      return _objectSpread({}, state, {
+        listBranches: action.data
+      });
+
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_PROVINCE_RESPONSE:
+      return _objectSpread({}, state, {
+        listProvince: action.data
+      });
+
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_DISTRICT_RESPONSE:
+      return _objectSpread({}, state, {
+        listDistrict: action.data
+      });
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (mapReducer);
+
+/***/ }),
+
+/***/ "./store/map/saga.js":
+/*!***************************!*\
+  !*** ./store/map/saga.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return rootSaga; });
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./store/map/actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-saga/effects */ "redux-saga/effects");
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/map */ "./services/map.js");
+
+
+
+
+
+function* getProvinceSaga() {
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_PROVINCE_REQUEST, function* () {
+    try {
+      const res = yield Object(_services_map__WEBPACK_IMPORTED_MODULE_3__["getProvinceService"])();
+
+      if (res.status === 200) {
+        const data = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["map"])(res.data, province => ({
+          value: province.id,
+          label: province.name
+        }));
+        yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["put"])({
+          type: _actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_PROVINCE_RESPONSE,
+          data: data
+        });
+      } else {// console.log(res);
+      }
+    } catch (error) {// console.log(error);
+    }
+  });
+}
+
+function* getDistrictSaga() {
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_DISTRICT_REQUEST, function* (params) {
+    const {
+      id
+    } = params;
+
+    try {
+      const res = yield Object(_services_map__WEBPACK_IMPORTED_MODULE_3__["getDistrictService"])(id);
+
+      if (res.status === 200) {
+        const data = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["map"])(res.data, district => ({
+          value: district.id,
+          label: district.name
+        }));
+        yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["put"])({
+          type: _actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_DISTRICT_RESPONSE,
+          data: data
+        });
+      } else {// console.log(res);
+      }
+    } catch (error) {// console.log(error);
+    }
+  });
+}
+
+function* searchBranchesSaga() {
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_0__["default"].SEARCH_BRANCHES_REQUEST, function* (params) {
+    try {
+      const res = yield Object(_services_map__WEBPACK_IMPORTED_MODULE_3__["searchBranchesService"])(params.params);
+
+      if (res.status === 200) {
+        yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["put"])({
+          type: _actions__WEBPACK_IMPORTED_MODULE_0__["default"].SEARCH_BRANCHES_RESPONSE,
+          data: res.data
+        });
+      } else {// console.log(res);
+      }
+    } catch (error) {// console.log(error);
+    }
+  });
+}
+
+function* rootSaga() {
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["all"])([Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["fork"])(getProvinceSaga), Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["fork"])(getDistrictSaga), Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["fork"])(searchBranchesSaga)]);
 }
 
 /***/ }),
@@ -1751,6 +1979,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_reducers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu/reducers */ "./store/menu/reducers.js");
 /* harmony import */ var _investors_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./investors/reducer */ "./store/investors/reducer.js");
 /* harmony import */ var _news_reducers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./news/reducers */ "./store/news/reducers.js");
+/* harmony import */ var _map_reducers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./map/reducers */ "./store/map/reducers.js");
+
 
 
 
@@ -1766,7 +1996,8 @@ const reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   regulationReducer: _regulation_reducers__WEBPACK_IMPORTED_MODULE_4__["default"],
   menuReducer: _menu_reducers__WEBPACK_IMPORTED_MODULE_5__["default"],
   investorsReducer: _investors_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
-  newsReducer: _news_reducers__WEBPACK_IMPORTED_MODULE_7__["default"]
+  newsReducer: _news_reducers__WEBPACK_IMPORTED_MODULE_7__["default"],
+  mapReducer: _map_reducers__WEBPACK_IMPORTED_MODULE_8__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (reducers);
 
@@ -2068,6 +2299,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_saga__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu/saga */ "./store/menu/saga.js");
 /* harmony import */ var _investors_saga__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./investors/saga */ "./store/investors/saga.js");
 /* harmony import */ var _news_saga__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./news/saga */ "./store/news/saga.js");
+/* harmony import */ var _map_saga__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./map/saga */ "./store/map/saga.js");
+
 
 
 
@@ -2077,7 +2310,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function* rootSaga() {
-  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["all"])([Object(_page_saga__WEBPACK_IMPORTED_MODULE_1__["default"])(), Object(_rate_saga__WEBPACK_IMPORTED_MODULE_2__["default"])(), Object(_layout_saga__WEBPACK_IMPORTED_MODULE_3__["default"])(), Object(_regulation_saga__WEBPACK_IMPORTED_MODULE_4__["default"])(), Object(_menu_saga__WEBPACK_IMPORTED_MODULE_5__["default"])(), Object(_investors_saga__WEBPACK_IMPORTED_MODULE_6__["default"])(), Object(_news_saga__WEBPACK_IMPORTED_MODULE_7__["default"])()]);
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["all"])([Object(_page_saga__WEBPACK_IMPORTED_MODULE_1__["default"])(), Object(_rate_saga__WEBPACK_IMPORTED_MODULE_2__["default"])(), Object(_layout_saga__WEBPACK_IMPORTED_MODULE_3__["default"])(), Object(_regulation_saga__WEBPACK_IMPORTED_MODULE_4__["default"])(), Object(_menu_saga__WEBPACK_IMPORTED_MODULE_5__["default"])(), Object(_investors_saga__WEBPACK_IMPORTED_MODULE_6__["default"])(), Object(_news_saga__WEBPACK_IMPORTED_MODULE_7__["default"])(), Object(_map_saga__WEBPACK_IMPORTED_MODULE_8__["default"])()]);
 }
 
 /***/ }),

@@ -923,7 +923,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "F:\\MGROUP\\MBnextjs\\mb-frontend\\_next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "/home/user/mb-frontend/_next");
       return error;
     }
   };

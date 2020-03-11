@@ -1,0 +1,1 @@
+{"ast":null,"code":"const Actions = {\n  GET_RATE_REQUEST: 'GET_RATE_REQUEST',\n  GET_RATE_RESPONSE: 'GET_RATE_RESPONSE',\n  getRateAction: () => ({\n    type: Actions.GET_RATE_REQUEST\n  })\n};\nexport default Actions;","map":null,"metadata":{},"sourceType":"module"}

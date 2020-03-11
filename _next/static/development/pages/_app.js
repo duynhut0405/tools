@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\_app.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/_app.js"],{
 
 /***/ "./i18n.js":
 /*!*****************!*\
@@ -42548,7 +42548,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "F:\\MGROUP\\MBnextjs\\mb-frontend\\pages\\_app.js";
+var _jsxFileName = "/home/user/mb-frontend/pages/_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 
@@ -42638,6 +42638,63 @@ function (_App) {
 }(next_app__WEBPACK_IMPORTED_MODULE_7___default.a);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(next_redux_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"])(_store__WEBPACK_IMPORTED_MODULE_12__["default"])(Object(next_redux_saga__WEBPACK_IMPORTED_MODULE_11__["default"])(Object(_i18n__WEBPACK_IMPORTED_MODULE_13__["appWithTranslation"])(NextApp))));
+
+/***/ }),
+
+/***/ "./services/map.js":
+/*!*************************!*\
+  !*** ./services/map.js ***!
+  \*************************/
+/*! exports provided: getProvinceService, getDistrictService, searchBranchesService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProvinceService", function() { return getProvinceService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDistrictService", function() { return getDistrictService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchBranchesService", function() { return searchBranchesService; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/request */ "./utils/request.js");
+
+
+var url = 'https://sapotacorp.com:8443/api';
+
+var getProvinceService = function getProvinceService() {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    url: "".concat(url, "/province"),
+    method: 'GET'
+  }).then(function (res) {
+    return res;
+  })["catch"](function (error) {
+    return error.response.data;
+  });
+};
+
+var getDistrictService = function getDistrictService(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    url: "".concat(url, "/district/").concat(id),
+    method: 'GET'
+  }).then(function (res) {
+    return res;
+  })["catch"](function (error) {
+    return error.response.data;
+  });
+};
+
+var searchBranchesService = function searchBranchesService(params) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    url: "/network/search",
+    method: 'GET',
+    params: params
+  }).then(function (res) {
+    return res;
+  })["catch"](function (error) {
+    return error.response.data;
+  });
+};
+
+
 
 /***/ }),
 
@@ -43479,6 +43536,345 @@ function rootSaga() {
       }
     }
   }, _marked3);
+}
+
+/***/ }),
+
+/***/ "./store/map/actions.js":
+/*!******************************!*\
+  !*** ./store/map/actions.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var Actions = {
+  SEARCH_BRANCHES_REQUEST: 'SEARCH_BRANCHES_REQUEST',
+  SEARCH_BRANCHES_RESPONSE: 'SEARCH_BRANCHES_RESPONSE',
+  searchBranchesAction: function searchBranchesAction(params) {
+    return {
+      type: Actions.SEARCH_BRANCHES_REQUEST,
+      params: params
+    };
+  },
+  GET_PROVINCE_REQUEST: 'GET_PROVINCE_REQUEST',
+  GET_PROVINCE_RESPONSE: 'GET_PROVINCE_RESPONSE',
+  getProvinceAction: function getProvinceAction() {
+    return {
+      type: Actions.GET_PROVINCE_REQUEST
+    };
+  },
+  GET_DISTRICT_REQUEST: 'GET_DISTRICT_REQUEST',
+  GET_DISTRICT_RESPONSE: 'GET_DISTRICT_RESPONSE',
+  getDistrictAction: function getDistrictAction(id) {
+    return {
+      type: Actions.GET_DISTRICT_REQUEST,
+      id: id
+    };
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (Actions);
+
+/***/ }),
+
+/***/ "./store/map/reducers.js":
+/*!*******************************!*\
+  !*** ./store/map/reducers.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./store/map/actions.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
+var initialState = {
+  listBranches: [],
+  listProvince: [],
+  listDistrict: []
+};
+
+var mapReducer = function mapReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions__WEBPACK_IMPORTED_MODULE_1__["default"].SEARCH_BRANCHES_RESPONSE:
+      return _objectSpread({}, state, {
+        listBranches: action.data
+      });
+
+    case _actions__WEBPACK_IMPORTED_MODULE_1__["default"].GET_PROVINCE_RESPONSE:
+      return _objectSpread({}, state, {
+        listProvince: action.data
+      });
+
+    case _actions__WEBPACK_IMPORTED_MODULE_1__["default"].GET_DISTRICT_RESPONSE:
+      return _objectSpread({}, state, {
+        listDistrict: action.data
+      });
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (mapReducer);
+
+/***/ }),
+
+/***/ "./store/map/saga.js":
+/*!***************************!*\
+  !*** ./store/map/saga.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return rootSaga; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./store/map/actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
+/* harmony import */ var _services_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/map */ "./services/map.js");
+
+
+var _marked =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(getProvinceSaga),
+    _marked2 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(getDistrictSaga),
+    _marked3 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(searchBranchesSaga),
+    _marked4 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(rootSaga);
+
+
+
+
+
+
+function getProvinceSaga() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getProvinceSaga$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_1__["default"].GET_PROVINCE_REQUEST,
+          /*#__PURE__*/
+          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+            var res, data;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.prev = 0;
+                    _context.next = 3;
+                    return Object(_services_map__WEBPACK_IMPORTED_MODULE_4__["getProvinceService"])();
+
+                  case 3:
+                    res = _context.sent;
+
+                    if (!(res.status === 200)) {
+                      _context.next = 10;
+                      break;
+                    }
+
+                    data = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["map"])(res.data, function (province) {
+                      return {
+                        value: province.id,
+                        label: province.name
+                      };
+                    });
+                    _context.next = 8;
+                    return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["put"])({
+                      type: _actions__WEBPACK_IMPORTED_MODULE_1__["default"].GET_PROVINCE_RESPONSE,
+                      data: data
+                    });
+
+                  case 8:
+                    _context.next = 10;
+                    break;
+
+                  case 10:
+                    _context.next = 14;
+                    break;
+
+                  case 12:
+                    _context.prev = 12;
+                    _context.t0 = _context["catch"](0);
+
+                  case 14:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, null, [[0, 12]]);
+          }));
+
+        case 2:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  }, _marked);
+}
+
+function getDistrictSaga() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getDistrictSaga$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_1__["default"].GET_DISTRICT_REQUEST,
+          /*#__PURE__*/
+          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(params) {
+            var id, res, data;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    id = params.id;
+                    _context3.prev = 1;
+                    _context3.next = 4;
+                    return Object(_services_map__WEBPACK_IMPORTED_MODULE_4__["getDistrictService"])(id);
+
+                  case 4:
+                    res = _context3.sent;
+
+                    if (!(res.status === 200)) {
+                      _context3.next = 11;
+                      break;
+                    }
+
+                    data = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["map"])(res.data, function (district) {
+                      return {
+                        value: district.id,
+                        label: district.name
+                      };
+                    });
+                    _context3.next = 9;
+                    return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["put"])({
+                      type: _actions__WEBPACK_IMPORTED_MODULE_1__["default"].GET_DISTRICT_RESPONSE,
+                      data: data
+                    });
+
+                  case 9:
+                    _context3.next = 11;
+                    break;
+
+                  case 11:
+                    _context3.next = 15;
+                    break;
+
+                  case 13:
+                    _context3.prev = 13;
+                    _context3.t0 = _context3["catch"](1);
+
+                  case 15:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee2, null, [[1, 13]]);
+          }));
+
+        case 2:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  }, _marked2);
+}
+
+function searchBranchesSaga() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function searchBranchesSaga$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          _context6.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_1__["default"].SEARCH_BRANCHES_REQUEST,
+          /*#__PURE__*/
+          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(params) {
+            var res;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context5) {
+              while (1) {
+                switch (_context5.prev = _context5.next) {
+                  case 0:
+                    _context5.prev = 0;
+                    _context5.next = 3;
+                    return Object(_services_map__WEBPACK_IMPORTED_MODULE_4__["searchBranchesService"])(params.params);
+
+                  case 3:
+                    res = _context5.sent;
+
+                    if (!(res.status === 200)) {
+                      _context5.next = 9;
+                      break;
+                    }
+
+                    _context5.next = 7;
+                    return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["put"])({
+                      type: _actions__WEBPACK_IMPORTED_MODULE_1__["default"].SEARCH_BRANCHES_RESPONSE,
+                      data: res.data
+                    });
+
+                  case 7:
+                    _context5.next = 9;
+                    break;
+
+                  case 9:
+                    _context5.next = 13;
+                    break;
+
+                  case 11:
+                    _context5.prev = 11;
+                    _context5.t0 = _context5["catch"](0);
+
+                  case 13:
+                  case "end":
+                    return _context5.stop();
+                }
+              }
+            }, _callee3, null, [[0, 11]]);
+          }));
+
+        case 2:
+        case "end":
+          return _context6.stop();
+      }
+    }
+  }, _marked3);
+}
+
+function rootSaga() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function rootSaga$(_context7) {
+    while (1) {
+      switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["all"])([Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["fork"])(getProvinceSaga), Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["fork"])(getDistrictSaga), Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_3__["fork"])(searchBranchesSaga)]);
+
+        case 2:
+        case "end":
+          return _context7.stop();
+      }
+    }
+  }, _marked4);
 }
 
 /***/ }),
@@ -44632,6 +45028,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_reducers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu/reducers */ "./store/menu/reducers.js");
 /* harmony import */ var _investors_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./investors/reducer */ "./store/investors/reducer.js");
 /* harmony import */ var _news_reducers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./news/reducers */ "./store/news/reducers.js");
+/* harmony import */ var _map_reducers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./map/reducers */ "./store/map/reducers.js");
+
 
 
 
@@ -44647,7 +45045,8 @@ var reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   regulationReducer: _regulation_reducers__WEBPACK_IMPORTED_MODULE_4__["default"],
   menuReducer: _menu_reducers__WEBPACK_IMPORTED_MODULE_5__["default"],
   investorsReducer: _investors_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
-  newsReducer: _news_reducers__WEBPACK_IMPORTED_MODULE_7__["default"]
+  newsReducer: _news_reducers__WEBPACK_IMPORTED_MODULE_7__["default"],
+  mapReducer: _map_reducers__WEBPACK_IMPORTED_MODULE_8__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (reducers);
 
@@ -45240,11 +45639,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_saga__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./menu/saga */ "./store/menu/saga.js");
 /* harmony import */ var _investors_saga__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./investors/saga */ "./store/investors/saga.js");
 /* harmony import */ var _news_saga__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./news/saga */ "./store/news/saga.js");
+/* harmony import */ var _map_saga__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./map/saga */ "./store/map/saga.js");
 
 
 var _marked =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(rootSaga);
+
 
 
 
@@ -45260,7 +45661,7 @@ function rootSaga() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_page_saga__WEBPACK_IMPORTED_MODULE_2__["default"])(), Object(_rate_saga__WEBPACK_IMPORTED_MODULE_3__["default"])(), Object(_layout_saga__WEBPACK_IMPORTED_MODULE_4__["default"])(), Object(_regulation_saga__WEBPACK_IMPORTED_MODULE_5__["default"])(), Object(_menu_saga__WEBPACK_IMPORTED_MODULE_6__["default"])(), Object(_investors_saga__WEBPACK_IMPORTED_MODULE_7__["default"])(), Object(_news_saga__WEBPACK_IMPORTED_MODULE_8__["default"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_page_saga__WEBPACK_IMPORTED_MODULE_2__["default"])(), Object(_rate_saga__WEBPACK_IMPORTED_MODULE_3__["default"])(), Object(_layout_saga__WEBPACK_IMPORTED_MODULE_4__["default"])(), Object(_regulation_saga__WEBPACK_IMPORTED_MODULE_5__["default"])(), Object(_menu_saga__WEBPACK_IMPORTED_MODULE_6__["default"])(), Object(_investors_saga__WEBPACK_IMPORTED_MODULE_7__["default"])(), Object(_news_saga__WEBPACK_IMPORTED_MODULE_8__["default"])(), Object(_map_saga__WEBPACK_IMPORTED_MODULE_9__["default"])()]);
 
         case 2:
         case "end":
@@ -45381,7 +45782,7 @@ request.interceptors.response.use(function (response) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! next-client-pages-loader?page=%2F_app&absolutePagePath=private-next-pages%2F_app.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F_app&absolutePagePath=private-next-pages%2F_app.js!./");
-module.exports = __webpack_require__(/*! F:\MGROUP\MBnextjs\mb-frontend\node_modules\next\dist\client\router.js */"./node_modules/next/dist/client/router.js");
+module.exports = __webpack_require__(/*! /home/user/mb-frontend/node_modules/next/dist/client/router.js */"./node_modules/next/dist/client/router.js");
 
 
 /***/ }),
