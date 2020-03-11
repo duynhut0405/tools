@@ -25,7 +25,6 @@ function Icon({ data, id }) {
       items: 2
     }
   };
-
   return (
     <React.Fragment>
       {data[0].type === '1' && (
