@@ -29,7 +29,14 @@ function ImageCenter({ items }) {
             <iframe src={items.video_url} />
           </div>
         )}
-        {items.text_action !== undefined && (
+        {/* {items.text_action !== undefined && (
+          <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
+            {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
+          </a>
+        )} */}
+        {items.text_action === undefined ? (
+          ''
+        ) : (
           <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
             {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
           </a>
