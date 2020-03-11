@@ -25,6 +25,7 @@ import { useTranslation } from 'react-i18next';
 import { setLang, getFlag } from '../../utils/localStorage';
 import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
+import i18next from 'i18next';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -146,7 +147,8 @@ function Layout({
   };
 
   const changeLang = (lang, flags) => {
-    i18n.changeLanguage(lang);
+    console.log('lang:', lang);
+    i18next.changeLanguage(lang);
     setFlag(flags);
     setLang(lang, flags);
   };

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import RateSelect from './RateSelect';
 import TableRate from './Table';
+import ExchangeRate from './exchangeRate';
 
 const propTypes = {
   data: PropTypes.object
@@ -18,10 +19,7 @@ function FormRate({ data }) {
         <div className="container">
           <div className="row list-item">
             <div className="col-lg-7">
-              <div className="divtigia">
-                <h2>{t('exchange_rate')}</h2>
-                <TableRate data={data.exchangeRateDetail} />
-              </div>
+              <ExchangeRate tab1={t('exchange_rate')} tab2={t('interest_rate')} data1={data} />
             </div>
             <div className="col-lg-5">
               <div className="divquidoi">
