@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'homepage/homepageve-mbbank';
+  const name = 'nha-dau-tu/bao-cao-tai-chinh';
 
   useEffect(() => {
     getPage(name);
@@ -24,7 +24,7 @@ function Page({ list, silder, getPage }) {
     <Layout>
       <div className="main_content">
         <Carousel className="category" silder={silder} />
-        <Contact />
+        {/* <Contact /> */}
         <BlockRender data={list.pageBlocks} />
         <DowloadCategory />
       </div>

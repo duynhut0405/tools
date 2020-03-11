@@ -32,14 +32,23 @@ function Repeat({ data, type, id }) {
     return (
       <section className=" sec-tb " id={id}>
         <div className="container">
+          <div className="entry-head text-center">
+            <h2 className="ht ">{data.title}</h2>
+          </div>
+
           <div className="max950">
             <div className="row list-item">
-              {map(listTable, (items, index) => (
-                <div key={index} className="col-md-6">
-                  <div className="widget-default widget-content entry-content">
-                    {ReactHtmlParser(items.description)}
+              {map(listTable, (item, index) => (
+                <React.Fragment>
+                  <div className="col-md-6" key={index}>
+                    <div className="widget-default">
+                      <h4 className="widget-title">{item.header}</h4>
+                      <div className="widget-content entry-content">
+                        {ReactHtmlParser(item.description)}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </React.Fragment>
               ))}
             </div>
           </div>
@@ -49,16 +58,24 @@ function Repeat({ data, type, id }) {
   }
   if (type && type === '3') {
     return (
-      <section className=" sec-tb " id={id}>
+      <section className="sec-tb" id={id}>
         <div className="container">
-          <div className="max950">
-            <div className="row list-item">
-              {map(listTable, (items, index) => (
-                <div key={index} className="col-md-4">
-                  <div className="widget-default table ">{ReactHtmlParser(items.description)}</div>
+          <div className="entry-head text-center">
+            <h2 className="ht ">{data.title}</h2>
+          </div>
+          <div className="row list-item">
+            {map(listTable, (item, index) => (
+              <React.Fragment>
+                <div className="col-md-4" key={index}>
+                  <div className="widget-default">
+                    <h4 className="widget-title">{item.header}</h4>
+                    <div className="widget-content entry-content">
+                      {ReactHtmlParser(item.description)}
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>
@@ -66,20 +83,24 @@ function Repeat({ data, type, id }) {
   }
   if (type && type === '4') {
     return (
-      <section className=" sec-tb " id={id}>
+      <section className="sec-tb" id={id}>
         <div className="container">
-          <div className="max950">
-            <div className="row list-item">
-              <div className="row grid-space-20 list-item ">
-                {map(listTable, (items, index) => (
-                  <div key={index} className="col-md-6 col-sm-6 col-lg-3">
-                    <div className="widget-default table ">
-                      {ReactHtmlParser(items.description)}
+          <div className="entry-head text-center">
+            <h2 className="ht  ">{data.title}</h2>
+          </div>
+          <div className="row grid-space-20 list-item ">
+            {map(listTable, (item, index) => (
+              <React.Fragment>
+                <div className="col-md-6 col-sm-6 col-lg-3" key={index}>
+                  <div className="widget-default">
+                    <h4 className="widget-title">{item.header}</h4>
+                    <div className="widget-content entry-content">
+                      {ReactHtmlParser(item.description)}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>
