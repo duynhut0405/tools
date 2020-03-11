@@ -30,7 +30,7 @@ function Pages({ data, type, id }) {
       <div className="container sec-tb block-page" id={id}>
         <div className="entry-head text-center">{/* <h2 className="ht">{data.title}</h2> */}</div>
         <div className="list-5 row list-item">
-          {map(listNews, item => (
+          {map(listPage, item => (
             <div className="col-md-4" key={item.newsId}>
               <a href={`/page/${item.slug}`} className="item ">
                 <div className="img tRes_71">
@@ -65,7 +65,7 @@ function Pages({ data, type, id }) {
         <section className="sec-tb  block-page block-type-2">
           <h2 className="ht styleht">{data.title}</h2>
           <div className="list-7  list-item row">
-            {map(listNews, item => (
+            {map(listPage, item => (
               <div className="col-md-6" key={item.newsId}>
                 <a href={`/page/${item.slug}`} className="item item-inline-table style-colummb">
                   <div className="img">
