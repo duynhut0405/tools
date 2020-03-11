@@ -8367,6 +8367,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   vertical-align: text-bottom;
   color: #141ed2;
   font-weight: 600;
+  width: 100%;
 }
 
 @media only screen and (max-width: 359px) {

@@ -11,7 +11,7 @@ function ImageLeft({ items }) {
       <div className="container">
         <div className="row center">
           <div className="col-lg-6">
-            {items.video_url === undefined && (
+            {(items.video_url === undefined || items.video_url === '') && (
               <div className="img tRes_66 efch-2 ef-img-r ">
                 <img
                   className=" loaded loaded"
@@ -21,7 +21,7 @@ function ImageLeft({ items }) {
                 />
               </div>
             )}
-            {items.video_url !== undefined && (
+            {items.video_url !== undefined && items.video_url !== '' && (
               <div className="single_video  tRes_16_9 max750">
                 <iframe src={items.video_url} />
               </div>
@@ -34,7 +34,14 @@ function ImageLeft({ items }) {
                 <strong>{items.note_2}</strong>
               </p>
               <ul className="efch-3 ef-tx-t">{items.note_3}</ul>
-              {items.text_action !== undefined && (
+              {/* {items.text_action !== undefined && (
+                <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
+                  {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
+                </a>
+              )} */}
+              {items.text_action === undefined ? (
+                ''
+              ) : (
                 <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
                   {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
                 </a>
