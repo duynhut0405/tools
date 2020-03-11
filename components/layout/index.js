@@ -33,6 +33,7 @@ const propTypes = {
   getSettingFooter: PropTypes.func,
   getSocialLink: PropTypes.func,
   title: PropTypes.any,
+  personalLayout: PropTypes.number,
   menuHeader: PropTypes.array,
   menuNav: PropTypes.array,
   menuFooterTop: PropTypes.array,
@@ -47,6 +48,7 @@ const propTypes = {
 
 function Layout({
   title,
+  personalLayout,
   children,
   settingFooter,
   socialLink,
@@ -150,7 +152,7 @@ function Layout({
     setFlag(flags);
     setLang(lang, flags);
   };
-  
+
   return (
     <body className={classnames({ showMenu: activeDrawer })}>
       <div>
@@ -268,7 +270,11 @@ function Layout({
               <Sticky topOffset={40}>
                 {({ style }) => (
                   <div className="setzindex" style={style}>
-                    <header id="header" role="banner">
+                    <header
+                      id="header"
+                      className={personalLayout === 1 ? 'header-black' : ''}
+                      role="banner"
+                    >
                       <div className="container">
                         <a href="/" id="logo">
                           <img src={Logo} alt="logo" />
@@ -364,7 +370,14 @@ function Layout({
                 </div>
               </section>
               {/* tải appp */}
-              <section className="sec-download-pc group-ef loaded">
+              <section
+                id={personalLayout === 1 ? 'secDownloadBlack' : ''}
+                className={
+                  personalLayout === 1
+                    ? 'sec-download-pc group-ef loaded header-black'
+                    : 'sec-download-pc group-ef loaded'
+                }
+              >
                 <div className="container">
                   <div className="row">
                     <div className="col-md-6   efch-2 ef-img-r">
@@ -432,7 +445,7 @@ function Layout({
                 </div>
               </div>
               <section className="sec-download-mb">
-                <div className="wform">
+                <div className={personalLayout === 1 ? 'wform-black' : 'wform'}>
                   <p className="stitle">{t('sign_up_promotional')}</p>
                   <form role="search" method="get" className="searchform " action="">
                     <div className="aaa">

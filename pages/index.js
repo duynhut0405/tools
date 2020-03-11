@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Carousel, BlockRender, MenuMiddle, DowloadCategory } from '../components/common';
 import FormRate from '../components/formRate';
 import Layout from '../components/layout';
+import { getLang } from '../utils/localStorage';
+import { useTranslation } from 'react-i18next';
 import { PageActions, RateActions } from '../store/actions';
 import { withTranslation } from '../i18n';
 import Proptypes from 'prop-types';
@@ -17,10 +19,14 @@ const propTypes = {
 };
 
 function Home({ list, silder, menuMiddle, listRate, getHome, getRate }) {
+  const { i18n } = useTranslation();
+
   useEffect(() => {
+    i18n.changeLanguage(getLang());
     getHome('homepage');
     getRate();
   }, [getHome, getRate]);
+
   return (
     <Layout title={list.meta_title}>
       <div className="main_content">
