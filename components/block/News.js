@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
+import { getLang } from '../../utils/localStorage';
+
 const propTypes = {
   data: Proptypes.object.isRequired,
   getCategoryPage: Proptypes.func,
@@ -23,7 +25,8 @@ function News({ data, type, id }) {
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
-  const { t } = useTranslation();
+
+  const { t , i18n } = useTranslation();
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -54,6 +57,7 @@ function News({ data, type, id }) {
     }
   };
   useEffect(() => {
+    i18n.changeLanguage(getLang());
     getCategoryPage();
     getCategoryById();
   }, []);
@@ -494,7 +498,7 @@ function News({ data, type, id }) {
 News.propTypes = propTypes;
 
 News.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'news']
+  namespacesRequired: ['common', 'common']
 });
 
 export default withTranslation('common')(News);
