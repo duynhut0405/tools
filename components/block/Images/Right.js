@@ -11,7 +11,7 @@ function ImageRight({ items }) {
       <div className="container">
         <div className="row center end">
           <div className="col-lg-6">
-            {items.video_url === undefined && (
+            {(items.video_url === undefined || items.video_url === '') && (
               <div className="img tRes_66 efch-2 ef-img-r ">
                 <img
                   className=" loaded loaded"
@@ -21,7 +21,7 @@ function ImageRight({ items }) {
                 />
               </div>
             )}
-            {items.video_url !== undefined && (
+            {items.video_url !== undefined && items.video_url !== '' && (
               <div className="single_video  tRes_16_9 max750">
                 <iframe src={items.video_url} />
               </div>

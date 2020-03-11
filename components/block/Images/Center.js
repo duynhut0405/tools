@@ -14,8 +14,8 @@ function ImageCenter({ items }) {
           <div className="desc max555">{items.note_2}</div>
           <ul className="efch-3 ef-tx-t">{items.note_3}</ul>
         </div>
-        {items.video_url === undefined && (
-          <div className="single_video  tRes_16_9 max750">
+        {(items.video_url === undefined || items.video_url === '') && (
+          <div className="img tRes_66 efch-2 ef-img-r ">
             <img
               className=" loaded loaded"
               data-lazy-type="image"
@@ -24,7 +24,7 @@ function ImageCenter({ items }) {
             />
           </div>
         )}
-        {items.video_url !== undefined && (
+        {items.video_url !== undefined && items.video_url !== '' && (
           <div className="single_video  tRes_16_9 max750">
             <iframe src={items.video_url} />
           </div>
