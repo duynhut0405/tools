@@ -461,3 +461,51 @@ a:hover {
     padding-right: 48px;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .map-list-store {
+    max-height: 300px;
+  }
+}
+
+.map-list-store {
+  overflow: auto;
+}
+
+.map-list-store .item {
+  cursor: pointer;
+}
+
+.map-list-store .item .address {
+  margin-bottom: 5px;
+}
+
+.map-list-store .item .title {
+  color: #a0d1ff;
+  margin-bottom: 5px;
+}
+
+.map-list-store .item .title:before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  display: inline-block;
+  background-color: #a0d1ff;
+  position: relative;
+  margin-right: 5px;
+  top: 2px;
+}
+.map-list-store .item.color-2 .title {
+  color: #b4a5fa;
+}
+
+.map-list-store .item.color-2 .title:before {
+  background-color: #b4a5fa;
+}
+.map-list-store .item.color-3 .title {
+  color: #9ce6c6;
+}
+.map-list-store .item.color-3 .title:before {
+  background-color: #9ce6c6;
+}

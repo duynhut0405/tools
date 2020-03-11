@@ -7,7 +7,8 @@ import GoogleMapReact from 'google-map-react';
 
 const propTypes = {
   settingFooter: PropTypes.object,
-  getSettingFooter: PropTypes.func
+  getSettingFooter: PropTypes.func,
+  text: PropTypes.string
 };
 
 function Contact({ settingFooter, getSettingFooter }) {
@@ -31,10 +32,16 @@ function Contact({ settingFooter, getSettingFooter }) {
                     <h3>Thời gian phục vụ khách hàng</h3>
                     <p>{settingFooter.information.time}</p>
                     <h3>Hotline</h3>
-                    <div className="phone">{settingFooter.information.hotLine}</div>
+                    <div className="phone">
+                      <a href={`tel:${settingFooter.information.hotLine}`}>
+                        {settingFooter.information.hotLine}
+                      </a>
+                    </div>
                     <p>{settingFooter.information.international}</p>
                     <h3>Email</h3>
-                    <p>{settingFooter.information.email}</p>
+                    <a href={`mailto:${settingFooter.information.email}`}>
+                      {settingFooter.information.email}
+                    </a>
                   </React.Fragment>
                 )}
               </div>
@@ -42,7 +49,7 @@ function Contact({ settingFooter, getSettingFooter }) {
             <div className="col-lg-8 col-md-6">
               {!isNaN(Number(settingFooter.latitude)) && (
                 <GoogleMapReact
-                  bootstrapURLKeys={{ key: ' AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU' }}
+                  bootstrapURLKeys={{ key: 'AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU' }}
                   center={{
                     lat: Number(settingFooter.latitude),
                     lng: Number(settingFooter.longitude)
@@ -52,7 +59,7 @@ function Contact({ settingFooter, getSettingFooter }) {
                   <AnyReactComponent
                     lat={Number(settingFooter.latitude)}
                     lng={Number(settingFooter.longitude)}
-                    text="Ngân Hàng"
+                    text="Hội sở chính MBBank"
                   />
                 </GoogleMapReact>
               )}

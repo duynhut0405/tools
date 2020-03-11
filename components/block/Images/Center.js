@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
   items: PropTypes.object
@@ -26,12 +25,8 @@ function ImageCenter({ items }) {
           </div>
         )}
         {items.video_url && (
-          <div
-            className="single_video  tRes_16_9 max750"
-            data-id="2UrWPUAr68A"
-            data-video="autoplay=1&amp;controls=1&amp;mute=0"
-          >
-            {ReactHtmlParser(items.video_url)}
+          <div className="single_video  tRes_16_9 max750">
+            <iframe src={items.video_url} />
           </div>
         )}
         {items.text_action !== undefined && (

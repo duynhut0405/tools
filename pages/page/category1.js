@@ -14,16 +14,12 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'lien-he';
-  const [input, setInput] = useState(null);
-  useEffect(() => {
-    setInput(document.getElementById('Name'));
-  }, []);
+  const name = 'homepage/homepageve-mbbank';
 
   useEffect(() => {
     getPage(name);
   }, []);
-  console.log(input);
+
   return (
     <Layout>
       <div className="main_content">

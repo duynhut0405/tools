@@ -6,6 +6,7 @@ import regulationSaga from './regulation/saga';
 import menuSaga from './menu/saga';
 import investorsSaga from './investors/saga';
 import newsSaga from './news/saga';
+import mapSaga from './map/saga';
 
 export default function* rootSaga() {
   yield all([
@@ -15,6 +16,7 @@ export default function* rootSaga() {
     regulationSaga(),
     menuSaga(),
     investorsSaga(),
-    newsSaga()
+    newsSaga(),
+    mapSaga()
   ]);
 }

@@ -6,6 +6,7 @@ import regulationReducer from './regulation/reducers';
 import menuReducer from './menu/reducers';
 import investorsReducer from './investors/reducer';
 import newsReducer from './news/reducers';
+import mapReducer from './map/reducers';
 
 const reducers = combineReducers({
   pageReducer,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
   regulationReducer,
   menuReducer,
   investorsReducer,
-  newsReducer
+  newsReducer,
+  mapReducer
 });
 
 export default reducers;
