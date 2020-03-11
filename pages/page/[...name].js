@@ -31,9 +31,9 @@ function Page({ list, silder, menuMiddle, getPage }) {
   useEffect(() => {
     getPage(routerUrl);
   }, []);
-  console.log(name);
+
   return (
-    <Layout title={list.meta_title}>
+    <Layout title={list.meta_title} personalLayout={list.has_sidebar}>
       <div className="main_content">
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} query={routerUrl} />
