@@ -38,6 +38,7 @@ function ItemIcon({ data }) {
           {map(table, (item, index) => (
             <a
               className="btn btn-3 radius-8"
+              style={{ letterSpacing: '1px' }}
               href={item.url === undefined ? '#' : item.url}
               key={index}
             >

@@ -5,7 +5,7 @@ const propTypes = {
   items: PropTypes.object
 };
 
-function ImageRight({ items }) {
+function ImageRightMB({ items }) {
   return (
     <section className="sec-b sec-img-text group-ef loaded">
       <div className="container">
@@ -21,24 +21,16 @@ function ImageRight({ items }) {
                 />
               </div>
             )}
-            {items.video_url !== undefined && (
-              <div className="single_video  tRes_16_9 max750">
-                <iframe src={items.video_url} />
-              </div>
-            )}
           </div>
           <div className="col-lg-6">
-            <div className="divtext ">
-              <h2 className="ht ">{items.note_1}</h2>
+            <div className="divtext entry-content">
+              <h2 className="ht  efch-1 ef-tx-t ">{items.note_1}</h2>
               <p className="fs16">
                 <strong>{items.note_2}</strong>
               </p>
-              <ul className="efch-3 ef-tx-t">{items.note_3}</ul>
-              {items.text_action !== undefined && (
-                <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
-                  {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
-                </a>
-              )}
+              <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
+                Xem Thêm
+              </a>
             </div>
           </div>
         </div>
@@ -47,6 +39,6 @@ function ImageRight({ items }) {
   );
 }
 
-ImageRight.propTypes = propTypes;
+ImageRightMB.propTypes = propTypes;
 
-export default ImageRight;
+export default ImageRightMB;

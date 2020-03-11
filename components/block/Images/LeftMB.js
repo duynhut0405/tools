@@ -5,7 +5,7 @@ const propTypes = {
   items: PropTypes.object
 };
 
-function ImageLeft({ items }) {
+function ImageLeftMB({ items }) {
   return (
     <section className="sec-tb sec-img-text group-ef loaded">
       <div className="container">
@@ -21,11 +21,6 @@ function ImageLeft({ items }) {
                 />
               </div>
             )}
-            {items.video_url !== undefined && (
-              <div className="single_video  tRes_16_9 max750">
-                <iframe src={items.video_url} />
-              </div>
-            )}
           </div>
           <div className="col-lg-6">
             <div className="divtext entry-content">
@@ -33,12 +28,9 @@ function ImageLeft({ items }) {
               <p className="fs16">
                 <strong>{items.note_2}</strong>
               </p>
-              <ul className="efch-3 ef-tx-t">{items.note_3}</ul>
-              {items.text_action !== undefined && (
-                <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
-                  {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
-                </a>
-              )}
+              <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
+                Xem Thêm
+              </a>
             </div>
           </div>
         </div>
@@ -47,6 +39,6 @@ function ImageLeft({ items }) {
   );
 }
 
-ImageLeft.propTypes = propTypes;
+ImageLeftMB.propTypes = propTypes;
 
-export default ImageLeft;
+export default ImageLeftMB;
