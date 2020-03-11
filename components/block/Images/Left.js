@@ -11,7 +11,7 @@ function ImageLeft({ items }) {
       <div className="container">
         <div className="row center">
           <div className="col-lg-6">
-            {items.video_url === undefined && (
+            {(items.video_url === undefined || items.video_url === '') && (
               <div className="img tRes_66 efch-2 ef-img-r ">
                 <img
                   className=" loaded loaded"
@@ -21,18 +21,9 @@ function ImageLeft({ items }) {
                 />
               </div>
             )}
-            {items.video_url !== undefined && items.video_url !== null && items.video_url !== '' ? (
+            {items.video_url !== undefined && items.video_url !== '' && (
               <div className="single_video  tRes_16_9 max750">
                 <iframe src={items.video_url} />
-              </div>
-            ) : (
-              <div className="img tRes_66 efch-2 ef-img-r ">
-                <img
-                  className=" loaded loaded"
-                  data-lazy-type="image"
-                  data-lazy-src={items.image}
-                  src={items.image}
-                />
               </div>
             )}
           </div>

@@ -122,6 +122,9 @@ a:hover {
 .react-multi-carousel-list .item {
   width: 90%;
 }
+.react-multi-carousel-list{
+  position: static;
+}
 .react-multi-carousel-item {
   margin-bottom: 5px;
 }
@@ -138,6 +141,12 @@ a:hover {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+.react-multi-carousel-list .react-multiple-carousel__arrow--left{
+  left: -50px;
+}
+.react-multi-carousel-list .react-multiple-carousel__arrow--right{
+  right: -50px;
 }
 .react-multi-carousel-list .react-multiple-carousel__arrow--left::before,
 .react-multi-carousel-list .react-multiple-carousel__arrow--right::before {
