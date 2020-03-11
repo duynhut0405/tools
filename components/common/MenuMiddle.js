@@ -28,7 +28,10 @@ function MenuMiddle({ data, query }) {
     <>
       {data !== null && (
         <div className="sec-tb">
-          <div className="text-center common-menumiddle">
+          <div
+            className="text-center common-menumiddle"
+            style={{ marginBottom: '40px', position: 'relative' }}
+          >
             <h1 className="text-center" style={{ margin: '15px 0 15px 0' }}>
               {data.title}
             </h1>

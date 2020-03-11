@@ -6046,6 +6046,7 @@ h6 {
 h1 {
   font-size: 32px;
   line-height: 1.4;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -7260,7 +7261,7 @@ ul.list-download li .down a:hover {
 }
 
 .entry-head {
-  margin-bottom: 40px;
+  margin: 20px 0;
   position: relative;
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Carousel, BlockRender, DowloadCategory } from '../../components/common';
 import Layout from '../../components/layout';
@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 function Page({ list, silder, getPage }) {
-  const name = 'lien-he';
+  const name = 'homepage/homepageve-mbbank';
 
   useEffect(() => {
     getPage(name);
