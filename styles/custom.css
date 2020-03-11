@@ -148,6 +148,14 @@ a:hover {
 .react-multi-carousel-list .react-multiple-carousel__arrow--right{
   right: -50px;
 }
+@media only screen and (max-width: 1024px) {
+  .react-multi-carousel-list .react-multiple-carousel__arrow--left{
+    display: none;
+  }
+  .react-multi-carousel-list .react-multiple-carousel__arrow--right{
+    display: none;
+  }
+}
 .react-multi-carousel-list .react-multiple-carousel__arrow--left::before,
 .react-multi-carousel-list .react-multiple-carousel__arrow--right::before {
   content: '\e900';
