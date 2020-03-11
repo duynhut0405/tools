@@ -5,6 +5,7 @@ import RegulationActions from './regulation/actions';
 import MenuActions from './menu/actions';
 import InvestorsActions from './investors/actions';
 import NewsActions from './news/actions';
+import MapActions from './map/actions';
 
 export {
   PageActions,
@@ -13,5 +14,6 @@ export {
   RegulationActions,
   MenuActions,
   InvestorsActions,
-  NewsActions
+  NewsActions,
+  MapActions
 };
