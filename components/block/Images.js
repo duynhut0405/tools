@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageCenter, ImageLeft, ImageRight } from './Images/index';
+import { ImageCenter, ImageLeft, ImageRight, ImageLeftMB, ImageRightMB } from './Images/index';
 import { map } from 'lodash';
 import Propstype from 'prop-types';
 
@@ -20,6 +20,12 @@ function Images({ data, id }) {
         }
         if (items.type === '2') {
           return <ImageRight items={items} key={index} />;
+        }
+        if (items.type === '4') {
+          return <ImageLeftMB items={items} key={index} />;
+        }
+        if (items.type === '5') {
+          return <ImageRightMB items={items} key={index} />;
         }
         return <ImageCenter items={items} key={index} />;
       })}

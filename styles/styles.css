@@ -4300,6 +4300,7 @@ body.showMenu .menu-btn.x:before {
 .btn:hover {
   background-color: #9be6c8;
   border: 1px solid #9be6c8;
+  color: #ffffff;
   /* text-transform: none; */
 }
 
@@ -7550,12 +7551,16 @@ ul.list-download li .down a:hover {
   display: block;
   text-align: left;
   padding-left: 60px;
+  text-transform: capitalize;
+  font-weight: 600;
 }
 
 .sec-h-2 .list-2 .item-2 .btn:not(:hover) {
   background-color: #6182e7;
   border-color: #6182e7;
   text-transform: none;
+  text-transform: capitalize;
+  font-weight: 600; 
 }
 
 .sec-h-2 .list-2 .item-2 .btn i {

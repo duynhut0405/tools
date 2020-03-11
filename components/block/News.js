@@ -181,7 +181,7 @@ function News({ data, type, id }) {
                         href={`/news/${item.url}`}
                         className={`item efch-${index} ef-img-l equal`}
                         key={index}
-                        style={{ height: '300px', width: '262px'}}
+                        style={{ height: '300px', width: '262px' }}
                       >
                         <div className="img tRes_71">
                           <img
@@ -194,7 +194,7 @@ function News({ data, type, id }) {
                         <div className="divtext">
                           <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                           <h4 className="title">
-                            <ShowMoreText lines={1} more='' expanded={false} width={370}>
+                            <ShowMoreText lines={1} more="" expanded={false} width={370}>
                               {item.title}
                             </ShowMoreText>
                           </h4>
