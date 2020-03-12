@@ -121,7 +121,7 @@ html {
   vertical-align: top;
 }
 .table-full {
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   border-radius: 8px;
   font-size: 14px;
   overflow: hidden;
@@ -147,6 +147,7 @@ html {
 }
 
 .table-full table td {
+  background-color: #f8f8f8;
   height: 90px;
   border-top: 2px solid #fff;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Proptypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody, Row, Col } from 'reactstrap';
 import ReactHtmlParser from 'react-html-parser';

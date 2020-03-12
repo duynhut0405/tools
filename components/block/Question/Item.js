@@ -20,11 +20,18 @@ function QuestionItems({ question, answer }) {
         </span>
       </label>
       <div className="accodion-content entry-content">
-        <div className="inner">{ReactHtmlParser(answer)}</div>
+        <div className="inner">
+          <section className=" sec-tb ">
+            <div className="container">
+              <div className="table-responsive table table-full">{ReactHtmlParser(answer)}</div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );
 }
+
 QuestionItems.propTypes = propTypes;
 
 export default QuestionItems;
