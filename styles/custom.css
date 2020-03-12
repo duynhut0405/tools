@@ -122,7 +122,7 @@ a:hover {
 .react-multi-carousel-list .item {
   width: 90%;
 }
-.react-multi-carousel-list{
+.react-multi-carousel-list {
   position: static;
 }
 .react-multi-carousel-item {
@@ -142,17 +142,17 @@ a:hover {
   align-items: center;
   justify-content: center;
 }
-.react-multi-carousel-list .react-multiple-carousel__arrow--left{
+.react-multi-carousel-list .react-multiple-carousel__arrow--left {
   left: -50px;
 }
-.react-multi-carousel-list .react-multiple-carousel__arrow--right{
+.react-multi-carousel-list .react-multiple-carousel__arrow--right {
   right: -50px;
 }
 @media only screen and (max-width: 1024px) {
-  .react-multi-carousel-list .react-multiple-carousel__arrow--left{
+  .react-multi-carousel-list .react-multiple-carousel__arrow--left {
     display: none;
   }
-  .react-multi-carousel-list .react-multiple-carousel__arrow--right{
+  .react-multi-carousel-list .react-multiple-carousel__arrow--right {
     display: none;
   }
 }
@@ -548,4 +548,8 @@ a:hover {
   width: 1px;
   height: 100px;
   transition: all 0.2s ease-in-out 0s;
+}
+
+.entry-breadcrumb span {
+  cursor: pointer;
 }

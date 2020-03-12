@@ -1,7 +1,7 @@
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
 const withFonts = require('nextjs-fonts');
-const { getRouer, getNewRouter } = require('./services/router');
+const { getRouer, getNewRouter, getCategoryRouter } = require('./services/router');
 
 module.exports = withFonts(
   withCSS(
@@ -22,20 +22,7 @@ module.exports = withFonts(
       exportPathMap: async function() {
         const res = await getRouer();
         const newResponse = await getNewRouter();
-        // const newRouter = newResponse.data.reduce(
-        //   (news, data) =>
-        //     Object.assign({}, news, {
-        //       [`news/${data.url}`]: { news: '/news/[...slug]' }
-        //     }),
-        //   {}
-        // );
-        const newRouter = newResponse.data.reduce(
-          (pages, data) =>
-            Object.assign({}, pages, {
-              [`/news/${data.url}`]: { page: '/news/[...slug]' }
-            }),
-          {}
-        );
+        const categoryResponse = await getCategoryRouter();
 
         const router = res.data.reduce(
           (pages, data) =>
@@ -44,9 +31,29 @@ module.exports = withFonts(
             }),
           {}
         );
-        const pageRouter = Object.assign({}, router, {
+
+        const newRouter = newResponse.data.reduce(
+          (pages, data) =>
+            Object.assign({}, pages, {
+              [`/news/${data.url}`]: { page: '/news/[...slug]' }
+            }),
+          {}
+        );
+
+        const categoryRouter = categoryResponse.data.reduce(
+          (pages, category) =>
+            Object.assign({}, pages, {
+              [`/news/category/${category.slug}`]: { page: '/news/category/[...name]' }
+            }),
+          {}
+        );
+
+        let pageRouter = Object.assign({}, router, {
           '/': { page: '/' }
         });
+
+        pageRouter = Object.assign(pageRouter, categoryRouter);
+
         return Object.assign(newRouter, pageRouter);
       }
     })

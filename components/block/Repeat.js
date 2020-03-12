@@ -11,7 +11,7 @@ const propTypes = {
 
 function Repeat({ data, type, id }) {
   const [listTable, setListTable] = useState([]);
-
+  console.log(1);
   useEffect(() => {
     setListTable(data.listTable);
   });
