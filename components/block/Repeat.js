@@ -11,7 +11,7 @@ const propTypes = {
 
 function Repeat({ data, type, id }) {
   const [listTable, setListTable] = useState([]);
-  console.log(1);
+
   useEffect(() => {
     setListTable(data.listTable);
   });
@@ -87,7 +87,7 @@ function Repeat({ data, type, id }) {
                         data-i=""
                       >
                         <div className="wtgh">
-                          <TableItem data={item.description} maxheight={200} />
+                          <TableItem data={item.description} maxheight={data.height} />
                         </div>
                       </div>
                     </div>
@@ -121,7 +121,7 @@ function Repeat({ data, type, id }) {
                         data-i=""
                       >
                         <div className="wtgh">
-                          <TableItem data={item.description} maxheight={100} />
+                          <TableItem data={item.description} maxheight={data.height} />
                         </div>
                       </div>
                     </div>

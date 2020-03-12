@@ -25,6 +25,21 @@ function Icon({ data, id }) {
       items: 2
     }
   };
+
+  const responsive1 = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
   return (
     <React.Fragment>
       {data[0].type === '1' && (
@@ -146,54 +161,50 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '3' && (
         <React.Fragment>
-          <section className="sec-b ">
+          <section className="sec-tb sec-h-3 " id={id}>
             <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht efch-1 ef-img-l">{data[0].title || ''}</h2>
+              <div className="entry-head">
+                <h2 className="ht efch-1 ef-img-t">{data[0].title}</h2>
               </div>
-              <div
-                className="owl-carousel s-nav nav-2 list-9 owl-flex owl-loaded owl-drag"
-                data-res="4,3,2,1"
-                paramowl="margin=0"
-              >
+              <div className="owl-carousel equalHeight s-nav nav-2 list-9 owl-loaded owl-drag">
                 <div className="owl-stage-outer">
-                  <div
-                    className="owl-stage"
-                    style={{
-                      transform: 'translate3d(0px, 0px, 0px)',
-                      transition: 'all 0.25s ease 0s',
-                      width: '2775px'
-                    }}
-                  >
+                  <div className="owl-stage">
                     <Carousel
-                      responsive={responsive}
+                      responsive={responsive1}
                       draggable
                       minimumTouchDrag={80}
                       ssr={true} // means to render carousel on server-side.
                       infinite={true}
                       keyBoardControl={true}
                       arrows={false}
+                      renderButtonGroupOutside={true}
                       ref={ref => {
                         setRefCarousel(ref);
                       }}
                     >
-                      {map(data, (items, index) => (
-                        <div className="owl-item" style={{ width: '277.5px' }} key={index}>
-                          <div className="item efch-2 ef-img-l ">
-                            <div className="img ">
+                      {map(data, (item, index) => (
+                        <div
+                          className="owl-item"
+                          key={index}
+                          style={{ height: '238px', width: '277px' }}
+                        >
+                          <div className={`item efch-${index + 2} ef-img-l `}>
+                            <div className="img">
                               <img
                                 className=" loaded loaded"
                                 data-lazy-type="image"
-                                src={items.image}
+                                src={item.image}
+                                style={{ width: '160px', height: '52px' }}
                               />
                             </div>
-                            <div className="desc">{items.note_1}</div>
+                            <div className="des">{item.note_1}</div>
                           </div>
                         </div>
                       ))}
                     </Carousel>
                   </div>
                 </div>
+
                 <div className="owl-nav">
                   <div
                     className="owl-prev disabled"

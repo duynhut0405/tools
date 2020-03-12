@@ -8,6 +8,54 @@ html {
   border-collapse: collapse;
   border-spacing: 0;
 }
+.list-9 .item {
+  height: 100%;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.09);
+  overflow: hidden;
+  display: block;
+  border-top: 3px solid #141ed2;
+  display: block;
+}
+.list-9 .item .img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 60px;
+  margin-bottom: 20px;
+}
+.list-9 .item .img img {
+  -o-object-fit: contain;
+  object-fit: contain;
+  width: auto;
+  height: auto;
+}
+
+.list-9.owl-flex .owl-stage-outer {
+  padding: 10px 0;
+}
+
+.list-9.owl-flex .item {
+  margin: 0 10px !important;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.05);
+}
+
+@media only screen and (min-width: 992px) {
+  .list-9 .item {
+    padding: 25px;
+  }
+}
+
 .widget-default h4 {
   padding: 5px;
   color: #333333;
