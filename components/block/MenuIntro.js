@@ -110,6 +110,7 @@ function MenuIntro({ data, type }) {
       </React.Fragment>
     );
   }
+  return null;
 }
 MenuIntro.propTypes = propTypes;
 
