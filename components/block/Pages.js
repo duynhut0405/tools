@@ -28,7 +28,9 @@ function Pages({ data, type, id }) {
   if (type && type === '1') {
     return (
       <div className="container sec-tb block-page" id={id}>
-        <div className="entry-head text-center">{/* <h2 className="ht">{data.title}</h2> */}</div>
+        <div className="entry-head text-center">
+          {data.title && <h2 className="ht">{data.title}</h2>}
+        </div>
         <div className="list-5 row list-item">
           {map(listPage, item => (
             <div className="col-md-4" key={item.newsId}>
@@ -49,13 +51,13 @@ function Pages({ data, type, id }) {
             </div>
           ))}
         </div>
-        {/* <div className="pages">
+        <div className="pages">
           <ul className="page-numbers">
             <a className="btn lg" href="#">
-            {t('view.viewall')}
+              {t('view.viewall')}
             </a>
           </ul>
-        </div> */}
+        </div>
       </div>
     );
   }

@@ -70,7 +70,6 @@ function Layout({
   const [flag, setFlag] = useState('vn');
 
   const { i18n, t } = useTranslation();
-  
   useEffect(() => {
     getMenuHeader();
     getMenuNav();
@@ -85,7 +84,6 @@ function Layout({
     i18n.changeLanguage(getLang());
     setFlag(getFlag());
   }, [getFlag]);
-
   const nestChild = items => {
     return map(items, item => (
       <li
@@ -101,7 +99,6 @@ function Layout({
       </li>
     ));
   };
-
   const footerItem = data => {
     return map(data, (item, index) => {
       if (item.children.length > 0) {
@@ -195,7 +192,7 @@ function Layout({
                 <div className="container">
                   <div className="row">
                     <div className="col-md-5">
-                      <ul className="menu line">
+                      {/* <ul className="menu line">
                         {map(
                           menuHeader.sort((a, b) => a.position - b.position),
                           // eslint-disable-next-line consistent-return
@@ -217,7 +214,7 @@ function Layout({
                             }
                           }
                         )}
-                      </ul>
+                      </ul> */}
                     </div>
                     <div className="col-md-7">
                       <ul className="menu line text-right">
@@ -225,13 +222,13 @@ function Layout({
                           menuHeader.sort((a, b) => a.position - b.position),
                           // eslint-disable-next-line consistent-return
                           (values, key) => {
-                            if (key >= 2) {
-                              return (
-                                <li key={key}>
-                                  <a href={`/page/${values.slugPages}`}>{values.name}</a>
-                                </li>
-                              );
-                            }
+                            // if (key >= 2) {
+                            return (
+                              <li key={key}>
+                                <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                              </li>
+                            );
+                            // }
                           }
                         )}
                         <li>
