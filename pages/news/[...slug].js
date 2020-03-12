@@ -6,6 +6,8 @@ import moment from 'moment';
 import { map, filter } from 'lodash';
 import { useRouter } from 'next/router';
 import ReactHtmlParser from 'react-html-parser';
+import { withTranslation } from '../../i18n';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -17,13 +19,16 @@ const propTypes = {
 function New({ socialLink, getSocialLink }) {
   const [news, setNews] = useState({});
   const [relatedPost, setRelatedPost] = useState([]);
+  const [category, setCategory] = useState(null);
   const router = useRouter();
+  const { t } = useTranslation();
   useEffect(() => {
     const res = getNewByUri(router.query.slug);
     res.then(respone => {
       if (respone !== undefined && respone !== null && respone.status === 200) {
         setNews(respone.data);
         if (respone.data.categories !== null && respone.data.categories.length > 0) {
+          setCategory(respone.data.categories[0].name);
           getNewCategoryIdService(respone.data.categories[0].id).then(data => {
             if (data !== null && data.status === 200) {
               setRelatedPost(data.data);
@@ -35,6 +40,19 @@ function New({ socialLink, getSocialLink }) {
   }, [getNewByUri, getSocialLink]);
   return (
     <Layout title={news.meta_title}>
+      <div className="entry-breadcrumb">
+        <div className="container">
+          <div className="breadcrumbs">
+            <a className="item" href="/">
+              {t('home')}
+            </a>
+            <a className="item" href={`/news/category/${category}`}>
+              {category}
+            </a>
+            <span className="item">{news.title}</span>
+          </div>
+        </div>
+      </div>
       <section className="banner-heading-3 next-shadow">
         <div className="container">
           <div className="divtext">
@@ -61,7 +79,7 @@ function New({ socialLink, getSocialLink }) {
             <div className="entry-content">{ReactHtmlParser(news.description)}</div>
             <br />
             <div className="tags">
-              <h2>Nội dung liên quan</h2>
+              <h2>{t('related_content')}</h2>
               {map(news.categories, item => (
                 <a className="tag" href="#" key={item.id}>
                   {item.name}
@@ -74,7 +92,7 @@ function New({ socialLink, getSocialLink }) {
       <section className="sec-tb">
         <div className="container">
           <div className="entry-head">
-            <h2 className="ht efch-1 ef-img-t">Tin bài liên quan</h2>
+            <h2 className="ht efch-1 ef-img-t">{t('related_news')}</h2>
           </div>
           <div className="list-7  list-item row">
             {map(
@@ -119,4 +137,8 @@ const mapStateToProps = state => {
 
 New.propTypes = propTypes;
 
-export default connect(mapStateToProps, null)(New);
+New.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'common']
+});
+
+export default connect(mapStateToProps, null)(withTranslation('common')(New));
