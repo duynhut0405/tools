@@ -2,7 +2,8 @@ import Actions from './actions';
 
 const intialState = {
   listNewInvestor: [],
-  listNewNotification: []
+  listNewNotification: [],
+  detailPerson: {}
 };
 
 const investorsReducer = (state = intialState, action) => {
@@ -16,6 +17,11 @@ const investorsReducer = (state = intialState, action) => {
       return {
         ...state,
         listNewNotification: action.data
+      };
+    case Actions.GET_DETAIL_PERSON:
+      return {
+        ...state,
+        detailPerson: action.data
       };
     default:
       return state;

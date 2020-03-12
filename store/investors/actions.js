@@ -13,6 +13,13 @@ const Actions = {
   getNotificationAction: id => ({
     type: Actions.GET_NEW_INVESTOR_NOTIFICATION_REQUEST,
     id
+  }),
+
+  GET_DETAIL_PERSON: 'GET_DETAIL_PERSON',
+
+  getDetailPerson: data => ({
+    type: Actions.GET_DETAIL_PERSON,
+    data
   })
 };
 
