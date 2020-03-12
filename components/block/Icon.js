@@ -159,7 +159,11 @@ function Icon({ data, id }) {
                 <div className="owl-stage-outer">
                   <div
                     className="owl-stage"
-                    style="transform: translate3d(-1665px, 0px, 0px); transition: all 0.25s ease 0s; width: 2775px;"
+                    style={{
+                      transform: 'translate3d(0px, 0px, 0px)',
+                      transition: 'all 0.25s ease 0s',
+                      width: '2775px'
+                    }}
                   >
                     <Carousel
                       responsive={responsive}
@@ -174,7 +178,7 @@ function Icon({ data, id }) {
                       }}
                     >
                       {map(data, (items, index) => (
-                        <div className="owl-item" style="width: 277.5px;" key={index}>
+                        <div className="owl-item" style={{ width: '277.5px' }} key={index}>
                           <div className="item efch-2 ef-img-l ">
                             <div className="img ">
                               <img

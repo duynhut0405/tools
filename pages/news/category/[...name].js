@@ -4,7 +4,9 @@ import Layout from '../../../components/layout';
 function CategoryDetail() {
   return (
     <Layout>
-      <h1> vanh</h1>
+      <div className="container main_content">
+        <h1> vanh</h1>
+      </div>
     </Layout>
   );
 }

@@ -36,4 +36,17 @@ const getNewRouter = () => {
     });
 };
 
-module.exports = { getRouer, getNewRouter };
+const getCategoryRouter = () => {
+  return request({
+    url: `/categorys`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
+module.exports = { getRouer, getNewRouter, getCategoryRouter };
