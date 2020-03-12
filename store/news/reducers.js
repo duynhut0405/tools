@@ -1,7 +1,8 @@
 import Action from './actions';
 
 const initialState = {
-  listNewsByCategory: {}
+  listNewsByCategory: {},
+  listNewsByCategorySlug: {}
 };
 
 const newReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const newReducer = (state = initialState, action) => {
       return {
         ...state,
         listNewsByCategory: action.data
+      };
+    case Action.GET_NEW_BY_CATEGORY_SLUG_RESPONSE:
+      return {
+        ...state,
+        listNewsByCategorySlug: action.data
       };
 
     default:
