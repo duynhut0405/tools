@@ -39,7 +39,7 @@ function ImageRight({ items }) {
                   {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
                 </a>
               )} */}
-              {items.text_action === undefined ? (
+              {items.text_action === undefined || items.text_action === '' ? (
                 ''
               ) : (
                 <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
