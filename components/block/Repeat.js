@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
+import TableItem from './Table/Tableitem';
 
 const propTypes = {
   data: PropTypes.array,
@@ -44,7 +45,16 @@ function Repeat({ data, type, id }) {
                     <div className="widget-default">
                       <h4 className="widget-title">{item.header}</h4>
                       <div className="widget-content entry-content">
-                        {ReactHtmlParser(item.description)}
+                        <div
+                          className="toggleAutoHeight"
+                          data-more="+ Xem thêm"
+                          data-less="- Thu gọn"
+                          data-i=""
+                        >
+                          <div className="wtgh">
+                            <TableItem data={item.description} maxheight={Number(data.height)} />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -70,7 +80,16 @@ function Repeat({ data, type, id }) {
                   <div className="widget-default">
                     <h4 className="widget-title">{item.header}</h4>
                     <div className="widget-content entry-content">
-                      {ReactHtmlParser(item.description)}
+                      <div
+                        className="toggleAutoHeight"
+                        data-more="+ Xem thêm"
+                        data-less="- Thu gọn"
+                        data-i=""
+                      >
+                        <div className="wtgh">
+                          <TableItem data={item.description} maxheight={200} />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -95,7 +114,16 @@ function Repeat({ data, type, id }) {
                   <div className="widget-default">
                     <h4 className="widget-title">{item.header}</h4>
                     <div className="widget-content entry-content">
-                      {ReactHtmlParser(item.description)}
+                      <div
+                        className="toggleAutoHeight"
+                        data-more="+ Xem thêm"
+                        data-less="- Thu gọn"
+                        data-i=""
+                      >
+                        <div className="wtgh">
+                          <TableItem data={item.description} maxheight={100} />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

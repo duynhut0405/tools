@@ -1,6 +1,7 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getLang } from '../../utils/localStorage';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import RateSelect from './RateSelect';
@@ -11,7 +12,11 @@ const propTypes = {
 };
 
 function FormRate({ data }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(getLang());
+  }, []);
+
   return (
     <section className="sec-b sec-tb sec-tigia">
       {data !== undefined && (
