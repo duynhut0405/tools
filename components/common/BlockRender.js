@@ -103,7 +103,14 @@ function BlockRender({ data }) {
                 return <TagProduct data={JSON.parse(values.content)} key={index} id={values.id} />;
               }
               if (values.name === 'MenuIntro' && values.content !== null) {
-                return <MenuIntro data={JSON.parse(values.content)} key={index} id={values.id} />;
+                return (
+                  <MenuIntro
+                    data={JSON.parse(values.content)}
+                    key={index}
+                    id={values.id}
+                    type={JSON.parse(values.content).type}
+                  />
+                );
               }
               if (values.name === 'Lãnh Đạo' && values.content !== null) {
                 return (

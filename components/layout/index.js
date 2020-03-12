@@ -25,6 +25,7 @@ import { useTranslation } from 'react-i18next';
 import { setLang, getFlag } from '../../utils/localStorage';
 import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
+import { getLang } from '../../utils/localStorage';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -68,6 +69,8 @@ function Layout({
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [flag, setFlag] = useState('vn');
 
+  const { i18n, t } = useTranslation();
+  
   useEffect(() => {
     getMenuHeader();
     getMenuNav();
@@ -79,10 +82,9 @@ function Layout({
   }, []);
 
   useEffect(() => {
+    i18n.changeLanguage(getLang());
     setFlag(getFlag());
   }, [getFlag]);
-
-  const { i18n, t } = useTranslation();
 
   const nestChild = items => {
     return map(items, item => (
@@ -579,7 +581,7 @@ const mapDispatchToProps = {
 };
 
 Layout.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'layout']
+  namespacesRequired: ['common', 'common']
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

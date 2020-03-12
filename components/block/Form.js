@@ -32,7 +32,6 @@ function Form({ data }) {
     }));
   };
 
-  console.log(formState);
   return (
     <section className="sec-tb">
       <div className="container">
