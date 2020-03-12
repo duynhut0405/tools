@@ -19,7 +19,8 @@ const propTypes = {
 function New({ socialLink, getSocialLink }) {
   const [news, setNews] = useState({});
   const [relatedPost, setRelatedPost] = useState([]);
-  const [category, setCategory] = useState(null);
+  const [category_name, setCategory_name] = useState(null);
+  const [category_url, setCategory_url] = useState(null);
   const router = useRouter();
   const { t } = useTranslation();
   useEffect(() => {
@@ -28,7 +29,8 @@ function New({ socialLink, getSocialLink }) {
       if (respone !== undefined && respone !== null && respone.status === 200) {
         setNews(respone.data);
         if (respone.data.categories !== null && respone.data.categories.length > 0) {
-          setCategory(respone.data.categories[0].name);
+          setCategory_name(respone.data.categories[0].name);
+          setCategory_url(respone.data.categories[0].slug);
           getNewCategoryIdService(respone.data.categories[0].id).then(data => {
             if (data !== null && data.status === 200) {
               setRelatedPost(data.data);
@@ -46,8 +48,8 @@ function New({ socialLink, getSocialLink }) {
             <a className="item" href="/">
               {t('home')}
             </a>
-            <a className="item" href={`/news/category/${category}`}>
-              {category}
+            <a className="item" href={`/news/category/${category_url}`}>
+              {category_name}
             </a>
             <span className="item">{news.title}</span>
           </div>
