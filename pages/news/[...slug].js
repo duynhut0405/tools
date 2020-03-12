@@ -83,7 +83,7 @@ function New({ socialLink, getSocialLink }) {
             <div className="tags">
               <h2>{t('related_content')}</h2>
               {map(news.categories, item => (
-                <a className="tag" href="#" key={item.id}>
+                <a className="tag" href={`/news/category/${item.slug}`} key={item.id}>
                   {item.name}
                 </a>
               ))}

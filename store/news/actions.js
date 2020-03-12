@@ -7,6 +7,15 @@ const Actions = {
     id,
     page,
     year
+  }),
+
+  GET_NEW_BY_CATEGORY_SLUG_REQUEST: 'GET_NEW_BY_CATEGORY_SLUG_REQUEST',
+  GET_NEW_BY_CATEGORY_SLUG_RESPONSE: 'GET_NEW_BY_CATEGORY_SLUG_RESPONSE',
+
+  getNewByCategorySlugAction: (slug, data) => ({
+    type: Actions.GET_NEW_BY_CATEGORY_SLUG_REQUEST,
+    slug,
+    data
   })
 };
 

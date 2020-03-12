@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import { Button, FormGroup, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 const propTypes = {
   data: Proptypes.object.isRequired,

@@ -66,10 +66,25 @@ const findAllByCategory = (id, page, year) => {
     });
 };
 
+const getNewsByCategorySlug = (slug, data) => {
+  return request({
+    url: `/news/findallbyslugcategory/${slug}`,
+    method: 'GET',
+    params: data
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
 export {
   getNewService,
   getNewByUri,
   getNewByIdService,
   getNewCategoryIdService,
-  findAllByCategory
+  findAllByCategory,
+  getNewsByCategorySlug
 };
