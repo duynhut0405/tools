@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
+import useCollapse from 'react-collapsed';
+import TableItem from './Table/Tableitem';
 
 const propTypes = {
   data: PropTypes.array,
@@ -10,6 +12,10 @@ const propTypes = {
 
 function Repeat({ data, type, id }) {
   const [listTable, setListTable] = useState([]);
+
+  const { getCollapseProps, getToggleProps, isOpen } = useCollapse({
+    collapsedHeight: 200
+  });
 
   useEffect(() => {
     setListTable(data.listTable);
@@ -44,7 +50,16 @@ function Repeat({ data, type, id }) {
                     <div className="widget-default">
                       <h4 className="widget-title">{item.header}</h4>
                       <div className="widget-content entry-content">
-                        {ReactHtmlParser(item.description)}
+                        <div
+                          className="toggleAutoHeight"
+                          data-more="+ Xem thêm"
+                          data-less="- Thu gọn"
+                          data-i=""
+                        >
+                          <div className="wtgh">
+                            <TableItem data={item.description} maxheight={400} />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -70,7 +85,16 @@ function Repeat({ data, type, id }) {
                   <div className="widget-default">
                     <h4 className="widget-title">{item.header}</h4>
                     <div className="widget-content entry-content">
-                      {ReactHtmlParser(item.description)}
+                      <div
+                        className="toggleAutoHeight"
+                        data-more="+ Xem thêm"
+                        data-less="- Thu gọn"
+                        data-i=""
+                      >
+                        <div className="wtgh">
+                          <TableItem data={item.description} maxheight={200} />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -95,7 +119,16 @@ function Repeat({ data, type, id }) {
                   <div className="widget-default">
                     <h4 className="widget-title">{item.header}</h4>
                     <div className="widget-content entry-content">
-                      {ReactHtmlParser(item.description)}
+                      <div
+                        className="toggleAutoHeight"
+                        data-more="+ Xem thêm"
+                        data-less="- Thu gọn"
+                        data-i=""
+                      >
+                        <div className="wtgh">
+                          <TableItem data={item.description} maxheight={100} />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
