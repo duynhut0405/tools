@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
-import useCollapse from 'react-collapsed';
 import TableItem from './Table/Tableitem';
 
 const propTypes = {
@@ -12,10 +11,6 @@ const propTypes = {
 
 function Repeat({ data, type, id }) {
   const [listTable, setListTable] = useState([]);
-
-  const { getCollapseProps, getToggleProps, isOpen } = useCollapse({
-    collapsedHeight: 200
-  });
 
   useEffect(() => {
     setListTable(data.listTable);
@@ -57,7 +52,7 @@ function Repeat({ data, type, id }) {
                           data-i=""
                         >
                           <div className="wtgh">
-                            <TableItem data={item.description} maxheight={400} />
+                            <TableItem data={item.description} maxheight={Number(data.height)} />
                           </div>
                         </div>
                       </div>
