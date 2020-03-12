@@ -26,7 +26,7 @@ function News({ data, type, id }) {
   const listNewsTabs = slice(listCategory, 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
 
-  const { t , i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
