@@ -3,7 +3,8 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import { Input } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
+import { sendMailService } from '../../services/form';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -34,12 +35,19 @@ function Form({ data }) {
 
   const onSend = event => {
     event.preventDefault();
+    const dataSend = {
+      content: JSON.stringify(formState),
+      email: formState.email,
+      idForm: data.formdata
+    };
+    sendMailService(dataSend);
   };
+
   return (
-    <section className="sec-tb">
+    <section className="sec-tb sec-tuvan">
       <div className="container">
         <div className="max750">
-          <form onSubmit={onSend} autoComplete="on">
+          <form className="form-contact" onSubmit={onSend} autoComplete="on">
             {map(formdata, (item, index) => {
               if (item.type === 'header') {
                 return (
@@ -74,17 +82,14 @@ function Form({ data }) {
                 return (
                   <React.Fragment>
                     <div className="col-12">
-                      <label className="block">
-                        <span className="title">{item.label}</span>
-                        <Input
-                          className="input"
-                          name={item.name}
-                          type={item.subtype}
-                          placeholder={item.placeholder}
-                          style={{ width: '100%' }}
-                          onChange={e => handleChange(e)}
-                        />
-                      </label>
+                      {item.label && <Label>{item.label}</Label>}
+                      <Input
+                        className="input"
+                        name={item.name}
+                        type={item.subtype}
+                        placeholder={item.placeholder}
+                        onChange={e => handleChange(e)}
+                      />
                     </div>
                   </React.Fragment>
                 );
@@ -93,17 +98,14 @@ function Form({ data }) {
                 return (
                   <React.Fragment>
                     <div className="col-12">
-                      <label className="block">
-                        <span className="title">
-                          {item.label}(<span className="require">*</span>)
-                        </span>
-                        <textarea
-                          className="input"
-                          type={item.subtype}
-                          name={item.name}
-                          rows={item.rows}
-                        ></textarea>
-                      </label>
+                      {item.label && <Label>{item.label}</Label>}
+                      <Input
+                        className="input"
+                        type={item.subtype}
+                        name={item.name}
+                        rows={item.rows}
+                        onChange={e => handleChange(e)}
+                      />
                     </div>
                   </React.Fragment>
                 );
@@ -124,6 +126,9 @@ function Form({ data }) {
           </form>
         </div>
       </div>
+      {data.image && (
+        <img className=" br loaded loaded" data-lazy-type="image" alt="" src={data.image}></img>
+      )}
     </section>
   );
 }

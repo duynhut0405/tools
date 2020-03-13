@@ -12,4 +12,12 @@ const getFormbuilderByIdService = id => {
       return error.response.data;
     });
 };
-export { getFormbuilderByIdService };
+
+const sendMailService = data => {
+  return request({
+    url: `/forms/send`,
+    method: 'POST',
+    data
+  });
+};
+export { getFormbuilderByIdService, sendMailService };
