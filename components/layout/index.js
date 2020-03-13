@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../../public/images/logo.svg';
-import PinIcon from '../../public/images/svg/pin.svg';
-import BieuPhiIcon from '../../public/images/svg/bieuphi.svg';
 import Folder from '../../public/images/svg/folder.svg';
 import Giadinh from '../../public/images/svg/giadinh.svg';
 import MB from '../../public/images/svg/MB.svg';
@@ -26,6 +24,7 @@ import { setLang, getFlag } from '../../utils/localStorage';
 import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
 import { getLang } from '../../utils/localStorage';
+import i18next from 'i18next';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -147,7 +146,7 @@ function Layout({
   };
 
   const changeLang = (lang, flags) => {
-    i18n.changeLanguage(lang);
+    i18next.changeLanguage(lang);
     setFlag(flags);
     setLang(lang, flags);
   };
