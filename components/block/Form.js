@@ -47,7 +47,7 @@ function Form({ data }) {
     <section className="sec-tb sec-tuvan">
       <div className="container">
         <div className="max750">
-          <form className="form-contact" onSubmit={onSend} autoComplete="on">
+          <form onSubmit={onSend} autoComplete="on">
             {map(formdata, (item, index) => {
               if (item.type === 'header') {
                 return (
@@ -104,6 +104,7 @@ function Form({ data }) {
                         type={item.subtype}
                         name={item.name}
                         rows={item.rows}
+                        placeholder={item.placeholder}
                         onChange={e => handleChange(e)}
                       />
                     </div>

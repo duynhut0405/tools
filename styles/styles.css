@@ -5300,7 +5300,7 @@ ul.page-numbers span.page-numbers:not(.current) {
 }
 
 .cl5 {
-  color: #BABABA;
+  color: #bababa;
 }
 
 .cl6 {
@@ -6088,7 +6088,6 @@ h6 {
 }
 
 .max750 {
-  max-width: 750px;
   margin: 0 auto;
 }
 
@@ -6766,7 +6765,7 @@ body.showMenu .menu-btn.x:after {
 .sec-tigia .divquidoi .input-group .input-group-addon {
   padding: 0;
 }
-.sec-tigia .divquidoi .input-group .arrow{
+.sec-tigia .divquidoi .input-group .arrow {
   position: relative;
 }
 .sec-tigia .divquidoi .input-group .icon-arrow-3 {
@@ -7560,7 +7559,7 @@ ul.list-download li .down a:hover {
   border-color: #6182e7;
   text-transform: none;
   text-transform: capitalize;
-  font-weight: 600; 
+  font-weight: 600;
 }
 
 .sec-h-2 .list-2 .item-2 .btn i {
