@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { map, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
+import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';
 
 const propType = {
@@ -31,10 +32,14 @@ function Carousels({ silder, className }) {
                   <img src={item.image} alt="icon" />
                 </a>
                 <div className={`silder_content ${item.options} container`}>
-                  <p className="text_content1">{item.note_1}</p>
+                  <p className="text_content1">{ReactHtmlParser(item.note_1)}</p>
                   <p className="text_content2">{item.note_2}</p>
                   <p className="text_content3">{item.note_3}</p>
-                  {item.text_action !== undefined && (
+                  {item.text_action === null ||
+                  item.text_action === undefined ||
+                  item.text_action === '' ? (
+                    ''
+                  ) : (
                     <button>
                       <a href={item.url}>{item.text_action}</a>
                     </button>
