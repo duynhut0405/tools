@@ -51,7 +51,8 @@
     left: 5px;
   }
   .right {
-    right: 5px;
+    right: 5px !important;
+    left: unset;
   }
 }
 
