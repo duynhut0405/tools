@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Carousel, BlockRender, MenuMiddle, DowloadCategory } from '../../components/common';
 import { ListDowloadFIle, ListDowloadVideo } from '../../components/common/download';
 import Layout from '../../components/layout';
-import About from '../../components/about';
+// import About from '../../components/about';
 import Investors from '../../components/investors';
 import OtherNews from '../../components/otherNews';
 import Transaction from '../../components/transaction';
@@ -45,7 +45,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
         {list.id === 34657 && <ListDowloadFIle type={4} search />}
         {list.id === 34658 && <ListDowloadFIle type={6} search />}
         {list.id === 34660 && <OtherNews />}
-        {list.id === 34217 && <About />}
+        {/* {list.id === 34217 && <About />} */}
         {list.id === 34669 && <Transaction />}
         <BlockRender data={list.pageBlocks} />
         {list.template === 4 && <DowloadCategory />}
