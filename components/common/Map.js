@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { map } from 'lodash';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel';
@@ -7,17 +7,22 @@ import { connect } from 'react-redux';
 const MapWithAMarker = withScriptjs(
   withGoogleMap(props => {
     const centerPosition = () => {
-      if (props.marker && props.marker.length === 1) {
-        return {
-          lat: props.marker[0].lat,
-          lng: props.marker[0].lng
-        };
-      }
       return {
         lat: 16.1,
         lng: 108.2
       };
     };
+
+    const showPosition = position => {
+      console.log(position);
+    };
+
+    useEffect(() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }
+    }, []);
+
     return (
       <div>
         <GoogleMap defaultZoom={10} center={centerPosition()}>
@@ -27,7 +32,7 @@ const MapWithAMarker = withScriptjs(
               position={{ lat: item.lat, lng: item.lng }}
               labelAnchor={new window.google.maps.Point(65, 0)}
               labelStyle={{ backgroundColor: 'white', fontSize: '12px' }}
-              icon="/static/images/icon-marker.png"
+              icon="/static/images/_pin.png"
             >
               <div className="gm-marker">
                 {/* <div className="gm-marker-title">{item.name}</div> */}
