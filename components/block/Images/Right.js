@@ -34,22 +34,22 @@ function ImageRight({ items }) {
                 <strong>{items.note_2}</strong>
               </p>
               <ul className="efch-3 ef-tx-t">{items.note_3}</ul>
-              <a
-                className="fs16 cl1"
-                style={{
-                  display: 'block',
-                  paddingBottom: '30px',
-                  fontSize: '17px',
-                  fontWeight: '550'
-                }}
-                href={
-                  items.url === undefined || items.url === null || items.url === ''
-                    ? '#'
-                    : items.url
-                }
-              >
-                Hướng dẫn đăng ký
-              </a>
+              {items.url === undefined || items.url === null || items.url === '' ? (
+                ''
+              ) : (
+                <a
+                  className="fs16 cl1"
+                  style={{
+                    display: 'block',
+                    paddingBottom: '30px',
+                    fontSize: '17px',
+                    fontWeight: '550'
+                  }}
+                  href={items.url}
+                >
+                  Hướng dẫn đăng ký >>
+                </a>
+              )}
               {/* {items.text_action !== undefined && (
                 <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
                   {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
