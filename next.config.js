@@ -53,7 +53,6 @@ module.exports = withFonts(
         });
 
         pageRouter = Object.assign(pageRouter, categoryRouter);
-
         return Object.assign(newRouter, pageRouter);
       }
     })

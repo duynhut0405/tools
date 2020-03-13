@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const request = axios.create({
-  baseURL: 'https://sapotacorp.com:8443/vi/api/fe',
+  baseURL: 'https://sapotacorp.com:8443/vi/api',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
