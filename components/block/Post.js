@@ -29,7 +29,6 @@ function Post({ data, type }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
-
   if (type === '1') {
     return (
       <div className="post_block mb-5 pt-4 mt-5">

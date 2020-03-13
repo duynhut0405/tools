@@ -51,7 +51,7 @@ function Icon({ data, id }) {
                   <h2 className="ht">{data[0].title || ''}</h2>
                 </div>
                 <div className="sec-b">
-                  <div className="menuicon  owl-carousel   s-nav nav-2 owl-loaded owl-drag">
+                  <div className="menuicon owl-carousel s-nav nav-2 owl-loaded owl-drag">
                     <div className="owl-stage-outer">
                       <div className="owl-stage">
                         <Carousel
@@ -142,7 +142,7 @@ function Icon({ data, id }) {
                     <div className={`col-sm-6 col-md-${data[0].column}`} key={index}>
                       <div className="item">
                         <a href={items.url}>
-                          <div className="img ">
+                          <div className="img">
                             <img className=" loaded loaded" src={items.image} />
                           </div>
                           <div className="divtext">

@@ -43,7 +43,7 @@ function News({ data, type, id }) {
   };
 
   const getCategoryById = async () => {
-    const res = await getCategoryByIdService(Number(data.category));
+    const res = await getCategoryByIdService(Number(data.category.value));
     if (res && res.status === 200) {
       setSlugCategory(res.data.slug);
     }
@@ -108,7 +108,7 @@ function News({ data, type, id }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <p className="cl5">{data.description}</p>
-            <a className="viewall" href={`news/category/${slugCategory}`}>
+            <a className="viewall" href={`/news/category/${slugCategory}`}>
               {t('view')}
               <i className="icon-arrow-1"></i>
             </a>
@@ -159,7 +159,7 @@ function News({ data, type, id }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-t">{data.title}</h2>
-            <a className="viewall" href={`news/category/${slugCategory}`}>
+            <a className="viewall" href={`/news/category/${slugCategory}`}>
               {t('view')} <i className="icon-arrow-1"></i>
             </a>
           </div>
