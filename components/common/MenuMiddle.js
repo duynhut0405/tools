@@ -50,7 +50,10 @@ function MenuMiddle({ data, query }) {
                   data.menuItems.sort((a, b) => a.position - b.position),
                   (item, key) => {
                     return (
-                      <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
+                      <div
+                        className={query === item.slugPages || key === 0 ? 'item active' : 'item'}
+                        key={key}
+                      >
                         <a href={`/page/${item.slugPages}`} className="link">
                           <div className="img">
                             <img
@@ -74,7 +77,10 @@ function MenuMiddle({ data, query }) {
                   data.menuItems.sort((a, b) => a.position - b.position),
                   (item, key) => {
                     return (
-                      <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
+                      <div
+                        className={query === item.slugPages || key === 0 ? 'item active' : 'item'}
+                        key={key}
+                      >
                         <a href={`/page/${item.slugPages}`} className="link">
                           <div className="img">
                             <img
