@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import ReactHtmlParser from 'react-html-parser';
 const propTypes = {
   items: PropTypes.object
 };
@@ -33,9 +33,7 @@ function ImageLeft({ items }) {
               <p className="fs16">
                 <strong>{items.note_2}</strong>
               </p>
-              <ul className="efch-3 ef-tx-t" style={{ marginLeft: 0 }}>
-                {items.note_3}
-              </ul>
+              <ul className="efch-3 ef-tx-t">{ReactHtmlParser(items.note_3)}</ul>
               {/* {items.text_action !== undefined && (
                 <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
                   {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
