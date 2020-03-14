@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { map, slice } from 'lodash';
+import { map } from 'lodash';
 import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 function Pages({ data, type, id }) {
-  const [page] = useState(3);
+  // const [page] = useState(3);
   const [listPage, setListPage] = useState([]);
   const getPageBlock = async () => {
     const ids = map(data.pages, values => values.value);
@@ -24,7 +24,7 @@ function Pages({ data, type, id }) {
     getPageBlock();
   }, []);
   const { t } = useTranslation();
-  const listNews = slice(listPage, 0, page);
+  // const listNews = slice(listPage, 0, page);
   if (type && type === '1') {
     return (
       <div className="container sec-tb block-page" id={id}>
@@ -54,7 +54,7 @@ function Pages({ data, type, id }) {
         <div className="pages">
           <ul className="page-numbers">
             <a className="btn lg" href="#">
-              {t('view.viewall')}
+              {t('view')}
             </a>
           </ul>
         </div>
@@ -66,7 +66,7 @@ function Pages({ data, type, id }) {
       <div className="container" id={id}>
         <section className="sec-tb  block-page block-type-2">
           <h2 className="ht styleht">{data.title}</h2>
-          <div className="list-7  list-item row">
+          <div className="list-7 list-item row">
             {map(listPage, item => (
               <div className="col-md-6" key={item.newsId}>
                 <a href={`/page/${item.slug}`} className="item item-inline-table style-colummb">
@@ -97,15 +97,16 @@ function Pages({ data, type, id }) {
       </div>
     );
   }
+  console.log(listPage);
   if (type && type === '3') {
     return (
       <section className="sec-tb" id={id}>
         <div className="container">
           <h2 className="ht text-center">{data.title}</h2>
-          <div className="list-7  list-item row">
+          <div className="list-7 list-item row">
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
-                <a href={values.slug} className="item item-inline-table">
+                <a href={`/page/${values.slug}`} className="item item-inline-table">
                   <div className="img">
                     <img
                       className="lazy-hidden"
@@ -124,7 +125,7 @@ function Pages({ data, type, id }) {
           </div>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <a key={index} className="tag" href={values.url}>
+              <a key={index} className="tag" href={`/page/${values.url}`}>
                 {values.name}
               </a>
             ))}
@@ -142,7 +143,7 @@ function Pages({ data, type, id }) {
           <ul className="cols-2 link2">
             {map(listPage, (values, index) => (
               <li key={index}>
-                <a href={values.slug}>{values.name}</a>
+                <a href={`/page/${values.url}`}>{values.name}</a>
               </li>
             ))}
           </ul>

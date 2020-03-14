@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BoxSearch from './BoxSearch';
 import Map from '../common/Map';
+import ProppTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-function Transaction() {
+const propTypes = {
+  listBranches: ProppTypes.array
+};
+
+function Transaction({ listBranches }) {
+  const [location, setLocation] = useState({ lat: 0, lng: 0 });
+  const showPosition = position => {
+    setLocation(() => ({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    }));
+  };
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  }, []);
+
   return (
     <main className="page-diem-atm" id="main">
       <div className="wrap-list-map">
@@ -11,17 +31,20 @@ function Transaction() {
             <BoxSearch />
           </div>
           <div className="col-md-8">
-            <Map
-              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU&v=3.exp&libraries=geometry,drawing,places`}
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: `550px` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-              marker={[{ lat: 21.027763, lng: 105.83416, name: 'Hà Nội', parameter: [] }]}
-            />
+            <Map data={listBranches} location={location} />
           </div>
         </div>
       </div>
     </main>
   );
 }
-export default Transaction;
+
+const mapStateToProps = state => {
+  return {
+    listBranches: state.mapReducer.listBranches
+  };
+};
+
+Transaction.propTypes = propTypes;
+
+export default connect(mapStateToProps, null)(Transaction);
