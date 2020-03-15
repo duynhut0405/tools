@@ -84,7 +84,7 @@ function MenuIntro({ data, type }) {
               </div>
               <div className="col-lg-4 sidebar">
                 <div className="widget widget-tuvan">
-                  <form onSubmit={onSend} autoComplete="on">
+                  <form onSubmit={onSend} autoComplete="on" className="form-tuvan">
                     {map(formdata, (item, index) => {
                       if (item.type === 'header') {
                         return (
