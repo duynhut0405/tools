@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import { Input, Label } from 'reactstrap';
+import { Input, Label, CustomInput } from 'reactstrap';
 import { sendMailService } from '../../services/form';
 
 const propTypes = {
@@ -69,11 +69,15 @@ function Form({ data }) {
                 return (
                   <div className="mb-30 text-center">
                     {map(item.values, (items, key) => (
-                      <label className="radio" key={key} style={{ marginLeft: '20px' }}>
-                        <input type="radio" name={item.name} />
-                        <span></span>
-                        {items.label}
-                      </label>
+                      <CustomInput
+                        type="radio"
+                        inline={item.inline !== undefined ? true : false}
+                        name={item.name}
+                        id={key}
+                        label={items.label}
+                        value={items.value}
+                        onChange={e => handleChange(e)}
+                      />
                     ))}
                   </div>
                 );
