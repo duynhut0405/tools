@@ -27,7 +27,7 @@ function TableItem({ data, maxheight }) {
 
       {height >= maxheight && (
         <span className="showmore">
-          <span className="text" {...getToggleProps()}>
+          <span className="text" style={{ color: 'blue' }} {...getToggleProps()}>
             {isOpen ? '- Thu gọn' : '+ Xem thêm'}
           </span>
           <i className=""></i>
