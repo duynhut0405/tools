@@ -6262,9 +6262,9 @@ ul.menu.line > li:not(:first-child):before {
   background-color: #333;
 }
 
-#panel .row > div:first-child {
+/* #panel .row > div:first-child {
   background-color: #fff;
-}
+} */
 
 #panel .row > div:first-child .menu li:before {
   display: none;
