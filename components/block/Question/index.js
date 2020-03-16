@@ -26,27 +26,30 @@ function Questions({ data, id }) {
       setPage(4);
     }
   };
-  return (
-    <section className="sec-b sec-cauhoi" id={id}>
-      <div className="container">
-        <div className="entry-head text-center block-question-index">
-          <h2 className="ht ">{data[0].title || ''}</h2>
-        </div>
-        <div className="accodion accodion-1">
-          {map(list, (item, index) => (
-            <Question key={index} answer={item.answer} question={item.question} />
-          ))}
-        </div>
-        {data.length > 4 && (
-          <div className="text-center">
-            <button className="btn lg" onClick={() => show()}>
-              {active === false ? 'Xem thêm' : 'Thu gọn'}
-            </button>
+  if (data.length > 0) {
+    return (
+      <section className="sec-b sec-cauhoi" id={id}>
+        <div className="container">
+          <div className="entry-head text-center block-question-index">
+            {data[0].title !== undefined && <h2 className="ht ">{data[0].title || ''}</h2>}
           </div>
-        )}
-      </div>
-    </section>
-  );
+          <div className="accodion accodion-1">
+            {map(list, (item, index) => (
+              <Question key={index} answer={item.answer} question={item.question} />
+            ))}
+          </div>
+          {data.length > 4 && (
+            <div className="text-center">
+              <button className="btn lg" onClick={() => show()}>
+                {active === false ? 'Xem thêm' : 'Thu gọn'}
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+  return null;
 }
 
 Questions.propTypes = propTypes;
