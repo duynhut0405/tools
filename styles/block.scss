@@ -54,6 +54,51 @@
     left: unset;
   }
 }
+.divtext {
+  text-align: initial;
+  button {
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    background-color: #141ED2;
+    border-radius: 40px;
+    border: 1px solid #141ED2;
+    line-height: 38px;
+    height: 40px;
+    padding: 0 25px;
+    text-transform: uppercase;
+    min-width: 130px;
+    letter-spacing: 1px;
+  }
+  .text_content1 {
+    font-size: 42px;
+    color: #141ed2;
+    font-weight: bold;
+    line-height: 50px;
+  }
+  .text_content2 {
+    font-size: 24px;
+    color: #141ed2;
+    font-weight: bold;
+    line-height: 30px;
+  }
+  .text_content3 {
+    font-size: 22px;
+    color: #141ed2;
+    font-weight: normal;
+    line-height: 25px;
+    font-weight: 600;
+  }
+}
 
 .list-item {
   .item {
