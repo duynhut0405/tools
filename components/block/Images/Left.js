@@ -29,9 +29,9 @@ function ImageLeft({ items }) {
           </div>
           <div className="col-lg-6">
             <div className="divtext entry-content">
-              <h2 className="ht  efch-1 ef-tx-t ">{items.note_1}</h2>
-              <p className="fs16">{ReactHtmlParser(items.note_2)}</p>
-              <ul className="efch-3 ef-tx-t">{items.note_3}</ul>
+              {ReactHtmlParser(items.note_1)}
+              {ReactHtmlParser(items.note_2)}
+              {ReactHtmlParser(items.note_3)}
               {/* {items.text_action !== undefined && (
                 <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
                   {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}

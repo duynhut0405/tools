@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
   items: PropTypes.object
@@ -29,11 +30,9 @@ function ImageRight({ items }) {
           </div>
           <div className="col-lg-6">
             <div className="divtext ">
-              <h2 className="ht ">{items.note_1}</h2>
-              <p className="fs16">
-                <strong>{items.note_2}</strong>
-              </p>
-              <ul className="efch-3 ef-tx-t">{items.note_3}</ul>
+              {ReactHtmlParser(items.note_1)}
+              {ReactHtmlParser(items.note_2)}
+              {ReactHtmlParser(items.note_3)}
               {items.url === undefined || items.url === null || items.url === '' ? (
                 ''
               ) : (
