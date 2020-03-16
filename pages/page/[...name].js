@@ -32,7 +32,6 @@ function Page({ list, silder, menuMiddle, getPage }) {
   useEffect(() => {
     getPage(routerUrl);
   }, []);
-
   return (
     <Layout title={list.meta_title} personalLayout={list.has_sidebar}>
       <div className="main_content">
