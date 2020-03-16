@@ -54,6 +54,11 @@ function Carousels({ silder, className }) {
                         </a>
                       </button>
                     )}
+                    {item.video_url !== undefined && item.video_url !== '' && (
+                      <div>
+                        <iframe src={item.video_url} />
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
