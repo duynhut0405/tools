@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ReactHtmlParser from 'react-html-parser';
 import { LayoutActions } from '../../store/actions';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';

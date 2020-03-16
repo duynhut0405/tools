@@ -56,6 +56,24 @@ html {
   }
 }
 
+.contact {
+  background-color: #e8e8e8;
+  border-radius: 8px;
+  justify-content: space-between;
+  display: flex;
+}
+.contact h3 {
+  align-items: center;
+  margin: 15px;
+  color: #141ed2;
+  display: flex;
+}
+.contact i {
+  align-items: center;
+  margin: 15px;
+  color: #141ed2;
+  display: flex;
+}
 .widget-default h4 {
   padding: 5px;
   color: #333333;

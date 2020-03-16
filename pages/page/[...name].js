@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { withTranslation } from '../../i18n';
 import { connect } from 'react-redux';
+import { Contact } from '../../components/common';
 
 const propTypes = {
   list: PropTypes.object,
@@ -47,6 +48,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
         {list.id === 34660 && <OtherNews />}
         {/* {list.id === 34217 && <About />} */}
         {list.id === 34669 && <Transaction />}
+        {list.id === 34670 && <Contact />}
         <BlockRender data={list.pageBlocks} />
         {list.template === 4 && <DowloadCategory />}
       </div>

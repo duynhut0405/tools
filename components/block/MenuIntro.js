@@ -3,6 +3,8 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
+import { Row, Col, Input, Label } from 'reactstrap';
+import { sendMailService } from '../../services/form';
 
 const propTypes = {
   data: Proptypes.array.isRequired,
@@ -12,16 +14,35 @@ const propTypes = {
 
 function MenuIntro({ data, type }) {
   const [formdata, setFormData] = useState({});
+  const [formState, setFormState] = useState({});
   const getFormByID = async () => {
     const res = await getFormbuilderByIdService(Number(data.formdata));
     if (res && res.status === 200) {
-      setFormData(res.data);
+      setFormData(JSON.parse(res.data.list));
     }
   };
 
   useEffect(() => {
     getFormByID();
   }, []);
+
+  const handleChange = event => {
+    event.persist();
+    setFormState(() => ({
+      ...formState,
+      [event.target.name]: event.target.value
+    }));
+  };
+
+  const onSend = event => {
+    event.preventDefault();
+    const dataSend = {
+      content: JSON.stringify(formState),
+      email: formState.email,
+      idForm: data.formdata
+    };
+    sendMailService(dataSend);
+  };
   if (type === '1') {
     return (
       <React.Fragment>
@@ -63,7 +84,84 @@ function MenuIntro({ data, type }) {
               </div>
               <div className="col-lg-4 sidebar">
                 <div className="widget widget-tuvan">
-                  <div>{ReactHtmlParser(formdata.embedded)}</div>
+                  <form onSubmit={onSend} autoComplete="on" className="form-tuvan">
+                    {map(formdata, (item, index) => {
+                      if (item.type === 'header') {
+                        return (
+                          <React.Fragment>
+                            <div className="max600 entry-head text-center">
+                              {ReactHtmlParser(item.label)}
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                      if (item.type === 'paragraph') {
+                        return (
+                          <p className={item.className} key={index}>
+                            {ReactHtmlParser(item.label)}
+                          </p>
+                        );
+                      }
+                      if (item.type === 'radio-group') {
+                        return (
+                          <div className="mb-30 text-center">
+                            {map(item.values, (items, key) => (
+                              <label className="radio" key={key} style={{ marginLeft: '20px' }}>
+                                <input type="radio" name={item.name} />
+                                <span></span>
+                                {items.label}
+                              </label>
+                            ))}
+                          </div>
+                        );
+                      }
+                      if (item.type === 'text') {
+                        return (
+                          <React.Fragment>
+                            <div className="col-12">
+                              {item.label && <Label>{item.label}</Label>}
+                              <Input
+                                className="input"
+                                name={item.name}
+                                type={item.subtype}
+                                placeholder={item.placeholder}
+                                onChange={e => handleChange(e)}
+                              />
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                      if (item.type === 'textarea') {
+                        return (
+                          <React.Fragment>
+                            <div className="col-12">
+                              {item.label && <Label>{item.label}</Label>}
+                              <Input
+                                className="input"
+                                type={item.subtype}
+                                name={item.name}
+                                rows={item.rows}
+                                placeholder={item.placeholder}
+                                onChange={e => handleChange(e)}
+                              />
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                      if (item.type === 'button') {
+                        return (
+                          <React.Fragment>
+                            <div className="col-12 text-center">
+                              <button className="btn" type={item.subtype}>
+                                {item.label}
+                              </button>
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                      return null;
+                    })}
+                  </form>
                 </div>
               </div>
             </div>
@@ -97,11 +195,106 @@ function MenuIntro({ data, type }) {
                   <h2 className="widget-title">{data.title}</h2>
                   {ReactHtmlParser(data.descriptionTop)}
                 </div>
-                <div className="boxwidget-2">{ReactHtmlParser(data.descriptionBot)}</div>
+                <div className="boxwidget-2">
+                  <div>{ReactHtmlParser(data.descriptionBot)}</div>
+                  {data.contact_1 !== undefined && (
+                    <Row>
+                      <Col xs="5">
+                        <div className="contact">
+                          <h3 className="">{data.contact_1}</h3>
+                          <i className="icon-arrow-1"></i>
+                        </div>
+                      </Col>
+                      <Col xs="7">
+                        <div className="contact">
+                          <h3 className="">{data.contact_2}</h3>
+                          <i className="icon-arrow-1"></i>
+                        </div>
+                      </Col>
+                    </Row>
+                  )}
+                </div>
               </div>
               <div className="col-lg-4 sidebar">
                 <div className="widget widget-tuvan">
-                  <div>{ReactHtmlParser(formdata.embedded)}</div>
+                  <form onSubmit={onSend} autoComplete="on" className="form-tuvan">
+                    {map(formdata, (item, index) => {
+                      if (item.type === 'header') {
+                        return (
+                          <React.Fragment>
+                            <div className="max600 entry-head text-center">
+                              {ReactHtmlParser(item.label)}
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                      if (item.type === 'paragraph') {
+                        return (
+                          <p className={item.className} key={index}>
+                            {ReactHtmlParser(item.label)}
+                          </p>
+                        );
+                      }
+                      if (item.type === 'radio-group') {
+                        return (
+                          <div className="mb-30 text-center">
+                            {map(item.values, (items, key) => (
+                              <label className="radio" key={key} style={{ marginLeft: '20px' }}>
+                                <input type="radio" name={item.name} />
+                                <span></span>
+                                {items.label}
+                              </label>
+                            ))}
+                          </div>
+                        );
+                      }
+                      if (item.type === 'text') {
+                        return (
+                          <React.Fragment>
+                            <div className="col-12">
+                              {item.label && <Label>{item.label}</Label>}
+                              <Input
+                                className="input"
+                                name={item.name}
+                                type={item.subtype}
+                                placeholder={item.placeholder}
+                                onChange={e => handleChange(e)}
+                              />
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                      if (item.type === 'textarea') {
+                        return (
+                          <React.Fragment>
+                            <div className="col-12">
+                              {item.label && <Label>{item.label}</Label>}
+                              <Input
+                                className="input"
+                                type={item.subtype}
+                                name={item.name}
+                                rows={item.rows}
+                                placeholder={item.placeholder}
+                                onChange={e => handleChange(e)}
+                              />
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                      if (item.type === 'button') {
+                        return (
+                          <React.Fragment>
+                            <div className="col-12 text-center">
+                              <button className="btn" type={item.subtype}>
+                                {item.label}
+                              </button>
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                      return null;
+                    })}
+                  </form>
                 </div>
               </div>
             </div>
