@@ -29,13 +29,13 @@ function DowloadCategory({ listRegulation, typeRegulation, seachRegulation, getT
   return (
     <React.Fragment>
       <div className="accodion accodion-2 container sec-tb">
-        <Fillter
+        {/* <Fillter
           type={typeRegulation}
           setDate={event => setYear(event.target.value)}
           setType={event => setDataType(event.target.value)}
         />
         <DowloadFile data={listRegulation} year={year} isChecked />
-        <DowloadVideo data={listRegulation} year={year} />
+        <DowloadVideo data={listRegulation} year={year} /> */}
       </div>
     </React.Fragment>
   );
