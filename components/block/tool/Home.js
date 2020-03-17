@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RangeSlider from 'react-rangeslider';
 import ReactNumeric from 'react-numeric';
+import Result from './Result';
 import { withTranslation } from '../../../i18n';
 import { useTranslation } from 'react-i18next';
 
@@ -8,6 +9,9 @@ function ToolHome() {
   const [estimate_rate, setEstimateRate] = useState(5000000);
   const [estimate_mortgage, setEstimateMortgage] = useState(5000000);
   const [amount, SetAmount] = useState(0);
+  const [monthlyInterest, setMonthlyInterest] = useState(0); //Tiền lãi hàng tháng
+  const [monthlypayment, setMonthlyPayment] = useState(0); //Tiền gốc hàng tháng
+  const [totalAmount, setTotalAmount] = useState(0);
   const [show_result, setShowResult] = useState(false);
   const { t } = useTranslation();
 
@@ -16,8 +20,20 @@ function ToolHome() {
     const estimate_momney = (estimate_rate * 80) / 100;
     const mortgage_momney = (estimate_mortgage * 70) / 100;
     if (estimate_momney < mortgage_momney) {
+      const month_payment = Math.ceil(estimate_momney / 12); //Tiền gốc hàng tháng
+      const month_interest = Math.ceil((estimate_momney * 12) / 100 / 12); //Tiền lãi hàng tháng
+      const total = (month_interest + month_payment) * 12;
+      setMonthlyInterest(month_interest);
+      setMonthlyPayment(month_payment);
+      setTotalAmount(total);
       SetAmount(estimate_momney);
     } else {
+      const month_payment = Math.ceil(mortgage_momney / 12); //Tiền gốc hàng tháng
+      const month_interest = Math.ceil((mortgage_momney * 12) / 100 / 12); //Tiền lãi hàng tháng
+      const total = (month_interest + month_payment) * 12;
+      setMonthlyInterest(month_interest);
+      setMonthlyPayment(month_payment);
+      setTotalAmount(total);
       SetAmount(mortgage_momney);
     }
     setShowResult(true);
@@ -102,11 +118,16 @@ function ToolHome() {
                 )}
                 {show_result && (
                   <div className="mbb-result-calculation">
-                    <h3 className="mbb-title">
-                      {t('tool_home')}
-                      <br /> {t('loan_amount')}
-                      <span className="ml-2">{amount} VNĐ</span>
-                    </h3>
+                    <Result
+                      title={t('tool_home')}
+                      subtitle={t('loan_amount')}
+                      amount={amount}
+                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      monthlypayment={monthlypayment} //Tiền gốc hàng tháng
+                      equity_capital={null}
+                      month={12}
+                      totalAmount={totalAmount}
+                    />
                   </div>
                 )}
               </div>

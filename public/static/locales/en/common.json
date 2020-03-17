@@ -54,5 +54,10 @@
         "equity_capital": "Equity capital",
         "loan_demand_at_MB": "Demand for loans at MB",
         "loan_term": "Loan term"
+    },
+    "tool_consumer_loans": {
+        "title": "Consumer loans with collaterals",
+        "loan_amount": "Loan amount",
+        "loan_term": "Loan term"
     }
 }

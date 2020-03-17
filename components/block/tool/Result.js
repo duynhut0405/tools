@@ -31,9 +31,11 @@ function Result({
         <span className="ml-2">{rate(amount)} VNĐ</span>
       </h3>
       <div className="line-v2-row-result-calc">
-        <h4>
-          Vốn tự có: <span>{rate(equity_capital)} VNĐ</span>
-        </h4>
+        {equity_capital !== null && (
+          <h4>
+            Vốn tự có: <span>{rate(equity_capital)} VNĐ</span>
+          </h4>
+        )}
         <h4>
           Kỳ hạn vay: <span>{month} THÁNG</span>
         </h4>
