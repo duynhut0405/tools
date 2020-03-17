@@ -15,6 +15,7 @@ import {
   MenuIntro,
   Download,
   DetailPerson,
+  Card,
   Tools
 } from '../block';
 
@@ -63,6 +64,9 @@ function BlockRender({ data }) {
               }
               if (values.name === 'Category-mini-wtithtab' && values.content !== null) {
                 return <MiniTab id={values.id} data={JSON.parse(values.content)} key={index} />;
+              }
+              if (values.name === 'Card' && values.content !== null) {
+                return <Card id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Table' && values.content !== null) {
                 return (

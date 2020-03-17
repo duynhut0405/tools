@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { map, slice } from 'lodash';
 import Question from './Item';
 import Proptypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import { withTranslation } from '../../../i18n';
 
 const propTypes = {
   data: Proptypes.array,
@@ -12,6 +14,7 @@ function Questions({ data, id }) {
   const [page, setPage] = useState(4);
   const [active, setActive] = useState(false);
   const list = slice(data, 0, page);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (list.length === data.length) {
@@ -41,7 +44,7 @@ function Questions({ data, id }) {
           {data.length > 4 && (
             <div className="text-center">
               <button className="btn lg" onClick={() => show()}>
-                {active === false ? 'Xem thêm' : 'Thu gọn'}
+                {active === false ? t('view_more') : t('collapse')}
               </button>
             </div>
           )}
@@ -54,4 +57,8 @@ function Questions({ data, id }) {
 
 Questions.propTypes = propTypes;
 
-export default Questions;
+Questions.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'common']
+});
+
+export default withTranslation('common')(Questions);

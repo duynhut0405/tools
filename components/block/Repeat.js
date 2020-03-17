@@ -20,6 +20,9 @@ function Repeat({ data, type, id }) {
     return (
       <section className=" sec-tb " id={id}>
         <div className="container">
+          <div className="entry-head text-center">
+            <h2 className="ht ">{data.title}</h2>
+          </div>
           <div className="table-responsive table table-full">
             {map(listTable, (items, index) => {
               return ReactHtmlParser(items.description);
@@ -36,7 +39,6 @@ function Repeat({ data, type, id }) {
           <div className="entry-head text-center">
             <h2 className="ht ">{data.title}</h2>
           </div>
-
           <div className="max950">
             <div className="row list-item">
               {map(listTable, (item, index) => (

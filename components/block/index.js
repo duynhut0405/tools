@@ -14,6 +14,7 @@ import TagProduct from './TagProduct';
 import MenuIntro from './MenuIntro';
 import Download from './Download';
 import DetailPerson from './DetailPerson';
+import Card from './Card';
 import Tools from './tool';
 
 export {
@@ -33,5 +34,6 @@ export {
   MenuIntro,
   Download,
   DetailPerson,
+  Card,
   Tools
 };
