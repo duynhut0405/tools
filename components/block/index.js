@@ -14,7 +14,7 @@ import TagProduct from './TagProduct';
 import MenuIntro from './MenuIntro';
 import Download from './Download';
 import DetailPerson from './DetailPerson';
-
+import Card from './Card';
 export {
   Images,
   Post,
@@ -31,5 +31,6 @@ export {
   TagProduct,
   MenuIntro,
   Download,
-  DetailPerson
+  DetailPerson,
+  Card
 };
