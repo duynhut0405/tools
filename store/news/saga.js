@@ -4,9 +4,9 @@ import { takeLatest, put, all, fork } from 'redux-saga/effects';
 
 function* getNewByCategorySaga() {
   yield takeLatest(actions.FILL_NEWS_BY_CATEGORY_REQUEST, function*(params) {
-    const { id, page, year } = params;
+    const { id, page, number, year } = params;
     try {
-      const res = yield findAllByCategory(id, page, year);
+      const res = yield findAllByCategory(id, page, number, year);
       if (res.status === 200) {
         yield put({
           type: actions.FILL_NEWS_BY_CATEGORY_RESPONSE,

@@ -22,13 +22,13 @@ function About({ data, listNews, getNews }) {
 
   useEffect(() => {
     if (data.category.value) {
-      getNews(data.category.value, page, year);
+      getNews(data.category.value, page, data.record, year);
     }
   }, [getNews]);
 
   useEffect(() => {
     if (data.category.value) {
-      getNews(data.category.value, page, year);
+      getNews(data.category.value, page, data.record, year);
     }
   }, [year]);
 
