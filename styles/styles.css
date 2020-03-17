@@ -6088,9 +6088,8 @@ h6 {
 }
 
 .max750 {
-  margin: 0 auto;
+  max-width: 750px; 
 }
-
 .max950 {
   max-width: 950px;
   margin: 0 auto;
@@ -8607,4 +8606,28 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   margin: 0 10px !important;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.05);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.05);
+}
+
+.sec-cskh {
+  background-color: #141ed2;
+  color: #fff;
+}
+.sec-cskh .single_video {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sec-cskh-2 .single_video {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.sec-cskh-2 .bgvideo {
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 40px;
+}
+@media only screen and (max-width: 767px) {
+  .sec-cskh-2 .bgvideo {
+    padding: 15px;
+  }
 }
