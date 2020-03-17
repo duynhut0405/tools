@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody, Row, Col } from 'reactstrap';
 import ReactHtmlParser from 'react-html-parser';
 // import Logo from '../../public/images/svg/logo.svg'
-import Logo from '../../../public/images/logo.svg';
+import Logo from '../../../public/images/svg/logo-blue.svg';
 const propTypes = {
   item: Proptypes.object,
   modal: Proptypes.bool,
@@ -15,26 +15,43 @@ function PopupItems({ item, modal, setModal }) {
   return (
     <React.Fragment>
       <Modal isOpen={modal} toggle={toggle} size="lg" centered={true}>
-        <ModalHeader toggle={toggle}>
-          <img className=" loaded loaded" data-lazy-type="image" src={Logo} />
-        </ModalHeader>
         <ModalBody>
-          <Row>
-            <Col>
-              <div className="img tRes">
-                <img className=" loaded loaded" data-lazy-type="image" src={item.image} />
+          <div className="container max950 middle">
+            <div className="contentModal">
+              <span
+                className="btnModal btn-close"
+                onClick={() => {
+                  setModal(!modal);
+                }}
+              >
+                <i className="icon-close"> </i>
+              </span>
+              <div className="logo">
+                <a href="./">
+                  <img src={Logo} alt="" />
+                </a>
               </div>
-            </Col>
-            <Col>
-              <div className="divtext">
-                <h4 className="title line2" style={{ color: '#141ed2' }}>
-                  {item.name}
-                </h4>
-                <div className="desc line2">{item.position}</div>
+              <div className="row bottom">
+                <div className="col-md-5">
+                  <div className="img tRes">
+                    <img
+                      className=" loaded loaded"
+                      data-lazy-type="image"
+                      data-lazy-src={item.image}
+                      src={item.image}
+                    />
+                  </div>
+                </div>
+                <div className="col-md-7">
+                  <div className="divtext">
+                    <h2 className="title ">{item.name}</h2>
+                    <h3 className="position ">{item.position}</h3>
+                    <div className="desc ">{ReactHtmlParser(item.description)}</div>
+                  </div>
+                </div>
               </div>
-              {ReactHtmlParser(item.description)}
-            </Col>
-          </Row>
+            </div>
+          </div>
         </ModalBody>
       </Modal>
     </React.Fragment>

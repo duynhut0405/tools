@@ -6088,7 +6088,7 @@ h6 {
 }
 
 .max750 {
-  max-width: 750px; 
+  max-width: 750px;
 }
 .max950 {
   max-width: 950px;
@@ -8630,4 +8630,70 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
   .sec-cskh-2 .bgvideo {
     padding: 15px;
   }
+}
+.myModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+  visibility: hidden;
+  opacity: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.myModal .btnModal.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.myModal > .container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.myModal > .container.middle {
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  margin: 0 auto;
+}
+.myModal .contentModal {
+  position: relative;
+  background-color: #fff;
+  border-radius: 6px;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+}
+@media only screen and (min-width: 576px) {
+  .myModal .contentModal {
+    padding: 25px;
+  }
+}
+.myModal .btn-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 1px solid #9b9b9b;
+  color: #9b9b9b;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 18px;
+  font-size: 8px;
+  z-index: 100;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.active.myModal {
+  visibility: visible;
+  opacity: 1;
+  z-index: 9999999;
 }
