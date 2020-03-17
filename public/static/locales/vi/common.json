@@ -54,5 +54,10 @@
         "equity_capital": "Vốn tự có",
         "loan_demand_at_MB": "Nhu cầu vay vốn tại MB",
         "loan_term": "Kỳ hạn vay"
+    },
+    "tool_consumer_loans": {
+        "title": "Cho vay tiêu dùng có TSBĐ",
+        "loan_amount": "Số tiền cho vay",
+        "loan_term": "Kỳ hạn vay"
     }
 }

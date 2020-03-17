@@ -49,9 +49,9 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
 
   const calculation = event => {
     event.preventDefault();
-    const month_interest = (amount * interest_rate) / 100 / month;
-    const month_payment = amount / month + month_interest;
-    const total = month_payment * month;
+    const month_interest = (amount * interest_rate) / 100 / 12; //tiền lãi
+    const month_payment = amount / month; // tiền gốc
+    const total = (month_interest + month_payment) * month; // tổng tiền
     setMonthlyInterest(month_interest);
     setMonthlyPayment(month_payment);
     setTotalAmount(total);
