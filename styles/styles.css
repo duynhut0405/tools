@@ -8564,3 +8564,47 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
 .mauto {
   margin: 0 auto;
 }
+.list-11 .item {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.09);
+  overflow: hidden;
+  display: block;
+  padding: 20px;
+}
+.list-11 .item .ic {
+  text-align: right;
+  color: #e0e0e0;
+  font-size: 33px;
+  height: 20px;
+  position: relative;
+}
+.list-11 .item .ic i {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.list-11 .item .inline-table {
+  margin-bottom: 15px;
+}
+.list-11 .item .img {
+  border-radius: 100%;
+  overflow: hidden;
+  width: 80px;
+}
+.list-11 .item .title {
+  margin: 0;
+  color: #333333;
+}
+
+.list-11.owl-carousel.owl-flex .owl-stage-outer {
+  padding: 10px 0;
+}
+
+.list-11.owl-carousel .item {
+  margin: 0 10px !important;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.05);
+}

@@ -16,6 +16,7 @@ import Download from './Download';
 import DetailPerson from './DetailPerson';
 import Card from './Card';
 import Tools from './tool';
+import Comment from './Comment';
 
 export {
   Images,
@@ -35,5 +36,6 @@ export {
   Download,
   DetailPerson,
   Card,
-  Tools
+  Tools,
+  Comment
 };

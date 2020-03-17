@@ -16,7 +16,8 @@ import {
   Download,
   DetailPerson,
   Card,
-  Tools
+  Tools,
+  Comment
 } from '../block';
 import About from '../about';
 
@@ -128,6 +129,9 @@ function BlockRender({ data }) {
               }
               if (values.name === 'About' && values.content !== null) {
                 return <About data={JSON.parse(values.content)} key={index} />;
+              }
+              if (values.name === 'Comment' && values.content !== null) {
+                return <Comment data={JSON.parse(values.content)} id={values.id} key={index} />;
               }
               return null;
             }
