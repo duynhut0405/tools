@@ -15,7 +15,8 @@ import {
   MenuIntro,
   Download,
   DetailPerson,
-  Card
+  Card,
+  Tools
 } from '../block';
 
 import { map } from 'lodash';
@@ -120,6 +121,9 @@ function BlockRender({ data }) {
                 return (
                   <DetailPerson data={JSON.parse(values.content)} key={index} id={values.id} />
                 );
+              }
+              if (values.name === 'Công cụ tính' && values.content !== null) {
+                return <Tools content={JSON.parse(values.content)} key={index} />;
               }
               return null;
             }

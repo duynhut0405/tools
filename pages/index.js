@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { PageActions, RateActions } from '../store/actions';
 import { withTranslation } from '../i18n';
 import Proptypes from 'prop-types';
+// import { ToolHome } from '../components/block/tool';
 import { connect } from 'react-redux';
 
 const propTypes = {
@@ -35,6 +36,7 @@ function Home({ list, silder, menuMiddle, listRate, getHome, getRate }) {
         <BlockRender data={list.pageBlocks} />
         <FormRate data={listRate} />
         {list.template === 4 && <DowloadCategory />}
+        {/* <ToolHome /> */}
       </div>
     </Layout>
   );

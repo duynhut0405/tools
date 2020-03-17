@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
   items: PropTypes.object
@@ -10,9 +11,9 @@ function ImageCenter({ items }) {
     <section className="sec-tb sec-cskh block-images-center">
       <div className="container">
         <div className="entry-head text-center">
-          <h2 className="ht ">{items.note_1}</h2>
-          <div className="desc max555">{items.note_2}</div>
-          <ul className="efch-3 ef-tx-t">{items.note_3}</ul>
+          {ReactHtmlParser(items.note_1)}
+          {ReactHtmlParser(items.note_2)}
+          {ReactHtmlParser(items.note_3)}
         </div>
         {(items.video_url === undefined || items.video_url === '') && (
           <div className="img tRes_66 efch-2 ef-img-r ">

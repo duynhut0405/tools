@@ -15,6 +15,8 @@ import MenuIntro from './MenuIntro';
 import Download from './Download';
 import DetailPerson from './DetailPerson';
 import Card from './Card';
+import Tools from './tool';
+
 export {
   Images,
   Post,
@@ -32,5 +34,6 @@ export {
   MenuIntro,
   Download,
   DetailPerson,
-  Card
+  Card,
+  Tools
 };

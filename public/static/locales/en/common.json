@@ -30,9 +30,19 @@
     "product": "Product",
     "family": "Family",
     "utilities": "Utilities",
-    "view more": "View more",
+    "view_more": "View more",
+    "collapse": "Collapse",
     "look_more": "Looking for more information",
     "related_news": "Related news",
     "related_content": "Nội dung liên quan",
-    "interest_rate": "Interest rate"
+    "interest_rate": "Interest rate",
+    "tool_home": "Lending to buy houses and projects",
+    "show_result": "Show Result",
+    "total_momney": "Total momney (VNĐ)",
+    "loan_amount": "Loan amount",
+    "tool_home_option": {
+        "estimate_rate": "Estimate the value of buying houses and projects",
+        "estimate_mortgage": "Estimated value of collateral",
+        "amount_can_borrow": "Amount can borrow"
+    }
 }
