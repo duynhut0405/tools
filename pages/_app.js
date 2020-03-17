@@ -10,6 +10,7 @@ import '../styles/block.scss';
 import '../styles/styles.css';
 import '../styles/custom.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import 'react-rangeslider/lib/index.css';
 
 class NextApp extends App {
   static async getInitialProps({ Component, ctx }) {

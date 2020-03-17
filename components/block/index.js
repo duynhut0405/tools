@@ -14,6 +14,7 @@ import TagProduct from './TagProduct';
 import MenuIntro from './MenuIntro';
 import Download from './Download';
 import DetailPerson from './DetailPerson';
+import Tools from './tool';
 
 export {
   Images,
@@ -31,5 +32,6 @@ export {
   TagProduct,
   MenuIntro,
   Download,
-  DetailPerson
+  DetailPerson,
+  Tools
 };
