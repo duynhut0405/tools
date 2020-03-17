@@ -97,7 +97,7 @@ function Pages({ data, type, id }) {
       </div>
     );
   }
-  console.log(listPage);
+
   if (type && type === '3') {
     return (
       <section className="sec-tb" id={id}>

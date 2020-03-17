@@ -17,6 +17,7 @@ import {
   DetailPerson,
   Tools
 } from '../block';
+import About from '../about';
 
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
@@ -120,6 +121,9 @@ function BlockRender({ data }) {
               }
               if (values.name === 'Công cụ tính' && values.content !== null) {
                 return <Tools content={JSON.parse(values.content)} key={index} />;
+              }
+              if (values.name === 'About' && values.content !== null) {
+                return <About data={JSON.parse(values.content)} key={index} />;
               }
               return null;
             }
