@@ -39,9 +39,19 @@
     "show_result": "Show Result",
     "total_momney": "Total momney (VNĐ)",
     "loan_amount": "Loan amount",
+    "month": "month",
     "tool_home_option": {
         "estimate_rate": "Estimate the value of buying houses and projects",
         "estimate_mortgage": "Estimated value of collateral",
         "amount_can_borrow": "Amount can borrow"
+    },
+    "too_product_business": {
+        "title": "Lending for business production",
+        "limit_valve": "Loan limit",
+        "investment_loan": "Borrowings from fixed assets investment (fixed assets)",
+        "total_capital_needs": "Total capital demand (loan amount)",
+        "equity_capital": "Equity capital",
+        "loan_demand_at_MB": "Demand for loans at MB",
+        "loan_term": "Loan term"
     }
 }
