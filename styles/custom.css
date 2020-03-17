@@ -667,6 +667,17 @@ a:hover {
   left: 50%;
   transform: translate(-50%, -50%) !important;
 }
+.sec-img-svg-3 .item {
+  text-align: center;
+  display: block;
+  height: 100%;
+  -webkit-box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.2);
+  background-color: #141ED2;
+  color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+}
 
 .th-sec-pav {
   margin-bottom: 20px;
@@ -677,12 +688,16 @@ a:hover {
 .th-sec-pav .select1 {
   border-radius: 8px;
   height: 48px;
-  width: 30%;
+  width: auto;
   line-height: inherit !important;
   padding: 0 15px;
   font-size: 13px;
   background-color: #fff;
   border: 1px solid #ececec;
+  outline: none !important;
+}
+
+.th-sec-pav select {
   outline: none !important;
 }
 
@@ -697,6 +712,7 @@ a:hover {
   height: 12px;
   border: 0;
   background-color: #141ed2;
+  box-shadow: unset;
 }
 
 .group-range-prcie .slider-vertical .rangeslider__handle::after {
@@ -715,7 +731,7 @@ a:hover {
 }
 
 .sec-cong-cu .group-range-prcie {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .rangeslider-horizontal .rangeslider__fill {

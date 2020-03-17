@@ -40,9 +40,19 @@
     "show_result": "Xem kết quả",
     "total_momney": "Tổng số tiền bạn có thể vay (VNĐ)",
     "loan_amount": "Khoản vay",
+    "month": "tháng",
     "tool_home_option": {
         "estimate_rate": "Ước tính giá trị mua nhà đất, dự án",
         "estimate_mortgage": "Ước tính giá trị tài sản thế chấp",
         "amount_can_borrow": "Số tiền có thẻ vay"
+    },
+    "too_product_business": {
+        "title": "Cho vay Sản xuất kinh doanh",
+        "limit_valve": "Vay hạn mức",
+        "investment_loan": "Vay đầu tư tài sản cố định (TSCĐ)",
+        "total_capital_needs": "Tổng nhu cầu vốn (số tiền vay)",
+        "equity_capital": "Vốn tự có",
+        "loan_demand_at_MB": "Nhu cầu vay vốn tại MB",
+        "loan_term": "Kỳ hạn vay"
     }
 }
