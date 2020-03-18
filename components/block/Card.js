@@ -89,7 +89,8 @@ function Card({ data }) {
                                   style={{
                                     textAlign: 'left',
                                     color: 'initial',
-                                    fontWeight: 'bold'
+                                    fontWeight: 'bold',
+                                    display: 'block'
                                   }}
                                 >
                                   {ReactHtmlParser(items.note_1)}
