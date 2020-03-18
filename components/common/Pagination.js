@@ -8,12 +8,12 @@ const propTypes = {
   previous: PropTypes.func
 };
 
-function Pagination({ page, setPage, next, previous }) {
+function Pagination({ page, setPage }) {
   return (
     <div className="pages mt-5">
       <ul className="page-numbers">
         <li>
-          <a className="prev page-numbers" onClick={() => next(page - 1)}>
+          <a className="prev page-numbers" onClick={() => setPage(page - 1)}>
             <i className="icon-arrow-2 ix"></i>
           </a>
         </li>
@@ -53,7 +53,7 @@ function Pagination({ page, setPage, next, previous }) {
           </a>
         </li>
         <li>
-          <a className="next page-numbers" onClick={() => previous(page + 1)}>
+          <a className="next page-numbers" onClick={() => setPage(page + 1)}>
             <i className="icon-arrow-2"></i>
           </a>
         </li>

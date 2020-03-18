@@ -1,89 +1,112 @@
-import React, { useState } from 'react';
-import RangeSlider from 'react-rangeslider';
-import ReactNumeric from 'react-numeric';
+import React, { useState, useEffect } from 'react';
+import Fields from './Fields';
+import Result from './Result';
 import { withTranslation } from '../../../i18n';
 import { useTranslation } from 'react-i18next';
+import Proptypes from 'prop-types';
 
-function ProductionBusiness() {
-  const [estimate_rate, setEstimateRate] = useState(5000000);
-  const [estimate_mortgage, setEstimateMortgage] = useState(5000000);
-  const [amount, SetAmount] = useState(0);
+const propTypes = {
+  minValue: Proptypes.number,
+  maxValue: Proptypes.number,
+  interest_rate: Proptypes.number
+};
+
+function ProductionBusiness({ minValue, maxValue, interest_rate }) {
+  const [total_capital_needs, setTotalCapitalNeeds] = useState(5000000);
+  const [equity_capital, setEquityCapital] = useState(5000000);
+  const [amount, setAmount] = useState(0);
+  const [type, setType] = useState(1);
+  const [month, setMonth] = useState(1);
+  const [monthlyInterest, setMonthlyInterest] = useState(0);
+  const [monthlypayment, setMonthlyPayment] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [changeActive, setChangeActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
   const { t } = useTranslation();
+  useEffect(() => {
+    if (total_capital_needs > equity_capital && equity_capital !== 0) {
+      setChangeActive(true);
+      let total = 0;
+      if (type === 1) {
+        total = ((total_capital_needs - equity_capital) * 90) / 100;
+        setAmount(total);
+      } else {
+        total = ((total_capital_needs - equity_capital) * 85) / 100;
+        setAmount(total);
+      }
+    }
+    if (equity_capital === total_capital_needs) {
+      setAmount(0);
+    }
+    if (equity_capital > total_capital_needs) {
+      setAmount(0);
+      setEquityCapital(0);
+    }
+    if (total_capital_needs === minValue) {
+      setChangeActive(false);
+    }
+  }, [total_capital_needs, equity_capital, type]);
 
   const calculation = event => {
     event.preventDefault();
-    const estimate_momney = (estimate_rate * 80) / 100;
-    const mortgage_momney = (estimate_mortgage * 70) / 100;
-    if (estimate_momney < mortgage_momney) {
-      SetAmount(estimate_momney);
-    } else {
-      SetAmount(mortgage_momney);
-    }
+    const month_interest = (amount * interest_rate) / 100 / 12; //tiền lãi
+    const month_payment = amount / month; // tiền gốc
+    const total = (month_interest + month_payment) * month; // tổng tiền
+    setMonthlyInterest(month_interest);
+    setMonthlyPayment(month_payment);
+    setTotalAmount(total);
     setShowResult(true);
   };
 
   return (
     <section className="sec-tb sec-cong-cu">
       <div className="container seb-bt">
-        <h2 className="ht">{t('tool_home')}</h2>
+        <h2 className="ht">{t('too_product_business.title')}</h2>
         <form onSubmit={calculation}>
           <div className="row">
             <div className="col-md-8">
-              <div className="group-range-prcie">
-                <div className="gtitle">
-                  <span className="title">{t('tool_home_option.estimate_rate')}</span>
-                  <span className="title2">
-                    <span className="price">
-                      <ReactNumeric value={estimate_rate} decimalPlaces="0" />
-                    </span>
-                    VNĐ
-                  </span>
-                </div>
-                <div className="slider-vertical">
-                  <RangeSlider
-                    value={estimate_rate}
-                    tooltip={false}
-                    onChange={value => setEstimateRate(value)}
-                    min={5000000}
-                    max={100000000}
-                  />
-                </div>
+              <div className="dropdown th-sec-pav">
+                <select
+                  className="form-control select1"
+                  name="type"
+                  value={type}
+                  onChange={event => setType(parseInt(event.target.value))}
+                >
+                  <option value={1}>{t('too_product_business.limit_valve')}</option>
+                  <option value={2}>{t('too_product_business.investment_loan')}</option>
+                </select>
               </div>
-              <div className="group-range-prcie">
-                <div className="gtitle">
-                  <span className="title">{t('tool_home_option.estimate_mortgage')}</span>
-                  <span className="title2">
-                    <span className="price">
-                      <ReactNumeric value={estimate_mortgage} decimalPlaces="0" />
-                    </span>
-                    VNĐ
-                  </span>
-                </div>
-                <div className="slider-vertical">
-                  <RangeSlider
-                    value={estimate_mortgage}
-                    tooltip={false}
-                    onChange={value => setEstimateMortgage(value)}
-                    min={5000000}
-                    max={100000000}
-                  />
-                </div>
-              </div>
-              <div className="group-range-prcie">
-                <div className="gtitle">
-                  <span className="title">Số tiền có thể vay</span>
-                  <span className="title2">
-                    <span className="price">
-                      <ReactNumeric value={amount} decimalPlaces="0" />
-                    </span>
-                    VNĐ
-                  </span>
-                </div>
-                <div className="slider-vertical">
-                  <RangeSlider tooltip={false} value={amount} min={5000000} max={100000000} />
-                </div>
-              </div>
+              <Fields
+                value={total_capital_needs}
+                minValue={minValue}
+                maxValue={maxValue}
+                oneHandle={value => setTotalCapitalNeeds(value)}
+                title={t('too_product_business.total_capital_needs')}
+              />
+              <Fields
+                value={equity_capital}
+                minValue={minValue}
+                maxValue={maxValue}
+                oneHandle={value =>
+                  changeActive ? setEquityCapital(value) : setEquityCapital(minValue)
+                }
+                title={t('too_product_business.equity_capital')}
+              />
+              <Fields
+                value={amount}
+                minValue={0}
+                maxValue={5000000}
+                oneHandle={value => (changeActive ? setAmount(value) : setAmount(0))}
+                title={t('too_product_business.loan_demand_at_MB')}
+              />
+              <Fields
+                month
+                value={month}
+                minValue={1}
+                maxValue={12}
+                oneHandle={value => setMonth(value)}
+                title={t('too_product_business.loan_term')}
+              />
               <div className="vib-v2-btn-dk-congcu">
                 <button className="vib-v2-btn-dk02" type="submit">
                   <span>{t('show_result')}</span>
@@ -101,13 +124,16 @@ function ProductionBusiness() {
                   </div>
                 )}
                 {show_result && (
-                  <div className="mbb-result-calculation">
-                    <h3 className="mbb-title">
-                      {t('tool_home')}
-                      <br /> {t('loan_amount')}
-                      <span className="ml-2">{amount} VNĐ</span>
-                    </h3>
-                  </div>
+                  <Result
+                    title={t('too_product_business.title')}
+                    subtitle={t('loan_amount')}
+                    amount={amount}
+                    monthlyInterest={monthlyInterest}
+                    monthlypayment={monthlypayment}
+                    equity_capital={equity_capital}
+                    month={month}
+                    totalAmount={totalAmount}
+                  />
                 )}
               </div>
             </div>
@@ -121,5 +147,7 @@ function ProductionBusiness() {
 ProductionBusiness.getInitialProps = async () => ({
   namespacesRequired: ['common', 'common']
 });
+
+ProductionBusiness.propTypes = propTypes;
 
 export default withTranslation('common')(ProductionBusiness);

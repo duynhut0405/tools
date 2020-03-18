@@ -2,18 +2,33 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import ToolHome from './Home';
 import ProductionBusiness from './ProductionBusiness';
+import ConsumerLoansWithCollateral from './ConsumerLoansWithCollateral';
 
 const propTypes = {
-  content: Proptypes.string
+  content: Proptypes.object
 };
 
 function Tools({ content }) {
   const renderTools = () => {
-    switch (content.type) {
+    switch (parseInt(content.type)) {
       case 1:
         return <ToolHome />;
       case 2:
-        return <ProductionBusiness />;
+        return (
+          <ProductionBusiness
+            minValue={parseInt(content.minValue)}
+            maxValue={parseInt(content.maxValue)}
+            interest_rate={parseInt(content.interest_rate)}
+          />
+        );
+      case 3:
+        return (
+          <ConsumerLoansWithCollateral
+            minValue={parseInt(content.minValue)}
+            maxValue={parseInt(content.maxValue)}
+            interest_rate={parseInt(content.interest_rate)}
+          />
+        );
       default:
         return null;
     }

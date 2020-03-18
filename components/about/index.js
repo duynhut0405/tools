@@ -6,23 +6,30 @@ import { withTranslation } from '../../i18n';
 import PropTypes from 'prop-types';
 import { NewsActions } from '../../store/actions';
 import { connect } from 'react-redux';
+import Pagination from '../common/Pagination';
 
 const propTypes = {
   listNews: PropTypes.object,
-  getNews: PropTypes.func
+  getNews: PropTypes.func,
+  data: PropTypes.object
 };
 
-function About({ listNews, getNews }) {
+function About({ data, listNews, getNews }) {
   const date = new Date();
   const [year, setYear] = useState(moment(date).format('YYYY'));
+  const [page, setPage] = useState(1);
   const { t } = useTranslation();
 
   useEffect(() => {
-    getNews(44153, 0, year);
+    if (data.category.value) {
+      getNews(data.category.value, page, data.record, year);
+    }
   }, [getNews]);
 
   useEffect(() => {
-    getNews(44153, 0, year);
+    if (data.category.value) {
+      getNews(data.category.value, page, data.record, year);
+    }
   }, [year]);
 
   return (
@@ -64,6 +71,7 @@ function About({ listNews, getNews }) {
               );
             })}
           </div>
+          <Pagination setPage={setPage} page={page} />
         </div>
       </main>
     </>
