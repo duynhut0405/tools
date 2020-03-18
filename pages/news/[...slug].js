@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Layout from '../../components/layout';
 import { Social } from '../../components/common';
 import { getNewCategoryIdService, getNewByUri } from '../../services/news';
 import moment from 'moment';
 import { map, filter } from 'lodash';
-import { useRouter } from 'next/router';
 import ReactHtmlParser from 'react-html-parser';
 import { withTranslation } from '../../i18n';
 import { useTranslation } from 'react-i18next';
@@ -13,33 +12,14 @@ import { connect } from 'react-redux';
 
 const propTypes = {
   socialLink: PropTypes.object,
-  getSocialLink: PropTypes.func
+  news: PropTypes.object,
+  category_name: PropTypes.string,
+  category_url: PropTypes.string,
+  relatedPost: PropTypes.array
 };
 
-function New({ socialLink, getSocialLink }) {
-  const [news, setNews] = useState({});
-  const [relatedPost, setRelatedPost] = useState([]);
-  const [category_name, setCategory_name] = useState(null);
-  const [category_url, setCategory_url] = useState(null);
-  const router = useRouter();
+function New({ socialLink, news, category_name, category_url, relatedPost }) {
   const { t } = useTranslation();
-  useEffect(() => {
-    const res = getNewByUri(router.query.slug);
-    res.then(respone => {
-      if (respone !== undefined && respone !== null && respone.status === 200) {
-        setNews(respone.data);
-        if (respone.data.categories !== null && respone.data.categories.length > 0) {
-          setCategory_name(respone.data.categories[0].name);
-          setCategory_url(respone.data.categories[0].slug);
-          getNewCategoryIdService(respone.data.categories[0].id).then(data => {
-            if (data !== null && data.status === 200) {
-              setRelatedPost(data.data);
-            }
-          });
-        }
-      }
-    });
-  }, [getNewByUri, getSocialLink]);
   return (
     <Layout title={news.meta_title}>
       <div className="entry-breadcrumb">
@@ -139,8 +119,35 @@ const mapStateToProps = state => {
 
 New.propTypes = propTypes;
 
-New.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
+New.getInitialProps = async ctx => {
+  const { query } = ctx.ctx;
+  let routerURL = null;
+  let params = '';
+  let news = null;
+  let category_name = null;
+  let category_url = null;
+  let relatedPost = null;
+  map(query, url => (params = `${params}/${url}`));
+  routerURL = params.slice(1, params.length);
+  const newResponse = await getNewByUri(routerURL);
+  if (newResponse !== undefined && newResponse.status === 200) {
+    news = newResponse.data;
+    if (newResponse.data.categories !== null && newResponse.data.categories.length > 0) {
+      category_name = newResponse.data.categories[0].name;
+      category_url = newResponse.data.categories[0].slug;
+      const relatedPostRes = await getNewCategoryIdService(newResponse.data.categories[0].id);
+      if (relatedPostRes !== undefined && relatedPostRes.status === 200) {
+        relatedPost = relatedPostRes.data;
+      }
+    }
+  }
+  return {
+    namespacesRequired: ['common', 'common'],
+    news,
+    category_name,
+    category_url,
+    relatedPost
+  };
+};
 
 export default connect(mapStateToProps, null)(withTranslation('common')(New));
