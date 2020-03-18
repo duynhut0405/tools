@@ -11,7 +11,6 @@ const propTypes = {
 };
 
 function NewCard({ data }) {
-  console.log('dataaa:', data);
   return (
     <React.Fragment>
       <section className="sec-tb group-ef loaded">
