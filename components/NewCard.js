@@ -5,8 +5,6 @@ import { withTranslation } from '../i18n';
 import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
-  listNews: PropTypes.object,
-  getNews: PropTypes.func,
   data: PropTypes.object
 };
 
