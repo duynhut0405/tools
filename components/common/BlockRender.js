@@ -24,6 +24,7 @@ import Investors from '../investors';
 import OtherNews from '../otherNews';
 import { ListDowloadFIle, ListDowloadVideo } from '../common/download';
 import Transaction from '../transaction';
+import { Contact, DowloadCategory } from '../common';
 
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
@@ -137,8 +138,14 @@ function BlockRender({ data }) {
               if (values.name === 'Investors' && values.content !== null) {
                 return <Investors key={index} />;
               }
+              if (values.name === 'Contact' && values.content !== null) {
+                return <Contact key={index} />;
+              }
               if (values.name === 'Transaction' && values.content !== null) {
                 return <Transaction key={index} />;
+              }
+              if (values.name === 'DowloadCategory' && values.content !== null) {
+                return <DowloadCategory key={index} />;
               }
               if (values.name === 'OtherNews' && values.content !== null) {
                 return <OtherNews key={index} />;
