@@ -14,40 +14,40 @@ function PopupItems({ item, modal, setModal }) {
 
   return (
     <React.Fragment>
-      <Modal isOpen={modal} toggle={toggle} size="lg" centered={true}>
+      <Modal isOpen={modal} toggle={toggle} centered={true} className="container max950 middle">
         <ModalBody>
-          <div className="container max950 middle">
-            <div className="contentModal">
-              <span
-                className="btnModal btn-close"
-                onClick={() => {
-                  setModal(!modal);
-                }}
-              >
-                <i className="icon-close"> </i>
-              </span>
-              <div className="logo">
-                <a href="./">
-                  <img src={Logo} alt="" />
-                </a>
-              </div>
-              <div className="row bottom">
-                <div className="col-md-5">
-                  <div className="img tRes">
-                    <img
-                      className=" loaded loaded"
-                      data-lazy-type="image"
-                      data-lazy-src={item.image}
-                      src={item.image}
-                    />
-                  </div>
+          <div className="contentModal">
+            <span
+              className="btnModal btn-close"
+              onClick={() => {
+                setModal(!modal);
+              }}
+            >
+              <i className="icon-close"> </i>
+            </span>
+            <div className="logo">
+              <a href="./">
+                <img src={Logo} alt="" />
+              </a>
+            </div>
+            <div className="row bottom">
+              <div className="col-md-5">
+                <div className="img tRes">
+                  <img
+                    className=" loaded loaded"
+                    data-lazy-type="image"
+                    data-lazy-src={item.image}
+                    src={item.image}
+                  />
                 </div>
-                <div className="col-md-7">
-                  <div className="divtext">
-                    <h2 className="title ">{item.name}</h2>
-                    <h3 className="position ">{item.position}</h3>
-                    <div className="desc ">{ReactHtmlParser(item.description)}</div>
-                  </div>
+              </div>
+              <div className="col-md-7">
+                <div className="divtext">
+                  <h2 className="title" style={{ color: '#141ED2' }}>
+                    {item.name}
+                  </h2>
+                  <h3 className="position ">{item.position}</h3>
+                  <div className="desc ">{ReactHtmlParser(item.description)}</div>
                 </div>
               </div>
             </div>
