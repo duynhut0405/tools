@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 
+import Background from '../../../public/images/bg-ab-10.jpg';
 const propTypes = {
   items: PropTypes.object
 };
@@ -68,7 +69,12 @@ function ImageCenter({ items }) {
       <React.Fragment>
         <section className=" sec-tb sec-cskh-2 ">
           <div className="container">
-            <div className="bgvideo loaded">
+            <div
+              className="bgvideo loaded"
+              data-lazy-type="bg"
+              data-lazy-src="public/images/bg-ab-10.jpg"
+              style={{ backgroundImage: `url(${Background})` }}
+            >
               <div className="entry-head text-center">
                 {ReactHtmlParser(items.note_1)}
                 {ReactHtmlParser(items.note_2)}

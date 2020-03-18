@@ -38,7 +38,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
       <div className="main_content">
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} query={routerUrl} />
-        {list.id === 34652 && <Investors />}
+        {/* {list.id === 34652 && <Investors />} */}
         {list.id === 34653 && <Investors />}
         {list.id === 34654 && <ListDowloadFIle type={1} search />}
         {list.id === 34655 && <ListDowloadVideo type={2} />}
