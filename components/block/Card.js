@@ -1,15 +1,130 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
+import Carousel from 'react-multi-carousel';
 
 const propTypes = {
   data: PropTypes.object
 };
 
 function Card({ data }) {
+  const [refCarousel, setRefCarousel] = useState(null);
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2
+    }
+  };
   return (
     <React.Fragment>
+      {data[0].type === '2' && (
+        <React.Fragment>
+          {/* <section className="sec-b sec-img-svg-2 group-ef loaded">
+            <div className="container">
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className="col-sm-3 efch-2 ef-img-t ">
+                      <a className="item" href="#">
+                        <div className="img ">
+                          <img className="loaded loaded" data-lazy-type="image" src={items.image} />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title">{ReactHtmlParser(items.note_1)}</h4>
+                        </div>
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section> */}
+          <section className="sec-tb sec-img-svg-2 group-ef loaded">
+            <div className="container">
+              <div className="entry-head text-left">
+                <h2 className="ht">{data[0].title || ''}</h2>
+              </div>
+              <div className="sec-b">
+                <div className="menuicon owl-carousel s-nav nav-2 owl-loaded owl-drag">
+                  <div className="owl-stage-outer">
+                    <div className="owl-stage">
+                      <Carousel
+                        responsive={responsive}
+                        draggable
+                        minimumTouchDrag={80}
+                        ssr={true} // means to render carousel on server-side.
+                        infinite={true}
+                        keyBoardControl={true}
+                        arrows={false}
+                        ref={ref => {
+                          setRefCarousel(ref);
+                        }}
+                      >
+                        {map(data, (items, index) => (
+                          <div className="item ef-img-t item_carousel" key={index}>
+                            <a
+                              href="#"
+                              className="link"
+                              style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
+                            >
+                              <div
+                                className="img"
+                                style={{ textAlign: 'left', paddingLeft: '20px' }}
+                              >
+                                <img src={items.image} className="loaded loaded" />
+                              </div>
+                              <div className="divtext" style={{ paddingLeft: '20px' }}>
+                                <h3
+                                  className="title"
+                                  style={{
+                                    textAlign: 'left',
+                                    color: 'initial',
+                                    fontWeight: 'bold'
+                                  }}
+                                >
+                                  {ReactHtmlParser(items.note_1)}
+                                </h3>
+                              </div>
+                            </a>
+                          </div>
+                        ))}
+                      </Carousel>
+                    </div>
+                  </div>
+                  <div className="owl-nav">
+                    <div
+                      className="owl-prev disabled"
+                      onClick={() => {
+                        refCarousel.previous();
+                      }}
+                    >
+                      <i className="icon-arrow-1 ix"></i>
+                    </div>
+                    <div
+                      className="owl-next"
+                      onClick={() => {
+                        refCarousel.next();
+                      }}
+                    >
+                      <i className="icon-arrow-1"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
       {data[0].type === '3' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
