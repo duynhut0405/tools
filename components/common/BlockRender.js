@@ -20,6 +20,10 @@ import {
   Comment
 } from '../block';
 import About from '../about';
+import Investors from '../investors';
+import OtherNews from '../otherNews';
+import { ListDowloadFIle, ListDowloadVideo } from '../common/download';
+import Transaction from '../transaction';
 
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
@@ -130,8 +134,27 @@ function BlockRender({ data }) {
               if (values.name === 'About' && values.content !== null) {
                 return <About data={JSON.parse(values.content)} key={index} />;
               }
+              if (values.name === 'Investors' && values.content !== null) {
+                return <Investors key={index} />;
+              }
+              if (values.name === 'Transaction' && values.content !== null) {
+                return <Transaction key={index} />;
+              }
+              if (values.name === 'OtherNews' && values.content !== null) {
+                return <OtherNews key={index} />;
+              }
               if (values.name === 'Comment' && values.content !== null) {
                 return <Comment data={JSON.parse(values.content)} id={values.id} key={index} />;
+              }
+              if (values.name === 'DownloadFile' && values.content !== null) {
+                return (
+                  <ListDowloadFIle type={Number(JSON.parse(values.content).type)} key={index} />
+                );
+              }
+              if (values.name === 'DownloadVideo' && values.content !== null) {
+                return (
+                  <ListDowloadVideo type={Number(JSON.parse(values.content).type)} key={index} />
+                );
               }
               return null;
             }
