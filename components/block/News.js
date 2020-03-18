@@ -209,7 +209,6 @@ function News({ data, type, id }) {
                 </Carousel>
               </div>
             </div>
-
             <div className="owl-nav">
               <div
                 className="owl-prev disabled"

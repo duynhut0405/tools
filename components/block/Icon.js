@@ -103,19 +103,20 @@ function Icon({ data, id }) {
             </section>
           )}
           {data.length <= 8 && (
-            <section className="sec-tb sec-h-1 group-ef loaded">
+            <section className="sec-tb sec-h-1  loaded">
               <div className="container">
                 <div className="entry-head text-center">
                   <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
                 </div>
                 <div className="menuicon">
                   {map(data, (items, index) => (
-                    <div className={`item  efch-${index + 3} ef-img-t`} key={index}>
+                    <div className={`item  efch-${index + 3} ef-img-t`}>
                       <a href="#" className="link">
                         <div className="img">
                           <img
                             className=" loaded loaded"
                             data-lazy-type="image"
+                            data-lazy-src={items.image}
                             src={items.image}
                           />
                         </div>
