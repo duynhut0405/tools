@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 
-import Background from '../../../public/images/bg-ab-10.jpg';
+import Background from '../../../public/images/#f5f4f4.png';
 const propTypes = {
   items: PropTypes.object
 };
 
 function ImageCenter({ items }) {
   const [active, setActive] = useState(false);
+  console.log(items.video_url);
 
   if (!items.background || items.background === '1') {
     return (
@@ -33,16 +34,16 @@ function ImageCenter({ items }) {
                   src={items.image}
                   alt=""
                 />
-                <span
-                  className="btnvideo"
-                  onClick={() => {
-                    if (items.text_action === undefined || items.text_action === '') {
+                {items.video_url !== undefined && (
+                  <span
+                    className="btnvideo"
+                    onClick={() => {
                       setActive(!active);
-                    }
-                  }}
-                >
-                  <i className="icon-play"></i>
-                </span>
+                    }}
+                  >
+                    <i className="icon-play"></i>
+                  </span>
+                )}
               </div>
             )}
             {active && (
@@ -93,16 +94,16 @@ function ImageCenter({ items }) {
                     src={items.image}
                     alt=""
                   />
-                  <span
-                    className="btnvideo"
-                    onClick={() => {
-                      if (items.text_action === undefined || items.text_action === '') {
+                  {items.video_url !== undefined && (
+                    <span
+                      className="btnvideo"
+                      onClick={() => {
                         setActive(!active);
-                      }
-                    }}
-                  >
-                    <i className="icon-play"></i>
-                  </span>
+                      }}
+                    >
+                      <i className="icon-play"></i>
+                    </span>
+                  )}
                 </div>
               )}
               {active && (
@@ -119,6 +120,15 @@ function ImageCenter({ items }) {
                   ></iframe>
                 </div>
               )}
+              <div className="text-center mt-4">
+                {items.text_action === undefined || items.text_action === '' ? (
+                  ''
+                ) : (
+                  <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
+                    {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </section>
