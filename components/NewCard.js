@@ -36,7 +36,7 @@ function NewCard({ data }) {
 }
 
 NewCard.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'about']
+  namespacesRequired: ['common', 'newcard']
 });
 
 NewCard.propTypes = propTypes;
