@@ -55,7 +55,7 @@ function ImageCenter({ items }) {
                   frameBorder="0"
                   allowFullScreen="1"
                   allow="autoplay; encrypted-media;"
-                  src={items.video_url}
+                  src={`${items.video_url}?rel=0&autoplay=1`}
                 ></iframe>
               </div>
             )}
