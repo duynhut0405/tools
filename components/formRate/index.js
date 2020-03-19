@@ -5,7 +5,6 @@ import { getLang } from '../../utils/localStorage';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import RateSelect from './RateSelect';
-import TableRate from './Table';
 import ExchangeRate from './exchangeRate';
 
 const propTypes = {

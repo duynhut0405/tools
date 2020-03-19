@@ -7,14 +7,7 @@ function* getRateSaga() {
     try {
       const res = yield getRateService();
       if (res.status === 200) {
-        let list = {};
-        const sortData = yield res.data.sort(
-          (date_1, date_2) => date_2.created_at - date_1.created_at
-        );
-        for (let i = 0; i < 1; i++) {
-          list = { ...list, ...sortData[i] };
-        }
-        yield put({ type: actions.GET_RATE_RESPONSE, data: list });
+        yield put({ type: actions.GET_RATE_RESPONSE, data: res.data });
       } else {
         // console.log(res);
       }

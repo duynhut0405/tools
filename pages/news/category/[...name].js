@@ -64,7 +64,7 @@ CategoryDetail.getInitialProps = async ctx => {
   map(query, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
   const res = await getNewsByCategorySlug(routerURL, { number: 10, page: 0 });
-  if (res !== undefined && res.status === 200) {
+  if (res && res !== undefined && res.status === 200) {
     category = res.data;
   }
   return { routerURL, category };
