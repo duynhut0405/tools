@@ -31,27 +31,29 @@ function CategoryDetail({ routerURL, category }) {
   }, [page]);
 
   return (
-    <Layout title={data.name}>
-      <div className="main_content">
-        <section className="banner-heading-3 next-shadow">
-          <div className="container">
-            <div className="divtext">
-              <div className="max750">
-                <h1>{data.name}</h1>
+    <Layout title={data === null ? '' : data.name}>
+      {data !== null && (
+        <div className="main_content">
+          <section className="banner-heading-3 next-shadow">
+            <div className="container">
+              <div className="divtext">
+                <div className="max750">
+                  <h1>{data.name}</h1>
+                </div>
               </div>
             </div>
-          </div>
-          <img
-            className="img br loaded loaded"
-            data-lazy-type="image"
-            data-lazy-src="/static/images/heading-10.svg"
-            src="/static/images/heading-10.svg"
-          />
-        </section>
-        <HotNews data={data.hotNews} title={data.name} />
-        <AllNews data={data.news} title={data.name} />
-        <Pagination page={5} setPage={value => setPage(value)} />
-      </div>
+            <img
+              className="img br loaded loaded"
+              data-lazy-type="image"
+              data-lazy-src="/static/images/heading-10.svg"
+              src="/static/images/heading-10.svg"
+            />
+          </section>
+          <HotNews data={data.hotNews} title={data.name} />
+          <AllNews data={data.news} title={data.name} />
+          <Pagination page={data.size} setPage={value => setPage(value)} />
+        </div>
+      )}
     </Layout>
   );
 }

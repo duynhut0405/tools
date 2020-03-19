@@ -51,7 +51,7 @@ function ToolHome() {
                   <span className="title">{t('tool_home_option.estimate_rate')}</span>
                   <span className="title2">
                     <span className="price">
-                      <ReactNumeric value={estimate_rate} decimalPlaces="0" />
+                      <ReactNumeric value={estimate_rate} decimalPlaces={0} />
                     </span>
                     VNĐ
                   </span>
@@ -71,7 +71,7 @@ function ToolHome() {
                   <span className="title">{t('tool_home_option.estimate_mortgage')}</span>
                   <span className="title2">
                     <span className="price">
-                      <ReactNumeric value={estimate_mortgage} decimalPlaces="0" />
+                      <ReactNumeric value={estimate_mortgage} decimalPlaces={0} />
                     </span>
                     VNĐ
                   </span>
@@ -91,7 +91,7 @@ function ToolHome() {
                   <span className="title">Số tiền có thể vay</span>
                   <span className="title2">
                     <span className="price">
-                      <ReactNumeric value={amount} decimalPlaces="0" />
+                      <ReactNumeric value={amount} decimalPlaces={0} />
                     </span>
                     VNĐ
                   </span>
