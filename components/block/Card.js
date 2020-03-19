@@ -10,7 +10,6 @@ const propTypes = {
 
 function Card({ data }) {
   const [refCarousel, setRefCarousel] = useState(null);
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -27,20 +26,23 @@ function Card({ data }) {
   };
   return (
     <React.Fragment>
-      {data[0].type === '2' && (
+      {data[0].type === '1' && (
         <React.Fragment>
-          {/* <section className="sec-b sec-img-svg-2 group-ef loaded">
+          <section className="sec-tb bg-gray">
             <div className="container">
-              <div className="row list-item">
+              <div className="entry-head ">
+                <h2 className="ht efch-1 ef-img-l">{data[0].title}</h2>
+              </div>
+              <div className="list-10 row list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className="col-sm-3 efch-2 ef-img-t ">
-                      <a className="item" href="#">
-                        <div className="img ">
-                          <img className="loaded loaded" data-lazy-type="image" src={items.image} />
-                        </div>
+                    <div className="col-sm-6" key={index}>
+                      <a href="#" className={`item item-${index + 1} tRes_55`}>
                         <div className="divtext">
-                          <h4 className="title">{ReactHtmlParser(items.note_1)}</h4>
+                          <h3 className="title ">{ReactHtmlParser(items.note_2)}</h3>
+                          <i className="icon-arrow-db">
+                            <img src="/images/arrow.svg" />
+                          </i>
                         </div>
                       </a>
                     </div>
@@ -48,7 +50,11 @@ function Card({ data }) {
                 })}
               </div>
             </div>
-          </section> */}
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '2' && (
+        <React.Fragment>
           <section className="sec-tb sec-img-svg-2 group-ef loaded">
             <div className="container">
               <div className="entry-head text-left">
@@ -223,6 +229,84 @@ function Card({ data }) {
                     );
                   })}
                 </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '6' && (
+        <React.Fragment>
+          <section className="sec-tb sec-ab-4 ">
+            <div className="container">
+              <div className="entry-head ">
+                {data[0].title && <h2 className="ht efch-1 ef-img-l">{data[0].title}</h2>}
+              </div>
+              <div className="  row grid-space-20 ">
+                {data[0] && (
+                  <div className="col-lg-8 col-sm-12  ">
+                    <div className="item item-1  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[0].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[0].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[0].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {data[1] && (
+                  <div className="col-lg-4 col-sm-6">
+                    <div className="item item-2  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[1].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[1].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[1].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {data[2] && (
+                  <div className="col-lg-4 col-sm-6">
+                    <div className="item item-2  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[2].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[2].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[2].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {data[3] && (
+                  <div className="col-lg-4 col-sm-6">
+                    <div className="item item-2  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[3].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[3].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[3].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {data[4] && (
+                  <div className="col-lg-4 col-sm-6">
+                    <div className="item item-2  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[4].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[4].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[4].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </section>

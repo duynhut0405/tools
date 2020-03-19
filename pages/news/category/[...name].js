@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/layout';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import { HotNews, AllNews } from '../../../components/categoryDetail';
 import { getNewsByCategorySlug } from '../../../services/news';
 import { Pagination } from '../../../components/common';
@@ -64,7 +64,7 @@ CategoryDetail.getInitialProps = async ctx => {
   map(query, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
   const res = await getNewsByCategorySlug(routerURL, { number: 10, page: 0 });
-  if (res !== undefined && res.status === 200) {
+  if (res && res !== undefined && res.status === 200) {
     category = res.data;
   }
   return { routerURL, category };

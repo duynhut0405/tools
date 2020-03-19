@@ -18,7 +18,7 @@ function Images({ data, id }) {
       </div> */}
       {map(data, (item, index) => {
         return (
-          <div className="container">
+          <div className="container" key={index}>
             <div className={`entry-head text-${item.options}`} id={id}>
               <h2 className="ht  efch-1 ef-img-t">{item.title}</h2>
             </div>

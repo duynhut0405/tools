@@ -1,9 +1,8 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { Modal, ModalHeader, ModalBody, Row, Col } from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 import ReactHtmlParser from 'react-html-parser';
-// import Logo from '../../public/images/svg/logo.svg'
-import Logo from '../../../public/images/svg/logo-blue.svg';
+
 const propTypes = {
   item: Proptypes.object,
   modal: Proptypes.bool,
@@ -27,7 +26,7 @@ function PopupItems({ item, modal, setModal }) {
             </span>
             <div className="logo">
               <a href="./">
-                <img src={Logo} alt="" />
+                <img src="/static/images/svg/logo-blue.svg" alt="" />
               </a>
             </div>
             <div className="row bottom">

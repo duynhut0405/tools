@@ -1,65 +1,71 @@
 import React, { useEffect } from 'react';
-import { Carousel, BlockRender, MenuMiddle, DowloadCategory } from '../components/common';
+import { Carousel, BlockRender, MenuMiddle } from '../components/common';
 import FormRate from '../components/formRate';
 import Layout from '../components/layout';
 import { getLang } from '../utils/localStorage';
 import { useTranslation } from 'react-i18next';
-import { PageActions, RateActions } from '../store/actions';
+import { getRateService } from '../services/rate';
+import { getPageService } from '../services/page';
+import filter from 'lodash/filter';
 import { withTranslation } from '../i18n';
 import Proptypes from 'prop-types';
-// import { ToolHome } from '../components/block/tool';
-import { connect } from 'react-redux';
 
 const propTypes = {
-  list: Proptypes.object.isRequired,
+  page: Proptypes.object.isRequired,
   silder: Proptypes.array.isRequired,
   menuMiddle: Proptypes.object,
-  listRate: Proptypes.object.isRequired,
-  getHome: Proptypes.func.isRequired,
-  getRate: Proptypes.func.isRequired
+  listRate: Proptypes.object.isRequired
 };
 
-function Home({ list, silder, menuMiddle, listRate, getHome, getRate }) {
+function Home({ page, silder, menuMiddle, listRate }) {
   const { i18n } = useTranslation();
 
   useEffect(() => {
     i18n.changeLanguage(getLang());
-    getHome('homepage');
-    getRate();
-  }, [getHome, getRate]);
+  }, []);
 
   return (
-    <Layout title={list.meta_title}>
+    <Layout title={page.meta_title}>
       <div className="main_content">
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} />
-        <BlockRender data={list.pageBlocks} />
+        <BlockRender data={page.pageBlocks} />
         <FormRate data={listRate} />
-        {list.template === 4 && <DowloadCategory />}
-        {/* <ToolHome /> */}
+        {/* {page.template === 4 && <DowloadCategory />} */}
       </div>
     </Layout>
   );
 }
 
-const mapStateToProp = state => {
+Home.getInitialProps = async () => {
+  let listRate = [];
+  const rateResponse = await getRateService();
+  if (rateResponse && rateResponse !== undefined && rateResponse.status === 200) {
+    listRate = rateResponse.data;
+  }
+  let page = {};
+  let silder = [];
+  let menuMiddle = {};
+  const pageResponse = await getPageService('homepage');
+  if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
+    page = pageResponse.data;
+    menuMiddle = pageResponse.data.menuMiddle;
+    const silderData = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
+    for (let i = 0; i < silderData.length; i++) {
+      if (silderData[i].content !== null) {
+        silder = [...silder, ...JSON.parse(silderData[i].content)];
+      }
+    }
+  }
   return {
-    list: state.pageReducer.homedata,
-    silder: state.pageReducer.silder,
-    menuMiddle: state.pageReducer.menuMiddle,
-    listRate: state.rateReducer.data
+    namespacesRequired: ['common', 'common'],
+    listRate,
+    page,
+    silder,
+    menuMiddle
   };
-};
-
-const mapDispatchToProps = {
-  getHome: PageActions.getHomeAction,
-  getRate: RateActions.getRateAction
 };
 
 Home.propTypes = propTypes;
 
-Home.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
-
-export default connect(mapStateToProp, mapDispatchToProps)(withTranslation('common')(Home));
+export default withTranslation('common')(Home);

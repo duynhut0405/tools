@@ -21,8 +21,6 @@ module.exports = withFonts(
       },
       exportPathMap: async function() {
         const res = await getRouer();
-        const newResponse = await getNewRouter();
-        const categoryResponse = await getCategoryRouter();
 
         const router = res.data.reduce(
           (pages, data) =>
@@ -32,6 +30,7 @@ module.exports = withFonts(
           {}
         );
 
+        const newResponse = await getNewRouter();
         const newRouter = newResponse.data.reduce(
           (pages, data) =>
             Object.assign({}, pages, {
@@ -40,6 +39,7 @@ module.exports = withFonts(
           {}
         );
 
+        const categoryResponse = await getCategoryRouter();
         const categoryRouter = categoryResponse.data.reduce(
           (pages, category) =>
             Object.assign({}, pages, {
