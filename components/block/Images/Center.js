@@ -9,7 +9,6 @@ const propTypes = {
 
 function ImageCenter({ items }) {
   const [active, setActive] = useState(false);
-  console.log(items.video_url);
 
   if (!items.background || items.background === '1') {
     return (

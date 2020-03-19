@@ -1200,3 +1200,122 @@ ul.page-numbers li:not(:first-child) {
 .sec-img-svg-2 .title {
   margin-bottom: 0;
 }
+.next-shadow + section:before, .next-shadow + main:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 36px;
+  top: 0;
+}
+.list-10 .item-1 {
+  background-color: #B5A6F9;
+}
+.list-10 .item-1:hover {
+  color: blue;
+}
+.list-10 .item-2:hover {
+  color: blue;
+}
+.list-10 .item {
+  border-radius: 8px;
+  overflow: hidden;
+  color: #fff;
+}
+.list-10 .divtext {
+  z-index: 3;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.list-10 .title {
+  margin: 0;
+  line-height: normal;
+  font-size: 30px;
+}
+.list-10 .divtext i {
+  position: absolute;
+  right: 20px;
+  bottom: 45px;
+  font-size: 40px;
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  display: inline-block;
+}
+.list-10 .item-2 {
+  background-color: #A0D1FF;
+}
+@media only screen and (min-width: 992px){
+.list-10 .title {
+    font-size: 50px;
+}
+}
+@media only screen and (min-width: 768px){
+.grid-space-20 {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+}
+.sec-ab-4 .row > div {
+  margin-bottom: 20px;
+}
+@media only screen and (min-width: 768px){
+.grid-space-20 > [class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+}
+.sec-ab-4 .item {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 600;
+  line-height: normal;
+}
+@media only screen and (min-width: 1200px){
+.sec-ab-4 .item-1 .img {
+    max-height: 328px;
+}
+}
+.sec-ab-4 .divtext {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 15px;
+}
+@media only screen and (min-width: 1200px){
+.sec-ab-4 .item-1 .t1 {
+    font-size: 72px;
+}
+}
+sec-ab-4 .t1 {
+  font-size: 50px;
+  white-space: nowrap;
+}
+.t1{
+  font-size: 50px;
+}
+.sec-ab-4 .t2 {
+  margin-top: 10px;
+}
+.sec-ab-4 .row > div {
+  margin-bottom: 20px;
+}
+.sec-ab-4 .item {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 600;
+  line-height: normal;
+}
