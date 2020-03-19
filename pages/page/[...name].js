@@ -1,7 +1,8 @@
 import React from 'react';
 import { Carousel, BlockRender, MenuMiddle } from '../../components/common';
 import Layout from '../../components/layout';
-import { map, filter } from 'lodash';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
 import { getPageService } from '../../services/page';
 import PropTypes from 'prop-types';
 import { withTranslation } from '../../i18n';
@@ -40,7 +41,9 @@ Page.getInitialProps = async ctx => {
     menuMiddle = pageResponse.data.menuMiddle;
     const silderData = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
     for (let i = 0; i < silderData.length; i++) {
-      silder = [...silder, ...JSON.parse(silderData[i].content)];
+      if (silderData[i].content !== null) {
+        silder = [...silder, ...JSON.parse(silderData[i].content)];
+      }
     }
   }
   return {

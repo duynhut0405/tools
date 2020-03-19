@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 
-import Background from '../../../public/images/#f5f4f4.png';
+import Background from '../../../public/static/images/#f5f4f4.png';
 const propTypes = {
   items: PropTypes.object
 };
 
 function ImageCenter({ items }) {
   const [active, setActive] = useState(false);
-  console.log(items.video_url);
 
   if (!items.background || items.background === '1') {
     return (

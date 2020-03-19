@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../../public/images/logo.svg';
-import Folder from '../../public/images/svg/folder.svg';
-import Giadinh from '../../public/images/svg/giadinh.svg';
-import MB from '../../public/images/svg/MB.svg';
-import Tienich from '../../public/images/svg/tienich.svg';
-import Home from '../../public/images/svg/home.svg';
-import ChplayMB from '../../public/images/svg/btt-chplay-mb.svg';
-import GoogleMB from '../../public/images/svg/btt-google-mb.svg';
 import Widget from './Widget';
 import WidgetMB from './WidgetMb';
 import { Social } from '../common';
 import ModalDrawer from './ModalDrawer';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import { LayoutActions, MenuActions } from '../../store/actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
-import '../../styles/custom.css';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { setLang, getFlag } from '../../utils/localStorage';
@@ -25,6 +16,7 @@ import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
 import { getLang } from '../../utils/localStorage';
 import i18next from 'i18next';
+import '../../styles/custom.css';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -275,7 +267,7 @@ function Layout({
                     >
                       <div className="container">
                         <a href="/" id="logo">
-                          <img src={Logo} alt="logo" />
+                          <img src="/static/images/logo.svg" alt="logo" />
                         </a>
                         <div className="wrap-menu-header">
                           <ul className="menu-top-header" data-style="1">
@@ -463,11 +455,11 @@ function Layout({
                 <div className="wdownload">
                   <span className="stitle">{t('donwload_app_today')}</span>&nbsp;
                   <a href="#">
-                    <img src={ChplayMB} alt="" />
+                    <img src="/static/images/btt-chplay-mb.svg" alt="" />
                   </a>{' '}
                   &nbsp;
                   <a href="#">
-                    <img src={GoogleMB} alt="" />
+                    <img src="/static/images/btt-google-mb.svg" alt="" />
                   </a>
                 </div>
               </section>
@@ -502,8 +494,7 @@ function Layout({
                     <div className="col-3">
                       <a className="item " href="#">
                         <span className="img">
-                          {' '}
-                          <img src={Home} alt="" />
+                          <img src="/static/images/svg/home.svg" alt="" />
                         </span>
                         <span className="name">{t('home')}</span>
                       </a>
@@ -511,7 +502,7 @@ function Layout({
                     <div className="col-3">
                       <a className="item" href="#">
                         <span className="img">
-                          <img src={Folder} alt="" />
+                          <img src="/static/images/svg/folder.svg" alt="" />
                         </span>
                         <span className="name">{t('product')}</span>
                       </a>
@@ -519,7 +510,7 @@ function Layout({
                     <div className="col-3">
                       <a className="item " href="#">
                         <span className="img">
-                          <img src={MB} alt="" />
+                          <img src="/static/images/home/MB.svg" alt="" />
                         </span>
                         <span className="name">MB++</span>
                       </a>
@@ -527,7 +518,7 @@ function Layout({
                     <div className="col-3">
                       <a className="item " href="#">
                         <span className="img">
-                          <img src={Giadinh} alt="" />
+                          <img src="static/images/svg/giadinh.svg" alt="" />
                         </span>
                         <span className="name">{t('family')}</span>
                       </a>
@@ -535,7 +526,7 @@ function Layout({
                     <div className="col-3">
                       <a className="item " href="#">
                         <span className="img">
-                          <img src={Tienich} alt="" />
+                          <img src="/static/images/svg/tienich.svg" alt="" />
                         </span>
                         <span className="name">{t('utilities')}</span>
                       </a>

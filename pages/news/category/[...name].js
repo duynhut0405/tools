@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/layout';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import { HotNews, AllNews } from '../../../components/categoryDetail';
 import { getNewsByCategorySlug } from '../../../services/news';
 import { Pagination } from '../../../components/common';
