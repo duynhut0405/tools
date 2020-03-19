@@ -6,7 +6,7 @@ import { getLang } from '../utils/localStorage';
 import { useTranslation } from 'react-i18next';
 import { getRateService } from '../services/rate';
 import { getPageService } from '../services/page';
-import { filter } from 'lodash';
+import filter from 'lodash/filter';
 import { withTranslation } from '../i18n';
 import Proptypes from 'prop-types';
 
@@ -52,7 +52,9 @@ Home.getInitialProps = async () => {
     menuMiddle = pageResponse.data.menuMiddle;
     const silderData = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
     for (let i = 0; i < silderData.length; i++) {
-      silder = [...silder, ...JSON.parse(silderData[i].content)];
+      if (silderData[i].content !== null) {
+        silder = [...silder, ...JSON.parse(silderData[i].content)];
+      }
     }
   }
   return {

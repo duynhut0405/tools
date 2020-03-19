@@ -36,7 +36,7 @@ function Card({ data }) {
               <div className="list-10 row list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className="col-sm-6">
+                    <div className="col-sm-6" key={index}>
                       <a href="#" className={`item item-${index + 1} tRes_55`}>
                         <div className="divtext">
                           <h3 className="title ">{ReactHtmlParser(items.note_2)}</h3>
