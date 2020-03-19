@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-import { Carousel, BlockRender, MenuMiddle, DowloadCategory } from '../../components/common';
+import { Carousel, BlockRender, MenuMiddle } from '../../components/common';
 import Layout from '../../components/layout';
-import Transaction from '../../components/transaction';
 import { map } from 'lodash';
 import { PageActions } from '../../store/actions';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { withTranslation } from '../../i18n';
 import { connect } from 'react-redux';
-import { Contact } from '../../components/common';
 
 const propTypes = {
   list: PropTypes.object,
@@ -34,9 +32,7 @@ function Page({ list, silder, menuMiddle, getPage }) {
       <div className="main_content">
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} query={routerUrl} />
-        {list.id === 34670 && <Contact />}
         <BlockRender data={list.pageBlocks} />
-        {list.template === 4 && <DowloadCategory />}
       </div>
     </Layout>
   );

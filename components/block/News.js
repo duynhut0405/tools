@@ -105,14 +105,16 @@ function News({ data, type, id }) {
     return (
       <section className="sec-tb sec-h-4" id={id}>
         <div className="container">
-          <div className="entry-head">
-            <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-            <p className="cl5">{data.description}</p>
-            <a className="viewall" href={`/news/category/${slugCategory}`}>
-              {t('view')}
-              <i className="icon-arrow-1"></i>
-            </a>
-          </div>
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
+                {t('view')}
+                <i className="icon-arrow-1"></i>
+              </a>
+            </div>
+          )}
           {/* 2tabs main */}
           <div className="row list-item">
             <div className="col-lg-8 ">
@@ -157,12 +159,16 @@ function News({ data, type, id }) {
     return (
       <section className="sec-tb sec-h-3 " id={id}>
         <div className="container">
-          <div className="entry-head">
-            <h2 className="ht efch-1 ef-img-t">{data.title}</h2>
-            <a className="viewall" href={`/news/category/${slugCategory}`}>
-              {t('view')} <i className="icon-arrow-1"></i>
-            </a>
-          </div>
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
+                {t('view')}
+                <i className="icon-arrow-1"></i>
+              </a>
+            </div>
+          )}
           <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
             <div className="owl-stage-outer">
               <div className="owl-stage">
@@ -236,8 +242,16 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b" id={id}>
         <div className="container">
-          <h2 className="">{data.title}</h2>
-          <p>{data.description}</p>
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
+                {t('view')}
+                <i className="icon-arrow-1"></i>
+              </a>
+            </div>
+          )}
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => {
               // if (index < 3) {
@@ -289,6 +303,13 @@ function News({ data, type, id }) {
               }
             })}
           </div> */}
+          <div className="text-center mt-4">
+            {(data.title === undefined || data.title === '') && (
+              <a className="btn lg" href={`/news/category/${slugCategory}`}>
+                {t('Xem Tất Cả')}
+              </a>
+            )}
+          </div>
         </div>
       </section>
     );
@@ -297,7 +318,16 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b sec-blog-2" id={id}>
         <div className="container">
-          <h2 className="">{data.title}</h2>
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
+                {t('view')}
+                <i className="icon-arrow-1"></i>
+              </a>
+            </div>
+          )}
           <div className="row list-item">
             <div className="col-lg-4">
               <a href={data.url} className="item-banner  tRes ">
@@ -357,14 +387,16 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b" id={id}>
         <div className="container">
-          <div className="entry-head">
-            <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-            <p className="cl5">{data.description}</p>
-            <a className="viewall" href={`/news/category/${slugCategory}`}>
-              {t('view')}
-              <i className="icon-arrow-1"></i>
-            </a>
-          </div>
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
+                {t('view')}
+                <i className="icon-arrow-1"></i>
+              </a>
+            </div>
+          )}
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
@@ -389,8 +421,16 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b sec-h-4__" id={id}>
         <div className="container">
-          <h2 className="font">{data.title}</h2>
-          <p className="cl5">{data.description}</p>
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
+                {t('view')}
+                <i className="icon-arrow-1"></i>
+              </a>
+            </div>
+          )}
           <div className="list-5 list-5-1 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
@@ -415,9 +455,16 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b sec-h-4">
         <div className="container">
-          <div className="entry-head">
-            <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-          </div>
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
+                {t('view')}
+                <i className="icon-arrow-1"></i>
+              </a>
+            </div>
+          )}
           <div className="row list-item">
             <div className="col-lg-6 list-1">
               {map(listCategory, (item, index) => {

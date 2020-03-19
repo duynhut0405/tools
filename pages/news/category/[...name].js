@@ -1,38 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/layout';
-import { NewsActions } from '../../../store/actions';
 import { map } from 'lodash';
 import { HotNews, AllNews } from '../../../components/categoryDetail';
+import { getNewsByCategorySlug } from '../../../services/news';
+import { Pagination } from '../../../components/common';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
-import { connect } from 'react-redux';
 
 const propTypes = {
-  listNews: PropTypes.object,
-  getNews: PropTypes.func
+  category: PropTypes.object,
+  routerURL: PropTypes.string
 };
 
-function CategoryDetail({ listNews, getNews }) {
-  const [page] = useState(0);
-  const router = useRouter();
-  const { name } = router.query;
+function CategoryDetail({ routerURL, category }) {
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
 
-  let routerURL = null;
-  let params = '';
-  map(name, url => (params = `${params}/${url}`));
-  routerURL = params.slice(1, params.length);
+  const fecthNews = async () => {
+    const res = await getNewsByCategorySlug(routerURL, { number: 10, page: page });
+    if (res !== undefined && res.status === 200) {
+      setData(res.data);
+    }
+  };
+
   useEffect(() => {
-    getNews(routerURL, { number: 10, page: page });
-  }, [getNews]);
+    setData(category);
+  }, [category]);
+
+  useEffect(() => {
+    fecthNews();
+  }, [page]);
 
   return (
-    <Layout title={listNews.name}>
+    <Layout title={data.name}>
       <div className="main_content">
         <section className="banner-heading-3 next-shadow">
           <div className="container">
             <div className="divtext">
               <div className="max750">
-                <h1>{listNews.name}</h1>
+                <h1>{data.name}</h1>
               </div>
             </div>
           </div>
@@ -43,23 +48,28 @@ function CategoryDetail({ listNews, getNews }) {
             src="/static/images/heading-10.svg"
           />
         </section>
-        <HotNews data={listNews.hotNews} title={listNews.name} />
-        <AllNews data={listNews.news} title={listNews.name} />
+        <HotNews data={data.hotNews} title={data.name} />
+        <AllNews data={data.news} title={data.name} />
+        <Pagination page={5} setPage={value => setPage(value)} />
       </div>
     </Layout>
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    listNews: state.newsReducer.listNewsByCategorySlug
-  };
-};
-
-const mapDispatchToProps = {
-  getNews: NewsActions.getNewByCategorySlugAction
+CategoryDetail.getInitialProps = async ctx => {
+  const { query } = ctx.ctx;
+  let routerURL = null;
+  let params = '';
+  let category = null;
+  map(query, url => (params = `${params}/${url}`));
+  routerURL = params.slice(1, params.length);
+  const res = await getNewsByCategorySlug(routerURL, { number: 10, page: 0 });
+  if (res !== undefined && res.status === 200) {
+    category = res.data;
+  }
+  return { routerURL, category };
 };
 
 CategoryDetail.propTypes = propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryDetail);
+export default CategoryDetail;

@@ -1086,7 +1086,7 @@ h2,
   border-radius: 100%;
   position: absolute;
   top: 26px;
-  left: -11px
+  left: -11px;
 }
 .timeline .item .circle1 {
   width: 22px;
@@ -1155,21 +1155,35 @@ h2,
   background-color: #e0f0ff;
   left: -89px;
 }
-@media only screen and (min-width: 768px){
-.timeline .item-1 .circle1:after {
-  left: 100%;
+@media only screen and (min-width: 768px) {
+  .timeline .item-1 .circle1:after {
+    left: 100%;
+    margin-left: 5px;
+  }
+}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .timeline .item .circle:after {
+    width: 30px;
+  }
+  .timeline .item .circle1:after {
+    width: 30px;
+    left: -35px;
+  }
+}
+
+ul.page-numbers li {
+  display: inline-block;
+}
+
+.page-numbers .current a {
+  color: #fff;
+  background-color: #141ed2;
+}
+
+ul.page-numbers li:not(:first-child) {
   margin-left: 5px;
 }
-}
-@media only screen and (max-width: 991px) and (min-width: 768px){
-.timeline .item .circle:after {
-    width: 30px;
-}
-.timeline .item .circle1:after {
-  width: 30px;
-  left: -35px;
-}
-}
+
 .sec-img-svg-2 .item {
   text-align: center;
   display: block;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getLang } from './localStorage';
+// import { getLang } from './localStorage';
 
 const request = axios.create({
   baseURL: `https://sapotacorp.com:8443/vi/api/fe`,
@@ -9,27 +9,27 @@ const request = axios.create({
   }
 });
 
-// before send request
-request.interceptors.request.use(
-  config => {
-    // const lang = getLang();
-    config.baseURL = `https://sapotacorp.com:8443/${getLang()}/api/fe`;
-    return config;
-  },
-  error => {
-    return error;
-  }
-);
+// // before send request
+// request.interceptors.request.use(
+//   config => {
+//     // const lang = getLang();
+//     config.baseURL = `https://sapotacorp.com:8443/${getLang()}/api/fe`;
+//     return config;
+//   },
+//   error => {
+//     return error;
+//   }
+// );
 
-// after send request
-request.interceptors.response.use(
-  response => {
-    return response;
-  },
-  error => {
-    const response = JSON.parse(JSON.stringify(error));
-    return response.response;
-  }
-);
+// // after send request
+// request.interceptors.response.use(
+//   response => {
+//     return response;
+//   },
+//   error => {
+//     const response = JSON.parse(JSON.stringify(error));
+//     return response.response;
+//   }
+// );
 
 export default request;

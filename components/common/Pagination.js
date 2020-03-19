@@ -1,63 +1,30 @@
 import React from 'react';
+import ReactPaginate from 'react-paginate';
 import PropTypes from 'prop-types';
 
 const propTypes = {
   page: PropTypes.number,
-  setPage: PropTypes.func,
-  next: PropTypes.func,
-  previous: PropTypes.func
+  setPage: PropTypes.func
 };
 
 function Pagination({ page, setPage }) {
   return (
-    <div className="pages mt-5">
-      <ul className="page-numbers">
-        <li>
-          <a className="prev page-numbers" onClick={() => setPage(page - 1)}>
-            <i className="icon-arrow-2 ix"></i>
-          </a>
-        </li>
-        <li>
-          <span
-            className={page === 1 || page === 0 ? 'page-numbers current' : 'page-numbers'}
-            onClick={() => setPage(1)}
-          >
-            1
-          </span>
-        </li>
-        <li>
-          <a
-            className={page === 2 ? 'page-numbers current' : 'page-numbers'}
-            onClick={() => setPage(2)}
-          >
-            2
-          </a>
-        </li>
-        <li>
-          <span className="page-numbers">...</span>
-        </li>
-        <li>
-          <a
-            className={page === 8 ? 'page-numbers current' : 'page-numbers'}
-            onClick={() => setPage(8)}
-          >
-            8
-          </a>
-        </li>
-        <li>
-          <a
-            className={page === 9 ? 'page-numbers current' : 'page-numbers'}
-            onClick={() => setPage(9)}
-          >
-            9
-          </a>
-        </li>
-        <li>
-          <a className="next page-numbers" onClick={() => setPage(page + 1)}>
-            <i className="icon-arrow-2"></i>
-          </a>
-        </li>
-      </ul>
+    <div className="page pb-3">
+      <ReactPaginate
+        previousLabel={<i className="icon-arrow-2 ix"></i>}
+        nextLabel={<i className="icon-arrow-2"></i>}
+        breakLabel={'...'}
+        breakLinkClassName="page-numbers"
+        pageCount={page}
+        containerClassName="page-numbers"
+        previousLinkClassName="prev page-numbers"
+        nextLinkClassName="next page-numbers"
+        pageLinkClassName="page-numbers"
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={2}
+        onPageChange={value => setPage(value.selected + 1)}
+        activeClassName={'current'}
+      />
     </div>
   );
 }
