@@ -14,15 +14,15 @@ function Comment({ data, id }) {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4
+      items: 3
     },
     tablet: {
       breakpoint: { max: 1024, min: 500 },
-      items: 3
+      items: 2
     },
     mobile: {
       breakpoint: { max: 500, min: 0 },
-      items: 2
+      items: 1
     }
   };
 
