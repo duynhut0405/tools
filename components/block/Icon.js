@@ -110,7 +110,7 @@ function Icon({ data, id }) {
                 </div>
                 <div className="menuicon">
                   {map(data, (items, index) => (
-                    <div className={`item  efch-${index + 3} ef-img-t`}>
+                    <div className={`item  efch-${index + 3} ef-img-t`} key={index}>
                       <a href="#" className="link">
                         <div className="img">
                           <img

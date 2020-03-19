@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.array
 };
 
 function Card({ data }) {
@@ -133,7 +133,7 @@ function Card({ data }) {
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `} key={index}>
                       <div className="item">
                         <div className="divtext" style={{ paddingTop: '29px' }}>
                           <h4 className="title equal" style={{ textAlign: 'center' }}>
@@ -159,7 +159,7 @@ function Card({ data }) {
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `} key={index}>
                       <div className="item">
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
@@ -200,6 +200,7 @@ function Card({ data }) {
                         className={`group-ef loaded  item item-${
                           (index + 1) % 2 === 0 ? '2' : '1'
                         }`}
+                        key={index}
                       >
                         <div
                           className={`row grid-space-80 center ${

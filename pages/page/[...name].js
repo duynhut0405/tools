@@ -1,59 +1,57 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Carousel, BlockRender, MenuMiddle } from '../../components/common';
 import Layout from '../../components/layout';
-import { map } from 'lodash';
-import { PageActions } from '../../store/actions';
-import { useRouter } from 'next/router';
+import { map, filter } from 'lodash';
+import { getPageService } from '../../services/page';
 import PropTypes from 'prop-types';
 import { withTranslation } from '../../i18n';
-import { connect } from 'react-redux';
 
 const propTypes = {
-  list: PropTypes.object,
+  page: PropTypes.object,
   silder: PropTypes.array,
   menuMiddle: PropTypes.object,
-  getPage: PropTypes.func
+  routerURL: PropTypes.string
 };
 
-function Page({ list, silder, menuMiddle, getPage }) {
-  const router = useRouter();
-  const { name } = router.query;
-  let routerUrl = null;
-  let params = '';
-  map(name, url => (params = `${params}/${url}`));
-  routerUrl = params.slice(1, params.length);
-
-  useEffect(() => {
-    getPage(routerUrl);
-  }, []);
-
+function Page({ page, silder, menuMiddle, routerURL }) {
   return (
-    <Layout title={list.meta_title} personalLayout={list.has_sidebar}>
+    <Layout title={page.meta_title} personalLayout={page.has_sidebar}>
       <div className="main_content">
         <Carousel silder={silder} />
-        <MenuMiddle data={menuMiddle} query={routerUrl} />
-        <BlockRender data={list.pageBlocks} />
+        <MenuMiddle data={menuMiddle} query={routerURL} />
+        <BlockRender data={page.pageBlocks} />
       </div>
     </Layout>
   );
 }
 
-const mapStateToProp = state => {
+Page.getInitialProps = async ctx => {
+  const { query } = ctx.ctx;
+  let routerURL = null;
+  let params = '';
+  map(query.name, url => (params = `${params}/${url}`));
+  routerURL = params.slice(1, params.length);
+  let page = {};
+  let silder = [];
+  let menuMiddle = {};
+  const pageResponse = await getPageService(routerURL);
+  if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
+    page = pageResponse.data;
+    menuMiddle = pageResponse.data.menuMiddle;
+    const silderData = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
+    for (let i = 0; i < silderData.length; i++) {
+      silder = [...silder, ...JSON.parse(silderData[i].content)];
+    }
+  }
   return {
-    list: state.pageReducer.homedata,
-    silder: state.pageReducer.silder,
-    menuMiddle: state.pageReducer.menuMiddle
+    namespacesRequired: ['common', 'common'],
+    routerURL,
+    page,
+    silder,
+    menuMiddle
   };
-};
-
-const mapDispatchToProps = {
-  getPage: PageActions.getHomeAction
 };
 
 Page.propTypes = propTypes;
 
-Page.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
-
-export default connect(mapStateToProp, mapDispatchToProps)(withTranslation('common')(Page));
+export default withTranslation('common')(Page);

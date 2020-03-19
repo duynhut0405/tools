@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TableRate from './Table';
-import { inherits } from 'util';
 
 const AntTabs = withStyles({
   root: {
