@@ -22,7 +22,7 @@ function Fields({ title, value, month, minValue, maxValue, oneHandle }) {
         <span className="title">{title}</span>
         <span className="title2">
           <span className="price">
-            <ReactNumeric value={value} decimalPlaces="0" />
+            <ReactNumeric value={value} decimalPlaces={0} />
           </span>
           {month ? t('month') : 'VNĐ'}
         </span>

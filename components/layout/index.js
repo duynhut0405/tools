@@ -510,7 +510,7 @@ function Layout({
                     <div className="col-3">
                       <a className="item " href="#">
                         <span className="img">
-                          <img src="/static/images/home/MB.svg" alt="" />
+                          <img src="/static/images/svg/MB.svg" alt="" />
                         </span>
                         <span className="name">MB++</span>
                       </a>
