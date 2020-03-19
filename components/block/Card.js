@@ -5,12 +5,11 @@ import PropTypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 
 const propTypes = {
-  data: PropTypes.array
+  data: PropTypes.object
 };
 
 function Card({ data }) {
   const [refCarousel, setRefCarousel] = useState(null);
-  const dataFilter = data.shift();
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -140,7 +139,7 @@ function Card({ data }) {
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `} key={index}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
                       <div className="item">
                         <div className="divtext" style={{ paddingTop: '29px' }}>
                           <h4 className="title equal" style={{ textAlign: 'center' }}>
@@ -166,7 +165,7 @@ function Card({ data }) {
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `} key={index}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
                       <div className="item">
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
@@ -207,7 +206,6 @@ function Card({ data }) {
                         className={`group-ef loaded  item item-${
                           (index + 1) % 2 === 0 ? '2' : '1'
                         }`}
-                        key={index}
                       >
                         <div
                           className={`row grid-space-80 center ${
@@ -241,39 +239,74 @@ function Card({ data }) {
           <section className="sec-tb sec-ab-4 ">
             <div className="container">
               <div className="entry-head ">
-                <h2 className="ht efch-1 ef-img-l">{dataFilter.title}</h2>
+                {data[0].title && <h2 className="ht efch-1 ef-img-l">{data[0].title}</h2>}
               </div>
               <div className="  row grid-space-20 ">
-                <div className="col-lg-8 col-sm-12  ">
-                  <div className="item item-1  ">
-                    <div className="img tRes_92">
-                      <img
-                        className="loaded loaded"
-                        data-lazy-type="image"
-                        src={dataFilter.image}
-                      />
-                    </div>
-                    <div className="divtext">
-                      <div className="t1">{ReactHtmlParser(dataFilter.note_1)}</div>
-                      <div className="t2">{ReactHtmlParser(dataFilter.note_2)}</div>
-                    </div>
-                  </div>
-                </div>
-                {map(data, (items, index) => {
-                  return (
-                    <div className="col-lg-4 col-sm-6">
-                      <div className="item item-2  ">
-                        <div className="img tRes_92">
-                          <img className="loaded loaded" data-lazy-type="image" src={items.image} />
-                        </div>
-                        <div className="divtext">
-                          <div className="t1">{ReactHtmlParser(items.note_1)}</div>
-                          <div className="t2">{ReactHtmlParser(items.note_2)}</div>
-                        </div>
+                {data[0] && (
+                  <div className="col-lg-8 col-sm-12  ">
+                    <div className="item item-1  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[0].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[0].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[0].note_2)}</div>
                       </div>
                     </div>
-                  );
-                })}
+                  </div>
+                )}
+                {data[1] && (
+                  <div className="col-lg-4 col-sm-6">
+                    <div className="item item-2  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[1].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[1].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[1].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {data[2] && (
+                  <div className="col-lg-4 col-sm-6">
+                    <div className="item item-2  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[2].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[2].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[2].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {data[3] && (
+                  <div className="col-lg-4 col-sm-6">
+                    <div className="item item-2  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[3].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[3].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[3].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {data[4] && (
+                  <div className="col-lg-4 col-sm-6">
+                    <div className="item item-2  ">
+                      <div className="img tRes_92">
+                        <img className="loaded loaded" data-lazy-type="image" src={data[4].image} />
+                      </div>
+                      <div className="divtext">
+                        <div className="t1">{ReactHtmlParser(data[4].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data[4].note_2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </section>
