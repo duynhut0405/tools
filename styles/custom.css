@@ -1319,3 +1319,44 @@ sec-ab-4 .t1 {
   font-weight: 600;
   line-height: normal;
 }
+
+.sec-img-svg-4 .item {
+  display: block;
+  position: relative;
+  background-color: #F5F4F4;
+  border-radius: 8px;
+  padding: 40px 10px 40px 80px;
+}
+.sec-img-svg-4 .img {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  left: 20px;
+}
+.sec-img-svg-4 .img img {
+  height: 46px;
+  display: block;
+}
+.sec-img-svg-4 .title {
+  margin-bottom: 0;
+  font-size: 20px;
+}
+.accodion-tab {
+  overflow: visible;
+}
+.accodion-tab>input:checked~[class*="-content"] {
+  overflow: visible;
+}
+.owl-loaded.owl-carousel {
+  display: block;
+}
+.owl-carousel .owl-stage-outer {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+.list-5.owl-carousel .item {
+  margin-left: -6px !important;
+}
