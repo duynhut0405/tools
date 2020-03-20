@@ -19,42 +19,42 @@ module.exports = withFonts(
         });
         return config;
       },
-      exportPathMap: async function() {
-        const res = await getRouer();
+      // exportPathMap: async function() {
+      //   const res = await getRouer();
 
-        const router = res.data.reduce(
-          (pages, data) =>
-            Object.assign({}, pages, {
-              [`/page/${data.slug}`]: { page: '/page/[...name]' }
-            }),
-          {}
-        );
+      //   const router = res.data.reduce(
+      //     (pages, data) =>
+      //       Object.assign({}, pages, {
+      //         [`/page/${data.slug}`]: { page: '/page/[...name]' }
+      //       }),
+      //     {}
+      //   );
 
-        const newResponse = await getNewRouter();
-        const newRouter = newResponse.data.reduce(
-          (pages, data) =>
-            Object.assign({}, pages, {
-              [`/news/${data.url}`]: { page: '/news/[...slug]' }
-            }),
-          {}
-        );
+      //   const newResponse = await getNewRouter();
+      //   const newRouter = newResponse.data.reduce(
+      //     (pages, data) =>
+      //       Object.assign({}, pages, {
+      //         [`/news/${data.url}`]: { page: '/news/[...slug]' }
+      //       }),
+      //     {}
+      //   );
 
-        const categoryResponse = await getCategoryRouter();
-        const categoryRouter = categoryResponse.data.reduce(
-          (pages, category) =>
-            Object.assign({}, pages, {
-              [`/news/category/${category.slug}`]: { page: '/news/category/[...name]' }
-            }),
-          {}
-        );
+      //   const categoryResponse = await getCategoryRouter();
+      //   const categoryRouter = categoryResponse.data.reduce(
+      //     (pages, category) =>
+      //       Object.assign({}, pages, {
+      //         [`/news/category/${category.slug}`]: { page: '/news/category/[...name]' }
+      //       }),
+      //     {}
+      //   );
 
-        let pageRouter = Object.assign({}, router, {
-          '/': { page: '/' }
-        });
+      //   let pageRouter = Object.assign({}, router, {
+      //     '/': { page: '/' }
+      //   });
 
-        pageRouter = Object.assign(pageRouter, categoryRouter);
-        return Object.assign(newRouter, pageRouter);
-      }
+      //   pageRouter = Object.assign(pageRouter, categoryRouter);
+      //   return Object.assign(newRouter, pageRouter);
+      // }
     })
   )
 );
