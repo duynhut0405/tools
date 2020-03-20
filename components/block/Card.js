@@ -312,6 +312,31 @@ function Card({ data }) {
           </section>
         </React.Fragment>
       )}
+      {data[0].type === '7' && (
+        <React.Fragment>
+          <div className="sec-b sec-img-svg-4">
+            <div className="container">
+              <h2 className="ht">{data[0].title}</h2>
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className="col-sm-4 efch-2 ef-img-t ">
+                      <a className="item" href={items.url}>
+                        <div className="img ">
+                          <img className="lazy-hidden" data-lazy-type="image" src={items.image} />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title">{ReactHtmlParser(items.note_1)}</h4>
+                        </div>
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 }
