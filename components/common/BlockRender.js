@@ -28,6 +28,7 @@ import { Contact, DowloadCategory } from '../common';
 
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
+import NewCard from '../NewCard';
 
 const propTypes = {
   data: PropTypes.array
@@ -53,6 +54,16 @@ function BlockRender({ data }) {
               if (values.name === 'Block News' && values.content !== null) {
                 return (
                   <News
+                    type={JSON.parse(values.content).type}
+                    data={JSON.parse(values.content)}
+                    key={index}
+                    id={values.id}
+                  />
+                );
+              }
+              if (values.name === 'NewCard' && values.content !== null) {
+                return (
+                  <NewCard
                     type={JSON.parse(values.content).type}
                     data={JSON.parse(values.content)}
                     key={index}

@@ -1345,3 +1345,20 @@ sec-ab-4 .t1 {
   margin-bottom: 0;
   font-size: 20px;
 }
+.accodion-tab {
+  overflow: visible;
+}
+.accodion-tab>input:checked~[class*="-content"] {
+  overflow: visible;
+}
+.owl-loaded.owl-carousel {
+  display: block;
+}
+.owl-carousel .owl-stage-outer {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+.list-5.owl-carousel .item {
+  margin-left: -6px !important;
+}
