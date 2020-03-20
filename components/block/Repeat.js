@@ -25,7 +25,7 @@ function Repeat({ data, type, id }) {
           </div>
           <div className="table-responsive table table-full">
             {map(listTable, (items, index) => {
-              return ReactHtmlParser(items.description);
+              return <div key={index}> {ReactHtmlParser(items.description)}</div>;
             })}
           </div>
         </div>

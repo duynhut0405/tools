@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.array
 };
 
 function Card({ data }) {
@@ -90,7 +90,7 @@ function Card({ data }) {
                                 <img src={items.image} className="loaded loaded" />
                               </div>
                               <div className="divtext" style={{ paddingLeft: '20px' }}>
-                                <h3
+                                <div
                                   className="title"
                                   style={{
                                     textAlign: 'left',
@@ -100,7 +100,7 @@ function Card({ data }) {
                                   }}
                                 >
                                   {ReactHtmlParser(items.note_1)}
-                                </h3>
+                                </div>
                               </div>
                             </a>
                           </div>
@@ -139,12 +139,12 @@ function Card({ data }) {
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `} key={index}>
                       <div className="item">
                         <div className="divtext" style={{ paddingTop: '29px' }}>
-                          <h4 className="title equal" style={{ textAlign: 'center' }}>
+                          <div className="title equal" style={{ textAlign: 'center' }}>
                             {ReactHtmlParser(items.note_1)}
-                          </h4>
+                          </div>
                           <div className="desc" style={{ textAlign: 'center' }}>
                             {ReactHtmlParser(items.note_2)}
                           </div>
@@ -165,15 +165,15 @@ function Card({ data }) {
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `} key={index}>
                       <div className="item">
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
                         </div>
                         <div className="divtext">
-                          <h4 className="title equal" style={{ textAlign: 'center' }}>
+                          <div className="title equal" style={{ textAlign: 'center' }}>
                             {ReactHtmlParser(items.note_1)}
-                          </h4>
+                          </div>
                           <div className="desc" style={{ textAlign: 'center' }}>
                             {ReactHtmlParser(items.note_2)}
                           </div>
@@ -194,7 +194,7 @@ function Card({ data }) {
               <div className="entry-head text-center">
                 <h2 className="ht efch-1 ef-img-l">{data[0].title}</h2>
               </div>
-              <p className="text-center fs16">{ReactHtmlParser(data[0].note_1)}</p>
+              <div className="text-center fs16">{ReactHtmlParser(data[0].note_1)}</div>
               <br />
               <br />
               <br />
@@ -220,7 +220,7 @@ function Card({ data }) {
                           <div className="col-md-6 ">
                             <span className={index % 2 === 0 ? 'circle' : 'circle1'}></span>
                             <div className="divtext efch-2 ef-tx-t">
-                              <h2 className="title">{ReactHtmlParser(items.note_2)}</h2>
+                              <div className="title">{ReactHtmlParser(items.note_2)}</div>
                               <div className="desc">{ReactHtmlParser(items.note_3)}</div>
                             </div>
                           </div>

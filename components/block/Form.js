@@ -60,9 +60,9 @@ function Form({ data }) {
               }
               if (item.type === 'paragraph') {
                 return (
-                  <p className={item.className} key={index}>
+                  <div className={item.className} key={index}>
                     {ReactHtmlParser(item.label)}
-                  </p>
+                  </div>
                 );
               }
               if (item.type === 'radio-group') {
