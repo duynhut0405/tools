@@ -144,7 +144,11 @@ New.getInitialProps = async ctx => {
     newResponse.status === 200
   ) {
     news = newResponse.data;
-    if (newResponse.data.categories !== null && newResponse.data.categories.length > 0) {
+    if (
+      newResponse.data.categories &&
+      newResponse.data.categories !== null &&
+      newResponse.data.categories.length > 0
+    ) {
       category_name = newResponse.data.categories[0].name;
       category_url = newResponse.data.categories[0].slug;
       const relatedPostRes = await getNewCategoryIdService(newResponse.data.categories[0].id);
