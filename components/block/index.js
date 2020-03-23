@@ -17,7 +17,7 @@ import DetailPerson from './DetailPerson';
 import Card from './Card';
 import Tools from './tool';
 import Comment from './Comment';
-
+import TablePayment from './TablePayment';
 export {
   Images,
   Post,
@@ -37,5 +37,6 @@ export {
   DetailPerson,
   Card,
   Tools,
-  Comment
+  Comment,
+  TablePayment
 };
