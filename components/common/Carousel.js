@@ -33,7 +33,7 @@ function Carousels({ silder, className }) {
                   <a href={item.url === undefined ? '#' : item.url}>
                     <img src={item.image} alt="icon" />
                   </a>
-                  <div className="divtext">
+                  <div className={`divtext ${item.options}`}>
                     {ReactHtmlParser(item.note_1)}
                     {ReactHtmlParser(item.note_2)}
                     <div className="text_content3">{item.note_3}</div>
