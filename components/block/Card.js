@@ -420,6 +420,7 @@ function Card({ data }) {
                           <i className="icon-arrow-1"></i>
                         </div>
                       </div>
+                      <div className="owl-dots disabled"></div>
                     </div>
                   </div>
                 </div>
