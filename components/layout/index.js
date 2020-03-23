@@ -59,7 +59,6 @@ function Layout({
 }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [flag, setFlag] = useState('vn');
-
   const { i18n, t } = useTranslation();
   useEffect(() => {
     getMenuHeader();
