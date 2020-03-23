@@ -17,7 +17,8 @@ import {
   DetailPerson,
   Card,
   Tools,
-  Comment
+  Comment,
+  TablePayment
 } from '../block';
 import About from '../about';
 import Investors from '../investors';
@@ -71,9 +72,9 @@ function BlockRender({ data }) {
                   />
                 );
               }
-              // if (values.name === 'Block News') {
-              //   return <Post data={JSON.parse(values.content)} key={index} />;
-              // }
+              if (values.name === 'Installment Payment System') {
+                return <TablePayment data={JSON.parse(values.content)} key={index} />;
+              }
               if (values.name === 'Pages' && values.content !== null) {
                 return <Pages id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
