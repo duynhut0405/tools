@@ -130,6 +130,15 @@ html {
   color: #141ed2;
   margin-bottom: 10px;
 }
+.ql-align-right {
+  text-align: right;
+}
+.ql-align-center {
+  text-align: center;
+}
+.ql-align-left {
+  text-align: left;
+}
 @media only screen and (min-width: 1200px) {
   .widget-contact {
     padding: 30px;
@@ -850,7 +859,10 @@ button.vib-v2-btn-dk02 {
   font-size: 32px;
   font-weight: bold;
 }
-
+.divtext {
+  text-align: left;
+  padding-left: 50px;
+}
 @media only screen and (min-width: 768px) {
   .sec-cong-cu .result .divtext {
     position: absolute;

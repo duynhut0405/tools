@@ -60,7 +60,7 @@ function MenuMiddle({ data, query }) {
                               src={item.icon}
                             />
                           </div>
-                          <div className="title">{item.title}</div>
+                          <div className="title">{item.name}</div>
                         </a>
                       </div>
                     );
