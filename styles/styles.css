@@ -3658,7 +3658,7 @@ body.showMenu .menu-btn.x:before {
 
 #header .group-header {
   position: absolute;
-  right: 15px;
+  right: 0;
   height: 100%;
   display: table;
   top: 0;

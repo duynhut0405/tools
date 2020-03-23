@@ -60,7 +60,7 @@ function MenuMiddle({ data, query }) {
                               src={item.icon}
                             />
                           </div>
-                          <div className="title">{item.name}</div>
+                          <div className="title">{item.title}</div>
                         </a>
                       </div>
                     );
@@ -84,7 +84,7 @@ function MenuMiddle({ data, query }) {
                               src={item.icon}
                             />
                           </div>
-                          <div className="title">{item.name}</div>
+                          <div className="title">{item.title}</div>
                         </a>
                       </div>
                     );

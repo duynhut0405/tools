@@ -130,6 +130,15 @@ html {
   color: #141ed2;
   margin-bottom: 10px;
 }
+.ql-align-right {
+  text-align: right;
+}
+.ql-align-center {
+  text-align: center;
+}
+.ql-align-left {
+  text-align: left;
+}
 @media only screen and (min-width: 1200px) {
   .widget-contact {
     padding: 30px;
@@ -850,7 +859,10 @@ button.vib-v2-btn-dk02 {
   font-size: 32px;
   font-weight: bold;
 }
-
+.divtext {
+  text-align: left;
+  padding-left: 50px;
+}
 @media only screen and (min-width: 768px) {
   .sec-cong-cu .result .divtext {
     position: absolute;
@@ -1359,4 +1371,28 @@ sec-ab-4 .t1 {
 }
 .list-5.owl-carousel .item {
   margin-left: -6px !important;
+}
+.cl7 {
+  color: #575757;
+}
+.table-full {
+  background-color: #F8F8F8;
+  border-radius: 8px;
+  font-size: 14px;
+  overflow: hidden;
+  min-width: 600px;
+  margin-bottom: 40px;
+}
+.table-card th:first-child {
+  width: 30%;
+}
+.table-card th:not(:last-child) {
+  border-right: 3px solid #fff;
+}
+.table-card td {
+  text-align: center;
+}
+.table-full td {
+  height: 90px;
+  border-top: 2px solid #fff;
 }
