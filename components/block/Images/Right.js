@@ -15,7 +15,7 @@ function ImageRight({ items }) {
           <div className="col-lg-6">
             {!active && (
               <div
-                className="single_video  tRes_16_9 max750"
+                className={items.video_url ? 'single_video  tRes_16_9 max750' : ''}
                 data-id="2UrWPUAr68A"
                 data-video="autoplay=1&amp;controls=1&amp;mute=0"
               >
@@ -26,16 +26,22 @@ function ImageRight({ items }) {
                   src={items.image}
                   alt=""
                 />
-                <span
-                  className="btnvideo"
-                  onClick={() => {
-                    if (items.text_action === undefined || items.text_action === '') {
+                {items.video_url !== undefined && (
+                  <span
+                    className="btnvideo"
+                    onClick={() => {
                       setActive(!active);
-                    }
-                  }}
-                >
-                  <i className="icon-play"></i>
-                </span>
+                    }}
+                  >
+                    {items.video_url !== undefined ||
+                    items.video_url !== '' ||
+                    items.video_url !== null ? (
+                      <i className="icon-play"></i>
+                    ) : (
+                      ''
+                    )}
+                  </span>
+                )}
               </div>
             )}
             {active && (
@@ -86,60 +92,6 @@ function ImageRight({ items }) {
         </div>
       </div>
     </section>
-
-    // <section className="sec-b sec-img-text group-ef loaded">
-    //   <div className="container">
-    //     <div className="row center end">
-    //       <div className="col-lg-6">
-    //         {(items.video_url === undefined || items.video_url === '') && (
-    //           <div className="img tRes_66 efch-2 ef-img-r ">
-    //             <img
-    //               className=" loaded loaded"
-    //               data-lazy-type="image"
-    //               data-lazy-src={items.image}
-    //               src={items.image}
-    //             />
-    //           </div>
-    //         )}
-    //         {items.video_url !== undefined && items.video_url !== '' && (
-    //           <div className="single_video  tRes_16_9 max750">
-    //             <iframe src={items.video_url} />
-    //           </div>
-    //         )}
-    //       </div>
-    //       <div className="col-lg-6">
-    //         <div className="divtext ">
-    //           {ReactHtmlParser(items.note_1)}
-    //           {ReactHtmlParser(items.note_2)}
-    //           {ReactHtmlParser(items.note_3)}
-    //           {items.url === undefined || items.url === null || items.url === '' ? (
-    //             ''
-    //           ) : (
-    //             <a
-    //               className="fs16 cl1"
-    //               style={{
-    //                 display: 'block',
-    //                 paddingBottom: '30px',
-    //                 fontSize: '17px',
-    //                 fontWeight: '550'
-    //               }}
-    //               href={items.url}
-    //             >
-    //               Hướng dẫn đăng ký >>
-    //             </a>
-    //           )}
-    //           {items.text_action === undefined || items.text_action === '' ? (
-    //             ''
-    //           ) : (
-    //             <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
-    //               {items.text_action === undefined ? 'Đăng ký ngay' : items.text_action}
-    //             </a>
-    //           )}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
   );
 }
 
