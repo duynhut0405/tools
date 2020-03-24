@@ -3,6 +3,7 @@ import { map } from 'lodash';
 import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
 import { useTranslation } from 'react-i18next';
+import Carousel from 'react-multi-carousel';
 const propTypes = {
   data: Proptypes.object.isRequired,
   type: Proptypes.string,
@@ -12,6 +13,7 @@ const propTypes = {
 function Pages({ data, type, id }) {
   // const [page] = useState(3);
   const [listPage, setListPage] = useState([]);
+  const [refCarouselThree, setRefCarouselThree] = useState(null);
   const getPageBlock = async () => {
     const ids = map(data.pages, values => values.value);
     const res = await getPagesByIdService(ids);
@@ -19,7 +21,21 @@ function Pages({ data, type, id }) {
       setListPage(res.data);
     }
   };
-
+  const responsiveTwo = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
+  console.log(listPage);
   useEffect(() => {
     getPageBlock();
   }, []);
@@ -153,6 +169,69 @@ function Pages({ data, type, id }) {
                 {values.name}
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (type && type === '5') {
+    return (
+      <section className=" sec-b sec-cauhoi ">
+        <div className="container">
+          <div className="entry-head">
+            <h2 className="ht ">{data === null ? '' : data.title}</h2>
+          </div>
+          <div className="accodion-content entry-content">
+            <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
+              <div className="owl-stage-outer">
+                <div className="owl-stage">
+                  <Carousel
+                    responsive={responsiveTwo}
+                    draggable
+                    minimumTouchDrag={80}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    arrows={false}
+                    ref={ref => {
+                      setRefCarouselThree(ref);
+                    }}
+                  >
+                    {map(listPage, (items, index) => (
+                      <div className="item ef-img-t item_carousel" key={index}>
+                        <a href={items.url} className="link">
+                          <div className="img">
+                            <img src={items.baseImage} style={{ height: '334px' }} />
+                          </div>
+                          <div className="divtext">
+                            <h4 className="title line2">{items.name}</h4>
+                            <div className="desc line2 cl3">{items.meta_description}</div>
+                          </div>
+                        </a>
+                      </div>
+                    ))}
+                  </Carousel>
+                </div>
+              </div>
+              <div className="owl-nav">
+                <div
+                  className="owl-prev disabled"
+                  onClick={() => {
+                    refCarouselThree.previous();
+                  }}
+                >
+                  <i className="icon-arrow-1 ix"></i>
+                </div>
+                <div
+                  className="owl-next"
+                  onClick={() => {
+                    refCarouselThree.next();
+                  }}
+                >
+                  <i className="icon-arrow-1"></i>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
