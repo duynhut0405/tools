@@ -1397,3 +1397,8 @@ sec-ab-4 .t1 {
 .sec-padding {
   padding-bottom: 0;
 }
+.accodion-tab > input:checked ~ [class*='-content'] {
+  max-height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
