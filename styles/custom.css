@@ -1185,7 +1185,7 @@ ul.page-numbers li {
 
 .page-numbers .current a {
   color: #fff;
-  background-color: #141ed2;
+  background-color: #141ed2 !important;
 }
 
 ul.page-numbers li:not(:first-child) {
@@ -1195,7 +1195,7 @@ ul.page-numbers li:not(:first-child) {
 .sec-img-svg-2 .item {
   text-align: center;
   display: block;
-  background-color: #F5F4F4;
+  background-color: #f5f4f4;
   border-radius: 8px;
   padding: 15px 5px;
 }
@@ -1208,8 +1208,9 @@ ul.page-numbers li:not(:first-child) {
 .sec-img-svg-2 .title {
   margin-bottom: 0;
 }
-.next-shadow + section:before, .next-shadow + main:before {
-  content: "";
+.next-shadow + section:before,
+.next-shadow + main:before {
+  content: '';
   position: absolute;
   left: 0;
   right: 0;
@@ -1217,7 +1218,7 @@ ul.page-numbers li:not(:first-child) {
   top: 0;
 }
 .list-10 .item-1 {
-  background-color: #B5A6F9;
+  background-color: #b5a6f9;
 }
 .list-10 .item-1:hover {
   color: blue;
@@ -1250,31 +1251,32 @@ ul.page-numbers li:not(:first-child) {
   font-size: 40px;
 }
 
-[class^="icon-"]:before, [class*=" icon-"]:before {
+[class^='icon-']:before,
+[class*=' icon-']:before {
   display: inline-block;
 }
 .list-10 .item-2 {
-  background-color: #A0D1FF;
+  background-color: #a0d1ff;
 }
-@media only screen and (min-width: 992px){
-.list-10 .title {
+@media only screen and (min-width: 992px) {
+  .list-10 .title {
     font-size: 50px;
+  }
 }
-}
-@media only screen and (min-width: 768px){
-.grid-space-20 {
+@media only screen and (min-width: 768px) {
+  .grid-space-20 {
     margin-left: -10px;
     margin-right: -10px;
-}
+  }
 }
 .sec-ab-4 .row > div {
   margin-bottom: 20px;
 }
-@media only screen and (min-width: 768px){
-.grid-space-20 > [class*="col-"] {
+@media only screen and (min-width: 768px) {
+  .grid-space-20 > [class*='col-'] {
     padding-left: 10px;
     padding-right: 10px;
-}
+  }
 }
 .sec-ab-4 .item {
   border-radius: 8px;
@@ -1286,10 +1288,10 @@ ul.page-numbers li:not(:first-child) {
   font-weight: 600;
   line-height: normal;
 }
-@media only screen and (min-width: 1200px){
-.sec-ab-4 .item-1 .img {
+@media only screen and (min-width: 1200px) {
+  .sec-ab-4 .item-1 .img {
     max-height: 328px;
-}
+  }
 }
 .sec-ab-4 .divtext {
   position: absolute;
@@ -1299,16 +1301,16 @@ ul.page-numbers li:not(:first-child) {
   z-index: 3;
   padding: 15px;
 }
-@media only screen and (min-width: 1200px){
-.sec-ab-4 .item-1 .t1 {
+@media only screen and (min-width: 1200px) {
+  .sec-ab-4 .item-1 .t1 {
     font-size: 72px;
-}
+  }
 }
 sec-ab-4 .t1 {
   font-size: 50px;
   white-space: nowrap;
 }
-.t1{
+.t1 {
   font-size: 50px;
 }
 .sec-ab-4 .t2 {
