@@ -57,22 +57,6 @@ function ImageLeft({ items }) {
                     )}
                   </span>
                 )}
-                {/* <span
-                  className="btnvideo"
-                  onClick={() => {
-                    if (items.text_action === undefined || items.text_action === '') {
-                      setActive(!active);
-                    }
-                  }}
-                >
-                  {items.video_url !== undefined ||
-                  items.video_url !== '' ||
-                  items.video_url !== null ? (
-                    <i className="icon-play"></i>
-                  ) : (
-                    ''
-                  )}
-                </span> */}
               </div>
             )}
             {active && (

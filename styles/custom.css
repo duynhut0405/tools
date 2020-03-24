@@ -219,7 +219,7 @@ a:hover {
   width: 90%;
 }
 .react-multi-carousel-list {
-  position: static;
+  position: static !important;
 }
 .react-multi-carousel-item {
   margin-bottom: 5px;
@@ -1400,4 +1400,57 @@ sec-ab-4 .t1 {
   max-height: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+@media only screen and (min-width: 992px){
+.banner-heading-1.home h1 {
+    font-size: 48px;
+}
+.banner-heading-1.home h2 {
+  font-size: 48px;
+}
+}
+.banner-heading-1 .divtext h1 {
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #141ED2;
+    line-height: normal;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.banner-heading-1 .divtext h2 {
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #141ED2;
+  line-height: normal;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.banner-heading-1 .divtext p {
+  color: #141ED2 ;
+  margin: 0 0 20px;
+  text-align: left;
+}
+.banner-heading-1 .divtext button{
+  display: block;
+}
+.banner-heading-1 .text-left-mg{
+  margin-left: 20%;
+}
+.banner-heading-1 .text-center-mg{
+  margin-left: 40%;
+}
+.banner-heading-1 .text-right-mg{
+  margin-left: 60%;
+}
+.remove p{
+  margin-bottom: 0;
+}
+div.hr {
+  height: 1px;
+  margin-bottom: 40px;
+  background-color: #ddd;
+}
+.viewall{
+  font-weight: bold;
+  font-size: 17px;
 }

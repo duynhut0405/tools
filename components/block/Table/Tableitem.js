@@ -18,7 +18,6 @@ function TableItem({ data, maxheight }) {
   const { getCollapseProps, getToggleProps, isOpen } = useCollapse({
     collapsedHeight: maxheight
   });
-
   return (
     <React.Fragment>
       <section {...getCollapseProps()}>

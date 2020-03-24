@@ -15,7 +15,7 @@ function ImageCenter({ items }) {
       <section className="sec-tb sec-cskh block-images-center">
         <div className="container">
           <div className="bgvideo loaded">
-            <div className="entry-head text-center">
+            <div className="entry-head text-center remove">
               {ReactHtmlParser(items.note_1)}
               {ReactHtmlParser(items.note_2)}
               {ReactHtmlParser(items.note_3)}

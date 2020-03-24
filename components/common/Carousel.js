@@ -3,6 +3,7 @@ import { map, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';
+import Slider from 'react-rangeslider';
 
 const propType = {
   silder: PropTypes.array.isRequired,
@@ -14,12 +15,11 @@ function Carousels({ silder, className }) {
     const url = item.props.children[0].props.href;
     window.location.href = url;
   };
-
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
         <section className=" banner-heading-1 home next-shadow">
-          <div className={className} style={{ boxShadow: '0px 2px 26px 0px rgba(0,0,0,0.09)' }}>
+          <div className={className}>
             <Carousel
               showThumbs={false}
               showStatus={false}
@@ -33,7 +33,7 @@ function Carousels({ silder, className }) {
                   <a href={item.url === undefined ? '#' : item.url}>
                     <img src={item.image} alt="icon" />
                   </a>
-                  <div className={`divtext ${item.options}`}>
+                  <div className={`divtext text-${item.options}-mg`}>
                     {ReactHtmlParser(item.note_1)}
                     {ReactHtmlParser(item.note_2)}
                     <div className="text_content3">{item.note_3}</div>

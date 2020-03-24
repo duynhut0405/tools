@@ -112,7 +112,7 @@ function Repeat({ data, type, id }) {
           <div className="row grid-space-20 list-item ">
             {map(listTable, (item, index) => (
               <React.Fragment>
-                <div className="col-md-6 col-sm-6 col-lg-3" key={index}>
+                <div className="col-md-3 col-sm-3 col-lg-3" key={index}>
                   <div className="widget-default">
                     <h4 className="widget-title">{item.header}</h4>
                     <div className="widget-content entry-content">

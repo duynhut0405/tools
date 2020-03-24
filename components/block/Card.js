@@ -209,10 +209,11 @@ function Card({ data, type }) {
               <div className="entry-head text-center">
                 <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
               </div>
-              <p className="text-center fs16">{ReactHtmlParser(data.note_1)}</p>
+              <p className="text-center fs16">{ReactHtmlParser(data.listCard[0].note_1)}</p>
               <br />
               <br />
               <br />
+              <div className="hr"></div>
               <div className="max950">
                 <div className="timeline ">
                   {map(data.listCard, (items, index) => {
