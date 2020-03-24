@@ -23,8 +23,6 @@ function Pages({ data, type, id }) {
       setListPage(res.data);
     }
   };
-  console.log(listPage);
-  console.log(data);
   const responsiveTwo = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
