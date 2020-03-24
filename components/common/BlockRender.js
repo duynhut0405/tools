@@ -85,7 +85,14 @@ function BlockRender({ data }) {
                 return <MiniTab id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Card' && values.content !== null) {
-                return <Card id={values.id} data={JSON.parse(values.content)} key={index} />;
+                return (
+                  <Card
+                    id={values.id}
+                    data={JSON.parse(values.content)}
+                    key={index}
+                    type={JSON.parse(values.content).type}
+                  />
+                );
               }
               if (values.name === 'Table' && values.content !== null) {
                 return (

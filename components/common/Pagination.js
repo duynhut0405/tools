@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   page: PropTypes.number,
-  setPage: PropTypes.func
+  setPage: PropTypes.func,
+  size: PropTypes.number
 };
 
-function Pagination({ page, setPage }) {
+function Pagination({ setPage, size }) {
   return (
     <div className="page pb-3">
       <ReactPaginate
@@ -15,7 +16,7 @@ function Pagination({ page, setPage }) {
         nextLabel={<i className="icon-arrow-2"></i>}
         breakLabel={'...'}
         breakLinkClassName="page-numbers"
-        pageCount={page}
+        pageCount={size || 1}
         containerClassName="page-numbers"
         previousLinkClassName="prev page-numbers"
         nextLinkClassName="next page-numbers"

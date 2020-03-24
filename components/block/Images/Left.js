@@ -30,7 +30,7 @@ function ImageLeft({ items }) {
             )} */}
             {!active && (
               <div
-                className="single_video  tRes_16_9 max750"
+                className={items.video_url ? 'single_video  tRes_16_9 max750' : ''}
                 data-id="2UrWPUAr68A"
                 data-video="autoplay=1&amp;controls=1&amp;mute=0"
               >
@@ -41,7 +41,23 @@ function ImageLeft({ items }) {
                   src={items.image}
                   alt=""
                 />
-                <span
+                {items.video_url !== undefined && (
+                  <span
+                    className="btnvideo"
+                    onClick={() => {
+                      setActive(!active);
+                    }}
+                  >
+                    {items.video_url !== undefined ||
+                    items.video_url !== '' ||
+                    items.video_url !== null ? (
+                      <i className="icon-play"></i>
+                    ) : (
+                      ''
+                    )}
+                  </span>
+                )}
+                {/* <span
                   className="btnvideo"
                   onClick={() => {
                     if (items.text_action === undefined || items.text_action === '') {
@@ -49,8 +65,14 @@ function ImageLeft({ items }) {
                     }
                   }}
                 >
-                  <i className="icon-play"></i>
-                </span>
+                  {items.video_url !== undefined ||
+                  items.video_url !== '' ||
+                  items.video_url !== null ? (
+                    <i className="icon-play"></i>
+                  ) : (
+                    ''
+                  )}
+                </span> */}
               </div>
             )}
             {active && (

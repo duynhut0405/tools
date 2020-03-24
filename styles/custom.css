@@ -861,10 +861,6 @@ button.vib-v2-btn-dk02 {
   font-size: 32px;
   font-weight: bold;
 }
-.divtext {
-  text-align: left;
-  padding-left: 50px;
-}
 @media only screen and (min-width: 768px) {
   .sec-cong-cu .result .divtext {
     position: absolute;
@@ -1070,7 +1066,6 @@ img {
 h2,
 .h2 {
   font-size: 24px;
-  text-transform: uppercase;
 }
 .row.center {
   -webkit-box-align: center;
@@ -1393,14 +1388,13 @@ sec-ab-4 .t1 {
 .table-card th:not(:last-child) {
   border-right: 3px solid #fff;
 }
-.table-card td {
+.table-cen td {
   text-align: center;
 }
 .table-full td {
   height: 90px;
   border-top: 2px solid #fff;
 }
-
 .accodion-3 .accodion-tab > [class*='-title'] {
   padding: 25px 25px 25px 56px;
   font-weight: 600;
@@ -1546,4 +1540,12 @@ input[type='number'] {
   .form-vay-von .inner .row .title {
     padding-top: 8px;
   }
+}
+.sec-padding {
+  padding-bottom: 0;
+}
+.accodion-tab > input:checked ~ [class*='-content'] {
+  max-height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
