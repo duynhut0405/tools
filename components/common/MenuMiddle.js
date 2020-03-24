@@ -13,7 +13,7 @@ function MenuMiddle({ data, query }) {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 8
+      items: 6
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -37,7 +37,7 @@ function MenuMiddle({ data, query }) {
             </h1>
           </div>
           <div className="menuicon container">
-            {data.menuItems !== undefined && data.menuItems.length >= 8 && (
+            {data.menuItems !== undefined && data.menuItems.length >= 6 && (
               <Carousel
                 responsive={responsive}
                 draggable
@@ -68,7 +68,7 @@ function MenuMiddle({ data, query }) {
                 )}
               </Carousel>
             )}
-            {data.menuItems !== undefined && data.menuItems.length < 8 && (
+            {data.menuItems !== undefined && data.menuItems.length < 6 && (
               <div className="list-menu-middle">
                 {map(
                   data.menuItems.sort((a, b) => a.position - b.position),
