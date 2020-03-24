@@ -171,6 +171,7 @@ function MenuIntro({ data, type }) {
   //   );
   // }
   // if (type === '2') {
+  console.log(data.title);
   return (
     <React.Fragment>
       <section className=" sec-menu">
@@ -192,7 +193,7 @@ function MenuIntro({ data, type }) {
           <div className="row list-item ">
             <div className="col-lg-8">
               <div className="boxwidget">
-                <h2 className="widget-title">{data.title}</h2>
+                <h2 className="widget-title">{ReactHtmlParser(data.title)}</h2>
                 {ReactHtmlParser(data.descriptionTop)}
               </div>
               <div className="boxwidget-2">
