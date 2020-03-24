@@ -9,7 +9,6 @@ const propTypes = {
 };
 
 function Pagination({ setPage, size }) {
-  console.log(size);
   return (
     <div className="page pb-3">
       <ReactPaginate
