@@ -1387,7 +1387,7 @@ sec-ab-4 .t1 {
 .table-card th:not(:last-child) {
   border-right: 3px solid #fff;
 }
-.table-card td {
+.table-cen td {
   text-align: center;
 }
 .table-full td {
