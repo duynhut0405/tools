@@ -8,7 +8,7 @@ const propTypes = {
   data: PropTypes.array
 };
 
-function Card({ data }) {
+function Card({ data, type }) {
   const [refCarousel, setRefCarousel] = useState(null);
   const [refCarouselTwo, setRefCarouselTwo] = useState(null);
   const [refCarouselThree, setRefCarouselThree] = useState(null);
@@ -41,17 +41,18 @@ function Card({ data }) {
       items: 1
     }
   };
+  console.log(data);
   return (
     <React.Fragment>
-      {data[0].type === '1' && (
+      {type === '1' && (
         <React.Fragment>
           <section className="sec-tb bg-gray">
             <div className="container">
               <div className="entry-head ">
-                <h2 className="ht efch-1 ef-img-l">{data[0].title}</h2>
+                <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
               </div>
               <div className="list-10 row list-item">
-                {map(data, (items, index) => {
+                {map(data.listCard, (items, index) => {
                   return (
                     <div className="col-sm-6" key={index}>
                       <a href="#" className={`item item-${index + 1} tRes_55`}>
@@ -70,12 +71,12 @@ function Card({ data }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '2' && (
+      {type === '2' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-2 group-ef loaded">
             <div className="container">
               <div className="entry-head text-left">
-                <h2 className="ht">{data[0].title || ''}</h2>
+                <h2 className="ht">{data.title || ''}</h2>
               </div>
               <div className="sec-b">
                 <div className="menuicon owl-carousel s-nav nav-2 owl-loaded owl-drag">
@@ -93,7 +94,7 @@ function Card({ data }) {
                           setRefCarousel(ref);
                         }}
                       >
-                        {map(data, (items, index) => (
+                        {map(data.listCard, (items, index) => (
                           <div className="item ef-img-t item_carousel" key={index}>
                             <a
                               href="#"
@@ -149,12 +150,12 @@ function Card({ data }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '3' && (
+      {type === '3' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
             <div className="container">
               <div className="row equalHeight list-item">
-                {map(data, (items, index) => {
+                {map(data.listCard, (items, index) => {
                   return (
                     <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
                       <div className="item">
@@ -175,12 +176,12 @@ function Card({ data }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '4' && (
+      {type === '4' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
             <div className="container">
               <div className="row equalHeight list-item">
-                {map(data, (items, index) => {
+                {map(data.listCard, (items, index) => {
                   return (
                     <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
                       <div className="item">
@@ -204,20 +205,20 @@ function Card({ data }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '5' && (
+      {type === '5' && (
         <React.Fragment>
           <section className="sec-tb ">
             <div className="container">
               <div className="entry-head text-center">
-                <h2 className="ht efch-1 ef-img-l">{data[0].title}</h2>
+                <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
               </div>
-              <p className="text-center fs16">{ReactHtmlParser(data[0].note_1)}</p>
+              <p className="text-center fs16">{ReactHtmlParser(data.note_1)}</p>
               <br />
               <br />
               <br />
               <div className="max950">
                 <div className="timeline ">
-                  {map(data, (items, index) => {
+                  {map(data.listCard, (items, index) => {
                     return (
                       <div
                         className={`group-ef loaded  item item-${
@@ -251,91 +252,123 @@ function Card({ data }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '6' && (
+      {type === '6' && (
         <React.Fragment>
           <section className="sec-tb sec-ab-4 ">
             <div className="container">
               <div className="entry-head ">
-                {data[0].title && <h2 className="ht efch-1 ef-img-l">{data[0].title}</h2>}
+                {data.title && (
+                  <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
+                )}
               </div>
               <div className="  row grid-space-20 ">
-                {data[0] && (
+                {data.listCard[0] ? (
                   <div className="col-lg-8 col-sm-12  ">
                     <div className="item item-1  ">
                       <div className="img tRes_92">
-                        <img className="loaded loaded" data-lazy-type="image" src={data[0].image} />
+                        <img
+                          className="loaded loaded"
+                          data-lazy-type="image"
+                          src={data.listCard[0].image}
+                        />
                       </div>
                       <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data[0].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data[0].note_2)}</div>
+                        <div className="t1">{ReactHtmlParser(data.listCard[0].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data.listCard[0].note_2)}</div>
                       </div>
                     </div>
                   </div>
+                ) : (
+                  ''
                 )}
-                {data[1] && (
+                {data.listCard[1] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
-                        <img className="loaded loaded" data-lazy-type="image" src={data[1].image} />
+                        <img
+                          className="loaded loaded"
+                          data-lazy-type="image"
+                          src={data.listCard[1].image}
+                        />
                       </div>
                       <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data[1].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data[1].note_2)}</div>
+                        <div className="t1">{ReactHtmlParser(data.listCard[1].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data.listCard[1].note_2)}</div>
                       </div>
                     </div>
                   </div>
+                ) : (
+                  ''
                 )}
-                {data[2] && (
+                {data.listCard[2] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
-                        <img className="loaded loaded" data-lazy-type="image" src={data[2].image} />
+                        <img
+                          className="loaded loaded"
+                          data-lazy-type="image"
+                          src={data.listCard[2].image}
+                        />
                       </div>
                       <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data[2].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data[2].note_2)}</div>
+                        <div className="t1">{ReactHtmlParser(data.listCard[2].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data.listCard[2].note_2)}</div>
                       </div>
                     </div>
                   </div>
+                ) : (
+                  ''
                 )}
-                {data[3] && (
+                {data.listCard[3] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
-                        <img className="loaded loaded" data-lazy-type="image" src={data[3].image} />
+                        <img
+                          className="loaded loaded"
+                          data-lazy-type="image"
+                          src={data.listCard[3].image}
+                        />
                       </div>
                       <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data[3].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data[3].note_2)}</div>
+                        <div className="t1">{ReactHtmlParser(data.listCard[3].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data.listCard[3].note_2)}</div>
                       </div>
                     </div>
                   </div>
+                ) : (
+                  ''
                 )}
-                {data[4] && (
+                {data.listCard[4] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
-                        <img className="loaded loaded" data-lazy-type="image" src={data[4].image} />
+                        <img
+                          className="loaded loaded"
+                          data-lazy-type="image"
+                          src={data.listCard[4].image}
+                        />
                       </div>
                       <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data[4].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data[4].note_2)}</div>
+                        <div className="t1">{ReactHtmlParser(data.listCard[4].note_1)}</div>
+                        <div className="t2">{ReactHtmlParser(data.listCard[4].note_2)}</div>
                       </div>
                     </div>
                   </div>
+                ) : (
+                  ''
                 )}
               </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '7' && (
+      {type === '7' && (
         <React.Fragment>
           <div className="sec-b sec-img-svg-4">
             <div className="container">
-              <h2 className="ht">{data[0].title}</h2>
+              <h2 className="ht">{data === null ? '' : data.title}</h2>
               <div className="row list-item">
-                {map(data, (items, index) => {
+                {map(data.listCard, (items, index) => {
                   return (
                     <div className="col-sm-4 efch-2 ef-img-t ">
                       <a className="item" href={items.url}>
@@ -354,18 +387,18 @@ function Card({ data }) {
           </div>
         </React.Fragment>
       )}
-      {data[0].type === '8' && (
+      {type === '8' && (
         <React.Fragment>
           <section className=" sec-b sec-cauhoi ">
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht ">{data[0].title}</h2>
+                <h2 className="ht ">{data === null ? '' : data.title}</h2>
               </div>
               <div className="accodion accodion-1">
                 <div className="accodion-tab ">
                   <input type="checkbox" checked={active} />
                   <label className="accodion-title" onClick={() => setActive(!active)}>
-                    <span>{data[0].description}</span>
+                    <span>{data.description}</span>
                     <span className="triangle">
                       <i className="icon-plus"></i>
                     </span>
@@ -386,15 +419,15 @@ function Card({ data }) {
                               setRefCarouselTwo(ref);
                             }}
                           >
-                            {map(data, (items, index) => (
+                            {map(data.listCard, (items, index) => (
                               <div className="item ef-img-t item_carousel" key={index}>
                                 <a href={items.url} className="link">
                                   <div className="img">
                                     <img src={items.image} />
                                   </div>
                                   <div className="divtext">
-                                    <h4 className="title line2">{data[0].note_1}</h4>
-                                    <div className="desc line2 cl3">{data[0].note_2}</div>
+                                    <h4 className="title line2">{items.note_1}</h4>
+                                    <div className="desc line2 cl3">{items.note_2}</div>
                                   </div>
                                 </a>
                               </div>
@@ -429,12 +462,12 @@ function Card({ data }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '9' && (
+      {type === '9' && (
         <React.Fragment>
           <section className="sec-b sec-img-svg-2 group-ef loaded">
             <div className="container">
               <div className="row list-item">
-                {map(data, (items, index) => {
+                {map(data.listCard, (items, index) => {
                   return (
                     <div className="col-sm-4 efch-2 ef-img-t ">
                       <a className="item" href="#" style={{ padding: '40px 10px' }}>
@@ -453,12 +486,12 @@ function Card({ data }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '10' && (
+      {type === '10' && (
         <React.Fragment>
           <section className=" sec-b sec-cauhoi ">
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht ">{data[0].title}</h2>
+                <h2 className="ht ">{data === null ? '' : data.title}</h2>
               </div>
               <div className="accodion-content entry-content">
                 <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
@@ -476,15 +509,15 @@ function Card({ data }) {
                           setRefCarouselThree(ref);
                         }}
                       >
-                        {map(data, (items, index) => (
+                        {map(data.listCard, (items, index) => (
                           <div className="item ef-img-t item_carousel" key={index}>
                             <a href={items.url} className="link">
                               <div className="img">
                                 <img src={items.image} />
                               </div>
                               <div className="divtext">
-                                <h4 className="title line2">{data[0].note_1}</h4>
-                                <div className="desc line2 cl3">{data[0].note_2}</div>
+                                <h4 className="title line2">{items.note_1}</h4>
+                                <div className="desc line2 cl3">{items.note_2}</div>
                               </div>
                             </a>
                           </div>
