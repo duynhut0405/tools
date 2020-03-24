@@ -1394,3 +1394,6 @@ sec-ab-4 .t1 {
   height: 90px;
   border-top: 2px solid #fff;
 }
+.sec-padding {
+  padding-bottom: 0;
+}
