@@ -77,7 +77,7 @@ function ImageRight({ items }) {
                   }}
                   href={items.url}
                 >
-                  Hướng dẫn đăng ký >>
+                  {items.link}
                 </a>
               )}
               {items.text_action === undefined || items.text_action === '' ? (
