@@ -35,7 +35,6 @@ function Pages({ data, type, id }) {
       items: 1
     }
   };
-  console.log(listPage);
   useEffect(() => {
     getPageBlock();
   }, []);
