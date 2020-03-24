@@ -204,7 +204,7 @@ function Pages({ data, type, id }) {
                       <div className="item ef-img-t item_carousel" key={index}>
                         <a href={items.url} className="link">
                           <div className="img">
-                            <img src={items.baseImage} style={{ height: '334px' }} />
+                            <img src={items.baseImage} />
                           </div>
                           <div className="divtext">
                             <h4 className="title line2">{items.name}</h4>
