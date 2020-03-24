@@ -25,17 +25,17 @@ function TablePayment({ data }) {
               <div className="inner">
                 {ReactHtmlParser(data[0].description)}
                 <h3 className="cl7">{data[0].note_2}</h3>
-                {map(data, (items, index) => {
-                  return (
-                    <div className="table-responsive">
-                      <table className="table table-full table-card">
-                        <tbody>
-                          <tr>
-                            <th>Nhãn hàng</th>
-                            <th>Kỳ hạn</th>
-                            <th>Địa chỉ áp dụng</th>
-                            <th>Sản phẩm áp dụng</th>
-                          </tr>
+                <div className="table-responsive">
+                  <table className="table table-full table-card">
+                    <tbody>
+                      <tr>
+                        <th>Nhãn hàng</th>
+                        <th>Kỳ hạn</th>
+                        <th>Địa chỉ áp dụng</th>
+                        <th>Sản phẩm áp dụng</th>
+                      </tr>
+                      <React.Fragment>
+                        {map(data, (items, index) => (
                           <tr>
                             <td>
                               <img
@@ -54,11 +54,11 @@ function TablePayment({ data }) {
                             <td>{items.location}</td>
                             <td>{items.applicable_products}</td>
                           </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  );
-                })}
+                        ))}
+                      </React.Fragment>
+                    </tbody>
+                  </table>
+                </div>
                 <div className="pages">
                   <ul className="page-numbers">
                     <li>
