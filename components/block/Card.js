@@ -41,7 +41,6 @@ function Card({ data, type }) {
       items: 1
     }
   };
-  console.log(data);
   return (
     <React.Fragment>
       {type === '1' && (
