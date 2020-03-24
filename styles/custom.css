@@ -1095,7 +1095,6 @@ h2,
   border-radius: 100%;
   position: absolute;
   top: 26px;
-  left: -11px;
 }
 .timeline .item .circle1 {
   width: 22px;
@@ -1601,4 +1600,8 @@ div.hr {
 .viewall{
   font-weight: bold;
   font-size: 17px;
+}
+.entry-content p {
+    font-size: 16px;
+    margin: 0 0 20px;
 }
