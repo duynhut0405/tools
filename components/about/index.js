@@ -30,7 +30,7 @@ function About({ data, listNews, getNews }) {
     if (data.category.value) {
       getNews(data.category.value, page, data.record, year);
     }
-  }, [year]);
+  }, [year, page]);
 
   return (
     <>
@@ -71,7 +71,7 @@ function About({ data, listNews, getNews }) {
               );
             })}
           </div>
-          <Pagination setPage={setPage} page={page} />
+          <Pagination setPage={setPage} page={page} size={listNews.size} />
         </div>
       </main>
     </>
