@@ -160,7 +160,7 @@ function Pages({ data, type, id }) {
           <ul className="cols-2 link2">
             {map(listPage, (values, index) => (
               <li key={index}>
-                <a href={`/page/${values.url}`}>{values.name}</a>
+                <a href={`/page/${values.slug}`}>{values.name}</a>
               </li>
             ))}
           </ul>
@@ -200,7 +200,7 @@ function Pages({ data, type, id }) {
                   >
                     {map(listPage, (items, index) => (
                       <div className="item ef-img-t item_carousel" key={index}>
-                        <a href={items.url} className="link">
+                        <a href={`/page/${items.slug}`} className="link">
                           <div className="img">
                             <img src={items.baseImage} />
                           </div>

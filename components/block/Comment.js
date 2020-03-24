@@ -3,6 +3,7 @@ import { map } from 'lodash';
 import Proptypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 import ReactHtmlParser from 'react-html-parser';
+import CommentItem from './CommentItem';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -70,7 +71,7 @@ function Comment({ data, id }) {
                           <div className="cl6">{item.note_2}</div>
                         </div>
                       </div>
-                      <div className="desc">{ReactHtmlParser(item.content)}</div>
+                      <CommentItem data={item.content} />
                     </div>
                   </div>
                 ))}
