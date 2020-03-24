@@ -26,7 +26,7 @@ function TablePayment({ data }) {
                 {ReactHtmlParser(data[0].description)}
                 <h3 className="cl7">{data[0].note_2}</h3>
                 <div className="table-responsive">
-                  <table className="table table-full table-card table-cen">
+                  <table className="table-full table-card table-cen">
                     <tbody>
                       <tr>
                         <th>Nhãn hàng</th>
