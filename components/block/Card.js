@@ -10,9 +10,7 @@ const propTypes = {
 
 function Card({ data, type }) {
   const [refCarousel, setRefCarousel] = useState(null);
-  const [refCarouselTwo, setRefCarouselTwo] = useState(null);
   const [refCarouselThree, setRefCarouselThree] = useState(null);
-  const [active, setActive] = useState(false);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -386,81 +384,7 @@ function Card({ data, type }) {
           </div>
         </React.Fragment>
       )}
-      {type === '8' && (
-        <React.Fragment>
-          <section className=" sec-b sec-cauhoi ">
-            <div className="container">
-              <div className="entry-head">
-                <h2 className="ht ">{data === null ? '' : data.title}</h2>
-              </div>
-              <div className="accodion accodion-1">
-                <div className="accodion-tab ">
-                  <input type="checkbox" checked={active} />
-                  <label className="accodion-title" onClick={() => setActive(!active)}>
-                    <span>{data.description}</span>
-                    <span className="triangle">
-                      <i className="icon-plus"></i>
-                    </span>
-                  </label>
-                  <div className="accodion-content entry-content">
-                    <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
-                      <div className="owl-stage-outer">
-                        <div className="owl-stage">
-                          <Carousel
-                            responsive={responsiveTwo}
-                            draggable
-                            minimumTouchDrag={80}
-                            ssr={true} // means to render carousel on server-side.
-                            infinite={true}
-                            keyBoardControl={true}
-                            arrows={false}
-                            ref={ref => {
-                              setRefCarouselTwo(ref);
-                            }}
-                          >
-                            {map(data.listCard, (items, index) => (
-                              <div className="item ef-img-t item_carousel" key={index}>
-                                <a href={items.url} className="link">
-                                  <div className="img">
-                                    <img src={items.image} />
-                                  </div>
-                                  <div className="divtext">
-                                    <h4 className="title line2">{items.note_1}</h4>
-                                    <div className="desc line2 cl3">{items.note_2}</div>
-                                  </div>
-                                </a>
-                              </div>
-                            ))}
-                          </Carousel>
-                        </div>
-                      </div>
-                      <div className="owl-nav">
-                        <div
-                          className="owl-prev disabled"
-                          onClick={() => {
-                            refCarouselTwo.previous();
-                          }}
-                        >
-                          <i className="icon-arrow-1 ix"></i>
-                        </div>
-                        <div
-                          className="owl-next"
-                          onClick={() => {
-                            refCarouselTwo.next();
-                          }}
-                        >
-                          <i className="icon-arrow-1"></i>
-                        </div>
-                      </div>
-                      <div className="owl-dots disabled"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </React.Fragment>
-      )}
+      
       {type === '9' && (
         <React.Fragment>
           <section className="sec-b sec-img-svg-2 group-ef loaded">
