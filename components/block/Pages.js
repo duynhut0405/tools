@@ -185,9 +185,7 @@ function Pages({ data, type, id }) {
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
           </div>
           <div className="accodion-content entry-content">
-            <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
-              <div className="owl-stage-outer">
-                <div className="owl-stage">
+
                   <Carousel
                     responsive={responsiveTwo}
                     draggable
@@ -195,7 +193,8 @@ function Pages({ data, type, id }) {
                     ssr={true} // means to render carousel on server-side.
                     infinite={true}
                     keyBoardControl={true}
-                    arrows={false}
+                    className="list-5"
+                    arrows={true}
                     ref={ref => {
                       setRefCarouselThree(ref);
                     }}
@@ -214,27 +213,7 @@ function Pages({ data, type, id }) {
                       </div>
                     ))}
                   </Carousel>
-                </div>
-              </div>
-              <div className="owl-nav">
-                <div
-                  className="owl-prev disabled"
-                  onClick={() => {
-                    refCarouselThree.previous();
-                  }}
-                >
-                  <i className="icon-arrow-1 ix"></i>
-                </div>
-                <div
-                  className="owl-next"
-                  onClick={() => {
-                    refCarouselThree.next();
-                  }}
-                >
-                  <i className="icon-arrow-1"></i>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
@@ -257,9 +236,7 @@ function Pages({ data, type, id }) {
                 </span>
               </label>
               <div className="accodion-content entry-content">
-                <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
-                  <div className="owl-stage-outer">
-                    <div className="owl-stage">
+
                       <Carousel
                         responsive={responsiveTwo}
                         draggable
@@ -267,7 +244,8 @@ function Pages({ data, type, id }) {
                         ssr={true} // means to render carousel on server-side.
                         infinite={true}
                         keyBoardControl={true}
-                        arrows={false}
+                        className="list-5"
+                        arrows={true}
                         ref={ref => {
                           setRefCarouselTwo(ref);
                         }}
@@ -286,28 +264,7 @@ function Pages({ data, type, id }) {
                           </div>
                         ))}
                       </Carousel>
-                    </div>
-                  </div>
-                  <div className="owl-nav">
-                    <div
-                      className="owl-prev disabled"
-                      onClick={() => {
-                        refCarouselTwo.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="owl-next"
-                      onClick={() => {
-                        refCarouselTwo.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
-                    </div>
-                  </div>
-                  <div className="owl-dots disabled"></div>
-                </div>
+
               </div>
             </div>
           </div>

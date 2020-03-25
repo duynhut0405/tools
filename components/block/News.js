@@ -169,9 +169,7 @@ function News({ data, type, id }) {
               </a>
             </div>
           )}
-          <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
-            <div className="owl-stage-outer">
-              <div className="owl-stage">
+
                 <Carousel
                   responsive={responsive}
                   draggable
@@ -179,19 +177,20 @@ function News({ data, type, id }) {
                   ssr={true} // means to render carousel on server-side.
                   infinite={true}
                   keyBoardControl={true}
-                  arrows={false}
+                  arrows={true}
                   renderButtonGroupOutside={true}
+                  className="list-5"
                   ref={ref => {
                     setRefCarousel(ref);
                   }}
                 >
                   {map(listCategory, (item, index) => (
-                    <div className="owl-item" key={index}>
+                    <div className="slide-item" key={index}>
                       <a
                         href={`/news/${item.url}`}
-                        className={`item efch-${index} ef-img-l equal`}
+                        className={`item efch-${index} ef-img-l `}
                         key={index}
-                        style={{ height: '300px', width: '262px' }}
+                        //style={{ height: '300px', width: '262px' }}
                       >
                         <div className="img tRes_71">
                           <img
@@ -213,27 +212,7 @@ function News({ data, type, id }) {
                     </div>
                   ))}
                 </Carousel>
-              </div>
-            </div>
-            <div className="owl-nav">
-              <div
-                className="owl-prev disabled"
-                onClick={() => {
-                  refCarousel.previous();
-                }}
-              >
-                <i className="icon-arrow-1 ix"></i>
-              </div>
-              <div
-                className="owl-next"
-                onClick={() => {
-                  refCarousel.next();
-                }}
-              >
-                <i className="icon-arrow-1"></i>
-              </div>
-            </div>
-          </div>
+
         </div>
       </section>
     );

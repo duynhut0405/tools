@@ -1,0 +1,6 @@
+/* Edit by Mango */
+.sec-tigia .divquidoi .input-group .input-group-addon > i { display: none;}
+#panel + div  {
+  position: relative; z-index: 1000;
+}
+/* End edit*/
