@@ -21,11 +21,11 @@ function QuestionItems({ question, answer }) {
       </label>
       <div className="accodion-content entry-content">
         <div className="inner">
-          <section className=" sec-tb ">
-            <div className="container">
-              <div className="table-responsive table table-full">{ReactHtmlParser(answer)}</div>
-            </div>
-          </section>
+          {/* <section className=" sec-tb ">
+            <div className="container"> */}
+          <div className="">{ReactHtmlParser(answer)}</div>
+          {/* </div>
+          </section> */}
         </div>
       </div>
     </div>
