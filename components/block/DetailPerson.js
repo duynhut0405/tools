@@ -22,8 +22,8 @@ function DetailPerson({ data, detailPerson, getDetailPerson }) {
           <h2 className="text-center h1">{data.title}</h2>
           <div className="list-8 row list-item">
             {map(data.listDetail, (item, index) => (
-              <React.Fragment>
-                <div className="col-md-3" key={index}>
+              <React.Fragment key={index}>
+                <div className="col-md-3">
                   <a
                     onClick={() => {
                       setModal(!modal);

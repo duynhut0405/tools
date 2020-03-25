@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 
 const propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.any,
   type: PropTypes.string
 };
 
@@ -78,49 +78,46 @@ function Card({ data, type }) {
                 <h2 className="ht">{data.title || ''}</h2>
               </div>
               <div className="sec-b">
-                      <Carousel
-                        responsive={responsive}
-                        draggable
-                        minimumTouchDrag={80}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        keyBoardControl={true}
-                        arrows={true}
-                        className="menuicon"
-                        ref={ref => {
-                          setRefCarousel(ref);
-                        }}
+                <Carousel
+                  responsive={responsive}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
+                  arrows={true}
+                  className="menuicon"
+                  ref={ref => {
+                    setRefCarousel(ref);
+                  }}
+                >
+                  {map(data.listCard, (items, index) => (
+                    <div className="item ef-img-t item_carousel" key={index}>
+                      <a
+                        href="#"
+                        className="link"
+                        style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                       >
-                        {map(data.listCard, (items, index) => (
-                          <div className="item ef-img-t item_carousel" key={index}>
-                            <a
-                              href="#"
-                              className="link"
-                              style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
-                            >
-                              <div
-                                className="img"
-                                style={{ textAlign: 'left', paddingLeft: '20px' }}
-                              >
-                                <img src={items.image} className="loaded loaded" />
-                              </div>
-                              <div className="divtext" style={{ paddingLeft: '20px' }}>
-                                <h3
-                                  className="title"
-                                  style={{
-                                    textAlign: 'left',
-                                    color: 'initial',
-                                    fontWeight: 'bold',
-                                    display: 'block'
-                                  }}
-                                >
-                                  {ReactHtmlParser(items.note_1)}
-                                </h3>
-                              </div>
-                            </a>
-                          </div>
-                        ))}
-                      </Carousel>
+                        <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
+                          <img src={items.image} className="loaded loaded" />
+                        </div>
+                        <div className="divtext" style={{ paddingLeft: '20px' }}>
+                          <h3
+                            className="title"
+                            style={{
+                              textAlign: 'left',
+                              color: 'initial',
+                              fontWeight: 'bold',
+                              display: 'block'
+                            }}
+                          >
+                            {ReactHtmlParser(items.note_1)}
+                          </h3>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </Carousel>
               </div>
             </div>
           </section>
@@ -201,6 +198,7 @@ function Card({ data, type }) {
                         className={`group-ef loaded  item item-${
                           (index + 1) % 2 === 0 ? '2' : '1'
                         }`}
+                        key={index}
                       >
                         <div
                           className={`row grid-space-80 center ${
@@ -397,35 +395,33 @@ function Card({ data, type }) {
                 <h2 className="ht ">{data === null ? '' : data.title}</h2>
               </div>
               <div className="accodion-content entry-content">
-
-                      <Carousel
-                        responsive={responsiveTwo}
-                        draggable
-                        minimumTouchDrag={80}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        keyBoardControl={true}
-                        className="list-5"
-                        arrows={true}
-                        ref={ref => {
-                          setRefCarouselThree(ref);
-                        }}
-                      >
-                        {map(data.listCard, (items, index) => (
-                          <div className="item ef-img-t item_carousel" key={index}>
-                            <a href={items.url} className="link">
-                              <div className="img">
-                                <img src={items.image} />
-                              </div>
-                              <div className="divtext">
-                                <h4 className="title line2">{items.note_1}</h4>
-                                <div className="desc line2 cl3">{items.note_2}</div>
-                              </div>
-                            </a>
-                          </div>
-                        ))}
-                      </Carousel>
-
+                <Carousel
+                  responsive={responsiveTwo}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
+                  className="list-5"
+                  arrows={true}
+                  ref={ref => {
+                    setRefCarouselThree(ref);
+                  }}
+                >
+                  {map(data.listCard, (items, index) => (
+                    <div className="item ef-img-t item_carousel" key={index}>
+                      <a href={items.url} className="link">
+                        <div className="img">
+                          <img src={items.image} />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title line2">{items.note_1}</h4>
+                          <div className="desc line2 cl3">{items.note_2}</div>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </Carousel>
               </div>
             </div>
           </section>
