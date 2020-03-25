@@ -1,6 +1,7 @@
 import React from 'react';
 import { rate } from '../../../utils/currency';
 import Proptypes from 'prop-types';
+import { withTranslation } from '../../../i18n';
 
 const propTypes = {
   title: Proptypes.string,
@@ -10,7 +11,8 @@ const propTypes = {
   monthlyInterest: Proptypes.number,
   monthlypayment: Proptypes.number,
   totalAmount: Proptypes.number,
-  month: Proptypes.string
+  month: Proptypes.string,
+  t: Proptypes.func
 };
 
 function Result({
@@ -21,14 +23,15 @@ function Result({
   month,
   monthlyInterest,
   monthlypayment,
-  totalAmount
+  totalAmount,
+  t
 }) {
   return (
     <div className="result th-result-js">
       <h3>{title}</h3>
       <div className="row">
         <div className="col-md-6">
-          <h5 className="title">Khoản vay:</h5>
+          <h5 className="title">{t('loan_amount')}</h5>
         </div>
         <div className="col-md-6">
           <span className="t2">{rate(amount)}</span>
@@ -38,7 +41,7 @@ function Result({
       {equity_capital && (
         <div className="row">
           <div className="col-md-6">
-            <h5 className="title">Vốn tự có:</h5>
+            <h5 className="title">{t('tool_result.equity_capital')}</h5>
           </div>
           <div className="col-md-6">
             <span className="t4">{rate(equity_capital)}</span>
@@ -48,15 +51,17 @@ function Result({
       )}
       <div className="row">
         <div className="col-md-6">
-          <h5 className="title">Kỳ hạn vay:</h5>
+          <h5 className="title">{t('tool_result.loan_term')}</h5>
         </div>
         <div className="col-md-6">
-          <span className="t5">{month} tháng</span>
+          <span className="t5">
+            {month} {t('month')}
+          </span>
         </div>
       </div>
       <div className="row">
         <div className="col-md-6">
-          <h5 className="title">Tiền lãi hàng tháng:</h5>
+          <h5 className="title">{t('tool_result.monthly_interest')}</h5>
         </div>
         <div className="col-md-6">
           <span className="t4">{rate(monthlyInterest)}</span>
@@ -65,7 +70,7 @@ function Result({
       </div>
       <div className="row">
         <div className="col-md-6">
-          <h5 className="title">Tiền gốc hàng tháng:</h5>
+          <h5 className="title">{t('tool_result.principal_monthly')}</h5>
         </div>
         <div className="col-md-6">
           <span className="t4">{rate(monthlypayment)}</span>
@@ -74,7 +79,7 @@ function Result({
       </div>
       <div className="total row">
         <div className="col-md-6">
-          <h5 className="title">Tổng tiền phải trả:</h5>
+          <h5 className="title">{t('tool_result.total_payment')}</h5>
         </div>
         <div className="col-md-6">
           <span className="t2">{rate(totalAmount)}</span>
@@ -87,4 +92,4 @@ function Result({
 
 Result.propTypes = propTypes;
 
-export default Result;
+export default withTranslation('common')(Result);

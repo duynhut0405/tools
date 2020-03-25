@@ -3,7 +3,6 @@ import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
-import { useTranslation } from 'react-i18next';
 // import { rate } from '../../../utils/currency';
 
 import Proptypes from 'prop-types';
@@ -11,10 +10,11 @@ import Proptypes from 'prop-types';
 const propTypes = {
   minValue: Proptypes.number,
   maxValue: Proptypes.number,
-  interest_rate: Proptypes.number
+  interest_rate: Proptypes.number,
+  t: Proptypes.func
 };
 
-function ConsumerLoansWithCollateral({ minValue, maxValue, interest_rate }) {
+function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate }) {
   const [loan_amount, setLoanAmount] = useState('0');
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
@@ -25,7 +25,6 @@ function ConsumerLoansWithCollateral({ minValue, maxValue, interest_rate }) {
   const [interest, setInterest] = useState(0);
   const [active, setActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
-  const { t } = useTranslation();
 
   const calculation = event => {
     event.preventDefault();
@@ -88,7 +87,7 @@ function ConsumerLoansWithCollateral({ minValue, maxValue, interest_rate }) {
 
   return (
     <div className="container sec-tb">
-      <h2 className="ht">Công cụ tính</h2>
+      <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">
           <div className="active">
@@ -124,12 +123,9 @@ function ConsumerLoansWithCollateral({ minValue, maxValue, interest_rate }) {
                     />
                   </div>
                 </div>
-                <p className="note">
-                  (*) Bảng tính chỉ mang tính tham khảo và không phải là cam kết về khoản vay của
-                  MBBank
-                </p>
+                <p className="note">{t('tool_note')}</p>
                 <a className="btn" onClick={calculation}>
-                  Xem bảng
+                  {t('show_table')}
                 </a>
               </div>
             </div>
@@ -149,10 +145,6 @@ function ConsumerLoansWithCollateral({ minValue, maxValue, interest_rate }) {
     </div>
   );
 }
-
-ConsumerLoansWithCollateral.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
 
 ConsumerLoansWithCollateral.propTypes = propTypes;
 

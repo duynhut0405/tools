@@ -41,6 +41,9 @@
     "total_momney": "Total momney (VNĐ)",
     "loan_amount": "Loan amount",
     "month": "month",
+    "show_table": "Show table",
+    "tool_note": "(*) The spreadsheet is for reference only and is not a commitment of MBBank's loan",
+    "tool": "Tool",
     "tool_home_option": {
         "estimate_rate": "Estimate the value of buying houses and projects",
         "estimate_mortgage": "Estimated value of collateral",
@@ -59,5 +62,22 @@
         "title": "Consumer loans with collaterals",
         "loan_amount": "Loan amount",
         "loan_term": "Loan term"
+    },
+    "tool_result": {
+        "loan_amount": "Loan amount:",
+        "equity_capital": "Equity capital:",
+        "monthly_interest": "Monthly interest",
+        "loan_term:": "Loan term:",
+        "principal_monthly:": "Principal monthly:",
+        "total_payment:": "Total payment:"
+    },
+    "tool_table": {
+        "title": "View monthly payment spreadsheet",
+        "total": "Total",
+        "repayment_period": "Repayment period",
+        "number_remains": "Number remains",
+        "origin": "Origin",
+        "interest": "Interest",
+        "total_amount": "Origin + Interest"
     }
 }

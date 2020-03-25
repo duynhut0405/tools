@@ -41,6 +41,9 @@
     "total_momney": "Tổng số tiền bạn có thể vay (VNĐ)",
     "loan_amount": "Khoản vay",
     "month": "tháng",
+    "show_table": "Xem bảng",
+    "tool_note": "(*) Bảng tính chỉ mang tính tham khảo và không phải là cam kết về khoản vay của MBBank",
+    "tool": "Công cụ tính",
     "tool_home_option": {
         "estimate_rate": "Ước tính giá trị mua nhà đất, dự án",
         "estimate_mortgage": "Ước tính giá trị tài sản thế chấp",
@@ -59,5 +62,22 @@
         "title": "Cho vay tiêu dùng có TSBĐ",
         "loan_amount": "Số tiền cho vay",
         "loan_term": "Kỳ hạn vay"
+    },
+    "tool_result": {
+        "loan_amount": "Khoản vay:",
+        "equity_capital": "Vốn tự có:",
+        "loan_term": "Kỳ hạn vay:",
+        "monthly_interest": "Tiền lãi hàng tháng:",
+        "principal_monthly": "Tiền gốc hàng tháng:",
+        "total_payment": "Tổng tiền phải trả:"
+    },
+    "tool_table": {
+        "title": "Xem bảng tính trả tiền hàng tháng",
+        "total": "Tổng",
+        "repayment_period": "Kỳ trả nợ",
+        "number_remains": "Số gốc còn lại",
+        "origin": "Gốc",
+        "interest": "Lãi",
+        "total_amount": "Tổng gốc + Lãi"
     }
 }

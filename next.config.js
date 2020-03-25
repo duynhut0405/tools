@@ -20,33 +20,42 @@ module.exports = withFonts(
         return config;
       },
       exportPathMap: async function() {
-        const res = await getRouer();
+        let router = [];
+        let newRouter = [];
+        let categoryRouter = [];
 
-        const router = res.data.reduce(
-          (pages, data) =>
-            Object.assign({}, pages, {
-              [`/page/${data.slug}`]: { page: '/page/[...name]' }
-            }),
-          {}
-        );
+        const res = await getRouer();
+        if (res && res !== undefined && res.status === 200) {
+          router = res.data.reduce(
+            (pages, data) =>
+              Object.assign({}, pages, {
+                [`/page/${data.slug}`]: { page: '/page/[...name]' }
+              }),
+            {}
+          );
+        }
 
         const newResponse = await getNewRouter();
-        const newRouter = newResponse.data.reduce(
-          (pages, data) =>
-            Object.assign({}, pages, {
-              [`/news/${data.url}`]: { page: '/news/[...slug]' }
-            }),
-          {}
-        );
+        if (newResponse && newResponse !== undefined && newResponse.status === 200) {
+          newRouter = newResponse.data.reduce(
+            (pages, data) =>
+              Object.assign({}, pages, {
+                [`/news/${data.url}`]: { page: '/news/[...slug]' }
+              }),
+            {}
+          );
+        }
 
         const categoryResponse = await getCategoryRouter();
-        const categoryRouter = categoryResponse.data.reduce(
-          (pages, category) =>
-            Object.assign({}, pages, {
-              [`/news/category/${category.slug}`]: { page: '/news/category/[...name]' }
-            }),
-          {}
-        );
+        if (categoryResponse && categoryResponse !== undefined && categoryResponse.status === 200) {
+          categoryRouter = categoryResponse.data.reduce(
+            (pages, category) =>
+              Object.assign({}, pages, {
+                [`/news/category/${category.slug}`]: { page: '/news/category/[...name]' }
+              }),
+            {}
+          );
+        }
 
         let pageRouter = Object.assign({}, router, {
           '/': { page: '/' }

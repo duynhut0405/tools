@@ -2,6 +2,7 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import { rate } from '../../../utils/currency';
 import map from 'lodash/map';
+import { withTranslation } from '../../../i18n';
 
 const propTypes = {
   active: Proptypes.bool,
@@ -9,17 +10,18 @@ const propTypes = {
   show_result: Proptypes.bool,
   setActive: Proptypes.func,
   sum: Proptypes.number,
-  interest: Proptypes.number
+  interest: Proptypes.number,
+  t: Proptypes.func
 };
 
-function Table({ active, setActive, data, show_result, sum, interest }) {
+function Table({ t, active, setActive, data, show_result, sum, interest }) {
   return (
     <div className="sec-b container">
       <div className="accodion accodion-3">
         <div className="accodion-tab ">
           <input type="checkbox" id="chck_1_1" checked={active} />
           <label className="accodion-title uppercase" onClick={setActive}>
-            <span> Xem bảng tính trả tiền hàng tháng</span>
+            <span>{t('tool_table.title')}</span>
             <span className="triangle">
               <i className="icon-plus"></i>
             </span>
@@ -30,11 +32,11 @@ function Table({ active, setActive, data, show_result, sum, interest }) {
                 <table className="table table-full">
                   <tbody>
                     <tr>
-                      <th colSpan="2">Kỳ trả nợ</th>
-                      <th>Số gốc còn lại</th>
-                      <th>Gốc</th>
-                      <th>Lãi</th>
-                      <th>Tổng gốc + Lãi</th>
+                      <th colSpan="2">{t('tool_table.repayment_period')}Kỳ trả nợ</th>
+                      <th>{t('tool_table.number_remains')}</th>
+                      <th>{t('tool_table.origin')}</th>
+                      <th>{t('tool_table.interest')}</th>
+                      <th>{t('tool_table.total_amount')}</th>
                     </tr>
                     {map(data, value => (
                       <tr key={value.interest_period}>
@@ -48,7 +50,7 @@ function Table({ active, setActive, data, show_result, sum, interest }) {
                     ))}
                     {show_result && (
                       <tr>
-                        <th colSpan="2">Tổng</th>
+                        <th colSpan="2">{t('tool_table.total')}</th>
                         <th></th>
                         <th>{rate(sum)}(VNĐ)</th>
                         <th>{rate(interest)}(VNĐ)</th>
@@ -68,4 +70,4 @@ function Table({ active, setActive, data, show_result, sum, interest }) {
 
 Table.propTypes = propTypes;
 
-export default Table;
+export default withTranslation('common')(Table);
