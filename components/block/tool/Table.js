@@ -52,7 +52,7 @@ function Table({ active, setActive, data, show_result, sum, interest }) {
                         <th></th>
                         <th>{rate(sum)}(VNĐ)</th>
                         <th>{rate(interest)}(VNĐ)</th>
-                        <th>{rate(sum + interest)}(VNĐ)</th>
+                        <th>{rate(Math.ceil(sum + interest))}(VNĐ)</th>
                       </tr>
                     )}
                   </tbody>

@@ -51,9 +51,7 @@ function Icon({ data, id }) {
                   <h2 className="ht">{data[0].title || ''}</h2>
                 </div>
                 <div className="sec-b">
-                  <div className="menuicon owl-carousel s-nav nav-2 owl-loaded owl-drag">
-                    <div className="owl-stage-outer">
-                      <div className="owl-stage">
+
                         <Carousel
                           responsive={responsive}
                           draggable
@@ -61,7 +59,8 @@ function Icon({ data, id }) {
                           ssr={true} // means to render carousel on server-side.
                           infinite={true}
                           keyBoardControl={true}
-                          arrows={false}
+                          className="menuicon"
+                          arrows={true}
                           ref={ref => {
                             setRefCarousel(ref);
                           }}
@@ -77,27 +76,7 @@ function Icon({ data, id }) {
                             </div>
                           ))}
                         </Carousel>
-                      </div>
-                    </div>
-                    <div className="owl-nav">
-                      <div
-                        className="owl-prev disabled"
-                        onClick={() => {
-                          refCarousel.previous();
-                        }}
-                      >
-                        <i className="icon-arrow-1 ix"></i>
-                      </div>
-                      <div
-                        className="owl-next"
-                        onClick={() => {
-                          refCarousel.next();
-                        }}
-                      >
-                        <i className="icon-arrow-1"></i>
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </section>
@@ -167,9 +146,7 @@ function Icon({ data, id }) {
               <div className="entry-head">
                 <h2 className="ht efch-1 ef-img-t">{data[0].title}</h2>
               </div>
-              <div className="owl-carousel equalHeight s-nav nav-2 list-9 owl-loaded owl-drag">
-                <div className="owl-stage-outer">
-                  <div className="owl-stage">
+
                     <Carousel
                       responsive={responsive1}
                       draggable
@@ -177,7 +154,8 @@ function Icon({ data, id }) {
                       ssr={true} // means to render carousel on server-side.
                       infinite={true}
                       keyBoardControl={true}
-                      arrows={false}
+                      className="list-9"
+                      arrows={true}
                       renderButtonGroupOutside={true}
                       ref={ref => {
                         setRefCarousel(ref);
@@ -203,28 +181,7 @@ function Icon({ data, id }) {
                         </div>
                       ))}
                     </Carousel>
-                  </div>
-                </div>
 
-                <div className="owl-nav">
-                  <div
-                    className="owl-prev disabled"
-                    onClick={() => {
-                      refCarousel.previous();
-                    }}
-                  >
-                    <i className="icon-arrow-1 ix"></i>
-                  </div>
-                  <div
-                    className="owl-next"
-                    onClick={() => {
-                      refCarousel.next();
-                    }}
-                  >
-                    <i className="icon-arrow-1"></i>
-                  </div>
-                </div>
-              </div>
             </div>
           </section>
         </React.Fragment>

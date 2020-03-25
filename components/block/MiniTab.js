@@ -10,7 +10,6 @@ const propTypes = {
 
 function MiniTab({ data, id }) {
   const [activeTab, setActiveTab] = useState('0');
-
   return (
     <div className="container" id={id}>
       <section className="sec-tb block-minitab">

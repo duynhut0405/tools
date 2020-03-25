@@ -169,71 +169,49 @@ function News({ data, type, id }) {
               </a>
             </div>
           )}
-          <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag">
-            <div className="owl-stage-outer">
-              <div className="owl-stage">
-                <Carousel
-                  responsive={responsive}
-                  draggable
-                  minimumTouchDrag={80}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  keyBoardControl={true}
-                  arrows={false}
-                  renderButtonGroupOutside={true}
-                  ref={ref => {
-                    setRefCarousel(ref);
-                  }}
+
+          <Carousel
+            responsive={responsive}
+            draggable
+            minimumTouchDrag={80}
+            ssr={true} // means to render carousel on server-side.
+            infinite={true}
+            keyBoardControl={true}
+            arrows={true}
+            renderButtonGroupOutside={true}
+            className="list-5"
+            ref={ref => {
+              setRefCarousel(ref);
+            }}
+          >
+            {map(listCategory, (item, index) => (
+              <div className="slide-item" key={index}>
+                <a
+                  href={`/news/${item.url}`}
+                  className={`item efch-${index} ef-img-l `}
+                  key={index}
+                  //style={{ height: '300px', width: '262px' }}
                 >
-                  {map(listCategory, (item, index) => (
-                    <div className="owl-item" key={index}>
-                      <a
-                        href={`/news/${item.url}`}
-                        className={`item efch-${index} ef-img-l equal`}
-                        key={index}
-                        style={{ height: '300px', width: '262px' }}
-                      >
-                        <div className="img tRes_71">
-                          <img
-                            className="lazy-hidden"
-                            data-lazy-type="image"
-                            src={item.base_image}
-                            style={{ height: '187px' }}
-                          />
-                        </div>
-                        <div className="divtext">
-                          <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                          <h4 className="title">
-                            <ShowMoreText lines={1} more="" expanded={false} width={370}>
-                              {item.title}
-                            </ShowMoreText>
-                          </h4>
-                        </div>
-                      </a>
-                    </div>
-                  ))}
-                </Carousel>
+                  <div className="img tRes_71">
+                    <img
+                      className="lazy-hidden"
+                      data-lazy-type="image"
+                      src={item.base_image}
+                      style={{ height: '187px' }}
+                    />
+                  </div>
+                  <div className="divtext">
+                    <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                    <h4 className="title">
+                      <ShowMoreText lines={1} more="" expanded={false} width={370}>
+                        {item.title}
+                      </ShowMoreText>
+                    </h4>
+                  </div>
+                </a>
               </div>
-            </div>
-            <div className="owl-nav">
-              <div
-                className="owl-prev disabled"
-                onClick={() => {
-                  refCarousel.previous();
-                }}
-              >
-                <i className="icon-arrow-1 ix"></i>
-              </div>
-              <div
-                className="owl-next"
-                onClick={() => {
-                  refCarousel.next();
-                }}
-              >
-                <i className="icon-arrow-1"></i>
-              </div>
-            </div>
-          </div>
+            ))}
+          </Carousel>
         </div>
       </section>
     );
