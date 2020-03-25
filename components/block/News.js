@@ -41,7 +41,7 @@ function News({ data, type, id }) {
       items: 2
     }
   };
-
+  console.log(data);
   const getCategoryById = async () => {
     const res = await getCategoryByIdService(Number(data.category.value));
     if (res && res.status === 200) {
@@ -51,7 +51,7 @@ function News({ data, type, id }) {
 
   const getCategoryPage = async () => {
     const idItems = map(data.news, item => item.newsId);
-    const res = await getNewByIdService(idItems);
+    const res = await getNewByIdService(idItems, data.category.value, data.count);
     if (res && res.status === 200) {
       setListCategory(res.data);
     }

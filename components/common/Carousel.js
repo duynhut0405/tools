@@ -35,8 +35,7 @@ function Carousels({ silder, className }) {
                     <img src={item.image} alt="icon" />
                   </a>
                   <div className={`divtext text-${item.options}-mg top35`}>
-                    <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(item.note_1)}</h1>
-                    {ReactHtmlParser(item.note_2)}
+                    <h1 className=" efch-2 ef-img-l ">{ReactHtmlParser(item.note_1)}</h1>
                     <div className="text_content3">{item.note_3}</div>
                     {item.text_action === null ||
                     item.text_action === undefined ||

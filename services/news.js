@@ -26,9 +26,9 @@ const getNewByUri = uri => {
     });
 };
 
-const getNewByIdService = data => {
+const getNewByIdService = (data, categoriesId, count) => {
   return request({
-    url: `/news/ids`,
+    url: `/news/ids?categoryId=${categoriesId}&count=${count}`,
     method: 'POST',
     data
   })
