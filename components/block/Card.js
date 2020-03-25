@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 
 const propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  type: PropTypes.string
 };
 
 function Card({ data, type }) {
@@ -39,6 +40,7 @@ function Card({ data, type }) {
       items: 1
     }
   };
+
   return (
     <React.Fragment>
       {type === '1' && (
@@ -147,14 +149,14 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '3' && (
+      {type && type === '3' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
             <div className="container">
               <div className="row equalHeight list-item">
                 {map(data.listCard, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
                       <div className="item">
                         <div className="divtext" style={{ paddingTop: '29px' }}>
                           <h4 className="title equal" style={{ textAlign: 'center' }}>
@@ -173,14 +175,14 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '4' && (
+      {type && type === '4' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
             <div className="container">
               <div className="row equalHeight list-item">
                 {map(data.listCard, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
                       <div className="item">
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
@@ -202,7 +204,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '5' && (
+      {type && type === '5' && (
         <React.Fragment>
           <section className="sec-tb ">
             <div className="container">
@@ -250,7 +252,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '6' && (
+      {type && type === '6' && (
         <React.Fragment>
           <section className="sec-tb sec-ab-4 ">
             <div className="container">
@@ -260,7 +262,7 @@ function Card({ data, type }) {
                 )}
               </div>
               <div className="  row grid-space-20 ">
-                {data.listCard[0] ? (
+                {data && data.listCard && data.listCard[0] ? (
                   <div className="col-lg-8 col-sm-12  ">
                     <div className="item item-1  ">
                       <div className="img tRes_92">
@@ -279,7 +281,7 @@ function Card({ data, type }) {
                 ) : (
                   ''
                 )}
-                {data.listCard[1] ? (
+                {data && data.listCard && data.listCard[1] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
@@ -298,7 +300,7 @@ function Card({ data, type }) {
                 ) : (
                   ''
                 )}
-                {data.listCard[2] ? (
+                {data && data.listCard && data.listCard[2] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
@@ -317,7 +319,7 @@ function Card({ data, type }) {
                 ) : (
                   ''
                 )}
-                {data.listCard[3] ? (
+                {data && data.listCard && data.listCard[3] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
@@ -336,7 +338,7 @@ function Card({ data, type }) {
                 ) : (
                   ''
                 )}
-                {data.listCard[4] ? (
+                {data && data.listCard && data.listCard[4] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
@@ -360,7 +362,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '7' && (
+      {type && type === '7' && (
         <React.Fragment>
           <div className="sec-b sec-img-svg-4">
             <div className="container">
@@ -368,7 +370,7 @@ function Card({ data, type }) {
               <div className="row list-item">
                 {map(data.listCard, (items, index) => {
                   return (
-                    <div className="col-sm-4 efch-2 ef-img-t ">
+                    <div className="col-sm-4 efch-2 ef-img-t" key={index}>
                       <a className="item" href={items.url}>
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
@@ -385,15 +387,15 @@ function Card({ data, type }) {
           </div>
         </React.Fragment>
       )}
-      
-      {type === '9' && (
+
+      {type && type === '9' && (
         <React.Fragment>
           <section className="sec-b sec-img-svg-2 group-ef loaded">
             <div className="container">
               <div className="row list-item">
                 {map(data.listCard, (items, index) => {
                   return (
-                    <div className="col-sm-4 efch-2 ef-img-t ">
+                    <div className="col-sm-4 efch-2 ef-img-t" key={index}>
                       <a className="item" href="#" style={{ padding: '40px 10px' }}>
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
@@ -410,7 +412,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '10' && (
+      {type && type === '10' && (
         <React.Fragment>
           <section className=" sec-b sec-cauhoi ">
             <div className="container">
