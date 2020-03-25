@@ -18,6 +18,8 @@ function ToolHome() {
   const [interest, setInterest] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
   const [show_result, setShowResult] = useState(false);
+  const [checked, setChecked] = useState('1');
+  const [title, setTitle] = useState('Cho vay mua nhà đất');
   const { t } = useTranslation();
 
   const tableResult = (sottien, goc, lai, time) => {
@@ -65,6 +67,7 @@ function ToolHome() {
     setSum(_sum);
     setTable(_table);
     setInterest(_interest);
+    setActive(true);
   };
 
   const calculation = event => {
@@ -95,9 +98,65 @@ function ToolHome() {
   };
 
   return (
-    <div className="container">
+    <div className="container sec-tb">
       <h2 className="ht">Công cụ tính</h2>
-      <div className="cttab-xx  sec-b">
+      <div className="cttab-xx  sec-b sec-tb">
+        <div className="w-menu-over">
+          <div className="p-tool1__select1 p-tool1__select1-js">
+            <label className="option1">
+              Cho vay mua nhà đất
+              <input
+                type="radio"
+                checked={checked === '1'}
+                name="radio-loan1"
+                onChange={() => {
+                  setChecked('1');
+                  setTitle('Cho vay mua nhà đất');
+                }}
+              />
+              <span className="checkmark1"></span>
+            </label>
+            <label className="option1">
+              Cho vay mua nhà dự án
+              <input
+                type="radio"
+                checked={checked === '2'}
+                name="radio-loan1"
+                onChange={() => {
+                  setChecked('2');
+                  setTitle('Cho vay mua nhà dự án');
+                }}
+              />
+              <span className="checkmark1"></span>
+            </label>
+            <label className="option1">
+              Cho vay xây dựng, sửa chữa nhà
+              <input
+                type="radio"
+                checked={checked === '3'}
+                name="radio-loan1"
+                onChange={() => {
+                  setChecked('3');
+                  setTitle('Cho vay xây dựng, sửa chữa nhà');
+                }}
+              />
+              <span className="checkmark1"></span>
+            </label>
+            <label className="option1">
+              Cho vay trang bị nội thất nhà
+              <input
+                type="radio"
+                checked={checked === '4'}
+                name="radio-loan1"
+                onChange={() => {
+                  setChecked('4');
+                  setTitle('Cho vay trang bị nội thất nhà');
+                }}
+              />
+              <span className="checkmark1"></span>
+            </label>
+          </div>
+        </div>
         <div className="tab-content">
           <div className="active">
             <div className="tab-inner  ">
@@ -134,8 +193,8 @@ function ToolHome() {
                   </div>
                   <div className="col-md-5">
                     <Result
-                      title={t('tool_consumer_loans.title')}
-                      subtitle={t('loan_amount')}
+                      title={title}
+                      // subtitle={t('loan_amount')}
                       amount={amount}
                       monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng

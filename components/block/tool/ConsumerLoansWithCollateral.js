@@ -87,7 +87,7 @@ function ConsumerLoansWithCollateral({ minValue, maxValue, interest_rate }) {
   };
 
   return (
-    <div className="container">
+    <div className="container sec-tb">
       <h2 className="ht">Công cụ tính</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">
