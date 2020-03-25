@@ -78,9 +78,6 @@ function Card({ data, type }) {
                 <h2 className="ht">{data.title || ''}</h2>
               </div>
               <div className="sec-b">
-                <div className="menuicon owl-carousel s-nav nav-2 owl-loaded owl-drag">
-                  <div className="owl-stage-outer">
-                    <div className="owl-stage">
                       <Carousel
                         responsive={responsive}
                         draggable
@@ -88,7 +85,8 @@ function Card({ data, type }) {
                         ssr={true} // means to render carousel on server-side.
                         infinite={true}
                         keyBoardControl={true}
-                        arrows={false}
+                        arrows={true}
+                        className="menuicon"
                         ref={ref => {
                           setRefCarousel(ref);
                         }}
@@ -123,27 +121,6 @@ function Card({ data, type }) {
                           </div>
                         ))}
                       </Carousel>
-                    </div>
-                  </div>
-                  <div className="owl-nav">
-                    <div
-                      className="owl-prev disabled"
-                      onClick={() => {
-                        refCarousel.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="owl-next"
-                      onClick={() => {
-                        refCarousel.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </section>
@@ -420,9 +397,7 @@ function Card({ data, type }) {
                 <h2 className="ht ">{data === null ? '' : data.title}</h2>
               </div>
               <div className="accodion-content entry-content">
-                <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
-                  <div className="owl-stage-outer">
-                    <div className="owl-stage">
+
                       <Carousel
                         responsive={responsiveTwo}
                         draggable
@@ -430,7 +405,8 @@ function Card({ data, type }) {
                         ssr={true} // means to render carousel on server-side.
                         infinite={true}
                         keyBoardControl={true}
-                        arrows={false}
+                        className="list-5"
+                        arrows={true}
                         ref={ref => {
                           setRefCarouselThree(ref);
                         }}
@@ -449,27 +425,7 @@ function Card({ data, type }) {
                           </div>
                         ))}
                       </Carousel>
-                    </div>
-                  </div>
-                  <div className="owl-nav">
-                    <div
-                      className="owl-prev disabled"
-                      onClick={() => {
-                        refCarouselThree.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="owl-next"
-                      onClick={() => {
-                        refCarouselThree.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
           </section>

@@ -36,7 +36,7 @@ function MenuMiddle({ data, query }) {
               {data.title}
             </h1>
           </div>
-          <div className="menuicon container">
+          <div className=" container">
             {data.menuItems !== undefined && data.menuItems.length >= 6 && (
               <Carousel
                 responsive={responsive}
@@ -44,6 +44,7 @@ function MenuMiddle({ data, query }) {
                 minimumTouchDrag={80}
                 ssr={true} // means to render carousel on server-side.
                 infinite={true}
+                className="menuicon"
                 keyBoardControl={true}
               >
                 {map(
