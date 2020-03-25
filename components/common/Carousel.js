@@ -15,6 +15,7 @@ function Carousels({ silder, className }) {
     const url = item.props.children[0].props.href;
     window.location.href = url;
   };
+  console.log(silder);
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
@@ -33,8 +34,8 @@ function Carousels({ silder, className }) {
                   <a href={item.url === undefined ? '#' : item.url}>
                     <img src={item.image} alt="icon" />
                   </a>
-                  <div className={`divtext text-${item.options}-mg`}>
-                    {ReactHtmlParser(item.note_1)}
+                  <div className={`divtext text-${item.options}-mg top35`}>
+                    <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(item.note_1)}</h1>
                     {ReactHtmlParser(item.note_2)}
                     <div className="text_content3">{item.note_3}</div>
                     {item.text_action === null ||
