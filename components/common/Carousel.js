@@ -15,7 +15,6 @@ function Carousels({ silder, className }) {
     const url = item.props.children[0].props.href;
     window.location.href = url;
   };
-  console.log(silder);
   return (
     <React.Fragment>
       {!isEmpty(silder) && (

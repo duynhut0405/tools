@@ -5620,9 +5620,9 @@ ul.page-numbers span.page-numbers:not(.current) {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow-db:before {
+/* .icon-arrow-db:before {
   content: '\e95e';
-}
+} */
 
 .icon-t13:before {
   content: '\e957';
