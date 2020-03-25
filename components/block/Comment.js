@@ -33,9 +33,7 @@ function Comment({ data, id }) {
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
         </div>
-        <div className="owl-carousel s-nav nav-2 list-11  owl-loaded owl-drag">
-          <div className="owl-stage-outer">
-            <div className="owl-stage">
+
               <Carousel
                 responsive={responsive}
                 draggable
@@ -43,7 +41,8 @@ function Comment({ data, id }) {
                 ssr={true} // means to render carousel on server-side.
                 infinite={true}
                 keyBoardControl={true}
-                arrows={false}
+                className="list-11"
+                arrows={true}
                 renderButtonGroupOutside={true}
                 ref={ref => {
                   setRefCarousel(ref);
@@ -76,28 +75,7 @@ function Comment({ data, id }) {
                   </div>
                 ))}
               </Carousel>
-            </div>
-          </div>
-          <div className="owl-nav">
-            <div
-              className="owl-prev disabled"
-              onClick={() => {
-                refCarousel.previous();
-              }}
-            >
-              <i className="icon-arrow-1 ix"></i>
-            </div>
-            <div
-              className="owl-next"
-              onClick={() => {
-                refCarousel.next();
-              }}
-            >
-              <i className="icon-arrow-1"></i>
-            </div>
-          </div>
-          <div className="owl-dots disabled"></div>
-        </div>
+
       </div>
     </section>
   );

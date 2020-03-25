@@ -171,7 +171,6 @@ function MenuIntro({ data, type }) {
   //   );
   // }
   // if (type === '2') {
-  console.log(data.title);
   return (
     <React.Fragment>
       <section className=" sec-menu">

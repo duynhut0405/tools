@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="215px" viewBox="0 0 10 215" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Rectangle Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50.0493225%" y1="48.2449871%" x2="50%" y2="51.156467%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#8A8A8A" stop-opacity="0" offset="21.419576%"></stop>
+            <stop stop-color="#4C4C4C" stop-opacity="0.125792177" offset="40.1249307%"></stop>
+            <stop stop-color="#111111" stop-opacity="0.337194056" offset="61.3140093%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.755326705" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(0.000000, -542.000000)" fill="url(#linearGradient-1)">
+            <rect id="Rectangle-Copy" x="-1430" y="538" width="1440" height="219"></rect>
+        </g>
+    </g>
+</svg>

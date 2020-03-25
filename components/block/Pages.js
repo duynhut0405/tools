@@ -44,36 +44,38 @@ function Pages({ data, type, id }) {
   // const listNews = slice(listPage, 0, page);
   if (type && type === '1') {
     return (
-      <div className="container sec-tb block-page" id={id}>
-        <div className="entry-head text-center">
-          {data.title && <h2 className="ht">{data.title}</h2>}
-        </div>
-        <div className="list-5 row list-item">
-          {map(listPage, item => (
-            <div className="col-md-4" key={item.newsId}>
-              <a href={`/page/${item.slug}`} className="item ">
-                <div className="img tRes_71">
-                  <img
-                    className="lazy-hidden"
-                    data-lazy-type="image"
-                    src={item.baseImage}
-                    alt="icon"
-                  />
-                </div>
-                <div className="divtext">
-                  <h4 className="title">{item.name}</h4>
-                  <div className="desc line4">{item.meta_description}..</div>
-                </div>
+      <div className="sec-tb block-page" id={id}>
+        <div className="container">
+          <div className="entry-head text-center">
+            {data.title && <h2 className="ht">{data.title}</h2>}
+          </div>
+          <div className="list-5 row list-item">
+            {map(listPage, item => (
+              <div className="col-md-4" key={item.newsId}>
+                <a href={`/page/${item.slug}`} className="item ">
+                  <div className="img tRes_71">
+                    <img
+                      className="lazy-hidden"
+                      data-lazy-type="image"
+                      src={item.baseImage}
+                      alt="icon"
+                    />
+                  </div>
+                  <div className="divtext">
+                    <h4 className="title">{item.name}</h4>
+                    <div className="desc line4">{item.meta_description}..</div>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+          <div className="pages">
+            <ul className="page-numbers">
+              <a className="btn lg" href="#">
+                {t('view')}
               </a>
-            </div>
-          ))}
-        </div>
-        <div className="pages">
-          <ul className="page-numbers">
-            <a className="btn lg" href="#">
-              {t('view')}
-            </a>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     );
@@ -183,9 +185,7 @@ function Pages({ data, type, id }) {
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
           </div>
           <div className="accodion-content entry-content">
-            <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
-              <div className="owl-stage-outer">
-                <div className="owl-stage">
+
                   <Carousel
                     responsive={responsiveTwo}
                     draggable
@@ -193,7 +193,8 @@ function Pages({ data, type, id }) {
                     ssr={true} // means to render carousel on server-side.
                     infinite={true}
                     keyBoardControl={true}
-                    arrows={false}
+                    className="list-5"
+                    arrows={true}
                     ref={ref => {
                       setRefCarouselThree(ref);
                     }}
@@ -212,27 +213,7 @@ function Pages({ data, type, id }) {
                       </div>
                     ))}
                   </Carousel>
-                </div>
-              </div>
-              <div className="owl-nav">
-                <div
-                  className="owl-prev disabled"
-                  onClick={() => {
-                    refCarouselThree.previous();
-                  }}
-                >
-                  <i className="icon-arrow-1 ix"></i>
-                </div>
-                <div
-                  className="owl-next"
-                  onClick={() => {
-                    refCarouselThree.next();
-                  }}
-                >
-                  <i className="icon-arrow-1"></i>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
@@ -255,9 +236,7 @@ function Pages({ data, type, id }) {
                 </span>
               </label>
               <div className="accodion-content entry-content">
-                <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
-                  <div className="owl-stage-outer">
-                    <div className="owl-stage">
+
                       <Carousel
                         responsive={responsiveTwo}
                         draggable
@@ -265,7 +244,8 @@ function Pages({ data, type, id }) {
                         ssr={true} // means to render carousel on server-side.
                         infinite={true}
                         keyBoardControl={true}
-                        arrows={false}
+                        className="list-5"
+                        arrows={true}
                         ref={ref => {
                           setRefCarouselTwo(ref);
                         }}
@@ -284,28 +264,7 @@ function Pages({ data, type, id }) {
                           </div>
                         ))}
                       </Carousel>
-                    </div>
-                  </div>
-                  <div className="owl-nav">
-                    <div
-                      className="owl-prev disabled"
-                      onClick={() => {
-                        refCarouselTwo.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="owl-next"
-                      onClick={() => {
-                        refCarouselTwo.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
-                    </div>
-                  </div>
-                  <div className="owl-dots disabled"></div>
-                </div>
+
               </div>
             </div>
           </div>
