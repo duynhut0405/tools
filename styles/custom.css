@@ -1548,48 +1548,48 @@ input[type='number'] {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-@media only screen and (min-width: 992px){
-.banner-heading-1.home h1 {
+@media only screen and (min-width: 992px) {
+  .banner-heading-1.home h1 {
     font-size: 48px;
-}
-.banner-heading-1.home h2 {
-  font-size: 48px;
-}
+  }
+  .banner-heading-1.home h2 {
+    font-size: 48px;
+  }
 }
 .banner-heading-1 .divtext h1 {
-    font-weight: 700;
-    text-transform: capitalize;
-    color: #141ED2;
-    line-height: normal;
-    margin-bottom: 10px;
-    text-align: left;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #141ed2;
+  line-height: normal;
+  margin-bottom: 10px;
+  text-align: left;
 }
 .banner-heading-1 .divtext h2 {
   font-weight: 700;
   text-transform: capitalize;
-  color: #141ED2;
+  color: #141ed2;
   line-height: normal;
   margin-bottom: 10px;
   text-align: left;
 }
 .banner-heading-1 .divtext p {
-  color: #141ED2 ;
+  color: #141ed2;
   margin: 0 0 20px;
   text-align: left;
 }
-.banner-heading-1 .divtext button{
+.banner-heading-1 .divtext button {
   display: block;
 }
-.banner-heading-1 .text-left-mg{
+.banner-heading-1 .text-left-mg {
   margin-left: 20%;
 }
-.banner-heading-1 .text-center-mg{
+.banner-heading-1 .text-center-mg {
   margin-left: 40%;
 }
-.banner-heading-1 .text-right-mg{
+.banner-heading-1 .text-right-mg {
   margin-left: 60%;
 }
-.remove p{
+.remove p {
   margin-bottom: 0;
 }
 div.hr {
@@ -1597,11 +1597,65 @@ div.hr {
   margin-bottom: 40px;
   background-color: #ddd;
 }
-.viewall{
+.viewall {
   font-weight: bold;
   font-size: 17px;
 }
 .entry-content p {
-    font-size: 16px;
-    margin: 0 0 20px;
+  font-size: 16px;
+  margin: 0 0 20px;
+}
+
+.p-tool1__select1 .option1:not(:last-child) {
+  margin-right: 34px;
+}
+
+.p-tool1__select1 .option1 {
+  display: inline-block;
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.p-tool1__select1 .option1 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.p-tool1__select1 .checkmark1 {
+  position: absolute;
+  /* top: 0; */
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+.p-tool1__select1 .option1 input:checked ~ .checkmark1 {
+  background-color: #141ed2;
+}
+.p-tool1__select1 .option1 input:checked ~ .checkmark1:after {
+  display: block;
+}
+
+.p-tool1__select1 .option1 .checkmark1:after {
+  top: 7px;
+  left: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+.p-tool1__select1 .checkmark1:after {
+  content: '';
+  position: absolute;
+  display: none;
 }
