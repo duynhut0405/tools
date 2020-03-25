@@ -1659,3 +1659,12 @@ div.hr {
   position: absolute;
   display: none;
 }
+
+
+/* Edit by Mango */
+.sec-tigia .divquidoi .input-group .input-group-addon > i {
+  display: none;
+}
+
+
+/* End  Mango */
