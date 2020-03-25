@@ -44,36 +44,38 @@ function Pages({ data, type, id }) {
   // const listNews = slice(listPage, 0, page);
   if (type && type === '1') {
     return (
-      <div className="container sec-tb block-page" id={id}>
-        <div className="entry-head text-center">
-          {data.title && <h2 className="ht">{data.title}</h2>}
-        </div>
-        <div className="list-5 row list-item">
-          {map(listPage, item => (
-            <div className="col-md-4" key={item.newsId}>
-              <a href={`/page/${item.slug}`} className="item ">
-                <div className="img tRes_71">
-                  <img
-                    className="lazy-hidden"
-                    data-lazy-type="image"
-                    src={item.baseImage}
-                    alt="icon"
-                  />
-                </div>
-                <div className="divtext">
-                  <h4 className="title">{item.name}</h4>
-                  <div className="desc line4">{item.meta_description}..</div>
-                </div>
+      <div className="sec-tb block-page" id={id}>
+        <div className="container">
+          <div className="entry-head text-center">
+            {data.title && <h2 className="ht">{data.title}</h2>}
+          </div>
+          <div className="list-5 row list-item">
+            {map(listPage, item => (
+              <div className="col-md-4" key={item.newsId}>
+                <a href={`/page/${item.slug}`} className="item ">
+                  <div className="img tRes_71">
+                    <img
+                      className="lazy-hidden"
+                      data-lazy-type="image"
+                      src={item.baseImage}
+                      alt="icon"
+                    />
+                  </div>
+                  <div className="divtext">
+                    <h4 className="title">{item.name}</h4>
+                    <div className="desc line4">{item.meta_description}..</div>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+          <div className="pages">
+            <ul className="page-numbers">
+              <a className="btn lg" href="#">
+                {t('view')}
               </a>
-            </div>
-          ))}
-        </div>
-        <div className="pages">
-          <ul className="page-numbers">
-            <a className="btn lg" href="#">
-              {t('view')}
-            </a>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     );
