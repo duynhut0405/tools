@@ -85,10 +85,10 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
       setChangeActive(true);
       let total = 0;
       if (type === 1) {
-        total = ((_total_capital_needs - _equity_capital) * 90) / 100;
+        total = Math.ceil(((_total_capital_needs - _equity_capital) * 90) / 100);
         setAmount(total);
       } else {
-        total = ((_total_capital_needs - _equity_capital) * 85) / 100;
+        total = Math.ceil(((_total_capital_needs - _equity_capital) * 85) / 100);
         setAmount(total);
       }
     }
@@ -106,8 +106,8 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
 
   const calculation = event => {
     event.preventDefault();
-    const month_interest = (amount * interest_rate) / 100 / 12; //tiền lãi
-    const month_payment = amount / month; // tiền gốc
+    const month_interest = Math.ceil((amount * interest_rate) / 100 / 12); //tiền lãi
+    const month_payment = Math.ceil(amount / month); // tiền gốc
     const total = (month_interest + month_payment) * month; // tổng tiền
     setMonthlyInterest(month_interest);
     setMonthlyPayment(month_payment);
