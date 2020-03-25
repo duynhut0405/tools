@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 
 const propTypes = {
-  data: PropTypes.array
+  data: PropTypes.any,
+  type: PropTypes.string
 };
 
 function Card({ data, type }) {
@@ -39,6 +40,7 @@ function Card({ data, type }) {
       items: 1
     }
   };
+
   return (
     <React.Fragment>
       {type === '1' && (
@@ -76,85 +78,59 @@ function Card({ data, type }) {
                 <h2 className="ht">{data.title || ''}</h2>
               </div>
               <div className="sec-b">
-                <div className="menuicon owl-carousel s-nav nav-2 owl-loaded owl-drag">
-                  <div className="owl-stage-outer">
-                    <div className="owl-stage">
-                      <Carousel
-                        responsive={responsive}
-                        draggable
-                        minimumTouchDrag={80}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        keyBoardControl={true}
-                        arrows={false}
-                        ref={ref => {
-                          setRefCarousel(ref);
-                        }}
+                <Carousel
+                  responsive={responsive}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
+                  arrows={true}
+                  className="menuicon"
+                  ref={ref => {
+                    setRefCarousel(ref);
+                  }}
+                >
+                  {map(data.listCard, (items, index) => (
+                    <div className="item ef-img-t item_carousel" key={index}>
+                      <a
+                        href="#"
+                        className="link"
+                        style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                       >
-                        {map(data.listCard, (items, index) => (
-                          <div className="item ef-img-t item_carousel" key={index}>
-                            <a
-                              href="#"
-                              className="link"
-                              style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
-                            >
-                              <div
-                                className="img"
-                                style={{ textAlign: 'left', paddingLeft: '20px' }}
-                              >
-                                <img src={items.image} className="loaded loaded" />
-                              </div>
-                              <div className="divtext" style={{ paddingLeft: '20px' }}>
-                                <h3
-                                  className="title"
-                                  style={{
-                                    textAlign: 'left',
-                                    color: 'initial',
-                                    fontWeight: 'bold',
-                                    display: 'block'
-                                  }}
-                                >
-                                  {ReactHtmlParser(items.note_1)}
-                                </h3>
-                              </div>
-                            </a>
-                          </div>
-                        ))}
-                      </Carousel>
+                        <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
+                          <img src={items.image} className="loaded loaded" />
+                        </div>
+                        <div className="divtext" style={{ paddingLeft: '20px' }}>
+                          <h3
+                            className="title"
+                            style={{
+                              textAlign: 'left',
+                              color: 'initial',
+                              fontWeight: 'bold',
+                              display: 'block'
+                            }}
+                          >
+                            {ReactHtmlParser(items.note_1)}
+                          </h3>
+                        </div>
+                      </a>
                     </div>
-                  </div>
-                  <div className="owl-nav">
-                    <div
-                      className="owl-prev disabled"
-                      onClick={() => {
-                        refCarousel.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="owl-next"
-                      onClick={() => {
-                        refCarousel.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
-                    </div>
-                  </div>
-                </div>
+                  ))}
+                </Carousel>
               </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {type === '3' && (
+      {type && type === '3' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
             <div className="container">
               <div className="row equalHeight list-item">
                 {map(data.listCard, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
                       <div className="item">
                         <div className="divtext" style={{ paddingTop: '29px' }}>
                           <h4 className="title equal" style={{ textAlign: 'center' }}>
@@ -173,14 +149,14 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '4' && (
+      {type && type === '4' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
             <div className="container">
               <div className="row equalHeight list-item">
                 {map(data.listCard, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t `}>
+                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
                       <div className="item">
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
@@ -202,7 +178,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '5' && (
+      {type && type === '5' && (
         <React.Fragment>
           <section className="sec-tb ">
             <div className="container">
@@ -222,6 +198,7 @@ function Card({ data, type }) {
                         className={`group-ef loaded  item item-${
                           (index + 1) % 2 === 0 ? '2' : '1'
                         }`}
+                        key={index}
                       >
                         <div
                           className={`row grid-space-80 center ${
@@ -250,7 +227,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '6' && (
+      {type && type === '6' && (
         <React.Fragment>
           <section className="sec-tb sec-ab-4 ">
             <div className="container">
@@ -260,7 +237,7 @@ function Card({ data, type }) {
                 )}
               </div>
               <div className="  row grid-space-20 ">
-                {data.listCard[0] ? (
+                {data && data.listCard && data.listCard[0] ? (
                   <div className="col-lg-8 col-sm-12  ">
                     <div className="item item-1  ">
                       <div className="img tRes_92">
@@ -279,7 +256,7 @@ function Card({ data, type }) {
                 ) : (
                   ''
                 )}
-                {data.listCard[1] ? (
+                {data && data.listCard && data.listCard[1] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
@@ -298,7 +275,7 @@ function Card({ data, type }) {
                 ) : (
                   ''
                 )}
-                {data.listCard[2] ? (
+                {data && data.listCard && data.listCard[2] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
@@ -317,7 +294,7 @@ function Card({ data, type }) {
                 ) : (
                   ''
                 )}
-                {data.listCard[3] ? (
+                {data && data.listCard && data.listCard[3] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
@@ -336,7 +313,7 @@ function Card({ data, type }) {
                 ) : (
                   ''
                 )}
-                {data.listCard[4] ? (
+                {data && data.listCard && data.listCard[4] ? (
                   <div className="col-lg-4 col-sm-6">
                     <div className="item item-2  ">
                       <div className="img tRes_92">
@@ -360,7 +337,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '7' && (
+      {type && type === '7' && (
         <React.Fragment>
           <div className="sec-b sec-img-svg-4">
             <div className="container">
@@ -368,7 +345,7 @@ function Card({ data, type }) {
               <div className="row list-item">
                 {map(data.listCard, (items, index) => {
                   return (
-                    <div className="col-sm-4 efch-2 ef-img-t ">
+                    <div className="col-sm-4 efch-2 ef-img-t" key={index}>
                       <a className="item" href={items.url}>
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
@@ -385,15 +362,15 @@ function Card({ data, type }) {
           </div>
         </React.Fragment>
       )}
-      
-      {type === '9' && (
+
+      {type && type === '9' && (
         <React.Fragment>
           <section className="sec-b sec-img-svg-2 group-ef loaded">
             <div className="container">
               <div className="row list-item">
                 {map(data.listCard, (items, index) => {
                   return (
-                    <div className="col-sm-4 efch-2 ef-img-t ">
+                    <div className="col-sm-4 efch-2 ef-img-t" key={index}>
                       <a className="item" href="#" style={{ padding: '40px 10px' }}>
                         <div className="img ">
                           <img className="loaded loaded" data-lazy-type="image" src={items.image} />
@@ -410,7 +387,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '10' && (
+      {type && type === '10' && (
         <React.Fragment>
           <section className=" sec-b sec-cauhoi ">
             <div className="container">
@@ -418,56 +395,33 @@ function Card({ data, type }) {
                 <h2 className="ht ">{data === null ? '' : data.title}</h2>
               </div>
               <div className="accodion-content entry-content">
-                <div className="owl-carousel equalHeight s-nav nav-2 list-5 owl-loaded owl-drag ">
-                  <div className="owl-stage-outer">
-                    <div className="owl-stage">
-                      <Carousel
-                        responsive={responsiveTwo}
-                        draggable
-                        minimumTouchDrag={80}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        keyBoardControl={true}
-                        arrows={false}
-                        ref={ref => {
-                          setRefCarouselThree(ref);
-                        }}
-                      >
-                        {map(data.listCard, (items, index) => (
-                          <div className="item ef-img-t item_carousel" key={index}>
-                            <a href={items.url} className="link">
-                              <div className="img">
-                                <img src={items.image} />
-                              </div>
-                              <div className="divtext">
-                                <h4 className="title line2">{items.note_1}</h4>
-                                <div className="desc line2 cl3">{items.note_2}</div>
-                              </div>
-                            </a>
-                          </div>
-                        ))}
-                      </Carousel>
+                <Carousel
+                  responsive={responsiveTwo}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
+                  className="list-5"
+                  arrows={true}
+                  ref={ref => {
+                    setRefCarouselThree(ref);
+                  }}
+                >
+                  {map(data.listCard, (items, index) => (
+                    <div className="item ef-img-t item_carousel" key={index}>
+                      <a href={items.url} className="link">
+                        <div className="img">
+                          <img src={items.image} />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title line2">{items.note_1}</h4>
+                          <div className="desc line2 cl3">{items.note_2}</div>
+                        </div>
+                      </a>
                     </div>
-                  </div>
-                  <div className="owl-nav">
-                    <div
-                      className="owl-prev disabled"
-                      onClick={() => {
-                        refCarouselThree.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="owl-next"
-                      onClick={() => {
-                        refCarouselThree.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
-                    </div>
-                  </div>
-                </div>
+                  ))}
+                </Carousel>
               </div>
             </div>
           </section>

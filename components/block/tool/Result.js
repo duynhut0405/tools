@@ -10,7 +10,7 @@ const propTypes = {
   monthlyInterest: Proptypes.number,
   monthlypayment: Proptypes.number,
   totalAmount: Proptypes.number,
-  month: Proptypes.number
+  month: Proptypes.string
 };
 
 function Result({
