@@ -9,7 +9,7 @@ const propTypes = {
 function ImageRight({ items }) {
   const [active, setActive] = useState(false);
   return (
-    <section className="sec-tb sec-img-text bg-gray-2 group-ef loaded">
+    <section className="sec-tb sec-img-text group-ef loaded">
       <div className="container">
         <div className="row center end">
           <div className="col-lg-6">

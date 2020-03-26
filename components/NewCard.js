@@ -12,7 +12,7 @@ const propTypes = {
 function NewCard({ data }) {
   return (
     <React.Fragment>
-      <section className="sec-tb group-ef loaded bg-gray-2">
+      <section className="sec-tb group-ef loaded">
         <div className="container">
           <div className="list-5 equalHeight row list-item">
             {map(data, (items, index) => {
