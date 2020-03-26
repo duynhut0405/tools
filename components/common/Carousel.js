@@ -61,7 +61,7 @@ function Carousels({ silder, className }) {
                         </div>
                       )}
                     </div>
-                  </div>  
+                  </div>
                 </div>
               ))}
             </Carousel>
