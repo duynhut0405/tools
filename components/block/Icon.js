@@ -162,12 +162,7 @@ function Icon({ data, id }) {
                       }}
                     >
                       {map(data, (item, index) => (
-                        <div
-                          className="owl-item"
-                          key={index}
-                          style={{ height: '238px', width: '277px' }}
-                        >
-                          <div className={`item efch-${index + 2} ef-img-l `}>
+                          <div className={`item efch-${index + 2} ef-img-l `} key={index}>
                             <div className="img">
                               <img
                                 className=" loaded loaded"
@@ -178,7 +173,6 @@ function Icon({ data, id }) {
                             </div>
                             <div className="des">{item.note_1}</div>
                           </div>
-                        </div>
                       ))}
                     </Carousel>
 

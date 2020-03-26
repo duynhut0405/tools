@@ -49,8 +49,8 @@ function Comment({ data, id }) {
                 }}
               >
                 {map(data.listComment, (item, index) => (
-                  <div className="owl-item active" key={index}>
-                    <div className="item efch-2 ef-img-l ">
+
+                    <div className="item efch-2 ef-img-l " key={index}>
                       <div className="ic">
                         <i className="icon-quote"></i>
                       </div>
@@ -72,7 +72,7 @@ function Comment({ data, id }) {
                       </div>
                       <CommentItem data={item.content} />
                     </div>
-                  </div>
+
                 ))}
               </Carousel>
 
