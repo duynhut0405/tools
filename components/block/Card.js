@@ -40,7 +40,6 @@ function Card({ data, type }) {
       items: 1
     }
   };
-
   return (
     <React.Fragment>
       {type === '1' && (
@@ -211,7 +210,7 @@ function Card({ data, type }) {
                             </div>
                           </div>
                           <div className="col-md-6 ">
-                            <span className={index % 2 === 0 ? 'circle' : 'circle1'}></span>
+                            <span className="circle"></span>
                             <div className="divtext efch-2 ef-tx-t">
                               <h2 className="title">{ReactHtmlParser(items.note_2)}</h2>
                               <div className="desc">{ReactHtmlParser(items.note_3)}</div>

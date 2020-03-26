@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withTranslation } from '../i18n';
 import ReactHtmlParser from 'react-html-parser';
+import Link from 'next/link';
 
 const propTypes = {
   data: PropTypes.object
@@ -19,9 +20,15 @@ function NewCard({ data }) {
                 <div key={index} className="col-md-4">
                   <div className="item efch-2 ef-img-l ">
                     <div className="divtext">
-                      <h4 className="title equal line2" style={{ height: '48px' }}>
-                      {ReactHtmlParser(items.note_1)}
-                      </h4>
+                      <div style={{ height: '48px', fontWeight: 'bold', fontSize: '16px' }}>
+                        <a
+                          href={items.urlTitle}
+                          target="_blank"
+                          className="font-weight-bold title equal line2"
+                        >
+                          <div>{items.titleCard}</div>
+                        </a>
+                      </div>
                       <div className="desc ">{ReactHtmlParser(items.note_2)}</div>
                     </div>
                   </div>

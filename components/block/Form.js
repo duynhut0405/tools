@@ -42,94 +42,89 @@ function Form({ data }) {
     };
     sendMailService(dataSend);
   };
-  console.log(formdata)
   return (
     <section className="sec-tb sec-tuvan">
       <div className="container">
-        <div className="max750">
-          <form onSubmit={onSend} autoComplete="on">
-            {map(formdata, (item, index) => {
-              if (item.type === 'header') {
-                return (
-                  <React.Fragment>
-                    <div className="max600 entry-head text-center">
-                      {ReactHtmlParser(item.label)}
-                    </div>
-                  </React.Fragment>
-                );
-              }
-              if (item.type === 'paragraph') {
-                return (
-                  <div className={item.className} key={index}>
-                    {ReactHtmlParser(item.label)}
+        <form onSubmit={onSend} autoComplete="on">
+          {map(formdata, (item, index) => {
+            if (item.type === 'header') {
+              return (
+                <React.Fragment>
+                  <div className="max600 entry-head text-center">{ReactHtmlParser(item.label)}</div>
+                </React.Fragment>
+              );
+            }
+            if (item.type === 'paragraph') {
+              return (
+                <div className={item.className} key={index}>
+                  {ReactHtmlParser(item.label)}
+                </div>
+              );
+            }
+            if (item.type === 'radio-group') {
+              return (
+                <div className="mb-30 text-center">
+                  {map(item.values, (items, key) => (
+                    <CustomInput
+                      type="radio"
+                      inline={item.inline !== undefined ? true : false}
+                      name={item.name}
+                      id={key}
+                      label={items.label}
+                      value={items.value}
+                      onChange={e => handleChange(e)}
+                    />
+                  ))}
+                </div>
+              );
+            }
+            if (item.type === 'text') {
+              return (
+                <React.Fragment>
+                  <div className="col-12">
+                    {item.label && <Label>{item.label}</Label>}
+                    <Input
+                      className="input"
+                      name={item.name}
+                      type={item.subtype}
+                      placeholder={item.placeholder}
+                      onChange={e => handleChange(e)}
+                    />
                   </div>
-                );
-              }
-              if (item.type === 'radio-group') {
-                return (
-                  <div className="mb-30 text-center">
-                    {map(item.values, (items, key) => (
-                      <CustomInput
-                        type="radio"
-                        inline={item.inline !== undefined ? true : false}
-                        name={item.name}
-                        id={key}
-                        label={items.label}
-                        value={items.value}
-                        onChange={e => handleChange(e)}
-                      />
-                    ))}
+                </React.Fragment>
+              );
+            }
+            if (item.type === 'textarea') {
+              return (
+                <React.Fragment>
+                  <div className="col-12">
+                    {item.label && <Label>{item.label}</Label>}
+                    <Input
+                      className="input"
+                      type={item.subtype}
+                      name={item.name}
+                      rows={item.rows}
+                      placeholder={item.placeholder}
+                      onChange={e => handleChange(e)}
+                    />
                   </div>
-                );
-              }
-              if (item.type === 'text') {
-                return (
-                  <React.Fragment>
-                    <div className="col-12">
-                      {item.label && <Label>{item.label}</Label>}
-                      <Input
-                        className="input"
-                        name={item.name}
-                        type={item.subtype}
-                        placeholder={item.placeholder}
-                        onChange={e => handleChange(e)}
-                      />
-                    </div>
-                  </React.Fragment>
-                );
-              }
-              if (item.type === 'textarea') {
-                return (
-                  <React.Fragment>
-                    <div className="col-12">
-                      {item.label && <Label>{item.label}</Label>}
-                      <Input
-                        className="input"
-                        type={item.subtype}
-                        name={item.name}
-                        rows={item.rows}
-                        placeholder={item.placeholder}
-                        onChange={e => handleChange(e)}
-                      />
-                    </div>
-                  </React.Fragment>
-                );
-              }
-              if (item.type === 'button') {
-                return (
-                  <React.Fragment>
-                    <div className="col-12 text-center">
-                      <button className="btn" type={item.subtype}>
-                        {item.label}
-                      </button>
-                    </div>
-                  </React.Fragment>
-                );
-              }
-              return null;
-            })}
-          </form>
-        </div>
+                </React.Fragment>
+              );
+            }
+            if (item.type === 'button') {
+              return (
+                <React.Fragment>
+                  <div className="col-12 text-center">
+                    <button className="btn" type={item.subtype}>
+                      {item.label}
+                    </button>
+                  </div>
+                </React.Fragment>
+              );
+            }
+            return null;
+          })}
+        </form>
       </div>
       {data.image && (
         <img className=" br loaded loaded" data-lazy-type="image" alt="" src={data.image}></img>
