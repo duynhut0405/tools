@@ -14,7 +14,7 @@ function Question({ question, answer, isChecked }) {
       <div className="accodion accodion-1">
         <div className="accodion-tab" onClick={() => setIsOpen(!isOpen)}>
           <input type="checkbox" checked={isOpen} />
-          <label className="accodion-title no-borber">
+          <label className="accodion-title">
             <span>{question}</span>
             <span className="triangle">
               <i className="icon-plus"></i>
