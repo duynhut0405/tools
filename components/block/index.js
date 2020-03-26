@@ -18,6 +18,7 @@ import Card from './Card';
 import Tools from './tool';
 import Comment from './Comment';
 import TablePayment from './TablePayment';
+import TabQuestions from './Question/TabQuestions';
 export {
   Images,
   Post,
@@ -38,5 +39,6 @@ export {
   Card,
   Tools,
   Comment,
-  TablePayment
+  TablePayment,
+  TabQuestions
 };

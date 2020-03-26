@@ -66,6 +66,19 @@ const findAllByCategory = (id, page, number, year) => {
     });
 };
 
+const findAllNewsByCategory = (id, page, number) => {
+  return request({
+    url: `/news/findallbycategory/${id}?number=${number}&page=${page}`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
 const getNewsByCategorySlug = (slug, data) => {
   return request({
     url: `/news/findallbyslugcategory/${slug}`,
@@ -86,5 +99,6 @@ export {
   getNewByIdService,
   getNewCategoryIdService,
   findAllByCategory,
-  getNewsByCategorySlug
+  getNewsByCategorySlug,
+  findAllNewsByCategory
 };
