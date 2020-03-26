@@ -56,9 +56,7 @@ function Card({ data, type }) {
                       <a href="#" className={`item item-${index + 1} tRes_55`}>
                         <div className="divtext">
                           <h3 className="title ">{ReactHtmlParser(items.note_2)}</h3>
-                          <i className="icon-arrow-db">
-                            <img src="/images/arrow.svg" />
-                          </i>
+                          <i className="icon-arrow-db"></i>
                         </div>
                       </a>
                     </div>
