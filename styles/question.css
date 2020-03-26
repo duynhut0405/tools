@@ -13,3 +13,10 @@
 .inner div .table td:not(:first-child) {
   border-left: 2px solid #fff;
 }
+.tab-content .sec-tb {
+  padding: 0;
+}
+
+select.select {
+  margin-right: 5px;
+}

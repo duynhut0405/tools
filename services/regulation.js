@@ -78,11 +78,25 @@ const getRegulationListYear = (type, detailTypeId, number, page, year) => {
     });
 };
 
+const getAllYear = () => {
+  return request({
+    url: `regulation/year`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+
 export {
   fillRegulationServices,
   getTypeRegulationServices,
   getUrlVideoService,
   getRegulationPagation,
   getRegulationListYear,
-  getTypeRegulationByIDServices
+  getTypeRegulationByIDServices,
+  getAllYear
 };
