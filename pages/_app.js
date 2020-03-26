@@ -9,6 +9,7 @@ import '../styles/block.scss';
 // import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/styles.css';
 import '../styles/custom.css';
+import '../styles/question.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'react-rangeslider/lib/index.css';
 

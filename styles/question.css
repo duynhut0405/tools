@@ -1,0 +1,15 @@
+.inner div .table {
+  background-color: #F8F8F8;
+  border-radius: 8px;
+  font-size: 14px;
+  overflow: hidden;
+  min-width: 600px;
+  margin-bottom: 40px;
+  overflow-x: auto;
+}
+.inner div .table td {
+  border-top: 2px solid #fff;
+}
+.inner div .table td:not(:first-child) {
+  border-left: 2px solid #fff;
+}
