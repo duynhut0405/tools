@@ -9,7 +9,7 @@ const propTypes = {
 function ImageRight({ items }) {
   const [active, setActive] = useState(false);
   return (
-    <section className="sec-b sec-img-text group-ef loaded">
+    <section className="sec-tb sec-img-text group-ef loaded">
       <div className="container">
         <div className="row center end">
           <div className="col-lg-6">
@@ -19,13 +19,16 @@ function ImageRight({ items }) {
                 data-id="2UrWPUAr68A"
                 data-video="autoplay=1&amp;controls=1&amp;mute=0"
               >
-                <img
-                  className=" loaded loaded"
-                  data-lazy-type="image"
-                  data-lazy-src={items.image}
-                  src={items.image}
-                  alt=""
-                />
+                <div className="img  efch-2 ef-img-t ">
+                  <img
+                    className=" loaded loaded"
+                    data-lazy-type="image"
+                    data-lazy-src={items.image}
+                    src={items.image}
+                    alt=""
+                  />
+                </div>
+
                 {items.video_url !== undefined && (
                   <span
                     className="btnvideo"
