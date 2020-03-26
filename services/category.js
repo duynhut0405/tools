@@ -12,4 +12,17 @@ const getCategoryByIdService = id => {
       return error.response.data;
     });
 };
-export { getCategoryByIdService };
+
+const getFullCategoryByIdService = id => {
+  return request({
+    url: `/categorys/find/${id}`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+};
+export { getCategoryByIdService, getFullCategoryByIdService };

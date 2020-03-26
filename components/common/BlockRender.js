@@ -18,7 +18,8 @@ import {
   Card,
   Tools,
   Comment,
-  TablePayment
+  TablePayment,
+  TabQuestions
 } from '../block';
 import About from '../about';
 import Investors from '../investors';
@@ -180,6 +181,11 @@ function BlockRender({ data }) {
               if (values.name === 'DownloadVideo' && values.content !== null) {
                 return (
                   <ListDowloadVideo type={Number(JSON.parse(values.content).type)} key={index} />
+                );
+              }
+              if (values.name === 'TabQuestions' && values.content !== null) {
+                return (
+                  <TabQuestions data={JSON.parse(values.content)} id={values.id} key={index} />
                 );
               }
               return null;
