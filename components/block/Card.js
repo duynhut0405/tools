@@ -11,7 +11,6 @@ const propTypes = {
 
 function Card({ data, type }) {
   const [refCarousel, setRefCarousel] = useState(null);
-  const [refCarouselThree, setRefCarouselThree] = useState(null);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -24,20 +23,6 @@ function Card({ data, type }) {
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 2
-    }
-  };
-  const responsiveTwo = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
     }
   };
   return (
@@ -379,46 +364,6 @@ function Card({ data, type }) {
                     </div>
                   );
                 })}
-              </div>
-            </div>
-          </section>
-        </React.Fragment>
-      )}
-      {type && type === '10' && (
-        <React.Fragment>
-          <section className=" sec-b sec-cauhoi ">
-            <div className="container">
-              <div className="entry-head">
-                <h2 className="ht ">{data === null ? '' : data.title}</h2>
-              </div>
-              <div className="accodion-content entry-content">
-                <Carousel
-                  responsive={responsiveTwo}
-                  draggable
-                  minimumTouchDrag={80}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  keyBoardControl={true}
-                  className="list-5"
-                  arrows={true}
-                  ref={ref => {
-                    setRefCarouselThree(ref);
-                  }}
-                >
-                  {map(data.listCard, (items, index) => (
-                    <div className="item ef-img-t item_carousel" key={index}>
-                      <a href={items.url} className="link">
-                        <div className="img">
-                          <img src={items.image} />
-                        </div>
-                        <div className="divtext">
-                          <h4 className="title line2">{items.note_1}</h4>
-                          <div className="desc line2 cl3">{items.note_2}</div>
-                        </div>
-                      </a>
-                    </div>
-                  ))}
-                </Carousel>
               </div>
             </div>
           </section>
