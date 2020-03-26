@@ -20,7 +20,7 @@ function NewCard({ data }) {
                 <div key={index} className="col-md-4">
                   <div className="item efch-2 ef-img-l ">
                     <div className="divtext">
-                      <div style={{ height: '48px', fontWeight: 'bold', fontSize: '16px' }}>
+                      <div style={{ height: '62px', fontWeight: 'bold', fontSize: '16px' }}>
                         <a
                           href={items.urlTitle}
                           target="_blank"
