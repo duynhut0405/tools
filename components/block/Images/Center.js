@@ -16,7 +16,7 @@ function ImageCenter({ items }) {
         <div className="container">
           <div className="bgvideo loaded">
             <div className="entry-head text-center remove">
-              {ReactHtmlParser(items.note_1)}
+              <h2 className="ht">{ReactHtmlParser(items.note_1)}</h2>
               {ReactHtmlParser(items.note_2)}
               {ReactHtmlParser(items.note_3)}
             </div>
@@ -76,7 +76,7 @@ function ImageCenter({ items }) {
               style={{ backgroundImage: `url(${Background})` }}
             >
               <div className="entry-head text-center">
-                {ReactHtmlParser(items.note_1)}
+                <h2 className="ht">{ReactHtmlParser(items.note_1)}</h2>
                 {ReactHtmlParser(items.note_2)}
                 {ReactHtmlParser(items.note_3)}
               </div>

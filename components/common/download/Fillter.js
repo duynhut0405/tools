@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { map } from 'lodash';
+import { getAllYear } from '../../../services/regulation';
 import PropTypes from 'prop-types';
+import { withTranslation } from '../../../i18n';
 
 const propTypes = {
   type: PropTypes.array,
   center: PropTypes.bool,
   setDate: PropTypes.func,
-  setType: PropTypes.func
+  setType: PropTypes.func,
+  t: PropTypes.func
 };
 
-function Filler({ type, setDate, setType, center }) {
+const getYear = async setData => {
+  const res = await getAllYear();
+  if (res && res !== undefined && res.status === 200) {
+    setData(res.data);
+  }
+};
+
+function Filler({ t, type, setDate, setType, center }) {
+  const [listYear, setListYear] = useState([]);
+  useEffect(() => {
+    getYear(setListYear);
+  }, [getAllYear]);
   return (
     <div className={center ? 'filter-category mb-5 text-center' : 'filter-category mb-5'}>
-      <select className="select mr-2" onChange={setDate}>
-        <option value={0}>Năm...</option>
-        <option value={2020}>2020</option>
-        <option value={2021}>2021</option>
+      <select className="select" onChange={setDate}>
+        <option value={0}>{t('year')}</option>
+        {map(listYear, value => (
+          <option value={value}>{value}</option>
+        ))}
       </select>
       <select className="select" onChange={setType}>
-        <option value={0}>Chọn...</option>
+        <option value={0}>{t('select')}</option>
         {map(type, item => {
           return (
             <option value={item.id} key={item.id}>
@@ -33,4 +48,4 @@ function Filler({ type, setDate, setType, center }) {
 
 Filler.propTypes = propTypes;
 
-export default Filler;
+export default withTranslation('common')(Filler);

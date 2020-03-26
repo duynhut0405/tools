@@ -1,5 +1,5 @@
 .inner div .table {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   border-radius: 8px;
   font-size: 14px;
   overflow: hidden;
@@ -12,4 +12,11 @@
 }
 .inner div .table td:not(:first-child) {
   border-left: 2px solid #fff;
+}
+.tab-content .sec-tb {
+  padding: 0;
+}
+
+select.select {
+  margin-right: 5px;
 }

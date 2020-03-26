@@ -219,7 +219,7 @@ function Pages({ data, type, id }) {
   }
   if (type && type === '6') {
     return (
-      <section className=" sec-b sec-cauhoi sec-padding">
+      <section>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>

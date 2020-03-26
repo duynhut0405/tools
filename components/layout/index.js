@@ -69,7 +69,6 @@ function Layout({
     getSettingFooter();
     getSocialLink();
   }, []);
-
   useEffect(() => {
     i18n.changeLanguage(getLang());
     setFlag(getFlag());
@@ -117,7 +116,7 @@ function Layout({
             <h4 className="widget-title">{values.name}</h4>
             <ul className="menu">{footerItem(values.children)}</ul>
           </div>
-          {key === items.length - 1 && <Social data={socialLink} />}
+          {/* {key === items.length - 1 && <Social data={socialLink} />} */}
         </div>
       );
     });
@@ -276,11 +275,16 @@ function Layout({
                         <div className="group-header">
                           <div className="item ilogin">
                             <ul className="menu line">
-                              <li>
+                              {/* <li>
                                 <a href="#">{t('registration')}</a>
                               </li>
                               <li>
                                 <a href="#">{t('login')}</a>
+                              </li> */}
+                              <li className="highlight">
+                                <a href="#">
+                                  <span>Ebanking</span>
+                                </a>
                               </li>
                             </ul>
                           </div>
@@ -392,12 +396,12 @@ function Layout({
                         </span>
                         <div className="app">
                           <p className="stitle">{t('donwload_app_today')}</p>
-                          <a href="https://apple.co/2AqB7ZM">
-                            <img src="/static/images/btt-chplay.svg" alt="" />
-                          </a>
-                          &nbsp;
                           <a href="https://bit.ly/2v5ZsyP">
                             <img src="/static/images/btt-google.svg" alt="" />
+                          </a>
+                          &nbsp;
+                          <a href="https://apple.co/2AqB7ZM">
+                            <img src="/static/images/btt-chplay.svg" alt="" />
                           </a>{' '}
                         </div>
                       </div>
@@ -409,7 +413,10 @@ function Layout({
                 <div className="container">
                   <div className="row grid-space-10">
                     <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                      <Widget data={settingFooter} />
+                      <div className="widget widget-info">
+                        <Widget data={settingFooter} />
+                        <Social data={socialLink} />
+                      </div>
                     </div>
                     {renderFooter(menuFooterMain)}
                   </div>
