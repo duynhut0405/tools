@@ -41,7 +41,6 @@ function News({ data, type, id }) {
       items: 2
     }
   };
-
   const getCategoryById = async () => {
     const res = await getCategoryByIdService(Number(data.category.value));
     if (res && res.status === 200) {
