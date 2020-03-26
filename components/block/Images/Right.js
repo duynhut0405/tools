@@ -61,7 +61,7 @@ function ImageRight({ items }) {
           </div>
           <div className="col-lg-6">
             <div className="divtext ">
-              {ReactHtmlParser(items.note_1)}
+              <h2 className="ht  efch-1 ef-tx-t ">{ReactHtmlParser(items.note_1)}</h2>
               {ReactHtmlParser(items.note_2)}
               {ReactHtmlParser(items.note_3)}
               {items.url === undefined || items.url === null || items.url === '' ? (

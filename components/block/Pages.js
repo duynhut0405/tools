@@ -185,35 +185,33 @@ function Pages({ data, type, id }) {
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
           </div>
           <div className="accodion-content entry-content">
-
-                  <Carousel
-                    responsive={responsiveTwo}
-                    draggable
-                    minimumTouchDrag={80}
-                    ssr={true} // means to render carousel on server-side.
-                    infinite={true}
-                    keyBoardControl={true}
-                    className="list-5"
-                    arrows={true}
-                    ref={ref => {
-                      setRefCarouselThree(ref);
-                    }}
-                  >
-                    {map(listPage, (items, index) => (
-                      <div className="item ef-img-t item_carousel" key={index}>
-                        <a href={`/page/${items.slug}`} className="link">
-                          <div className="img">
-                            <img src={items.baseImage} />
-                          </div>
-                          <div className="divtext">
-                            <h4 className="title line2">{items.name}</h4>
-                            <div className="desc line2 cl3">{items.meta_description}</div>
-                          </div>
-                        </a>
-                      </div>
-                    ))}
-                  </Carousel>
-
+            <Carousel
+              responsive={responsiveTwo}
+              draggable
+              minimumTouchDrag={80}
+              ssr={true} // means to render carousel on server-side.
+              infinite={true}
+              keyBoardControl={true}
+              className="list-5"
+              arrows={true}
+              ref={ref => {
+                setRefCarouselThree(ref);
+              }}
+            >
+              {map(listPage, (items, index) => (
+                <div className="item ef-img-t item_carousel" key={index}>
+                  <a href={`/page/${items.slug}`} className="link">
+                    <div className="img">
+                      <img src={items.baseImage} />
+                    </div>
+                    <div className="divtext">
+                      <h4 className="title line2">{items.name}</h4>
+                      <div className="desc line2 cl3">{items.meta_description}</div>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </Carousel>
           </div>
         </div>
       </section>
@@ -221,7 +219,7 @@ function Pages({ data, type, id }) {
   }
   if (type && type === '6') {
     return (
-      <section className=" sec-b sec-cauhoi sec-padding">
+      <section>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
@@ -236,35 +234,33 @@ function Pages({ data, type, id }) {
                 </span>
               </label>
               <div className="accodion-content entry-content">
-
-                      <Carousel
-                        responsive={responsiveTwo}
-                        draggable
-                        minimumTouchDrag={80}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        keyBoardControl={true}
-                        className="list-5"
-                        arrows={true}
-                        ref={ref => {
-                          setRefCarouselTwo(ref);
-                        }}
-                      >
-                        {map(listPage, (items, index) => (
-                          <div className="item ef-img-t item_carousel" key={index}>
-                            <a href={`/page/${items.slug}`} className="link">
-                              <div className="img">
-                                <img src={items.baseImage} />
-                              </div>
-                              <div className="divtext">
-                                <h4 className="title line2">{items.name}</h4>
-                                <div className="desc line2 cl3">{items.meta_description}</div>
-                              </div>
-                            </a>
-                          </div>
-                        ))}
-                      </Carousel>
-
+                <Carousel
+                  responsive={responsiveTwo}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
+                  className="list-5"
+                  arrows={true}
+                  ref={ref => {
+                    setRefCarouselTwo(ref);
+                  }}
+                >
+                  {map(listPage, (items, index) => (
+                    <div className="item ef-img-t item_carousel" key={index}>
+                      <a href={`/page/${items.slug}`} className="link">
+                        <div className="img">
+                          <img src={items.baseImage} />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title line2">{items.name}</h4>
+                          <div className="desc line2 cl3">{items.meta_description}</div>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </Carousel>
               </div>
             </div>
           </div>

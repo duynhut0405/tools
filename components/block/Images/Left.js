@@ -76,7 +76,7 @@ function ImageLeft({ items }) {
           </div>
           <div className="col-lg-6">
             <div className="divtext entry-content">
-              {ReactHtmlParser(items.note_1)}
+              <h2 className="ht  efch-1 ef-tx-t ">{ReactHtmlParser(items.note_1)}</h2>
               {ReactHtmlParser(items.note_2)}
               {ReactHtmlParser(items.note_3)}
               {/* {items.text_action !== undefined && (
