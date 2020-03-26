@@ -59,7 +59,7 @@ function TablePayment({ data }) {
                     </tbody>
                   </table>
                 </div>
-                <div className="pages">
+                {/* <div className="pages">
                   <ul className="page-numbers">
                     <li>
                       <a className="prev page-numbers" href="#">
@@ -95,7 +95,7 @@ function TablePayment({ data }) {
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

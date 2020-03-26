@@ -167,9 +167,7 @@ function Card({ data, type }) {
               <div className="entry-head text-center">
                 <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
               </div>
-              <p className="text-center fs16">{ReactHtmlParser(data.listCard[0].note_1)}</p>
-              <br />
-              <br />
+              <p className="text-center fs16">{ReactHtmlParser(data.descrip)}</p>
               <br />
               <div className="hr"></div>
               <div className="max950">
@@ -319,7 +317,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type && type === '7' && (
+      {/* {type && type === '7' && (
         <React.Fragment>
           <div className="sec-b sec-img-svg-4">
             <div className="container">
@@ -343,9 +341,9 @@ function Card({ data, type }) {
             </div>
           </div>
         </React.Fragment>
-      )}
+      )} */}
 
-      {type && type === '9' && (
+      {/* {type && type === '9' && (
         <React.Fragment>
           <section className="sec-b sec-img-svg-2 group-ef loaded">
             <div className="container">
@@ -368,7 +366,7 @@ function Card({ data, type }) {
             </div>
           </section>
         </React.Fragment>
-      )}
+      )} */}
     </React.Fragment>
   );
 }

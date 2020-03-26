@@ -51,32 +51,30 @@ function Icon({ data, id }) {
                   <h2 className="ht">{data[0].title || ''}</h2>
                 </div>
                 <div className="sec-b">
-
-                        <Carousel
-                          responsive={responsive}
-                          draggable
-                          minimumTouchDrag={80}
-                          ssr={true} // means to render carousel on server-side.
-                          infinite={true}
-                          keyBoardControl={true}
-                          className="menuicon"
-                          arrows={true}
-                          ref={ref => {
-                            setRefCarousel(ref);
-                          }}
-                        >
-                          {map(data, (items, index) => (
-                            <div className="item ef-img-t item_carousel" key={index}>
-                              <a href={items.url} className="link">
-                                <div className="img">
-                                  <img src={items.image} />
-                                </div>
-                                <div className="title">{items.note_1}</div>
-                              </a>
-                            </div>
-                          ))}
-                        </Carousel>
-
+                  <Carousel
+                    responsive={responsive}
+                    draggable
+                    minimumTouchDrag={80}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    className="menuicon"
+                    arrows={true}
+                    ref={ref => {
+                      setRefCarousel(ref);
+                    }}
+                  >
+                    {map(data, (items, index) => (
+                      <div className="item ef-img-t item_carousel" key={index}>
+                        <a href={items.url} className="link">
+                          <div className="img">
+                            <img src={items.image} />
+                          </div>
+                          <div className="title">{items.note_1}</div>
+                        </a>
+                      </div>
+                    ))}
+                  </Carousel>
                 </div>
               </div>
             </section>
@@ -147,41 +145,136 @@ function Icon({ data, id }) {
                 <h2 className="ht efch-1 ef-img-t">{data[0].title}</h2>
               </div>
 
-                    <Carousel
-                      responsive={responsive1}
-                      draggable
-                      minimumTouchDrag={80}
-                      ssr={true} // means to render carousel on server-side.
-                      infinite={true}
-                      keyBoardControl={true}
-                      className="list-9"
-                      arrows={true}
-                      renderButtonGroupOutside={true}
-                      ref={ref => {
-                        setRefCarousel(ref);
-                      }}
-                    >
-                      {map(data, (item, index) => (
-                        <div
-                          className="owl-item"
-                          key={index}
-                          style={{ height: '238px', width: '277px' }}
-                        >
-                          <div className={`item efch-${index + 2} ef-img-l `}>
-                            <div className="img">
-                              <img
-                                className=" loaded loaded"
-                                data-lazy-type="image"
-                                src={item.image}
-                                style={{ width: '160px', height: '52px' }}
-                              />
-                            </div>
-                            <div className="des">{item.note_1}</div>
-                          </div>
+              <Carousel
+                responsive={responsive1}
+                draggable
+                minimumTouchDrag={80}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                keyBoardControl={true}
+                className="list-9"
+                arrows={true}
+                renderButtonGroupOutside={true}
+                ref={ref => {
+                  setRefCarousel(ref);
+                }}
+              >
+                {map(data, (item, index) => (
+                  <div className={`item efch-${index + 2} ef-img-l `} key={index}>
+                    <div className="img">
+                      <img
+                        className=" loaded loaded"
+                        data-lazy-type="image"
+                        src={item.image}
+                        style={{ width: '160px', height: '52px' }}
+                      />
+                    </div>
+                    <div className="des">{item.note_1}</div>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '4' && (
+        <React.Fragment>
+          <section className="sec-b sec-img-svg-2 group-ef loaded">
+            <div className="container">
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className="col-sm-4 efch-2 ef-img-t" key={index}>
+                      <a className="item" href="#" style={{ padding: '40px 10px' }}>
+                        <div className="img ">
+                          <img className="loaded loaded" data-lazy-type="image" src={items.image} />
                         </div>
-                      ))}
-                    </Carousel>
-
+                        <div className="divtext">
+                          <h4 className="title">{items.note_2}</h4>
+                        </div>
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '5' && (
+        <React.Fragment>
+          <div className="sec-b sec-img-svg-4">
+            <div className="container">
+              <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className="col-sm-4 efch-2 ef-img-t" key={index}>
+                      <a className="item" href={items.url}>
+                        <div className="img ">
+                          <img className="loaded loaded" data-lazy-type="image" src={items.image} />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title">{items.note_2}</h4>
+                        </div>
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      )}
+      {data[0].type === '6' && (
+        <React.Fragment>
+          <section className="sec-tb sec-img-svg-2 group-ef loaded">
+            <div className="container">
+              <div className="entry-head text-left">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
+              <div className="sec-b">
+                <Carousel
+                  responsive={responsive}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
+                  arrows={true}
+                  className="menuicon"
+                  ref={ref => {
+                    setRefCarousel(ref);
+                  }}
+                >
+                  {map(data, (items, index) => (
+                    <div className="item ef-img-t item_carousel" key={index}>
+                      <a
+                        href="#"
+                        className="link"
+                        style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
+                      >
+                        <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
+                          <img src={items.image} className="loaded loaded" />
+                        </div>
+                        <div className="divtext" style={{ paddingLeft: '20px' }}>
+                          <h3
+                            className="title"
+                            style={{
+                              textAlign: 'left',
+                              color: 'initial',
+                              fontWeight: 'bold',
+                              display: 'block'
+                            }}
+                          >
+                            {items.note_2}
+                          </h3>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </Carousel>
+              </div>
             </div>
           </section>
         </React.Fragment>

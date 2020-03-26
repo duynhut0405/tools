@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { DowloadFile, Fillter } from '../download';
+import { Fillter } from '../download';
+import FileList from './FileList';
 import { Pagination } from '../../common';
 import { RegulationActions } from '../../../store/actions';
 import { map } from 'lodash';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -24,9 +26,10 @@ function ListDowloadFIle({
   getTypeRegulation,
   seachRegulation
 }) {
+  const date = new Date();
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
-  const [year, setYear] = useState(0);
+  const [year, setYear] = useState(moment(date).format('YYYY'));
 
   useEffect(() => {
     getTypeRegulation(type);
@@ -38,7 +41,7 @@ function ListDowloadFIle({
   }, [page, year, datatype]);
 
   return (
-    <div className="accodion accodion-2 container sec-tb">
+    <div className="accodion accodion-2 container">
       {search && (
         <Fillter
           center
@@ -47,25 +50,23 @@ function ListDowloadFIle({
           setType={event => setDataType(event.target.value)}
         />
       )}
-      {map(listRegulation, (item, index) => {
-        if (item.investors.length > 0) {
-          return (
-            <div className="sec-tb" key={item.year}>
-              <DowloadFile
-                data={item.investors}
-                year={item.year}
-                isChecked={index === 0 ? true : false}
-              />
-            </div>
-          );
-        }
-        return null;
-      })}
+      <div className="container">
+        {map(listRegulation, (item, index) => {
+          if (item.investors.length > 0) {
+            return (
+              <div className="sec-tb" key={index}>
+                <FileList year={item.year} data={item.investors} isChecked={true} />
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
+
       <Pagination
         page={page}
+        size={listRegulation.size}
         setPage={pageNumber => setPage(pageNumber)}
-        next={nextNumber => setPage(nextNumber)}
-        previous={previousNumber => setPage(previousNumber)}
       />
     </div>
   );

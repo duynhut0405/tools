@@ -3,7 +3,6 @@ import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
-import { useTranslation } from 'react-i18next';
 import { rate } from '../../../utils/currency';
 
 import Proptypes from 'prop-types';
@@ -11,10 +10,11 @@ import Proptypes from 'prop-types';
 const propTypes = {
   minValue: Proptypes.number,
   maxValue: Proptypes.number,
-  interest_rate: Proptypes.number
+  interest_rate: Proptypes.number,
+  t: Proptypes.func
 };
 
-function Tool4({ minValue, maxValue, interest_rate }) {
+function Tool4({ t, minValue, maxValue, interest_rate }) {
   const [salary, setSalary] = useState('0');
   const [amount, setAmount] = useState('0');
   const [month, setMonth] = useState('1');
@@ -26,7 +26,7 @@ function Tool4({ minValue, maxValue, interest_rate }) {
   const [interest, setInterest] = useState(0);
   const [active, setActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
-  const { t } = useTranslation();
+
   useEffect(() => {
     const _month = Number(month.replace(/[^0-9.-]+/g, ''));
     let _salary = Number(salary.replace(/[^0-9.-]+/g, ''));
@@ -106,7 +106,7 @@ function Tool4({ minValue, maxValue, interest_rate }) {
 
   return (
     <div className="container sec-tb">
-      <h2 className="ht">Công cụ tính</h2>
+      <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">
           <div className="active">
@@ -116,19 +116,19 @@ function Tool4({ minValue, maxValue, interest_rate }) {
                   <div className="col-md-7 ">
                     <div className="inner">
                       <FieldInput
-                        label="Lương hàng tháng:"
+                        label={t('salary')}
                         maxValue={maxValue}
                         value={salary}
                         onChange={value => setSalary(value)}
                       />
                       <FieldInput
-                        label="Số tiền có thể vay:"
+                        label={t('amount_can_borrowed')}
                         maxValue={maxValue}
                         value={amount}
                         onChange={value => setAmount(value)}
                       />
                       <FieldInput
-                        label="Kỳ hạn vay:"
+                        label={t('loan_term')}
                         maxValue={84}
                         value={month}
                         onChange={value => setMonth(value)}
@@ -137,7 +137,7 @@ function Tool4({ minValue, maxValue, interest_rate }) {
                   </div>
                   <div className="col-md-5">
                     <Result
-                      title="Cho vay tiêu dùng không có TSĐB"
+                      title={t('tool_4_title')}
                       subtitle={t('loan_amount')}
                       amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
                       monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
@@ -148,12 +148,9 @@ function Tool4({ minValue, maxValue, interest_rate }) {
                     />
                   </div>
                 </div>
-                <p className="note">
-                  (*) Bảng tính chỉ mang tính tham khảo và không phải là cam kết về khoản vay của
-                  MBBank
-                </p>
+                <p className="note">{t('tool_note')}</p>
                 <a className="btn" onClick={calculation}>
-                  Xem bảng
+                  {t('show_table')}
                 </a>
               </div>
             </div>
@@ -173,10 +170,6 @@ function Tool4({ minValue, maxValue, interest_rate }) {
     </div>
   );
 }
-
-Tool4.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
 
 Tool4.propTypes = propTypes;
 

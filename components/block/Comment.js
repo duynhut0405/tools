@@ -49,29 +49,27 @@ function Comment({ data, id }) {
           }}
         >
           {map(data.listComment, (item, index) => (
-            <div className="owl-item active" key={index}>
-              <div className="item efch-2 ef-img-l ">
-                <div className="ic">
-                  <i className="icon-quote"></i>
-                </div>
-                <div className="inline-table">
-                  <div className="ctext ">
-                    <span className="img tRes">
-                      <img
-                        className=" loaded loaded"
-                        data-lazy-type="image"
-                        data-lazy-src={item.image}
-                        src={item.image}
-                      />
-                    </span>
-                  </div>
-                  <div className="c100">
-                    <h5 className="title">{item.note_1}</h5>
-                    <div className="cl6">{item.note_2}</div>
-                  </div>
-                </div>
-                <CommentItem data={item.content} />
+            <div className="item efch-2 ef-img-l " key={index}>
+              <div className="ic">
+                <i className="icon-quote"></i>
               </div>
+              <div className="inline-table">
+                <div className="ctext ">
+                  <span className="img tRes">
+                    <img
+                      className=" loaded loaded"
+                      data-lazy-type="image"
+                      data-lazy-src={item.image}
+                      src={item.image}
+                    />
+                  </span>
+                </div>
+                <div className="c100">
+                  <h5 className="title">{item.note_1}</h5>
+                  <div className="cl6">{item.note_2}</div>
+                </div>
+              </div>
+              <CommentItem data={item.content} />
             </div>
           ))}
         </Carousel>

@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { map } from 'lodash';
 import { DowloadVideo } from '../common/download';
-import { RegulationActions } from '../../store/actions';
+import { getRegulationListYear } from '../../services/regulation';
 import moment from 'moment';
 import Proptypes from 'prop-types';
-import { connect } from 'react-redux';
 
 const propTypes = {
   listRegulation: Proptypes.array.isRequired,
   seachRegulation: Proptypes.func.isRequired
 };
 
-function DowloadVideos({ listRegulation, seachRegulation }) {
+const seachRegulation = async (datatype, page, year, setData) => {
+  const res = await getRegulationListYear(datatype, 0, 10, page, year);
+  if (res && res !== undefined && res.status === 200) {
+    setData(res.data);
+  }
+};
+
+function DowloadVideos() {
   const date = new Date();
+  const [listRegulation, setListRegulation] = useState([]);
   const [datatype] = useState(2);
   const [page] = useState(1);
   const [year] = useState(moment(date).format('YYYY'));
 
   useEffect(() => {
-    seachRegulation(datatype, 0, 10, page, year);
+    seachRegulation(datatype, page, year, setListRegulation);
   }, [seachRegulation]);
 
   return (
@@ -26,7 +33,7 @@ function DowloadVideos({ listRegulation, seachRegulation }) {
       <div className="container sec-tb">
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">Họp cổ đông</h2>
-          <a className="viewall" href="#">
+          <a className="viewall" href="/page/nha-dau-tu/dai-hoi-co-dong">
             Xem tất cả <i className="icon-arrow-1"></i>
           </a>
         </div>
@@ -45,16 +52,6 @@ function DowloadVideos({ listRegulation, seachRegulation }) {
   );
 }
 
-const mapStateToProp = state => {
-  return {
-    listRegulation: state.regulationReducer.listDataByYear
-  };
-};
-
-const mapDispatchToProps = {
-  seachRegulation: RegulationActions.getRegulationByYear
-};
-
 DowloadVideos.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(DowloadVideos);
+export default DowloadVideos;

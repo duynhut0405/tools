@@ -3,16 +3,16 @@ import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
-import { useTranslation } from 'react-i18next';
 import Proptypes from 'prop-types';
 
 const propTypes = {
   minValue: Proptypes.number,
   maxValue: Proptypes.number,
-  interest_rate: Proptypes.number
+  interest_rate: Proptypes.number,
+  t: Proptypes.func
 };
 
-function ProductionBusiness({ minValue, maxValue, interest_rate }) {
+function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
   const [total_capital_needs, setTotalCapitalNeeds] = useState('5000000');
   const [equity_capital, setEquityCapital] = useState('5000000');
   const [amount, setAmount] = useState(0);
@@ -28,7 +28,6 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
   const [sum, setSum] = useState(0);
   const [interest, setInterest] = useState(0);
   const [title, setTitle] = useState('Vay hạn mức');
-  const { t } = useTranslation();
 
   const tableResult = (sottien, goc, lai, time) => {
     const d = new Date();
@@ -118,12 +117,12 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
 
   return (
     <div className="container sec-tb">
-      <h2 className="ht">Công cụ tính</h2>
+      <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b sec-tb">
         <div className="w-menu-over">
           <div className="p-tool1__select1 p-tool1__select1-js">
             <label className="option1">
-              Vay hạn mức
+              {t('loan_limit')}
               <input
                 type="radio"
                 checked={type === 1}
@@ -136,7 +135,7 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
               <span className="checkmark1"></span>
             </label>
             <label className="option1">
-              Vay đầu tư hạn mức cố định
+              {t('investment_loans')}
               <input
                 type="radio"
                 checked={type === 2}
@@ -158,25 +157,25 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
                   <div className="col-md-7 ">
                     <div className="inner">
                       <FieldInput
-                        label="Tổng nhu cầu vốn (số tiền vay):"
+                        label={t('total_demand')}
                         maxValue={100000000}
                         value={total_capital_needs}
                         onChange={value => setTotalCapitalNeeds(value)}
                       />
                       <FieldInput
-                        label="Vốn tự có:"
+                        label={t('tool_result.equity_capital')}
                         maxValue={1000000000}
                         value={equity_capital}
                         onChange={value => setEquityCapital(value)}
                       />
                       <FieldInput
-                        label="Nhu cầu vay vốn từ MB:"
+                        label={t('amount_to_mb')}
                         maxValue={1000000000}
                         value={amount}
                         onChange={value => setAmount(value)}
                       />
                       <FieldInput
-                        label="Kỳ hạn vay:"
+                        label={t('loan_term')}
                         maxValue={84}
                         value={month}
                         note
@@ -197,12 +196,9 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
                     />
                   </div>
                 </div>
-                <p className="note">
-                  (*) Bảng tính chỉ mang tính tham khảo và không phải là cam kết về khoản vay của
-                  MBBank
-                </p>
+                <p className="note">{t('tool_note')}</p>
                 <a className="btn" onClick={calculation}>
-                  Xem bảng
+                  {t('show_table')}
                 </a>
               </div>
             </div>
@@ -222,10 +218,6 @@ function ProductionBusiness({ minValue, maxValue, interest_rate }) {
     </div>
   );
 }
-
-ProductionBusiness.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
 
 ProductionBusiness.propTypes = propTypes;
 
