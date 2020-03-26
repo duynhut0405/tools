@@ -34,48 +34,45 @@ function Comment({ data, id }) {
           <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
         </div>
 
-              <Carousel
-                responsive={responsive}
-                draggable
-                minimumTouchDrag={80}
-                ssr={true} // means to render carousel on server-side.
-                infinite={true}
-                keyBoardControl={true}
-                className="list-11"
-                arrows={true}
-                renderButtonGroupOutside={true}
-                ref={ref => {
-                  setRefCarousel(ref);
-                }}
-              >
-                {map(data.listComment, (item, index) => (
-
-                    <div className="item efch-2 ef-img-l " key={index}>
-                      <div className="ic">
-                        <i className="icon-quote"></i>
-                      </div>
-                      <div className="inline-table">
-                        <div className="ctext ">
-                          <span className="img tRes">
-                            <img
-                              className=" loaded loaded"
-                              data-lazy-type="image"
-                              data-lazy-src={item.image}
-                              src={item.image}
-                            />
-                          </span>
-                        </div>
-                        <div className="c100">
-                          <h5 className="title">{item.note_1}</h5>
-                          <div className="cl6">{item.note_2}</div>
-                        </div>
-                      </div>
-                      <CommentItem data={item.content} />
-                    </div>
-
-                ))}
-              </Carousel>
-
+        <Carousel
+          responsive={responsive}
+          draggable
+          minimumTouchDrag={80}
+          ssr={true} // means to render carousel on server-side.
+          infinite={true}
+          keyBoardControl={true}
+          className="list-11"
+          arrows={true}
+          renderButtonGroupOutside={true}
+          ref={ref => {
+            setRefCarousel(ref);
+          }}
+        >
+          {map(data.listComment, (item, index) => (
+            <div className="item efch-2 ef-img-l " key={index}>
+              <div className="ic">
+                <i className="icon-quote"></i>
+              </div>
+              <div className="inline-table">
+                <div className="ctext ">
+                  <span className="img tRes">
+                    <img
+                      className=" loaded loaded"
+                      data-lazy-type="image"
+                      data-lazy-src={item.image}
+                      src={item.image}
+                    />
+                  </span>
+                </div>
+                <div className="c100">
+                  <h5 className="title">{item.note_1}</h5>
+                  <div className="cl6">{item.note_2}</div>
+                </div>
+              </div>
+              <CommentItem data={item.content} />
+            </div>
+          ))}
+        </Carousel>
       </div>
     </section>
   );
