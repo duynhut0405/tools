@@ -20,7 +20,7 @@ function NewCard({ data }) {
                 <div key={index} className="col-md-4">
                   <div className="item efch-2 ef-img-l ">
                     <div className="divtext">
-                      <div style={{ height: '62px', fontWeight: 'bold', fontSize: '16px' }}>
+                      <h4 className="title equal line2" style={{ height: '48px' }}>
                         <a
                           href={items.urlTitle}
                           target="_blank"
@@ -28,7 +28,7 @@ function NewCard({ data }) {
                         >
                           <div>{items.titleCard}</div>
                         </a>
-                      </div>
+                      </h4>
                       <div className="desc ">{ReactHtmlParser(items.note_2)}</div>
                     </div>
                   </div>
