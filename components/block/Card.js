@@ -169,8 +169,6 @@ function Card({ data, type }) {
               </div>
               <p className="text-center fs16">{ReactHtmlParser(data.descrip)}</p>
               <br />
-              <br />
-              <br />
               <div className="hr"></div>
               <div className="max950">
                 <div className="timeline ">
