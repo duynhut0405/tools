@@ -40,7 +40,7 @@ function ListDowloadQA({
   }, [page]);
 
   return (
-    <div className="accodion accodion-2 container sec-tb">
+    <div className="accodion accodion-2 container">
       {search && (
         <Fillter
           center

@@ -155,7 +155,7 @@ function BlockRender({ data }) {
                 return <About data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Investors' && values.content !== null) {
-                return <Investors key={index} />;
+                return <Investors key={index} data={JSON.parse(values.content)} />;
               }
               if (values.name === 'Contact' && values.content !== null) {
                 return <Contact key={index} />;
@@ -174,7 +174,11 @@ function BlockRender({ data }) {
               }
               if (values.name === 'DownloadFile' && values.content !== null) {
                 return (
-                  <ListDowloadFIle type={Number(JSON.parse(values.content).type)} key={index} />
+                  <ListDowloadFIle
+                    type={Number(JSON.parse(values.content).type)}
+                    search
+                    key={index}
+                  />
                 );
               }
               if (values.name === 'DownloadVideo' && values.content !== null) {

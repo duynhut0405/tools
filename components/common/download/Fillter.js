@@ -12,7 +12,7 @@ const propTypes = {
 function Filler({ type, setDate, setType, center }) {
   return (
     <div className={center ? 'filter-category mb-5 text-center' : 'filter-category mb-5'}>
-      <select className="select mr-2" onChange={setDate}>
+      <select className="select" onChange={setDate}>
         <option value={0}>Năm...</option>
         <option value={2020}>2020</option>
         <option value={2021}>2021</option>

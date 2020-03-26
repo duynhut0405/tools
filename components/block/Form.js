@@ -42,7 +42,6 @@ function Form({ data }) {
     };
     sendMailService(dataSend);
   };
-  console.log(formdata)
   return (
     <section className="sec-tb sec-tuvan">
       <div className="container">
