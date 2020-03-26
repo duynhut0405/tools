@@ -317,7 +317,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type && type === '7' && (
+      {/* {type && type === '7' && (
         <React.Fragment>
           <div className="sec-b sec-img-svg-4">
             <div className="container">
@@ -341,9 +341,9 @@ function Card({ data, type }) {
             </div>
           </div>
         </React.Fragment>
-      )}
+      )} */}
 
-      {type && type === '9' && (
+      {/* {type && type === '9' && (
         <React.Fragment>
           <section className="sec-b sec-img-svg-2 group-ef loaded">
             <div className="container">
@@ -366,7 +366,7 @@ function Card({ data, type }) {
             </div>
           </section>
         </React.Fragment>
-      )}
+      )} */}
     </React.Fragment>
   );
 }
