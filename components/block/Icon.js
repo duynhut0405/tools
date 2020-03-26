@@ -51,32 +51,30 @@ function Icon({ data, id }) {
                   <h2 className="ht">{data[0].title || ''}</h2>
                 </div>
                 <div className="sec-b">
-
-                        <Carousel
-                          responsive={responsive}
-                          draggable
-                          minimumTouchDrag={80}
-                          ssr={true} // means to render carousel on server-side.
-                          infinite={true}
-                          keyBoardControl={true}
-                          className="menuicon"
-                          arrows={true}
-                          ref={ref => {
-                            setRefCarousel(ref);
-                          }}
-                        >
-                          {map(data, (items, index) => (
-                            <div className="item ef-img-t item_carousel" key={index}>
-                              <a href={items.url} className="link">
-                                <div className="img">
-                                  <img src={items.image} />
-                                </div>
-                                <div className="title">{items.note_1}</div>
-                              </a>
-                            </div>
-                          ))}
-                        </Carousel>
-
+                  <Carousel
+                    responsive={responsive}
+                    draggable
+                    minimumTouchDrag={80}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    className="menuicon"
+                    arrows={true}
+                    ref={ref => {
+                      setRefCarousel(ref);
+                    }}
+                  >
+                    {map(data, (items, index) => (
+                      <div className="item ef-img-t item_carousel" key={index}>
+                        <a href={items.url} className="link">
+                          <div className="img">
+                            <img src={items.image} />
+                          </div>
+                          <div className="title">{items.note_1}</div>
+                        </a>
+                      </div>
+                    ))}
+                  </Carousel>
                 </div>
               </div>
             </section>

@@ -40,7 +40,7 @@ function ListDowloadQA({
   }, [page]);
 
   return (
-    <div className="accodion accodion-2 container sec-tb">
+    <div className="accodion accodion-1 container">
       {search && (
         <Fillter
           center
@@ -62,12 +62,7 @@ function ListDowloadQA({
         })}
       </section>
 
-      <Pagination
-        page={page}
-        setPage={pageNumber => setPage(pageNumber)}
-        next={nextNumber => setPage(nextNumber)}
-        previous={previousNumber => setPage(previousNumber)}
-      />
+      <Pagination page={page} size={page.size} setPage={pageNumber => setPage(pageNumber)} />
     </div>
   );
 }

@@ -1,6 +1,11 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 
-function Share() {
+const propTypes = {
+  url: Proptypes.object
+};
+
+function Share({ url }) {
   return (
     <section className="sec-tb  bg-gray ">
       <div className="container">
@@ -8,16 +13,13 @@ function Share() {
           <h2 className="ht efch-1 ef-img-t">Cổ phiếu MB</h2>
         </div>
         <div>
-          <img
-            className=" loaded loaded"
-            data-lazy-type="image"
-            data-lazy-src="/static/images/bieu-do.png"
-            src="/static/images/bieu-do.png"
-          />
+          <iframe src={url} style={{ width: '100%', minHeight: '600px' }}></iframe>
         </div>
       </div>
     </section>
   );
 }
+
+Share.propTypes = propTypes;
 
 export default Share;
