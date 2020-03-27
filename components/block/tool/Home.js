@@ -3,9 +3,15 @@ import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
-import { useTranslation } from 'react-i18next';
+import Proptypes from 'prop-types';
 
-function ToolHome() {
+const propTypes = {
+  maxValue: Proptypes.number,
+  interest_rate: Proptypes.number,
+  t: Proptypes.func
+};
+
+function ToolHome({ t, maxValue, interest_rate }) {
   const [estimate_rate, setEstimateRate] = useState('5000000');
   const [estimate_mortgage, setEstimateMortgage] = useState('5000000');
   const [amount, SetAmount] = useState('0');
@@ -19,8 +25,7 @@ function ToolHome() {
   const [totalAmount, setTotalAmount] = useState(0);
   const [show_result, setShowResult] = useState(false);
   const [checked, setChecked] = useState('1');
-  const [title, setTitle] = useState('Cho vay mua nhà đất');
-  const { t } = useTranslation();
+  const [title, setTitle] = useState(t('tool_options.housing_loan'));
 
   const tableResult = (sottien, goc, lai, time) => {
     const d = new Date();
@@ -77,7 +82,7 @@ function ToolHome() {
     const _month = Number(month.replace(/[^0-9.-]+/g, ''));
     if (estimate_momney < mortgage_momney) {
       const month_payment = Math.ceil(estimate_momney / _month); //Tiền gốc hàng tháng
-      const month_interest = Math.ceil((estimate_momney * 12) / 100 / 12); //Tiền lãi hàng tháng
+      const month_interest = Math.ceil((estimate_momney * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
       const total = (month_interest + month_payment) * _month;
       setMonthlyInterest(month_interest);
       setMonthlyPayment(month_payment);
@@ -86,7 +91,7 @@ function ToolHome() {
       tableResult(estimate_momney, month_payment, month_interest, _month);
     } else {
       const month_payment = Math.ceil(mortgage_momney / _month); //Tiền gốc hàng tháng
-      const month_interest = Math.ceil((mortgage_momney * 12) / 100 / 12); //Tiền lãi hàng tháng
+      const month_interest = Math.ceil((mortgage_momney * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
       const total = (month_interest + month_payment) * _month;
       setMonthlyInterest(month_interest);
       setMonthlyPayment(month_payment);
@@ -99,58 +104,58 @@ function ToolHome() {
 
   return (
     <div className="container sec-tb">
-      <h2 className="ht">Công cụ tính</h2>
+      <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b sec-tb">
         <div className="w-menu-over">
           <div className="p-tool1__select1 p-tool1__select1-js">
             <label className="option1">
-              Cho vay mua nhà đất
+              {t('tool_options.housing_loan')}
               <input
                 type="radio"
                 checked={checked === '1'}
                 name="radio-loan1"
                 onChange={() => {
                   setChecked('1');
-                  setTitle('Cho vay mua nhà đất');
+                  setTitle(t('tool_options.housing_loan'));
                 }}
               />
               <span className="checkmark1"></span>
             </label>
             <label className="option1">
-              Cho vay mua nhà dự án
+              {t('tool_options.loans_for_project_houses')}
               <input
                 type="radio"
                 checked={checked === '2'}
                 name="radio-loan1"
                 onChange={() => {
                   setChecked('2');
-                  setTitle('Cho vay mua nhà dự án');
+                  setTitle(t('tool_options.loans_for_project_houses'));
                 }}
               />
               <span className="checkmark1"></span>
             </label>
             <label className="option1">
-              Cho vay xây dựng, sửa chữa nhà
+              {t('tool_options.lending_for_construction_and_repair_of_houses')}
               <input
                 type="radio"
                 checked={checked === '3'}
                 name="radio-loan1"
                 onChange={() => {
                   setChecked('3');
-                  setTitle('Cho vay xây dựng, sửa chữa nhà');
+                  setTitle(t('tool_options.lending_for_construction_and_repair_of_houses'));
                 }}
               />
               <span className="checkmark1"></span>
             </label>
             <label className="option1">
-              Cho vay trang bị nội thất nhà
+              {t('tool_options.lending_for_home_furnishings')}
               <input
                 type="radio"
                 checked={checked === '4'}
                 name="radio-loan1"
                 onChange={() => {
                   setChecked('4');
-                  setTitle('Cho vay trang bị nội thất nhà');
+                  setTitle(t('tool_options.lending_for_home_furnishings'));
                 }}
               />
               <span className="checkmark1"></span>
@@ -165,25 +170,25 @@ function ToolHome() {
                   <div className="col-md-7 ">
                     <div className="inner">
                       <FieldInput
-                        label="Ước tính giá trị nhà mua:"
-                        maxValue={100000000}
+                        label={t('estimated_home_purchase_value')}
+                        maxValue={maxValue}
                         value={estimate_rate}
                         onChange={value => setEstimateRate(value)}
                       />
                       <FieldInput
-                        label="Ước tính giá trị tài sản thế chấp:"
-                        maxValue={1000000000}
+                        label={t('estimated_value_of_collateral')}
+                        maxValue={maxValue}
                         value={estimate_mortgage}
                         onChange={value => setEstimateMortgage(value)}
                       />
                       <FieldInput
-                        label="Số tiền có thể vay:"
-                        maxValue={1000000000}
+                        label={t('amount_can_borrowed')}
+                        maxValue={maxValue}
                         value={amount}
                         onChange={value => setEstimateMortgage(value)}
                       />
                       <FieldInput
-                        label="Kỳ hạn vay:"
+                        label={t('loan_term')}
                         maxValue={84}
                         value={month}
                         note
@@ -204,12 +209,9 @@ function ToolHome() {
                     />
                   </div>
                 </div>
-                <p className="note">
-                  (*) Bảng tính chỉ mang tính tham khảo và không phải là cam kết về khoản vay của
-                  MBBank
-                </p>
+                <p className="note">{t('tool_note')}</p>
                 <a className="btn" onClick={calculation}>
-                  Xem bảng
+                  {t('show_table')}
                 </a>
               </div>
             </div>
@@ -230,8 +232,6 @@ function ToolHome() {
   );
 }
 
-ToolHome.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
+ToolHome.propTypes = propTypes;
 
 export default withTranslation('common')(ToolHome);

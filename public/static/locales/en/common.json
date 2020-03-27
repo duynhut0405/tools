@@ -49,6 +49,8 @@
     "loan_term": "Loan term:",
     "loan": "loan:",
     "amount_can_borrowed": "Amount can borrowed:",
+    "estimated_value_of_collateral": "Estimated value of collateral:",
+    "estimated_home_purchase_value": "Estimated home purchase value:",
     "tool_4_title": "Cho vay du học",
     "tool_5_title": "Car loan",
     "tool_6_title": "Mortgage loan of valuable papers",
@@ -59,7 +61,7 @@
     "lending_period": "Lending period",
     "salary": "Salary:",
     "amount_to_mb": "Demand for borrowing capital from MB:",
-    "total_demand": "Total capital demand (loan amount):",
+    "total": "Total capital demand (loan amount):",
     "loan_limit": "Loan limit",
     "investment_loans": "Investment loans",
     "tool_home_option": {
@@ -97,5 +99,11 @@
         "origin": "Origin",
         "interest": "Interest",
         "total_amount": "Origin + Interest"
+    },
+    "tool_options": {
+        "housing_loan": "Housing loan",
+        "loans_for_project_houses": "Loans for project houses",
+        "lending_for_construction_and_repair_of_houses": "Lending for construction and repair of houses",
+        "lending_for_home_furnishings": "Lending for home furnishings"
     }
 }

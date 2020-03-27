@@ -32,7 +32,7 @@ function Table({ t, active, setActive, data, show_result, sum, interest }) {
                 <table className="table table-full">
                   <tbody>
                     <tr>
-                      <th colSpan="2">{t('tool_table.repayment_period')}Kỳ trả nợ</th>
+                      <th colSpan="2">{t('tool_table.repayment_period')}</th>
                       <th>{t('tool_table.number_remains')}</th>
                       <th>{t('tool_table.origin')}</th>
                       <th>{t('tool_table.interest')}</th>

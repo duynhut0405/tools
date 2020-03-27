@@ -2,7 +2,6 @@ import App from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
-import withReduxSaga from 'next-redux-saga';
 import stores from '../store';
 import { appWithTranslation } from '../i18n';
 import '../styles/block.scss';
@@ -31,4 +30,4 @@ class NextApp extends App {
   }
 }
 
-export default withRedux(stores)(withReduxSaga(appWithTranslation(NextApp)));
+export default withRedux(stores)(appWithTranslation(NextApp));
