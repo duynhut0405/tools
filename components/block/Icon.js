@@ -75,7 +75,7 @@ function Icon({ data, id }) {
                     infinite={true}
                     keyBoardControl={true}
                     className="menuicon"
-                    arrows={true}
+                    arrows={false}
                     ref={ref => {
                       setRefCarousel(ref);
                     }}
@@ -187,7 +187,7 @@ function Icon({ data, id }) {
                 infinite={true}
                 keyBoardControl={true}
                 className="list-9"
-                arrows={true}
+                arrows={false}
                 renderButtonGroupOutside={true}
                 ref={ref => {
                   setRefCarousel(ref);
