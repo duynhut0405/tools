@@ -12,6 +12,7 @@ const propTypes = {
   monthlypayment: Proptypes.number,
   totalAmount: Proptypes.number,
   month: Proptypes.string,
+  interest_rate: Proptypes.number,
   t: Proptypes.func
 };
 
@@ -24,6 +25,7 @@ function Result({
   monthlyInterest,
   monthlypayment,
   totalAmount,
+  interest_rate,
   t
 }) {
   return (
@@ -59,15 +61,18 @@ function Result({
           </span>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-6">
-          <h5 className="title">{t('tool_result.monthly_interest')}</h5>
+      {monthlyInterest && (
+        <div className="row">
+          <div className="col-md-6">
+            <h5 className="title">{t('tool_result.monthly_interest')}</h5>
+          </div>
+          <div className="col-md-6">
+            <span className="t4">{rate(monthlyInterest)}</span>
+            <span className="t3">VNĐ</span>
+          </div>
         </div>
-        <div className="col-md-6">
-          <span className="t4">{rate(monthlyInterest)}</span>
-          <span className="t3">VNĐ</span>
-        </div>
-      </div>
+      )}
+
       <div className="row">
         <div className="col-md-6">
           <h5 className="title">{t('tool_result.principal_monthly')}</h5>
@@ -75,6 +80,14 @@ function Result({
         <div className="col-md-6">
           <span className="t4">{rate(monthlypayment)}</span>
           <span className="t3">VNĐ</span>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-md-6">
+          <h5 className="title">Lãi suất:</h5>
+        </div>
+        <div className="col-md-6">
+          <span className="t4">{interest_rate}</span> <span className="t3">%</span>
         </div>
       </div>
       <div className="total row">

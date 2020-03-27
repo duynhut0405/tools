@@ -37,7 +37,7 @@ function Tools({ content }) {
           <ConsumerLoansWithCollateral
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
-            interest_rate={parseInt(content.interest_rate)}
+            interest_rate={parseFloat(content.interest_rate)}
           />
         );
       case 4:
@@ -45,15 +45,16 @@ function Tools({ content }) {
           <Tool4
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
-            interest_rate={parseInt(content.interest_rate)}
+            interest_rate={parseFloat(content.interest_rate)}
           />
         );
       case 5:
+        // console.log(pacontent.interest_rate);
         return (
           <Tool5
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
-            interest_rate={parseInt(content.interest_rate)}
+            interest_rate={parseFloat(content.interest_rate)}
           />
         );
       case 6:
@@ -61,7 +62,7 @@ function Tools({ content }) {
           <Tool6
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
-            interest_rate={parseInt(content.interest_rate)}
+            interest_rate={parseFloat(content.interest_rate)}
           />
         );
       case 7:
@@ -69,7 +70,7 @@ function Tools({ content }) {
           <Tool7
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
-            interest_rate={parseInt(content.interest_rate)}
+            interest_rate={parseFloat(content.interest_rate)}
           />
         );
       case 8:
@@ -77,7 +78,7 @@ function Tools({ content }) {
           <Tool8
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
-            interest_rate={parseInt(content.interest_rate)}
+            interest_rate={parseFloat(content.interest_rate)}
           />
         );
       default:

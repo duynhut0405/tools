@@ -30,7 +30,7 @@ function Tool7({ t, minValue, maxValue, interest_rate }) {
     const _month = Number(month.replace(/[^0-9.-]+/g, ''));
     const _loan_amount = Number(loan_amount.replace(/[^0-9.-]+/g, ''));
     if (_month > 120) {
-      setMonth(toString(120));
+      setMonth(rate(120));
     }
     if (_loan_amount > 10000000000) {
       setLoanAmount(rate(10000000000));
@@ -125,8 +125,9 @@ function Tool7({ t, minValue, maxValue, interest_rate }) {
                     <Result
                       title={t('tool_7_title')}
                       subtitle={t('loan_amount')}
+                      interest_rate={interest_rate}
                       amount={Number(loan_amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={null} // vốn tự có
                       month={month}

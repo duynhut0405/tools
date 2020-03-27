@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
 import Proptypes from 'prop-types';
+import { rate } from '../../../utils/currency';
 
 const propTypes = {
   maxValue: Proptypes.number,
@@ -12,8 +13,8 @@ const propTypes = {
 };
 
 function ToolHome({ t, maxValue, interest_rate }) {
-  const [estimate_rate, setEstimateRate] = useState('5000000');
-  const [estimate_mortgage, setEstimateMortgage] = useState('5000000');
+  const [estimate_rate, setEstimateRate] = useState('0');
+  const [estimate_mortgage, setEstimateMortgage] = useState('0');
   const [amount, SetAmount] = useState('0');
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0); //Tiền lãi hàng tháng
@@ -27,7 +28,50 @@ function ToolHome({ t, maxValue, interest_rate }) {
   const [checked, setChecked] = useState('1');
   const [title, setTitle] = useState(t('tool_options.housing_loan'));
 
-  const tableResult = (sottien, goc, lai, time) => {
+  useEffect(() => {
+    const estimate_momney = (Number(estimate_rate.replace(/[^0-9.-]+/g, '')) * 80) / 100;
+    const mortgage_momney = (Number(estimate_mortgage.replace(/[^0-9.-]+/g, '')) * 70) / 100;
+    const _month = Number(month.replace(/[^0-9.-]+/g, ''));
+    if (estimate_momney > maxValue) {
+      setEstimateRate(rate(maxValue));
+    }
+    if (_month > 84) {
+      setMonth('84');
+    }
+    if (mortgage_momney > maxValue) {
+      setEstimateMortgage(rate(maxValue));
+    }
+    if (estimate_momney < mortgage_momney) {
+      const month_payment = Math.ceil(estimate_momney / _month); //Tiền gốc hàng tháng
+      const month_interest = Math.ceil((estimate_momney * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
+      // const total = (month_interest + month_payment) * _month;
+      setMonthlyInterest(month_interest);
+      setMonthlyPayment(month_payment);
+      // setTotalAmount(total);
+      SetAmount(estimate_momney);
+      // tableResult(estimate_momney, month_payment, month_interest, _month);
+    } else {
+      const month_payment = Math.ceil(mortgage_momney / _month); //Tiền gốc hàng tháng
+      const month_interest = Math.ceil((mortgage_momney * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
+      // const total = (month_interest + month_payment) * _month;
+      setMonthlyInterest(month_interest);
+      setMonthlyPayment(month_payment);
+      // setTotalAmount(total);
+      SetAmount(mortgage_momney);
+      // tableResult(mortgage_momney, month_payment, month_interest, _month);
+    }
+  }, [estimate_rate, estimate_mortgage, month]);
+
+  const calculation = event => {
+    event.preventDefault();
+    const __month = Number(month.replace(/[^0-9.-]+/g, ''));
+    // const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    const month_payment = Math.ceil(amount / __month); //Tiền gốc hàng tháng
+    const month_interest = Math.ceil((month_payment * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
+    // const total = (month_interest + month_payment) * month;
+    let tem_sum = amount;
+    let _sum = 0;
+    let _interest = 0;
     const d = new Date();
     const day = d.getDate();
     let _month = d.getMonth() + 1;
@@ -37,19 +81,18 @@ function ToolHome({ t, maxValue, interest_rate }) {
       {
         strDate,
         interest_period: 0, //kỳ trả lãi
-        amount_remaining: sottien, //tiền gốc còn lại
+        amount_remaining: tem_sum, //tiền gốc còn lại
         amount_paid: 0, // số tiền gốc phải trả
         interest: 0, // Số tiền lãi phải trả
         total: 0 // 	Tổng tiền gốc và lãi
       }
     ];
-    let tem_sum = sottien;
-    let _sum = 0;
-    let _interest = 0;
-    for (let i = 0; i < time; i++) {
-      tem_sum = tem_sum - goc;
-      _sum = _sum + goc;
-      _interest = _interest + lai;
+
+    for (let i = 0; i < __month; i++) {
+      tem_sum = Math.ceil(tem_sum - month_payment); // tiền gốc còn lại
+      const tem_interest = Math.ceil(((month_payment + tem_sum) * interest_rate) / 100 / 12); // tiền lãi hàng tháng
+      _sum = _sum + month_payment; // tổng tiền
+      _interest = _interest + tem_interest; // tổng gốc
       if (_month === 12) {
         _month = 1;
         year = year + 1;
@@ -63,42 +106,19 @@ function ToolHome({ t, maxValue, interest_rate }) {
           strDate,
           interest_period: i + 1, //kỳ trả lãi
           amount_remaining: tem_sum, //tiền gốc còn lại
-          amount_paid: goc, // số tiền gốc phải trả
-          interest: lai, // Số tiền lãi phải trả
-          total: lai + goc // 	Tổng tiền gốc và lãi
+          amount_paid: month_payment, // số tiền gốc phải trả
+          interest: tem_interest, // Số tiền lãi phải trả
+          total: month_payment + tem_interest // 	Tổng tiền gốc và lãi
         }
       ];
     }
-    setSum(_sum);
     setTable(_table);
+    setSum(_sum);
+    setTotalAmount(_sum + _interest);
     setInterest(_interest);
+    setMonthlyPayment(month_payment);
+    setMonthlyInterest(month_interest);
     setActive(true);
-  };
-
-  const calculation = event => {
-    event.preventDefault();
-    const estimate_momney = (Number(estimate_rate.replace(/[^0-9.-]+/g, '')) * 80) / 100;
-    const mortgage_momney = (Number(estimate_mortgage.replace(/[^0-9.-]+/g, '')) * 70) / 100;
-    const _month = Number(month.replace(/[^0-9.-]+/g, ''));
-    if (estimate_momney < mortgage_momney) {
-      const month_payment = Math.ceil(estimate_momney / _month); //Tiền gốc hàng tháng
-      const month_interest = Math.ceil((estimate_momney * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
-      const total = (month_interest + month_payment) * _month;
-      setMonthlyInterest(month_interest);
-      setMonthlyPayment(month_payment);
-      setTotalAmount(total);
-      SetAmount(estimate_momney);
-      tableResult(estimate_momney, month_payment, month_interest, _month);
-    } else {
-      const month_payment = Math.ceil(mortgage_momney / _month); //Tiền gốc hàng tháng
-      const month_interest = Math.ceil((mortgage_momney * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
-      const total = (month_interest + month_payment) * _month;
-      setMonthlyInterest(month_interest);
-      setMonthlyPayment(month_payment);
-      setTotalAmount(total);
-      SetAmount(mortgage_momney);
-      tableResult(mortgage_momney, month_payment, month_interest, _month);
-    }
     setShowResult(true);
   };
 
@@ -108,7 +128,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
       <div className="cttab-xx  sec-b sec-tb">
         <div className="w-menu-over">
           <div className="p-tool1__select1 p-tool1__select1-js">
-            <label className="option1">
+            <label className="option1 radio">
               {t('tool_options.housing_loan')}
               <input
                 type="radio"
@@ -121,12 +141,12 @@ function ToolHome({ t, maxValue, interest_rate }) {
               />
               <span className="checkmark1"></span>
             </label>
-            <label className="option1">
+            <label className="option1 radio">
               {t('tool_options.loans_for_project_houses')}
               <input
                 type="radio"
                 checked={checked === '2'}
-                name="radio-loan1"
+                name="radio-loan2"
                 onChange={() => {
                   setChecked('2');
                   setTitle(t('tool_options.loans_for_project_houses'));
@@ -134,12 +154,12 @@ function ToolHome({ t, maxValue, interest_rate }) {
               />
               <span className="checkmark1"></span>
             </label>
-            <label className="option1">
+            <label className="option1 radio">
               {t('tool_options.lending_for_construction_and_repair_of_houses')}
               <input
                 type="radio"
                 checked={checked === '3'}
-                name="radio-loan1"
+                name="radio-loan3"
                 onChange={() => {
                   setChecked('3');
                   setTitle(t('tool_options.lending_for_construction_and_repair_of_houses'));
@@ -147,12 +167,12 @@ function ToolHome({ t, maxValue, interest_rate }) {
               />
               <span className="checkmark1"></span>
             </label>
-            <label className="option1">
+            <label className="option1 radio">
               {t('tool_options.lending_for_home_furnishings')}
               <input
                 type="radio"
                 checked={checked === '4'}
-                name="radio-loan1"
+                name="radio-loan4"
                 onChange={() => {
                   setChecked('4');
                   setTitle(t('tool_options.lending_for_home_furnishings'));
@@ -199,7 +219,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
                   <div className="col-md-5">
                     <Result
                       title={title}
-                      // subtitle={t('loan_amount')}
+                      interest_rate={interest_rate}
                       amount={amount}
                       monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
@@ -209,10 +229,10 @@ function ToolHome({ t, maxValue, interest_rate }) {
                     />
                   </div>
                 </div>
-                <p className="note">{t('tool_note')}</p>
                 <a className="btn" onClick={calculation}>
                   {t('show_table')}
                 </a>
+                <p className="note">{t('tool_note')}</p>
               </div>
             </div>
           </div>

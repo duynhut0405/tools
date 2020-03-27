@@ -32,7 +32,7 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
     const _month = Number(month.replace(/[^0-9.-]+/g, ''));
     let _salary = Number(salary.replace(/[^0-9.-]+/g, ''));
     if (_month > maxMonth) {
-      setMonth(maxMonth);
+      setMonth(rate(maxMonth));
     }
     if (_salary <= 1500000000) {
       setMaxMonth(84);
@@ -143,9 +143,9 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
                   <div className="col-md-5">
                     <Result
                       title={t('tool_5_title')}
-                      subtitle={t('loan_amount')}
+                      interest_rate={interest_rate}
                       amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={null} // vốn tự có
                       month={month}

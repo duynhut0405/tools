@@ -33,6 +33,9 @@ function Tool4({ t, minValue, maxValue, interest_rate }) {
     if (_month > 60) {
       setMonth('1');
     }
+    if (_salary > maxValue) {
+      setSalary(rate(maxValue));
+    }
     if (_salary <= 20000000 && _salary > 0) {
       _salary = Math.min(Math.ceil(_salary * 10), 180000000);
       setAmount(rate(_salary));
@@ -139,8 +142,9 @@ function Tool4({ t, minValue, maxValue, interest_rate }) {
                     <Result
                       title={t('tool_4_title')}
                       subtitle={t('loan_amount')}
+                      interest_rate={interest_rate}
                       amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={null} // vốn tự có
                       month={month}

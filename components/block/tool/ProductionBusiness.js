@@ -4,7 +4,7 @@ import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
 import Proptypes from 'prop-types';
-
+import { rate } from '../../../utils/currency';
 const propTypes = {
   minValue: Proptypes.number,
   maxValue: Proptypes.number,
@@ -13,8 +13,8 @@ const propTypes = {
 };
 
 function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
-  const [total_capital_needs, setTotalCapitalNeeds] = useState('5000000');
-  const [equity_capital, setEquityCapital] = useState('5000000');
+  const [total_capital_needs, setTotalCapitalNeeds] = useState('0');
+  const [equity_capital, setEquityCapital] = useState('0');
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState(1);
   const [month, setMonth] = useState(1);
@@ -29,57 +29,15 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
   const [interest, setInterest] = useState(0);
   const [title, setTitle] = useState(t('Vay hạn mức'));
 
-  const tableResult = (sottien, goc, lai, time) => {
-    const d = new Date();
-    const day = d.getDate();
-    let _month = d.getMonth() + 1;
-    let year = d.getFullYear();
-    let strDate = `${day}/${_month < 10 ? `0${_month}` : _month}/${year}`;
-    let _table = [
-      {
-        strDate,
-        interest_period: 0, //kỳ trả lãi
-        amount_remaining: sottien, //tiền gốc còn lại
-        amount_paid: 0, // số tiền gốc phải trả
-        interest: 0, // Số tiền lãi phải trả
-        total: 0 // 	Tổng tiền gốc và lãi
-      }
-    ];
-    let tem_sum = sottien;
-    let _sum = 0;
-    let _interest = 0;
-    for (let i = 0; i < time; i++) {
-      tem_sum = tem_sum - goc;
-      _sum = _sum + goc;
-      _interest = _interest + lai;
-      if (_month === 12) {
-        _month = 1;
-        year = year + 1;
-      } else {
-        _month = _month + 1;
-      }
-      strDate = `${day}/${_month < 10 ? `0${_month}` : _month}/${year}`;
-      _table = [
-        ..._table,
-        {
-          strDate,
-          interest_period: i + 1, //kỳ trả lãi
-          amount_remaining: tem_sum, //tiền gốc còn lại
-          amount_paid: goc, // số tiền gốc phải trả
-          interest: lai, // Số tiền lãi phải trả
-          total: lai + goc // 	Tổng tiền gốc và lãi
-        }
-      ];
-    }
-    setSum(_sum);
-    setTable(_table);
-    setInterest(_interest);
-    setActive(true);
-  };
-
   useEffect(() => {
     const _total_capital_needs = Number(total_capital_needs.replace(/[^0-9.-]+/g, ''));
     const _equity_capital = Number(equity_capital.replace(/[^0-9.-]+/g, ''));
+    if (_total_capital_needs > maxValue) {
+      setTotalCapitalNeeds(rate(maxValue));
+    }
+    if (_equity_capital > maxValue) {
+      setEquityCapital(rate(maxValue));
+    }
     if (_total_capital_needs > _equity_capital && _equity_capital !== 0) {
       setChangeActive(true);
       let total = 0;
@@ -94,6 +52,9 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
     if (_equity_capital === _total_capital_needs) {
       setAmount(0);
     }
+    if (month > 84) {
+      setMonth(84);
+    }
     if (_equity_capital > _total_capital_needs) {
       setAmount(0);
       setEquityCapital('0');
@@ -107,11 +68,57 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
     event.preventDefault();
     const month_interest = Math.ceil((amount * interest_rate) / 100 / 12); //tiền lãi
     const month_payment = Math.ceil(amount / month); // tiền gốc
-    const total = (month_interest + month_payment) * month; // tổng tiền
-    setMonthlyInterest(month_interest);
+    // const total = (month_interest + month_payment) * month; // tổng tiền
+    let tem_sum = amount;
+    let _sum = 0;
+    let _interest = 0;
+    const d = new Date();
+    const day = d.getDate();
+    let _month = d.getMonth() + 1;
+    let year = d.getFullYear();
+    let strDate = `${day}/${_month < 10 ? `0${_month}` : _month}/${year}`;
+    let _table = [
+      {
+        strDate,
+        interest_period: 0, //kỳ trả lãi
+        amount_remaining: tem_sum, //tiền gốc còn lại
+        amount_paid: 0, // số tiền gốc phải trả
+        interest: 0, // Số tiền lãi phải trả
+        total: 0 // 	Tổng tiền gốc và lãi
+      }
+    ];
+
+    for (let i = 0; i < month; i++) {
+      tem_sum = tem_sum - month_payment; // tiền gốc còn lại
+      const tem_interest = Math.ceil(((month_payment + tem_sum) * interest_rate) / 100 / 12); // tiền lãi hàng tháng
+      _sum = _sum + month_payment; // tổng tiền
+      _interest = _interest + tem_interest; // tổng gốc
+      if (_month === 12) {
+        _month = 1;
+        year = year + 1;
+      } else {
+        _month = _month + 1;
+      }
+      strDate = `${day}/${_month < 10 ? `0${_month}` : _month}/${year}`;
+      _table = [
+        ..._table,
+        {
+          strDate,
+          interest_period: i + 1, //kỳ trả lãi
+          amount_remaining: tem_sum, //tiền gốc còn lại
+          amount_paid: month_payment, // số tiền gốc phải trả
+          interest: tem_interest, // Số tiền lãi phải trả
+          total: month_payment + tem_interest // 	Tổng tiền gốc và lãi
+        }
+      ];
+    }
+    setTable(_table);
+    setSum(_sum);
+    setInterest(_interest);
+    setTotalAmount(_sum + _interest);
     setMonthlyPayment(month_payment);
-    setTotalAmount(total);
-    tableResult(amount, month_payment, month_interest, month);
+    setMonthlyInterest(month_interest);
+    setActive(true);
     setShowResult(true);
   };
 
@@ -121,7 +128,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
       <div className="cttab-xx  sec-b sec-tb">
         <div className="w-menu-over">
           <div className="p-tool1__select1 p-tool1__select1-js">
-            <label className="option1">
+            <label className="option1 radio">
               {t('loan_limit')}
               <input
                 type="radio"
@@ -134,15 +141,15 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
               />
               <span className="checkmark1"></span>
             </label>
-            <label className="option1">
-              {t('investment_loans')}
+            <label className="option1 radio">
+              {t('tool_product_business.investment_loan')}
               <input
                 type="radio"
                 checked={type === 2}
-                name="radio-loan1"
+                name="radio-loan2"
                 onChange={() => {
                   setType(2);
-                  setTitle(t('investment_loans'));
+                  setTitle(t('tool_product_business.investment_loan'));
                 }}
               />
               <span className="checkmark1"></span>
@@ -186,9 +193,9 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
                   <div className="col-md-5">
                     <Result
                       title={title}
-                      // subtitle={t('loan_amount')}
+                      interest_rate={interest_rate}
                       amount={amount}
-                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={Number(equity_capital.replace(/[^0-9.-]+/g, ''))} // vốn tự có
                       month={month}

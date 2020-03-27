@@ -114,8 +114,9 @@ function Tool6({ t, minValue, maxValue, interest_rate }) {
                     <Result
                       title={t('tool_6_title')}
                       subtitle={t('loan_amount')}
+                      interest_rate={interest_rate}
                       amount={Number(loan_amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={null} // vốn tự có
                       month={month}

@@ -45,6 +45,7 @@ function MenuMiddle({ data, query }) {
                 minimumTouchDrag={80}
                 ssr={true} // means to render carousel on server-side.
                 infinite={true}
+                arrows={false}
                 className="menuicon"
                 keyBoardControl={true}
                 ref={ref => {

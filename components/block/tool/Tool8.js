@@ -30,10 +30,10 @@ function Tool8({ t, minValue, maxValue, interest_rate }) {
     const _month = Number(month.replace(/[^0-9.-]+/g, ''));
     const _loan_amount = Number(loan_amount.replace(/[^0-9.-]+/g, ''));
     if (_month > 36) {
-      setMonth(toString(36));
+      setMonth(rate(36));
     }
-    if (_loan_amount > 500000000000) {
-      setLoanAmount(rate(500000000000));
+    if (_loan_amount > maxValue) {
+      setLoanAmount(rate(maxValue));
     }
   }, [month, loan_amount]);
 
@@ -124,9 +124,9 @@ function Tool8({ t, minValue, maxValue, interest_rate }) {
                   <div className="col-md-5">
                     <Result
                       title={t('tool_8_title')}
-                      subtitle={t('loan_amount')}
+                      interest_rate={interest_rate}
                       amount={Number(loan_amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={null} // vốn tự có
                       month={month}

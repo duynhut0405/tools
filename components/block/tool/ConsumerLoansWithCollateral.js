@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
-// import { rate } from '../../../utils/currency';
+import { rate } from '../../../utils/currency';
 
 import Proptypes from 'prop-types';
 
@@ -25,6 +25,17 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate }) {
   const [interest, setInterest] = useState(0);
   const [active, setActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
+
+  useEffect(() => {
+    const _loan_amount = Number(loan_amount.replace(/[^0-9.-]+/g, ''));
+    const _month = Number(month.replace(/[^0-9.-]+/g, ''));
+    if (_loan_amount > maxValue) {
+      setLoanAmount(rate(maxValue));
+    }
+    if (_month > 84) {
+      setMonth('84');
+    }
+  }, [loan_amount]);
 
   const calculation = event => {
     event.preventDefault();
@@ -114,8 +125,9 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate }) {
                     <Result
                       title={t('tool_consumer_loans.title')}
                       subtitle={t('loan_amount')}
+                      interest_rate={interest_rate}
                       amount={Number(loan_amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={null} // vốn tự có
                       month={month}
