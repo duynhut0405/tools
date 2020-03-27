@@ -197,7 +197,7 @@ function MenuIntro({ data, type }) {
               </div>
               <div className="boxwidget-2">
                 <div>{ReactHtmlParser(data.descriptionBot)}</div>
-                {data.contact_1 !== undefined && (
+                {/* {data.contact_1 !== undefined && (
                   <Row>
                     <Col xs="5">
                       <div className="contact">
@@ -212,7 +212,16 @@ function MenuIntro({ data, type }) {
                       </div>
                     </Col>
                   </Row>
-                )}
+               
+                )} */}
+                  <div className="row">
+                    <div className="col-md-5">
+                        <a className="btnPhone" href="tel:1900545426">{data.contact_1} <i className="icon-arrow-2"></i> </a>
+                    </div>
+                    <div className="col-md-7">
+                        <a className="btnPhone" href="tel:+8437674050">{data.contact_2} <i className="icon-arrow-2"></i> </a>
+                    </div>
+                  </div>                   
               </div>
             </div>
             <div className="col-lg-4 sidebar">
