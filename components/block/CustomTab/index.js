@@ -16,19 +16,21 @@ function CustomTab({ data, id }) {
     <React.Fragment>
       <main id="main" className="sec-tb">
         <div className="container">
-          <div className="cttab-v3   ">
-            <div className="tab-menu max500">
-              {map(data.listTab, (item, indextab) => (
-                <div
-                  className={classnames({ active: activeTab === String(indextab) })}
-                  onClick={() => {
-                    setActiveTab(String(indextab));
-                  }}
-                  key={indextab}
-                >
-                  <span>{item.name}</span>
-                </div>
-              ))}
+          <div className={`cttab-v3 tabs-total-${data.listTab.length}`}>
+            <div className="wrap-tab-menu">
+              <div className="tab-menu max500">
+                {map(data.listTab, (item, indextab) => (
+                  <div
+                    className={classnames({ active: activeTab === String(indextab) })}
+                    onClick={() => {
+                      setActiveTab(String(indextab));
+                    }}
+                    key={indextab}
+                  >
+                    <span>{item.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="tab-content">
               {map(data.listTab, (item, index) => (

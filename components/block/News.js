@@ -223,10 +223,10 @@ function News({ data, type, id }) {
             <div className="entry-head home">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              {/* <a className="viewall" href={`/news/category/${slugCategory}`}>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
                 {t('view')}
                 <i className="icon-arrow-1"></i>
-              </a> */}
+              </a>
             </div>
           )}
           <div className="list-5 row list-item">
@@ -299,10 +299,10 @@ function News({ data, type, id }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              {/* <a className="viewall" href={`/news/category/${slugCategory}`}>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
                 {t('view')}
                 <i className="icon-arrow-1"></i>
-              </a> */}
+              </a>
             </div>
           )}
           <div className="row list-item">
@@ -364,7 +364,7 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b" id={id}>
         <div className="container">
-          {/* {(data.title || data.title !== '') && (
+          {(data.title || data.title !== '') && (
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
@@ -373,7 +373,7 @@ function News({ data, type, id }) {
                 <i className="icon-arrow-1"></i>
               </a>
             </div>
-          )} */}
+          )}
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
@@ -456,24 +456,20 @@ function News({ data, type, id }) {
                   return (
                     <React.Fragment>
                       <a href={`/news/${item.url}`} className="item  tRes_56 video">
-                        {item.author_name === '' || item.author_name === null ? (
-                          <div>
-                            <img
-                              className=" loaded loaded"
-                              data-lazy-type="image"
-                              data-lazy-src="https://via.placeholder.com/262x187"
-                              src={item.base_image}
-                            ></img>
-                            <div className="divtext">
-                              <div className="date">
-                                {moment(item.created_at).format('DD-MM-YYYY')}
-                              </div>
-                              <h4 className="title line2">{item.title}</h4>
+                        <div>
+                          <img
+                            className=" loaded loaded"
+                            data-lazy-type="image"
+                            data-lazy-src={item.base_image}
+                            src={item.base_image}
+                          ></img>
+                          <div className="divtext">
+                            <div className="date">
+                              {moment(item.created_at).format('DD-MM-YYYY')}
                             </div>
+                            <h4 className="title line2">{item.title}</h4>
                           </div>
-                        ) : (
-                          <iframe src={item.author_name}></iframe>
-                        )}
+                        </div>
                       </a>
                     </React.Fragment>
                   );
@@ -488,37 +484,22 @@ function News({ data, type, id }) {
                     return (
                       <React.Fragment>
                         <a href={`/news/${item.url}`} className="item item-inline-table">
-                          {item.author_name === null ? (
-                            <React.Fragment>
-                              <div className="img tRes_56 video cl">
-                                <img
-                                  className=" loaded loaded"
-                                  data-lazy-type="image"
-                                  src={item.base_image}
-                                />
+                          <React.Fragment>
+                            <div className="img tRes_56 video cl">
+                              <img
+                                className=" loaded loaded"
+                                data-lazy-type="image"
+                                src={item.base_image}
+                              />
+                            </div>
+                            <div className="divtext">
+                              <div className="date">
+                                {moment(item.created_at).format('DD-MM-YYYY')}
                               </div>
-                              <div className="divtext">
-                                <div className="date">
-                                  {moment(item.created_at).format('DD-MM-YYYY')}
-                                </div>
-                                <h4 className="title line2">{item.title}</h4>
-                                <div className="desc line3">{item.shortDescription}</div>
-                              </div>
-                            </React.Fragment>
-                          ) : (
-                            <React.Fragment>
-                              <div className="img tRes_56 video cl">
-                                <iframe src={item.author_name}></iframe>
-                              </div>
-                              <div className="divtext">
-                                <div className="date">
-                                  {moment(item.created_at).format('DD-MM-YYYY')}
-                                </div>
-                                <h4 className="title line2">{item.title}</h4>
-                                <div className="desc line3">{item.shortDescription}</div>
-                              </div>
-                            </React.Fragment>
-                          )}
+                              <h4 className="title line2">{item.title}</h4>
+                              <div className="desc line3">{item.shortDescription}</div>
+                            </div>
+                          </React.Fragment>
                         </a>
                       </React.Fragment>
                     );
