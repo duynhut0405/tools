@@ -223,10 +223,10 @@ function News({ data, type, id }) {
             <div className="entry-head home">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              {/* <a className="viewall" href={`/news/category/${slugCategory}`}>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
                 {t('view')}
                 <i className="icon-arrow-1"></i>
-              </a> */}
+              </a>
             </div>
           )}
           <div className="list-5 row list-item">
@@ -299,10 +299,10 @@ function News({ data, type, id }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              {/* <a className="viewall" href={`/news/category/${slugCategory}`}>
+              <a className="viewall" href={`/news/category/${slugCategory}`}>
                 {t('view')}
                 <i className="icon-arrow-1"></i>
-              </a> */}
+              </a>
             </div>
           )}
           <div className="row list-item">
@@ -364,7 +364,7 @@ function News({ data, type, id }) {
     return (
       <section className="sec-b" id={id}>
         <div className="container">
-          {/* {(data.title || data.title !== '') && (
+          {(data.title || data.title !== '') && (
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
@@ -373,7 +373,7 @@ function News({ data, type, id }) {
                 <i className="icon-arrow-1"></i>
               </a>
             </div>
-          )} */}
+          )}
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
@@ -436,8 +436,6 @@ function News({ data, type, id }) {
     );
   }
   if (type === '9') {
-    console.log(data);
-
     return (
       <section className="sec-b sec-h-4">
         <div className="container">
