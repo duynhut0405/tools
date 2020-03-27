@@ -33,7 +33,7 @@ function Comment({ data, id }) {
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
         </div>
-        <div class="wrap-carousel">
+        <div className="wrap-carousel">
           <Carousel
             responsive={responsive}
             draggable
@@ -90,8 +90,8 @@ function Comment({ data, id }) {
             >
               <i className="icon-arrow-1"></i>
             </div>
-          </div>     
-        </div>   
+          </div>
+        </div>
       </div>
     </section>
   );

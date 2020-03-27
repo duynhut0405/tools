@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { map } from 'lodash';
@@ -10,6 +10,7 @@ const propTypes = {
 };
 
 function MenuMiddle({ data, query }) {
+  const [refCarousel, setRefCarousel] = useState(null);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -36,7 +37,7 @@ function MenuMiddle({ data, query }) {
               {data.title}
             </h1>
           </div>
-          <div className=" container">
+          <div className="container wrap-carousel">
             {data.menuItems !== undefined && data.menuItems.length >= 6 && (
               <Carousel
                 responsive={responsive}
@@ -46,6 +47,9 @@ function MenuMiddle({ data, query }) {
                 infinite={true}
                 className="menuicon"
                 keyBoardControl={true}
+                ref={ref => {
+                  setRefCarousel(ref);
+                }}
               >
                 {map(
                   data.menuItems.sort((a, b) => a.position - b.position),
@@ -68,6 +72,26 @@ function MenuMiddle({ data, query }) {
                   }
                 )}
               </Carousel>
+            )}
+            {data.menuItems !== undefined && data.menuItems.length >= 6 && (
+              <div className="carousel-nav center">
+                <div
+                  className="carousel-prev "
+                  onClick={() => {
+                    refCarousel.previous();
+                  }}
+                >
+                  <i className="icon-arrow-1 ix"></i>
+                </div>
+                <div
+                  className="carousel-next"
+                  onClick={() => {
+                    refCarousel.next();
+                  }}
+                >
+                  <i className="icon-arrow-1"></i>
+                </div>
+              </div>
             )}
             {data.menuItems !== undefined && data.menuItems.length < 6 && (
               <div className="list-menu-middle">

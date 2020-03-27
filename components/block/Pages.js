@@ -184,7 +184,7 @@ function Pages({ data, type, id }) {
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
           </div>
-          <div className="accodion-content entry-content">
+          <div className="accodion-content entry-content wrap-carousel">
             <Carousel
               responsive={responsiveTwo}
               draggable
@@ -212,6 +212,24 @@ function Pages({ data, type, id }) {
                 </div>
               ))}
             </Carousel>
+            <div className="carousel-nav center">
+              <div
+                className="carousel-prev "
+                onClick={() => {
+                  refCarouselThree.previous();
+                }}
+              >
+                <i className="icon-arrow-1 ix"></i>
+              </div>
+              <div
+                className="carousel-next"
+                onClick={() => {
+                  refCarouselThree.next();
+                }}
+              >
+                <i className="icon-arrow-1"></i>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -233,7 +251,7 @@ function Pages({ data, type, id }) {
                   <i className="icon-plus"></i>
                 </span>
               </label>
-              <div className="accodion-content entry-content">
+              <div className="accodion-content entry-content wrap-carousel">
                 <Carousel
                   responsive={responsiveTwo}
                   draggable
@@ -261,6 +279,24 @@ function Pages({ data, type, id }) {
                     </div>
                   ))}
                 </Carousel>
+                <div className="carousel-nav center">
+                  <div
+                    className="carousel-prev "
+                    onClick={() => {
+                      refCarouselTwo.previous();
+                    }}
+                  >
+                    <i className="icon-arrow-1 ix"></i>
+                  </div>
+                  <div
+                    className="carousel-next"
+                    onClick={() => {
+                      refCarouselTwo.next();
+                    }}
+                  >
+                    <i className="icon-arrow-1"></i>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
