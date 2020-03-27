@@ -193,7 +193,7 @@ function Pages({ data, type, id }) {
               infinite={true}
               keyBoardControl={true}
               className="list-5"
-              arrows={true}
+              arrows={false}
               ref={ref => {
                 setRefCarouselThree(ref);
               }}
@@ -260,7 +260,7 @@ function Pages({ data, type, id }) {
                   infinite={true}
                   keyBoardControl={true}
                   className="list-5"
-                  arrows={true}
+                  arrows={false}
                   ref={ref => {
                     setRefCarouselTwo(ref);
                   }}
