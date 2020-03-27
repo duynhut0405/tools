@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
-import Carousel from 'react-multi-carousel';
 
 const propTypes = {
   data: PropTypes.any,
@@ -10,21 +9,6 @@ const propTypes = {
 };
 
 function Card({ data, type }) {
-  const [refCarousel, setRefCarousel] = useState(null);
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2
-    }
-  };
   return (
     <React.Fragment>
       {type === '1' && (
@@ -52,7 +36,7 @@ function Card({ data, type }) {
           </section>
         </React.Fragment>
       )}
-      {type === '2' && (
+      {/* {type === '2' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-2 group-ef loaded">
             <div className="container">
@@ -104,7 +88,7 @@ function Card({ data, type }) {
             </div>
           </section>
         </React.Fragment>
-      )}
+      )} */}
       {type && type === '3' && (
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
