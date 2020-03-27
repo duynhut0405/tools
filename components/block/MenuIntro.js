@@ -191,7 +191,7 @@ function MenuIntro({ data, type }) {
         <div className="container">
           <div className="row list-item ">
             <div className="col-lg-8">
-              <div className="boxwidget">
+              <div className="boxwidget entry-content">
                 <h2 className="widget-title">{ReactHtmlParser(data.title)}</h2>
                 {ReactHtmlParser(data.descriptionTop)}
               </div>
