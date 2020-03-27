@@ -15,19 +15,21 @@ function TabQuestions({ data }) {
       <main id="main" className="sec-tb">
         <div className="container">
           <h1 className="text-center">{data.title}</h1>
-          <div className="cttab-v3   ">
-            <div className="tab-menu">
-              {map(data.listTab, (item, index) => (
-                <div
-                  className={classnames({ active: activeTab === String(index) })}
-                  onClick={() => {
-                    setActiveTab(String(index));
-                  }}
-                  key={index}
-                >
-                  <span>{item.name}</span>
-                </div>
-              ))}
+          <div className={`cttab-v3 tabs-total-${data.listTab.length}`}>
+            <div className="wrap-tab-menu">
+              <div className="tab-menu">
+                {map(data.listTab, (item, index) => (
+                  <div
+                    className={classnames({ active: activeTab === String(index) })}
+                    onClick={() => {
+                      setActiveTab(String(index));
+                    }}
+                    key={index}
+                  >
+                    <span>{item.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="tab-content">
               {map(data.listTab, (item, index) => (

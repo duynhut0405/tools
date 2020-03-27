@@ -9,16 +9,18 @@ function OtherNews() {
   const { t } = useTranslation();
   return (
     <div className="container">
-      <div className="cttab-v3 mt-4">
-        <div className="tab-menu max750">
-          <div className={activeTab === 1 ? 'active' : ''} onClick={() => setActiveTab(1)}>
-            <span>{t('question_answer')}</span>
-          </div>
-          <div className={activeTab === 2 ? 'active' : ''} onClick={() => setActiveTab(2)}>
-            <span>{t('rating_report')}</span>
-          </div>
-          <div className={activeTab === 3 ? 'active' : ''} onClick={() => setActiveTab(3)}>
-            <span>{t('documents')}</span>
+      <div className="cttab-v3 tabs-total-3">
+        <div className="wrap-tab-menu">
+          <div className="tab-menu max750">
+            <div className={activeTab === 1 ? 'active' : ''} onClick={() => setActiveTab(1)}>
+              <span>{t('question_answer')}</span>
+            </div>
+            <div className={activeTab === 2 ? 'active' : ''} onClick={() => setActiveTab(2)}>
+              <span>{t('rating_report')}</span>
+            </div>
+            <div className={activeTab === 3 ? 'active' : ''} onClick={() => setActiveTab(3)}>
+              <span>{t('documents')}</span>
+            </div>
           </div>
         </div>
         <div className="tab-content">
