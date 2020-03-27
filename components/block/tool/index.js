@@ -17,7 +17,13 @@ function Tools({ content }) {
   const renderTools = () => {
     switch (parseInt(content.type)) {
       case 1:
-        return <ToolHome />;
+        return (
+          <ToolHome
+            minValue={parseInt(content.minValue)}
+            maxValue={parseInt(content.maxValue)}
+            interest_rate={parseInt(content.interest_rate)}
+          />
+        );
       case 2:
         return (
           <ProductionBusiness

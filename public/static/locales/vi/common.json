@@ -49,6 +49,8 @@
     "loan_term": "Kỳ hạn vay:",
     "loan": "Số tiền vay:",
     "amount_can_borrowed": "Số tiền có thể vay:",
+    "estimated_value_of_collateral": "Ước tính giá trị tài sản thế chấp:",
+    "estimated_home_purchase_value": "Ước tính giá trị nhà mua:",
     "tool_4_title": "Cho vay tiêu dùng không có TSĐB",
     "tool_5_title": "Cho vay mua ô tô",
     "tool_6_title": "Cho vay cầm cố giấy tờ có giá",
@@ -59,7 +61,7 @@
     "lending_period": "Thời gian cho vay:",
     "salary": "Lương hàng tháng:",
     "amount_to_mb": "Nhu cầu vay vốn từ MB:",
-    "total_demand ": "Tổng nhu cầu vốn (số tiền vay):",
+    "total": "Tổng nhu cầu vốn số (tiền vay):",
     "loan_limit": "Vay hạn mức",
     "investment_loans": "Vay đầu tư hạn mức cố định",
     "tool_home_option": {
@@ -97,5 +99,11 @@
         "origin": "Gốc",
         "interest": "Lãi",
         "total_amount": "Tổng gốc + Lãi"
+    },
+    "tool_options": {
+        "housing_loan": "Cho vay mua nhà đất",
+        "loans_for_project_houses": "Cho vay mua nhà dự án",
+        "lending_for_construction_and_repair_of_houses": "Cho vay xây dựng, sửa chữa nhà",
+        "lending_for_home_furnishings": "Cho vay trang bị nội thất nhà"
     }
 }

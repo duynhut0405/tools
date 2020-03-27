@@ -27,7 +27,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
   const [active, setActive] = useState(false);
   const [sum, setSum] = useState(0);
   const [interest, setInterest] = useState(0);
-  const [title, setTitle] = useState('Vay hạn mức');
+  const [title, setTitle] = useState(t('Vay hạn mức'));
 
   const tableResult = (sottien, goc, lai, time) => {
     const d = new Date();
@@ -129,7 +129,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
                 name="radio-loan1"
                 onChange={() => {
                   setType(1);
-                  setTitle('Cho vay mua nhà đất');
+                  setTitle(t('loan_limit'));
                 }}
               />
               <span className="checkmark1"></span>
@@ -142,7 +142,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
                 name="radio-loan1"
                 onChange={() => {
                   setType(2);
-                  setTitle('Cho vay mua nhà dự án');
+                  setTitle(t('investment_loans'));
                 }}
               />
               <span className="checkmark1"></span>
@@ -151,26 +151,26 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
         </div>
         <div className="tab-content">
           <div className="active">
-            <div className="tab-inner  ">
+            <div className="tab-inner">
               <div className="form-vay-von">
                 <div className="row ">
                   <div className="col-md-7 ">
                     <div className="inner">
                       <FieldInput
-                        label={t('total_demand')}
-                        maxValue={100000000}
+                        label={t('total')}
+                        maxValue={maxValue}
                         value={total_capital_needs}
                         onChange={value => setTotalCapitalNeeds(value)}
                       />
                       <FieldInput
                         label={t('tool_result.equity_capital')}
-                        maxValue={1000000000}
+                        maxValue={maxValue}
                         value={equity_capital}
                         onChange={value => setEquityCapital(value)}
                       />
                       <FieldInput
-                        label={t('amount_to_mb')}
-                        maxValue={1000000000}
+                        label={t('total')}
+                        maxValue={maxValue}
                         value={amount}
                         onChange={value => setAmount(value)}
                       />

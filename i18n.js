@@ -3,7 +3,7 @@ import NextI18Next from 'next-i18next';
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: 'vi',
   lng: 'vi',
-  otherLanguages: ['vi']
+  otherLanguages: ['vi', 'en']
   // localeSubpaths: {
   //   vi: 'vi',
   //   en: 'en'

@@ -97,13 +97,13 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate }) {
                   <div className="col-md-7 ">
                     <div className="inner">
                       <FieldInput
-                        label="Số tiền vay:"
+                        label={t('loan')}
                         maxValue={maxValue}
                         value={loan_amount}
                         onChange={value => setLoanAmount(value)}
                       />
                       <FieldInput
-                        label="Kỳ hạn vay:"
+                        label={t('loan_term')}
                         maxValue={84}
                         value={month}
                         onChange={value => setMonth(value)}

@@ -111,7 +111,7 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
 
   return (
     <div className="container sec-tb">
-      <h2 className="ht">{t('show')}</h2>
+      <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">
           <div className="active">
