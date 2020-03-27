@@ -50,7 +50,9 @@ function Form({ data }) {
             if (item.type === 'header') {
               return (
                 <React.Fragment>
-                  <div className="max600 entry-head text-center">{ReactHtmlParser(item.label)}</div>
+                  <div className={`max600 entry-head text-center ${item.className}`}>
+                    {ReactHtmlParser(item.label)}
+                  </div>
                 </React.Fragment>
               );
             }
@@ -67,6 +69,7 @@ function Form({ data }) {
                   {map(item.values, (items, key) => (
                     <CustomInput
                       type="radio"
+                      className={item.className}
                       inline={item.inline !== undefined ? true : false}
                       name={item.name}
                       id={key}
@@ -84,7 +87,7 @@ function Form({ data }) {
                   <div className="col-12">
                     {item.label && <Label>{item.label}</Label>}
                     <Input
-                      className="input"
+                      className={`input ${item.className}`}
                       name={item.name}
                       type={item.subtype}
                       placeholder={item.placeholder}
@@ -100,7 +103,7 @@ function Form({ data }) {
                   <div className="col-12">
                     {item.label && <Label>{item.label}</Label>}
                     <Input
-                      className="input"
+                      className={`input ${item.className}`}
                       type={item.subtype}
                       name={item.name}
                       rows={item.rows}
@@ -115,7 +118,7 @@ function Form({ data }) {
               return (
                 <React.Fragment>
                   <div className="col-12 text-center">
-                    <button className="btn" type={item.subtype}>
+                    <button className={`btn ${item.className}`} type={item.subtype}>
                       {item.label}
                     </button>
                   </div>

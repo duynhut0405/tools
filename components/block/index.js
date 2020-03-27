@@ -19,6 +19,7 @@ import Tools from './tool';
 import Comment from './Comment';
 import TablePayment from './TablePayment';
 import TabQuestions from './Question/TabQuestions';
+import CustomTab from './CustomTab';
 export {
   Images,
   Post,
@@ -40,5 +41,6 @@ export {
   Tools,
   Comment,
   TablePayment,
-  TabQuestions
+  TabQuestions,
+  CustomTab
 };

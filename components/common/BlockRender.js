@@ -19,7 +19,8 @@ import {
   Tools,
   Comment,
   TablePayment,
-  TabQuestions
+  TabQuestions,
+  CustomTab
 } from '../block';
 import About from '../about';
 import Investors from '../investors';
@@ -191,6 +192,9 @@ function BlockRender({ data }) {
                 return (
                   <TabQuestions data={JSON.parse(values.content)} id={values.id} key={index} />
                 );
+              }
+              if (values.name === 'CustomTab' && values.content !== null) {
+                return <CustomTab data={JSON.parse(values.content)} id={values.id} key={index} />;
               }
               return null;
             }
