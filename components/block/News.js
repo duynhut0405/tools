@@ -50,11 +50,12 @@ function News({ data, type, id }) {
 
   const getCategoryPage = async () => {
     const idItems = map(data.news, item => item.newsId);
-    const res = await getNewByIdService(idItems, data.category.value, data.count);
+    const res = await getNewByIdService(idItems, data.category.value, Number(data.limit));
     if (res && res.status === 200) {
       setListCategory(res.data);
     }
   };
+ 
   useEffect(() => {
     i18n.changeLanguage(getLang());
     getCategoryPage();
