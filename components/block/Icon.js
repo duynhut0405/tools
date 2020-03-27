@@ -275,7 +275,7 @@ function Icon({ data, id }) {
                   ssr={true} // means to render carousel on server-side.
                   infinite={true}
                   keyBoardControl={true}
-                  arrows={true}
+                  arrows={false}
                   className="menuicon"
                   ref={ref => {
                     setRefCarousel(ref);
