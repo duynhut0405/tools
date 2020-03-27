@@ -22,7 +22,13 @@ function Card({ data, type }) {
                 {map(data.listCard, (items, index) => {
                   return (
                     <div className="col-sm-6" key={index}>
-                      <a href="#" className={`item item-${index + 1} tRes_55`}>
+                      {/* <a href="#" className={`item item-${index + 1} tRes_55`}> */}
+                      <a
+                        href="#"
+                        className={`${
+                          (index + 1) % 2 === 0 ? 'item item-1 tRes_55' : 'item item-2 tRes_55'
+                        }`}
+                      >
                         <div className="divtext">
                           <h3 className="title ">{ReactHtmlParser(items.note_2)}</h3>
                           <i className="icon-arrow-db"></i>
