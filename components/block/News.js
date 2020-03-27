@@ -436,6 +436,8 @@ function News({ data, type, id }) {
     );
   }
   if (type === '9') {
+    console.log(data);
+
     return (
       <section className="sec-b sec-h-4">
         <div className="container">
@@ -456,24 +458,20 @@ function News({ data, type, id }) {
                   return (
                     <React.Fragment>
                       <a href={`/news/${item.url}`} className="item  tRes_56 video">
-                        {item.author_name === '' || item.author_name === null ? (
-                          <div>
-                            <img
-                              className=" loaded loaded"
-                              data-lazy-type="image"
-                              data-lazy-src="https://via.placeholder.com/262x187"
-                              src={item.base_image}
-                            ></img>
-                            <div className="divtext">
-                              <div className="date">
-                                {moment(item.created_at).format('DD-MM-YYYY')}
-                              </div>
-                              <h4 className="title line2">{item.title}</h4>
+                        <div>
+                          <img
+                            className=" loaded loaded"
+                            data-lazy-type="image"
+                            data-lazy-src={item.base_image}
+                            src={item.base_image}
+                          ></img>
+                          <div className="divtext">
+                            <div className="date">
+                              {moment(item.created_at).format('DD-MM-YYYY')}
                             </div>
+                            <h4 className="title line2">{item.title}</h4>
                           </div>
-                        ) : (
-                          <iframe src={item.author_name}></iframe>
-                        )}
+                        </div>
                       </a>
                     </React.Fragment>
                   );
@@ -488,37 +486,22 @@ function News({ data, type, id }) {
                     return (
                       <React.Fragment>
                         <a href={`/news/${item.url}`} className="item item-inline-table">
-                          {item.author_name === null ? (
-                            <React.Fragment>
-                              <div className="img tRes_56 video cl">
-                                <img
-                                  className=" loaded loaded"
-                                  data-lazy-type="image"
-                                  src={item.base_image}
-                                />
+                          <React.Fragment>
+                            <div className="img tRes_56 video cl">
+                              <img
+                                className=" loaded loaded"
+                                data-lazy-type="image"
+                                src={item.base_image}
+                              />
+                            </div>
+                            <div className="divtext">
+                              <div className="date">
+                                {moment(item.created_at).format('DD-MM-YYYY')}
                               </div>
-                              <div className="divtext">
-                                <div className="date">
-                                  {moment(item.created_at).format('DD-MM-YYYY')}
-                                </div>
-                                <h4 className="title line2">{item.title}</h4>
-                                <div className="desc line3">{item.shortDescription}</div>
-                              </div>
-                            </React.Fragment>
-                          ) : (
-                            <React.Fragment>
-                              <div className="img tRes_56 video cl">
-                                <iframe src={item.author_name}></iframe>
-                              </div>
-                              <div className="divtext">
-                                <div className="date">
-                                  {moment(item.created_at).format('DD-MM-YYYY')}
-                                </div>
-                                <h4 className="title line2">{item.title}</h4>
-                                <div className="desc line3">{item.shortDescription}</div>
-                              </div>
-                            </React.Fragment>
-                          )}
+                              <h4 className="title line2">{item.title}</h4>
+                              <div className="desc line3">{item.shortDescription}</div>
+                            </div>
+                          </React.Fragment>
                         </a>
                       </React.Fragment>
                     );
