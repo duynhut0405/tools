@@ -17,7 +17,7 @@ function CategoryDetail({ routerURL, category }) {
   const [page, setPage] = useState(0);
 
   const fecthNews = async () => {
-    const res = await getNewsByCategorySlug(routerURL, { number: 9, page: page });
+    const res = await getNewsByCategorySlug(routerURL, { number: 12, page: page });
     if (res !== undefined && res.status === 200) {
       setData(res.data);
     }
@@ -52,7 +52,7 @@ function CategoryDetail({ routerURL, category }) {
           </section>
           {/* <HotNews data={data.hotNews} title={data.name} />
           <AllNews data={data.news} title={data.name} /> */}
-          <AboutCategory data={data} title={data.name} />
+          <AboutCategory data={data} categories={data.categoryNews} />
           <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
         </div>
       )}

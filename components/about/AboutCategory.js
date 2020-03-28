@@ -8,10 +8,11 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   data: PropTypes.object,
-  title: PropTypes.string
+  title: PropTypes.string,
+  categories: PropTypes.array
 };
 
-function AboutCategory({ data, title }) {
+function AboutCategory({ data, categories }) {
   //   const [page, setPage] = useState(1);
   const { t } = useTranslation();
 
@@ -21,6 +22,21 @@ function AboutCategory({ data, title }) {
         <div className="container">
           {/* <h1 className="text-center">{t('page_about.title')}</h1> */}
           {/* <h1 className="text-center">{title}</h1> */}
+          <div className=" sec-b filter-category text-center">
+            <select
+              className="select"
+              onChange={event => {
+                window.location.href = `/news/category/${event.target.value}`;
+              }}
+            >
+              <option>{t('Select...')}</option>
+              {map(categories, (value, index) => (
+                <option key={index} value={value.slug}>
+                  {value.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="list-5 row list-item">
             {map(data.news, item => {
               return (
