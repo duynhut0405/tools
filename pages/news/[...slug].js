@@ -1,10 +1,9 @@
 import React from 'react';
 import Layout from '../../components/layout';
 import { Social } from '../../components/common';
-import { getNewCategoryIdService, getNewByUri } from '../../services/news';
+import { getNewByUri } from '../../services/news';
 import moment from 'moment';
 import map from 'lodash/map';
-import filter from 'lodash/filter';
 import ReactHtmlParser from 'react-html-parser';
 import { withTranslation } from '../../i18n';
 import { useTranslation } from 'react-i18next';
@@ -89,8 +88,8 @@ function New({ socialLink, news, category_name, category_url }) {
                           <img
                             className=" loaded loaded"
                             data-lazy-type="image"
-                            data-lazy-src={item.base_image}
-                            src={item.base_image}
+                            data-lazy-src={item.baseImage}
+                            src={item.baseImage}
                           />
                         </div>
                         <div className="divtext">
