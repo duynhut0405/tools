@@ -5,6 +5,7 @@ import { HotNews, AllNews } from '../../../components/categoryDetail';
 import { getNewsByCategorySlug } from '../../../services/news';
 import { Pagination } from '../../../components/common';
 import PropTypes from 'prop-types';
+import AboutCategory from '../../../components/about/AboutCategory';
 
 const propTypes = {
   category: PropTypes.object,
@@ -16,7 +17,7 @@ function CategoryDetail({ routerURL, category }) {
   const [page, setPage] = useState(0);
 
   const fecthNews = async () => {
-    const res = await getNewsByCategorySlug(routerURL, { number: 10, page: page });
+    const res = await getNewsByCategorySlug(routerURL, { number: 9, page: page });
     if (res !== undefined && res.status === 200) {
       setData(res.data);
     }
@@ -49,9 +50,10 @@ function CategoryDetail({ routerURL, category }) {
               src="/static/images/heading-10.svg"
             />
           </section>
-          <HotNews data={data.hotNews} title={data.name} />
-          <AllNews data={data.news} title={data.name} />
-          <Pagination page={data.size} setPage={value => setPage(value)} />
+          {/* <HotNews data={data.hotNews} title={data.name} />
+          <AllNews data={data.news} title={data.name} /> */}
+          <AboutCategory data={data} title={data.name} />
+          <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
         </div>
       )}
     </Layout>
