@@ -21,10 +21,10 @@ function Pagination({ setPage, size }) {
         previousLinkClassName="prev page-numbers"
         nextLinkClassName="next page-numbers"
         pageLinkClassName="page-numbers"
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={2}
+        marginPagesDisplayed={4}
+        pageRangeDisplayed={4}
         onPageChange={value => setPage(value.selected + 1)}
-        activeClassName={'current'}
+        activeLinkClassName="page-numbers current"
       />
     </div>
   );
