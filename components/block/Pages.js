@@ -51,7 +51,7 @@ function Pages({ data, type, id }) {
           </div>
           <div className="list-5 row list-item">
             {map(listPage, item => (
-              <div className="col-md-4" key={item.newsId}>
+              <div className="col-md-4" key={item.id}>
                 <a href={`/page/${item.slug}`} className="item ">
                   <div className="img tRes_71">
                     <img
