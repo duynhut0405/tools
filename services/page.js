@@ -9,7 +9,7 @@ const getPageService = name => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 

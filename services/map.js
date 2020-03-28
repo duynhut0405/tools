@@ -12,7 +12,7 @@ const getProvinceService = () => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -25,7 +25,7 @@ const getDistrictService = id => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -39,7 +39,7 @@ const searchBranchesService = params => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 export { getProvinceService, getDistrictService, searchBranchesService };

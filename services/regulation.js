@@ -9,7 +9,7 @@ const getTypeRegulationServices = () => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -22,7 +22,7 @@ const getTypeRegulationByIDServices = id => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -36,7 +36,7 @@ const fillRegulationServices = data => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 const getUrlVideoService = data => {
@@ -48,7 +48,7 @@ const getUrlVideoService = data => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -61,7 +61,7 @@ const getRegulationPagation = (type, year, page) => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -74,7 +74,7 @@ const getRegulationListYear = (type, detailTypeId, number, page, year) => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -87,7 +87,7 @@ const getAllYear = () => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 

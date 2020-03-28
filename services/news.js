@@ -9,7 +9,7 @@ const getNewService = () => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -22,7 +22,7 @@ const getNewByUri = uri => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -36,7 +36,7 @@ const getNewByIdService = (data, categoriesId, count) => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -49,7 +49,7 @@ const getNewCategoryIdService = id => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -62,7 +62,7 @@ const findAllByCategory = (id, page, number, year) => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -75,7 +75,7 @@ const findAllNewsByCategory = (id, page, number) => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -89,7 +89,7 @@ const getNewsByCategorySlug = (slug, data) => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
