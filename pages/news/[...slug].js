@@ -83,7 +83,7 @@ function New({ socialLink, news, category_name, category_url }) {
               <div className="list-7  list-item row">
                 {map(news.newsRelated, (item, index) => {
                   return (
-                    <div className="col-md-6" key={item.newsId}>
+                    <div className="col-md-6" key={item.id}>
                       <a href={`/news/${item.url}`} className="item item-inline-table">
                         <div className="img">
                           <img
@@ -141,8 +141,8 @@ New.getInitialProps = async ctx => {
       newResponse.data.news.categories !== null &&
       newResponse.data.news.categories.length > 0
     ) {
-      category_name = newResponse.data.categories[0].name;
-      category_url = newResponse.data.categories[0].slug;
+      category_name = newResponse.data.news.categories[0].name;
+      category_url = newResponse.data.news.categories[0].slug;
     }
   }
   return {
