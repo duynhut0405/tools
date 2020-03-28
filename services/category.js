@@ -9,7 +9,7 @@ const getCategoryByIdService = id => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -22,7 +22,7 @@ const getFullCategoryByIdService = id => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 export { getCategoryByIdService, getFullCategoryByIdService };

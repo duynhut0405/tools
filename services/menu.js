@@ -9,7 +9,7 @@ const getAllMenu = () => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -22,7 +22,7 @@ const getMenuItemById = menuId => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -35,7 +35,7 @@ const getSettingFooterService = () => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -48,7 +48,7 @@ const getSocialLinkService = () => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
@@ -61,7 +61,7 @@ const getMenuItemByPosition = data => {
       return res;
     })
     .catch(error => {
-      return error.response.data;
+      return error.response;
     });
 };
 
