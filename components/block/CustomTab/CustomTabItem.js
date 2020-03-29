@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Proptypes from 'prop-types';
-import { map, isEmpty } from 'lodash';
-import classnames from 'classnames';
+import { map } from 'lodash';
 
 import ReactHtmlParser from 'react-html-parser';
 

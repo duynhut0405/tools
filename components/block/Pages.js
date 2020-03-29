@@ -4,6 +4,7 @@ import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
 import { useTranslation } from 'react-i18next';
 import Carousel from 'react-multi-carousel';
+import CustomPageItem from './BlockPageItem/CustomPageItem';
 const propTypes = {
   data: Proptypes.object.isRequired,
   type: Proptypes.string,
@@ -11,11 +12,8 @@ const propTypes = {
 };
 
 function Pages({ data, type, id }) {
-  // const [page] = useState(3);
   const [listPage, setListPage] = useState([]);
-  const [refCarouselTwo, setRefCarouselTwo] = useState(null);
   const [refCarouselThree, setRefCarouselThree] = useState(null);
-  const [active, setActive] = useState(false);
   const getPageBlock = async () => {
     const ids = map(data.pages, values => values.value);
     const res = await getPagesByIdService(ids);
@@ -41,7 +39,7 @@ function Pages({ data, type, id }) {
     getPageBlock();
   }, []);
   const { t } = useTranslation();
-  // const listNews = slice(listPage, 0, page);
+
   if (type && type === '1') {
     return (
       <div className="sec-tb block-page" id={id}>
@@ -243,62 +241,9 @@ function Pages({ data, type, id }) {
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
           </div>
           <div className="accodion accodion-1">
-            <div className="accodion-tab ">
-              <input type="checkbox" checked={active} />
-              <label className="accodion-title" onClick={() => setActive(!active)}>
-                <span>{data === null ? '' : data.description}</span>
-                <span className="triangle">
-                  <i className="icon-plus"></i>
-                </span>
-              </label>
-              <div className="accodion-content entry-content wrap-carousel">
-                <Carousel
-                  responsive={responsiveTwo}
-                  draggable
-                  minimumTouchDrag={80}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  keyBoardControl={true}
-                  className="list-5"
-                  arrows={false}
-                  ref={ref => {
-                    setRefCarouselTwo(ref);
-                  }}
-                >
-                  {map(listPage, (items, index) => (
-                    <div className="item ef-img-t item_carousel" key={index}>
-                      <a href={`/page/${items.slug}`} className="link">
-                        <div className="img">
-                          <img src={items.baseImage} />
-                        </div>
-                        <div className="divtext">
-                          <h4 className="title line2">{items.name}</h4>
-                          <div className="desc line2 cl3">{items.meta_description}</div>
-                        </div>
-                      </a>
-                    </div>
-                  ))}
-                </Carousel>
-                <div className="carousel-nav center">
-                  <div
-                    className="carousel-prev "
-                    onClick={() => {
-                      refCarouselTwo.previous();
-                    }}
-                  >
-                    <i className="icon-arrow-1 ix"></i>
-                  </div>
-                  <div
-                    className="carousel-next"
-                    onClick={() => {
-                      refCarouselTwo.next();
-                    }}
-                  >
-                    <i className="icon-arrow-1"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {map(data.listTag, (value, index) => (
+              <CustomPageItem data={value} indexTab={index} key={index} />
+            ))}
           </div>
         </div>
       </section>
