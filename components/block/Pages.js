@@ -242,7 +242,7 @@ function Pages({ data, type, id }) {
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
           </div>
-          <div className="accodion accodion-1">
+          <div className="accodion accodion-1 accodion-1-1">
             {map(data.listTag, (value, index) => (
               <CustomPageItem data={value} indexTab={index} key={index} />
             ))}

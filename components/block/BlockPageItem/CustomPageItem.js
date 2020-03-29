@@ -49,50 +49,52 @@ function CustomPageItem({ data, indexTab }) {
             <i className="icon-plus"></i>
           </span>
         </label>
-        <div className="accodion-content entry-content wrap-carousel">
-          <Carousel
-            responsive={responsiveTwo}
-            draggable
-            minimumTouchDrag={80}
-            ssr={true} // means to render carousel on server-side.
-            infinite={true}
-            keyBoardControl={true}
-            className="list-5"
-            arrows={false}
-            ref={ref => {
-              setRefCarouselTwo(ref);
-            }}
-          >
-            {map(listPage, (items, index) => (
-              <div className="item ef-img-t item_carousel" key={index}>
-                <a href={`/page/${items.slug}`} className="link">
-                  <div className="img">
-                    <img src={items.baseImage} />
-                  </div>
-                  <div className="divtext">
-                    <h4 className="title line2">{items.name}</h4>
-                    <div className="desc line2 cl3">{items.meta_description}</div>
-                  </div>
-                </a>
+        <div className="accodion-content">
+          <div className="wrap-carousel">
+            <Carousel
+              responsive={responsiveTwo}
+              draggable
+              minimumTouchDrag={80}
+              ssr={true} // means to render carousel on server-side.
+              infinite={true}
+              keyBoardControl={true}
+              className="list-5"
+              arrows={false}
+              ref={ref => {
+                setRefCarouselTwo(ref);
+              }}
+            >
+              {map(listPage, (items, index) => (
+                <div className="item ef-img-t item_carousel" key={index}>
+                  <a href={`/page/${items.slug}`} className="link">
+                    <div className="img tRes_70">
+                      <img src={items.baseImage} />
+                    </div>
+                    <div className="divtext">
+                      <h4 className="title line2">{items.name}</h4>
+                      <div className="desc line2 cl3">{items.meta_description}</div>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </Carousel>
+            <div className="carousel-nav center">
+              <div
+                className="carousel-prev "
+                onClick={() => {
+                  refCarouselTwo.previous();
+                }}
+              >
+                <i className="icon-arrow-1 ix"></i>
               </div>
-            ))}
-          </Carousel>
-          <div className="carousel-nav center">
-            <div
-              className="carousel-prev "
-              onClick={() => {
-                refCarouselTwo.previous();
-              }}
-            >
-              <i className="icon-arrow-1 ix"></i>
-            </div>
-            <div
-              className="carousel-next"
-              onClick={() => {
-                refCarouselTwo.next();
-              }}
-            >
-              <i className="icon-arrow-1"></i>
+              <div
+                className="carousel-next"
+                onClick={() => {
+                  refCarouselTwo.next();
+                }}
+              >
+                <i className="icon-arrow-1"></i>
+              </div>
             </div>
           </div>
         </div>
