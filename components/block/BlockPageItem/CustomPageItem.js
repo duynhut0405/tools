@@ -20,9 +20,10 @@ function CustomPageItem({ data, indexTab }) {
   };
 
   useEffect(() => {
-    getPageBlock();
+    if (data.pages) {
+      getPageBlock();
+    }
   }, []);
-
   const responsiveTwo = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
