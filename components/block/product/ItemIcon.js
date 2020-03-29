@@ -43,7 +43,6 @@ function ItemIcon({ data }) {
               key={index}
             >
               <img
-                className="icon-image"
                 data-lazy-type="image"
                 data-lazy-src={item.image}
                 src={item.image}
