@@ -37,6 +37,7 @@ function CustomPageItem({ data, indexTab }) {
       items: 1
     }
   };
+
   return (
     <React.Fragment>
       <div className="accodion-tab " key={indexTab}>

@@ -36,7 +36,9 @@ function Pages({ data, type, id }) {
     }
   };
   useEffect(() => {
-    getPageBlock();
+    if (data.pages) {
+      getPageBlock();
+    }
   }, []);
   const { t } = useTranslation();
 
