@@ -232,7 +232,7 @@ function Layout({
                     </div>
                     <div className="group-header">
                       <div className="item ilogin">
-                        <ul className="menu line">
+                        <ul className="menu-top-header ">
                           {/* <li>
                                 <a href="#">{t('registration')}</a>
                               </li>
