@@ -53,10 +53,10 @@ function MenuMiddle({ data, query }) {
                     (item, key) => {
                       return (
                         <div
-                          className={query === item.slugPages.value ? 'item active' : 'item'}
+                          className={query === item.slugPages ? 'item active' : 'item'}
                           key={key}
                         >
-                          <a href={`/page/${item.slugPages.value}`} className="link">
+                          <a href={`/page/${item.slugPages}`} className="link">
                             <div className="img">
                               <img
                                 className=" loaded loaded"
@@ -100,10 +100,10 @@ function MenuMiddle({ data, query }) {
                     (item, key) => {
                       return (
                         <div
-                          className={query === item.slugPages.value ? 'item active' : 'item'}
+                          className={query === item.slugPages ? 'item active' : 'item'}
                           key={key}
                         >
-                          <a href={`/page/${item.slugPages.value}`} className="link">
+                          <a href={`/page/${item.slugPages}`} className="link">
                             <div className="img">
                               <img
                                 className=" loaded loaded"

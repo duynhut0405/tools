@@ -90,7 +90,7 @@ function Layout({
           key={item.id}
           className={item.children.length > 0 ? 'children parent-showsub' : 'no-children'}
         >
-          <a href={`/page/${item.slugPages.value}`}>
+          <a href={`/page/${item.slugPages}`}>
             <span>{item.name}</span>
           </a>
           <div className="wrapul">
@@ -112,7 +112,7 @@ function Layout({
       }
       return (
         <li key={index}>
-          <a className={item.children.length > 0 ? 'title' : ''} href={`/page/${item.slugPages.value}`}>
+          <a className={item.children.length > 0 ? 'title' : ''} href={`/page/${item.slugPages}`}>
             {item.name}
           </a>
         </li>
@@ -178,7 +178,7 @@ function Layout({
                         // if (key >= 2) {
                         return (
                           <li key={key}>
-                            <a href={`/page/${values.slugPages.value}`}>{values.name}</a>
+                            <a href={`/page/${values.slugPages}`}>{values.name}</a>
                           </li>
                         );
                         // }
@@ -300,7 +300,7 @@ function Layout({
                   menuFooterTop.sort((a, b) => a.position - b.position),
                   values => (
                     <div className="col-4" key={values.id}>
-                      <a className="item" href={`/page/${values.slugPages.value}`}>
+                      <a className="item" href={`/page/${values.slugPages}`}>
                         <span className="img">
                           <img src={values.icon} alt="" />
                         </span>
@@ -381,7 +381,7 @@ function Layout({
                       menuFooterBottom.sort((a, b) => a.position - b.position),
                       (values, key) => (
                         <li key={key}>
-                          <a href={`/page/${values.slugPages.value}`}>{values.name}</a>
+                          <a href={`/page/${values.slugPages}`}>{values.name}</a>
                         </li>
                       )
                     )}
