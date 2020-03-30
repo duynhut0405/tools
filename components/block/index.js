@@ -20,6 +20,8 @@ import Comment from './Comment';
 import TablePayment from './TablePayment';
 import TabQuestions from './Question/TabQuestions';
 import CustomTab from './CustomTab';
+import SMEIntro from './SME/SMEIntro';
+import Banner from './SME/Banner';
 export {
   Images,
   Post,
@@ -42,5 +44,7 @@ export {
   Comment,
   TablePayment,
   TabQuestions,
-  CustomTab
+  CustomTab,
+  SMEIntro,
+  Banner
 };

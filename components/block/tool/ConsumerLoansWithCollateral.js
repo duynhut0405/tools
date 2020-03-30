@@ -35,7 +35,7 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate }) {
     if (_month > 84) {
       setMonth('84');
     }
-  }, [loan_amount]);
+  }, [loan_amount, month]);
 
   const calculation = event => {
     event.preventDefault();

@@ -9,10 +9,11 @@ const propTypes = {
   maxValue: Proptypes.number,
   value: Proptypes.string,
   onChange: Proptypes.func,
-  note: Proptypes.bool
+  note: Proptypes.bool,
+  onBlur: Proptypes.func
 };
 
-function FieldInput({ label, maxValue, value, onChange, note }) {
+function FieldInput({ label, maxValue, value, onChange, note, onBlur }) {
   return (
     <div className="row">
       <div className="col-md-7">
@@ -28,8 +29,10 @@ function FieldInput({ label, maxValue, value, onChange, note }) {
             type="tel"
             className="input"
             value={value}
+            minimumValue={0}
             allowDecimalPadding={false}
             onChange={event => onChange(event.target.value)}
+            onBlur={onBlur}
             placeholder="Nhập số tiền (*)"
           />
         </div>

@@ -30,12 +30,8 @@ function MenuMiddle({ data, query }) {
       {data !== null && (
         <div className="sec-tb">
           <div className="container">
-            <div
-              className="text-center common-menumiddle entry-head"
-            >
-              <h1 className="ht" >
-                {data.title}
-              </h1>
+            <div className="text-center common-menumiddle entry-head">
+              <h1 className="ht">{data.title}</h1>
             </div>
             <div className="wrap-carousel max850">
               {data.menuItems !== undefined && data.menuItems.length >= 6 && (
@@ -56,7 +52,10 @@ function MenuMiddle({ data, query }) {
                     data.menuItems.sort((a, b) => a.position - b.position),
                     (item, key) => {
                       return (
-                        <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
+                        <div
+                          className={query === item.slugPages ? 'item active' : 'item'}
+                          key={key}
+                        >
                           <a href={`/page/${item.slugPages}`} className="link">
                             <div className="img">
                               <img
@@ -100,7 +99,10 @@ function MenuMiddle({ data, query }) {
                     data.menuItems.sort((a, b) => a.position - b.position),
                     (item, key) => {
                       return (
-                        <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
+                        <div
+                          className={query === item.slugPages ? 'item active' : 'item'}
+                          key={key}
+                        >
                           <a href={`/page/${item.slugPages}`} className="link">
                             <div className="img">
                               <img

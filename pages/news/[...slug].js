@@ -82,7 +82,7 @@ function New({ socialLink, news, category_name, category_url }) {
               <div className="list-7  list-item row">
                 {map(news.newsRelated, (item, index) => {
                   return (
-                    <div className="col-md-6" key={item.id}>
+                    <div className="col-md-6" key={index}>
                       <a href={`/news/${item.url}`} className="item item-inline-table">
                         <div className="img">
                           <img

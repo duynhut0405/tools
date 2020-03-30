@@ -23,11 +23,9 @@ function Repeat({ data, type, id }) {
           <div className="entry-head text-center">
             <h2 className="ht ">{data.title}</h2>
           </div>
-          <div className="table-responsive table table-full">
             {map(listTable, (items, index) => {
               return <div key={index}> {ReactHtmlParser(items.description)}</div>;
             })}
-          </div>
         </div>
       </section>
     );

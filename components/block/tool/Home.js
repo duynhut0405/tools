@@ -19,6 +19,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0); //Tiền lãi hàng tháng
   const [monthlypayment, setMonthlyPayment] = useState(0); //Tiền gốc hàng tháng
+  const [checkAmount, setCheckAmount] = useState(0);
   const [table, setTable] = useState([]);
   const [active, setActive] = useState(false);
   const [sum, setSum] = useState(0);
@@ -44,32 +45,35 @@ function ToolHome({ t, maxValue, interest_rate }) {
     if (estimate_momney < mortgage_momney) {
       const month_payment = Math.ceil(estimate_momney / _month); //Tiền gốc hàng tháng
       const month_interest = Math.ceil((estimate_momney * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
-      // const total = (month_interest + month_payment) * _month;
       setMonthlyInterest(month_interest);
       setMonthlyPayment(month_payment);
-      // setTotalAmount(total);
-      SetAmount(estimate_momney);
-      // tableResult(estimate_momney, month_payment, month_interest, _month);
+      SetAmount(rate(estimate_momney));
+      setCheckAmount(estimate_momney);
     } else {
       const month_payment = Math.ceil(mortgage_momney / _month); //Tiền gốc hàng tháng
       const month_interest = Math.ceil((mortgage_momney * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
-      // const total = (month_interest + month_payment) * _month;
       setMonthlyInterest(month_interest);
       setMonthlyPayment(month_payment);
-      // setTotalAmount(total);
-      SetAmount(mortgage_momney);
-      // tableResult(mortgage_momney, month_payment, month_interest, _month);
+      SetAmount(rate(mortgage_momney));
+      setCheckAmount(mortgage_momney);
     }
   }, [estimate_rate, estimate_mortgage, month]);
+
+  const onBlur = () => {
+    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    if (_amount > checkAmount) {
+      SetAmount(rate(checkAmount));
+    }
+  };
 
   const calculation = event => {
     event.preventDefault();
     const __month = Number(month.replace(/[^0-9.-]+/g, ''));
-    // const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
-    const month_payment = Math.ceil(amount / __month); //Tiền gốc hàng tháng
+    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    const month_payment = Math.ceil(_amount / __month); //Tiền gốc hàng tháng
     const month_interest = Math.ceil((month_payment * interest_rate) / 100 / 12); //Tiền lãi hàng tháng
     // const total = (month_interest + month_payment) * month;
-    let tem_sum = amount;
+    let tem_sum = _amount;
     let _sum = 0;
     let _interest = 0;
     const d = new Date();
@@ -203,9 +207,10 @@ function ToolHome({ t, maxValue, interest_rate }) {
                       />
                       <FieldInput
                         label={t('amount_can_borrowed')}
-                        maxValue={maxValue}
+                        maxValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
                         value={amount}
-                        onChange={value => setEstimateMortgage(value)}
+                        onBlur={onBlur}
+                        onChange={value => SetAmount(value)}
                       />
                       <FieldInput
                         label={t('loan_term')}
@@ -220,8 +225,8 @@ function ToolHome({ t, maxValue, interest_rate }) {
                     <Result
                       title={title}
                       interest_rate={interest_rate}
-                      amount={amount}
-                      monthlyInterest={monthlyInterest} //tiền lãi hàng tháng
+                      amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
+                      monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={Number(estimate_mortgage.replace(/[^0-9.-]+/g, ''))} // vốn tự có
                       month={month}

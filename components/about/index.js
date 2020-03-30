@@ -36,7 +36,7 @@ function About({ data, listNews, getNews }) {
     <>
       <main id="main" className="sec-tb">
         <div className="container">
-          <h1 className="text-center">{t('page_about.title')}</h1>
+          {data.title && <h1 className="text-center">{data.title}</h1>}
           <div className=" sec-b filter-category text-center">
             <select
               className="select"
@@ -44,6 +44,7 @@ function About({ data, listNews, getNews }) {
               value={year}
             >
               <option>{t('year')}</option>
+              <option value={2020}>2020</option>
               <option value={2021}>2021</option>
             </select>
           </div>

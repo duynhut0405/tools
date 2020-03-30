@@ -3,9 +3,8 @@ import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
-// import { rate } from '../../../utils/currency';
-
 import Proptypes from 'prop-types';
+import { rate } from '../../../utils/currency';
 
 const propTypes = {
   minValue: Proptypes.number,
@@ -98,7 +97,7 @@ function Tool6({ t, minValue, maxValue, interest_rate }) {
                     <div className="inner">
                       <FieldInput
                         label={t('amount_can_borrowed')}
-                        maxValue={maxValue}
+                        maxValue={Number(loan_amount.replace(/[^0-9.-]+/g, ''))}
                         value={loan_amount}
                         onChange={value => setLoanAmount(value)}
                       />

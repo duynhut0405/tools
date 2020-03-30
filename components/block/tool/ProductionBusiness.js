@@ -15,9 +15,11 @@ const propTypes = {
 function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
   const [total_capital_needs, setTotalCapitalNeeds] = useState('0');
   const [equity_capital, setEquityCapital] = useState('0');
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('0');
+  const [checkAmount, setCheckAmount] = useState(0);
+  const [maxMonth, setMaxMonth] = useState(12);
   const [type, setType] = useState(1);
-  const [month, setMonth] = useState(1);
+  const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
   const [monthlypayment, setMonthlyPayment] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -32,44 +34,57 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
   useEffect(() => {
     const _total_capital_needs = Number(total_capital_needs.replace(/[^0-9.-]+/g, ''));
     const _equity_capital = Number(equity_capital.replace(/[^0-9.-]+/g, ''));
+    const _month = Number(month.replace(/[^0-9.-]+/g, ''));
     if (_total_capital_needs > maxValue) {
       setTotalCapitalNeeds(rate(maxValue));
     }
     if (_equity_capital > maxValue) {
       setEquityCapital(rate(maxValue));
     }
+    if (_month > maxMonth) {
+      setMonth(rate(maxMonth));
+    }
     if (_total_capital_needs > _equity_capital && _equity_capital !== 0) {
       setChangeActive(true);
       let total = 0;
       if (type === 1) {
         total = Math.ceil(((_total_capital_needs - _equity_capital) * 90) / 100);
-        setAmount(total);
+        setAmount(rate(total));
+        setCheckAmount(total);
       } else {
         total = Math.ceil(((_total_capital_needs - _equity_capital) * 85) / 100);
-        setAmount(total);
+        setAmount(rate(total));
+        setCheckAmount(total);
       }
     }
     if (_equity_capital === _total_capital_needs) {
-      setAmount(0);
-    }
-    if (month > 84) {
-      setMonth(84);
+      setAmount('0');
+      setCheckAmount(0);
     }
     if (_equity_capital > _total_capital_needs) {
-      setAmount(0);
+      setAmount('0');
+      setCheckAmount(0);
       setEquityCapital('0');
     }
     if (_total_capital_needs === minValue) {
       setChangeActive(false);
     }
-  }, [total_capital_needs, equity_capital, type]);
+  }, [total_capital_needs, equity_capital, type, month]);
+
+  const onBlur = () => {
+    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    if (_amount > checkAmount) {
+      setAmount(rate(checkAmount));
+    }
+  };
 
   const calculation = event => {
     event.preventDefault();
-    const month_interest = Math.ceil((amount * interest_rate) / 100 / 12); //tiền lãi
-    const month_payment = Math.ceil(amount / month); // tiền gốc
+    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    const month_interest = Math.ceil((_amount * interest_rate) / 100 / 12); //tiền lãi
+    const month_payment = Math.ceil(_amount / month); // tiền gốc
     // const total = (month_interest + month_payment) * month; // tổng tiền
-    let tem_sum = amount;
+    let tem_sum = _amount;
     let _sum = 0;
     let _interest = 0;
     const d = new Date();
@@ -136,6 +151,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
                 name="radio-loan1"
                 onChange={() => {
                   setType(1);
+                  setMaxMonth(12);
                   setTitle(t('loan_limit'));
                 }}
               />
@@ -149,6 +165,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
                 name="radio-loan2"
                 onChange={() => {
                   setType(2);
+                  setMaxMonth(84);
                   setTitle(t('tool_product_business.investment_loan'));
                 }}
               />
@@ -177,13 +194,14 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
                       />
                       <FieldInput
                         label={t('total')}
-                        maxValue={maxValue}
+                        maxValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
+                        onBlur={onBlur}
                         value={amount}
                         onChange={value => setAmount(value)}
                       />
                       <FieldInput
                         label={t('loan_term')}
-                        maxValue={84}
+                        maxValue={maxMonth}
                         value={month}
                         note
                         onChange={value => setMonth(value)}
@@ -194,7 +212,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate }) {
                     <Result
                       title={title}
                       interest_rate={interest_rate}
-                      amount={amount}
+                      amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
                       monthlyInterest={null} //tiền lãi hàng tháng
                       monthlypayment={monthlypayment} //Tiền gốc hàng tháng
                       equity_capital={Number(equity_capital.replace(/[^0-9.-]+/g, ''))} // vốn tự có

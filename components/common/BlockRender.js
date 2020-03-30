@@ -20,7 +20,9 @@ import {
   Comment,
   TablePayment,
   TabQuestions,
-  CustomTab
+  CustomTab,
+  SMEIntro,
+  Banner
 } from '../block';
 import About from '../about';
 import Investors from '../investors';
@@ -28,7 +30,7 @@ import OtherNews from '../otherNews';
 import { ListDowloadFIle, ListDowloadVideo } from '../common/download';
 import Transaction from '../transaction';
 import { Contact, DowloadCategory } from '../common';
-
+import FormStep from '../block/formStep';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import NewCard from '../NewCard';
@@ -195,6 +197,15 @@ function BlockRender({ data }) {
               }
               if (values.name === 'CustomTab' && values.content !== null) {
                 return <CustomTab data={JSON.parse(values.content)} id={values.id} key={index} />;
+              }
+              if (values.name === 'BlockSMEIntro' && values.content !== null) {
+                return <SMEIntro key={index} />;
+              }
+              if (values.name === 'Form Step' && values.content !== null) {
+                return <FormStep key={index} data={JSON.parse(values.content)} />;
+              }
+              if (values.name === 'Banner' && values.content !== null) {
+                return <Banner key={index} data={JSON.parse(values.content)} id={values.id} />;
               }
               return null;
             }
