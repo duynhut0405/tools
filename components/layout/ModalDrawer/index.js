@@ -29,7 +29,7 @@ function ModalDrawer({ menu }) {
             }}
           ></span>
         )}
-        <a href={`/page/${item.slugPages}`}>
+        <a href={`/page/${item.slugPages.value}`}>
           <span>{item.name}</span>
         </a>
         {item.children.length > 0 && (
