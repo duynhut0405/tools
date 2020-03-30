@@ -7,8 +7,6 @@ const propTypes = {
 };
 
 function Banner({ data }) {
-  console.log(data);
-
   return (
     <React.Fragment>
       <section className="sec-tb">
