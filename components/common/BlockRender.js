@@ -21,7 +21,8 @@ import {
   TablePayment,
   TabQuestions,
   CustomTab,
-  SMEIntro
+  SMEIntro,
+  Banner
 } from '../block';
 import About from '../about';
 import Investors from '../investors';
@@ -202,6 +203,9 @@ function BlockRender({ data }) {
               }
               if (values.name === 'Form Step' && values.content !== null) {
                 return <FormStep key={index} data={JSON.parse(values.content)} />;
+              }
+              if (values.name === 'Banner' && values.content !== null) {
+                return <Banner key={index} data={JSON.parse(values.content)} id={values.id} />;
               }
               return null;
             }
