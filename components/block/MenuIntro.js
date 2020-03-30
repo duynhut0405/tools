@@ -214,14 +214,18 @@ function MenuIntro({ data, type }) {
                   </Row>
                
                 )} */}
-                  <div className="row">
-                    <div className="col-md-5">
-                        <a className="btnPhone" href="tel:1900545426">{data.contact_1} <i className="icon-arrow-2"></i> </a>
-                    </div>
-                    <div className="col-md-7">
-                        <a className="btnPhone" href="tel:+8437674050">{data.contact_2} <i className="icon-arrow-2"></i> </a>
-                    </div>
-                  </div>                   
+                <div className="row">
+                  <div className="col-md-5">
+                    <a className="btnPhone" href="tel:1900545426">
+                      {data.contact_1} <i className="icon-arrow-2"></i>{' '}
+                    </a>
+                  </div>
+                  <div className="col-md-7">
+                    <a className="btnPhone" href="tel:+8437674050">
+                      {data.contact_2} <i className="icon-arrow-2"></i>{' '}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="col-lg-4 sidebar">
