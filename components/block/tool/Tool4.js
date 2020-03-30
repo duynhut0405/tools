@@ -20,6 +20,7 @@ function Tool4({ t, minValue, maxValue, interest_rate }) {
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
   const [monthlypayment, setMonthlyPayment] = useState(0);
+  const [checkAmount, setCheckAmount] = useState(0);
   // const [totalAmount, setTotalAmount] = useState(0);
   const [table, setTable] = useState([]);
   const [sum, setSum] = useState(0);
@@ -39,13 +40,23 @@ function Tool4({ t, minValue, maxValue, interest_rate }) {
     if (_salary <= 20000000 && _salary > 0) {
       _salary = Math.min(Math.ceil(_salary * 10), 180000000);
       setAmount(rate(_salary));
+      setCheckAmount(_salary);
     } else if (_salary > 20000000 && _salary <= 50000000) {
       _salary = Math.min(Math.ceil(_salary * 15, 400000000));
       setAmount(rate(_salary));
+      setCheckAmount(_salary);
     } else if (_salary > 50) {
       setAmount(rate(700000000));
+      setCheckAmount(_salary);
     }
-  }, [month, salary, amount]);
+  }, [month, salary]);
+
+  const onBlur = () => {
+    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    if (_amount > checkAmount) {
+      setAmount(rate(checkAmount));
+    }
+  };
 
   const calculation = event => {
     event.preventDefault();
@@ -126,7 +137,8 @@ function Tool4({ t, minValue, maxValue, interest_rate }) {
                       />
                       <FieldInput
                         label={t('amount_can_borrowed')}
-                        maxValue={amount}
+                        maxValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
+                        onBlur={onBlur}
                         value={amount}
                         onChange={value => setAmount(value)}
                       />

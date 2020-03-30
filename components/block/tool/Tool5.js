@@ -3,7 +3,7 @@ import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
 import { withTranslation } from '../../../i18n';
-import { rate } from '../../../utils/currency';
+import { rate, currency } from '../../../utils/currency';
 
 import Proptypes from 'prop-types';
 
@@ -20,6 +20,7 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
   const [monthlypayment, setMonthlyPayment] = useState(0);
+  const [checkAmount, setCheckAmount] = useState(0);
   // const [totalAmount, setTotalAmount] = useState(0);
   const [table, setTable] = useState([]);
   const [sum, setSum] = useState(0);
@@ -42,12 +43,21 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
       setMaxMonth(72);
       _salary = Math.ceil(_salary * 70) / 100;
       setAmount(rate(_salary));
+      setCheckAmount(_salary);
     } else {
       setMaxMonth(72);
       _salary = Math.ceil(_salary * 55) / 100;
       setAmount(rate(_salary));
+      setCheckAmount(_salary);
     }
-  }, [amount, month, salary]);
+  }, [month, salary]);
+
+  const onBlur = () => {
+    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    if (_amount > checkAmount) {
+      setAmount(rate(checkAmount));
+    }
+  };
 
   const calculation = event => {
     event.preventDefault();
@@ -128,8 +138,9 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
                       />
                       <FieldInput
                         label={t('max_loan')}
-                        maxValue={amount}
+                        maxValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
                         value={amount}
+                        onBlur={onBlur}
                         onChange={value => setAmount(value)}
                       />
                       <FieldInput
