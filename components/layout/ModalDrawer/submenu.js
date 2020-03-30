@@ -27,7 +27,7 @@ function SubMenu({ menu }) {
             }}
           ></span>
         )}
-        <a href={`/page/${item.slugPages.value}`}>
+        <a href={`/page/${item.slugPages}`}>
           <span>{item.name}</span>
         </a>
         {item.children.length > 0 && (
