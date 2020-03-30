@@ -83,19 +83,22 @@ function Layout({
     }
   }, [activeDrawer]);
   const nestChild = items => {
-    return map(items, item => (
-      <li
-        key={item.id}
-        className={item.children.length > 0 ? 'children parent-showsub' : 'no-children'}
-      >
-        <a href={`/page/${item.slugPages}`}>
-          <span>{item.name}</span>
-        </a>
-        <div className="wrapul">
-          {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
-        </div>
-      </li>
-    ));
+    return map(
+      items.sort((a, b) => a.position - b.position),
+      item => (
+        <li
+          key={item.id}
+          className={item.children.length > 0 ? 'children parent-showsub' : 'no-children'}
+        >
+          <a href={`/page/${item.slugPages}`}>
+            <span>{item.name}</span>
+          </a>
+          <div className="wrapul">
+            {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
+          </div>
+        </li>
+      )
+    );
   };
   const footerItem = data => {
     return map(data, (item, index) => {
