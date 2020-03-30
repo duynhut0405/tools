@@ -45,7 +45,7 @@ function Tool4({ t, minValue, maxValue, interest_rate }) {
     } else if (_salary > 50) {
       setAmount(rate(700000000));
     }
-  }, [month, salary]);
+  }, [month, salary, amount]);
 
   const calculation = event => {
     event.preventDefault();
@@ -126,7 +126,7 @@ function Tool4({ t, minValue, maxValue, interest_rate }) {
                       />
                       <FieldInput
                         label={t('amount_can_borrowed')}
-                        maxValue={maxValue}
+                        maxValue={amount}
                         value={amount}
                         onChange={value => setAmount(value)}
                       />

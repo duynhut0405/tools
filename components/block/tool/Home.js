@@ -203,7 +203,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
                       />
                       <FieldInput
                         label={t('amount_can_borrowed')}
-                        maxValue={maxValue}
+                        maxValue={amount}
                         value={amount}
                         onChange={value => setEstimateMortgage(value)}
                       />

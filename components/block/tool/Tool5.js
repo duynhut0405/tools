@@ -47,7 +47,7 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
       _salary = Math.ceil(_salary * 55) / 100;
       setAmount(rate(_salary));
     }
-  }, [month, salary]);
+  }, [amount, month, salary]);
 
   const calculation = event => {
     event.preventDefault();
@@ -128,7 +128,7 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
                       />
                       <FieldInput
                         label={t('max_loan')}
-                        maxValue={maxValue}
+                        maxValue={amount}
                         value={amount}
                         onChange={value => setAmount(value)}
                       />
