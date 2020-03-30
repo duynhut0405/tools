@@ -49,7 +49,6 @@ function Tools({ content }) {
           />
         );
       case 5:
-        // console.log(pacontent.interest_rate);
         return (
           <Tool5
             minValue={parseInt(content.minValue)}

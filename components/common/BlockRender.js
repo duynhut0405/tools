@@ -29,7 +29,7 @@ import OtherNews from '../otherNews';
 import { ListDowloadFIle, ListDowloadVideo } from '../common/download';
 import Transaction from '../transaction';
 import { Contact, DowloadCategory } from '../common';
-
+import FormStep from '../block/formStep';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import NewCard from '../NewCard';
@@ -199,6 +199,9 @@ function BlockRender({ data }) {
               }
               if (values.name === 'BlockSMEIntro' && values.content !== null) {
                 return <SMEIntro key={index} />;
+              }
+              if (values.name === 'Form Step' && values.content !== null) {
+                return <FormStep key={index} data={JSON.parse(values.content)} />;
               }
               return null;
             }

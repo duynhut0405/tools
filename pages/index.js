@@ -31,7 +31,6 @@ function Home({ page, silder, menuMiddle, listRate }) {
         <MenuMiddle data={menuMiddle} />
         <BlockRender data={page.pageBlocks} />
         <FormRate data={listRate} />
-        {/* {page.template === 4 && <DowloadCategory />} */}
       </div>
     </Layout>
   );
