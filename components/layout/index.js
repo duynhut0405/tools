@@ -17,7 +17,6 @@ import { compose } from 'redux';
 import { getLang } from '../../utils/localStorage';
 import i18next from 'i18next';
 import '../../styles/custom.css';
-import Link from 'next/link';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -91,9 +90,9 @@ function Layout({
           key={item.id}
           className={item.children.length > 0 ? 'children parent-showsub' : 'no-children'}
         >
-          <Link href="/page/[...slug]" as={`page/${item.slugPages}`}>
+          <a href={`/page/${item.slugPages}`}>
             <span>{item.name}</span>
-          </Link>
+          </a>
           <div className="wrapul">
             {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
           </div>
