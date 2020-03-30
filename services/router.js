@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const request = axios.create({
-  baseURL: 'https://sapotacorp.com:8443/vi/api/fe',
+  baseURL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'

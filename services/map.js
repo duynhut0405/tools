@@ -1,7 +1,7 @@
 import axios from 'axios';
 import request from '../utils/request';
 
-const url = 'https://sapotacorp.com:8443/api';
+const url = 'https://mbbank3.mangoads.com.vn:8443/api';
 
 const getProvinceService = () => {
   return axios({
