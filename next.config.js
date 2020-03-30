@@ -6,7 +6,7 @@ const { getRouer, getNewRouter, getCategoryRouter } = require('./services/router
 module.exports = withFonts(
   withCSS(
     withSass({
-      // distDir: '.out',
+      distDir: '_next',
       webpack(config, options) {
         config.module.rules.push({
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
