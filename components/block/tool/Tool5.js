@@ -39,6 +39,7 @@ function Tool5({ t, minValue, maxValue, interest_rate }) {
       setMaxMonth(84);
       _salary = Math.ceil(_salary * 75) / 100;
       setAmount(rate(_salary));
+      setCheckAmount(_salary);
     } else if (_salary > 1500000000 && _salary <= 3000000000) {
       setMaxMonth(72);
       _salary = Math.ceil(_salary * 70) / 100;
