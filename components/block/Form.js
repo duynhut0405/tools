@@ -45,27 +45,31 @@ function Form({ data }) {
   return (
     <section className="sec-tb sec-tuvan">
       <div className="container">
-        <form onSubmit={onSend} autoComplete="on">
+        <form onSubmit={onSend} autoComplete="on" className="row">
           {map(formdata, (item, index) => {
             if (item.type === 'header') {
               return (
                 <React.Fragment>
-                  <div className={`max600 entry-head text-center ${item.className}`}>
+                  <div className={`col-12`}>
+                    <h2 className={`text-center ${item.className}`}>
                     {ReactHtmlParser(item.label)}
+                    </h2>
                   </div>
                 </React.Fragment>
-              );
+              ); 
             }
             if (item.type === 'paragraph') {
               return (
-                <div className={item.className} key={index}>
-                  {ReactHtmlParser(item.label)}
+                <div className={`col-12`}>
+                  <div className={`form-desc ${item.className}`}  key={index}>
+                    {ReactHtmlParser(item.label)}
+                  </div>
                 </div>
               );
             }
             if (item.type === 'radio-group') {
               return (
-                <div className="mb-30 text-center">
+                <div className="col-12 mb-30 text-center">
                   {map(item.values, (items, key) => (
                     <CustomInput
                       type="radio"
@@ -84,10 +88,10 @@ function Form({ data }) {
             if (item.type === 'text') {
               return (
                 <React.Fragment>
-                  <div className="col-12">
+                  <div className={`col-12 ${item.className}`}>
                     {item.label && <Label>{item.label}</Label>}
                     <Input
-                      className={`input ${item.className}`}
+                      className={`input`}
                       name={item.name}
                       type={item.subtype}
                       placeholder={item.placeholder}
@@ -100,10 +104,10 @@ function Form({ data }) {
             if (item.type === 'textarea') {
               return (
                 <React.Fragment>
-                  <div className="col-12">
+                  <div className={`col-12 ${item.className}`}>
                     {item.label && <Label>{item.label}</Label>}
                     <Input
-                      className={`input ${item.className}`}
+                      className={`input`}
                       type={item.subtype}
                       name={item.name}
                       rows={item.rows}
@@ -117,20 +121,21 @@ function Form({ data }) {
             if (item.type === 'button') {
               return (
                 <React.Fragment>
-                  <div className="col-12 text-center">
-                    <button className={`btn ${item.className}`} type={item.subtype}>
+                  <div className={`col-12 text-center `}>
+                    <button className={`btn`} type={item.subtype}>
                       {item.label}
                     </button>
                   </div>
                 </React.Fragment>
               );
             }
+
             return null;
           })}
         </form>
       </div>
       {data.image && (
-        <img className=" br loaded loaded" data-lazy-type="image" alt="" src={data.image}></img>
+        <img className=" br  loaded" data-lazy-type="image" alt="" src={data.image}></img>
       )}
     </section>
   );
