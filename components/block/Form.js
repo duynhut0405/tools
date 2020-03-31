@@ -40,8 +40,11 @@ function Form({ data }) {
       email: formState.email,
       idForm: data.formdata
     };
+    console.log(2131232);
+
     sendMailService(dataSend);
   };
+ 
   return (
     <section className="sec-tb sec-tuvan">
       <div className="container">
@@ -52,16 +55,16 @@ function Form({ data }) {
                 <React.Fragment>
                   <div className={`col-12`}>
                     <h2 className={`text-center ${item.className}`}>
-                    {ReactHtmlParser(item.label)}
+                      {ReactHtmlParser(item.label)}
                     </h2>
                   </div>
                 </React.Fragment>
-              ); 
+              );
             }
             if (item.type === 'paragraph') {
               return (
                 <div className={`col-12`}>
-                  <div className={`form-desc ${item.className}`}  key={index}>
+                  <div className={`form-desc ${item.className}`} key={index}>
                     {ReactHtmlParser(item.label)}
                   </div>
                 </div>
