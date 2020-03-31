@@ -229,23 +229,30 @@ function Layout({
                       <ul className="menu-top-header" data-style="1">
                         {nestChild(menuNav)}
                       </ul>
-                    </div>
-                    <div className="group-header">
-                      <div className="item ilogin">
-                        <ul className="menu-top-header ">
-                          {/* <li>
-                                <a href="#">{t('registration')}</a>
+                      <ul className="menu-top-header e-banking">
+                        <li className="highlight children">
+                          <span className="showsubmenu icon-arrow-2 ib"></span>
+                          <a href="./49_login.php">
+                            <span>Ebanking</span>
+                          </a>
+                          <div className="wrapul">
+                            <ul>
+                              <li>
+                                <a href="https://online.mbbank.com.vn/retail/EstablishSession">
+                                  Cá Nhân
+                                </a>
                               </li>
                               <li>
-                                <a href="#">{t('login')}</a>
-                              </li> */}
-                          <li className="highlight">
-                            <a href="#">
-                              <span>Ebanking</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                                <a href="https://emb.mbbank.com.vn/corp/EstablishSession">
+                                  Doanh nghiệp
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="group-header">
                       <div className="item ilang">
                         <div className="dropdown language">
                           <div className="title">
