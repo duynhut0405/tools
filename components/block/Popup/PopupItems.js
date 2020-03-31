@@ -13,20 +13,32 @@ function PopupItems({ item, modal, setModal }) {
 
   return (
     <React.Fragment>
-      <Modal isOpen={modal} toggle={toggle} centered={true} className="container max950 middle">
-        <ModalBody>
+      <div
+        id="lanhdaoModal"
+        className={`myModal lanhdaoModal ${modal ? `active` : null}`}
+        toggle={toggle}
+      >
+        <span
+          className="btnModal overlay"
+          onClick={() => {
+            setModal(!modal);
+            document.body.classList.remove('showModal');
+          }}
+        ></span>
+        <div className="container max950 middle">
           <div className="contentModal">
             <span
               className="btnModal btn-close"
               onClick={() => {
                 setModal(!modal);
+                document.body.classList.remove('showModal');
               }}
             >
               <i className="icon-close"> </i>
             </span>
             <div className="logo">
               <a href="./">
-                <img src="/static/images/svg/logo-blue.svg" alt="" />
+                <img src="/static/images/logo-blue.svg" alt="" />
               </a>
             </div>
             <div className="row bottom">
@@ -42,17 +54,15 @@ function PopupItems({ item, modal, setModal }) {
               </div>
               <div className="col-md-7">
                 <div className="divtext">
-                  <h2 className="title" style={{ color: '#141ED2' }}>
-                    {item.name}
-                  </h2>
+                  <h2 className="title ">{item.name}</h2>
                   <h3 className="position ">{item.position}</h3>
                   <div className="desc ">{ReactHtmlParser(item.description)}</div>
                 </div>
               </div>
             </div>
           </div>
-        </ModalBody>
-      </Modal>
+        </div>
+      </div>
     </React.Fragment>
   );
 }
