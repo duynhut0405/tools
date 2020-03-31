@@ -20,6 +20,10 @@ const propTypes = {
 function Home({ page, silder, menuMiddle, listRate }) {
   const { i18n } = useTranslation();
 
+  useEffect(()=>{
+    document.body.classList.add('home');
+  })
+
   useEffect(() => {
     i18n.changeLanguage(getLang());
   }, []);
