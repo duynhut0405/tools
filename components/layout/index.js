@@ -86,10 +86,7 @@ function Layout({
     return map(
       items.sort((a, b) => a.position - b.position),
       item => (
-        <li
-          key={item.id}
-          className={item.children.length > 0 ? 'children parent-showsub' : 'no-children'}
-        >
+        <li key={item.id} className={item.children.length > 0 ? 'children ' : null}>
           <a href={`/page/${item.slugPages}`}>
             <span>{item.name}</span>
           </a>
