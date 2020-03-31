@@ -178,35 +178,54 @@ function Icon({ data, id }) {
               <div className="entry-head">
                 <h2 className="ht efch-1 ef-img-t">{data[0].title}</h2>
               </div>
-
-              <Carousel
-                responsive={responsive1}
-                draggable
-                minimumTouchDrag={80}
-                ssr={true} // means to render carousel on server-side.
-                infinite={true}
-                keyBoardControl={true}
-                className="list-9"
-                arrows={false}
-                renderButtonGroupOutside={true}
-                ref={ref => {
-                  setRefCarousel(ref);
-                }}
-              >
-                {map(data, (item, index) => (
-                  <div className={`item efch-${index + 2} ef-img-l `} key={index}>
-                    <div className="img">
-                      <img
-                        className=" loaded loaded"
-                        data-lazy-type="image"
-                        src={item.image}
-                        style={{ width: '160px', height: '52px' }}
-                      />
+              <div className="sec-b wrap-carousel">
+                <Carousel
+                  responsive={responsive1}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
+                  className="list-9"
+                  arrows={false}
+                  renderButtonGroupOutside={true}
+                  ref={ref => {
+                    setRefCarousel(ref);
+                  }}
+                >
+                  {map(data, (item, index) => (
+                    <div className={`item efch-${index + 2} ef-img-l `} key={index}>
+                      <div className="img">
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          src={item.image}
+                          style={{ width: '160px', height: '52px' }}
+                        />
+                      </div>
+                      <div className="des">{item.note_1}</div>
                     </div>
-                    <div className="des">{item.note_1}</div>
+                  ))}
+                </Carousel>
+                <div className="carousel-nav center">
+                  <div
+                    className="carousel-prev "
+                    onClick={() => {
+                      refCarousel.previous();
+                    }}
+                  >
+                    <i className="icon-arrow-1 ix"></i>
                   </div>
-                ))}
-              </Carousel>
+                  <div
+                    className="carousel-next"
+                    onClick={() => {
+                      refCarousel.next();
+                    }}
+                  >
+                    <i className="icon-arrow-1"></i>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         </React.Fragment>
