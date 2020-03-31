@@ -39,12 +39,12 @@ function Repeat({ data, type, id }) {
             <h2 className="ht ">{data.title}</h2>
           </div>
           
-          <div className="max950_">
+          <div className={type === '2' ? 'max950' : ''}>
             <div className="row list-item grid-space-20">
 
               {map(listTable, (item, index) => (
                 <React.Fragment>
-                  <div className={`col-md-${col} ${map.length}`} key={index}>
+                  <div className={`col-md-${col} `} key={index}>
                     <div className="widget-default">
                       <h4 className="widget-title">{item.header}</h4>
                       <div className="widget-content entry-content">
