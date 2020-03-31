@@ -28,6 +28,7 @@ function DetailPerson({ data, detailPerson, getDetailPerson }) {
                     onClick={() => {
                       setModal(!modal);
                       getDetailPerson(item);
+                      document.body.classList.add('showModal');
                     }}
                     className={`item efch-${index + 2} ef-img-l equal`}
                   >
