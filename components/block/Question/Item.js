@@ -11,7 +11,7 @@ function QuestionItems({ question, answer }) {
   const [active, setAcive] = useState(false);
 
   return (
-    <div className="accodion-tab ">
+    <div className="accodion-tab accodion-1-1 ">
       <input type="checkbox" checked={active} />
       <label className="accodion-title" onClick={() => setAcive(!active)}>
         <span>{question}</span>
@@ -20,13 +20,11 @@ function QuestionItems({ question, answer }) {
         </span>
       </label>
       <div className="accodion-content entry-content">
-        <div className="inner">
-          {/* <section className=" sec-tb ">
+        {/* <section className=" sec-tb ">
             <div className="container"> */}
-          <div>{ReactHtmlParser(answer)}</div>
-          {/* </div>
+        <div>{ReactHtmlParser(answer)}</div>
+        {/* </div>
           </section> */}
-        </div>
       </div>
     </div>
   );
