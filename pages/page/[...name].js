@@ -14,13 +14,12 @@ const propTypes = {
   routerURL: PropTypes.string
 };
 
-function Page({ page, silder, menuMiddle, routerURL }) { 
-
+function Page({ page, silder, menuMiddle, routerURL }) {
   useEffect(() => {
     if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
       document.body.classList.add('title-24');
     }
-  }, []);
+  }, [page]);
 
   return (
     <Layout title={page.meta_title} personalLayout={page.has_sidebar}>
