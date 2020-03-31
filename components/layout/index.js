@@ -228,8 +228,6 @@ function Layout({
                     <div className="wrap-menu-header">
                       <ul className="menu-top-header" data-style="1">
                         {nestChild(menuNav)}
-                      </ul>
-                      <ul className="menu-top-header e-banking">
                         <li className="highlight children">
                           <span className="showsubmenu icon-arrow-2 ib"></span>
                           <a href="./49_login.php">
