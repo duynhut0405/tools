@@ -3,6 +3,7 @@ import { map } from 'lodash';
 import moment from 'moment';
 import Stock from './Stock';
 import { getNewCategoryIdService } from '../../services/news';
+import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -28,6 +29,9 @@ function News({ category }) {
   return (
     <section className="sec-tb">
       <div className="container">
+        <div className="entry-head text-center">
+          <h2 className="ht efch-1 ef-img-t">Cập nhật giao dịch MB</h2>
+        </div>
         <div className="list-5 row list-item">
           {map(data, (item, index) => {
             if (index < 2) {
@@ -45,7 +49,7 @@ function News({ category }) {
                     <div className="divtext">
                       <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                       <h4 className="title line2">{item.title}</h4>
-                      <div className="desc line2">{item.shortDescription}</div>
+                      <div className="desc line2">{ReactHtmlParser(item.shortDescription)}</div>
                     </div>
                   </a>
                 </div>
@@ -64,7 +68,7 @@ function News({ category }) {
                     <div className="divtext">
                       <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                       <h4 className="title line2">{item.title}</h4>
-                      <div className="desc line3">{item.shortDescription}</div>
+                      <div className="desc line3">{ReactHtmlParser(item.shortDescription)}</div>
                     </div>
                   </a>
                 </div>

@@ -9,7 +9,6 @@ import { LayoutActions, MenuActions } from '../../store/actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
-import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { setLang, getFlag } from '../../utils/localStorage';
 import { withTranslation } from '../../i18n';
@@ -82,6 +81,14 @@ function Layout({
       body.classList.remove('showMenu');
     }
   }, [activeDrawer]);
+
+  useEffect(() => {
+    if (personalLayout === 1) {
+      const body = document.getElementsByTagName('body')[0];
+      body.classList.add('mb-priority');
+    }
+  }, [personalLayout]);
+
   const nestChild = items => {
     return map(
       items.sort((a, b) => a.position - b.position),
@@ -149,7 +156,6 @@ function Layout({
     setFlag(flags);
     setLang(lang, flags);
   };
-
   return (
     <>
       <StickyContainer>
@@ -216,11 +222,7 @@ function Layout({
           <Sticky topOffset={40}>
             {({ style }) => (
               <div className="setzindex" style={style}>
-                <header
-                  id="header"
-                  className={personalLayout === 1 ? 'header-black' : ''}
-                  role="banner"
-                >
+                <header id="header" role="banner">
                   <div className="container">
                     <a href="/" id="logo">
                       <img src="/static/images/logo.svg" alt="logo" />
@@ -320,14 +322,7 @@ function Layout({
             </div>
           </section>
           {/* tải appp */}
-          <section
-            id={personalLayout === 1 ? 'secDownloadBlack' : ''}
-            className={
-              personalLayout === 1
-                ? 'sec-download-pc group-ef loaded header-black'
-                : 'sec-download-pc group-ef loaded'
-            }
-          >
+          <section className="sec-download-pc group-ef loaded">
             <div className="container">
               <div className="row">
                 <div className="col-md-6   efch-2 ef-img-r">
@@ -398,7 +393,7 @@ function Layout({
             </div>
           </div>
           <section className="sec-download-mb">
-            <div className={personalLayout === 1 ? 'wform-black' : 'wform'}>
+            <div className="wform">
               <p className="stitle">{t('sign_up_promotional')}</p>
               <form role="search" method="get" className="searchform " action="">
                 <div className="aaa">
