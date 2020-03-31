@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Carousel, BlockRender, MenuMiddle } from '../../components/common';
 import Layout from '../../components/layout';
 import map from 'lodash/map';
@@ -15,6 +15,12 @@ const propTypes = {
 };
 
 function Page({ page, silder, menuMiddle, routerURL }) {
+  useEffect(() => {
+    if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
+      document.body.classList.add('title-24');
+    }
+  }, [page]);
+
   return (
     <Layout title={page.meta_title} personalLayout={page.has_sidebar}>
       <div className="main_content">
