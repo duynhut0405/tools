@@ -28,10 +28,10 @@ function OtherNews() {
             {activeTab === 1 && <TabQuestion />}
           </div>
           <div className={activeTab === 2 ? 'active' : ''}>
-            {activeTab === 2 && <ListDowloadFIle type={8} />}
+            {activeTab === 2 && <ListDowloadFIle type={8} noQuestion />}
           </div>
           <div className={activeTab === 3 ? 'active' : ''}>
-            {activeTab === 3 && <ListDowloadFIle type={5} />}
+            {activeTab === 3 && <ListDowloadFIle type={5} noQuestion />}
           </div>
         </div>
       </div>

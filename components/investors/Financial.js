@@ -21,7 +21,7 @@ function Financial() {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">Báo cáo tài chính</h2>
-            <a className="viewall" href="//page/nha-dau-tu/bao-cao-tai-chinh">
+            <a className="viewall" href="/page/nha-dau-tu/bao-cao-tai-chinh">
               Xem tất cả <i className="icon-arrow-1"></i>
             </a>
           </div>
