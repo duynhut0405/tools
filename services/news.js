@@ -93,6 +93,19 @@ const getNewsByCategorySlug = (slug, data) => {
     });
 };
 
+const getListYearNewsService = () => {
+  return request({
+    url: '/news/year',
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
 export {
   getNewService,
   getNewByUri,
@@ -100,5 +113,6 @@ export {
   getNewCategoryIdService,
   findAllByCategory,
   getNewsByCategorySlug,
-  findAllNewsByCategory
+  findAllNewsByCategory,
+  getListYearNewsService
 };

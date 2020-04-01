@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { NewsActions } from '../../store/actions';
 import { connect } from 'react-redux';
 import Pagination from '../common/Pagination';
+import { getListYearNewsService } from '../../services/news';
 
 const propTypes = {
   listNews: PropTypes.object,
@@ -18,7 +19,19 @@ function About({ data, listNews, getNews }) {
   const date = new Date();
   const [year, setYear] = useState(moment(date).format('YYYY'));
   const [page, setPage] = useState(1);
+  const [listYear, setListYear] = useState([]);
   const { t } = useTranslation();
+
+  const getYear = async () => {
+    const res = await getListYearNewsService();
+    if (res && res.status === 200) {
+      setListYear(res.data);
+    }
+  };
+
+  useEffect(() => {
+    getYear();
+  }, []);
 
   useEffect(() => {
     if (data.category.value) {
@@ -43,9 +56,9 @@ function About({ data, listNews, getNews }) {
               onChange={evnets => setYear(evnets.target.value)}
               value={year}
             >
-              <option>{t('year')}</option>
-              <option value={2020}>2020</option>
-              <option value={2021}>2021</option>
+              {map(listYear, item => (
+                <option value={item}>{item}</option>
+              ))}
             </select>
           </div>
           <div className="list-12 row list-item">
