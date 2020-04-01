@@ -6,10 +6,11 @@ const propTypes = {
   year: PropTypes.string,
   fileIcon: PropTypes.bool,
   isChecked: PropTypes.bool,
-  data: PropTypes.array
+  data: PropTypes.array,
+  iconPlus: PropTypes.bool
 };
 
-function FileList({ year, isChecked, data }) {
+function FileList({ year, isChecked, iconPlus, data }) {
   const [checked, setChecked] = useState(isChecked);
   return (
     <div className="accodion accodion-2">
@@ -17,9 +18,11 @@ function FileList({ year, isChecked, data }) {
         <input type="checkbox" id="chck_2" checked={checked} />
         <label className="accodion-title h2" onClick={() => setChecked(!checked)}>
           <span> {year} </span>
-          <span className="triangle">
-            <i className="icon-plus"></i>
-          </span>
+          {iconPlus && (
+            <span className="triangle">
+              <i className="icon-plus"></i>
+            </span>
+          )}
         </label>
         <div className="accodion-content">
           <div className="inner">

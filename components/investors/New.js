@@ -59,7 +59,7 @@ function News({ category }) {
           })}
           <Stock />
         </div>
-        <div className="list-5 row list-item">
+        {/* <div className="list-5 row list-item">
           {map(data, (item, index) => {
             if (index >= 2 && index < 6) {
               return (
@@ -76,7 +76,7 @@ function News({ category }) {
             }
             return null;
           })}
-        </div>
+        </div> */}
       </div>
     </section>
   );

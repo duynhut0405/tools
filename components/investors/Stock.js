@@ -37,34 +37,40 @@ function Stock() {
 
         <ul className="list">
           <li>
-            <span className="t1">Sàn</span>{' '}
+            <span className="t1">Sàn</span>
             <span className="t2">
-              HOSE <span className="t3">(MBB)</span>{' '}
+              HOSE <span className="t3">(MBB)</span>
             </span>
           </li>
           <li>
-            <span className="t1">KLGD</span>{' '}
+            <span className="t1">KLGD</span>
             <span className="t2">
-              722.680 <span className="t3">(CP)</span>{' '}
+              722.680 <span className="t3">(CP)</span>
             </span>
           </li>
           <li>
-            <span className="t1">GTGD</span>{' '}
+            <span className="t1">GTGD</span>
             <span className="t2">
-              33.862,00 <span className="t3">(Triệu VND)</span>{' '}
+              33.862,00 <span className="t3">(Triệu VND)</span>
             </span>
           </li>
           <li>
-            <span className="t1">Vốn hoá</span>{' '}
+            <span className="t1">Vốn hoá</span>
             <span className="t2">
-              189.437,05 <span className="t3">(Tỷ VND)</span>{' '}
+              189.437,05 <span className="t3">(Tỷ VND)</span>
             </span>
           </li>
           <li>
-            <span className="t1">KLCP</span>{' '}
+            <span className="t1">KLCP</span>
             <span className="t2">
-              4.022.018.040 <span className="t3">(CP)</span>{' '}
+              4.022.018.040 <span className="t3">(CP)</span>
             </span>
+          </li>
+          <li>
+            <a href="https://thongtinthitruong.mbbank.com.vn/tong-quan.html" className="fs13 cl1">
+              Thông tin Giao dịch, Tài chính, Tin tức &amp; Sự kiện
+              <i className="icon-arrow-db"></i>
+            </a>
           </li>
         </ul>
       </div>

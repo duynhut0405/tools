@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   year: PropTypes.string,
-  data: PropTypes.array
+  data: PropTypes.array,
+  fileIcon: PropTypes.bool,
+  showYear: PropTypes.bool
 };
 
-function DowloadVideo({ year, data }) {
+function DowloadVideo({ year, data, fileIcon, showYear }) {
   const [urlVideo, setURlVideo] = useState(null);
   useEffect(() => {
     getUrlVideoService(year).then(res => {
@@ -37,10 +39,12 @@ function DowloadVideo({ year, data }) {
               return (
                 <li key={item.id}>
                   <span className="title">
-                    <i className="icon-date-2"></i>
+                    <i className={fileIcon ? 'icon-t14' : 'icon-date-2'}></i>
                     {item.name}
                   </span>
-                  <span className="data">{moment(item.createdAt).format('DD-MM-YYYY')}</span>
+                  {showYear && (
+                    <span className="data">{moment(item.createdAt).format('DD-MM-YYYY')}</span>
+                  )}
                   <span className="down">
                     <a href={item.urlFile} download>
                       <i className="icon-arrow-6 ib"></i>
