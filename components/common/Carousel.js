@@ -15,6 +15,7 @@ function Carousels({ silder, className }) {
     const url = item.props.children[0].props.href;
     window.location.href = url;
   };
+
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
@@ -57,7 +58,7 @@ function Carousels({ silder, className }) {
                 </div>
                 <div className="wimg">
                   <img
-                    className={item.options === 2 ? 'img-center' : 'img-right'}
+                    className={item.options === '2' ? 'img-center' : 'img-right'}
                     src={item.image}
                     alt="icon"
                   />
