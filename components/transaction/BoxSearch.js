@@ -54,7 +54,7 @@ function BoxSearch({
   };
 
   return (
-    <div className="ajax-content-map">
+    <div className="ajax-content-map" style={{ position: 'unset', padding: '15px' }}>
       <ul className="menu row grid-space-0">
         <li
           className={branches_type === 'Branch' ? 'col-6 active' : 'col-6'}
@@ -98,7 +98,7 @@ function BoxSearch({
           onChange={provinceItem => setDistrict(provinceItem.value)}
         />
       </div>
-      <div className="map-list-store">
+      <div className="map-list-store" style={{ position: 'unset' }}>
         {map(listBranches, (branches, index) => (
           <div
             className={
