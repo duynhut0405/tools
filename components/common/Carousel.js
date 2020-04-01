@@ -19,53 +19,52 @@ function Carousels({ silder, className }) {
     <React.Fragment>
       {!isEmpty(silder) && (
         <section className=" banner-heading-1 home next-shadow">
-          <div className={className}>
-            <Carousel
-              showThumbs={false}
-              showStatus={false}
-              infiniteLoop={true}
-              onClickItem={getItems}
-              emulateTouch
-              showIndicators={false}
-            >
-              {map(silder, (item, index) => (
-                <div key={index} className="silder_items">
-                  <a className="br" href={item.url === undefined ? '#' : item.url}>
-                    <img src={item.image} alt="icon" />
-                  </a>
-                  <div className="container">
-                    <div className={`divtext text-${item.options}-mg `}>
-                      <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(item.note_1)}</h1>
-                      <p className="cl1">{ReactHtmlParser(item.note_2)}</p>
-                      <div className="text_content3">{item.note_3}</div>
-                      {item.text_action === null ||
-                      item.text_action === undefined ||
-                      item.text_action === '' ? (
-                        ''
-                      ) : (
-                        <button>
-                          <a
-                            href={
-                              item.url === null || item.url === undefined || item.url === ''
-                                ? '#'
-                                : item.url
-                            }
-                          >
-                            {item.text_action}
-                          </a>
-                        </button>
-                      )}
-                      {item.video_url !== undefined && item.video_url !== '' && (
-                        <div>
-                          <iframe src={item.video_url} />
-                        </div>
-                      )}
+          <Carousel
+            showThumbs={false}
+            showStatus={false}
+            infiniteLoop={true}
+            emulateTouch
+            showIndicators={false}
+          >
+            {map(silder, (item, index) => (
+              <div className="container">
+                <div className="divtext text-left-mg ">
+                  <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(item.note_1)}</h1>
+                  <p className="cl1">{ReactHtmlParser(item.note_2)}</p>
+                  <div className="text_content3">{item.note_3}</div>
+                  {item.text_action === null ||
+                  item.text_action === undefined ||
+                  item.text_action === '' ? (
+                    ''
+                  ) : (
+                    <button>
+                      <a
+                        href={
+                          item.url === null || item.url === undefined || item.url === ''
+                            ? '#'
+                            : item.url
+                        }
+                      >
+                        {item.text_action}
+                      </a>
+                    </button>
+                  )}
+                  {item.video_url !== undefined && item.video_url !== '' && (
+                    <div>
+                      <iframe src={item.video_url} />
                     </div>
-                  </div>
+                  )}
                 </div>
-              ))}
-            </Carousel>
-          </div>
+                <div className="wimg">
+                  <img
+                    className={item.options === 2 ? 'img-center' : 'img-right'}
+                    src={item.image}
+                    alt="icon"
+                  />
+                </div>
+              </div>
+            ))}
+          </Carousel>
         </section>
       )}
     </React.Fragment>
