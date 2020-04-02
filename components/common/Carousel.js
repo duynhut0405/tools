@@ -38,8 +38,9 @@ function Carousels({ silder, className }) {
                   item.text_action === '' ? (
                     ''
                   ) : (
-                    <button>
+
                       <a
+                        className="btn"
                         href={
                           item.url === null || item.url === undefined || item.url === ''
                             ? '#'
@@ -48,7 +49,7 @@ function Carousels({ silder, className }) {
                       >
                         {item.text_action}
                       </a>
-                    </button>
+
                   )}
                   {item.video_url !== undefined && item.video_url !== '' && (
                     <div>

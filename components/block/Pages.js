@@ -119,9 +119,9 @@ function Pages({ data, type, id }) {
 
   if (type && type === '3') {
     return (
-      <section className="sec-tb" id={id}>
+      <section className="sec-tb bg-gray" id={id}>
         <div className="container">
-          <h2 className="ht text-center">{data.title}</h2>
+          <h2 className="ht">{data.title}</h2>
           <div className="list-7 list-item row">
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
