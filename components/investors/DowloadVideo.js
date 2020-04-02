@@ -41,7 +41,7 @@ function DowloadVideos() {
           if (item.investors.length > 0) {
             return (
               <div key={item.year}>
-                <DowloadVideo data={item.investors} year={item.year} isChecked />
+                <DowloadVideo data={item.investors} year={item.year} isChecked fileIcon />
               </div>
             );
           }

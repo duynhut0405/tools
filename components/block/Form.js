@@ -40,11 +40,10 @@ function Form({ data }) {
       email: formState.email,
       idForm: data.formdata
     };
-    console.log(2131232);
 
     sendMailService(dataSend);
   };
- 
+
   return (
     <section className="sec-tb sec-tuvan">
       <div className="container">

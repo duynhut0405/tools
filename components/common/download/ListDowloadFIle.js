@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Fillter } from '../download';
 import FileList from './FileList';
+import File from './File';
 import { Pagination } from '../../common';
 import { RegulationActions } from '../../../store/actions';
 import { map } from 'lodash';
@@ -13,6 +14,7 @@ const propTypes = {
   search: PropTypes.bool,
   loading: PropTypes.bool,
   listType: PropTypes.array,
+  noQuestion: PropTypes.bool,
   listRegulation: PropTypes.array,
   getTypeRegulation: PropTypes.func,
   seachRegulation: PropTypes.func
@@ -24,7 +26,8 @@ function ListDowloadFIle({
   listRegulation,
   search,
   getTypeRegulation,
-  seachRegulation
+  seachRegulation,
+  noQuestion
 }) {
   const date = new Date();
   const [datatype, setDataType] = useState(0);
@@ -55,7 +58,10 @@ function ListDowloadFIle({
           if (item.investors.length > 0) {
             return (
               <div className="sec-tb" key={index}>
-                <FileList year={item.year} data={item.investors} isChecked={true} />
+                {noQuestion && <File data={item.investors} />}
+                {!noQuestion && (
+                  <FileList year={item.year} data={item.investors} isChecked={true} />
+                )}
               </div>
             );
           }

@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import find from 'lodash/find';
+import Step from './Step';
+import FormWapper from './FormWapper';
+import { sendMailService } from '../../../services/form';
 import Proptypes from 'prop-types';
 
 const propTypes = {
@@ -6,119 +10,57 @@ const propTypes = {
 };
 
 function FormStep({ data }) {
+  const [formActive, setFormActive] = useState(1);
+  const [formSate, setFormState] = useState({ content: [], email: '', idForm: '' });
+
+  useEffect(() => {
+    if (data.form !== null && formActive > data.form.length) {
+      const email = find(formSate.content, value => value).email;
+      const idForm = find(data.form, value => value).value;
+      const body = {
+        content: JSON.stringify(formSate.content),
+        email: email,
+        idForm: idForm
+      };
+      sendMailService(body);
+    }
+  }, [formActive]);
+
   return (
     <section className="form-step-wapper">
       <section className="sec-tb">
         <div className="container">
           <div className="text-center">
-            <h1>Đăng ký dịch vụ trực tuyến</h1>
-            <p className="desc max750"></p>
+            <h1>{data.name}</h1>
+            <p className="desc max750">{data.description}</p>
           </div>
         </div>
       </section>
-      <section className="online-signup">
-        <div className="container">
-          <div className="max950">
-            <div className="flex-bw">
-              <div className="step">
-                <a href="#1" className="b active">
-                  01
-                </a>
-              </div>
-              <div className="step">
-                <a href="#2" className="b">
-                  02
-                </a>
-              </div>
-              <div className="step">
-                <a href="#3" className="b">
-                  03
-                </a>
-              </div>
-              <div className="step">
-                <a href="#4" className="b">
-                  04
-                </a>
-              </div>
-              <div className="step-line"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="sec-tb">
-        <div className="container">
-          <div className="max750">
-            <form className="row list-item form-contact">
-              <div className="col-12">
-                <div className="text-center">
-                  <h3 className="ctext mg-0 fs24">Bước 1/4: Thông tin chung</h3>
-                </div>
-              </div>
-              <div className="col-12">
-                <label className="block">
-                  <input className="input" placeholder="Họ và tên (*)" />
-                </label>
-              </div>
-              <div className="col-lg-6">
-                <label className="block">
-                  <input className="input" placeholder="Số điện thoại (*)" />
-                </label>
-              </div>
-              <div className="col-lg-6">
-                <label className="block">
-                  <input className="input" placeholder="Email (*)" />
-                </label>
-              </div>
-
-              <div className="col-12">
-                <label className="block">
-                  <input className="input" placeholder="Số CMND (*)" />
-                </label>
-              </div>
-
-              <div className="col-lg-6">
-                <label className="block">
-                  <input className="input" placeholder="Ngày cấp cmnd (*)" />
-                </label>
-              </div>
-
-              <div className="col-lg-6">
-                <label className="block">
-                  <input className="input" placeholder="Nơi cấp cmnd (*)" />
-                </label>
-              </div>
-
-              <div className="col-lg-6">
-                <label className="block">
-                  <input className="input" placeholder="Ngày sinh (*)" />
-                </label>
-              </div>
-
-              <div className="col-lg-6">
-                <label className="block">
-                  <span className="title">
-                    Tình trạng hôn nhân (<span className="require">*</span>)
-                  </span>
-                  <label className="radio ">
-                    <input type="radio" name="check1" checked="" />
-                    <span></span>Độc thân
-                  </label>{' '}
-                  &nbsp; &nbsp; &nbsp;
-                  <label className="radio ">
-                    <input type="radio" name="check1" />
-                    <span></span>Đã kết hôn
-                  </label>
-                </label>
-              </div>
-              <div className="col-12 text-center">
-                <a className="btn" href="#2">
-                  Tiếp tục
-                </a>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
+      {data.form !== null && (
+        <React.Fragment>
+          <Step
+            data={[
+              ...data.form,
+              { type: 'result', label: 'Hoàn tất đăng ký trực tuyến', value: null }
+            ]}
+            formActive={formActive}
+          />
+          <FormWapper
+            data={[
+              ...data.form,
+              { type: 'result', label: 'Hoàn tất đăng ký trực tuyến', value: null }
+            ]}
+            formActive={formActive}
+            setFormActive={(value, formdata) => {
+              setFormActive(value);
+              setFormState(() => ({
+                ...formSate,
+                content: [...formSate.content, formdata]
+              }));
+            }}
+          />
+        </React.Fragment>
+      )}
     </section>
   );
 }

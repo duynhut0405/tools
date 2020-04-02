@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/layout';
 import map from 'lodash/map';
-import { HotNews, AllNews } from '../../../components/categoryDetail';
 import { getNewsByCategorySlug } from '../../../services/news';
 import { Pagination } from '../../../components/common';
 import PropTypes from 'prop-types';
@@ -50,8 +49,6 @@ function CategoryDetail({ routerURL, category }) {
               src="/static/images/heading-10.svg"
             />
           </section>
-          {/* <HotNews data={data.hotNews} title={data.name} />
-          <AllNews data={data.news} title={data.name} /> */}
           <AboutCategory data={data} categories={data.categoryNews} />
           <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
         </div>

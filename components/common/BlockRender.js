@@ -77,7 +77,9 @@ function BlockRender({ data }) {
                 );
               }
               if (values.name === 'Installment Payment System') {
-                return <TablePayment data={JSON.parse(values.content)} key={index} />;
+                return (
+                  <TablePayment id={values.id} data={JSON.parse(values.content)} key={index} />
+                );
               }
               if (values.name === 'Pages' && values.content !== null) {
                 return <Pages id={values.id} data={JSON.parse(values.content)} key={index} />;
