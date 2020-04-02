@@ -58,8 +58,13 @@ function Carousels({ silder, className }) {
                 </div>
                 <div className="wimg">
                   <img
-                    className={item.options === '2' ? 'img-center' : 'img-right'}
+                    className={item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'}
                     src={item.image}
+                    alt="icon"
+                  />
+                  <img
+                    className={item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'}
+                    src={item.imageMobile}
                     alt="icon"
                   />
                 </div>

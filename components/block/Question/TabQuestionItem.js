@@ -56,7 +56,7 @@ function TabQuestionsItem({ data, indexTab }) {
       findAllNewByCategory();
     }
   }, [page]);
-  
+
   return (
     <React.Fragment>
       <div className="flex-bw">
@@ -87,7 +87,7 @@ function TabQuestionsItem({ data, indexTab }) {
         </div>
       </div>
       <section className=" sec-b sec-cauhoi ">
-        <div className="accodion accodion-1">
+        <div className="accodion accodion-1 accodion-1-5">
           {map(newsAnswer.news, (item, index) => (
             <div className="accodion-tab ">
               <input type="checkbox" id={`chck_${indexTab}_${index + 1}`} />

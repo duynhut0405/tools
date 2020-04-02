@@ -11,7 +11,7 @@ function TablePayment({ data, id }) {
   return (
     <section className="sec-tb">
       <div className="container">
-        <div className="accodion accodion-2 ">
+        <div className="accodion accodion-2 accodion-1-3 ">
           {map(data, (items, index) => (
             <div className="accodion-tab ">
               <input type="checkbox" id={`chck_${id}_${index}`} />

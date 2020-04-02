@@ -10,7 +10,7 @@ const propTypes = {
 };
 function CustomTabItem({ data, indexTab }) {
   return (
-    <div className="accodion accodion-2">
+    <div className="accodion accodion-2 accodion-1-4">
       {map(data.listItemTab, (items, index) => (
         <div className="accodion-tab ">
           <input type="checkbox" id={`chck_${indexTab}_${index + 1}`} />
