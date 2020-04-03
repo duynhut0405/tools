@@ -13,14 +13,14 @@ function Map({ data, location }) {
   const AnyReactComponent = ({ text }) => (
     <div>
       <img src="/static/images/_pin.png" alt="pin" />
-      <div>{text}</div>
+      <div style={{ width: '200px', color: '#33333', fontWeight: 'bold' }}>{text}</div>
     </div>
   );
   return (
     <GoogleMapReact
       bootstrapURLKeys={{ key: 'AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU' }}
       center={location}
-      zoom={8}
+      zoom={9}
     >
       <>
         {map(data, (item, index) => (

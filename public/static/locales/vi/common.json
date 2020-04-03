@@ -105,5 +105,11 @@
         "loans_for_project_houses": "Cho vay mua nhà dự án",
         "lending_for_construction_and_repair_of_houses": "Cho vay xây dựng, sửa chữa nhà",
         "lending_for_home_furnishings": "Cho vay trang bị nội thất nhà"
+    },
+    "form_step": {
+        "success": "Chúc mừng bạn đã đăng ký thành công",
+        "title": "Vui lòng đến chi nhánh đã đăng ký để xác thực thông tin tài khoản",
+        "go_home": " Về trang chủ",
+        "continue": "Tiếp tục"
     }
 }

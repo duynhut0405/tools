@@ -102,7 +102,7 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate }) {
       <div className="cttab-xx  sec-b">
         <div className="tab-content">
           <div className="active">
-            <div className="tab-inner  ">
+            <div className="tab-inner ">
               <div className="form-vay-von">
                 <div className="row ">
                   <div className="col-md-7 ">

@@ -14,7 +14,12 @@ function Contact({ settingFooter, getSettingFooter }) {
   useEffect(() => {
     getSettingFooter();
   }, []);
-  const AnyReactComponent = ({ text }) => <div>{text}</div>;
+  const AnyReactComponent = ({ text }) => (
+    <div>
+      <img src="/static/images/_pin.png" alt="pin" />
+      <div style={{ width: '200px', color: '#33333', fontWeight: 'bold' }}>{text}</div>
+    </div>
+  );
 
   return (
     <React.Fragment>
@@ -53,12 +58,12 @@ function Contact({ settingFooter, getSettingFooter }) {
                     lat: Number(settingFooter.latitude),
                     lng: Number(settingFooter.longitude)
                   }}
-                  zoom={18}
+                  zoom={16}
                 >
                   <AnyReactComponent
                     lat={Number(settingFooter.latitude)}
                     lng={Number(settingFooter.longitude)}
-                    text="Hội sở chính MBBank"
+                    text={settingFooter.information.place}
                   />
                 </GoogleMapReact>
               )}

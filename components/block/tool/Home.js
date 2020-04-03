@@ -137,7 +137,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
               <input
                 type="radio"
                 checked={checked === '1'}
-                name="radio-loan1"
+                name="radio-loan"
                 onChange={() => {
                   setChecked('1');
                   setTitle(t('tool_options.housing_loan'));
@@ -150,7 +150,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
               <input
                 type="radio"
                 checked={checked === '2'}
-                name="radio-loan2"
+                name="radio-loan"
                 onChange={() => {
                   setChecked('2');
                   setTitle(t('tool_options.loans_for_project_houses'));
@@ -163,7 +163,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
               <input
                 type="radio"
                 checked={checked === '3'}
-                name="radio-loan3"
+                name="radio-loan"
                 onChange={() => {
                   setChecked('3');
                   setTitle(t('tool_options.lending_for_construction_and_repair_of_houses'));
@@ -176,7 +176,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
               <input
                 type="radio"
                 checked={checked === '4'}
-                name="radio-loan4"
+                name="radio-loan"
                 onChange={() => {
                   setChecked('4');
                   setTitle(t('tool_options.lending_for_home_furnishings'));

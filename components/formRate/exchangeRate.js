@@ -80,7 +80,6 @@ function ExchangeRate({ tab1, tab2, data1 }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
     <div>
       <div className={classes.demo1}>

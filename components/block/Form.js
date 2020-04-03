@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import { Input, Label, CustomInput } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
 import { sendMailService } from '../../services/form';
 
 const propTypes = {
@@ -71,18 +71,18 @@ function Form({ data }) {
             }
             if (item.type === 'radio-group') {
               return (
-                <div className="col-12 mb-30 text-center">
+                <div className={`col-12 ${item.className}`}>
                   {map(item.values, (items, key) => (
-                    <CustomInput
-                      type="radio"
-                      className={item.className}
-                      inline={item.inline !== undefined ? true : false}
-                      name={item.name}
-                      id={key}
-                      label={items.label}
-                      value={items.value}
-                      onChange={e => handleChange(e)}
-                    />
+                    <label className="radio" key={key}>
+                      {items.label}
+                      <input
+                        type="radio"
+                        name={item.name}
+                        value={items.value}
+                        onChange={e => handleChange(e)}
+                      />
+                      <span></span>
+                    </label>
                   ))}
                 </div>
               );
@@ -91,9 +91,8 @@ function Form({ data }) {
               return (
                 <React.Fragment>
                   <div className={`col-12 ${item.className}`}>
-                    {item.label && <Label>{item.label}</Label>}
                     <Input
-                      className={`input`}
+                      className="input"
                       name={item.name}
                       type={item.subtype}
                       placeholder={item.placeholder}
@@ -109,7 +108,7 @@ function Form({ data }) {
                   <div className={`col-12 ${item.className}`}>
                     {item.label && <Label>{item.label}</Label>}
                     <Input
-                      className={`input`}
+                      className="input"
                       type={item.subtype}
                       name={item.name}
                       rows={item.rows}

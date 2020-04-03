@@ -38,8 +38,5 @@ function TableRate({ data }) {
 }
 
 TableRate.propTypes = propTypes;
-TableRate.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'tableRate']
-});
 
 export default withTranslation('common')(TableRate);

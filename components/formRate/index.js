@@ -1,7 +1,6 @@
+import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
-import { getLang } from '../../utils/localStorage';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import RateSelect from './RateSelect';
@@ -12,11 +11,7 @@ const propTypes = {
 };
 
 function FormRate({ data }) {
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage(getLang());
-  }, []);
-
+  const { t } = useTranslation();
   return (
     <section className="sec-b sec-tb sec-tigia">
       {data !== undefined && (
@@ -44,9 +39,9 @@ function FormRate({ data }) {
                   </span>
                   <input className="input" placeholder={t('amount')} />
                 </div>
-                <p>{`${t('updated_at')} ${moment(data.created_at).format('HH:mm')} ${t(
+                <p>{`${t('updated_at')} ${moment(data.date_update).format('HH:mm')} ${t(
                   'date'
-                )} ${moment(data.created_at).format('DD/MM/YYYY')}`}</p>
+                )} ${moment(data.date_update).format('DD/MM/YYYY')}`}</p>
               </div>
             </div>
           </div>
@@ -57,9 +52,5 @@ function FormRate({ data }) {
 }
 
 FormRate.propTypes = propTypes;
-
-FormRate.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'formRate']
-});
 
 export default withTranslation('common')(FormRate);

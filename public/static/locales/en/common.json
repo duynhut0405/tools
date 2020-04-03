@@ -105,5 +105,11 @@
         "loans_for_project_houses": "Loans for project houses",
         "lending_for_construction_and_repair_of_houses": "Lending for construction and repair of houses",
         "lending_for_home_furnishings": "Lending for home furnishings"
+    },
+    "form_step": {
+        "success": "Congratulations on your successful registration",
+        "title": "Please visit the registered branch to verify your account information",
+        "go_home": "Go home",
+        "continue": "Continue"
     }
 }

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Label, CustomInput } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
 import { getFormbuilderByIdService } from '../../../services/form';
 import ReactHtmlParser from 'react-html-parser';
 import map from 'lodash/map';
+import { withTranslation } from '../../../i18n';
 import Proptypes from 'prop-types';
 
 const propTypes = {
@@ -10,7 +11,8 @@ const propTypes = {
   step: Proptypes.number,
   totalStep: Proptypes.number,
   formActive: Proptypes.number,
-  onNext: Proptypes.func
+  onNext: Proptypes.func,
+  t: Proptypes.func
 };
 
 const getFormByID = async (id, setData) => {
@@ -20,7 +22,7 @@ const getFormByID = async (id, setData) => {
   }
 };
 
-function FormItems({ data, step, totalStep, formActive, onNext }) {
+function FormItems({ t, data, step, totalStep, formActive, onNext }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
 
@@ -65,7 +67,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
             }
             if (item.type === 'paragraph') {
               return (
-                <div className={`col-12`} key={index}>
+                <div className="col-12" key={index}>
                   <div className={`form-desc ${item.className}`} key={index}>
                     {ReactHtmlParser(item.label)}
                   </div>
@@ -76,16 +78,16 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
               return (
                 <div className={`col-12 mb-30 text-center ${item.className}`} key={index}>
                   {map(item.values, (items, key) => (
-                    <CustomInput
-                      type="radio"
-                      className="radio"
-                      inline={item.inline !== undefined ? true : false}
-                      name={item.name}
-                      id={key}
-                      label={items.label}
-                      value={items.value}
-                      onChange={e => handleChange(e)}
-                    />
+                    <label className="radio" key={key}>
+                      {items.label}
+                      <input
+                        type="radio"
+                        name={item.name}
+                        value={items.value}
+                        onChange={e => handleChange(e)}
+                      />
+                      <span></span>
+                    </label>
                   ))}
                 </div>
               );
@@ -97,7 +99,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
                     {item.label && <Label>{item.label}</Label>}
                     <Input
                       style={{ width: '100%' }}
-                      className={`input`}
+                      className="input"
                       name={item.name}
                       type={item.subtype}
                       placeholder={item.placeholder}
@@ -114,7 +116,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
                     {item.label && <Label>{item.label}</Label>}
                     <Input
                       style={{ width: '100%' }}
-                      className={`input`}
+                      className="input"
                       type={item.subtype}
                       name={item.name}
                       rows={item.rows}
@@ -148,17 +150,15 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
 
               <div className="col-12">
                 <div className="text-center">
-                  <p className="desc mg-0">Chúc mừng bạn đã đăng ký thành công</p>
-                  <p className="desc mg-0">
-                    Vui lòng đến chi nhánh đã đăng ký để xác thực thông tin tài khoản
-                  </p>
+                  <p className="desc mg-0">{t('form_step.success')}</p>
+                  <p className="desc mg-0">{t('form_step.title')}</p>
                 </div>
               </div>
 
               <div className="col-12 ">
                 <div className="text-center">
                   <a className="btn" href="/">
-                    Về trang chủ
+                    {t('form_step.go_home')}
                   </a>
                 </div>
               </div>
@@ -167,7 +167,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
           {data.type !== 'result' && (
             <div className="col-12 text-center">
               <a className="btn" onClick={() => onNext(step + 1, formState)}>
-                Tiếp tục
+                {t('form_step.continue')}
               </a>
             </div>
           )}
@@ -179,4 +179,4 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
 
 FormItems.propTypes = propTypes;
 
-export default FormItems;
+export default withTranslation('common')(FormItems);

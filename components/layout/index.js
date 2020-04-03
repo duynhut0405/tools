@@ -467,7 +467,7 @@ function Layout({
                 <div className="col-3">
                   <a className="item " href="#">
                     <span className="img">
-                      <img src="static/images/svg/giadinh.svg" alt="" />
+                      <img src="/static/images/svg/giadinh.svg" alt="" />
                     </span>
                     <span className="name">{t('family')}</span>
                   </a>
