@@ -69,13 +69,6 @@ function Pages({ data, type, id }) {
               </div>
             ))}
           </div>
-          <div className="pages">
-            <ul className="page-numbers">
-              <a className="btn lg" href="#">
-                {t('view')}
-              </a>
-            </ul>
-          </div>
         </div>
       </div>
     );
@@ -105,13 +98,6 @@ function Pages({ data, type, id }) {
               </div>
             ))}
           </div>
-          {/* <div className="pages">
-            <ul className="page-numbers">
-              <a className="btn lg" href="#">
-              {t('view.viewall')}
-              </a>
-            </ul>
-          </div> */}
         </section>
       </div>
     );
