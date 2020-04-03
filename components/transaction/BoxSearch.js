@@ -1,58 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
-import { MapActions } from '../../store/actions';
-import { connect } from 'react-redux';
 
 const propTypes = {
   listBranches: PropTypes.array,
   listProvince: PropTypes.array,
   listDistrict: PropTypes.array,
-  searchBranches: PropTypes.func,
-  getProvince: PropTypes.func,
-  getDistrict: PropTypes.func
+  branches_type: PropTypes.string,
+  setDistrict: PropTypes.func,
+  setQuery: PropTypes.func,
+  setBranchesType: PropTypes.func,
+  handleProvince: PropTypes.func
 };
 
 function BoxSearch({
   listBranches,
   listProvince,
   listDistrict,
-  searchBranches,
-  getProvince,
-  getDistrict
+  branches_type,
+  handleProvince,
+  setBranchesType,
+  setQuery,
+  setDistrict
 }) {
-  const [district, setDistrict] = useState('');
-  const [branches_type, setBranchesType] = useState('Branch');
-  const [province, setProvince] = useState('');
-  const [query, setQuery] = useState('');
-
-  // district, branches_type, province, query
-
-  useEffect(() => {
-    searchBranches({
-      districtCity: district,
-      networkCategory: branches_type,
-      provinceCity: province,
-      search: query
-    });
-    getProvince();
-  }, [getProvince, searchBranches]);
-
-  useEffect(() => {
-    searchBranches({
-      districtCity: district,
-      networkCategory: branches_type,
-      provinceCity: province,
-      search: query
-    });
-  }, [district, branches_type, province, query]);
-
-  const handleProvince = provinceItem => {
-    setProvince(provinceItem.value);
-    getDistrict(provinceItem.value);
-  };
-
   return (
     <div className="ajax-content-map" style={{ position: 'unset', padding: '15px' }}>
       <ul className="menu row grid-space-0">
@@ -85,7 +56,7 @@ function BoxSearch({
         <Select
           className="fix-select"
           placeholder="Tỉnh/ Thành phố"
-          options={listProvince}
+          options={map(listProvince, province => ({ value: province.id, label: province.name }))}
           onChange={handleProvince}
         />
       </div>
@@ -94,7 +65,7 @@ function BoxSearch({
         <Select
           className="fix-select1"
           placeholder="Quận/Huyện"
-          options={listDistrict}
+          options={map(listDistrict, district => ({ value: district.id, label: district.name }))}
           onChange={provinceItem => setDistrict(provinceItem.value)}
         />
       </div>
@@ -121,20 +92,6 @@ function BoxSearch({
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    listBranches: state.mapReducer.listBranches,
-    listProvince: state.mapReducer.listProvince,
-    listDistrict: state.mapReducer.listDistrict
-  };
-};
-
-const mapDispatchToProps = {
-  searchBranches: MapActions.searchBranchesAction,
-  getProvince: MapActions.getProvinceAction,
-  getDistrict: MapActions.getDistrictAction
-};
-
 BoxSearch.propTypes = propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(BoxSearch);
+export default BoxSearch;

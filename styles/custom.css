@@ -1,6 +1,17 @@
 /* Edit by Mango */
-.sec-tigia .divquidoi .input-group .input-group-addon > i { display: none;}
-#panel + div  {
-  position: relative; z-index: 1000;
+.sec-tigia .divquidoi .input-group .input-group-addon > i {
+  display: none;
+}
+#panel + div {
+  position: relative;
+  z-index: 1000;
+}
+
+.fix-select {
+  z-index: 99;
+}
+
+.fix-select1 {
+  z-index: 90;
 }
 /* End edit*/

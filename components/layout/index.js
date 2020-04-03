@@ -171,7 +171,7 @@ function Layout({
           <div id="panel">
             <div className="container">
               <div className="row">
-                <div className="col-md-5"></div>
+                <div className="col-md-5" style={{ backgroundColor: 'unset' }}></div>
                 <div className="col-md-7">
                   <ul className="menu line text-right">
                     {map(
