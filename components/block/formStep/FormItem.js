@@ -79,7 +79,7 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
                 <div className={`col-12 mb-30 text-center ${item.className}`} key={index}>
                   {map(item.values, (items, key) => (
                     <label className="radio" key={key}>
-                      {items.label}
+                      {items.label || ''}
                       <input
                         type="radio"
                         name={item.name}

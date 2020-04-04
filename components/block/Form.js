@@ -74,7 +74,7 @@ function Form({ data }) {
                 <div className={`col-12 ${item.className}`}>
                   {map(item.values, (items, key) => (
                     <label className="radio" key={key}>
-                      {items.label}
+                      {items.label || ''}
                       <input
                         type="radio"
                         name={item.name}
