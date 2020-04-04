@@ -80,7 +80,7 @@ function News({ data, type, id }) {
             <div className="col-sm-4 col-md-6 col-lg-4" key={index}>
               <div className="post_content mb-3">
                 <div style={{ height: '230px', width: '100%', overflow: 'hidden' }}>
-                  <img src={item.base_image} alt="icon" />
+                  <img src={`${process.env.DOMAIN}${item.base_image}`} alt="icon" />
                 </div>
                 <div className="content">
                   <div className="date mt-4">
@@ -123,7 +123,11 @@ function News({ data, type, id }) {
                   <div className="col-md-6" key={index}>
                     <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l equal`}>
                       <div className="img tRes_71">
-                        <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
+                        <img
+                          className="lazy-hidden"
+                          data-lazy-type="image"
+                          src={`${process.env.DOMAIN}${item.base_image}`}
+                        />
                       </div>
                       <div className="divtext">
                         <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
@@ -141,7 +145,11 @@ function News({ data, type, id }) {
                 {map(listNewsTabs, (item, index) => (
                   <a key={index} href={`/news/${item.url}`} className="item item-inline-table">
                     <div className="img">
-                      <img className="lazy-hidden" data-lazy-type="image" src={item.base_image} />
+                      <img
+                        className="lazy-hidden"
+                        data-lazy-type="image"
+                        src={`${process.env.DOMAIN}${item.base_image}`}
+                      />
                     </div>
                     <div className="divtext">
                       <h4 className="title line4">{item.title}</h4>
@@ -203,7 +211,7 @@ function News({ data, type, id }) {
                       <img
                         className="lazy-hidden"
                         data-lazy-type="image"
-                        src={item.base_image}
+                        src={`${process.env.DOMAIN}${item.base_image}`}
                         style={{ height: '187px' }}
                       />
                     </div>
@@ -276,7 +284,7 @@ function News({ data, type, id }) {
                       <img
                         className=" loaded loaded"
                         data-lazy-type="image"
-                        src={item.base_image}
+                        src={`${process.env.DOMAIN}${item.base_image}`}
                       />
                     </div>
                     <div className="divtext">
@@ -358,7 +366,7 @@ function News({ data, type, id }) {
                         <img
                           className=" loaded loaded"
                           data-lazy-type="image"
-                          src={item.base_image}
+                          src={`${process.env.DOMAIN}${item.base_image}`}
                         />
                         <div className="divtext">
                           <h4 className="title line2">{item.title}</h4>
@@ -379,7 +387,7 @@ function News({ data, type, id }) {
                             <img
                               className=" loaded loaded"
                               data-lazy-type="image"
-                              src={item.base_image}
+                              src={`${process.env.DOMAIN}${item.base_image}`}
                             />
                           </div>
                           <div className="divtext">
@@ -424,7 +432,11 @@ function News({ data, type, id }) {
               <div className="col-md-4" key={index}>
                 <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l`}>
                   <div className="img tRes_71">
-                    <img className=" loaded loaded" data-lazy-type="image" src={item.base_image} />
+                    <img
+                      className=" loaded loaded"
+                      data-lazy-type="image"
+                      src={`${process.env.DOMAIN}${item.base_image}`}
+                    />
                   </div>
                   <div className="divtext">
                     <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
@@ -512,8 +524,8 @@ function News({ data, type, id }) {
                           <img
                             className=" loaded loaded"
                             data-lazy-type="image"
-                            data-lazy-src={item.base_image}
-                            src={item.base_image}
+                            data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
+                            src={`${process.env.DOMAIN}${item.base_image}`}
                           ></img>
                           <div className="divtext">
                             <div className="date">
@@ -541,7 +553,7 @@ function News({ data, type, id }) {
                               <img
                                 className=" loaded loaded"
                                 data-lazy-type="image"
-                                src={item.base_image}
+                                src={`${process.env.DOMAIN}${item.base_image}`}
                               />
                             </div>
                             <div className="divtext">

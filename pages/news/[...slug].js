@@ -88,8 +88,8 @@ function New({ socialLink, news, category_name, category_url }) {
                           <img
                             className=" loaded loaded"
                             data-lazy-type="image"
-                            data-lazy-src={item.baseImage}
-                            src={item.baseImage}
+                            data-lazy-src={`${process.env.DOMAIN}${item.baseImage}`}
+                            src={`${process.env.DOMAIN}${item.baseImage}`}
                           />
                         </div>
                         <div className="divtext">

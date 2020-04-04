@@ -15,7 +15,7 @@ function NewItems({ data }) {
           src={
             data.base_image === null
               ? `https://th2dev.mangoads.com.vn/themes/storefront/public/images/image.svg?v=5e12e47624638`
-              : data.base_image
+              : `${process.env.DOMAIN}${data.base_image}`
           }
           alt={data.title}
           onClick={() => router.push('/news/[slug]', `/news/${data.url}`)}

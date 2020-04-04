@@ -61,8 +61,8 @@ function MenuMiddle({ data, query }) {
                               <img
                                 className=" loaded loaded"
                                 data-lazy-type="image"
-                                data-lazy-src={item.icon}
-                                src={item.icon}
+                                data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
+                                src={`${process.env.DOMAIN}${item.icon}`}
                               />
                             </div>
                             <div className="title">{item.name}</div>
@@ -108,8 +108,8 @@ function MenuMiddle({ data, query }) {
                               <img
                                 className=" loaded loaded"
                                 data-lazy-type="image"
-                                data-lazy-src={item.icon}
-                                src={item.icon}
+                                data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
+                                src={`${process.env.DOMAIN}${item.icon}`}
                               />
                             </div>
                             <div className="title">{item.name}</div>

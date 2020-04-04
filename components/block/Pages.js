@@ -57,7 +57,7 @@ function Pages({ data, type, id }) {
                     <img
                       className="lazy-hidden"
                       data-lazy-type="image"
-                      src={item.baseImage}
+                      src={`${process.env.DOMAIN}${item.baseImage}`}
                       alt="icon"
                     />
                   </div>
@@ -86,7 +86,7 @@ function Pages({ data, type, id }) {
                     <img
                       className="lazy-hidden"
                       data-lazy-type="image"
-                      src={item.baseImage}
+                      src={`${process.env.DOMAIN}${item.baseImage}`}
                       alt="icon"
                     />
                   </div>
@@ -116,7 +116,7 @@ function Pages({ data, type, id }) {
                     <img
                       className="lazy-hidden"
                       data-lazy-type="image"
-                      src={values.baseImage}
+                      src={`${process.env.DOMAIN}${values.baseImage}`}
                       alt="icon"
                     />
                   </div>
@@ -188,7 +188,7 @@ function Pages({ data, type, id }) {
                 <div className="item ef-img-t item_carousel" key={index}>
                   <a href={`/page/${items.slug}`} className="link">
                     <div className="img">
-                      <img src={items.baseImage} />
+                      <img src={`${process.env.DOMAIN}${item.baseImage}`} />
                     </div>
                     <div className="divtext">
                       <h4 className="title line2">{items.name}</h4>

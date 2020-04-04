@@ -48,8 +48,8 @@ function NewMB({ t, data }) {
                             <img
                               className=" loaded loaded"
                               data-lazy-type="image"
-                              data-lazy-src={news.base_image}
-                              src={news.base_image}
+                              data-lazy-src={`${process.env.DOMAIN}${news.base_image}`}
+                              src={`${process.env.DOMAIN}${news.base_image}`}
                             />
                           </div>
                           <div className="divtext">
@@ -79,8 +79,8 @@ function NewMB({ t, data }) {
                           <img
                             className=" loaded loaded"
                             data-lazy-type="image"
-                            data-lazy-src={news.base_image}
-                            src={news.base_image}
+                            data-lazy-src={`${process.env.DOMAIN}${news.base_image}`}
+                            src={`${process.env.DOMAIN}${news.base_image}`}
                           />
                         </div>
                         <div className="divtext">

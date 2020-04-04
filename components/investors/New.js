@@ -42,8 +42,8 @@ function News({ category }) {
                       <img
                         className=" loaded loaded"
                         data-lazy-type="image"
-                        data-lazy-src={item.base_image}
-                        src={item.base_image}
+                        data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
+                        src={`${process.env.DOMAIN}${item.base_image}`}
                       />
                     </div>
                     <div className="divtext">

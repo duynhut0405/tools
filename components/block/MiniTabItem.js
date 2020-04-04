@@ -32,7 +32,7 @@ function MiniTabItem({ data }) {
                 <img
                   className="lazy-hidden"
                   data-lazy-type="image"
-                  src={item.baseImage}
+                  src={`${process.env.DOMAIN}${item.baseImage}`}
                   alt="icon"
                 />
               </div>
