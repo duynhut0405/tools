@@ -237,6 +237,7 @@ function Pages({ data, type, id }) {
       </section>
     );
   }
+  return null;
 }
 Pages.propTypes = propTypes;
 
