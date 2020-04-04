@@ -188,7 +188,7 @@ function Pages({ data, type, id }) {
                 <div className="item ef-img-t item_carousel" key={index}>
                   <a href={`/page/${items.slug}`} className="link">
                     <div className="img">
-                      <img src={`${process.env.DOMAIN}${item.baseImage}`} />
+                      <img src={`${process.env.DOMAIN}${items.baseImage}`} />
                     </div>
                     <div className="divtext">
                       <h4 className="title line2">{items.name}</h4>
