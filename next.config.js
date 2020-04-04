@@ -18,6 +18,9 @@ module.exports = withFonts(
         });
         return config;
       },
+      env: {
+        DOMAIN: 'https://mbbank3.mangoads.com.vn:8443/'
+      },
       exportPathMap: async function() {
         let router = [];
         let newRouter = [];

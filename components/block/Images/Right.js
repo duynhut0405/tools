@@ -108,8 +108,8 @@ function ImageRight({ items }) {
                 <img
                   className=" loaded loaded"
                   data-lazy-type="image"
-                  data-lazy-src={items.image}
-                  src={items.image}
+                  data-lazy-src={`${process.env.DOMAIN}${items.urlImage}`}
+                  src={`${process.env.DOMAIN}${items.urlImage}`}
                   alt=""
                 />
                 {items.video_url !== undefined && (

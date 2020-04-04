@@ -33,7 +33,11 @@ function DetailPerson({ data, detailPerson, getDetailPerson }) {
                     className={`item efch-${index + 2} ef-img-l equal`}
                   >
                     <div className="img tRes">
-                      <img className=" loaded loaded" data-lazy-type="image" src={item.image} />
+                      <img
+                        className=" loaded loaded"
+                        data-lazy-type="image"
+                        src={`${process.env.DOMAIN}${item.urlImage}`}
+                      />
                     </div>
                     <div className="divtext">
                       <h4 className="title line2">{item.name}</h4>

@@ -13,7 +13,7 @@ function Banner({ data }) {
         <div className="container">
           <div className="row list-item flex">
             <div className="col-md-4">
-              <img src={data.image} alt="" className="img loaded" />
+              <img src={`${process.env.DOMAIN}${data.urlImage}`} alt="" className="img loaded" />
             </div>
             <div className="col-md-5">
               <p className="desc">{data.description}</p>

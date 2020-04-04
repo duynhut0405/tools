@@ -236,7 +236,7 @@ function News({ data, type, id }) {
               >
                 <i className="icon-arrow-1"></i>
               </div>
-            </div>            
+            </div>
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
@@ -342,7 +342,11 @@ function News({ data, type, id }) {
           <div className="row list-item">
             <div className="col-lg-4">
               <a href={data.url} className="item-banner  tRes ">
-                <img className=" loaded loaded" data-lazy-type="image" src={data.image} />
+                <img
+                  className=" loaded loaded"
+                  data-lazy-type="image"
+                  src={`${process.env.DOMAIN}${data.urlImage}`}
+                />
               </a>
             </div>
             <div className="col-lg-8">

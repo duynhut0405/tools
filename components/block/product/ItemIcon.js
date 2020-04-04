@@ -19,8 +19,8 @@ function ItemIcon({ data }) {
                   <img
                     className=" loaded loaded"
                     data-lazy-type="image"
-                    data-lazy-src={item.image}
-                    src={item.image}
+                    data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
+                    src={`${process.env.DOMAIN}${item.urlImage}`}
                   />
                 </div>
                 <h4 className="title">{item.note_1}</h4>
@@ -44,8 +44,8 @@ function ItemIcon({ data }) {
             >
               <img
                 data-lazy-type="image"
-                data-lazy-src={item.image}
-                src={item.image}
+                data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
+                src={`${process.env.DOMAIN}${item.urlImage}`}
                 width="25"
               />
               {item.note_1}

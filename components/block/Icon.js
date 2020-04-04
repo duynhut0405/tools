@@ -84,7 +84,7 @@ function Icon({ data, id }) {
                       <div className="item ef-img-t item_carousel" key={index}>
                         <a href={items.url} className="link">
                           <div className="img">
-                            <img src={items.image} />
+                            <img src={`${process.env.DOMAIN}${items.urlImage}`} />
                           </div>
                           <div className="title">{items.note_1}</div>
                         </a>
@@ -127,8 +127,8 @@ function Icon({ data, id }) {
                           <img
                             className=" loaded loaded"
                             data-lazy-type="image"
-                            data-lazy-src={items.image}
-                            src={items.image}
+                            data-lazy-src={`${process.env.DOMAIN}${items.urlImage}`}
+                            src={`${process.env.DOMAIN}${items.urlImage}`}
                           />
                         </div>
                         <div className="title">{items.note_1}</div>
@@ -155,7 +155,10 @@ function Icon({ data, id }) {
                       <div className="item">
                         <a href={items.url}>
                           <div className="img">
-                            <img className=" loaded loaded" src={items.image} />
+                            <img
+                              className=" loaded loaded"
+                              src={`${process.env.DOMAIN}${items.urlImage}`}
+                            />
                           </div>
                           <div className="divtext">
                             <h4 className="title">{items.note_1}</h4>
@@ -199,7 +202,7 @@ function Icon({ data, id }) {
                         <img
                           className=" loaded loaded"
                           data-lazy-type="image"
-                          src={item.image}
+                          src={`${process.env.DOMAIN}${item.urlImage}`}
                           style={{ width: '160px', height: '52px' }}
                         />
                       </div>
@@ -240,7 +243,11 @@ function Icon({ data, id }) {
                     <div className="col-sm-4 efch-2 ef-img-t" key={index}>
                       <a className="item" href="#" style={{ padding: '40px 10px' }}>
                         <div className="img ">
-                          <img className="loaded loaded" data-lazy-type="image" src={items.image} />
+                          <img
+                            className="loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${items.urlImage}`}
+                          />
                         </div>
                         <div className="divtext">
                           <h4 className="title">{items.note_2}</h4>
@@ -265,7 +272,11 @@ function Icon({ data, id }) {
                     <div className="col-sm-4 efch-2 ef-img-t" key={index}>
                       <a className="item" href={items.url}>
                         <div className="img ">
-                          <img className="loaded loaded" data-lazy-type="image" src={items.image} />
+                          <img
+                            className="loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${items.urlImage}`}
+                          />
                         </div>
                         <div className="divtext">
                           <h4 className="title">{items.note_2}</h4>
@@ -308,7 +319,10 @@ function Icon({ data, id }) {
                         style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                       >
                         <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
-                          <img src={items.image} className="loaded loaded" />
+                          <img
+                            src={`${process.env.DOMAIN}${items.urlImage}`}
+                            className="loaded loaded"
+                          />
                         </div>
                         <div className="divtext" style={{ paddingLeft: '20px' }}>
                           <h3 className="title">{items.note_2}</h3>
@@ -350,7 +364,11 @@ function Icon({ data, id }) {
                     <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
                       <div className="item">
                         <div className="img ">
-                          <img className="loaded loaded" data-lazy-type="image" src={items.image} />
+                          <img
+                            className="loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${items.urlImage}`}
+                          />
                         </div>
                         <div className="divtext">
                           <h4 className="title equal" style={{ textAlign: 'center' }}>

@@ -17,8 +17,8 @@ function ItemImages({ data }) {
                 <img
                   className=" loaded loaded"
                   data-lazy-type="image"
-                  data-lazy-src={item.image}
-                  src={item.image}
+                  data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
+                  src={`${process.env.DOMAIN}${item.urlImage}`}
                 />
 
                 <div className="divtext">

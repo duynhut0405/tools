@@ -38,18 +38,16 @@ function Carousels({ silder, className }) {
                   item.text_action === '' ? (
                     ''
                   ) : (
-
-                      <a
-                        className="btn"
-                        href={
-                          item.url === null || item.url === undefined || item.url === ''
-                            ? '#'
-                            : item.url
-                        }
-                      >
-                        {item.text_action}
-                      </a>
-
+                    <a
+                      className="btn"
+                      href={
+                        item.url === null || item.url === undefined || item.url === ''
+                          ? '#'
+                          : item.url
+                      }
+                    >
+                      {item.text_action}
+                    </a>
                   )}
                   {item.video_url !== undefined && item.video_url !== '' && (
                     <div>
@@ -60,12 +58,12 @@ function Carousels({ silder, className }) {
                 <div className="wimg">
                   <img
                     className={item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'}
-                    src={item.image}
+                    src={`${process.env.DOMAIN}${item.urlImage}`}
                     alt="icon"
                   />
                   <img
                     className={item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'}
-                    src={item.imageMobile}
+                    src={`${process.env.DOMAIN}${item.urlImageMobile}`}
                     alt="icon"
                   />
                 </div>

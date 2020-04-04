@@ -136,7 +136,12 @@ function Form({ data }) {
         </form>
       </div>
       {data.image && (
-        <img className=" br  loaded" data-lazy-type="image" alt="" src={data.image}></img>
+        <img
+          className=" br  loaded"
+          data-lazy-type="image"
+          alt=""
+          src={`${process.env.DOMAIN}${data.urlImage}`}
+        ></img>
       )}
     </section>
   );
