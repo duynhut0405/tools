@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { DowloadVideo, Fillter } from '../download';
 import { Pagination } from '../../common';
 import { RegulationActions } from '../../../store/actions';
-import { map } from 'lodash';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { connect } from 'react-redux';
 
 const propTypes = {
@@ -15,13 +15,14 @@ const propTypes = {
 };
 
 function ListDowloadFIle({ type, listType, listRegulation, getTypeRegulation, seachRegulation }) {
+  const date = new Date();
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
-  const [year, setYear] = useState(0);
+  const [year, setYear] = useState(moment(date).format('YYYY'));
 
   useEffect(() => {
     getTypeRegulation(type);
-    seachRegulation(type, 0, 10, 0, 0);
+    seachRegulation(type, 0, 10, 0, year);
   }, [getTypeRegulation]);
 
   useEffect(() => {
@@ -29,33 +30,24 @@ function ListDowloadFIle({ type, listType, listRegulation, getTypeRegulation, se
   }, [page, year, datatype]);
 
   return (
-    <div className="accodion accodion-2 container sec-tb">
+    <div className="accodion accodion-2 container sec">
       <Fillter
         center
+        year={year}
         type={listType}
         setDate={event => setYear(event.target.value)}
         setType={event => setDataType(event.target.value)}
       />
-      {map(listRegulation, (item, index) => {
-        if (item.investors.length > 0) {
-          return (
-            <div className="sec-tb" key={item.year}>
-              <DowloadVideo
-                data={item.investors}
-                year={item.year}
-                isChecked={index === 0 ? true : false}
-              />
-            </div>
-          );
-        }
-        return null;
-      })}
-      <Pagination
-        page={page}
-        setPage={pageNumber => setPage(pageNumber)}
-        next={nextNumber => setPage(nextNumber)}
-        previous={previousNumber => setPage(previousNumber)}
-      />
+
+      <div className="sec-tb">
+        {listRegulation.investors && listRegulation.investors.length > 0 && (
+          <DowloadVideo data={listRegulation.investors} year={year} isChecked={true} />
+        )}
+      </div>
+
+      {listRegulation.size > 1 && (
+        <Pagination page={page} setPage={pageNumber => setPage(pageNumber)} />
+      )}
     </div>
   );
 }

@@ -44,12 +44,13 @@ function ListDowloadQA({
       {search && (
         <Fillter
           center
+          year={year}
           type={listType}
           setDate={event => setYear(event.target.value)}
           setType={event => setDataType(event.target.value)}
         />
       )}
-      <section className="sec-b sec-cauhoi">
+      <section className="sec sec-cauhoi">
         {map(listRegulation.investors, (item, index) => {
           return (
             <Question
@@ -61,8 +62,9 @@ function ListDowloadQA({
           );
         })}
       </section>
-
-      <Pagination page={page} size={page.size} setPage={pageNumber => setPage(pageNumber)} />
+      {listRegulation.size > 1 && (
+        <Pagination page={page} size={page.size} setPage={pageNumber => setPage(pageNumber)} />
+      )}
     </div>
   );
 }
