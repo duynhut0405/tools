@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Carousel, BlockRender, MenuMiddle } from '../../components/common';
+import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../../components/common';
 import Layout from '../../components/layout';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
-import { getPageService } from '../../services/page';
+import { getPageService, getListPageBySlug } from '../../services/page';
 import PropTypes from 'prop-types';
 import { withTranslation } from '../../i18n';
 
@@ -11,10 +11,11 @@ const propTypes = {
   page: PropTypes.object,
   silder: PropTypes.array,
   menuMiddle: PropTypes.object,
-  routerURL: PropTypes.string
+  routerURL: PropTypes.string,
+  listSlug: PropTypes.array
 };
 
-function Page({ page, silder, menuMiddle, routerURL }) {
+function Page({ page, silder, menuMiddle, routerURL, listSlug }) {
   useEffect(() => {
     if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
       document.body.classList.add('title-24');
@@ -24,6 +25,7 @@ function Page({ page, silder, menuMiddle, routerURL }) {
   return (
     <Layout title={page.meta_title} personalLayout={page.has_sidebar}>
       <div className="main_content">
+        {page.breadCrumb && <Breadcrumb data={listSlug} />}
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} query={routerURL} />
         <BlockRender data={page.pageBlocks} />
@@ -41,7 +43,9 @@ Page.getInitialProps = async ctx => {
   let page = {};
   let silder = [];
   let menuMiddle = {};
+  let listSlug = [];
   const pageResponse = await getPageService(routerURL);
+  const listPageBySlug = await getListPageBySlug(query.name);
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
     menuMiddle = pageResponse.data.menuMiddle;
@@ -52,12 +56,16 @@ Page.getInitialProps = async ctx => {
       }
     }
   }
+  if (listPageBySlug && listPageBySlug !== undefined && listPageBySlug.status === 200) {
+    listSlug = listPageBySlug.data;
+  }
   return {
     namespacesRequired: ['common', 'common'],
     routerURL,
     page,
     silder,
-    menuMiddle
+    menuMiddle,
+    listSlug
   };
 };
 

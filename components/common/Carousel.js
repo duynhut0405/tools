@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { map, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';
-import Slider from 'react-rangeslider';
 
 const propType = {
   silder: PropTypes.array.isRequired,
   className: PropTypes.string
 };
 
-function Carousels({ silder, className }) {
-  const getItems = (index, item) => {
-    const url = item.props.children[0].props.href;
-    window.location.href = url;
-  };
+function Carousels({ silder }) {
+  // const getItems = (index, item) => {
+  //   const url = item.props.children[0].props.href;
+  //   window.location.href = url;
+  // };
 
   return (
     <React.Fragment>
@@ -28,7 +27,7 @@ function Carousels({ silder, className }) {
             showIndicators={false}
           >
             {map(silder, (item, index) => (
-              <div className="container">
+              <div className="container" key={index}>
                 <div className="divtext text-left-mg ">
                   <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(item.note_1)}</h1>
                   <p className="cl1">{ReactHtmlParser(item.note_2)}</p>

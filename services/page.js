@@ -21,4 +21,12 @@ const getPagesByIdService = data => {
   });
 };
 
-export { getPageService, getPagesByIdService };
+const getListPageBySlug = data => {
+  return request({
+    url: '/pages/slugs',
+    method: 'POST',
+    data
+  });
+};
+
+export { getPageService, getPagesByIdService, getListPageBySlug };

@@ -7,6 +7,7 @@ import Pagination from './Pagination';
 import DowloadFileWapper from './download/DowloadFileWapper';
 import DowloadVideoWapper from './download/DowloadVideoWapper';
 import Contact from './Contact';
+import Breadcrumb from './Breadcrumb';
 
 export {
   Carousel,
@@ -17,5 +18,6 @@ export {
   DowloadFileWapper,
   DowloadVideoWapper,
   Pagination,
-  Contact
+  Contact,
+  Breadcrumb
 };

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Carousel, BlockRender, MenuMiddle } from '../components/common';
+import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../components/common';
 import FormRate from '../components/formRate';
 import Layout from '../components/layout';
 import { getLang } from '../utils/localStorage';
@@ -27,10 +27,10 @@ function Home({ page, silder, menuMiddle, listRate }) {
   useEffect(() => {
     i18n.changeLanguage(getLang());
   }, []);
-
   return (
     <Layout title={page.meta_title}>
       <div className="main_content">
+        {page.breadCrumb && <Breadcrumb data={[]} />}
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} />
         <BlockRender data={page.pageBlocks} />
