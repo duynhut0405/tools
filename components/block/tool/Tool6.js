@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
@@ -24,6 +24,14 @@ function Tool6({ t, minValue, maxValue, interest_rate }) {
   const [interest, setInterest] = useState(0);
   const [active, setActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
+
+  useEffect(() => {
+    const _month = Number(month.replace(/[^0-9.-]+/g, ''));
+    const _loan_amount = Number(loan_amount.replace(/[^0-9.-]+/g, ''));
+    if (_month > 84) {
+      setMonth(rate(84));
+    }
+  }, [month, loan_amount]);
 
   const calculation = event => {
     event.preventDefault();
