@@ -21,14 +21,13 @@ function Page({ page, silder, menuMiddle, routerURL, listSlug }) {
       document.body.classList.add('title-24');
     }
   }, [page]);
-
   return (
     <Layout title={page.meta_title} personalLayout={page.has_sidebar}>
       <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={listSlug} />}
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} query={routerURL} />
-        <BlockRender data={page.pageBlocks} />
+        <BlockRender data={page.pageBlocks} pageId={page.id} />
       </div>
     </Layout>
   );

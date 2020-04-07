@@ -6,12 +6,13 @@ import { sendMailService } from '../../../services/form';
 import Proptypes from 'prop-types';
 
 const propTypes = {
-  data: Proptypes.object
+  data: Proptypes.object,
+  pageId: Proptypes.number
 };
 
-function FormStep({ data }) {
+function FormStep({ data, pageId }) {
   const [formActive, setFormActive] = useState(1);
-  const [formSate, setFormState] = useState({ content: [], email: '', idForm: '' });
+  const [formSate, setFormState] = useState({ content: [], email: '', idForm: '', idPage: null });
 
   useEffect(() => {
     if (data.form !== null && formActive > data.form.length) {
@@ -20,7 +21,8 @@ function FormStep({ data }) {
       const body = {
         content: JSON.stringify(formSate.content),
         email: email,
-        idForm: idForm
+        idForm: idForm,
+        idPage: pageId
       };
       sendMailService(body);
     }

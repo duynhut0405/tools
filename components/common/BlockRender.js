@@ -36,10 +36,11 @@ import PropTypes from 'prop-types';
 import NewCard from '../NewCard';
 
 const propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  pageId: PropTypes.number
 };
 
-function BlockRender({ data }) {
+function BlockRender({ data, pageId }) {
   return (
     <>
       {data !== undefined && (
@@ -85,7 +86,14 @@ function BlockRender({ data }) {
                 return <Pages id={values.id} data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Form đăng kí' && values.content !== null) {
-                return <Form id={values.id} data={JSON.parse(values.content)} key={index} />;
+                return (
+                  <Form
+                    id={values.id}
+                    pageId={pageId}
+                    data={JSON.parse(values.content)}
+                    key={index}
+                  />
+                );
               }
               if (values.name === 'Category-mini-wtithtab' && values.content !== null) {
                 return <MiniTab id={values.id} data={JSON.parse(values.content)} key={index} />;
@@ -143,6 +151,7 @@ function BlockRender({ data }) {
                 return (
                   <MenuIntro
                     data={JSON.parse(values.content)}
+                    pageId={pageId}
                     key={index}
                     id={values.id}
                     type={JSON.parse(values.content).type}
@@ -204,7 +213,7 @@ function BlockRender({ data }) {
                 return <SMEIntro key={index} />;
               }
               if (values.name === 'Form Step' && values.content !== null) {
-                return <FormStep key={index} data={JSON.parse(values.content)} />;
+                return <FormStep key={index} pageId={pageId} data={JSON.parse(values.content)} />;
               }
               if (values.name === 'Banner' && values.content !== null) {
                 return <Banner key={index} data={JSON.parse(values.content)} id={values.id} />;

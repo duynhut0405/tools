@@ -33,7 +33,7 @@ function Home({ page, silder, menuMiddle, listRate }) {
         {page.breadCrumb && <Breadcrumb data={[]} />}
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} />
-        <BlockRender data={page.pageBlocks} />
+        <BlockRender data={page.pageBlocks} pageId={page.id} />
         <FormRate data={listRate} />
       </div>
     </Layout>

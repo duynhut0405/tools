@@ -3,16 +3,17 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import { Row, Col, Input, Label } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
 import { sendMailService } from '../../services/form';
 
 const propTypes = {
   data: Proptypes.array.isRequired,
   getPageBlock: Proptypes.func,
-  type: Proptypes.string
+  type: Proptypes.string,
+  pageId: Proptypes.func
 };
 
-function MenuIntro({ data, type }) {
+function MenuIntro({ data, type, pageId }) {
   const [formdata, setFormData] = useState({});
   const [formState, setFormState] = useState({});
   const getFormByID = async () => {
@@ -39,7 +40,8 @@ function MenuIntro({ data, type }) {
     const dataSend = {
       content: JSON.stringify(formState),
       email: formState.email,
-      idForm: data.formdata
+      idForm: data.formdata,
+      idPage: pageId
     };
     sendMailService(dataSend);
   };
