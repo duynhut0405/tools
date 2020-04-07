@@ -64,7 +64,7 @@ function Icon({ data, id }) {
             <section className="sec-tb sec-h-1 group-ef block-icon" id={id}>
               <div className="container">
                 <div className="entry-head text-center">
-                  <h2 className="ht">{data[0].title || ''}</h2>
+                  <h2 className="ht">{data === null ? '' : data[0].title}</h2>
                 </div>
                 <div className="sec-b wrap-carousel">
                   <Carousel
@@ -117,7 +117,7 @@ function Icon({ data, id }) {
             <section className="sec-tb sec-h-1  loaded">
               <div className="container">
                 <div className="entry-head text-center">
-                  <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
+                  <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
                 </div>
                 <div className="menuicon">
                   {map(data, (items, index) => (
@@ -146,7 +146,7 @@ function Icon({ data, id }) {
           <section className="sec-b sec-img-svg group-ef loaded" id={id}>
             <div className="container">
               <div className="entry-head text-center">
-                <h2 className="ht">{data[0].title || ''}</h2>
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
               </div>
               <div className="row list-item">
                 {map(data, (items, index) => {
@@ -179,7 +179,7 @@ function Icon({ data, id }) {
           <section className="sec-tb sec-h-3 " id={id}>
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht efch-1 ef-img-t">{data[0].title}</h2>
+                <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
               </div>
               <div className="sec-b wrap-carousel">
                 <Carousel
@@ -237,6 +237,9 @@ function Icon({ data, id }) {
         <React.Fragment>
           <section className="sec-b sec-img-svg-2 group-ef loaded">
             <div className="container">
+              <div className="entry-head">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
               <div className="row list-item">
                 {map(data, (items, index) => {
                   return (
@@ -265,7 +268,9 @@ function Icon({ data, id }) {
         <React.Fragment>
           <div className="sec-b sec-img-svg-4">
             <div className="container">
-              <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              <div className="entry-head">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
               <div className="row list-item">
                 {map(data, (items, index) => {
                   return (
@@ -358,6 +363,9 @@ function Icon({ data, id }) {
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
             <div className="container">
+              <div className="entry-head">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
@@ -391,6 +399,9 @@ function Icon({ data, id }) {
         <React.Fragment>
           <section className="sec-tb sec-img-svg-3 group-ef loaded">
             <div className="container">
+              <div className="entry-head">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
