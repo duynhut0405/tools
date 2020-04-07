@@ -520,20 +520,16 @@ function News({ data, type, id }) {
                   return (
                     <React.Fragment>
                       <a href={`/news/${item.url}`} className="item  tRes_56 video">
-
-                          <img
-                            className=" loaded loaded"
-                            data-lazy-type="image"
-                            data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
-                            src={`${process.env.DOMAIN}${item.base_image}`}
-                          ></img>
-                          <div className="divtext">
-                            <div className="date">
-                              {moment(item.created_at).format('DD-MM-YYYY')}
-                            </div>
-                            <h4 className="title line2">{item.title}</h4>
-                          </div>
-
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
+                          src={`${process.env.DOMAIN}${item.base_image}`}
+                        ></img>
+                        <div className="divtext">
+                          <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                          <h4 className="title line2">{item.title}</h4>
+                        </div>
                       </a>
                     </React.Fragment>
                   );
