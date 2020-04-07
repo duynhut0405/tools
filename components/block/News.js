@@ -520,7 +520,7 @@ function News({ data, type, id }) {
                   return (
                     <React.Fragment>
                       <a href={`/news/${item.url}`} className="item  tRes_56 video">
-                        <div>
+
                           <img
                             className=" loaded loaded"
                             data-lazy-type="image"
@@ -533,7 +533,7 @@ function News({ data, type, id }) {
                             </div>
                             <h4 className="title line2">{item.title}</h4>
                           </div>
-                        </div>
+
                       </a>
                     </React.Fragment>
                   );
