@@ -7,7 +7,10 @@ const propTypes = {
 };
 
 function ItemIcon({ data }) {
-  const table = data.filter((item, index) => index >= 5);
+  let table = [];
+  if (data && data !== undefined) {
+    table = data.filter((item, index) => index >= 5);
+  }
   return (
     <div className="row list-item list-2">
       {map(data, (item, index) => {
