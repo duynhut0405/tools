@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { map } from 'lodash';
 import { DowloadVideo } from '../common/download';
 import { getRegulationListYear } from '../../services/regulation';
 import moment from 'moment';
@@ -20,7 +19,7 @@ const seachRegulation = async (datatype, page, year, setData) => {
 
 function DowloadVideos({ padding }) {
   const date = new Date();
-  const [listRegulation, setListRegulation] = useState([]);
+  const [listRegulation, setListRegulation] = useState({});
   const [datatype] = useState(2);
   const [page] = useState(1);
   const [year] = useState(moment(date).format('YYYY'));
@@ -28,7 +27,6 @@ function DowloadVideos({ padding }) {
   useEffect(() => {
     seachRegulation(datatype, page, year, setListRegulation);
   }, [seachRegulation]);
-
   return (
     <section className={`${padding} `}>
       <div className="container sec-tb">
@@ -38,16 +36,11 @@ function DowloadVideos({ padding }) {
             Xem tất cả <i className="icon-arrow-1"></i>
           </a>
         </div>
-        {map(listRegulation, item => {
-          if (item.investors && item.investors.length > 0) {
-            return (
-              <div key={item.year}>
-                <DowloadVideo data={item.investors} year={item.year} isChecked fileIcon />
-              </div>
-            );
-          }
-          return null;
-        })}
+        <div>
+          {listRegulation.investors && listRegulation.investors.length > 0 && (
+            <DowloadVideo data={listRegulation.investors} year={year} isChecked fileIcon />
+          )}
+        </div>
       </div>
     </section>
   );

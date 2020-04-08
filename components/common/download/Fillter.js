@@ -9,6 +9,7 @@ const propTypes = {
   center: PropTypes.bool,
   setDate: PropTypes.func,
   setType: PropTypes.func,
+  year: PropTypes.number,
   t: PropTypes.func
 };
 
@@ -19,14 +20,15 @@ const getYear = async setData => {
   }
 };
 
-function Filler({ t, type, setDate, setType, center }) {
+function Filler({ t, type, setDate, setType, center, year }) {
   const [listYear, setListYear] = useState([]);
   useEffect(() => {
     getYear(setListYear);
   }, [getAllYear]);
+
   return (
     <div className={center ? 'filter-category mb-5 text-center' : 'filter-category mb-5'}>
-      <select className="select" onChange={setDate}>
+      <select className="select" onChange={setDate} value={year}>
         <option value={0}>{t('year')}</option>
         {map(listYear, value => (
           <option value={value}>{value}</option>

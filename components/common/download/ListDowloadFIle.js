@@ -4,7 +4,6 @@ import FileList from './FileList';
 import File from './File';
 import { Pagination } from '../../common';
 import { RegulationActions } from '../../../store/actions';
-import { map } from 'lodash';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -38,7 +37,7 @@ function ListDowloadFIle({
 
   useEffect(() => {
     getTypeRegulation(type);
-    seachRegulation(type, 0, 10, 0, 0);
+    seachRegulation(type, 0, 10, 0, year);
   }, [getTypeRegulation]);
 
   useEffect(() => {
@@ -61,32 +60,29 @@ function ListDowloadFIle({
       {search && (
         <Fillter
           center
+          year={year}
           type={listType}
           setDate={event => setYear(event.target.value)}
           setType={event => setDataType(event.target.value)}
         />
       )}
       <div className="container">
-        {map(listRegulation, (item, index) => {
-          if (item.investors && item.investors.length > 0) {
-            return (
-              <div className="sec-tb" key={index}>
-                {noQuestion && <File data={item.investors} />}
-                {!noQuestion && (
-                  <FileList year={item.year} data={item.investors} isChecked={true} />
-                )}
-              </div>
-            );
-          }
-          return null;
-        })}
+        {listRegulation.investors && listRegulation.investors.length > 0 && (
+          <div className="sec">
+            {noQuestion && <File data={listRegulation.investors} />}
+            {!noQuestion && (
+              <FileList year={year} data={listRegulation.investors} isChecked={true} />
+            )}
+          </div>
+        )}
       </div>
-
-      <Pagination
-        page={page}
-        size={listRegulation.size}
-        setPage={pageNumber => setPage(pageNumber)}
-      />
+      {listRegulation.size > 1 && (
+        <Pagination
+          page={page}
+          size={listRegulation.size}
+          setPage={pageNumber => setPage(pageNumber)}
+        />
+      )}
     </div>
   );
 }

@@ -76,7 +76,7 @@ console.log('padding:', padding)
             <section className={`${padding} sec-h-1 group-ef block-icon`} id={id}>
               <div className="container">
                 <div className="entry-head text-center">
-                  <h2 className="ht">{data[0].title || ''}</h2>
+                  <h2 className="ht">{data === null ? '' : data[0].title}</h2>
                 </div>
                 <div className="sec-b wrap-carousel">
                   <Carousel
@@ -129,7 +129,7 @@ console.log('padding:', padding)
             <section className={`${padding} sec-h-1  loaded`}>
               <div className="container">
                 <div className="entry-head text-center">
-                  <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
+                  <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
                 </div>
                 <div className="menuicon">
                   {map(data, (items, index) => (
@@ -158,7 +158,7 @@ console.log('padding:', padding)
           <section className={`${padding} sec-img-svg group-ef loaded`} id={id}>
             <div className="container">
               <div className="entry-head text-center">
-                <h2 className="ht">{data[0].title || ''}</h2>
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
               </div>
               <div className="row list-item">
                 {map(data, (items, index) => {
@@ -191,7 +191,7 @@ console.log('padding:', padding)
           <section className={`${padding} sec-h-3`} id={id}>
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht efch-1 ef-img-t">{data[0].title}</h2>
+                <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
               </div>
               <div className="sec-b wrap-carousel">
                 <Carousel
@@ -249,6 +249,9 @@ console.log('padding:', padding)
         <React.Fragment>
           <section className={`${padding} sec-img-svg-2 group-ef loaded`}>
             <div className="container">
+              <div className="entry-head">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
               <div className="row list-item">
                 {map(data, (items, index) => {
                   return (
@@ -277,7 +280,9 @@ console.log('padding:', padding)
         <React.Fragment>
           <div className={`${padding} sec-img-svg-4`}>
             <div className="container">
-              <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              <div className="entry-head">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
               <div className="row list-item">
                 {map(data, (items, index) => {
                   return (
@@ -370,6 +375,9 @@ console.log('padding:', padding)
         <React.Fragment>
           <section className={`${padding} sec-img-svg-3 group-ef loaded`}>
             <div className="container">
+              <div className="entry-head">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
@@ -403,6 +411,9 @@ console.log('padding:', padding)
         <React.Fragment>
           <section className={`${padding} sec-img-svg-3 group-ef loaded`}>
             <div className="container">
+              <div className="entry-head">
+                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+              </div>
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (

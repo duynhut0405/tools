@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { map } from 'lodash';
+import File from '../common/download/File';
+import moment from 'moment';
 import { getRegulationListYear } from '../../services/regulation';
+import PropTypes from 'prop-types';
 
+const propTypes = {
+  padding: PropTypes.string
+};
 function Financial({ padding }) {
-  const [list, setList] = useState([]);
-
+  const [list, setList] = useState({});
+  const date = new Date();
   const getList = () => {
-    getRegulationListYear(1, 0, 10, 0, 0).then(res => {
+    getRegulationListYear(1, 0, 10, 0, moment(date).format('YYYY')).then(res => {
       if (res.data !== undefined && res.data !== null && res.status === 200) {
         setList(res.data);
       }
@@ -15,45 +20,22 @@ function Financial({ padding }) {
   useEffect(() => {
     getList();
   }, []);
+
   return (
     <section className={`${padding}`}>
-      {list.length > 0 && (
-        <div className="container">
-          <div className="entry-head">
-            <h2 className="ht efch-1 ef-img-l">Báo cáo tài chính</h2>
-            <a className="viewall" href="/page/nha-dau-tu/bao-cao-tai-chinh">
-              Xem tất cả <i className="icon-arrow-1"></i>
-            </a>
-          </div>
-          <div className="row grid-space-60">
-            {map(
-              list.sort((a, b) => a.year - b.year),
-              items => {
-                return (
-                  <div className="col-md-6" key={items.year}>
-                    <ul className="list-download">
-                      {map(items.investors, item => (
-                        <li key={item.id}>
-                          <span className="title">
-                            <i className="icon-t14"></i> {item.name}
-                          </span>
-                          <span className="down">
-                            <a href={item.urlFile} download>
-                              <i className="icon-arrow-6 ib"></i>
-                            </a>
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              }
-            )}
-          </div>
+      <div className="container">
+        <div className="entry-head">
+          <h2 className="ht efch-1 ef-img-l">Báo cáo tài chính</h2>
+          <a className="viewall" href="/page/nha-dau-tu/bao-cao-tai-chinh">
+            Xem tất cả <i className="icon-arrow-1"></i>
+          </a>
         </div>
-      )}
+        {list.investors && list.investors.length > 0 && <File data={list.investors} />}
+      </div>
     </section>
   );
 }
+
+Financial.propTypes = propTypes;
 
 export default Financial;

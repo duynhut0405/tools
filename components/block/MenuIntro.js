@@ -1,18 +1,19 @@
 import { map } from 'lodash';
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { Input, Label } from 'reactstrap';
-import { getFormbuilderByIdService, sendMailService } from '../../services/form';
+import { sendMailService } from '../../services/form';
+import PropTypes from 'prop-types';
 
 const propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.object,
   getPageBlock: PropTypes.func,
   type: PropTypes.string,
+  pageId: PropTypes.func,
   optionWidth: PropTypes.string
 };
 
-function MenuIntro({ data, optionWidth }) {
+function MenuIntro({ data, type, pageId, optionWidth }) {
   const [formdata, setFormData] = useState({});
   const [formState, setFormState] = useState({});
   const getFormByID = async () => {
@@ -50,7 +51,8 @@ function MenuIntro({ data, optionWidth }) {
     const dataSend = {
       content: JSON.stringify(formState),
       email: formState.email,
-      idForm: data.formdata
+      idForm: data.formdata,
+      idPage: pageId
     };
     sendMailService(dataSend);
   };

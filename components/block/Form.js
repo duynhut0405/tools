@@ -8,10 +8,11 @@ import { sendMailService } from '../../services/form';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
+  pageId: Proptypes.number,
   getPageBlock: Proptypes.func
 };
 
-function Form({ data }) {
+function Form({ data, pageId }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
   const getFormByID = async () => {
@@ -38,7 +39,8 @@ function Form({ data }) {
     const dataSend = {
       content: JSON.stringify(formState),
       email: formState.email,
-      idForm: data.formdata
+      idForm: data.formdata,
+      idPage: pageId
     };
 
     sendMailService(dataSend);
