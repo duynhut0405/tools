@@ -31,7 +31,9 @@ function Filler({ t, type, setDate, setType, center, year }) {
       <select className="select" onChange={setDate} value={year}>
         <option value={0}>{t('year')}</option>
         {map(listYear, value => (
-          <option value={value}>{value}</option>
+          <option value={value} key={value}>
+            {value}
+          </option>
         ))}
       </select>
       <select className="select" onChange={setType}>

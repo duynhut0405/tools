@@ -57,8 +57,4 @@ function Questions({ data, id }) {
 
 Questions.propTypes = propTypes;
 
-Questions.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
-
 export default withTranslation('common')(Questions);

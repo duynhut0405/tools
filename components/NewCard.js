@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withTranslation } from '../i18n';
 import ReactHtmlParser from 'react-html-parser';
-import Link from 'next/link';
 
 const propTypes = {
   data: PropTypes.object

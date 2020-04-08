@@ -39,8 +39,4 @@ function OtherNews() {
   );
 }
 
-OtherNews.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'OtherNews']
-});
-
 export default withTranslation('common')(OtherNews);

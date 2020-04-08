@@ -1,8 +1,9 @@
 import NextI18Next from 'next-i18next';
+import { getLang } from './utils/cookie';
 
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: 'vi',
-  lng: 'vi',
+  lng: getLang(),
   otherLanguages: ['vi', 'en']
   // localeSubpaths: {
   //   vi: 'vi',

@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../components/common';
 import FormRate from '../components/formRate';
 import Layout from '../components/layout';
-import { getLang } from '../utils/localStorage';
-import { useTranslation } from 'react-i18next';
 import { getRateService } from '../services/rate';
 import { getPageService } from '../services/page';
 import filter from 'lodash/filter';
@@ -18,15 +16,10 @@ const propTypes = {
 };
 
 function Home({ page, silder, menuMiddle, listRate }) {
-  const { i18n } = useTranslation();
-
   useEffect(() => {
     document.body.classList.add('home');
   });
 
-  useEffect(() => {
-    i18n.changeLanguage(getLang());
-  }, []);
   return (
     <Layout title={page.meta_title}>
       <div className="main_content">

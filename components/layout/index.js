@@ -10,11 +10,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 import { useTranslation } from 'react-i18next';
-import { setLang, getFlag } from '../../utils/localStorage';
+import { setLang, getFlag } from '../../utils/cookie';
 import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
-import { getLang } from '../../utils/localStorage';
-import i18next from 'i18next';
 import '../../styles/custom.css';
 
 const propTypes = {
@@ -59,6 +57,7 @@ function Layout({
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [flag, setFlag] = useState('vn');
   const { i18n, t } = useTranslation();
+
   useEffect(() => {
     getMenuHeader();
     getMenuNav();
@@ -68,8 +67,8 @@ function Layout({
     getSettingFooter();
     getSocialLink();
   }, []);
+
   useEffect(() => {
-    i18n.changeLanguage(getLang());
     setFlag(getFlag());
   }, [getFlag]);
 
@@ -152,7 +151,7 @@ function Layout({
   };
 
   const changeLang = (lang, flags) => {
-    i18next.changeLanguage(lang);
+    i18n.changeLanguage(lang);
     setFlag(flags);
     setLang(lang, flags);
   };
@@ -513,10 +512,6 @@ const mapDispatchToProps = {
   getMenuFooterMain: MenuActions.getMenuFooterMain,
   getMenuFooterBottom: MenuActions.getMenuFooterBottom
 };
-
-Layout.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
