@@ -13,11 +13,11 @@ const propTypes = {
 function Questions({ data, id }) {
   const [page, setPage] = useState(4);
   const [active, setActive] = useState(false);
-  const list = slice(data.listCard, 0, page);
+  const list = slice(data, 0, page);
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (list.length === data.listCard.length) {
+    if (list.length === data.length) {
       setActive(true);
     }
   }, [page]);
@@ -29,18 +29,19 @@ function Questions({ data, id }) {
       setPage(4);
     }
   };
+  
   let padding = '';
-  if (data.ptionWidth === '2') {
+  if (data[0].ptionWidth === '2') {
     padding = 'sec-tb';
-  } else if (data.optionWidth === '3') {
+  } else if (data[0].optionWidth === '3') {
     padding = 'sec-t';
-  } else if (data.optionWidth === '4') {
+  } else if (data[0].optionWidth === '4') {
     padding = 'sec-b';
   } else {
     padding = 'sec-';
   }
-  console.log('data:', data);
-  if (data.listCard && data.listCard.length > 0) {
+
+  if (data && data.length > 0) {
     return (
       <section className={`${padding} sec-cauhoi`} id={id}>
         <div className="container">
@@ -52,7 +53,7 @@ function Questions({ data, id }) {
               <Question key={index} answer={item.answer} question={item.question} />
             ))}
           </div>
-          {data.listCard.length > 4 && (
+          {data.length > 4 && (
             <div className="text-center">
               <button className="btn lg" onClick={() => show()}>
                 {active === false ? t('view_more') : t('collapse')}

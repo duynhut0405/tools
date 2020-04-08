@@ -10,11 +10,11 @@ const propTypes = {
 
 function TagProduct({ data, id, optionWidth }) {
   let padding = '';
-  if (optionWidth === '2') {
+  if (data[0].optionWidth === '2') {
     padding = 'sec-tb';
-  } else if (optionWidth === '3') {
+  } else if (data[0].optionWidth === '3') {
     padding = 'sec-t';
-  } else if (optionWidth === '4') {
+  } else if (data[0].optionWidth === '4') {
     padding = 'sec-b';
   } else {
     padding = 'sec-';
@@ -26,8 +26,8 @@ function TagProduct({ data, id, optionWidth }) {
         <div className="entry-head text-center">
           <h2 className="ht efch-1 ef-img-t">{data.title || ''}</h2>
         </div>
-        <ItemImages data={data.listCard} />
-        <ItemIcon data={data.listCard} />
+        <ItemImages data={data} />
+        <ItemIcon data={data} />
       </div>
     </section>
   );

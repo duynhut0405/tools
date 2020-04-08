@@ -4,6 +4,7 @@ import ReactHtmlParser from 'react-html-parser';
 import { Input, Label } from 'reactstrap';
 import { sendMailService } from '../../services/form';
 import PropTypes from 'prop-types';
+import { getFormbuilderByIdService } from '../../services/form';
 
 const propTypes = {
   data: PropTypes.object,

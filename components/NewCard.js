@@ -8,13 +8,13 @@ const propTypes = {
   data: PropTypes.object
 };
 
-function NewCard({ data, optionWidth }) {
+function NewCard({ data }) {
   let padding = '';
-  if (optionWidth === '2') {
+  if (data[0].optionWidth === '2') {
     padding = 'sec-tb';
-  } else if (optionWidth === '3') {
+  } else if (data[0].optionWidth === '3') {
     padding = 'sec-t';
-  } else if (optionWidth === '4') {
+  } else if (data[0].optionWidth === '4') {
     padding = 'sec-b';
   } else {
     padding = 'sec-';
@@ -24,7 +24,7 @@ function NewCard({ data, optionWidth }) {
       <section className={`${padding} group-ef loaded`}>
         <div className="container">
           <div className="list-5 equalHeight row list-item">
-            {map(data.listCard, (items, index) => {
+            {map(data, (items, index) => {
               return (
                 <div key={index} className="col-md-4">
                   <div className="item efch-2 ef-img-l ">

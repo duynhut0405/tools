@@ -66,8 +66,7 @@ function Icon({ data, id }) {
   } else {
     padding = 'sec-';
   }
-console.log('data[0].optionWidth:', data[0].optionWidth);
-console.log('padding:', padding)
+  
   return (
     <React.Fragment>
       {data[0].type === '1' && (
