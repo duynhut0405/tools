@@ -14,10 +14,11 @@ const propTypes = {
   data: Proptypes.object.isRequired,
   getCategoryPage: Proptypes.func,
   type: Proptypes.string,
-  id: Proptypes.number
+  id: Proptypes.number,
+  optionWidth: Proptypes.string
 };
 
-function News({ data, type, id }) {
+function News({ data, type, id, optionWidth }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const [listCategory, setListCategory] = useState([]);
@@ -27,6 +28,18 @@ function News({ data, type, id }) {
   const [refCarousel, setRefCarousel] = useState(null);
 
   const { t, i18n } = useTranslation();
+
+  let padding = '';
+  if (optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -103,7 +116,7 @@ function News({ data, type, id }) {
   }
   if (type === '3') {
     return (
-      <section className="sec-tb sec-h-4" id={id}>
+      <section className={`${padding} sec-h-4`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -172,7 +185,7 @@ function News({ data, type, id }) {
   }
   if (type === '4') {
     return (
-      <section className="sec-tb sec-h-3 " id={id}>
+      <section className={`${padding} sec-h-3 `} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -259,7 +272,7 @@ function News({ data, type, id }) {
   }
   if (type === '5') {
     return (
-      <section className="sec-b" id={id}>
+      <section className={`${padding}`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head home">
@@ -335,7 +348,7 @@ function News({ data, type, id }) {
   }
   if (type === '6') {
     return (
-      <section className="sec-b sec-blog-2" id={id}>
+      <section className={`${padding} sec-blog-2 `} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -415,7 +428,7 @@ function News({ data, type, id }) {
   }
   if (type === '7') {
     return (
-      <section className="sec-b" id={id}>
+      <section className={`${padding}`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -460,7 +473,7 @@ function News({ data, type, id }) {
   }
   if (type === '8') {
     return (
-      <section className="sec-b sec-h-4__" id={id}>
+      <section className={`${padding} sec-h-4__`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -501,7 +514,7 @@ function News({ data, type, id }) {
   }
   if (type === '9') {
     return (
-      <section className="sec-b sec-h-4">
+      <section className={`${padding} sec-b sec-h-4`}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">

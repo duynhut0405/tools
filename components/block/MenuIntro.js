@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Proptypes from 'prop-types';
-import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import { Row, Col, Input, Label } from 'reactstrap';
-import { sendMailService } from '../../services/form';
+import { Input, Label } from 'reactstrap';
+import { getFormbuilderByIdService, sendMailService } from '../../services/form';
 
 const propTypes = {
-  data: Proptypes.array.isRequired,
-  getPageBlock: Proptypes.func,
-  type: Proptypes.string
+  data: PropTypes.array.isRequired,
+  getPageBlock: PropTypes.func,
+  type: PropTypes.string,
+  optionWidth: PropTypes.string
 };
 
-function MenuIntro({ data, type }) {
+function MenuIntro({ data, optionWidth }) {
   const [formdata, setFormData] = useState({});
   const [formState, setFormState] = useState({});
   const getFormByID = async () => {
@@ -21,6 +21,17 @@ function MenuIntro({ data, type }) {
       setFormData(JSON.parse(res.data.list));
     }
   };
+
+  let padding = '';
+  if (optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
 
   useEffect(() => {
     getFormByID();
@@ -187,7 +198,7 @@ function MenuIntro({ data, type }) {
           </ul>
         </div>
       </section>
-      <section className=" sec-tb sec-ab-1">
+      <section className={`${padding} sec-ab-1`}>
         <div className="container">
           <div className="row list-item ">
             <div className="col-lg-8">

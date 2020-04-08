@@ -14,7 +14,7 @@ const propTypes = {
   seachRegulation: PropTypes.func
 };
 
-function ListDowloadFIle({ type, listType, listRegulation, getTypeRegulation, seachRegulation }) {
+function ListDowloadFIle({ type, optionWidth, listType, listRegulation, getTypeRegulation, seachRegulation }) {
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(0);
@@ -28,8 +28,19 @@ function ListDowloadFIle({ type, listType, listRegulation, getTypeRegulation, se
     seachRegulation(type, datatype, 10, page, year);
   }, [page, year, datatype]);
 
+  let padding = '';
+  if (Number(optionWidth) === 2) {
+    padding = 'sec-tb';
+  } else if (Number(optionWidth) === 3) {
+    padding = 'sec-t';
+  } else if (Number(optionWidth) === 4) {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+
   return (
-    <div className="accodion accodion-2 container sec-tb">
+    <div className={`accodion accodion-2 container ${padding}`}>
       <Fillter
         center
         type={listType}

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
+import React, { useState } from 'react';
 import Carousel from 'react-multi-carousel';
-import ReactHtmlParser from 'react-html-parser';
 import CommentItem from './CommentItem';
 
 const propTypes = {
@@ -26,9 +25,19 @@ function Comment({ data, id }) {
       items: 1
     }
   };
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
 
   return (
-    <section className="sec-b " id={id}>
+    <section className={`${padding} `} id={id}>
       <div className="container">
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">{data.title}</h2>

@@ -6,12 +6,13 @@ import Proptypes from 'prop-types';
 const propTypes = {
   data: Proptypes.array,
   formActive: Proptypes.number,
-  setFormActive: Proptypes.func
+  setFormActive: Proptypes.func,
+  padding: Proptypes.string
 };
 
-function FormWapper({ data, formActive, setFormActive }) {
+function FormWapper({ data, formActive, setFormActive, padding }) {
   return (
-    <section className="sec-tb">
+    <section className={padding}>
       <div className="container">
         <div className="max750">
           {map(data, (form, index) => {

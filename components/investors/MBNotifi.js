@@ -8,7 +8,8 @@ import { withTranslation } from '../../i18n';
 
 const propTypes = {
   data: Proptypes.object,
-  t: Proptypes.func
+  t: Proptypes.func,
+  padding: Proptypes.string
 };
 
 const getNews = async (id, setData) => {
@@ -18,14 +19,14 @@ const getNews = async (id, setData) => {
   }
 };
 
-function MBNotifi({ t, data }) {
+function MBNotifi({ t, data, padding }) {
   const [listNews, setListNews] = useState([]);
   useEffect(() => {
     getNews(data.value, setListNews);
   }, [getNews]);
 
   return (
-    <section className="sec-b sec-h-4__ sec-tb">
+    <section className={`${padding} sec-h-4__ sec-tb`}>
       <div className="container">
         <div className="entry-head">
           <h2 className="">{data.label}</h2>

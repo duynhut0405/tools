@@ -7,7 +7,8 @@ import Proptypes from 'prop-types';
 
 const propTypes = {
   listRegulation: Proptypes.array.isRequired,
-  seachRegulation: Proptypes.func.isRequired
+  seachRegulation: Proptypes.func.isRequired,
+  padding: Proptypes.string
 };
 
 const seachRegulation = async (datatype, page, year, setData) => {
@@ -17,7 +18,7 @@ const seachRegulation = async (datatype, page, year, setData) => {
   }
 };
 
-function DowloadVideos() {
+function DowloadVideos({ padding }) {
   const date = new Date();
   const [listRegulation, setListRegulation] = useState([]);
   const [datatype] = useState(2);
@@ -29,7 +30,7 @@ function DowloadVideos() {
   }, [seachRegulation]);
 
   return (
-    <section className="sec-tb ">
+    <section className={`${padding} `}>
       <div className="container sec-tb">
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">Họp cổ đông</h2>
@@ -38,7 +39,7 @@ function DowloadVideos() {
           </a>
         </div>
         {map(listRegulation, item => {
-          if (item.investors.length > 0) {
+          if (item.investors && item.investors.length > 0) {
             return (
               <div key={item.year}>
                 <DowloadVideo data={item.investors} year={item.year} isChecked fileIcon />

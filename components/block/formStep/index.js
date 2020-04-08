@@ -25,10 +25,19 @@ function FormStep({ data }) {
       sendMailService(body);
     }
   }, [formActive]);
-
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
   return (
     <section className="form-step-wapper">
-      <section className="sec-tb">
+      <section className={padding}>
         <div className="container">
           <div className="text-center">
             <h1>{data.name}</h1>
@@ -46,6 +55,7 @@ function FormStep({ data }) {
             formActive={formActive}
           />
           <FormWapper
+            padding={padding}
             data={[
               ...data.form,
               { type: 'result', label: 'Hoàn tất đăng ký trực tuyến', value: null }

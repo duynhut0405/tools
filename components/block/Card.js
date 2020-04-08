@@ -5,15 +5,26 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   data: PropTypes.any,
-  type: PropTypes.string
+  type: PropTypes.string,
+  optionWidth: PropTypes.string
 };
 
-function Card({ data, type }) {
+function Card({ data, type, optionWidth }) {
+  let padding = '';
+  if (optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
   return (
     <React.Fragment>
       {type === '1' && (
         <React.Fragment>
-          <section className="sec-tb bg-gray">
+          <section className={`${padding} bg-gray`}>
             <div className="container">
               <div className="entry-head ">
                 <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
@@ -44,7 +55,7 @@ function Card({ data, type }) {
       )}
       {type && type === '5' && (
         <React.Fragment>
-          <section className="sec-tb ">
+          <section className={`${padding}`}>
             <div className="container">
               <div className="entry-head text-center">
                 <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
@@ -95,7 +106,7 @@ function Card({ data, type }) {
       )}
       {type && type === '6' && (
         <React.Fragment>
-          <section className="sec-tb sec-ab-4 ">
+          <section className={`${padding} sec-ab-4 `}>
             <div className="container">
               <div className="entry-head ">
                 {data.title && (

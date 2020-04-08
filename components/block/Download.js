@@ -8,9 +8,19 @@ const propTypes = {
 };
 
 function Download({ data, id, type }) {
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
   if (type && type === '1') {
     return (
-      <section className=" sec-tb b-tl-3" id={id}>
+      <section className={` ${padding} b-tl-3`} id={id}>
         <div className="container">
           <h2 className="ht text-center">{data.title}</h2>
           <div className="inner">
@@ -25,7 +35,7 @@ function Download({ data, id, type }) {
   }
   if (type && type === '2') {
     return (
-      <section className=" sec-b " id={id}>
+      <section className={` ${padding} `} id={id}>
         <div className="container">
           <div className=" b-tl-1">
             <div className="inner">
@@ -42,7 +52,7 @@ function Download({ data, id, type }) {
   }
   if (type && type === '3') {
     return (
-      <section className=" sec-b " id={id}>
+      <section className={` ${padding} `} id={id}>
         <div className="container">
           <div className=" b-tl-2">
             <h2 className="ht">{data.title}</h2>
@@ -59,7 +69,7 @@ function Download({ data, id, type }) {
   }
   if (type && type === '4') {
     return (
-      <section className=" sec-tb sec-hstt" id={id}>
+      <section className={` ${padding} sec-hstt`} id={id}>
         <div className="container">
           <div className="inner">
             <h2 className="ht">{data.title}</h2>

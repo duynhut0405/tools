@@ -44,8 +44,19 @@ function Form({ data }) {
     sendMailService(dataSend);
   };
 
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+
   return (
-    <section className="sec-tb sec-tuvan">
+    <section className={`${padding} sec-tuvan`}>
       <div className="container">
         <form onSubmit={onSend} autoComplete="on" className="row">
           {map(formdata, (item, index) => {

@@ -5,11 +5,11 @@ const propTypes = {
   items: PropTypes.object
 };
 
-function ImageLeft({ items }) {
+function ImageLeft({ items, padding }) {
   const [active, setActive] = useState(false);
 
   return (
-    <section className="sec-tb sec-img-text group-ef loaded">
+    <section className={`${padding} sec-img-text group-ef loaded`}>
       <div className="container">
         <div className="row center">
           <div className="col-lg-6">

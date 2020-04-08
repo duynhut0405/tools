@@ -9,8 +9,13 @@ const propTypes = {
   id: PropTypes.number
 };
 
-function Repeat({ data, type, id }) {
+function Repeat({ data, type, id, optionWidth }) {
   const [listTable, setListTable] = useState([]);
+  let padding = '';
+  if(optionWidth === '2') padding = 'sec-tb';
+  else if(optionWidth === '3') padding = 'sec-t';
+  else if(optionWidth === '4') padding = 'sec-b'
+  else padding = 'sec-'
 
   useEffect(() => {
     setListTable(data.listTable);
@@ -18,7 +23,7 @@ function Repeat({ data, type, id }) {
 
   if (type === '1') {
     return (
-      <section className=" sec-tb " id={id}>
+      <section className={`${padding}`} id={id}>
         <div className="container">
           <div className="entry-head text-center">
             <h2 className="ht ">{data.title}</h2>
@@ -33,7 +38,7 @@ function Repeat({ data, type, id }) {
     const count=0;
     const col = 12/type;
     return (
-      <section className=" sec-tb " id={id}>
+      <section className={`${padding}`} id={id}>
         <div className="container">
           <div className="entry-head text-center">
             <h2 className="ht ">{data.title}</h2>

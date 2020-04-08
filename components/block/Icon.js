@@ -56,12 +56,24 @@ function Icon({ data, id }) {
     }
   };
 
+  let padding = '';
+  if (data[0].optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data[0].optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data[0].optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+console.log('data[0].optionWidth:', data[0].optionWidth);
+console.log('padding:', padding)
   return (
     <React.Fragment>
       {data[0].type === '1' && (
         <React.Fragment>
           {data.length > 8 && (
-            <section className="sec-tb sec-h-1 group-ef block-icon" id={id}>
+            <section className={`${padding} sec-h-1 group-ef block-icon`} id={id}>
               <div className="container">
                 <div className="entry-head text-center">
                   <h2 className="ht">{data[0].title || ''}</h2>
@@ -114,7 +126,7 @@ function Icon({ data, id }) {
             </section>
           )}
           {data.length <= 8 && (
-            <section className="sec-tb sec-h-1  loaded">
+            <section className={`${padding} sec-h-1  loaded`}>
               <div className="container">
                 <div className="entry-head text-center">
                   <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
@@ -143,7 +155,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '2' && (
         <React.Fragment>
-          <section className="sec-b sec-img-svg group-ef loaded" id={id}>
+          <section className={`${padding} sec-img-svg group-ef loaded`} id={id}>
             <div className="container">
               <div className="entry-head text-center">
                 <h2 className="ht">{data[0].title || ''}</h2>
@@ -176,7 +188,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '3' && (
         <React.Fragment>
-          <section className="sec-tb sec-h-3 " id={id}>
+          <section className={`${padding} sec-h-3`} id={id}>
             <div className="container">
               <div className="entry-head">
                 <h2 className="ht efch-1 ef-img-t">{data[0].title}</h2>
@@ -235,7 +247,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '4' && (
         <React.Fragment>
-          <section className="sec-b sec-img-svg-2 group-ef loaded">
+          <section className={`${padding} sec-img-svg-2 group-ef loaded`}>
             <div className="container">
               <div className="row list-item">
                 {map(data, (items, index) => {
@@ -263,7 +275,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '5' && (
         <React.Fragment>
-          <div className="sec-b sec-img-svg-4">
+          <div className={`${padding} sec-img-svg-4`}>
             <div className="container">
               <h2 className="ht">{data === null ? '' : data[0].title}</h2>
               <div className="row list-item">
@@ -292,7 +304,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '6' && (
         <React.Fragment>
-          <section className="sec-tb sec-img-svg-2 group-ef loaded">
+          <section className={`${padding} sec-img-svg-2 group-ef loaded`}>
             <div className="container">
               <div className="entry-head text-left">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>
@@ -356,7 +368,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '7' && (
         <React.Fragment>
-          <section className="sec-tb sec-img-svg-3 group-ef loaded">
+          <section className={`${padding} sec-img-svg-3 group-ef loaded`}>
             <div className="container">
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
@@ -389,7 +401,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '8' && (
         <React.Fragment>
-          <section className="sec-tb sec-img-svg-3 group-ef loaded">
+          <section className={`${padding} sec-img-svg-3 group-ef loaded`}>
             <div className="container">
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {

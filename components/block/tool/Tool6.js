@@ -85,7 +85,7 @@ function Tool6({ t, minValue, maxValue, interest_rate }) {
   };
 
   return (
-    <div className="container sec-tb">
+    <div className={`container ${padding}`}>
       <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">

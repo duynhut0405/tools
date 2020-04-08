@@ -7,10 +7,11 @@ import GoogleMapReact from 'google-map-react';
 const propTypes = {
   settingFooter: PropTypes.object,
   getSettingFooter: PropTypes.func,
-  text: PropTypes.string
+  text: PropTypes.string,
+  data: PropTypes.func
 };
 
-function Contact({ settingFooter, getSettingFooter }) {
+function Contact({ settingFooter, getSettingFooter, data }) {
   useEffect(() => {
     getSettingFooter();
   }, []);
@@ -20,10 +21,20 @@ function Contact({ settingFooter, getSettingFooter }) {
       <div style={{ width: '200px', color: '#33333', fontWeight: 'bold' }}>{text}</div>
     </div>
   );
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
 
   return (
     <React.Fragment>
-      <main id="main" className="section page-lien-he">
+      <main id="main" className={`${padding} page-lien-he`}>
         <div className="container ">
           <div className="row">
             <div className="col-lg-4 col-md-6">

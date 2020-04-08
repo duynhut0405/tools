@@ -10,11 +10,10 @@ const propType = {
 };
 
 function Carousels({ silder }) {
-  // const getItems = (index, item) => {
-  //   const url = item.props.children[0].props.href;
-  //   window.location.href = url;
-  // };
-
+  const getItems = (index, item) => {
+    const url = item.props.children[0].props.href;
+    window.location.href = url;
+  };
   return (
     <React.Fragment>
       {!isEmpty(silder) && (

@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 const propTypes = {
   type: PropTypes.number,
+  optionWidth: PropTypes.string,
   search: PropTypes.bool,
   loading: PropTypes.bool,
   listType: PropTypes.array,
@@ -22,6 +23,7 @@ const propTypes = {
 
 function ListDowloadFIle({
   type,
+  optionWidth,
   listType,
   listRegulation,
   search,
@@ -43,8 +45,19 @@ function ListDowloadFIle({
     seachRegulation(type, datatype, 10, page, year);
   }, [page, year, datatype]);
 
+  let padding = '';
+  if (Number(optionWidth) === 2) {
+    padding = 'sec-tb';
+  } else if (Number(optionWidth) === 3) {
+    padding = 'sec-t';
+  } else if (Number(optionWidth) === 4) {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+
   return (
-    <div className="accodion accodion-2 container">
+    <div className={`${padding} accodion accodion-2 container`}>
       {search && (
         <Fillter
           center
@@ -55,7 +68,7 @@ function ListDowloadFIle({
       )}
       <div className="container">
         {map(listRegulation, (item, index) => {
-          if (item.investors.length > 0) {
+          if (item.investors && item.investors.length > 0) {
             return (
               <div className="sec-tb" key={index}>
                 {noQuestion && <File data={item.investors} />}

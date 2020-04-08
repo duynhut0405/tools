@@ -14,11 +14,22 @@ const propTypes = {
 };
 
 function Tools({ content }) {
+  let padding = '';
+  if (content.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (content.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (content.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
   const renderTools = () => {
     switch (parseInt(content.type)) {
       case 1:
         return (
           <ToolHome
+            padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseInt(content.interest_rate)}
@@ -27,6 +38,7 @@ function Tools({ content }) {
       case 2:
         return (
           <ProductionBusiness
+            padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseInt(content.interest_rate)}
@@ -35,6 +47,7 @@ function Tools({ content }) {
       case 3:
         return (
           <ConsumerLoansWithCollateral
+            padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseFloat(content.interest_rate)}
@@ -43,6 +56,7 @@ function Tools({ content }) {
       case 4:
         return (
           <Tool4
+            padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseFloat(content.interest_rate)}
@@ -51,6 +65,7 @@ function Tools({ content }) {
       case 5:
         return (
           <Tool5
+            padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseFloat(content.interest_rate)}
@@ -59,6 +74,7 @@ function Tools({ content }) {
       case 6:
         return (
           <Tool6
+            padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseFloat(content.interest_rate)}
@@ -67,6 +83,7 @@ function Tools({ content }) {
       case 7:
         return (
           <Tool7
+            padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseFloat(content.interest_rate)}
@@ -75,6 +92,7 @@ function Tools({ content }) {
       case 8:
         return (
           <Tool8
+            padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseFloat(content.interest_rate)}

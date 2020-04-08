@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 const propTypes = {
   data: PropTypes.array,
   category: PropTypes.object,
-  getNews: PropTypes.func
+  getNews: PropTypes.func,
+  padding: PropTypes.string
 };
 
 const getNews = async (id, setData) => {
@@ -19,7 +20,7 @@ const getNews = async (id, setData) => {
   }
 };
 
-function News({ category }) {
+function News({ category, padding }) {
   const [data, setData] = useState([]);
   useEffect(() => {
     if (category !== null) {
@@ -27,7 +28,7 @@ function News({ category }) {
     }
   }, [getNews]);
   return (
-    <section className="sec-tb">
+    <section className={padding}>
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht efch-1 ef-img-t">Cập nhật giao dịch MB</h2>

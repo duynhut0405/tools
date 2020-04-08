@@ -12,7 +12,7 @@ const propTypes = {
   t: Proptypes.func
 };
 
-function ToolHome({ t, maxValue, interest_rate }) {
+function ToolHome({ t, maxValue, interest_rate, padding }) {
   const [estimate_rate, setEstimateRate] = useState('0');
   const [estimate_mortgage, setEstimateMortgage] = useState('0');
   const [amount, SetAmount] = useState('0');
@@ -127,7 +127,7 @@ function ToolHome({ t, maxValue, interest_rate }) {
   };
 
   return (
-    <div className="container sec-tb">
+    <div className={`container ${padding}`}>
       <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b sec-tb">
         <div className="w-menu-over">

@@ -13,7 +13,7 @@ const propTypes = {
 function DowloadFile({ year, isChecked, fileIcon, data }) {
   const [checked, setChecked] = useState(isChecked);
   return (
-    <div className="accodion-tab ">
+    <div className={` accodion-tab `}>
       <input type="checkbox" id="chck_2" checked={checked} />
       <label className="accodion-title h2" onClick={() => setChecked(!checked)}>
         <span> {year} </span>

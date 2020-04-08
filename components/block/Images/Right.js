@@ -6,7 +6,7 @@ const propTypes = {
   items: PropTypes.object
 };
 
-function ImageRight({ items }) {
+function ImageRight({ items, padding }) {
   const [active, setActive] = useState(false);
   return (
     // <section className="sec-tb sec-img-text group-ef loaded">
@@ -95,7 +95,7 @@ function ImageRight({ items }) {
     //     </div>
     //   </div>
     // </section>
-    <section className="sec-tb sec-img-text group-ef loaded">
+    <section className={`${padding} sec-img-text group-ef loaded`}>
       <div className="container">
         <div className="row center end">
           <div className="col-lg-6">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { map } from 'lodash';
 import { getRegulationListYear } from '../../services/regulation';
 
-function Financial() {
+function Financial({ padding }) {
   const [list, setList] = useState([]);
 
   const getList = () => {
@@ -16,7 +16,7 @@ function Financial() {
     getList();
   }, []);
   return (
-    <section className="sec-tb">
+    <section className={`${padding}`}>
       {list.length > 0 && (
         <div className="container">
           <div className="entry-head">

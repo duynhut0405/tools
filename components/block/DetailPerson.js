@@ -14,9 +14,18 @@ const propTypes = {
 
 function DetailPerson({ data, detailPerson, getDetailPerson }) {
   const [modal, setModal] = useState(false);
-
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
   return (
-    <main id="main" className="sec-tb ">
+    <main id="main" className={`${padding}`}>
       <div className="container">
         <div className="sec-b">
           <h2 className="text-center h1">{data.title}</h2>

@@ -5,9 +5,9 @@ const propTypes = {
   url: Proptypes.object
 };
 
-function Share({ url }) {
+function Share({ url, padding }) {
   return (
-    <section className="sec-tb  bg-gray ">
+    <section className={`${padding} bg-gray `}>
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht efch-1 ef-img-t">Thông tin thị trường</h2>

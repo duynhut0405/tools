@@ -22,6 +22,17 @@ function About({ data, listNews, getNews }) {
   const [listYear, setListYear] = useState([]);
   const { t } = useTranslation();
 
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+
   const getYear = async () => {
     const res = await getListYearNewsService();
     if (res && res.status === 200) {
@@ -47,7 +58,7 @@ function About({ data, listNews, getNews }) {
 
   return (
     <>
-      <main id="main" className="sec-tb">
+      <main id="main" className={`${padding}`}>
         <div className="container">
           {data.title && <h1 className="text-center">{data.title}</h1>}
           <div className=" sec-b filter-category text-center">

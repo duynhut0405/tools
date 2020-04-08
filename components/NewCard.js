@@ -9,13 +9,23 @@ const propTypes = {
   data: PropTypes.object
 };
 
-function NewCard({ data }) {
+function NewCard({ data, optionWidth }) {
+  let padding = '';
+  if (optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
   return (
     <React.Fragment>
-      <section className="sec-tb group-ef loaded">
+      <section className={`${padding} group-ef loaded`}>
         <div className="container">
           <div className="list-5 equalHeight row list-item">
-            {map(data, (items, index) => {
+            {map(data.listCard, (items, index) => {
               return (
                 <div key={index} className="col-md-4">
                   <div className="item efch-2 ef-img-l ">

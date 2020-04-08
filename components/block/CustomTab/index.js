@@ -11,10 +11,19 @@ const propTypes = {
 
 function CustomTab({ data, id }) {
   const [activeTab, setActiveTab] = useState('0');
-
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
   return (
     <React.Fragment>
-      <main id="main" className="sec-tb">
+      <main id="main" className={padding}>
         <div className="container">
           <div className={`cttab-v3 tabs-total-${data.listTab.length}`}>
             <div className="wrap-tab-menu">

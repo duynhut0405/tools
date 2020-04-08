@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  items: PropTypes.object
+  items: PropTypes.object,
+  padding: PropTypes.string
 };
 
-function ImageRightMB({ items }) {
+function ImageRightMB({ items, padding }) {
   return (
-    <section className="sec-b sec-img-text group-ef loaded">
+    <section className={`${padding} sec-img-text group-ef loaded`}>
       <div className="container">
         <div className="row center end">
           <div className="col-lg-6">

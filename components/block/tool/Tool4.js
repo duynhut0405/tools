@@ -14,7 +14,7 @@ const propTypes = {
   t: Proptypes.func
 };
 
-function Tool4({ t, minValue, maxValue, interest_rate }) {
+function Tool4({ t, minValue, maxValue, interest_rate, padding }) {
   const [salary, setSalary] = useState('0');
   const [amount, setAmount] = useState('0');
   const [month, setMonth] = useState('1');
@@ -119,7 +119,7 @@ function Tool4({ t, minValue, maxValue, interest_rate }) {
   };
 
   return (
-    <div className="container sec-tb">
+    <div className={`container ${padding}`}>
       <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">

@@ -14,7 +14,7 @@ const propTypes = {
   t: Proptypes.func
 };
 
-function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate }) {
+function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate, padding }) {
   const [loan_amount, setLoanAmount] = useState('0');
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
@@ -97,7 +97,7 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate }) {
   };
 
   return (
-    <div className="container sec-tb">
+    <div className={`container ${padding}`}>
       <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">

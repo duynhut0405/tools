@@ -7,9 +7,19 @@ const propTypes = {
 };
 
 function Banner({ data }) {
+  let padding = '';
+  if (Number(data.optionWidth) === 2) {
+    padding = 'sec-tb';
+  } else if (Number(data.optionWidth) === 3) {
+    padding = 'sec-t';
+  } else if (Number(data.optionWidth) === 4) {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
   return (
     <React.Fragment>
-      <section className="sec-tb">
+      <section className={padding}>
         <div className="container">
           <div className="row list-item flex">
             <div className="col-md-4">

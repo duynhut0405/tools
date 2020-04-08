@@ -9,10 +9,17 @@ const propTypes = {
   listRegulation: Proptypes.array.isRequired,
   typeRegulation: Proptypes.array.isRequired,
   seachRegulation: Proptypes.func.isRequired,
-  getTypeRegulation: Proptypes.func.isRequired
+  getTypeRegulation: Proptypes.func.isRequired,
+  widthOption: Proptypes.string
 };
 
-function DowloadCategory({ listRegulation, typeRegulation, seachRegulation, getTypeRegulation }) {
+function DowloadCategory({
+  optionWidth,
+  listRegulation,
+  typeRegulation,
+  seachRegulation,
+  getTypeRegulation
+}) {
   const date = new Date();
   const [year, setYear] = useState(moment(date).format('YYYY'));
   const [datatype, setDataType] = useState(1);
@@ -26,9 +33,20 @@ function DowloadCategory({ listRegulation, typeRegulation, seachRegulation, getT
     seachRegulation({ idSearch: datatype, year: year });
   }, [year, datatype]);
 
+  let padding = '';
+  if (Number(optionWidth) === 2) {
+    padding = 'sec-tb';
+  } else if (Number(optionWidth) === 3) {
+    padding = 'sec-t';
+  } else if (Number(optionWidth) === 4) {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+
   return (
     <React.Fragment>
-      <div className="accodion accodion-2 container sec-tb">
+      <div className={`accodion accodion-2 container ${padding}`}>
         {/* <Fillter
           type={typeRegulation}
           setDate={event => setYear(event.target.value)}

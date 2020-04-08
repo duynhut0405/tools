@@ -26,16 +26,26 @@ function Images({ data, id }) {
         );
       })}
       {map(data, (items, index) => {
+        let padding = '';
+        if (items.optionWidth === '2') {
+          padding = 'sec-tb';
+        } else if (items.optionWidth === '3') {
+          padding = 'sec-t';
+        } else if (items.optionWidth === '4') {
+          padding = 'sec-b';
+        } else {
+          padding = 'sec-';
+        }
         if (items.type === '1') {
-          return <ImageLeft items={items} key={index} />;
+          return <ImageLeft items={items} key={index} padding={padding} />;
         }
         if (items.type === '2') {
-          return <ImageRight items={items} key={index} />;
+          return <ImageRight items={items} key={index} padding={padding} />;
         }
         if (items.type === '5') {
-          return <ImageRightMB items={items} key={index} />;
+          return <ImageRightMB items={items} key={index} padding={padding} />;
         }
-        return <ImageCenter items={items} key={index} />;
+        return <ImageCenter items={items} key={index} padding={padding} />;
       })}
     </>
   );

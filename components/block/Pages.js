@@ -8,10 +8,11 @@ import CustomPageItem from './BlockPageItem/CustomPageItem';
 const propTypes = {
   data: Proptypes.object.isRequired,
   type: Proptypes.string,
-  id: Proptypes.number
+  id: Proptypes.number,
+  optionWidth: Proptypes.string
 };
 
-function Pages({ data, type, id }) {
+function Pages({ data, type, id, optionWidth }) {
   const [listPage, setListPage] = useState([]);
   const [refCarouselThree, setRefCarouselThree] = useState(null);
   const getPageBlock = async () => {
@@ -21,6 +22,18 @@ function Pages({ data, type, id }) {
       setListPage(res.data);
     }
   };
+
+  let padding = '';
+  if (optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+
   const responsiveTwo = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -44,7 +57,7 @@ function Pages({ data, type, id }) {
 
   if (type && type === '1') {
     return (
-      <div className="sec-tb block-page" id={id}>
+      <div className={`${padding} block-page`} id={id}>
         <div className="container">
           <div className="entry-head text-center">
             {data.title && <h2 className="ht">{data.title}</h2>}
@@ -76,7 +89,7 @@ function Pages({ data, type, id }) {
   if (type && type === '2') {
     return (
       <div className="container" id={id}>
-        <section className="sec-tb  block-page block-type-2">
+        <section className={`${padding} block-page block-type-2`}>
           <h2 className="ht styleht">{data.title}</h2>
           <div className="list-7 list-item row">
             {map(listPage, item => (
@@ -105,7 +118,7 @@ function Pages({ data, type, id }) {
 
   if (type && type === '3') {
     return (
-      <section className="sec-tb bg-gray" id={id}>
+      <section className={`${padding} bg-gray`} id={id}>
         <div className="container">
           <h2 className="ht">{data.title}</h2>
           <div className="list-7 list-item row">
@@ -141,7 +154,7 @@ function Pages({ data, type, id }) {
   }
   if (type && type === '4') {
     return (
-      <section className="sec-tb bg-gray" id={id}>
+      <section className={`${padding} bg-gray`} id={id}>
         <div className="container">
           <div className="max750"></div>
           <h2 className="ht text-center">{data.title}</h2>
@@ -165,7 +178,7 @@ function Pages({ data, type, id }) {
   }
   if (type && type === '5') {
     return (
-      <section className=" sec-b sec-cauhoi ">
+      <section className={` ${padding} sec-cauhoi `}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
@@ -223,7 +236,7 @@ function Pages({ data, type, id }) {
   }
   if (type && type === '6') {
     return (
-      <section>
+      <section className={padding}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>

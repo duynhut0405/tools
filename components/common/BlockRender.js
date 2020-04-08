@@ -60,6 +60,7 @@ function BlockRender({ data }) {
                 return (
                   <News
                     type={JSON.parse(values.content).type}
+                    optionWidth={JSON.parse(values.content).optionWidth}
                     data={JSON.parse(values.content)}
                     key={index}
                     id={values.id}
@@ -69,7 +70,7 @@ function BlockRender({ data }) {
               if (values.name === 'NewCard' && values.content !== null) {
                 return (
                   <NewCard
-                    type={JSON.parse(values.content).type}
+                    optionWidth={JSON.parse(values.content).optionWidth}
                     data={JSON.parse(values.content)}
                     key={index}
                     id={values.id}
@@ -78,7 +79,12 @@ function BlockRender({ data }) {
               }
               if (values.name === 'Installment Payment System') {
                 return (
-                  <TablePayment id={values.id} data={JSON.parse(values.content)} key={index} />
+                  <TablePayment
+                    id={values.id}
+                    data={JSON.parse(values.content)}
+                    key={index}
+                    optionWidth={JSON.parse(values.content).optionWidth}
+                  />
                 );
               }
               if (values.name === 'Pages' && values.content !== null) {
@@ -97,6 +103,7 @@ function BlockRender({ data }) {
                     data={JSON.parse(values.content)}
                     key={index}
                     type={JSON.parse(values.content).type}
+                    optionWidth={JSON.parse(values.content).optionWidth}
                   />
                 );
               }
@@ -105,6 +112,7 @@ function BlockRender({ data }) {
                   <Repeat
                     data={JSON.parse(values.content)}
                     type={JSON.parse(values.content).type}
+                    optionWidth={JSON.parse(values.content).optionWidth}
                     key={index}
                     id={values.id}
                   />
@@ -130,6 +138,7 @@ function BlockRender({ data }) {
                 return (
                   <Pages
                     type={JSON.parse(values.content).type}
+                    optionWidth={JSON.parse(values.content).optionWidth}
                     data={JSON.parse(values.content)}
                     key={index}
                     id={values.id}
@@ -137,7 +146,14 @@ function BlockRender({ data }) {
                 );
               }
               if (values.name === 'Sản phẩm nổi bật' && values.content !== null) {
-                return <TagProduct data={JSON.parse(values.content)} key={index} id={values.id} />;
+                return (
+                  <TagProduct
+                    optionWidth={JSON.parse(values.content).optionWidth}
+                    data={JSON.parse(values.content)}
+                    key={index}
+                    id={values.id}
+                  />
+                );
               }
               if (values.name === 'MenuIntro' && values.content !== null) {
                 return (
@@ -146,6 +162,7 @@ function BlockRender({ data }) {
                     key={index}
                     id={values.id}
                     type={JSON.parse(values.content).type}
+                    optionWidth={JSON.parse(values.content).optionWidth}
                   />
                 );
               }
@@ -164,16 +181,21 @@ function BlockRender({ data }) {
                 return <Investors key={index} data={JSON.parse(values.content)} />;
               }
               if (values.name === 'Contact' && values.content !== null) {
-                return <Contact key={index} />;
+                return <Contact data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'Transaction' && values.content !== null) {
-                return <Transaction key={index} />;
+                return <Transaction data={JSON.parse(values.content)} key={index} />;
               }
               if (values.name === 'DowloadCategory' && values.content !== null) {
-                return <DowloadCategory key={index} />;
+                return (
+                  <DowloadCategory
+                    key={index}
+                    optionWidth={JSON.parse(values.content).optionWidth}
+                  />
+                );
               }
               if (values.name === 'OtherNews' && values.content !== null) {
-                return <OtherNews key={index} />;
+                return <OtherNews key={index} data={JSON.parse(values.content)} />;
               }
               if (values.name === 'Comment' && values.content !== null) {
                 return <Comment data={JSON.parse(values.content)} id={values.id} key={index} />;
@@ -182,6 +204,7 @@ function BlockRender({ data }) {
                 return (
                   <ListDowloadFIle
                     type={Number(JSON.parse(values.content).type)}
+                    optionWidth={Number(JSON.parse(values.content).optionWidth)}
                     search
                     key={index}
                   />
@@ -189,7 +212,11 @@ function BlockRender({ data }) {
               }
               if (values.name === 'DownloadVideo' && values.content !== null) {
                 return (
-                  <ListDowloadVideo type={Number(JSON.parse(values.content).type)} key={index} />
+                  <ListDowloadVideo
+                    optionWidth={Number(JSON.parse(values.content).optionWidth)}
+                    type={Number(JSON.parse(values.content).type)}
+                    key={index}
+                  />
                 );
               }
               if (values.name === 'TabQuestions' && values.content !== null) {
@@ -201,7 +228,12 @@ function BlockRender({ data }) {
                 return <CustomTab data={JSON.parse(values.content)} id={values.id} key={index} />;
               }
               if (values.name === 'BlockSMEIntro' && values.content !== null) {
-                return <SMEIntro key={index} />;
+                return (
+                  <SMEIntro
+                    key={index}
+                    optionWidth={Number(JSON.parse(values.content).optionWidth)}
+                  />
+                );
               }
               if (values.name === 'Form Step' && values.content !== null) {
                 return <FormStep key={index} data={JSON.parse(values.content)} />;

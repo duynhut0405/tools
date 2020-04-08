@@ -5,7 +5,8 @@ import ProppTypes from 'prop-types';
 import { searchBranchesService, getProvinceService, getDistrictService } from '../../services/map';
 
 const propTypes = {
-  listBranches: ProppTypes.array
+  listBranches: ProppTypes.array,
+  data: ProppTypes.object
 };
 
 const searchBranches = async (query, setData) => {
@@ -29,7 +30,7 @@ const getDistrict = async (id, setData) => {
   }
 };
 
-function Transaction() {
+function Transaction({ data }) {
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [district, setDistrict] = useState('');
   const [branches_type, setBranchesType] = useState('Branch');
@@ -78,8 +79,19 @@ function Transaction() {
     setProvince(provinceItem.value);
     getDistrict(provinceItem.value, setListDistrict);
   };
+  let padding = '';
+  if (data.optionWidth === '2') {
+    padding = 'sec-tb';
+  } else if (data.optionWidth === '3') {
+    padding = 'sec-t';
+  } else if (data.optionWidth === '4') {
+    padding = 'sec-b';
+  } else {
+    padding = 'sec-';
+  }
+
   return (
-    <div className="wrap-list-map">
+    <div className={`wrap-list-map ${padding}`}>
       <div className="row grid-space-0">
         <div className="col-md-4 ">
           <BoxSearch
