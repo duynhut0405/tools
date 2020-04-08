@@ -5,6 +5,7 @@ import { getPagesByIdService } from '../../services/page';
 import { useTranslation } from 'react-i18next';
 import Carousel from 'react-multi-carousel';
 import CustomPageItem from './BlockPageItem/CustomPageItem';
+
 const propTypes = {
   data: Proptypes.object.isRequired,
   type: Proptypes.string,

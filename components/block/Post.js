@@ -21,6 +21,7 @@ function Post({ data, type }) {
       setActive(true);
     }
   }, [page]);
+
   const showPage = () => {
     setActive(false);
     setPage(page + 3);

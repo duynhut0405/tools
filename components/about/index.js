@@ -101,10 +101,6 @@ function About({ data, listNews, getNews }) {
   );
 }
 
-About.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'about']
-});
-
 const mapStateToProps = state => {
   return {
     listNews: state.newsReducer.listNewsByCategory

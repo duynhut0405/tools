@@ -12,7 +12,7 @@ function Financial({ padding }) {
   const date = new Date();
   const getList = () => {
     getRegulationListYear(1, 0, 10, 0, moment(date).format('YYYY')).then(res => {
-      if (res.data !== undefined && res.data !== null && res.status === 200) {
+      if (res && res.data !== null && res.status === 200) {
         setList(res.data);
       }
     });

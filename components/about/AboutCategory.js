@@ -67,10 +67,6 @@ function AboutCategory({ data, categories }) {
   );
 }
 
-AboutCategory.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'about']
-});
-
 AboutCategory.propTypes = propTypes;
 
 export default withTranslation('common')(AboutCategory);
