@@ -14,6 +14,7 @@ import { setLang, getFlag } from '../../utils/cookie';
 import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
 import '../../styles/custom.css';
+import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -32,7 +33,8 @@ const propTypes = {
   getMenuNav: PropTypes.func,
   getMenuFooterTop: PropTypes.func,
   getMenuFooterMain: PropTypes.func,
-  getMenuFooterBottom: PropTypes.func
+  getMenuFooterBottom: PropTypes.func,
+  canonical: PropTypes.string
 };
 
 function Layout({
@@ -52,7 +54,8 @@ function Layout({
   getMenuNav,
   getMenuFooterTop,
   getMenuFooterMain,
-  getMenuFooterBottom
+  getMenuFooterBottom,
+  canonical
 }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [flag, setFlag] = useState('vn');
@@ -165,6 +168,7 @@ function Layout({
             href="https://www.mbbank.com.vn/images/icons/favicon.ico"
             type="image/x-icon"
           />
+          {ReactHtmlParser(canonical)}
         </Head>
         <div id="wrapper">
           <div id="panel">

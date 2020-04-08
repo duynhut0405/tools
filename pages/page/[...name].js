@@ -16,13 +16,17 @@ const propTypes = {
 };
 
 function Page({ page, silder, menuMiddle, routerURL, listSlug }) {
+  console.log('page:', page);
+  const link_canonical = page.meta_keyword
+    ? page.meta_keyword
+    : `<link rel="canonical" href="https:www.mbbank.com.vn/page/${page.slug}">`;
   useEffect(() => {
     if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
       document.body.classList.add('title-24');
     }
   }, [page]);
   return (
-    <Layout title={page.meta_title} personalLayout={page.has_sidebar}>
+    <Layout title={page.meta_title} personalLayout={page.has_sidebar} canonical={link_canonical}>
       <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={listSlug} />}
         <Carousel silder={silder} />
