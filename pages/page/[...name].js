@@ -20,6 +20,7 @@ function Page({ page, silder, menuMiddle, routerURL, listSlug }) {
   const link_canonical = page.meta_keyword
     ? page.meta_keyword
     : `<link rel="canonical" href="https:www.mbbank.com.vn/page/${page.slug}">`;
+    console.log('link_canonical:', link_canonical)
   useEffect(() => {
     if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
       document.body.classList.add('title-24');
