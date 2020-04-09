@@ -11,10 +11,11 @@ const propTypes = {
   minValue: Proptypes.number,
   maxValue: Proptypes.number,
   interest_rate: Proptypes.number,
-  t: Proptypes.func
+  t: Proptypes.func,
+  padding: Proptypes.string
 };
 
-function Tool7({ t, minValue, maxValue, interest_rate }) {
+function Tool7({ t, minValue, maxValue, interest_rate, padding }) {
   const [loan_amount, setLoanAmount] = useState('0');
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);

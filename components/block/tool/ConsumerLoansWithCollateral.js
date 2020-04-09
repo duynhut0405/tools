@@ -11,7 +11,8 @@ const propTypes = {
   minValue: Proptypes.number,
   maxValue: Proptypes.number,
   interest_rate: Proptypes.number,
-  t: Proptypes.func
+  t: Proptypes.func,
+  padding: Proptypes.string
 };
 
 function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate, padding }) {
