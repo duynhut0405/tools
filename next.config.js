@@ -16,7 +16,12 @@ module.exports = withFonts(
             }
           }
         });
-        return config;
+        return {
+          ...config,
+          node: {
+            fs: 'empty'
+          }
+        };
       },
       env: {
         DOMAIN: 'https://mbbank3.mangoads.com.vn:8443/'
