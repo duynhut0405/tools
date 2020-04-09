@@ -29,7 +29,7 @@ function Questions({ data, id }) {
       setPage(4);
     }
   };
-  
+
   let padding = '';
   if (data[0].ptionWidth === '2') {
     padding = 'sec-tb';

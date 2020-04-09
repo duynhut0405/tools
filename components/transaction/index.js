@@ -33,7 +33,7 @@ const getDistrict = async (id, setData) => {
 function Transaction({ data }) {
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [district, setDistrict] = useState('');
-  const [branches_type, setBranchesType] = useState('Branch');
+  const [branches_type, setBranchesType] = useState('branch');
   const [province, setProvince] = useState('');
   const [query, setQuery] = useState('');
   const [listBranches, setListBranches] = useState([]);

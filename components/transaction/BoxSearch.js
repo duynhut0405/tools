@@ -28,14 +28,20 @@ function BoxSearch({
     <div className="ajax-content-map" style={{ position: 'unset', padding: '15px' }}>
       <ul className="menu row grid-space-0">
         <li
-          className={branches_type === 'Branch' ? 'col-6 active' : 'col-6'}
-          onClick={() => setBranchesType('Branch')}
+          className={branches_type === 'branch' ? 'col-4 active' : 'col-4'}
+          onClick={() => setBranchesType('branch')}
         >
           <span className="item">Chi nhánh</span>
         </li>
         <li
-          className={branches_type === 'ATM' ? 'col-6 active' : 'col-6'}
-          onClick={() => setBranchesType('ATM')}
+          className={branches_type === 'transaction_online' ? 'col-4 active' : 'col-4'}
+          onClick={() => setBranchesType('transaction_online')}
+        >
+          <span className="item">ATM</span>
+        </li>
+        <li
+          className={branches_type === 'transaction' ? 'col-4 active' : 'col-4'}
+          onClick={() => setBranchesType('transaction')}
         >
           <span className="item">ATM</span>
         </li>
