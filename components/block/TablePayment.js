@@ -10,7 +10,6 @@ const propTypes = {
 };
 
 function TablePayment({ data, id, optionWidth }) {
-  console.log('data:', data)
   let padding = '';
   if (optionWidth === '2') {
     padding = 'sec-tb';
