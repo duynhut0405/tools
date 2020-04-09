@@ -170,8 +170,8 @@ function Layout({
             type="image/x-icon"
           />
           {ReactHtmlParser(canonical)}
-          { noIndex && <meta name="robots" content="noindex, nofollow" />}
-          { !noIndex && <meta name="robots" content="index, follow" />}
+          {noIndex && <meta name="robots" content="noindex, nofollow" />}
+          {!noIndex && <meta name="robots" content="index, follow" />}
         </Head>
         <div id="wrapper">
           <div id="panel">
