@@ -17,6 +17,7 @@
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
     "dom-parser": "^0.1.6",
+    "fs": "0.0.1-security",
     "google-map-react": "^1.1.7",
     "html-dom-parser": "^0.2.3",
     "js-cookie": "^2.2.1",

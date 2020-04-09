@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getLang } from './cookie';
 
 const request = axios.create({
-  baseURL: `https://mbbank3.mangoads.com.vn:8443/${getLang}/api/fe`,
+  baseURL: `https://mbbank3.mangoads.com.vn:8443/${getLang()}/api/fe`,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'
@@ -13,7 +13,7 @@ const request = axios.create({
 request.interceptors.request.use(
   config => {
     // const lang = getLang();
-    config.baseURL = `https://sapotacorp.com:8443/${getLang()}/api/fe`;
+    config.baseURL = `https://mbbank3.mangoads.com.vn:8443/${getLang()}/api/fe`;
     return config;
   },
   error => {
