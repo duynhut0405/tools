@@ -13,7 +13,7 @@ const request = axios.create({
 request.interceptors.request.use(
   config => {
     // const lang = getLang();
-    config.baseURL = `https://mbbank3.mangoads.com.vn:8443/${getLang()}/api/fe`;
+    // config.baseURL = `https://mbbank3.mangoads.com.vn:8443/${getLang()}/api/fe`;
     return config;
   },
   error => {
