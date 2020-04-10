@@ -23,15 +23,16 @@ class NextApp extends App {
     }
     fs.open('public/robots.txt', 'w+', (err, fd) => {
       if (err) {
-        return fs.close(fd);
+        console.log(err);
       }
       fs.writeFile(fd, file, writeErr => {
         if (writeErr) {
-          return fs.close(fd);
+          console.log(writeErr);
         }
-        return fs.close(fd);
+        fs.close(fd, err => {
+          console.log(err);
+        });
       });
-      return fs.close(fd);
     });
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx });
