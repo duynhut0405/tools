@@ -34,6 +34,7 @@ import FormStep from '../block/formStep';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import NewCard from '../NewCard';
+import TableRate from '../tableRate';
 
 const propTypes = {
   data: PropTypes.array,
@@ -249,6 +250,9 @@ function BlockRender({ data, pageId }) {
               }
               if (values.name === 'Banner' && values.content !== null) {
                 return <Banner key={index} data={JSON.parse(values.content)} id={values.id} />;
+              }
+              if (values.name === 'Bảng tỷ giá' && values.content !== null) {
+                return <TableRate key={index} data={JSON.parse(values.content)} id={values.id} />;
               }
               return null;
             }

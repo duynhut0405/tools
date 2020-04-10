@@ -111,5 +111,14 @@
         "title": "Vui lòng đến chi nhánh đã đăng ký để xác thực thông tin tài khoản",
         "go_home": " Về trang chủ",
         "continue": "Tiếp tục"
+    },
+    "table_rate": {
+        "key": "Kí hiệu ngoại tệ",
+        "name": "Tên ngoại tệ",
+        "buy": "Mua (tiền mặt)",
+        "buy_transfer": "Mua chuyển khoản",
+        "sell": "Bán",
+        "search": "Tra cứu tỉ giá theo ngày",
+        "submit": "Tra cứu"
     }
 }

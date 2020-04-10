@@ -13,4 +13,18 @@ const getRateService = () => {
     });
 };
 
-export { getRateService };
+const searchRate = query => {
+  return request({
+    url: '/exchange_rate/search',
+    method: 'GET',
+    params: query
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
+export { getRateService, searchRate };
