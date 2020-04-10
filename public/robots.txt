@@ -1,6 +1,6 @@
+# robots.txt
 User-agent: *
-Allow: /
-Allow: /ads.txt
-Disallow: /.well-known/amphtml/apikey.pub
-Sitemap: https://vnexpress.net/sitemap.xml
-Sitemap: https://vnexpress.net/google-news-sitemap.xml
+Disallow: /NextJS/
+Disallow: /api/
+Disallow: /resources/
+Disallow: /bin/
