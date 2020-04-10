@@ -12,6 +12,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'react-rangeslider/lib/index.css';
 import fs from 'fs';
 import { getStoreFont } from '../services/storefont';
+import { getLang } from '../utils/cookie';
 
 class NextApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -21,19 +22,21 @@ class NextApp extends App {
     if (res && res !== undefined && res.status === 200) {
       file = res.data.robots.text;
     }
-    fs.open('public/robots.txt', 'w+', (err, fd) => {
-      if (err) {
-        console.log(err);
-      }
-      fs.writeFile(fd, file, writeErr => {
-        if (writeErr) {
-          console.log(writeErr);
+    if (getLang() === 'vi') {
+      fs.open('public/robots.txt', 'w+', (err, fd) => {
+        if (!err) {
+          fs.writeFile(fd, file, writeErr => {
+            if (writeErr) {
+              return writeErr;
+            }
+            return fs.close(fd, closeErr => {
+              return closeErr;
+            });
+          });
         }
-        fs.close(fd, err => {
-          console.log(err);
-        });
       });
-    });
+    }
+
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx });
     }

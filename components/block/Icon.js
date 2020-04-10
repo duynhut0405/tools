@@ -66,7 +66,7 @@ function Icon({ data, id }) {
   } else {
     padding = 'sec-';
   }
-  
+
   return (
     <React.Fragment>
       {data[0].type === '1' && (
@@ -133,7 +133,7 @@ function Icon({ data, id }) {
                 <div className="menuicon">
                   {map(data, (items, index) => (
                     <div className={`item  efch-${index + 3} ef-img-t`} key={index}>
-                      <a href="#" className="link">
+                      <a href={items.url} className="link">
                         <div className="img">
                           <img
                             className=" loaded loaded"
@@ -209,15 +209,17 @@ function Icon({ data, id }) {
                 >
                   {map(data, (item, index) => (
                     <div className={`item efch-${index + 2} ef-img-l `} key={index}>
-                      <div className="img">
-                        <img
-                          className=" loaded loaded"
-                          data-lazy-type="image"
-                          src={`${process.env.DOMAIN}${item.urlImage}`}
-                          style={{ width: '160px', height: '52px' }}
-                        />
-                      </div>
-                      <div className="des">{item.note_1}</div>
+                      <a href={item.url}>
+                        <div className="img">
+                          <img
+                            className=" loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${item.urlImage}`}
+                            style={{ width: '160px', height: '52px' }}
+                          />
+                        </div>
+                        <div className="des">{item.note_1}</div>
+                      </a>
                     </div>
                   ))}
                 </Carousel>
@@ -255,7 +257,7 @@ function Icon({ data, id }) {
                 {map(data, (items, index) => {
                   return (
                     <div className="col-sm-4 efch-2 ef-img-t" key={index}>
-                      <a className="item" href="#" style={{ padding: '40px 10px' }}>
+                      <a className="item" href={items.url} style={{ padding: '40px 10px' }}>
                         <div className="img ">
                           <img
                             className="loaded loaded"
@@ -330,7 +332,7 @@ function Icon({ data, id }) {
                   {map(data, (items, index) => (
                     <div className="item ef-img-t item_carousel" key={index}>
                       <a
-                        href="#"
+                        href={items.url}
                         className="link"
                         style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                       >
@@ -380,24 +382,26 @@ function Icon({ data, id }) {
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
-                      <div className="item">
-                        <div className="img ">
-                          <img
-                            className="loaded loaded"
-                            data-lazy-type="image"
-                            src={`${process.env.DOMAIN}${items.urlImage}`}
-                          />
-                        </div>
-                        <div className="divtext">
-                          <h4 className="title equal" style={{ textAlign: 'center' }}>
-                            {items.note_1}
-                          </h4>
-                          <div className="desc" style={{ textAlign: 'center' }}>
-                            {items.note_2}
+                    <div className="col-sm-6 col-md-4 efch-2 ef-img-t" key={index}>
+                      <a href={items.url}>
+                        <div className="item">
+                          <div className="img ">
+                            <img
+                              className="loaded loaded"
+                              data-lazy-type="image"
+                              src={`${process.env.DOMAIN}${items.urlImage}`}
+                            />
+                          </div>
+                          <div className="divtext">
+                            <h4 className="title equal" style={{ textAlign: 'center' }}>
+                              {items.note_1}
+                            </h4>
+                            <div className="desc" style={{ textAlign: 'center' }}>
+                              {items.note_2}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </a>
                     </div>
                   );
                 })}
@@ -417,16 +421,18 @@ function Icon({ data, id }) {
                 {map(data, (items, index) => {
                   return (
                     <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
-                      <div className="item">
-                        <div className="divtext" style={{ paddingTop: '29px' }}>
-                          <h4 className="title equal" style={{ textAlign: 'center' }}>
-                            {items.note_1}
-                          </h4>
-                          <div className="desc" style={{ textAlign: 'center' }}>
-                            {items.note_2}
+                      <a href={items.url}>
+                        <div className="item">
+                          <div className="divtext" style={{ paddingTop: '29px' }}>
+                            <h4 className="title equal" style={{ textAlign: 'center' }}>
+                              {items.note_1}
+                            </h4>
+                            <div className="desc" style={{ textAlign: 'center' }}>
+                              {items.note_2}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </a>
                     </div>
                   );
                 })}
