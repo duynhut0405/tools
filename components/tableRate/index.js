@@ -15,7 +15,7 @@ const getRate = async (query, setData) => {
   if (query === null) {
     res = await searchRate();
   } else {
-    res = await searchRate({ dateStart: query });
+    res = await searchRate({ date: query });
   }
   if (res && res !== undefined && res.status === 200) {
     setData(res.data);
