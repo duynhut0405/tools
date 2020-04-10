@@ -22,14 +22,6 @@ const AntTab = withStyles(theme => ({
     fontSize: '24px',
     fontWeight: theme.typography.fontWeightBold,
     marginRight: theme.spacing(4),
-    fontFamily: [
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(','),
     '&:hover': {
       color: '#9BE6C8',
       opacity: 1
@@ -37,6 +29,7 @@ const AntTab = withStyles(theme => ({
   },
   selected: {}
 }))(props => <Tab disableRipple {...props} />);
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -44,6 +37,7 @@ function TabPanel(props) {
     <Typography
       component="div"
       role="tabpanel"
+      style={{ height: '250px', overflow: 'auto' }}
       hidden={value !== index}
       id={`scrollable-prevent-tabpanel-${index}`}
       aria-labelledby={`scrollable-prevent-tab-${index}`}
@@ -80,6 +74,7 @@ function ExchangeRate({ tab1, tab2, data1 }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <div className="divtigia">
       <div className={classes.demo1}>
