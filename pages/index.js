@@ -21,7 +21,12 @@ function Home({ page, silder, menuMiddle, listRate }) {
   });
 
   return (
-    <Layout title={page.meta_title}>
+    <Layout
+      title={page.meta_title}
+      meta_title={page.meta_title}
+      meta_description={page.meta_description}
+      meta_keyword={page.meta_keyword}
+    >
       <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={[]} />}
         <Carousel silder={silder} />

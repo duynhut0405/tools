@@ -31,6 +31,9 @@ function Page({ page, silder, menuMiddle, routerURL, listSlug }) {
       personalLayout={page.has_sidebar}
       canonical={link_canonical}
       noIndex={noIndex}
+      meta_title={page.meta_title}
+      meta_description={page.meta_description}
+      meta_keyword={page.meta_keyword}
     >
       <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={listSlug} />}

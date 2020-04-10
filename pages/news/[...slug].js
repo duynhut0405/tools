@@ -20,9 +20,13 @@ const propTypes = {
 
 function New({ socialLink, news, category_name, category_url }) {
   const { t } = useTranslation();
-
   return (
-    <Layout title={news.news === null ? '' : news.news.meta_title}>
+    <Layout
+      title={news.news === null ? '' : news.news.meta_title}
+      meta_title={news.news.meta_title}
+      meta_description={news.news.meta_description}
+      meta_keyword={news.news.meta_keyword}
+    >
       {news.news !== null && (
         <>
           <div className="entry-breadcrumb">

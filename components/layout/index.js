@@ -34,11 +34,18 @@ const propTypes = {
   getMenuFooterTop: PropTypes.func,
   getMenuFooterMain: PropTypes.func,
   getMenuFooterBottom: PropTypes.func,
-  canonical: PropTypes.string
+  canonical: PropTypes.string,
+  noIndex: PropTypes.bool,
+  meta_title: PropTypes.string,
+  meta_description: PropTypes.string,
+  meta_keyword: PropTypes.string
 };
 
 function Layout({
   title,
+  meta_title,
+  meta_description,
+  meta_keyword,
   personalLayout,
   children,
   settingFooter,
@@ -170,6 +177,9 @@ function Layout({
             type="image/x-icon"
           />
           {ReactHtmlParser(canonical)}
+          {meta_title && <meta name="title" content={meta_title} />}
+          {meta_description && <meta name="description" content={meta_description} />}
+          {meta_keyword && <meta name="keywords" content={meta_keyword} />}
           {noIndex && <meta name="robots" content="noindex, nofollow" />}
           {!noIndex && <meta name="robots" content="index, follow" />}
         </Head>
