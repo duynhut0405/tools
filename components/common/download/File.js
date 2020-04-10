@@ -14,7 +14,7 @@ function File({ data }) {
           {map(data, (item, index) => {
             if (index % 2 === 0) {
               return (
-                <li>
+                <li key={index}>
                   <span className="title">
                     <i className="icon-t14"></i> {item.name}
                   </span>
@@ -35,7 +35,7 @@ function File({ data }) {
           {map(data, (item, index) => {
             if (index % 2 !== 0) {
               return (
-                <li>
+                <li key={index}>
                   <span className="title">
                     <i className="icon-t14"></i> {item.name}
                   </span>

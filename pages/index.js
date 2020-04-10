@@ -9,10 +9,10 @@ import { withTranslation } from '../i18n';
 import Proptypes from 'prop-types';
 
 const propTypes = {
-  page: Proptypes.object.isRequired,
-  silder: Proptypes.array.isRequired,
+  page: Proptypes.object,
+  silder: Proptypes.array,
   menuMiddle: Proptypes.object,
-  listRate: Proptypes.object.isRequired
+  listRate: Proptypes.object
 };
 
 function Home({ page, silder, menuMiddle, listRate }) {

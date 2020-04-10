@@ -5,8 +5,8 @@ import moment from 'moment';
 import Proptypes from 'prop-types';
 
 const propTypes = {
-  listRegulation: Proptypes.array.isRequired,
-  seachRegulation: Proptypes.func.isRequired,
+  listRegulation: Proptypes.array,
+  seachRegulation: Proptypes.func,
   padding: Proptypes.string
 };
 

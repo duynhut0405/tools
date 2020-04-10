@@ -42,7 +42,7 @@ function NewMB({ t, data, padding }) {
               {map(listNews, (news, index) => {
                 if (index < 2) {
                   return (
-                    <div className="col-md-6">
+                    <div className="col-md-6" key={index}>
                       <Link href="/news/[...slug]" as={`/news/${news.url}`}>
                         <a className="item efch-2 ef-img-l equal">
                           <div className="img tRes_71">
@@ -74,7 +74,7 @@ function NewMB({ t, data, padding }) {
               {map(listNews, (news, index) => {
                 if (index >= 2) {
                   return (
-                    <Link href="/news/[...slug]" as={`/news/${news.url}`}>
+                    <Link href="/news/[...slug]" as={`/news/${news.url}`} key={index}>
                       <a className="item item-inline-table">
                         <div className="img">
                           <img

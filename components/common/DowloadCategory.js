@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Fillter, DowloadFile, DowloadVideo } from './download';
+// import { Fillter, DowloadFile, DowloadVideo } from './download';
 import moment from 'moment';
 import { RegulationActions } from '../../store/actions';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const propTypes = {
-  listRegulation: Proptypes.array.isRequired,
-  typeRegulation: Proptypes.array.isRequired,
-  seachRegulation: Proptypes.func.isRequired,
-  getTypeRegulation: Proptypes.func.isRequired,
+  listRegulation: Proptypes.array,
+  typeRegulation: Proptypes.array,
+  seachRegulation: Proptypes.func,
+  getTypeRegulation: Proptypes.func,
   widthOption: Proptypes.string
 };
 

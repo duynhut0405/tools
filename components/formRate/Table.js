@@ -11,7 +11,7 @@ const propTypes = {
 function TableRate({ data }) {
   const { t } = useTranslation();
   return (
-    <table className="table table-borderless">
+    <table className="table">
       <tbody>
         <tr>
           <th>{t('codeNT')}</th>

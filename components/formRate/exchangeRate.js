@@ -81,7 +81,7 @@ function ExchangeRate({ tab1, tab2, data1 }) {
     setValue(newValue);
   };
   return (
-    <div>
+    <div className="divtigia">
       <div className={classes.demo1}>
         <AntTabs value={value} onChange={handleChange} aria-label="ant example">
           <AntTab label={tab1} />

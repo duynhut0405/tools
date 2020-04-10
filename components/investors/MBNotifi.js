@@ -39,7 +39,7 @@ function MBNotifi({ t, data, padding }) {
         <div className="list-5 list-5-1 row list-item">
           {map(listNews, news => {
             return (
-              <div className="col-md-4">
+              <div className="col-md-4" key={news.newsId}>
                 <Link href="/news/[...slug]" as={`/news/${news.url}`}>
                   <a className="item efch-2 ef-img-l equal">
                     <div className="divtext">
