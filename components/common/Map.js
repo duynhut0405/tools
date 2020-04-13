@@ -1,6 +1,8 @@
 import React from 'react';
 import { map } from 'lodash';
-import GoogleMapReact from 'google-map-react';
+import { compose, withProps } from 'recompose';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
+import Marker from './Marker';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -10,30 +12,24 @@ const propTypes = {
 };
 
 function Map({ data, location }) {
-  const AnyReactComponent = ({ text }) => (
-    <div>
-      <img src="/static/images/_pin.png" alt="pin" />
-      <div style={{ width: '200px', color: '#33333', fontWeight: 'bold' }}>{text}</div>
-    </div>
-  );
-  return (
-    <GoogleMapReact
-      bootstrapURLKeys={{ key: 'AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU' }}
-      center={location}
-      zoom={9}
-    >
-      <>
-        {map(data, (item, index) => (
-          <AnyReactComponent
-            key={index}
-            lat={item.latitude}
-            lng={item.longitude}
-            text={item.address_name}
-          />
-        ))}
-      </>
-    </GoogleMapReact>
-  );
+  const MyMapComponent = compose(
+    withProps({
+      googleMapURL:
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU&libraries=geometry,drawing,places',
+      loadingElement: <div style={{ height: `100%` }} />,
+      containerElement: <div style={{ height: `600px` }} />,
+      mapElement: <div style={{ height: `100%` }} />
+    }),
+    withScriptjs,
+    withGoogleMap
+  )(() => (
+    <GoogleMap defaultZoom={8} defaultCenter={location}>
+      {map(data, (item, index) => {
+        return <Marker item={item} index={index} />;
+      })}
+    </GoogleMap>
+  ));
+  return <React.Fragment>{MyMapComponent()}</React.Fragment>;
 }
 
 Map.propTypes = propTypes;
