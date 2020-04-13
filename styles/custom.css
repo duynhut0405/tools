@@ -14,4 +14,7 @@
 .fix-select1 {
   z-index: 90;
 }
+.infoWindow p {
+  margin-bottom: 0;
+}
 /* End edit*/

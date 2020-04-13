@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Marker, InfoWindow } from 'react-google-maps';
+import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -24,6 +25,7 @@ function Markers({ index, item }) {
                 <div className="address">
                   <i className="icon-map">{item.address}</i>
                 </div>
+                <div>{ReactHtmlParser(item.description)}</div>
               </div>
             </div>
           </div>

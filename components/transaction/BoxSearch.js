@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { map } from 'lodash';
+import { map, debounce } from 'lodash';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -24,6 +24,9 @@ function BoxSearch({
   setQuery,
   setDistrict
 }) {
+  const onSearch = debounce(value => {
+    setQuery(value);
+  }, 1000);
   return (
     <div className="ajax-content-map">
       <ul className="menu row grid-space-0">
@@ -51,7 +54,7 @@ function BoxSearch({
         <input
           type="text"
           placeholder="Địa điểm"
-          onChange={event => setQuery(event.target.value)}
+          onChange={event => onSearch(event.target.value)}
         />
         <button>
           <i className="icon-search-2"></i>
@@ -62,7 +65,10 @@ function BoxSearch({
         <Select
           className="fix-select"
           placeholder="Tỉnh/ Thành phố"
-          options={map(listProvince, province => ({ value: province.id, label: province.name }))}
+          options={map([{ id: '', name: 'Tất cả' }, ...listProvince], province => ({
+            value: province.id,
+            label: province.name
+          }))}
           onChange={handleProvince}
         />
       </div>
@@ -71,7 +77,10 @@ function BoxSearch({
         <Select
           className="fix-select1"
           placeholder="Quận/Huyện"
-          options={map(listDistrict, district => ({ value: district.id, label: district.name }))}
+          options={map([{ id: '', name: 'Tất cả' }, ...listDistrict], district => ({
+            value: district.id,
+            label: district.name
+          }))}
           onChange={provinceItem => setDistrict(provinceItem.value)}
         />
       </div>

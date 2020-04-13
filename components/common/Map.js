@@ -25,11 +25,11 @@ function Map({ data, location }) {
   )(() => (
     <GoogleMap defaultZoom={8} defaultCenter={location}>
       {map(data, (item, index) => {
-        return <Marker item={item} index={index} />;
+        return <Marker item={item} index={index} key={index} />;
       })}
     </GoogleMap>
   ));
-  return <React.Fragment>{MyMapComponent()}</React.Fragment>;
+  return <div style={{ height: '600px' }}>{MyMapComponent()}</div>;
 }
 
 Map.propTypes = propTypes;

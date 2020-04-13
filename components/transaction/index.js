@@ -90,7 +90,6 @@ function Transaction({ data, id }) {
   } else {
     padding = 'sec-';
   }
-
   return (
     <div className={`wrap-list-map ${padding}`} id={id}>
       <div className="row grid-space-0">
