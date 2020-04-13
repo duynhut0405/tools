@@ -40,13 +40,12 @@ function Questions({ data, id }) {
   } else {
     padding = 'sec-';
   }
-
   if (data && data.length > 0) {
     return (
       <section className={`${padding} sec-cauhoi`} id={id}>
         <div className="container">
           <div className="entry-head text-center block-question-index">
-            {data.title !== undefined && <h2 className="ht ">{data.title || ''}</h2>}
+            {data && data[0].title !== undefined && <h2 className="ht ">{data[0].title || ''}</h2>}
           </div>
           <div className="accodion accodion-1 accodion-1-2">
             {map(list, (item, index) => (

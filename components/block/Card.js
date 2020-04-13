@@ -35,7 +35,7 @@ function Card({ data, type, optionWidth }) {
                     <div className="col-sm-6" key={index}>
                       {/* <a href="#" className={`item item-${index + 1} tRes_55`}> */}
                       <a
-                        href="#"
+                        href={items.url}
                         className={`${
                           (index + 1) % 2 === 0 ? 'item item-1 tRes_55' : 'item item-2 tRes_55'
                         }`}
@@ -115,96 +115,106 @@ function Card({ data, type, optionWidth }) {
               </div>
               <div className="  row grid-space-20 ">
                 {data && data.listCard && data.listCard[0] ? (
-                  <div className="col-lg-8 col-sm-12  ">
-                    <div className="item item-1  ">
-                      <div className="img tRes_92">
-                        <img
-                          className="loaded loaded"
-                          data-lazy-type="image"
-                          src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
-                        />
+                  <div className="col-lg-8 col-sm-12 ">
+                    <a href={data.listCard[0].url}>
+                      <div className="item item-1  ">
+                        <div className="img tRes_92">
+                          <img
+                            className="loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
+                          />
+                        </div>
+                        <div className="divtext">
+                          <div className="t1">{ReactHtmlParser(data.listCard[0].note_1)}</div>
+                          <div className="t2">{ReactHtmlParser(data.listCard[0].note_2)}</div>
+                        </div>
                       </div>
-                      <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data.listCard[0].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data.listCard[0].note_2)}</div>
-                      </div>
-                    </div>
+                    </a>
                   </div>
                 ) : (
                   ''
                 )}
                 {data && data.listCard && data.listCard[1] ? (
                   <div className="col-lg-4 col-sm-6">
-                    <div className="item item-2  ">
-                      <div className="img tRes_92">
-                        <img
-                          className="loaded loaded"
-                          data-lazy-type="image"
-                          src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
-                        />
+                    <a href={data.listCard[1].url}>
+                      <div className="item item-2  ">
+                        <div className="img tRes_92">
+                          <img
+                            className="loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
+                          />
+                        </div>
+                        <div className="divtext">
+                          <div className="t1">{ReactHtmlParser(data.listCard[1].note_1)}</div>
+                          <div className="t2">{ReactHtmlParser(data.listCard[1].note_2)}</div>
+                        </div>
                       </div>
-                      <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data.listCard[1].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data.listCard[1].note_2)}</div>
-                      </div>
-                    </div>
+                    </a>
                   </div>
                 ) : (
                   ''
                 )}
                 {data && data.listCard && data.listCard[2] ? (
                   <div className="col-lg-4 col-sm-6">
-                    <div className="item item-2  ">
-                      <div className="img tRes_92">
-                        <img
-                          className="loaded loaded"
-                          data-lazy-type="image"
-                          src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
-                        />
+                    <a href={data.listCard[2].url}>
+                      <div className="item item-2  ">
+                        <div className="img tRes_92">
+                          <img
+                            className="loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
+                          />
+                        </div>
+                        <div className="divtext">
+                          <div className="t1">{ReactHtmlParser(data.listCard[2].note_1)}</div>
+                          <div className="t2">{ReactHtmlParser(data.listCard[2].note_2)}</div>
+                        </div>
                       </div>
-                      <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data.listCard[2].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data.listCard[2].note_2)}</div>
-                      </div>
-                    </div>
+                    </a>
                   </div>
                 ) : (
                   ''
                 )}
                 {data && data.listCard && data.listCard[3] ? (
                   <div className="col-lg-4 col-sm-6">
-                    <div className="item item-2  ">
-                      <div className="img tRes_92">
-                        <img
-                          className="loaded loaded"
-                          data-lazy-type="image"
-                          src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
-                        />
+                    <a href={data.listCard[3].url}>
+                      <div className="item item-2  ">
+                        <div className="img tRes_92">
+                          <img
+                            className="loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
+                          />
+                        </div>
+                        <div className="divtext">
+                          <div className="t1">{ReactHtmlParser(data.listCard[3].note_1)}</div>
+                          <div className="t2">{ReactHtmlParser(data.listCard[3].note_2)}</div>
+                        </div>
                       </div>
-                      <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data.listCard[3].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data.listCard[3].note_2)}</div>
-                      </div>
-                    </div>
+                    </a>
                   </div>
                 ) : (
                   ''
                 )}
                 {data && data.listCard && data.listCard[4] ? (
                   <div className="col-lg-4 col-sm-6">
-                    <div className="item item-2  ">
-                      <div className="img tRes_92">
-                        <img
-                          className="loaded loaded"
-                          data-lazy-type="image"
-                          src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
-                        />
+                    <a href={data.listCard[4].url}>
+                      <div className="item item-2  ">
+                        <div className="img tRes_92">
+                          <img
+                            className="loaded loaded"
+                            data-lazy-type="image"
+                            src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
+                          />
+                        </div>
+                        <div className="divtext">
+                          <div className="t1">{ReactHtmlParser(data.listCard[4].note_1)}</div>
+                          <div className="t2">{ReactHtmlParser(data.listCard[4].note_2)}</div>
+                        </div>
                       </div>
-                      <div className="divtext">
-                        <div className="t1">{ReactHtmlParser(data.listCard[4].note_1)}</div>
-                        <div className="t2">{ReactHtmlParser(data.listCard[4].note_2)}</div>
-                      </div>
-                    </div>
+                    </a>
                   </div>
                 ) : (
                   ''
