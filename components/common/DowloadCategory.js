@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { Fillter, DowloadFile, DowloadVideo } from './download';
+import { Fillter, DowloadFile, DowloadVideo } from './download';
 import moment from 'moment';
 import { RegulationActions } from '../../store/actions';
 import Proptypes from 'prop-types';
@@ -10,7 +10,8 @@ const propTypes = {
   typeRegulation: Proptypes.array,
   seachRegulation: Proptypes.func,
   getTypeRegulation: Proptypes.func,
-  widthOption: Proptypes.string
+  optionWidth: Proptypes.string,
+  id: Proptypes.number
 };
 
 function DowloadCategory({
@@ -18,7 +19,8 @@ function DowloadCategory({
   listRegulation,
   typeRegulation,
   seachRegulation,
-  getTypeRegulation
+  getTypeRegulation,
+  id
 }) {
   const date = new Date();
   const [year, setYear] = useState(moment(date).format('YYYY'));
@@ -46,14 +48,14 @@ function DowloadCategory({
 
   return (
     <React.Fragment>
-      <div className={`accodion accodion-2 container ${padding}`}>
-        {/* <Fillter
+      <div className={`accodion accodion-2 container ${padding}`} id={id}>
+        <Fillter
           type={typeRegulation}
           setDate={event => setYear(event.target.value)}
           setType={event => setDataType(event.target.value)}
         />
         <DowloadFile data={listRegulation} year={year} isChecked />
-        <DowloadVideo data={listRegulation} year={year} /> */}
+        <DowloadVideo data={listRegulation} year={year} />
       </div>
     </React.Fragment>
   );

@@ -10,10 +10,11 @@ import Tool7 from './Tool7';
 import Tool8 from './Tool8';
 
 const propTypes = {
-  content: Proptypes.object
+  content: Proptypes.object,
+  id: Proptypes.number
 };
 
-function Tools({ content }) {
+function Tools({ content, id }) {
   let padding = '';
   if (content.optionWidth === '2') {
     padding = 'sec-tb';
@@ -29,6 +30,7 @@ function Tools({ content }) {
       case 1:
         return (
           <ToolHome
+            id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
@@ -38,6 +40,7 @@ function Tools({ content }) {
       case 2:
         return (
           <ProductionBusiness
+            id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
@@ -47,6 +50,7 @@ function Tools({ content }) {
       case 3:
         return (
           <ConsumerLoansWithCollateral
+            id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
@@ -56,6 +60,7 @@ function Tools({ content }) {
       case 4:
         return (
           <Tool4
+            id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
@@ -65,6 +70,7 @@ function Tools({ content }) {
       case 5:
         return (
           <Tool5
+            id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
@@ -74,6 +80,7 @@ function Tools({ content }) {
       case 6:
         return (
           <Tool6
+            id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
@@ -83,6 +90,7 @@ function Tools({ content }) {
       case 7:
         return (
           <Tool7
+            id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
@@ -92,6 +100,7 @@ function Tools({ content }) {
       case 8:
         return (
           <Tool8
+            id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}

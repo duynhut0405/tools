@@ -12,7 +12,7 @@ const propTypes = {
   getDetailPerson: Proptypes.func
 };
 
-function DetailPerson({ data, detailPerson, getDetailPerson }) {
+function DetailPerson({ data, detailPerson, getDetailPerson, id }) {
   const [modal, setModal] = useState(false);
   let padding = '';
   if (data.optionWidth === '2') {
@@ -26,7 +26,7 @@ function DetailPerson({ data, detailPerson, getDetailPerson }) {
   }
   return (
     <main id="main" className={`${padding}`}>
-      <div className="container">
+      <div className="container" id={id}>
         <div className="sec-b">
           <h2 className="text-center h1">{data.title}</h2>
           <div className="list-8 row list-item">

@@ -5,10 +5,11 @@ import { withTranslation } from '../i18n';
 import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  id: PropTypes.number
 };
 
-function NewCard({ data }) {
+function NewCard({ data, id }) {
   let padding = '';
   if (data[0].optionWidth === '2') {
     padding = 'sec-tb';
@@ -21,7 +22,7 @@ function NewCard({ data }) {
   }
   return (
     <React.Fragment>
-      <section className={`${padding} group-ef loaded`}>
+      <section className={`${padding} group-ef loaded`} id={id}>
         <div className="container">
           <div className="list-5 equalHeight row list-item">
             {map(data, (items, index) => {
@@ -50,10 +51,6 @@ function NewCard({ data }) {
     </React.Fragment>
   );
 }
-
-NewCard.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'newcard']
-});
 
 NewCard.propTypes = propTypes;
 

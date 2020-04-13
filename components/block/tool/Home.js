@@ -9,10 +9,12 @@ import { rate } from '../../../utils/currency';
 const propTypes = {
   maxValue: Proptypes.number,
   interest_rate: Proptypes.number,
-  t: Proptypes.func
+  t: Proptypes.func,
+  padding: Proptypes.string,
+  id: Proptypes.number
 };
 
-function ToolHome({ t, maxValue, interest_rate, padding }) {
+function ToolHome({ t, maxValue, interest_rate, padding, id }) {
   const [estimate_rate, setEstimateRate] = useState('0');
   const [estimate_mortgage, setEstimateMortgage] = useState('0');
   const [amount, SetAmount] = useState('0');
@@ -127,7 +129,7 @@ function ToolHome({ t, maxValue, interest_rate, padding }) {
   };
 
   return (
-    <div className={`container ${padding}`}>
+    <div className={`container ${padding}`} id={id}>
       <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b sec-tb">
         <div className="w-menu-over">

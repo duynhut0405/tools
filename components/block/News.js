@@ -513,7 +513,7 @@ function News({ data, type, id, optionWidth }) {
   }
   if (type === '9') {
     return (
-      <section className={`${padding} sec-b sec-h-4`}>
+      <section className={`${padding} sec-b sec-h-4`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">

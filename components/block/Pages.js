@@ -179,7 +179,7 @@ function Pages({ data, type, id, optionWidth }) {
   }
   if (type && type === '5') {
     return (
-      <section className={` ${padding} sec-cauhoi `}>
+      <section className={` ${padding} sec-cauhoi `} id={id}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
@@ -237,7 +237,7 @@ function Pages({ data, type, id, optionWidth }) {
   }
   if (type && type === '6') {
     return (
-      <section className={padding}>
+      <section className={padding} id={id}>
         <div className="container">
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>

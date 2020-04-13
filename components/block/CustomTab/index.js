@@ -24,7 +24,7 @@ function CustomTab({ data, id }) {
   return (
     <React.Fragment>
       <main id="main" className={padding}>
-        <div className="container">
+        <div className="container" id={id}>
           <div className={`cttab-v3 tabs-total-${data.listTab.length}`}>
             <div className="wrap-tab-menu">
               <div className="tab-menu max500">

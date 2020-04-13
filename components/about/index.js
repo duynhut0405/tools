@@ -12,10 +12,11 @@ import { getListYearNewsService } from '../../services/news';
 const propTypes = {
   listNews: PropTypes.object,
   getNews: PropTypes.func,
-  data: PropTypes.object
+  data: PropTypes.object,
+  id: PropTypes.number
 };
 
-function About({ data, listNews, getNews }) {
+function About({ data, listNews, getNews, id }) {
   const date = new Date();
   const [year, setYear] = useState(moment(date).format('YYYY'));
   const [page, setPage] = useState(1);
@@ -59,7 +60,7 @@ function About({ data, listNews, getNews }) {
   return (
     <>
       <main id="main" className={`${padding}`}>
-        <div className="container">
+        <div className="container" id={id}>
           {data.title && <h1 className="text-center">{data.title}</h1>}
           <div className=" sec-b filter-category text-center">
             <select

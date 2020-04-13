@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 const propTypes = {
   items: PropTypes.object,
-  padding: PropTypes.string
+  padding: PropTypes.string,
+  id: PropTypes.number
 };
 
-function ImageLeft({ items, padding }) {
+function ImageLeft({ items, padding, id }) {
   const [active, setActive] = useState(false);
 
   return (
-    <section className={`${padding} sec-img-text group-ef loaded`}>
+    <section className={`${padding} sec-img-text group-ef loaded`} id={id}>
       <div className="container">
         <div className="row center">
           <div className="col-lg-6">

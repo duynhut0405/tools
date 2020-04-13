@@ -6,7 +6,8 @@ import { searchBranchesService, getProvinceService, getDistrictService } from '.
 
 const propTypes = {
   listBranches: ProppTypes.array,
-  data: ProppTypes.object
+  data: ProppTypes.object,
+  id: ProppTypes.number
 };
 
 const searchBranches = async (query, setData) => {
@@ -30,7 +31,7 @@ const getDistrict = async (id, setData) => {
   }
 };
 
-function Transaction({ data }) {
+function Transaction({ data, id }) {
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [district, setDistrict] = useState('');
   const [branches_type, setBranchesType] = useState('branch');
@@ -91,7 +92,7 @@ function Transaction({ data }) {
   }
 
   return (
-    <div className={`wrap-list-map ${padding}`}>
+    <div className={`wrap-list-map ${padding}`} id={id}>
       <div className="row grid-space-0">
         <div className="col-md-4 ">
           <BoxSearch

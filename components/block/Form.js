@@ -9,10 +9,11 @@ import { sendMailService } from '../../services/form';
 const propTypes = {
   data: Proptypes.object.isRequired,
   pageId: Proptypes.number,
+  id: Proptypes.number,
   getPageBlock: Proptypes.func
 };
 
-function Form({ data, pageId }) {
+function Form({ data, pageId, id }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
   const getFormByID = async () => {
@@ -58,7 +59,7 @@ function Form({ data, pageId }) {
   }
 
   return (
-    <section className={`${padding} sec-tuvan`}>
+    <section className={`${padding} sec-tuvan`} id={id}>
       <div className="container">
         <form onSubmit={onSend} autoComplete="on" className="row">
           {map(formdata, (item, index) => {

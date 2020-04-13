@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Proptypes from 'prop-types';
 import { map } from 'lodash';
 import classnames from 'classnames';
 import TabQuestionsItems from './TabQuestionItem';
 
 const propTypes = {
-  data: Proptypes.array.isRequired
+  data: Proptypes.array.isRequired,
+  id: Proptypes.number
 };
 
-function TabQuestions({ data }) {
+function TabQuestions({ data, id }) {
   const [activeTab, setActiveTab] = useState('0');
   let padding = '';
   if (data.optionWidth === '2') {
@@ -23,7 +24,7 @@ function TabQuestions({ data }) {
   return (
     <React.Fragment>
       <main id="main" className={padding}>
-        <div className="container">
+        <div className="container" id={id}>
           <h1 className="text-center">{data.title}</h1>
           <div className={`cttab-v3 tabs-total-${data.listTab.length}`}>
             <div className="wrap-tab-menu">

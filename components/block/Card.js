@@ -6,10 +6,11 @@ import PropTypes from 'prop-types';
 const propTypes = {
   data: PropTypes.any,
   type: PropTypes.string,
-  optionWidth: PropTypes.string
+  optionWidth: PropTypes.string,
+  id: PropTypes.number
 };
 
-function Card({ data, type, optionWidth }) {
+function Card({ data, type, optionWidth, id }) {
   let padding = '';
   if (optionWidth === '2') {
     padding = 'sec-tb';
@@ -24,7 +25,7 @@ function Card({ data, type, optionWidth }) {
     <React.Fragment>
       {type === '1' && (
         <React.Fragment>
-          <section className={`${padding} bg-gray`}>
+          <section className={`${padding} bg-gray`} id={id}>
             <div className="container">
               <div className="entry-head ">
                 <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
@@ -55,7 +56,7 @@ function Card({ data, type, optionWidth }) {
       )}
       {type && type === '5' && (
         <React.Fragment>
-          <section className={`${padding}`}>
+          <section className={`${padding}`} id={id}>
             <div className="container">
               <div className="entry-head text-center">
                 <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
@@ -106,7 +107,7 @@ function Card({ data, type, optionWidth }) {
       )}
       {type && type === '6' && (
         <React.Fragment>
-          <section className={`${padding} sec-ab-4 `}>
+          <section className={`${padding} sec-ab-4 `} id={id}>
             <div className="container">
               <div className="entry-head ">
                 {data.title && (

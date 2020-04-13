@@ -186,53 +186,48 @@ function Layout({
         <div id="wrapper">
           <div id="panel">
             <div className="container">
-              <div className="row">
-                <div className="col-md-5" style={{ backgroundColor: 'unset' }}></div>
-                <div className="col-md-7">
-                  <ul className="menu line text-right">
-                    {map(
-                      menuHeader.sort((a, b) => a.position - b.position),
-                      // eslint-disable-next-line consistent-return
-                      (values, key) => {
-                        // if (key >= 2) {
-                        return (
-                          <li key={key}>
-                            <a href={`/page/${values.slugPages}`}>{values.name}</a>
+              <ul className="menu line text-right">
+                {map(
+                  menuHeader.sort((a, b) => a.position - b.position),
+                  // eslint-disable-next-line consistent-return
+                  (values, key) => {
+                    // if (key >= 2) {
+                    return (
+                      <li key={key}>
+                        <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                      </li>
+                    );
+                    // }
+                  }
+                )}
+                <li>
+                  <div className="dropdown language">
+                    <div className="title">
+                      <span>
+                        <img src={`/static/flags/${flag}.png`} alt="" />
+                      </span>
+                      <i className="icon-arrow-2 ib"></i>
+                    </div>
+                    <div className="content">
+                      <div className="inner">
+                        <ul className="menu">
+                          <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
+                            <a onClick={() => changeLang('en', 'gb')} title="English (en)">
+                              <img src="/static/flags/gb.png" alt="" /> <span>English</span>
+                            </a>
                           </li>
-                        );
-                        // }
-                      }
-                    )}
-                    <li>
-                      <div className="dropdown language">
-                        <div className="title">
-                          <span>
-                            <img src={`/static/flags/${flag}.png`} alt="" />
-                          </span>
-                          <i className="icon-arrow-2 ib"></i>
-                        </div>
-                        <div className="content">
-                          <div className="inner">
-                            <ul className="menu">
-                              <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
-                                <a onClick={() => changeLang('en', 'gb')} title="English (en)">
-                                  <img src="/static/flags/gb.png" alt="" /> <span>English</span>
-                                </a>
-                              </li>
-                              <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
-                                <a onClick={() => changeLang('vi', 'vn')} title="Tiếng Việt (vi)">
-                                  <img src="/static/images/flags/vn.png" alt="" />
-                                  <span>Tiếng Việt</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                          <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
+                            <a onClick={() => changeLang('vi', 'vn')} title="Tiếng Việt (vi)">
+                              <img src="/static/images/flags/vn.png" alt="" />
+                              <span>Tiếng Việt</span>
+                            </a>
+                          </li>
+                        </ul>
                       </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
           <Sticky topOffset={40}>

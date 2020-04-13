@@ -11,10 +11,11 @@ const propTypes = {
   maxValue: Proptypes.number,
   interest_rate: Proptypes.number,
   t: Proptypes.func,
-  padding: Proptypes.string
+  padding: Proptypes.string,
+  id: Proptypes.number
 };
 
-function Tool6({ t, minValue, maxValue, interest_rate, padding }) {
+function Tool6({ t, minValue, maxValue, interest_rate, padding, id }) {
   const [loan_amount, setLoanAmount] = useState('0');
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
@@ -94,7 +95,7 @@ function Tool6({ t, minValue, maxValue, interest_rate, padding }) {
   };
 
   return (
-    <div className={`container ${padding}`}>
+    <div className={`container ${padding}`} id={id}>
       <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">

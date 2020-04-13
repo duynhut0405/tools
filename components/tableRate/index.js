@@ -7,7 +7,8 @@ import { searchRate } from '../../services/rate';
 import Proptypes from 'prop-types';
 
 const propTypes = {
-  data: Proptypes.object
+  data: Proptypes.object,
+  id: Proptypes.number
 };
 
 const getRate = async (query, setData) => {
@@ -22,7 +23,7 @@ const getRate = async (query, setData) => {
   }
 };
 
-function TableRate({ data }) {
+function TableRate({ data, id }) {
   const [list, setList] = useState({});
   const [date, setDate] = useState(null);
   const [options] = useState(getPadding(data.optionWidth));
@@ -35,7 +36,7 @@ function TableRate({ data }) {
     getRate(moment(date).format('YYYY/MM/DD'), setList);
   };
   return (
-    <section className={options}>
+    <section className={options} id={id}>
       <div className="container">
         <Search changeDate={event => setDate(event.target.value)} onSubmit={onSeach} />
         <Table data={list.exchangeRateDetail} />

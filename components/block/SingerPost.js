@@ -3,12 +3,13 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  id: PropTypes.number
 };
 
-function SingerPost({ data }) {
+function SingerPost({ data, id }) {
   return (
-    <div className="block_imege_left mb-5">
+    <div className="block_imege_left mb-5" id={id}>
       <h2 className="title mb-5">{data.title}</h2>
       <div className="row">
         <div className="col-sm-7">

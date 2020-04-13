@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 import { withTranslation } from '../../i18n';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  id: PropTypes.number
 };
-function OtherNews({ data }) {
+function OtherNews({ data, id }) {
   const [activeTab, setActiveTab] = useState(1);
   const { t } = useTranslation();
   let padding = '';
@@ -22,7 +23,7 @@ function OtherNews({ data }) {
     padding = 'sec-';
   }
   return (
-    <div className={`container ${padding}`}>
+    <div className={`container ${padding}`} id={id}>
       <div className="cttab-v3 tabs-total-3">
         <div className="wrap-tab-menu">
           <div className="tab-menu max750">

@@ -3,10 +3,10 @@ import Proptypes from 'prop-types';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
-  indexTab: Proptypes.number.isRequired
+  id: Proptypes.number
 };
 
-function Banner({ data }) {
+function Banner({ data, id }) {
   let padding = '';
   if (Number(data.optionWidth) === 2) {
     padding = 'sec-tb';
@@ -19,7 +19,7 @@ function Banner({ data }) {
   }
   return (
     <React.Fragment>
-      <section className={padding}>
+      <section className={padding} id={id}>
         <div className="container">
           <div className="row list-item flex">
             <div className="col-md-4">

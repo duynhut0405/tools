@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   data: PropTypes.array,
-  id: PropTypes.number,
-  optionWidth: PropTypes.string
+  id: PropTypes.number
 };
 
-function TagProduct({ data, id, optionWidth }) {
+function TagProduct({ data, id }) {
   let padding = '';
   if (data[0].optionWidth === '2') {
     padding = 'sec-tb';

@@ -37,15 +37,15 @@ function Images({ data, id }) {
           padding = 'sec-';
         }
         if (items.type === '1') {
-          return <ImageLeft items={items} key={index} padding={padding} />;
+          return <ImageLeft items={items} key={index} padding={padding} id={id} />;
         }
         if (items.type === '2') {
-          return <ImageRight items={items} key={index} padding={padding} />;
+          return <ImageRight items={items} key={index} padding={padding} id={id} />;
         }
         if (items.type === '5') {
-          return <ImageRightMB items={items} key={index} padding={padding} />;
+          return <ImageRightMB items={items} key={index} padding={padding} id={id} />;
         }
-        return <ImageCenter items={items} key={index} padding={padding} />;
+        return <ImageCenter items={items} key={index} padding={padding} id={id} />;
       })}
     </>
   );

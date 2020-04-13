@@ -4,10 +4,11 @@ import Proptypes from 'prop-types';
 const propTypes = {
   data: Proptypes.object.isRequired,
   indexTab: Proptypes.number.isRequired,
-  optionWidth: Proptypes.string
+  optionWidth: Proptypes.string,
+  id: Proptypes.number
 };
 
-function BlockSMEIntro({ data, optionWidth }) {
+function BlockSMEIntro({ data, optionWidth, id }) {
   let padding = '';
   if (Number(optionWidth) === 2) {
     padding = 'sec-tb';
@@ -20,7 +21,7 @@ function BlockSMEIntro({ data, optionWidth }) {
   }
 
   return (
-    <section className={padding}>
+    <section className={padding} id={id}>
       <div className="container">
         <img
           src="/static/images/smeCare/care-logo.png"

@@ -4,13 +4,14 @@ import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
   items: PropTypes.object,
-  padding: PropTypes.string
+  padding: PropTypes.string,
+  id: PropTypes.number
 };
 
-function ImageRight({ items, padding }) {
+function ImageRight({ items, padding, id }) {
   const [active, setActive] = useState(false);
   return (
-    <section className={`${padding} sec-img-text group-ef loaded`}>
+    <section className={`${padding} sec-img-text group-ef loaded`} id={id}>
       <div className="container">
         <div className="row center end">
           <div className="col-lg-6">

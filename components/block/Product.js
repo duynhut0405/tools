@@ -3,12 +3,13 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  id: PropTypes.number
 };
 
-function Product({ data }) {
+function Product({ data, id }) {
   return (
-    <div className="post_block mb-5 pt-4">
+    <div className="post_block mb-5 pt-4" id={id}>
       <div className="title">
         <h2>{data.title}</h2>
       </div>

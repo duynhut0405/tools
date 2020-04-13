@@ -7,9 +7,9 @@ import NewMB from './NewMB';
 import MBNotifi from './MBNotifi';
 import Proptypes from 'prop-types';
 
-const propTypes = { data: Proptypes.object };
+const propTypes = { data: Proptypes.object, id: Proptypes.number };
 
-function Investors({ data }) {
+function Investors({ data, id }) {
   let padding = '';
   if (data.optionWidth === '2') {
     padding = 'sec-tb';
@@ -21,7 +21,7 @@ function Investors({ data }) {
     padding = 'sec-';
   }
   return (
-    <div>
+    <div id={id}>
       <New category={data.type} padding={padding} />
       <Share url={data.url} padding={padding} />
       <MBNotifi data={data.new_notifi} padding={padding} />

@@ -8,10 +8,11 @@ const propTypes = {
   settingFooter: PropTypes.object,
   getSettingFooter: PropTypes.func,
   text: PropTypes.string,
-  data: PropTypes.func
+  data: PropTypes.func,
+  id: PropTypes.id
 };
 
-function Contact({ settingFooter, getSettingFooter, data }) {
+function Contact({ settingFooter, getSettingFooter, data, id }) {
   useEffect(() => {
     getSettingFooter();
   }, []);
@@ -35,7 +36,7 @@ function Contact({ settingFooter, getSettingFooter, data }) {
   return (
     <React.Fragment>
       <main id="main" className={`${padding} page-lien-he`}>
-        <div className="container ">
+        <div className="container" id={id}>
           <div className="row">
             <div className="col-lg-4 col-md-6">
               <div className="widget widget-contact">

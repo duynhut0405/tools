@@ -7,10 +7,11 @@ import Proptypes from 'prop-types';
 
 const propTypes = {
   data: Proptypes.object,
-  pageId: Proptypes.number
+  pageId: Proptypes.number,
+  id: Proptypes.number
 };
 
-function FormStep({ data, pageId }) {
+function FormStep({ data, pageId, id }) {
   const [formActive, setFormActive] = useState(1);
   const [formSate, setFormState] = useState({ content: [], email: '', idForm: '', idPage: null });
 
@@ -38,15 +39,13 @@ function FormStep({ data, pageId }) {
     padding = 'sec-';
   }
   return (
-    <section className="form-step-wapper">
-      <section className={padding}>
-        <div className="container">
-          <div className="text-center">
-            <h1>{data.name}</h1>
-            <p className="desc max750">{data.description}</p>
-          </div>
+    <section className={`form-step-wapper ${padding}`} id={id}>
+      <div className="container">
+        <div className="text-center">
+          <h1>{data.name}</h1>
+          <p className="desc max750">{data.description}</p>
         </div>
-      </section>
+      </div>
       {data.form !== null && (
         <React.Fragment>
           <Step

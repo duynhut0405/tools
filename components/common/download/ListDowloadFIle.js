@@ -15,6 +15,7 @@ const propTypes = {
   loading: PropTypes.bool,
   listType: PropTypes.array,
   noQuestion: PropTypes.bool,
+  id: PropTypes.number,
   listRegulation: PropTypes.array,
   getTypeRegulation: PropTypes.func,
   seachRegulation: PropTypes.func
@@ -28,7 +29,8 @@ function ListDowloadFIle({
   search,
   getTypeRegulation,
   seachRegulation,
-  noQuestion
+  noQuestion,
+  id
 }) {
   const date = new Date();
   const [datatype, setDataType] = useState(0);
@@ -56,7 +58,7 @@ function ListDowloadFIle({
   }
 
   return (
-    <div className={`${padding} accodion accodion-2 container`}>
+    <div className={`${padding} accodion accodion-2 container`} id={id}>
       {search && (
         <Fillter
           center

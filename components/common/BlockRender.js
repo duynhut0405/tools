@@ -182,30 +182,31 @@ function BlockRender({ data, pageId }) {
                 );
               }
               if (values.name === 'Công cụ tính' && values.content !== null) {
-                return <Tools content={JSON.parse(values.content)} key={index} />;
+                return <Tools content={JSON.parse(values.content)} key={index} id={values.id} />;
               }
               if (values.name === 'About' && values.content !== null) {
-                return <About data={JSON.parse(values.content)} key={index} />;
+                return <About data={JSON.parse(values.content)} key={index} id={values.id} />;
               }
               if (values.name === 'Investors' && values.content !== null) {
-                return <Investors key={index} data={JSON.parse(values.content)} />;
+                return <Investors key={index} data={JSON.parse(values.content)} id={values.id} />;
               }
               if (values.name === 'Contact' && values.content !== null) {
-                return <Contact data={JSON.parse(values.content)} key={index} />;
+                return <Contact data={JSON.parse(values.content)} key={index} id={values.id} />;
               }
               if (values.name === 'Transaction' && values.content !== null) {
-                return <Transaction data={JSON.parse(values.content)} key={index} />;
+                return <Transaction data={JSON.parse(values.content)} key={index} id={values.id} />;
               }
               if (values.name === 'DowloadCategory' && values.content !== null) {
                 return (
                   <DowloadCategory
                     key={index}
+                    id={values.id}
                     optionWidth={JSON.parse(values.content).optionWidth}
                   />
                 );
               }
               if (values.name === 'OtherNews' && values.content !== null) {
-                return <OtherNews key={index} data={JSON.parse(values.content)} />;
+                return <OtherNews key={index} data={JSON.parse(values.content)} id={values.id} />;
               }
               if (values.name === 'Comment' && values.content !== null) {
                 return <Comment data={JSON.parse(values.content)} id={values.id} key={index} />;
@@ -216,6 +217,7 @@ function BlockRender({ data, pageId }) {
                     type={Number(JSON.parse(values.content).type)}
                     optionWidth={Number(JSON.parse(values.content).optionWidth)}
                     search
+                    id={values.id}
                     key={index}
                   />
                 );
@@ -225,6 +227,7 @@ function BlockRender({ data, pageId }) {
                   <ListDowloadVideo
                     optionWidth={Number(JSON.parse(values.content).optionWidth)}
                     type={Number(JSON.parse(values.content).type)}
+                    id={values.id}
                     key={index}
                   />
                 );
@@ -240,13 +243,21 @@ function BlockRender({ data, pageId }) {
               if (values.name === 'BlockSMEIntro' && values.content !== null) {
                 return (
                   <SMEIntro
+                    id={values.id}
                     key={index}
                     optionWidth={Number(JSON.parse(values.content).optionWidth)}
                   />
                 );
               }
               if (values.name === 'Form Step' && values.content !== null) {
-                return <FormStep key={index} pageId={pageId} data={JSON.parse(values.content)} />;
+                return (
+                  <FormStep
+                    key={index}
+                    pageId={pageId}
+                    data={JSON.parse(values.content)}
+                    id={values.id}
+                  />
+                );
               }
               if (values.name === 'Banner' && values.content !== null) {
                 return <Banner key={index} data={JSON.parse(values.content)} id={values.id} />;

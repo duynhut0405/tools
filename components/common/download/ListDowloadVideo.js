@@ -11,10 +11,20 @@ const propTypes = {
   listType: PropTypes.array,
   listRegulation: PropTypes.array,
   getTypeRegulation: PropTypes.func,
-  seachRegulation: PropTypes.func
+  seachRegulation: PropTypes.func,
+  id: PropTypes.number,
+  optionWidth: PropTypes.string
 };
 
-function ListDowloadFIle({ type, optionWidth, listType, listRegulation, getTypeRegulation, seachRegulation }) {
+function ListDowloadFIle({
+  type,
+  optionWidth,
+  listType,
+  id,
+  listRegulation,
+  getTypeRegulation,
+  seachRegulation
+}) {
   const date = new Date();
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
@@ -41,7 +51,7 @@ function ListDowloadFIle({ type, optionWidth, listType, listRegulation, getTypeR
   }
 
   return (
-    <div className={`accodion accodion-2 container ${padding}`}>
+    <div className={`accodion accodion-2 container ${padding}`} id={id}>
       <Fillter
         center
         year={year}
