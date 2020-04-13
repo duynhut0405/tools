@@ -111,5 +111,14 @@
         "title": "Please visit the registered branch to verify your account information",
         "go_home": "Go home",
         "continue": "Continue"
+    },
+    "table_rate": {
+        "key": "Foreign currency symbol",
+        "name": "Name of foreign currency",
+        "buy": "Buy (cash)",
+        "buy_transfer": "Purchase transfer",
+        "sell": "Sell",
+        "search": "Look up exchange rates by day",
+        "submit": "Search"
     }
 }
