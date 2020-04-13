@@ -15,7 +15,7 @@ function DowloadVideo({ year, data, fileIcon, showYear }) {
   const [urlVideo, setURlVideo] = useState(null);
   useEffect(() => {
     getUrlVideoService(year).then(res => {
-      if (res !== null && res.data !== undefined) {
+      if (res !== null && res !== undefined && res.status === 200) {
         setURlVideo(res.data.urlVideo);
       }
     });
@@ -46,7 +46,13 @@ function DowloadVideo({ year, data, fileIcon, showYear }) {
                     <span className="data">{moment(item.createdAt).format('DD-MM-YYYY')}</span>
                   )}
                   <span className="down">
-                    <a href={item.urlFile} download>
+                    <a
+                      href={`${process.env.DOMAIN.substring(
+                        0,
+                        process.env.DOMAIN.length - 1
+                      )}/uploads${item.urlFile}`}
+                      download
+                    >
                       <i className="icon-arrow-6 ib"></i>
                     </a>
                   </span>
