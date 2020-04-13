@@ -56,12 +56,12 @@ function Carousels({ silder }) {
                 </div>
                 <div className="wimg">
                   <img
-                    className={item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'}
+                    className={item.options === '1' ? 'img-center img-pc' : 'img-right img-pc'}
                     src={`${process.env.DOMAIN}${item.urlImage}`}
                     alt="icon"
                   />
                   <img
-                    className={item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'}
+                    className={item.options === '1' ? 'img-center img-mb' : 'img-right img-mb'}
                     src={`${process.env.DOMAIN}${item.urlImageMobile}`}
                     alt="icon"
                   />
