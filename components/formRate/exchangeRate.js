@@ -25,6 +25,10 @@ const AntTab = withStyles(theme => ({
     '&:hover': {
       color: '#9BE6C8',
       opacity: 1
+    },
+    '&:focus': {
+      color: '#9BE6C8',
+      opacity: 1
     }
   },
   selected: {}
@@ -67,7 +71,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function ExchangeRate({ tab1, tab2, data1 }) {
+function ExchangeRate({ tab1, tab2, data1, data2 }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -85,10 +89,10 @@ function ExchangeRate({ tab1, tab2, data1 }) {
       </div>
 
       <TabPanel value={value} index={0}>
-        <TableRate data={data1.exchangeRateDetail} />
+        <TableRate type="exchange" data={data1.exchangeRateDetail} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TableRate data={data1.exchangeRateDetail} />
+        <TableRate type="interest" data={data2} />
       </TabPanel>
     </div>
   );

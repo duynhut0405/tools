@@ -18,6 +18,7 @@
     "donwload_app_today": "Download app today",
     "enter_email": "Enter email to receive information",
     "codeNT": "Code NT",
+    "period": "Period",
     "buycash": "Buy cash",
     "transfer": "Transfer",
     "sold_out": "Sold out",
@@ -119,6 +120,7 @@
         "buy_transfer": "Purchase transfer",
         "sell": "Sell",
         "search": "Look up exchange rates by day",
-        "submit": "Search"
+        "submit": "Search",
+        "period": "Period"
     }
 }

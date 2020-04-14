@@ -13,6 +13,19 @@ const getRateService = () => {
     });
 };
 
+const getInterestRateService = () => {
+  return request({
+    url: '/interest_rate',
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
 const searchRate = query => {
   return request({
     url: '/exchange_rate/search',
@@ -27,4 +40,4 @@ const searchRate = query => {
     });
 };
 
-export { getRateService, searchRate };
+export { getRateService, searchRate, getInterestRateService };

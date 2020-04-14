@@ -10,7 +10,8 @@ const propTypes = {
   data: PropTypes.object
 };
 
-function FormRate({ data }) {
+function FormRate({ data, interestRate }) {
+  console.log('interestRate', interestRate);
   const { t } = useTranslation();
   return (
     <section className="sec-b sec-tb sec-tigia">
@@ -18,7 +19,12 @@ function FormRate({ data }) {
         <div className="container">
           <div className="row list-item">
             <div className="col-lg-7">
-              <ExchangeRate tab1={t('exchange_rate')} tab2={t('interest_rate')} data1={data} />
+              <ExchangeRate
+                tab1={t('exchange_rate')}
+                tab2={t('interest_rate')}
+                data1={data}
+                data2={interestRate}
+              />
             </div>
             <div className="col-lg-5">
               <div className="divquidoi">
