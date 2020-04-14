@@ -26,7 +26,7 @@ function BoxSearch({
 }) {
   const onSearch = debounce(value => {
     setQuery(value);
-  }, 1000);
+  }, 3000);
   return (
     <div className="ajax-content-map">
       <ul className="menu row grid-space-0">

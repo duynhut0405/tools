@@ -3,6 +3,7 @@ import Widget from './Widget';
 import WidgetMB from './WidgetMb';
 import { Social } from '../common';
 import ModalDrawer from './ModalDrawer';
+import DownloadApp from './DownloadApp';
 import { StickyContainer, Sticky } from 'react-sticky';
 import map from 'lodash/map';
 import { LayoutActions, MenuActions } from '../../store/actions';
@@ -351,21 +352,7 @@ function Layout({
                   </form>
                 </div>
                 <div className="col-md-6   efch-3 ef-img-r">
-                  <div className="wapp">
-                    <span className="code">
-                      <img src="/static/images/code.png" alt="" />
-                    </span>
-                    <div className="app">
-                      <p className="stitle">{t('donwload_app_today')}</p>
-                      <a href="https://bit.ly/2v5ZsyP">
-                        <img src="/static/images/btt-google.svg" alt="" />
-                      </a>
-                      &nbsp;
-                      <a href="https://apple.co/2AqB7ZM">
-                        <img src="/static/images/btt-chplay.svg" alt="" />
-                      </a>{' '}
-                    </div>
-                  </div>
+                  <DownloadApp />
                 </div>
               </div>
             </div>
