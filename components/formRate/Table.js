@@ -22,8 +22,13 @@ function TableRate({ data }) {
         {map(data, value => {
           return (
             <tr key={value.id}>
-              <td>
-                <img src="static/flags/vn.png" alt="" style={{ top: '-1px' }} />
+              <td style={{ display: 'flex' }}>
+                <img
+                  src={`static/currency/${value.currency}.svg`}
+                  alt=""
+                  style={{ top: '-1px' }}
+                  width="24"
+                />
                 {value.currency}
               </td>
               <td>{value.buy_cash}</td>
