@@ -17,4 +17,17 @@
 .infoWindow p {
   margin-bottom: 0;
 }
+
+ul.menu.line > li #search {
+  border: none;
+  width: 70px;
+  transition: 0.5s all ease-in-out;
+  -webkit-transition: 0.5s all ease-in-out;
+  margin-left: 5px;
+}
+
+ul.menu.line > li button.search-sg i {
+  padding: 5px;
+  cursor: pointer;
+}
 /* End edit*/
