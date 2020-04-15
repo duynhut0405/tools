@@ -50,7 +50,7 @@ function TableRate({ data, type }) {
             return (
               <tr key={value.id}>
                 <td>{value.term}</td>
-                <td>{`0 %`}</td>
+                <td>{`${value.interest_rate_usd} %`}</td>
                 <td>{`${value.interest_rate} %`}</td>
               </tr>
             );
