@@ -23,8 +23,16 @@ const AntTab = withStyles(theme => ({
     fontWeight: theme.typography.fontWeightBold,
     marginRight: theme.spacing(4),
     '&:hover': {
+      color: '#9BE6C8'
+    },
+    '&:focus': {
+      color: '#9BE6C8'
+    },
+    '&$selected': {
+      opacity: 1,
       color: '#9BE6C8',
-      opacity: 1
+      fontSize: '24px',
+      fontWeight: theme.typography.fontWeightBold
     }
   },
   selected: {}
@@ -67,7 +75,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function ExchangeRate({ tab1, tab2, data1 }) {
+function ExchangeRate({ tab1, tab2, data1, data2 }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -78,17 +86,22 @@ function ExchangeRate({ tab1, tab2, data1 }) {
   return (
     <div className="divtigia">
       <div className={classes.demo1}>
-        <AntTabs value={value} onChange={handleChange} aria-label="ant example">
+        <AntTabs
+          initialSelectedIndex={0}
+          value={value}
+          onChange={handleChange}
+          aria-label="ant example"
+        >
           <AntTab label={tab1} />
           <AntTab label={tab2} />
         </AntTabs>
       </div>
 
       <TabPanel value={value} index={0}>
-        <TableRate data={data1.exchangeRateDetail} />
+        <TableRate type="exchange" data={data1.exchangeRateDetail} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TableRate data={data1.exchangeRateDetail} />
+        <TableRate type="interest" data={data2} />
       </TabPanel>
     </div>
   );
