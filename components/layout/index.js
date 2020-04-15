@@ -4,6 +4,7 @@ import WidgetMB from './WidgetMb';
 import { Social } from '../common';
 import ModalDrawer from './ModalDrawer';
 import DownloadApp from './DownloadApp';
+import Suggest from './Suggest';
 import { StickyContainer, Sticky } from 'react-sticky';
 import map from 'lodash/map';
 import { LayoutActions, MenuActions } from '../../store/actions';
@@ -195,6 +196,23 @@ function Layout({
     setFlag(flags);
     setLang(lang, flags);
   };
+
+  const onFocus = () => {
+    const element = document.getElementById('search');
+    const box = document.getElementById('search-sg');
+    element.style = 'width: 200px';
+    box.style = 'display: block';
+    element.placeholder = t('enter_search');
+  };
+
+  const onBlur = () => {
+    const element = document.getElementById('search');
+    const box = document.getElementById('search-sg');
+    element.style = 'width: 70px';
+    box.style = 'display: none';
+    element.placeholder = t('search');
+  };
+
   return (
     <>
       <StickyContainer>
@@ -216,6 +234,19 @@ function Layout({
           <div id="panel">
             <div className="container">
               <ul className="menu line text-right">
+                <li>
+                  <button className="search-sg">
+                    <i className="icon-search-2"></i>
+                  </button>
+                  <input
+                    id="search"
+                    type="text"
+                    placeholder={t('search')}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    style={{ width: '70px' }}
+                  />
+                </li>
                 {map(
                   menuHeader.sort((a, b) => a.position - b.position),
                   (values, key) => {
@@ -263,6 +294,7 @@ function Layout({
                   </div>
                 </li>
               </ul>
+              <Suggest />
             </div>
           </div>
           <Sticky topOffset={40}>

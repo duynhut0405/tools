@@ -122,5 +122,14 @@
         "search": "Look up exchange rates by day",
         "submit": "Search",
         "period": "Period"
-    }
+    },
+    "branch": "Branch",
+    "transaction_online": "Transaction online",
+    "transaction": "Transaction",
+    "place": "Place",
+    "province": "Province/City",
+    "district": "District",
+    "all": "All",
+    "search": "Search",
+    "enter_search": "Enter search keywords"
 }

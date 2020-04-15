@@ -12,17 +12,20 @@ const propTypes = {
   silder: PropTypes.array,
   menuMiddle: PropTypes.object,
   routerURL: PropTypes.string,
-  listSlug: PropTypes.array
+  listSlug: PropTypes.array,
+  slugClass: PropTypes.string
 };
 
-function Page({ page, silder, menuMiddle, routerURL, listSlug }) {
+function Page({ page, silder, menuMiddle, routerURL, listSlug, slugClass }) {
   const link_canonical = page.meta_keyword
     ? page.meta_keyword
     : `<link rel="canonical" href="https:www.mbbank.com.vn/page/${page.slug}">`;
   const noIndex = page.noIndex ? page.noIndex : '';
   useEffect(() => {
+    document.body.classList.add('page');
+    document.body.classList.add(`${slugClass}`);
     if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
-      document.body.classList.add('title-24');
+      document.body.classList.add(`title-24`);
     }
   }, [page]);
   return (
@@ -49,8 +52,13 @@ Page.getInitialProps = async ctx => {
   const { query } = ctx.ctx;
   let routerURL = null;
   let params = '';
-  map(query.name, url => (params = `${params}/${url}`));
+  let slugClass = '';
+  map(query.name, url => {
+    slugClass = `${slugClass}-${url}`;
+    return (params = `${params}/${url}`);
+  });
   routerURL = params.slice(1, params.length);
+  slugClass = slugClass.slice(1, slugClass.length);
   let page = {};
   let silder = [];
   let menuMiddle = {};
@@ -69,14 +77,15 @@ Page.getInitialProps = async ctx => {
   }
   if (listPageBySlug && listPageBySlug !== undefined && listPageBySlug.status === 200) {
     listSlug = listPageBySlug.data;
+    map();
   }
   return {
-    namespacesRequired: ['common', 'common'],
     routerURL,
     page,
     silder,
     menuMiddle,
-    listSlug
+    listSlug,
+    slugClass
   };
 };
 

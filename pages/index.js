@@ -65,7 +65,6 @@ Home.getInitialProps = async () => {
     }
   }
   return {
-    namespacesRequired: ['common', 'common'],
     listRate,
     page,
     silder,

@@ -122,5 +122,14 @@
         "search": "Tra cứu tỉ giá theo ngày",
         "submit": "Tra cứu",
         "period": "Kỳ hạn"
-    }
+    },
+    "branch": "Chi nhánh",
+    "transaction_online": "Phòng giao dịch online",
+    "transaction": "Phòng giao dịch",
+    "place": "Địa điểm",
+    "province": "Tỉnh/Thành phố",
+    "district": "Quận/Huyện",
+    "all": "Tất cả",
+    "search": "Tìm kiếm",
+    "enter_search": "Nhập từ khóa tìm kiếm"
 }

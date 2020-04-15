@@ -149,7 +149,6 @@ New.getInitialProps = async ctx => {
     }
   }
   return {
-    namespacesRequired: ['common', 'common'],
     news,
     category_name,
     category_url

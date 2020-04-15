@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import { map, debounce } from 'lodash';
 import PropTypes from 'prop-types';
+import { withTranslation } from '../../i18n';
 
 const propTypes = {
   listBranches: PropTypes.array,
@@ -11,10 +12,12 @@ const propTypes = {
   setDistrict: PropTypes.func,
   setQuery: PropTypes.func,
   setBranchesType: PropTypes.func,
-  handleProvince: PropTypes.func
+  handleProvince: PropTypes.func,
+  t: PropTypes.func
 };
 
 function BoxSearch({
+  t,
   listBranches,
   listProvince,
   listDistrict,
@@ -34,26 +37,26 @@ function BoxSearch({
           className={branches_type === 'branch' ? 'col-4 active' : 'col-4'}
           onClick={() => setBranchesType('branch')}
         >
-          <span className="item">Chi nhánh</span>
-        </li>
-        <li
-          className={branches_type === 'transaction_online' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('transaction_online')}
-        >
-          <span className="item">ATM</span>
+          <span className="item">{t('branch')}</span>
         </li>
         <li
           className={branches_type === 'transaction' ? 'col-4 active' : 'col-4'}
           onClick={() => setBranchesType('transaction')}
         >
-          <span className="item">ATM</span>
+          <span className="item">{t('transaction')}</span>
+        </li>
+        <li
+          className={branches_type === 'transaction_online' ? 'col-4 active' : 'col-4'}
+          onClick={() => setBranchesType('transaction_online')}
+        >
+          <span className="item">{t('transaction_online')}</span>
         </li>
       </ul>
 
       <div className="form-search-focus mb-20">
         <input
           type="text"
-          placeholder="Địa điểm"
+          placeholder={t('place')}
           onChange={event => onSearch(event.target.value)}
         />
         <button>
@@ -61,10 +64,10 @@ function BoxSearch({
         </button>
       </div>
       <div className="mb-20">
-        <div>Tỉnh/ Thành phố</div>
+        <div>{t('province')}</div>
         <Select
           className="fix-select"
-          placeholder="Tỉnh/ Thành phố"
+          placeholder={t('province')}
           options={map([{ id: '', name: 'Tất cả' }, ...listProvince], province => ({
             value: province.id,
             label: province.name
@@ -73,10 +76,10 @@ function BoxSearch({
         />
       </div>
       <div className="mb-20">
-        <div>Quận/Huyện</div>
+        <div>{t('district')}</div>
         <Select
           className="fix-select1"
-          placeholder="Quận/Huyện"
+          placeholder={t('district')}
           options={map([{ id: '', name: 'Tất cả' }, ...listDistrict], district => ({
             value: district.id,
             label: district.name
@@ -109,4 +112,4 @@ function BoxSearch({
 
 BoxSearch.propTypes = propTypes;
 
-export default BoxSearch;
+export default withTranslation('common')(BoxSearch);
