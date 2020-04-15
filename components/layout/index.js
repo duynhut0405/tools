@@ -103,16 +103,30 @@ function Layout({
   const nestChild = items => {
     return map(
       items.sort((a, b) => a.position - b.position),
-      item => (
-        <li key={item.id} className={item.children.length > 0 ? 'children ' : null}>
-          <a href={`/page/${item.slugPages}`}>
-            <span>{item.name}</span>
-          </a>
-          <div className="wrapul">
-            {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
-          </div>
-        </li>
-      )
+      item => {
+        if (item.type === '4') {
+          return (
+            <li key={item.id} className={item.children.length > 0 ? 'children ' : null}>
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <span>{item.name}</span>
+              </a>
+              <div className="wrapul">
+                {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
+              </div>
+            </li>
+          );
+        }
+        return (
+          <li key={item.id} className={item.children.length > 0 ? 'children ' : null}>
+            <a href={`/page/${item.slugPages}`}>
+              <span>{item.name}</span>
+            </a>
+            <div className="wrapul">
+              {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
+            </div>
+          </li>
+        );
+      }
     );
   };
   const footerItem = data => {
@@ -123,6 +137,20 @@ function Layout({
             <h4 className="widget-title">{item.name}</h4>
             <ul className="menu">{footerItem(item.children)}</ul>
           </div>
+        );
+      }
+      if (item.type === '4') {
+        return (
+          <li key={index}>
+            <a
+              className={item.children.length > 0 ? 'title' : ''}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {item.name}
+            </a>
+          </li>
         );
       }
       return (
@@ -190,15 +218,21 @@ function Layout({
               <ul className="menu line text-right">
                 {map(
                   menuHeader.sort((a, b) => a.position - b.position),
-                  // eslint-disable-next-line consistent-return
                   (values, key) => {
-                    // if (key >= 2) {
+                    if (values.type === '4') {
+                      return (
+                        <li key={key}>
+                          <a href={values.url} target="_blank" rel="noopener noreferrer">
+                            {values.name}
+                          </a>
+                        </li>
+                      );
+                    }
                     return (
                       <li key={key}>
                         <a href={`/page/${values.slugPages}`}>{values.name}</a>
                       </li>
                     );
-                    // }
                   }
                 )}
                 <li>
@@ -250,12 +284,20 @@ function Layout({
                           <div className="wrapul">
                             <ul>
                               <li>
-                                <a href="https://online.mbbank.com.vn/retail/EstablishSession">
+                                <a
+                                  href="https://online.mbbank.com.vn/retail/EstablishSession"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
                                   Cá Nhân
                                 </a>
                               </li>
                               <li>
-                                <a href="https://emb.mbbank.com.vn/corp/EstablishSession">
+                                <a
+                                  href="https://emb.mbbank.com.vn/corp/EstablishSession"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
                                   Doanh nghiệp
                                 </a>
                               </li>
@@ -314,19 +356,36 @@ function Layout({
               <div className="row center">
                 {map(
                   menuFooterTop.sort((a, b) => a.position - b.position),
-                  values => (
-                    <div className="col-4" key={values.id}>
-                      <a className="item" href={`/page/${values.slugPages}`}>
-                        <span className="img">
-                          <img src={values.icon} alt="" />
-                        </span>
-                        <div className="divtext">
-                          <h4 className="title">{values.name}</h4>
-                          <div className="desc">{values.description}</div>
+                  values => {
+                    if (values.type === '4') {
+                      return (
+                        <div className="col-4" key={values.id}>
+                          <a className="item" href={values.url}>
+                            <span className="img">
+                              <img src={values.icon} alt="" />
+                            </span>
+                            <div className="divtext">
+                              <h4 className="title">{values.name}</h4>
+                              <div className="desc">{values.description}</div>
+                            </div>
+                          </a>
                         </div>
-                      </a>
-                    </div>
-                  )
+                      );
+                    }
+                    return (
+                      <div className="col-4" key={values.id}>
+                        <a className="item" href={`/page/${values.slugPages}`}>
+                          <span className="img">
+                            <img src={values.icon} alt="" />
+                          </span>
+                          <div className="divtext">
+                            <h4 className="title">{values.name}</h4>
+                            <div className="desc">{values.description}</div>
+                          </div>
+                        </a>
+                      </div>
+                    );
+                  }
                 )}
               </div>
             </div>
@@ -374,11 +433,22 @@ function Layout({
                   <ul className="menu line">
                     {map(
                       menuFooterBottom.sort((a, b) => a.position - b.position),
-                      (values, key) => (
-                        <li key={key}>
-                          <a href={`/page/${values.slugPages}`}>{values.name}</a>
-                        </li>
-                      )
+                      (values, key) => {
+                        if (values.type === '4') {
+                          return (
+                            <li key={key}>
+                              <a href={values.url} target="_blank" rel="noopener noreferrer">
+                                {values.name}
+                              </a>
+                            </li>
+                          );
+                        }
+                        return (
+                          <li key={key}>
+                            <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                          </li>
+                        );
+                      }
                     )}
                   </ul>
                 </div>
