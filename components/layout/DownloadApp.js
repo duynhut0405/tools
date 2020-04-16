@@ -23,7 +23,7 @@ function DownloadApp({ t }) {
   return (
     <div className="wapp">
       <span className="code">
-        <img src="/static/images/code.png" alt="" />
+        <img src="/static/images/svg/qr.svg" alt="" />
       </span>
       <div className="app">
         <p className="stitle">{t('donwload_app_today')}</p>
