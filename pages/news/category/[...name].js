@@ -31,7 +31,7 @@ function CategoryDetail({ routerURL, category }) {
   }, [page]);
 
   return (
-    <Layout title={data === null ? '' : data.name}>
+    <Layout title={data === null ? '' : data.name} miniImage={data.base_image}>
       {data !== null && (
         <div className="main_content">
           <section className="banner-heading-3 next-shadow">

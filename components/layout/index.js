@@ -40,7 +40,8 @@ const propTypes = {
   noIndex: PropTypes.bool,
   meta_title: PropTypes.string,
   meta_description: PropTypes.string,
-  meta_keyword: PropTypes.string
+  meta_keyword: PropTypes.string,
+  miniImage: PropTypes.string
 };
 
 function Layout({
@@ -65,7 +66,8 @@ function Layout({
   getMenuFooterMain,
   getMenuFooterBottom,
   canonical,
-  noIndex
+  noIndex,
+  miniImage
 }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [flag, setFlag] = useState('vn');
@@ -229,6 +231,15 @@ function Layout({
           {meta_keyword && <meta name="keywords" content={meta_keyword} />}
           {noIndex && <meta name="robots" content="noindex, nofollow" />}
           {!noIndex && <meta name="robots" content="index, follow" />}
+          <meta
+            property="og:image"
+            itemProp="thumbnaiUrl"
+            content={
+              miniImage ? `${process.env.DOMAIN}${miniImage}` : `/static/images/logo-blue.svg`
+            }
+          />
+          <meta property="og:image:width" content="800" />
+          <meta property="og:image:height" content="354" />
         </Head>
         <div id="wrapper">
           <div id="panel">

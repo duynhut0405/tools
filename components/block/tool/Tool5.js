@@ -125,7 +125,7 @@ function Tool5({ t, minValue, maxValue, interest_rate, padding, id, type }) {
 
   return (
     <div className={`container ${padding} tool-${type}`} id={id}>
-      <h2 className="ht">{t('tool')}</h2>
+      <h2 className="ht">{t('tool_5_title')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">
           <div className="active">
@@ -136,7 +136,7 @@ function Tool5({ t, minValue, maxValue, interest_rate, padding, id, type }) {
                     <div className="inner">
                       <FieldInput
                         label={t('car_value')}
-                        maxValue={maxValue}
+                        maxValue={Number(salary.replace(/[^0-9.-]+/g, ''))}
                         value={salary}
                         onChange={value => setSalary(value)}
                       />

@@ -26,6 +26,7 @@ function New({ socialLink, news, category_name, category_url }) {
       meta_title={news.news.meta_title}
       meta_description={news.news.meta_description}
       meta_keyword={news.news.meta_keyword}
+      miniImage={news.news.miniImage}
     >
       {news.news !== null && (
         <>

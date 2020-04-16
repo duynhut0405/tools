@@ -29,8 +29,8 @@ function FieldInput({ label, maxValue, value, onChange, note, onBlur }) {
             type="tel"
             className="input"
             value={value}
-            minimumValue={0}
-            allowDecimalPadding={false}
+            minimumValue="0"
+            decimalPlaces={0}
             onChange={event => onChange(event.target.value)}
             onBlur={onBlur}
             placeholder="Nhập số tiền (*)"

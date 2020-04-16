@@ -101,7 +101,7 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate, pad
 
   return (
     <div className={`container ${padding} tool-${type}`} id={id}>
-      <h2 className="ht">{t('tool')}</h2>
+      <h2 className="ht">{t('tool_consumer_loans.title')}</h2>
       <div className="cttab-xx  sec-b">
         <div className="tab-content">
           <div className="active">
