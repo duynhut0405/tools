@@ -202,7 +202,7 @@ function Layout({
     const box = document.getElementById('search-sg');
     element.style = 'width: 200px';
     box.style = 'display: block';
-    element.placeholder = t('enter_search');
+    element.placeholder = `${t('enter_search')}.....`;
   };
 
   const onBlur = () => {
@@ -303,7 +303,14 @@ function Layout({
                 <header id="header" role="banner">
                   <div className="container">
                     <a href="/" id="logo">
-                      <img src="/static/images/logo.svg" alt="logo" />
+                      <img
+                        src={
+                          personalLayout === 1
+                            ? '/static/images/logo_investors.png'
+                            : '/static/images/logo.svg'
+                        }
+                        alt="logo"
+                      />
                     </a>
                     <div className="wrap-menu-header">
                       <ul className="menu-top-header" data-style="1">
