@@ -217,7 +217,7 @@ function Layout({
     <>
       <StickyContainer>
         <Head>
-          <title>{title || ''}</title>
+          <title>{title || 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
           <link
             rel="icon"
             href="https://www.mbbank.com.vn/images/icons/favicon.ico"
