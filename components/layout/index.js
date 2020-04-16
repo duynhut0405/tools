@@ -5,6 +5,7 @@ import { Social } from '../common';
 import ModalDrawer from './ModalDrawer';
 import DownloadApp from './DownloadApp';
 import Suggest from './Suggest';
+import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
 import map from 'lodash/map';
 import { LayoutActions, MenuActions } from '../../store/actions';
@@ -215,6 +216,14 @@ function Layout({
     element.placeholder = t('search');
   };
 
+  const onSearch = event => {
+    event.preventDefault();
+    const body = document.getElementsByTagName('body')[0];
+    const result = document.getElementById('search-result');
+    body.classList.add('fixed-screen');
+    result.style = `display: block`;
+  };
+
   return (
     <>
       <StickyContainer>
@@ -246,17 +255,19 @@ function Layout({
             <div className="container">
               <ul className="menu line text-right">
                 <li>
-                  <button className="search-sg">
-                    <i className="icon-search-2"></i>
-                  </button>
-                  <input
-                    id="search"
-                    type="text"
-                    placeholder={t('search')}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    style={{ width: '70px' }}
-                  />
+                  <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
+                    <button className="search-sg" type="submit">
+                      <i className="icon-search-2"></i>
+                    </button>
+                    <input
+                      id="search"
+                      type="text"
+                      placeholder={t('search')}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      style={{ width: '70px' }}
+                    />
+                  </form>
                 </li>
                 {map(
                   menuHeader.sort((a, b) => a.position - b.position),
@@ -328,7 +339,7 @@ function Layout({
                         {nestChild(menuNav)}
                         <li className="highlight children">
                           <span className="showsubmenu icon-arrow-2 ib"></span>
-                          <a href="./49_login.php">
+                          <a href="#">
                             <span>Ebanking</span>
                           </a>
                           <div className="wrapul">
@@ -399,6 +410,7 @@ function Layout({
               </div>
             )}
           </Sticky>
+          <SearchResult />
           <div>{children}</div>
           {/* contact */}
           <section className="sec-cta">
