@@ -27,7 +27,7 @@ function ItemIcon({ data }) {
                   />
                 </div>
                 <h4 className="title">{item.note_1}</h4>
-                <div className="desc">{item.note_2}</div>
+                <div className="desc line2">{item.note_2}</div>
               </a>
             </div>
           );
