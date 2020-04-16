@@ -328,8 +328,8 @@ function Layout({
                       <img
                         src={
                           personalLayout === 1
-                            ? '/static/images/logo_investors.png'
-                            : '/static/images/logo.svg'
+                            ? '/static/images/svg/logo-priority.svg'
+                            : '/static/images/svg/logo.svg'
                         }
                         alt="logo"
                       />
