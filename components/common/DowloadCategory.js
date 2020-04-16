@@ -48,7 +48,7 @@ function DowloadCategory({
 
   return (
     <React.Fragment>
-      <div className={`accodion accodion-2 container ${padding}`} id={id}>
+      <div className={`accodion accodion-2 container ${padding} downloadcategory`} id={id}>
         <Fillter
           type={typeRegulation}
           setDate={event => setYear(event.target.value)}

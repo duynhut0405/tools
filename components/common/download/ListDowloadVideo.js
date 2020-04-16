@@ -51,7 +51,7 @@ function ListDowloadFIle({
   }
 
   return (
-    <div className={`accodion accodion-2 container ${padding}`} id={id}>
+    <div className={`accodion accodion-2 container ${padding} downloadvideo`} id={id}>
       <Fillter
         center
         year={year}

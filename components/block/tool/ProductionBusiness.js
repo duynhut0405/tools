@@ -11,10 +11,11 @@ const propTypes = {
   interest_rate: Proptypes.number,
   t: Proptypes.func,
   padding: Proptypes.string,
-  id: Proptypes.number
+  id: Proptypes.number,
+  types: Proptypes.string
 };
 
-function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id }) {
+function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id, types }) {
   const [total_capital_needs, setTotalCapitalNeeds] = useState('0');
   const [equity_capital, setEquityCapital] = useState('0');
   const [amount, setAmount] = useState('0');
@@ -140,7 +141,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id 
   };
 
   return (
-    <div className={`container ${padding}`} id={id}>
+    <div className={`container ${padding} tool-${types}`} id={id}>
       <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b sec-tb">
         <div className="w-menu-over">

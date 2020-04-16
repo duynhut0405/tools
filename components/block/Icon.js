@@ -72,7 +72,7 @@ function Icon({ data, id }) {
       {data[0].type === '1' && (
         <React.Fragment>
           {data.length > 8 && (
-            <section className={`${padding} sec-h-1 group-ef block-icon`} id={id}>
+            <section className={`${padding} sec-h-1 group-ef block-icon-${data[0].type}`} id={id}>
               <div className="container">
                 <div className="entry-head text-center">
                   <h2 className="ht">{data === null ? '' : data[0].title}</h2>
@@ -125,7 +125,7 @@ function Icon({ data, id }) {
             </section>
           )}
           {data.length <= 8 && (
-            <section className={`${padding} sec-h-1  loaded`} id={id}>
+            <section className={`${padding} sec-h-1  loaded block-icon-${data[0].type}`} id={id}>
               <div className="container">
                 <div className="entry-head text-center">
                   <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
@@ -154,7 +154,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '2' && (
         <React.Fragment>
-          <section className={`${padding} sec-img-svg group-ef loaded`} id={id}>
+          <section className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`} id={id}>
             <div className="container">
               <div className="entry-head text-center">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>
@@ -187,7 +187,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '3' && (
         <React.Fragment>
-          <section className={`${padding} sec-h-3`} id={id}>
+          <section className={`${padding} sec-h-3 block-icon-${data[0].type}`} id={id}>
             <div className="container">
               <div className="entry-head">
                 <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
@@ -248,7 +248,10 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '4' && (
         <React.Fragment>
-          <section className={`${padding} sec-img-svg-2 group-ef loaded`} id={id}>
+          <section
+            className={`${padding} sec-img-svg-2 group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
             <div className="container">
               <div className="entry-head">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>
@@ -279,7 +282,7 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '5' && (
         <React.Fragment>
-          <div className={`${padding} sec-img-svg-4`} id={id}>
+          <div className={`${padding} sec-img-svg-4 block-icon-${data[0].type}`} id={id}>
             <div className="container">
               <div className="entry-head">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>
@@ -310,7 +313,10 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '6' && (
         <React.Fragment>
-          <section className={`${padding} sec-img-svg-2 group-ef loaded`} id={id}>
+          <section
+            className={`${padding} sec-img-svg-2 group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
             <div className="container">
               <div className="entry-head text-left">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>
@@ -374,7 +380,10 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '7' && (
         <React.Fragment>
-          <section className={`${padding} sec-img-svg-3 group-ef loaded`} id={id}>
+          <section
+            className={`${padding} sec-img-svg-3 group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
             <div className="container">
               <div className="entry-head">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>
@@ -412,7 +421,10 @@ function Icon({ data, id }) {
       )}
       {data[0].type === '8' && (
         <React.Fragment>
-          <section className={`${padding} sec-img-svg-3 group-ef loaded`} id={id}>
+          <section
+            className={`${padding} sec-img-svg-3 group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
             <div className="container">
               <div className="entry-head">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>

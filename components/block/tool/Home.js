@@ -11,10 +11,11 @@ const propTypes = {
   interest_rate: Proptypes.number,
   t: Proptypes.func,
   padding: Proptypes.string,
-  id: Proptypes.number
+  id: Proptypes.number,
+  type: Proptypes.string
 };
 
-function ToolHome({ t, maxValue, interest_rate, padding, id }) {
+function ToolHome({ t, maxValue, interest_rate, padding, id, type }) {
   const [estimate_rate, setEstimateRate] = useState('0');
   const [estimate_mortgage, setEstimateMortgage] = useState('0');
   const [amount, SetAmount] = useState('0');
@@ -129,7 +130,7 @@ function ToolHome({ t, maxValue, interest_rate, padding, id }) {
   };
 
   return (
-    <div className={`container ${padding}`} id={id}>
+    <div className={`container ${padding} tool-${type}`} id={id}>
       <h2 className="ht">{t('tool')}</h2>
       <div className="cttab-xx  sec-b sec-tb">
         <div className="w-menu-over">

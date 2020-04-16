@@ -18,7 +18,7 @@ function Carousels({ silder }) {
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
-        <section className=" banner-heading-1 home next-shadow">
+        <section className={` silder banner-heading-1 home next-shadow`}>
           <Carousel
             showThumbs={false}
             showStatus={false}

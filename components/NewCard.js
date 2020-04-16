@@ -22,7 +22,7 @@ function NewCard({ data, id }) {
   }
   return (
     <React.Fragment>
-      <section className={`${padding} group-ef loaded`} id={id}>
+      <section className={`${padding} group-ef loaded newCard`} id={id}>
         <div className="container">
           <div className="list-5 equalHeight row list-item">
             {map(data, (items, index) => {

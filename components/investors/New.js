@@ -28,7 +28,7 @@ function News({ category, padding }) {
     }
   }, [getNews]);
   return (
-    <section className={padding}>
+    <section className={`${padding} investors`}>
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht efch-1 ef-img-t">Cập nhật giao dịch MB</h2>

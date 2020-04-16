@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 const propTypes = {
   items: PropTypes.object,
   padding: PropTypes.string,
-  id: PropTypes.number
+  id: PropTypes.number,
+  type: PropTypes.string
 };
 
-function ImageRightMB({ items, padding, id }) {
+function ImageRightMB({ items, padding, id, type }) {
   return (
-    <section className={`${padding} sec-img-text group-ef loaded`} id={id}>
+    <section className={`${padding} sec-img-text group-ef loaded block-images-${type}`} id={id}>
       <div className="container">
         <div className="row center end">
           <div className="col-lg-6">

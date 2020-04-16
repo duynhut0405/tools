@@ -91,7 +91,7 @@ function Transaction({ data, id }) {
     padding = 'sec-';
   }
   return (
-    <div className={`wrap-list-map ${padding}`} id={id}>
+    <div className={`wrap-list-map ${padding} transaction`} id={id}>
       <div className="row grid-space-0">
         <div className="col-md-4 ">
           <BoxSearch

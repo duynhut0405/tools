@@ -23,7 +23,7 @@ function TabQuestions({ data, id }) {
   }
   return (
     <React.Fragment>
-      <main id="main" className={padding}>
+      <main id="main" className={`${padding} tabQuestions`}>
         <div className="container" id={id}>
           <h1 className="text-center">{data.title}</h1>
           <div className={`cttab-v3 tabs-total-${data.listTab.length}`}>

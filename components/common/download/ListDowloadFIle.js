@@ -58,7 +58,7 @@ function ListDowloadFIle({
   }
 
   return (
-    <div className={`${padding} accodion accodion-2 container`} id={id}>
+    <div className={`${padding} accodion accodion-2 container downloadfile`} id={id}>
       {search && (
         <Fillter
           center

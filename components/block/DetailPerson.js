@@ -25,7 +25,7 @@ function DetailPerson({ data, detailPerson, getDetailPerson, id }) {
     padding = 'sec-';
   }
   return (
-    <main id="main" className={`${padding}`}>
+    <main id="main" className={`${padding} person`}>
       <div className="container" id={id}>
         <div className="sec-b">
           <h2 className="text-center h1">{data.title}</h2>

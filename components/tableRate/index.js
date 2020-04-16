@@ -36,7 +36,7 @@ function TableRate({ data, id }) {
     getRate(moment(date).format('YYYY/MM/DD'), setList);
   };
   return (
-    <section className={options} id={id}>
+    <section className={`${options} tableRate`} id={id}>
       <div className="container">
         <Search changeDate={event => setDate(event.target.value)} onSubmit={onSeach} />
         <Table data={list.exchangeRateDetail} />

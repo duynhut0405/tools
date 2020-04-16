@@ -19,7 +19,7 @@ function Banner({ data, id }) {
   }
   return (
     <React.Fragment>
-      <section className={padding} id={id}>
+      <section className={`${padding} banner`} id={id}>
         <div className="container">
           <div className="row list-item flex">
             <div className="col-md-4">

@@ -20,7 +20,7 @@ function TagProduct({ data, id }) {
   }
 
   return (
-    <section className={`${padding} sec-h-2 bg-gray group-ef loaded`} id={id}>
+    <section className={`${padding} sec-h-2 bg-gray group-ef loaded hot-products`} id={id}>
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht efch-1 ef-img-t">{data.title || ''}</h2>

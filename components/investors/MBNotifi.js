@@ -26,7 +26,7 @@ function MBNotifi({ t, data, padding }) {
   }, [getNews]);
 
   return (
-    <section className={`${padding} sec-h-4__ sec-tb`}>
+    <section className={`${padding} sec-h-4__ sec-tb investors`}>
       <div className="container">
         <div className="entry-head">
           <h2 className="">{data.label}</h2>

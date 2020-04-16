@@ -30,6 +30,7 @@ function Tools({ content, id }) {
       case 1:
         return (
           <ToolHome
+            type={content.type}
             id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
@@ -40,6 +41,7 @@ function Tools({ content, id }) {
       case 2:
         return (
           <ProductionBusiness
+            types={content.type}
             id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
@@ -50,6 +52,7 @@ function Tools({ content, id }) {
       case 3:
         return (
           <ConsumerLoansWithCollateral
+            type={content.type}
             id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
@@ -60,6 +63,7 @@ function Tools({ content, id }) {
       case 4:
         return (
           <Tool4
+            type={content.type}
             id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
@@ -70,6 +74,7 @@ function Tools({ content, id }) {
       case 5:
         return (
           <Tool5
+            type={content.type}
             id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
@@ -80,6 +85,7 @@ function Tools({ content, id }) {
       case 6:
         return (
           <Tool6
+            type={content.type}
             id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
@@ -90,6 +96,7 @@ function Tools({ content, id }) {
       case 7:
         return (
           <Tool7
+            type={content.type}
             id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}
@@ -100,6 +107,7 @@ function Tools({ content, id }) {
       case 8:
         return (
           <Tool8
+            type={content.type}
             id={id}
             padding={padding}
             minValue={parseInt(content.minValue)}

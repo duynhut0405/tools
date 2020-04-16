@@ -23,7 +23,7 @@ function OtherNews({ data, id }) {
     padding = 'sec-';
   }
   return (
-    <div className={`container ${padding}`} id={id}>
+    <div className={`container ${padding} otherNews`} id={id}>
       <div className="cttab-v3 tabs-total-3">
         <div className="wrap-tab-menu">
           <div className="tab-menu max750">

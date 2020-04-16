@@ -22,7 +22,7 @@ function Financial({ padding }) {
   }, []);
 
   return (
-    <section className={`${padding}`}>
+    <section className={`${padding} investors`}>
       <div className="container">
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">Báo cáo tài chính</h2>

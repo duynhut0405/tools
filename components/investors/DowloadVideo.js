@@ -28,7 +28,7 @@ function DowloadVideos({ padding }) {
     seachRegulation(datatype, page, year, setListRegulation);
   }, [seachRegulation]);
   return (
-    <section className={`${padding} `}>
+    <section className={`${padding} investors `}>
       <div className="container sec-tb">
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">Họp cổ đông</h2>

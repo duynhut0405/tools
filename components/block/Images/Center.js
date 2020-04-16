@@ -6,15 +6,16 @@ import Background from '../../../public/static/images/#f5f4f4.png';
 const propTypes = {
   items: PropTypes.object,
   padding: PropTypes.string,
-  id: PropTypes.number
+  id: PropTypes.number,
+  type: PropTypes.string
 };
 
-function ImageCenter({ items, padding, id }) {
+function ImageCenter({ items, padding, id, type }) {
   const [active, setActive] = useState(false);
 
   if (!items.background || items.background === '1') {
     return (
-      <section className={`${padding} sec-cskh block-images-center`} id={id}>
+      <section className={`${padding} sec-cskh block-images-center block-images-${type}`} id={id}>
         <div className="container">
           <div className="bgvideo loaded">
             <div className="entry-head text-center remove">

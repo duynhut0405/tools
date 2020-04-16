@@ -21,7 +21,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
   }
 
   return (
-    <section className={padding} id={id}>
+    <section className={`${padding} SMEIntro`} id={id}>
       <div className="container">
         <img
           src="/static/images/smeCare/care-logo.png"

@@ -59,7 +59,7 @@ function About({ data, listNews, getNews, id }) {
 
   return (
     <>
-      <main id="main" className={`${padding}`}>
+      <main id="main" className={`${padding} about`}>
         <div className="container" id={id}>
           {data.title && <h1 className="text-center">{data.title}</h1>}
           <div className=" sec-b filter-category text-center">

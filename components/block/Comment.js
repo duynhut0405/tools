@@ -37,7 +37,7 @@ function Comment({ data, id }) {
   }
 
   return (
-    <section className={`${padding} `} id={id}>
+    <section className={`${padding} comment`} id={id}>
       <div className="container">
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">{data.title}</h2>

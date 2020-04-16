@@ -20,7 +20,7 @@ function Download({ data, id, type }) {
   }
   if (type && type === '1') {
     return (
-      <section className={` ${padding} b-tl-3`} id={id}>
+      <section className={` ${padding} b-tl-3 download-${type}`} id={id}>
         <div className="container">
           <h2 className="ht text-center">{data.title}</h2>
           <div className="inner">
@@ -35,7 +35,7 @@ function Download({ data, id, type }) {
   }
   if (type && type === '2') {
     return (
-      <section className={` ${padding} `} id={id}>
+      <section className={` ${padding} download-${type} `} id={id}>
         <div className="container">
           <div className=" b-tl-1">
             <div className="inner">
@@ -52,7 +52,7 @@ function Download({ data, id, type }) {
   }
   if (type && type === '3') {
     return (
-      <section className={` ${padding} `} id={id}>
+      <section className={` ${padding} download-${type} `} id={id}>
         <div className="container">
           <div className=" b-tl-2">
             <h2 className="ht">{data.title}</h2>
@@ -69,7 +69,7 @@ function Download({ data, id, type }) {
   }
   if (type && type === '4') {
     return (
-      <section className={` ${padding} sec-hstt`} id={id}>
+      <section className={` ${padding} sec-hstt download-${type}`} id={id}>
         <div className="container">
           <div className="inner">
             <h2 className="ht">{data.title}</h2>

@@ -21,7 +21,7 @@ function MiniTab({ data, id }) {
     padding = 'sec-';
   }
   return (
-    <div className="container" id={id}>
+    <div className="container block-minitab" id={id}>
       <section className={`${padding} block-minitab`}>
         <h2 className="ht styleht">{data[0].title}</h2>
         <div className={`cttab-v3 tabs-total-${data.length}`}>

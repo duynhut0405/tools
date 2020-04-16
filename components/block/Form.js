@@ -59,7 +59,7 @@ function Form({ data, pageId, id }) {
   }
 
   return (
-    <section className={`${padding} sec-tuvan`} id={id}>
+    <section className={`${padding} sec-tuvan form-register`} id={id}>
       <div className="container">
         <form onSubmit={onSend} autoComplete="on" className="row">
           {map(formdata, (item, index) => {

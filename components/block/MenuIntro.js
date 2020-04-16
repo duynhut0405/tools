@@ -59,7 +59,7 @@ function MenuIntro({ data, type, pageId, optionWidth }) {
   };
   return (
     <React.Fragment>
-      <section className=" sec-menu">
+      <section className=" menuIntro sec-menu">
         <div className="container">
           <ul>
             <li className="active">
@@ -73,7 +73,7 @@ function MenuIntro({ data, type, pageId, optionWidth }) {
           </ul>
         </div>
       </section>
-      <section className={`${padding} sec-ab-1`}>
+      <section className={`${padding} menuIntro sec-ab-1`}>
         <div className="container">
           <div className="row list-item ">
             <div className="col-lg-8">

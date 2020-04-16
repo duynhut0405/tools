@@ -21,7 +21,7 @@ function TablePayment({ data, id, optionWidth }) {
     padding = 'sec-';
   }
   return (
-    <section className={`${padding}`}>
+    <section className={`${padding} installment`}>
       <div className="container">
         <div className="accodion accodion-2 accodion-1-3 ">
           {map(data.listCard, (items, index) => (

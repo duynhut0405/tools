@@ -25,7 +25,7 @@ function Card({ data, type, optionWidth, id }) {
     <React.Fragment>
       {type === '1' && (
         <React.Fragment>
-          <section className={`${padding} bg-gray`} id={id}>
+          <section className={`${padding} bg-gray card-${type}`} id={id}>
             <div className="container">
               <div className="entry-head ">
                 <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
@@ -56,7 +56,7 @@ function Card({ data, type, optionWidth, id }) {
       )}
       {type && type === '5' && (
         <React.Fragment>
-          <section className={`${padding}`} id={id}>
+          <section className={`${padding} card-${type}`} id={id}>
             <div className="container">
               <div className="entry-head text-center">
                 <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
@@ -107,7 +107,7 @@ function Card({ data, type, optionWidth, id }) {
       )}
       {type && type === '6' && (
         <React.Fragment>
-          <section className={`${padding} sec-ab-4 `} id={id}>
+          <section className={`${padding} sec-ab-4 card-${type} `} id={id}>
             <div className="container">
               <div className="entry-head ">
                 {data.title && (

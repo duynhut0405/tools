@@ -42,7 +42,7 @@ function Questions({ data, id }) {
   }
   if (data && data.length > 0) {
     return (
-      <section className={`${padding} sec-cauhoi`} id={id}>
+      <section className={`${padding} sec-cauhoi question`} id={id}>
         <div className="container">
           <div className="entry-head text-center block-question-index">
             {data && data[0].title !== undefined && <h2 className="ht ">{data[0].title || ''}</h2>}

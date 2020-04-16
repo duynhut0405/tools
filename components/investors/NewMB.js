@@ -26,7 +26,7 @@ function NewMB({ t, data, padding }) {
   }, [getNews]);
 
   return (
-    <section className={`${padding} sec-h-4`}>
+    <section className={`${padding} sec-h-4 investors`}>
       <div className="container">
         <div className="entry-head">
           <h2 className="">{data.label}</h2>

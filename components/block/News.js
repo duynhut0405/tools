@@ -115,7 +115,7 @@ function News({ data, type, id, optionWidth }) {
   }
   if (type === '3') {
     return (
-      <section className={`${padding} sec-h-4`} id={id}>
+      <section className={`${padding} sec-h-4 news-${type}`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -184,7 +184,7 @@ function News({ data, type, id, optionWidth }) {
   }
   if (type === '4') {
     return (
-      <section className={`${padding} sec-h-3 `} id={id}>
+      <section className={`${padding} sec-h-3 news-${type} `} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -271,7 +271,7 @@ function News({ data, type, id, optionWidth }) {
   }
   if (type === '5') {
     return (
-      <section className={`${padding}`} id={id}>
+      <section className={`${padding} news-${type}`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head home">
@@ -347,7 +347,7 @@ function News({ data, type, id, optionWidth }) {
   }
   if (type === '6') {
     return (
-      <section className={`${padding} sec-blog-2 `} id={id}>
+      <section className={`${padding} sec-blog-2 news-${type} `} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -427,7 +427,7 @@ function News({ data, type, id, optionWidth }) {
   }
   if (type === '7') {
     return (
-      <section className={`${padding}`} id={id}>
+      <section className={`${padding} news-${type}`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -472,7 +472,7 @@ function News({ data, type, id, optionWidth }) {
   }
   if (type === '8') {
     return (
-      <section className={`${padding} sec-h-4__`} id={id}>
+      <section className={`${padding} news-${type} sec-h-4__`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">
@@ -513,7 +513,7 @@ function News({ data, type, id, optionWidth }) {
   }
   if (type === '9') {
     return (
-      <section className={`${padding} sec-b sec-h-4`} id={id}>
+      <section className={`${padding} news-${type} sec-b sec-h-4`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head">

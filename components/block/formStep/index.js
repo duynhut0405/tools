@@ -39,7 +39,7 @@ function FormStep({ data, pageId, id }) {
     padding = 'sec-';
   }
   return (
-    <section className={`form-step-wapper ${padding}`} id={id}>
+    <section className={`form-step-wapper ${padding} formStep`} id={id}>
       <div className="container">
         <div className="text-center">
           <h1>{data.name}</h1>

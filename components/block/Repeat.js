@@ -30,7 +30,7 @@ function Repeat({ data, type, id, optionWidth }) {
 
   if (type === '1') {
     return (
-      <section className={`${padding}`} id={id}>
+      <section className={`${padding} table-${type}`} id={id}>
         <div className="container">
           <div className="entry-head text-center">
             <h2 className="ht ">{data.title}</h2>
@@ -46,7 +46,7 @@ function Repeat({ data, type, id, optionWidth }) {
   const col = 12 / type;
 
   return (
-    <section className={`${padding}`} id={id}>
+    <section className={`${padding} table-${type}`} id={id}>
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht ">{data.title}</h2>
