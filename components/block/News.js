@@ -93,7 +93,14 @@ function News({ data, type, id, optionWidth }) {
             <div className="col-sm-4 col-md-6 col-lg-4" key={index}>
               <div className="post_content mb-3">
                 <div style={{ height: '230px', width: '100%', overflow: 'hidden' }}>
-                  <img src={`${process.env.DOMAIN}${item.base_image}`} alt="icon" />
+                  <img
+                    src={
+                      item.baseImage === null
+                        ? { ImgDefault }
+                        : `${process.env.DOMAIN}${item.base_image}`
+                    }
+                    alt="icon"
+                  />
                 </div>
                 <div className="content">
                   <div className="date mt-4">
