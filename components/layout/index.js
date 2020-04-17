@@ -615,7 +615,14 @@ function Layout({
           </div>
         </div>
       </StickyContainer>
-      <ModalDrawer menu={menuNav} />
+      <ModalDrawer
+        menu={menuNav}
+        menuHeader={menuHeader}
+        onSearch={event => {
+          onSearch(event);
+          setActiveDrawwe(false);
+        }}
+      />
     </>
   );
 }

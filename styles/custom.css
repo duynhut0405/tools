@@ -128,4 +128,40 @@ ul.menu.line > li button.search-sg i {
   overflow: hidden;
   max-height: 100vh;
 }
+
+.wrap-menu-mb ul.menu > li > form {
+  font-weight: 600;
+  font-size: 15px;
+  color: #000;
+  line-height: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.wrap-menu-mb form input {
+  width: 100%;
+  line-height: 30px;
+  border: none;
+  transition: 0.5s all ease-in-out;
+  -webkit-transition: 0.5s all ease-in-out;
+  margin-left: 5px;
+}
+.wrap-menu-mb .form-group {
+  display: flex;
+}
+
+.wrap-menu-mb .form-group .search-sg {
+  border: none;
+  background: transparent;
+}
+
+@media only screen and (max-width: 767px) {
+  .search-result .cttab-v3 .tab-menu > div {
+    display: inline-block !important;
+    width: 100%;
+  }
+}
+
 /* End edit*/

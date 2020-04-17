@@ -27,7 +27,7 @@ function MenuMiddle({ data, query }) {
   };
   return (
     <>
-      {data !== null && (
+      {data && data.menuItems && (
         <React.Fragment>
           <section className="sec-tb sec-menuicon">
             <div className="container">
@@ -128,11 +128,8 @@ function MenuMiddle({ data, query }) {
                     data.menuItems.sort((a, b) => a.position - b.position),
                     (item, key) => {
                       return (
-                        <div className="col-4">
-                          <div
-                            className={query === item.slugPages ? 'item active' : 'item'}
-                            key={key}
-                          >
+                        <div className="col-4" key={key}>
+                          <div className={query === item.slugPages ? 'item active' : 'item'}>
                             <a href={`/page/${item.slugPages}`} className="link">
                               <div className="img">
                                 <img
