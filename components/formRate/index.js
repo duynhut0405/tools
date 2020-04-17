@@ -28,7 +28,7 @@ function FormRate({ data, interestRate }) {
             </div>
             <div className="col-lg-5">
               <div className="divquidoi">
-                <h2>{t('change_foreign_currency')}</h2>
+                <h2 className="exchange">{t('change_foreign_currency')}</h2>
                 <div>{t('transfer_from')}</div>
                 <div className="input-group">
                   <span className="input-group-addon none arrow">

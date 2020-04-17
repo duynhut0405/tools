@@ -63,7 +63,7 @@ function ListDowloadQA({
         })}
       </section>
       {listRegulation.size > 1 && (
-        <Pagination page={page} size={page.size} setPage={pageNumber => setPage(pageNumber)} />
+        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
       )}
     </div>
   );
