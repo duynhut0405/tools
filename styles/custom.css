@@ -30,4 +30,138 @@ ul.menu.line > li button.search-sg i {
   padding: 5px;
   cursor: pointer;
 }
+
+#search-result {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  z-index: 1001 !important;
+  display: none;
+  background-color: #fff;
+}
+
+#top-search-result {
+  position: relative;
+  padding: 15px 0px;
+}
+
+#top-search-result span.close-sg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#top-search-result .search-field {
+  position: relative;
+  margin-top: 20px;
+  background: transparent;
+}
+
+#top-search-result .search-input-transparent {
+  width: 100%;
+  line-height: 46px;
+  height: 48px;
+  padding: 0 5px 0 50px;
+  font-size: 2rem;
+  border: none;
+}
+
+#top-search-result .icon-search-2 {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+#top-search-result .btn-clear-text {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+#top-search-result .icon-search-2:before {
+  font-size: 1.671rem;
+}
+
+.search-result .cttab-v3 .tab-menu > div {
+  display: inline-block !important;
+  width: auto;
+  height: auto;
+}
+
+.search-result .cttab-v3 .tab-menu {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.search-result .cttab-v3 .tab-menu > div span {
+  padding: 0px 40px;
+  font-size: 0.933333rem;
+}
+
+#top-search-result .btn-clear-text:before {
+  padding: 3px 7px;
+  border-radius: 100%;
+  background-color: #ccc;
+  color: #fff;
+}
+
+.fixed-screen {
+  overflow: hidden;
+  max-height: 100vh;
+}
+
+.wrap-menu-mb ul.menu > li > form {
+  font-weight: 600;
+  font-size: 15px;
+  color: #000;
+  line-height: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.wrap-menu-mb form input {
+  width: 100%;
+  line-height: 30px;
+  border: none;
+  transition: 0.5s all ease-in-out;
+  -webkit-transition: 0.5s all ease-in-out;
+  margin-left: 5px;
+}
+.wrap-menu-mb .form-group {
+  display: flex;
+}
+
+.wrap-menu-mb .form-group .search-sg {
+  border: none;
+  background: transparent;
+}
+
+@media only screen and (max-width: 767px) {
+  .search-result .cttab-v3 .tab-menu > div {
+    display: inline-block !important;
+    width: 100%;
+  }
+}
+
 /* End edit*/

@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import classnames from 'classnames';
 import SubMenu from './submenu';
+import { withTranslation } from '../../../i18n';
+
 const propTypes = {
-  menu: PropTypes.array
+  menu: PropTypes.array,
+  menuHeader: PropTypes.array,
+  t: PropTypes.func,
+  onSearch: PropTypes.func
 };
 
-function ModalDrawer({ menu }) {
+function ModalDrawer({ t, menu, menuHeader, onSearch }) {
   const [activeTab, setActiveTab] = useState(false);
   const [indexMenu, setIndexMenu] = useState(null);
 
@@ -45,7 +50,20 @@ function ModalDrawer({ menu }) {
     <div className="wrap-menu-mb">
       <div className="wrapul main">
         <div className="inner">
+          <ul className="menu">
+            <li>
+              <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
+                <div className="form-group">
+                  <button className="search-sg" type="submit">
+                    <i className="icon-search-2"></i>
+                  </button>
+                  <input id="search" type="text" placeholder={t('search')} />
+                </div>
+              </form>
+            </li>
+          </ul>
           <ul className="menu">{nestChild(menu)}</ul>
+          <ul className="menu">{nestChild(menuHeader)}</ul>
         </div>
       </div>
     </div>
@@ -53,4 +71,4 @@ function ModalDrawer({ menu }) {
 }
 ModalDrawer.propTypes = propTypes;
 
-export default ModalDrawer;
+export default withTranslation('common')(ModalDrawer);

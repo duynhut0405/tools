@@ -27,6 +27,7 @@ function Home({ page, silder, menuMiddle, listRate, listInterestRate }) {
       meta_title={page.meta_title}
       meta_description={page.meta_description}
       meta_keyword={page.meta_keyword}
+      miniImage={page.miniImage}
     >
       <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={[]} />}

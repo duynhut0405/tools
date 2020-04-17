@@ -62,12 +62,12 @@ function ListDowloadFIle({
 
       <div className="sec-tb">
         {listRegulation.investors && listRegulation.investors.length > 0 && (
-          <DowloadVideo data={listRegulation.investors} year={year} isChecked={true} />
+          <DowloadVideo data={listRegulation.investors} year={year} isChecked={true} fileIcon />
         )}
       </div>
 
       {listRegulation.size > 1 && (
-        <Pagination page={page} setPage={pageNumber => setPage(pageNumber)} />
+        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
       )}
     </div>
   );

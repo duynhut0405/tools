@@ -79,11 +79,7 @@ function ListDowloadFIle({
         )}
       </div>
       {listRegulation.size > 1 && (
-        <Pagination
-          page={page}
-          size={listRegulation.size}
-          setPage={pageNumber => setPage(pageNumber)}
-        />
+        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
       )}
     </div>
   );

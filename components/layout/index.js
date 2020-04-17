@@ -5,6 +5,7 @@ import { Social } from '../common';
 import ModalDrawer from './ModalDrawer';
 import DownloadApp from './DownloadApp';
 import Suggest from './Suggest';
+import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
 import map from 'lodash/map';
 import { LayoutActions, MenuActions } from '../../store/actions';
@@ -40,7 +41,8 @@ const propTypes = {
   noIndex: PropTypes.bool,
   meta_title: PropTypes.string,
   meta_description: PropTypes.string,
-  meta_keyword: PropTypes.string
+  meta_keyword: PropTypes.string,
+  miniImage: PropTypes.string
 };
 
 function Layout({
@@ -65,7 +67,8 @@ function Layout({
   getMenuFooterMain,
   getMenuFooterBottom,
   canonical,
-  noIndex
+  noIndex,
+  miniImage
 }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [flag, setFlag] = useState('vn');
@@ -95,7 +98,7 @@ function Layout({
   }, [activeDrawer]);
 
   useEffect(() => {
-    if (personalLayout === 1) {
+    if (personalLayout === 1 || personalLayout === true) {
       const body = document.getElementsByTagName('body')[0];
       body.classList.add('mb-priority');
     }
@@ -213,11 +216,19 @@ function Layout({
     element.placeholder = t('search');
   };
 
+  const onSearch = event => {
+    event.preventDefault();
+    const body = document.getElementsByTagName('body')[0];
+    const result = document.getElementById('search-result');
+    body.classList.add('fixed-screen');
+    result.style = `display: block`;
+  };
+
   return (
     <>
       <StickyContainer>
         <Head>
-          <title>{title || ''}</title>
+          <title>{title || 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
           <link
             rel="icon"
             href="https://www.mbbank.com.vn/images/icons/favicon.ico"
@@ -229,23 +240,34 @@ function Layout({
           {meta_keyword && <meta name="keywords" content={meta_keyword} />}
           {noIndex && <meta name="robots" content="noindex, nofollow" />}
           {!noIndex && <meta name="robots" content="index, follow" />}
+          <meta
+            property="og:image"
+            itemProp="thumbnaiUrl"
+            content={
+              miniImage ? `${process.env.DOMAIN}${miniImage}` : `/static/images/logo-blue.svg`
+            }
+          />
+          <meta property="og:image:width" content="800" />
+          <meta property="og:image:height" content="354" />
         </Head>
         <div id="wrapper">
           <div id="panel">
             <div className="container">
               <ul className="menu line text-right">
                 <li>
-                  <button className="search-sg">
-                    <i className="icon-search-2"></i>
-                  </button>
-                  <input
-                    id="search"
-                    type="text"
-                    placeholder={t('search')}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    style={{ width: '70px' }}
-                  />
+                  <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
+                    <button className="search-sg" type="submit">
+                      <i className="icon-search-2"></i>
+                    </button>
+                    <input
+                      id="search"
+                      type="text"
+                      placeholder={t('search')}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      style={{ width: '70px' }}
+                    />
+                  </form>
                 </li>
                 {map(
                   menuHeader.sort((a, b) => a.position - b.position),
@@ -305,9 +327,9 @@ function Layout({
                     <a href="/" id="logo">
                       <img
                         src={
-                          personalLayout === 1
-                            ? '/static/images/logo_investors.png'
-                            : '/static/images/logo.svg'
+                          personalLayout === 1 || personalLayout === true
+                            ? '/static/images/svg/logo-priority.svg'
+                            : '/static/images/svg/logo.svg'
                         }
                         alt="logo"
                       />
@@ -317,7 +339,7 @@ function Layout({
                         {nestChild(menuNav)}
                         <li className="highlight children">
                           <span className="showsubmenu icon-arrow-2 ib"></span>
-                          <a href="./49_login.php">
+                          <a href="#">
                             <span>Ebanking</span>
                           </a>
                           <div className="wrapul">
@@ -388,6 +410,7 @@ function Layout({
               </div>
             )}
           </Sticky>
+          <SearchResult />
           <div>{children}</div>
           {/* contact */}
           <section className="sec-cta">
@@ -592,7 +615,14 @@ function Layout({
           </div>
         </div>
       </StickyContainer>
-      <ModalDrawer menu={menuNav} />
+      <ModalDrawer
+        menu={menuNav}
+        menuHeader={menuHeader}
+        onSearch={event => {
+          onSearch(event);
+          setActiveDrawwe(false);
+        }}
+      />
     </>
   );
 }

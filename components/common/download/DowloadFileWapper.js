@@ -37,12 +37,9 @@ function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, ge
         setType={event => setDataType(event.target.value)}
       />
       <DowloadFile data={listRegulation.investors} year={year} isChecked />
-      <Pagination
-        page={page}
-        setPage={pageNumber => setPage(pageNumber)}
-        next={nextNumber => setPage(nextNumber)}
-        previous={previousNumber => setPage(previousNumber)}
-      />
+      {listRegulation.size > 1 && (
+        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
+      )}
     </div>
   );
 }

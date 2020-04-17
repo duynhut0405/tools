@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import Proptypes from 'prop-types';
 import { withTranslation } from '../../i18n';
 import map from 'lodash/map';
@@ -15,9 +14,9 @@ function Breadcrumb({ t, data }) {
       <div className="container">
         <div className="breadcrumbs">
           {data.length > 0 ? (
-            <Link href="/">
-              <a className="item">{t('home')}</a>
-            </Link>
+            <a href="/" className="item">
+              {t('home')}
+            </a>
           ) : (
             <span className="item">{t('home')}</span>
           )}
@@ -25,16 +24,14 @@ function Breadcrumb({ t, data }) {
             if (index === data.length - 1) {
               return (
                 <span className="item" key={index}>
-                  {slug}
+                  {slug.name}
                 </span>
               );
             }
             return (
-              <Link href="/page/[...name]" as={`/page/${slug}`}>
-                <a className="item" key={index}>
-                  {slug}
-                </a>
-              </Link>
+              <a className="item" href={`/page/${slug.slug}`} key={index}>
+                {slug.name}
+              </a>
             );
           })}
         </div>

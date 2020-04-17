@@ -46,10 +46,10 @@ function BoxSearch({
           <span className="item">{t('transaction')}</span>
         </li>
         <li
-          className={branches_type === 'transaction_online' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('transaction_online')}
+          className={branches_type === 'atm' ? 'col-4 active' : 'col-4'}
+          onClick={() => setBranchesType('atm')}
         >
-          <span className="item">{t('transaction_online')}</span>
+          <span className="item">{t('atm')}</span>
         </li>
       </ul>
 

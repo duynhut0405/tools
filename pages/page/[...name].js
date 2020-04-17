@@ -37,10 +37,11 @@ function Page({ page, silder, menuMiddle, routerURL, listSlug, slugClass }) {
       meta_title={page.meta_title}
       meta_description={page.meta_description}
       meta_keyword={page.meta_keyword}
+      miniImage={page.miniImage}
     >
       <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={listSlug} />}
-        <Carousel silder={silder} />
+        {silder && <Carousel silder={silder} />}
         <MenuMiddle data={menuMiddle} query={routerURL} />
         <BlockRender data={page.pageBlocks} pageId={page.id} />
       </div>
@@ -77,7 +78,6 @@ Page.getInitialProps = async ctx => {
   }
   if (listPageBySlug && listPageBySlug !== undefined && listPageBySlug.status === 200) {
     listSlug = listPageBySlug.data;
-    map();
   }
   return {
     routerURL,
