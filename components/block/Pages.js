@@ -74,7 +74,7 @@ function Pages({ data, type, id, optionWidth }) {
                       data-lazy-type="image"
                       src={
                         item.baseImage === null
-                          ? { ImgDefault }
+                          ? ImgDefault
                           : `${process.env.DOMAIN}${item.baseImage}`
                       }
                       alt="icon"
@@ -107,7 +107,7 @@ function Pages({ data, type, id, optionWidth }) {
                       data-lazy-type="image"
                       src={
                         item.baseImage === null
-                          ? { ImgDefault }
+                          ? ImgDefault
                           : `${process.env.DOMAIN}${item.baseImage}`
                       }
                       alt="icon"
@@ -140,8 +140,8 @@ function Pages({ data, type, id, optionWidth }) {
                       className="lazy-hidden"
                       data-lazy-type="image"
                       src={
-                        item.baseImage === null
-                          ? { ImgDefault }
+                        values.baseImage === null
+                          ? ImgDefault
                           : `${process.env.DOMAIN}${values.baseImage}`
                       }
                       alt="icon"
@@ -217,8 +217,8 @@ function Pages({ data, type, id, optionWidth }) {
                     <div className="img">
                       <img
                         src={
-                          item.baseImage === null
-                            ? { ImgDefault }
+                          items.baseImage === null
+                            ? ImgDefault
                             : `${process.env.DOMAIN}${items.baseImage}`
                         }
                       />

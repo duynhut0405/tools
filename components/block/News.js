@@ -96,7 +96,7 @@ function News({ data, type, id, optionWidth }) {
                   <img
                     src={
                       item.baseImage === null
-                        ? { ImgDefault }
+                        ? ImgDefault
                         : `${process.env.DOMAIN}${item.base_image}`
                     }
                     alt="icon"
@@ -148,7 +148,7 @@ function News({ data, type, id, optionWidth }) {
                           data-lazy-type="image"
                           src={
                             item.base_image === null
-                              ? { ImgDefault }
+                              ? ImgDefault
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
                         />
@@ -174,7 +174,7 @@ function News({ data, type, id, optionWidth }) {
                         data-lazy-type="image"
                         src={
                           item.base_image === null
-                            ? { ImgDefault }
+                            ? ImgDefault
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
                       />
@@ -241,7 +241,7 @@ function News({ data, type, id, optionWidth }) {
                         data-lazy-type="image"
                         src={
                           item.base_image === null
-                            ? { ImgDefault }
+                            ? ImgDefault
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
                         style={{ height: '187px' }}
@@ -318,7 +318,7 @@ function News({ data, type, id, optionWidth }) {
                         data-lazy-type="image"
                         src={
                           item.base_image === null
-                            ? { ImgDefault }
+                            ? ImgDefault
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
                       />
@@ -390,9 +390,7 @@ function News({ data, type, id, optionWidth }) {
                   className=" loaded loaded"
                   data-lazy-type="image"
                   src={
-                    item.base_image === null
-                      ? { ImgDefault }
-                      : `${process.env.DOMAIN}${data.urlImage}`
+                    data.urlImage === null ? ImgDefault : `${process.env.DOMAIN}${data.urlImage}`
                   }
                 />
               </a>
@@ -408,7 +406,7 @@ function News({ data, type, id, optionWidth }) {
                           data-lazy-type="image"
                           src={
                             item.base_image === null
-                              ? { ImgDefault }
+                              ? ImgDefault
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
                         />
@@ -433,7 +431,7 @@ function News({ data, type, id, optionWidth }) {
                               data-lazy-type="image"
                               src={
                                 item.base_image === null
-                                  ? { ImgDefault }
+                                  ? ImgDefault
                                   : `${process.env.DOMAIN}${item.base_image}`
                               }
                             />
@@ -485,7 +483,7 @@ function News({ data, type, id, optionWidth }) {
                       data-lazy-type="image"
                       src={
                         item.base_image === null
-                          ? { ImgDefault }
+                          ? ImgDefault
                           : `${process.env.DOMAIN}${item.base_image}`
                       }
                     />
@@ -577,7 +575,7 @@ function News({ data, type, id, optionWidth }) {
                           data-lazy-type="image"
                           src={
                             item.base_image === null
-                              ? { ImgDefault }
+                              ? ImgDefault
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
                         ></img>
@@ -606,7 +604,7 @@ function News({ data, type, id, optionWidth }) {
                                 data-lazy-type="image"
                                 src={
                                   item.base_image === null
-                                    ? { ImgDefault }
+                                    ? ImgDefault
                                     : `${process.env.DOMAIN}${item.base_image}`
                                 }
                               />
