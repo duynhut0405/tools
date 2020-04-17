@@ -29,12 +29,12 @@ function MenuMiddle({ data, query }) {
     <>
       {data !== null && (
         <React.Fragment>
-          <section className="sec-tb shop-pc">
+          <section className="sec-tb sec-menuicon">
             <div className="container">
               <div className="text-center common-menumiddle entry-head">
                 <h1 className="ht">{data.title}</h1>
               </div>
-              <div className="wrap-carousel max850">
+              <div className="wrap-carousel max850 pc">
                 {data.menuItems !== undefined && data.menuItems.length >= 6 && (
                   <Carousel
                     responsive={responsive}
@@ -122,35 +122,33 @@ function MenuMiddle({ data, query }) {
                   </div>
                 )}
               </div>
-            </div>
-          </section>
-          <section className="sec-tb sec-h-1 show-mb">
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht efch-1 ef-img-t">{data.title}</h2>
-              </div>
-              <div className="menuicon">
+              <div className="menuicon mb">
+                <div class="row grid-space-0">
                 {map(
                   data.menuItems.sort((a, b) => a.position - b.position),
                   (item, key) => {
                     return (
-                      <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
-                        <a href={`/page/${item.slugPages}`} className="link">
-                          <div className="img">
-                            <img
-                              className=" loaded loaded"
-                              data-lazy-type="image"
-                              data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
-                              src={`${process.env.DOMAIN}${item.icon}`}
-                            />
-                          </div>
-                          <div className="title">{item.name}</div>
-                        </a>
+                      <div class="col-4">
+                        <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
+                          <a href={`/page/${item.slugPages}`} className="link">
+                            <div className="img">
+                              <img
+                                className=" loaded loaded"
+                                data-lazy-type="image"
+                                data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
+                                src={`${process.env.DOMAIN}${item.icon}`}
+                              />
+                            </div>
+                            <div className="title">{item.name}</div>
+                          </a>
+                        </div>
                       </div>
                     );
                   }
                 )}
+                </div>
               </div>
+
             </div>
           </section>
         </React.Fragment>
