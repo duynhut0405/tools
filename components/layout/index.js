@@ -98,7 +98,7 @@ function Layout({
   }, [activeDrawer]);
 
   useEffect(() => {
-    if (personalLayout === 1) {
+    if (personalLayout === 1 || personalLayout === true) {
       const body = document.getElementsByTagName('body')[0];
       body.classList.add('mb-priority');
     }
@@ -327,7 +327,7 @@ function Layout({
                     <a href="/" id="logo">
                       <img
                         src={
-                          personalLayout === 1
+                          personalLayout === 1 || personalLayout === true
                             ? '/static/images/svg/logo-priority.svg'
                             : '/static/images/svg/logo.svg'
                         }
