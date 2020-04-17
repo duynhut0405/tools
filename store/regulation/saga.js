@@ -11,9 +11,9 @@ import {
 
 function* getRegulationSaga() {
   yield takeLatest(actions.GET_REGULATION_PAGINATION_REQUEST, function*(params) {
-    const { types, year, page } = params;
+    const { types, year, number, page } = params;
     try {
-      const res = yield getRegulationPagation(types, year, page);
+      const res = yield getRegulationPagation(types, year, number, page);
       if (res.status === 200) {
         yield put({ type: actions.GET_REGULATION_PAGINATION_RESPONSE, data: res.data });
       } else {

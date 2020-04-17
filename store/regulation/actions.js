@@ -2,10 +2,11 @@ const Actions = {
   GET_REGULATION_PAGINATION_REQUEST: 'GET_REGULATION_PAGINATION_REQUEST',
   GET_REGULATION_PAGINATION_RESPONSE: 'GET_REGULATION_PAGINATION_RESPONSE',
 
-  getRegulation: (types, year, page) => ({
+  getRegulation: (types, year, number, page) => ({
     type: Actions.GET_REGULATION_PAGINATION_REQUEST,
     types,
     year,
+    number,
     page
   }),
 

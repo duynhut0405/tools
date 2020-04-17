@@ -32,11 +32,21 @@ function ListDowloadQA({
   const [year, setYear] = useState(moment(date).format('YYYY'));
 
   useEffect(() => {
-    seachRegulation(type, year, page);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, year, 5, page);
+    } else {
+      seachRegulation(type, year, 10, page);
+    }
   }, [getTypeRegulation]);
 
   useEffect(() => {
-    seachRegulation(type, year, page);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, year, 5, page);
+    } else {
+      seachRegulation(type, year, 10, page);
+    }
   }, [page]);
 
   return (

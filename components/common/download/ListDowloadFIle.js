@@ -39,11 +39,21 @@ function ListDowloadFIle({
 
   useEffect(() => {
     getTypeRegulation(type);
-    seachRegulation(type, 0, 10, 0, year);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, 0, 5, 0, year);
+    } else {
+      seachRegulation(type, 0, 10, 0, year);
+    }
   }, [getTypeRegulation]);
 
   useEffect(() => {
-    seachRegulation(type, datatype, 10, page, year);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, datatype, 5, page, year);
+    } else {
+      seachRegulation(type, datatype, 10, page, year);
+    }
   }, [page, year, datatype]);
 
   let padding = '';

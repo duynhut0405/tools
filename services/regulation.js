@@ -52,9 +52,9 @@ const getUrlVideoService = data => {
     });
 };
 
-const getRegulationPagation = (type, year, page) => {
+const getRegulationPagation = (type, year, number, page) => {
   return request({
-    url: `/regulation/pagination/${type}/${year}?number=10&page=${page}`,
+    url: `/regulation/pagination/${type}/${year}?number=${number}&page=${page}`,
     method: 'GET'
   })
     .then(res => {
