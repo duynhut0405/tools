@@ -42,13 +42,15 @@ function CustomTab({ data, id }) {
               </div>
             </div>
             <div className="tab-content">
-              {map(data.listTab, (item, index) => (
-                <div className={classnames({ active: activeTab === String(index) })} key={index}>
-                  <div className="tab-inner">
-                    <CustomTabItem data={item} indexTab={index} />
+              {map(data.listTab, (item, index) => {
+                return (
+                  <div className={classnames({ active: activeTab === String(index) })} key={index}>
+                    <div className="tab-inner">
+                      <CustomTabItem data={item} indexTab={index} />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

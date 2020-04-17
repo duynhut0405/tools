@@ -263,7 +263,9 @@ function BlockRender({ data, pageId }) {
                 return <Banner key={index} data={JSON.parse(values.content)} id={values.id} />;
               }
               if (values.name === 'Bảng tỷ giá' && values.content !== null) {
-                return <TableRate key={index} data={JSON.parse(values.content)} id={values.id} />;
+                return (
+                  <TableRate key={index} data={JSON.parse(values.content)} id={values.id} search />
+                );
               }
               return null;
             }

@@ -8,7 +8,8 @@ import Proptypes from 'prop-types';
 
 const propTypes = {
   data: Proptypes.object,
-  id: Proptypes.number
+  id: Proptypes.number,
+  search: Proptypes.bool
 };
 
 const getRate = async (query, setData) => {
@@ -23,10 +24,10 @@ const getRate = async (query, setData) => {
   }
 };
 
-function TableRate({ data, id }) {
+function TableRate({ data, id, search }) {
   const [list, setList] = useState({});
   const [date, setDate] = useState(null);
-  const [options] = useState(getPadding(data.optionWidth));
+  const [options] = useState(getPadding(data ? data.optionWidth : ''));
 
   useEffect(() => {
     getRate(date, setList);
@@ -38,7 +39,7 @@ function TableRate({ data, id }) {
   return (
     <section className={`${options} tableRate`} id={id}>
       <div className="container">
-        <Search changeDate={event => setDate(event.target.value)} onSubmit={onSeach} />
+        {search && <Search changeDate={event => setDate(event.target.value)} onSubmit={onSeach} />}
         <Table data={list.exchangeRateDetail} />
       </div>
     </section>
