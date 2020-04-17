@@ -10,7 +10,7 @@ const propTypes = {
 
 function Pagination({ setPage, size }) {
   return (
-    <div className="page pb-3 sec">
+    <div className="page pb-3 sec-b">
       <ReactPaginate
         previousLabel={<i className="icon-arrow-2 ix"></i>}
         nextLabel={<i className="icon-arrow-2"></i>}
