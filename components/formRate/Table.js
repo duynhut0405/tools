@@ -3,6 +3,7 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
+import { rate } from '../../utils/currency';
 
 const propTypes = {
   data: PropTypes.array
@@ -32,9 +33,9 @@ function TableRate({ data, type }) {
                   />
                   {value.currency}
                 </td>
-                <td>{value.buy_cash}</td>
-                <td>{value.buy_transfer}</td>
-                <td>{value.sell}</td>
+                <td>{rate(value.buy_cash)}</td>
+                <td>{rate(value.buy_transfer)}</td>
+                <td>{rate(value.sell)}</td>
               </tr>
             );
           })}
