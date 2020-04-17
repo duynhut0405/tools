@@ -41,7 +41,7 @@ function Page({ page, silder, menuMiddle, routerURL, listSlug, slugClass }) {
     >
       <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={listSlug} />}
-        <Carousel silder={silder} />
+        {silder && <Carousel silder={silder} />}
         <MenuMiddle data={menuMiddle} query={routerURL} />
         <BlockRender data={page.pageBlocks} pageId={page.id} />
       </div>
