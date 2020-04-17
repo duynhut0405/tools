@@ -123,32 +123,34 @@ function MenuMiddle({ data, query }) {
                 )}
               </div>
               <div className="menuicon mb">
-                <div class="row grid-space-0">
-                {map(
-                  data.menuItems.sort((a, b) => a.position - b.position),
-                  (item, key) => {
-                    return (
-                      <div class="col-4">
-                        <div className={query === item.slugPages ? 'item active' : 'item'} key={key}>
-                          <a href={`/page/${item.slugPages}`} className="link">
-                            <div className="img">
-                              <img
-                                className=" loaded loaded"
-                                data-lazy-type="image"
-                                data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
-                                src={`${process.env.DOMAIN}${item.icon}`}
-                              />
-                            </div>
-                            <div className="title">{item.name}</div>
-                          </a>
+                <div className="row grid-space-0">
+                  {map(
+                    data.menuItems.sort((a, b) => a.position - b.position),
+                    (item, key) => {
+                      return (
+                        <div className="col-4">
+                          <div
+                            className={query === item.slugPages ? 'item active' : 'item'}
+                            key={key}
+                          >
+                            <a href={`/page/${item.slugPages}`} className="link">
+                              <div className="img">
+                                <img
+                                  className=" loaded loaded"
+                                  data-lazy-type="image"
+                                  data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
+                                  src={`${process.env.DOMAIN}${item.icon}`}
+                                />
+                              </div>
+                              <div className="title">{item.name}</div>
+                            </a>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  }
-                )}
+                      );
+                    }
+                  )}
                 </div>
               </div>
-
             </div>
           </section>
         </React.Fragment>
