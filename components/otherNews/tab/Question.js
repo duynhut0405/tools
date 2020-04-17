@@ -1,14 +1,17 @@
 import React from 'react';
 import { ListDowloadQA } from '../../common/download';
-import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
-function TabQuestion() {
-  const { t } = useTranslation();
+const propTypes = {
+  text: PropTypes.object
+};
+
+function TabQuestion({ text }) {
   return (
     <div className="tab-inner">
       <div className="max750 mb-40">
         <div className="inline-table w100">
-          <h3 className="ctext">{t('you_encounter_difficulties')}</h3>
+          <h3 className="ctext">{text}</h3>
           <div className="c100">
             <form role="search" className="searchform input h50">
               <input
@@ -32,5 +35,7 @@ function TabQuestion() {
     </div>
   );
 }
+
+TabQuestion.propTypes = propTypes;
 
 export default TabQuestion;

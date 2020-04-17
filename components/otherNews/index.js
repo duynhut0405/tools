@@ -24,6 +24,29 @@ function OtherNews({ data, id }) {
   }
   return (
     <div className={`container ${padding} otherNews`} id={id}>
+      <div className="entry-head">
+        <h2 className="ht efch-1 ef-img-l">
+          {activeTab === 1
+            ? t('question_answer')
+            : activeTab === 2
+            ? t('rating_report')
+            : t('documents')}
+        </h2>
+        <p className="cl5"></p>
+        <a
+          className="viewall"
+          href={`/news/category/${
+            activeTab === 1
+              ? `hoi-ap`
+              : activeTab === 2
+              ? 'bao-cao-xep-hang-tin-nhiem'
+              : 'tai-lieu-bieu-mau'
+          }`}
+        >
+          {t('view')}
+          <i className="icon-arrow-1"></i>
+        </a>
+      </div>
       <div className="cttab-v3 tabs-total-3">
         <div className="wrap-tab-menu">
           <div className="tab-menu max750">
@@ -40,7 +63,7 @@ function OtherNews({ data, id }) {
         </div>
         <div className="tab-content">
           <div className={activeTab === 1 ? 'active' : ''}>
-            {activeTab === 1 && <TabQuestion />}
+            {activeTab === 1 && <TabQuestion text={data.question} />}
           </div>
           <div className={activeTab === 2 ? 'active' : ''}>
             {activeTab === 2 && <ListDowloadFIle type={8} noQuestion />}
@@ -55,9 +78,5 @@ function OtherNews({ data, id }) {
 }
 
 OtherNews.propTypes = propTypes;
-
-OtherNews.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'OtherNews']
-});
 
 export default withTranslation('common')(OtherNews);
