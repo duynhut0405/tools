@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
+import ImgDefault from '../../public/images/imgDefault.png';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -138,7 +139,11 @@ function News({ data, type, id, optionWidth }) {
                         <img
                           className="lazy-hidden"
                           data-lazy-type="image"
-                          src={`${process.env.DOMAIN}${item.base_image}`}
+                          src={
+                            item.base_image === null
+                              ? { ImgDefault }
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
                         />
                       </div>
                       <div className="divtext">
@@ -160,7 +165,11 @@ function News({ data, type, id, optionWidth }) {
                       <img
                         className="lazy-hidden"
                         data-lazy-type="image"
-                        src={`${process.env.DOMAIN}${item.base_image}`}
+                        src={
+                          item.base_image === null
+                            ? { ImgDefault }
+                            : `${process.env.DOMAIN}${item.base_image}`
+                        }
                       />
                     </div>
                     <div className="divtext">
@@ -223,7 +232,11 @@ function News({ data, type, id, optionWidth }) {
                       <img
                         className="lazy-hidden"
                         data-lazy-type="image"
-                        src={`${process.env.DOMAIN}${item.base_image}`}
+                        src={
+                          item.base_image === null
+                            ? { ImgDefault }
+                            : `${process.env.DOMAIN}${item.base_image}`
+                        }
                         style={{ height: '187px' }}
                       />
                     </div>
@@ -296,7 +309,11 @@ function News({ data, type, id, optionWidth }) {
                       <img
                         className=" loaded loaded"
                         data-lazy-type="image"
-                        src={`${process.env.DOMAIN}${item.base_image}`}
+                        src={
+                          item.base_image === null
+                            ? { ImgDefault }
+                            : `${process.env.DOMAIN}${item.base_image}`
+                        }
                       />
                     </div>
                     <div className="divtext">
@@ -365,7 +382,11 @@ function News({ data, type, id, optionWidth }) {
                 <img
                   className=" loaded loaded"
                   data-lazy-type="image"
-                  src={`${process.env.DOMAIN}${data.urlImage}`}
+                  src={
+                    item.base_image === null
+                      ? { ImgDefault }
+                      : `${process.env.DOMAIN}${data.urlImage}`
+                  }
                 />
               </a>
             </div>
@@ -378,7 +399,11 @@ function News({ data, type, id, optionWidth }) {
                         <img
                           className=" loaded loaded"
                           data-lazy-type="image"
-                          src={`${process.env.DOMAIN}${item.base_image}`}
+                          src={
+                            item.base_image === null
+                              ? { ImgDefault }
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
                         />
                         <div className="divtext">
                           <h4 className="title line2">{item.title}</h4>
@@ -399,7 +424,11 @@ function News({ data, type, id, optionWidth }) {
                             <img
                               className=" loaded loaded"
                               data-lazy-type="image"
-                              src={`${process.env.DOMAIN}${item.base_image}`}
+                              src={
+                                item.base_image === null
+                                  ? { ImgDefault }
+                                  : `${process.env.DOMAIN}${item.base_image}`
+                              }
                             />
                           </div>
                           <div className="divtext">
@@ -447,7 +476,11 @@ function News({ data, type, id, optionWidth }) {
                     <img
                       className=" loaded loaded"
                       data-lazy-type="image"
-                      src={`${process.env.DOMAIN}${item.base_image}`}
+                      src={
+                        item.base_image === null
+                          ? { ImgDefault }
+                          : `${process.env.DOMAIN}${item.base_image}`
+                      }
                     />
                   </div>
                   <div className="divtext">
@@ -535,8 +568,11 @@ function News({ data, type, id, optionWidth }) {
                         <img
                           className=" loaded loaded"
                           data-lazy-type="image"
-                          data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
-                          src={`${process.env.DOMAIN}${item.base_image}`}
+                          src={
+                            item.base_image === null
+                              ? { ImgDefault }
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
                         ></img>
                         <div className="divtext">
                           <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
@@ -561,7 +597,11 @@ function News({ data, type, id, optionWidth }) {
                               <img
                                 className=" loaded loaded"
                                 data-lazy-type="image"
-                                src={`${process.env.DOMAIN}${item.base_image}`}
+                                src={
+                                  item.base_image === null
+                                    ? { ImgDefault }
+                                    : `${process.env.DOMAIN}${item.base_image}`
+                                }
                               />
                             </div>
                             <div className="divtext">

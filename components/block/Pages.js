@@ -5,6 +5,7 @@ import { getPagesByIdService } from '../../services/page';
 import { useTranslation } from 'react-i18next';
 import Carousel from 'react-multi-carousel';
 import CustomPageItem from './BlockPageItem/CustomPageItem';
+import ImgDefault from '../../public/images/imgDefault.png';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -71,7 +72,11 @@ function Pages({ data, type, id, optionWidth }) {
                     <img
                       className="lazy-hidden"
                       data-lazy-type="image"
-                      src={`${process.env.DOMAIN}${item.baseImage}`}
+                      src={
+                        item.baseImage === null
+                          ? { ImgDefault }
+                          : `${process.env.DOMAIN}${item.baseImage}`
+                      }
                       alt="icon"
                     />
                   </div>
@@ -100,7 +105,11 @@ function Pages({ data, type, id, optionWidth }) {
                     <img
                       className="lazy-hidden"
                       data-lazy-type="image"
-                      src={`${process.env.DOMAIN}${item.baseImage}`}
+                      src={
+                        item.baseImage === null
+                          ? { ImgDefault }
+                          : `${process.env.DOMAIN}${item.baseImage}`
+                      }
                       alt="icon"
                     />
                   </div>
@@ -130,7 +139,11 @@ function Pages({ data, type, id, optionWidth }) {
                     <img
                       className="lazy-hidden"
                       data-lazy-type="image"
-                      src={`${process.env.DOMAIN}${values.baseImage}`}
+                      src={
+                        item.baseImage === null
+                          ? { ImgDefault }
+                          : `${process.env.DOMAIN}${values.baseImage}`
+                      }
                       alt="icon"
                     />
                   </div>

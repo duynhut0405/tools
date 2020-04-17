@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
+import ImgDefault from '../../public/images/imgDefault.png';
 
 const propTypes = {
   data: Proptypes.object.isRequired
@@ -32,7 +33,11 @@ function MiniTabItem({ data }) {
                 <img
                   className="lazy-hidden"
                   data-lazy-type="image"
-                  src={`${process.env.DOMAIN}${item.baseImage}`}
+                  src={
+                    item.baseImage === null
+                      ? `${ImgDefault}`
+                      : `${process.env.DOMAIN}${item.baseImage}`
+                  }
                   alt="icon"
                 />
               </div>
