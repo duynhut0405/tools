@@ -23,7 +23,9 @@ function Page({ page, silder, menuMiddle, routerURL, listSlug, slugClass }) {
   const noIndex = page.noIndex ? page.noIndex : '';
   useEffect(() => {
     document.body.classList.add('page');
-    document.body.classList.add(`${slugClass}`);
+    if (slugClass) {
+      document.body.classList.add(`${slugClass}`);
+    }
     if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
       document.body.classList.add(`title-24`);
     }
