@@ -40,7 +40,7 @@ function New({ socialLink, news, category_name, category_url }) {
                 <a className="item" href={`/news/category/${category_url}`}>
                   {category_name}
                 </a>
-                <span className="item">{news.news === null ? '' : news.news.title}</span>
+                {/* <span className="item">{news.news === null ? '' : news.news.title}</span> */}
               </div>
             </div>
           </div>
