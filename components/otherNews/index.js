@@ -22,15 +22,12 @@ function OtherNews({ data, id }) {
   } else {
     padding = 'sec-';
   }
+  console.log('data:', data)
   return (
     <div className={`container ${padding} otherNews`} id={id}>
       <div className="entry-head">
         <h2 className="ht efch-1 ef-img-l">
-          {activeTab === 1
-            ? t('question_answer')
-            : activeTab === 2
-            ? t('rating_report')
-            : t('documents')}
+          {data.titleBlock}
         </h2>
         <p className="cl5"></p>
         <a
