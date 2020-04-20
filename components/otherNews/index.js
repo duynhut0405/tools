@@ -22,13 +22,10 @@ function OtherNews({ data, id }) {
   } else {
     padding = 'sec-';
   }
-  console.log('data:', data)
   return (
     <div className={`container ${padding} otherNews`} id={id}>
       <div className="entry-head">
-        <h2 className="ht efch-1 ef-img-l">
-          {data.titleBlock}
-        </h2>
+        <h2 className="ht efch-1 ef-img-l">{data.titleBlock}</h2>
         <p className="cl5"></p>
         <a
           className="viewall"

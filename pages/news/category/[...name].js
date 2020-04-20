@@ -33,6 +33,9 @@ function CategoryDetail({ routerURL, category }) {
   return (
     <Layout
       title={data === null ? '' : data.name}
+      meta_title={data === null ? '' : data.meta_title}
+      meta_description={ndata === null ? '' : data.meta_description}
+      meta_keyword={data === null ? '' : data.meta_keyword}
       miniImage={data === null ? null : data.base_image}
     >
       {data !== null && (

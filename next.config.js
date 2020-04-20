@@ -1,7 +1,7 @@
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
 const withFonts = require('nextjs-fonts');
-// const { getRouer, getNewRouter, getCategoryRouter } = require('./services/router');
+const { getRouer, getNewRouter, getCategoryRouter } = require('./services/router');
 
 module.exports = withFonts(
   withCSS(
@@ -25,7 +25,7 @@ module.exports = withFonts(
       },
       env: {
         DOMAIN: 'https://mbbank3.mangoads.com.vn:8443/'
-      }
+      },
       exportPathMap: async function() {
         let router = [];
         let newRouter = [];
