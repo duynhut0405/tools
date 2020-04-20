@@ -4,11 +4,11 @@ import { getLang } from './utils/cookie';
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: 'vi',
   lng: getLang(),
-  otherLanguages: ['vi', 'en']
-  // localeSubpaths: {
-  //   vi: 'vi',
-  //   en: 'en'
-  // }
+  otherLanguages: ['vi', 'en'],
+  localeSubpaths: {
+    vi: 'vi',
+    en: 'en'
+  }
 });
 
 // NextI18NextInstance.i

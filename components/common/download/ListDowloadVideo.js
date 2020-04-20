@@ -3,6 +3,7 @@ import { DowloadVideo, Fillter } from '../download';
 import { Pagination } from '../../common';
 import { RegulationActions } from '../../../store/actions';
 import PropTypes from 'prop-types';
+import { convertTitle } from '../../../utils/convertPadding';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
@@ -13,11 +14,13 @@ const propTypes = {
   getTypeRegulation: PropTypes.func,
   seachRegulation: PropTypes.func,
   id: PropTypes.number,
-  optionWidth: PropTypes.string
+  optionWidth: PropTypes.string,
+  data: PropTypes.object
 };
 
 function ListDowloadFIle({
   type,
+  data,
   optionWidth,
   listType,
   id,
@@ -29,6 +32,7 @@ function ListDowloadFIle({
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(moment(date).format('YYYY'));
+  const [title] = useState(convertTitle(type));
 
   useEffect(() => {
     getTypeRegulation(type);
@@ -62,6 +66,14 @@ function ListDowloadFIle({
 
   return (
     <div className={`accodion accodion-2 container ${padding} downloadvideo`} id={id}>
+      {data && (
+        <div className="entry-head">
+          <h2 className="ht efch-1 ef-img-l">{title}</h2>
+          <a className="viewall" href={data === undefined || data.url === '' ? '#' : data.url}>
+            Xem tất cả <i className="icon-arrow-1"></i>
+          </a>
+        </div>
+      )}
       <Fillter
         center
         year={year}

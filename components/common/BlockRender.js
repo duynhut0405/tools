@@ -214,6 +214,7 @@ function BlockRender({ data, pageId }) {
               if (values.name === 'DownloadFile' && values.content !== null) {
                 return (
                   <ListDowloadFIle
+                    data={JSON.parse(values.content)}
                     type={Number(JSON.parse(values.content).type)}
                     optionWidth={Number(JSON.parse(values.content).optionWidth)}
                     search
@@ -225,6 +226,7 @@ function BlockRender({ data, pageId }) {
               if (values.name === 'DownloadVideo' && values.content !== null) {
                 return (
                   <ListDowloadVideo
+                    data={JSON.parse(values.content)}
                     optionWidth={Number(JSON.parse(values.content).optionWidth)}
                     type={Number(JSON.parse(values.content).type)}
                     id={values.id}

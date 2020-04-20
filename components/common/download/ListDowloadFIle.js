@@ -6,6 +6,7 @@ import { Pagination } from '../../common';
 import { RegulationActions } from '../../../store/actions';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import { convertTitle } from '../../../utils/convertPadding';
 import { connect } from 'react-redux';
 
 const propTypes = {
@@ -16,6 +17,7 @@ const propTypes = {
   listType: PropTypes.array,
   noQuestion: PropTypes.bool,
   id: PropTypes.number,
+  data: PropTypes.object,
   listRegulation: PropTypes.array,
   getTypeRegulation: PropTypes.func,
   seachRegulation: PropTypes.func
@@ -23,6 +25,7 @@ const propTypes = {
 
 function ListDowloadFIle({
   type,
+  data,
   optionWidth,
   listType,
   listRegulation,
@@ -36,6 +39,7 @@ function ListDowloadFIle({
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(moment(date).format('YYYY'));
+  const [title] = useState(convertTitle(type));
 
   useEffect(() => {
     getTypeRegulation(type);
@@ -69,6 +73,14 @@ function ListDowloadFIle({
 
   return (
     <div className={`${padding} accodion accodion-2 container downloadfile`} id={id}>
+      {data && (
+        <div className="entry-head">
+          <h2 className="ht efch-1 ef-img-l">{title}</h2>
+          <a className="viewall" href={data === undefined || data.url === '' ? '#' : data.url}>
+            Xem tất cả <i className="icon-arrow-1"></i>
+          </a>
+        </div>
+      )}
       {search && (
         <Fillter
           center
