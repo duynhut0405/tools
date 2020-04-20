@@ -13,7 +13,8 @@ const propTypes = {
   setQuery: PropTypes.func,
   setBranchesType: PropTypes.func,
   handleProvince: PropTypes.func,
-  t: PropTypes.func
+  t: PropTypes.func,
+  getDetail: PropTypes.func
 };
 
 function BoxSearch({
@@ -25,7 +26,8 @@ function BoxSearch({
   handleProvince,
   setBranchesType,
   setQuery,
-  setDistrict
+  setDistrict,
+  getDetail
 }) {
   const onSearch = debounce(value => {
     setQuery(value);
@@ -68,9 +70,9 @@ function BoxSearch({
         <Select
           className="fix-select"
           placeholder={t('province')}
-          options={map([{ id: '', title: 'Tất cả' }, ...listProvince], province => ({
+          options={map([{ id: '', name: 'Tất cả' }, ...listProvince], province => ({
             value: province.id,
-            label: province.title
+            label: province.name
           }))}
           onChange={handleProvince}
         />
@@ -99,7 +101,7 @@ function BoxSearch({
             }
             key={index}
           >
-            <div className="location">
+            <div className="location" onClick={() => getDetail(branches)}>
               <h5 className="title">{branches.address_name}</h5>
               <div className="address">{branches.address}</div>
             </div>

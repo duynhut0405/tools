@@ -18,6 +18,7 @@ import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
 import '../../styles/custom.css';
 import ReactHtmlParser from 'react-html-parser';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -73,6 +74,8 @@ function Layout({
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [flag, setFlag] = useState('vn');
   const { i18n, t } = useTranslation();
+
+  const router = useRouter();
 
   useEffect(() => {
     getMenuHeader();

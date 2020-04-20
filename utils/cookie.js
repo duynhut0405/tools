@@ -21,7 +21,7 @@ export const setLang = (lang, flag) => {
   if (lang) {
     Cookies.set('flag', flag);
     Cookies.set('lang', lang);
-    return window.location.reload();
+    return Cookies.set('lang', lang);
   }
   return null;
 };

@@ -33,6 +33,8 @@ const getDistrict = async (id, setData) => {
 
 function Transaction({ data, id }) {
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
+  const [locationId, setID] = useState(null);
+  const [zoom, setZoom] = useState(8);
   const [district, setDistrict] = useState('');
   const [branches_type, setBranchesType] = useState('branch');
   const [province, setProvince] = useState('');
@@ -74,12 +76,23 @@ function Transaction({ data, id }) {
       },
       setListBranches
     );
+    setZoom(8);
   }, [district, branches_type, province, query]);
 
   const handleProvince = provinceItem => {
     setProvince(provinceItem.value);
     getDistrict(provinceItem.value, setListDistrict);
   };
+
+  const getDetail = branches => {
+    setLocation(() => ({
+      lat: Number(branches.latitude),
+      lng: Number(branches.longitude)
+    }));
+    setID(branches.id);
+    setZoom(14);
+  };
+
   let padding = '';
   if (data.optionWidth === '2') {
     padding = 'sec-tb';
@@ -90,6 +103,7 @@ function Transaction({ data, id }) {
   } else {
     padding = 'sec-';
   }
+
   return (
     <div className={`wrap-list-map ${padding} transaction`} id={id}>
       <div className="row grid-space-0">
@@ -103,10 +117,11 @@ function Transaction({ data, id }) {
             setQuery={setQuery}
             setBranchesType={setBranchesType}
             setDistrict={setDistrict}
+            getDetail={getDetail}
           />
         </div>
         <div className="col-md-8">
-          <Map data={listBranches} location={location} zoom={8} />
+          <Map data={listBranches} location={location} zoom={zoom} id={locationId} />
         </div>
       </div>
     </div>

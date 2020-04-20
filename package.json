@@ -3,11 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "server": "cd out && serve -p 3000",
+    "dev": "node server.js",
     "build": "next build && next export",
-    "start": "next start",
-    "postinstall": "next build"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.7",
@@ -17,9 +15,11 @@
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
     "dom-parser": "^0.1.6",
+    "express": "^4.17.1",
     "fs": "0.0.1-security",
     "google-map-react": "^1.1.7",
     "html-dom-parser": "^0.2.3",
+    "i18next-express-middleware": "^2.0.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",

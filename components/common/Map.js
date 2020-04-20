@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { map } from 'lodash';
 import { compose, withProps } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
@@ -9,10 +9,17 @@ const propTypes = {
   data: PropTypes.array,
   location: PropTypes.object,
   text: PropTypes.string,
-  zoom: PropTypes.number
+  zoom: PropTypes.number,
+  id: PropTypes.number
 };
 
-function Map({ data, location, zoom }) {
+function Map({ data, location, zoom, id }) {
+  const [isCheck, setIsCheck] = useState(null);
+
+  useEffect(() => {
+    setIsCheck(id);
+  }, [id]);
+
   const MyMapComponent = compose(
     withProps({
       googleMapURL:
@@ -26,7 +33,16 @@ function Map({ data, location, zoom }) {
   )(() => (
     <GoogleMap defaultZoom={zoom} defaultCenter={location}>
       {map(data, (item, index) => {
-        return <Marker item={item} index={index} key={index} />;
+        return (
+          <Marker
+            item={item}
+            index={index}
+            key={index}
+            isCheck={isCheck === item.id}
+            onOpenCLick={() => setIsCheck(item.id)}
+            onCloseClick={() => setIsCheck(null)}
+          />
+        );
       })}
     </GoogleMap>
   ));

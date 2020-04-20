@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Marker, InfoWindow } from 'react-google-maps';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 
 const propTypes = {
   index: PropTypes.number,
-  item: PropTypes.object
+  item: PropTypes.object,
+  isCheck: PropTypes.any,
+  onCloseClick: PropTypes.func,
+  onOpenCLick: PropTypes.func
 };
 
-function Markers({ index, item }) {
-  const [isCheck, setIsChecK] = useState(false);
+function Markers({ index, item, isCheck, onOpenCLick, onCloseClick }) {
+  // const [isCheck, setIsChecK] = useState(false);
   return (
     <Marker
       position={{ lat: Number(item.latitude), lng: Number(item.longitude) }}
       key={index}
-      onClick={() => setIsChecK(!isCheck)}
+      onClick={onOpenCLick}
     >
       {isCheck && (
-        <InfoWindow onCloseClick={() => setIsChecK(!isCheck)}>
+        <InfoWindow onCloseClick={onCloseClick}>
           <div className="gm-style-iw-d">
             <div className="infoWindow">
               <div className="divtext">

@@ -52,12 +52,12 @@ function ModalDrawer({ t, menu, menuHeader, onSearch }) {
         <div className="inner">
           <ul className="menu">
             <li>
-              <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
+              <form id="form-search-hd1" autoComplete="off" onSubmit={onSearch}>
                 <div className="form-group">
                   <button className="search-sg" type="submit">
                     <i className="icon-search-2"></i>
                   </button>
-                  <input id="search" type="text" placeholder={t('search')} />
+                  <input id="search1" type="text" placeholder={t('search')} />
                 </div>
               </form>
             </li>
