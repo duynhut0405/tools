@@ -43,8 +43,8 @@ function Transaction({ data, id }) {
 
   const showPosition = position => {
     setLocation(() => ({
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
+      lat: position.coords.latitude === 0 ? 21.32284 : position.coords.latitude,
+      lng: position.coords.longitude === 0 ? 105.399727 : position.coords.longitude
     }));
   };
 
@@ -106,7 +106,7 @@ function Transaction({ data, id }) {
           />
         </div>
         <div className="col-md-8">
-          <Map data={listBranches} location={location} />
+          <Map data={listBranches} location={location} zoom={8} />
         </div>
       </div>
     </div>

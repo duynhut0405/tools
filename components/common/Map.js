@@ -8,10 +8,11 @@ import PropTypes from 'prop-types';
 const propTypes = {
   data: PropTypes.array,
   location: PropTypes.object,
-  text: PropTypes.string
+  text: PropTypes.string,
+  zoom: PropTypes.number
 };
 
-function Map({ data, location }) {
+function Map({ data, location, zoom }) {
   const MyMapComponent = compose(
     withProps({
       googleMapURL:
@@ -23,7 +24,7 @@ function Map({ data, location }) {
     withScriptjs,
     withGoogleMap
   )(() => (
-    <GoogleMap defaultZoom={8} defaultCenter={location}>
+    <GoogleMap defaultZoom={zoom} defaultCenter={location}>
       {map(data, (item, index) => {
         return <Marker item={item} index={index} key={index} />;
       })}

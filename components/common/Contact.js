@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { LayoutActions } from '../../store/actions';
+import Map from '../../components/common/Map';
 import { connect } from 'react-redux';
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -16,12 +17,7 @@ function Contact({ settingFooter, getSettingFooter, data, id }) {
   useEffect(() => {
     getSettingFooter();
   }, []);
-  const AnyReactComponent = ({ text }) => (
-    <div>
-      <img src="/static/images/_pin.png" alt="pin" />
-      <div style={{ width: '200px', color: '#33333', fontWeight: 'bold' }}>{text}</div>
-    </div>
-  );
+
   let padding = '';
   if (data.optionWidth === '2') {
     padding = 'sec-tb';
@@ -64,20 +60,21 @@ function Contact({ settingFooter, getSettingFooter, data, id }) {
             </div>
             <div className="col-lg-8 col-md-6">
               {!isNaN(Number(settingFooter.latitude)) && (
-                <GoogleMapReact
-                  bootstrapURLKeys={{ key: 'AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU' }}
-                  center={{
+                <Map
+                  zoom={16}
+                  location={{
                     lat: Number(settingFooter.latitude),
                     lng: Number(settingFooter.longitude)
                   }}
-                  zoom={16}
-                >
-                  <AnyReactComponent
-                    lat={Number(settingFooter.latitude)}
-                    lng={Number(settingFooter.longitude)}
-                    text={settingFooter.information.place}
-                  />
-                </GoogleMapReact>
+                  data={[
+                    {
+                      latitude: Number(settingFooter.latitude),
+                      longitude: Number(settingFooter.longitude),
+                      address_name: settingFooter.information.place,
+                      address: settingFooter.information.place
+                    }
+                  ]}
+                />
               )}
             </div>
           </div>

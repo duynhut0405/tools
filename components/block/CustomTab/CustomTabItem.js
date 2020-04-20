@@ -1,7 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { map } from 'lodash';
-import Table from '../../tableRate';
+import Table from '../../tableInterestRate';
 import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {

@@ -68,9 +68,9 @@ function BoxSearch({
         <Select
           className="fix-select"
           placeholder={t('province')}
-          options={map([{ id: '', name: 'Tất cả' }, ...listProvince], province => ({
+          options={map([{ id: '', title: 'Tất cả' }, ...listProvince], province => ({
             value: province.id,
-            label: province.name
+            label: province.title
           }))}
           onChange={handleProvince}
         />

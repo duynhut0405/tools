@@ -40,4 +40,18 @@ const searchRate = query => {
     });
 };
 
-export { getRateService, searchRate, getInterestRateService };
+const getRate = query => {
+  return request({
+    url: '/interest_rate/pagination',
+    method: 'GET',
+    params: query
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
+export { getRateService, searchRate, getInterestRateService, getRate };

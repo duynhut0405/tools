@@ -243,7 +243,11 @@ function Layout({
           <meta
             property="og:image"
             itemProp="thumbnaiUrl"
-            content={miniImage ? `${process.env.DOMAIN}${miniImage}` : `/images/imgDefault.png`}
+            content={
+              miniImage
+                ? `${process.env.DOMAIN}${miniImage}`
+                : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
+            }
           />
           <meta property="og:image:width" content="800" />
           <meta property="og:image:height" content="354" />
