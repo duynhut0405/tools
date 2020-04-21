@@ -197,7 +197,7 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
           </div>
-          <div className="accodion-content entry-content wrap-carousel">
+          <div className="wrap-carousel">
             <Carousel
               responsive={responsiveTwo}
               draggable
