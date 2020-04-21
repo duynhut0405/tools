@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { getLang } from './cookie';
+const axios = require('axios');
+const { getLang } = require('./cookie');
 
 const request = axios.create({
   baseURL: `https://mbbank3.mangoads.com.vn:8443/${getLang()}/api/fe`,
@@ -32,4 +32,4 @@ request.interceptors.response.use(
   }
 );
 
-export default request;
+module.exports = request;

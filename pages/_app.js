@@ -10,33 +10,11 @@ import '../styles/custom.css';
 import '../styles/question.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'react-rangeslider/lib/index.css';
-// import fs from 'fs';
-// import { getStoreFont } from '../services/storefont';
-// import { getLang } from '../utils/cookie';
+import 'react-multi-carousel/lib/styles.css';
 
 class NextApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-    // let file = '';
-    // const res = await getStoreFont('robots');
-    // if (res && res !== undefined && res.status === 200) {
-    //   file = res.data.robots.text;
-    // }
-    // if (getLang() === 'vi') {
-    //   fs.open('public/robots.txt', 'w+', (err, fd) => {
-    //     if (!err) {
-    //       fs.writeFile(fd, file, writeErr => {
-    //         if (writeErr) {
-    //           return writeErr;
-    //         }
-    //         return fs.close(fd, closeErr => {
-    //           return closeErr;
-    //         });
-    //       });
-    //     }
-    //   });
-    // }
-
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx });
     }

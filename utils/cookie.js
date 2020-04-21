@@ -1,6 +1,6 @@
-import Cookies from 'js-cookie';
+const Cookies = require('js-cookie');
 
-export const getLang = () => {
+const getLang = () => {
   const lang = Cookies.get('lang');
   if (lang) {
     return lang;
@@ -8,7 +8,7 @@ export const getLang = () => {
   return 'vi';
 };
 
-export const getFlag = () => {
+const getFlag = () => {
   const flag = Cookies.get('flag');
   if (flag) {
     return flag;
@@ -17,7 +17,7 @@ export const getFlag = () => {
   return 'vn';
 };
 
-export const setLang = (lang, flag) => {
+const setLang = (lang, flag) => {
   if (lang) {
     Cookies.set('flag', flag);
     Cookies.set('lang', lang);
@@ -25,3 +25,5 @@ export const setLang = (lang, flag) => {
   }
   return null;
 };
+
+module.exports = { getLang, getFlag, setLang };

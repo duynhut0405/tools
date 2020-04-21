@@ -51,9 +51,9 @@ function Form({ data, pageId, id }) {
 
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
-        setIsLoading(false);
+      setIsLoading(false);
     } else {
-        setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -151,7 +151,20 @@ function Form({ data, pageId, id }) {
                       {item.label}
                     </button>
                     {isLoading && (
-                      <ReactLoading style={{ width: '20px', height: '20px', position: 'absolute', left: '65%', transform: 'translateY(-50%)', top: '50%' }} type={'spin'} color={'primary'} height={'15px'} width={'15px'} />
+                      <ReactLoading
+                        style={{
+                          width: '20px',
+                          height: '20px',
+                          position: 'absolute',
+                          left: '65%',
+                          transform: 'translateY(-50%)',
+                          top: '50%'
+                        }}
+                        type={'spin'}
+                        color={'primary'}
+                        height={'15px'}
+                        width={'15px'}
+                      />
                     )}
                   </div>
                 </React.Fragment>
