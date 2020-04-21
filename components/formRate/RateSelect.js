@@ -3,12 +3,14 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  defaultValue: PropTypes.string,
+  handleChangeOption: PropTypes.func
 };
 
-function RateSelect({ data }) {
+function RateSelect({ data, defaultValue, handleChangeOption }) {
   return (
-    <select className="select">
+    <select className="select" defaultValue={defaultValue} onChange={e => handleChangeOption(e.target.value)}>
       {map(data, value => (
         <option key={value.id} value={value.currency}>
           {value.currency}
