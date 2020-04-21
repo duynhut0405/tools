@@ -144,7 +144,6 @@ function Form({ data, pageId, id }) {
                 </React.Fragment>
               );
             }
-
             return null;
           })}
         </form>
