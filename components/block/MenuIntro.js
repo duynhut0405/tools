@@ -14,7 +14,7 @@ const propTypes = {
   optionWidth: PropTypes.string
 };
 
-function MenuIntro({ data, type, pageId, optionWidth }) {
+function MenuIntro({ data, pageId, optionWidth }) {
   const [formdata, setFormData] = useState({});
   const [formState, setFormState] = useState({});
   const getFormByID = async () => {
