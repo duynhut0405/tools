@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
-import ImgDefault from '../../public/images/imgDefault.png';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -96,7 +95,7 @@ function News({ data, type, id, optionWidth }) {
                   <img
                     src={
                       item.baseImage === null
-                        ? ImgDefault
+                        ? `/images/imgdefault.jpg`
                         : `${process.env.DOMAIN}${item.base_image}`
                     }
                     alt="icon"
@@ -148,7 +147,7 @@ function News({ data, type, id, optionWidth }) {
                           data-lazy-type="image"
                           src={
                             item.base_image === null
-                              ? ImgDefault
+                              ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
                         />
@@ -174,7 +173,7 @@ function News({ data, type, id, optionWidth }) {
                         data-lazy-type="image"
                         src={
                           item.base_image === null
-                            ? ImgDefault
+                            ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
                       />
@@ -241,7 +240,7 @@ function News({ data, type, id, optionWidth }) {
                         data-lazy-type="image"
                         src={
                           item.base_image === null
-                            ? ImgDefault
+                            ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
                         style={{ height: '187px' }}
@@ -318,7 +317,7 @@ function News({ data, type, id, optionWidth }) {
                         data-lazy-type="image"
                         src={
                           item.base_image === null
-                            ? ImgDefault
+                            ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
                       />
@@ -390,7 +389,7 @@ function News({ data, type, id, optionWidth }) {
                   className=" loaded loaded"
                   data-lazy-type="image"
                   src={
-                    data.urlImage === null ? ImgDefault : `${process.env.DOMAIN}${data.urlImage}`
+                    data.urlImage === null ? `/images/imgdefault.jpg` : `${process.env.DOMAIN}${data.urlImage}`
                   }
                 />
               </a>
@@ -406,7 +405,7 @@ function News({ data, type, id, optionWidth }) {
                           data-lazy-type="image"
                           src={
                             item.base_image === null
-                              ? ImgDefault
+                              ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
                         />
@@ -431,7 +430,7 @@ function News({ data, type, id, optionWidth }) {
                               data-lazy-type="image"
                               src={
                                 item.base_image === null
-                                  ? ImgDefault
+                                  ? `/images/imgdefault.jpg`
                                   : `${process.env.DOMAIN}${item.base_image}`
                               }
                             />
@@ -483,7 +482,7 @@ function News({ data, type, id, optionWidth }) {
                       data-lazy-type="image"
                       src={
                         item.base_image === null
-                          ? ImgDefault
+                          ? `/images/imgdefault.jpg`
                           : `${process.env.DOMAIN}${item.base_image}`
                       }
                     />
@@ -575,7 +574,7 @@ function News({ data, type, id, optionWidth }) {
                           data-lazy-type="image"
                           src={
                             item.base_image === null
-                              ? ImgDefault
+                              ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
                         ></img>
@@ -604,7 +603,7 @@ function News({ data, type, id, optionWidth }) {
                                 data-lazy-type="image"
                                 src={
                                   item.base_image === null
-                                    ? ImgDefault
+                                    ? `/images/imgdefault.jpg`
                                     : `${process.env.DOMAIN}${item.base_image}`
                                 }
                               />
