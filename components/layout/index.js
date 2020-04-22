@@ -201,6 +201,7 @@ function Layout({
     i18n.changeLanguage(lang);
     setFlag(flags);
     setLang(lang, flags);
+    window.reload()
   };
 
   const onFocus = () => {
