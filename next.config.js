@@ -27,7 +27,11 @@ module.exports = withPWA(
         },
         env: {
           DOMAIN: 'https://mbbank3.mangoads.com.vn:8443/',
-          LINK_DOMAIN: 'mbbank.com.vn'
+          LINK_DOMAIN: 'mbbank.com.vn',
+          BASE_URL: 'https://mbbank3.mangoads.com.vn:8443',
+          MB_URL: 'https://api2.vietstock.vn/data/stocktradinginfo',
+          MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api',
+          ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe'
         },
         pwa: {
           dest: 'public'

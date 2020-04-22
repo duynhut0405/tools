@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const request = axios.create({
-  baseURL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe',
+  baseURL: process.env.ROUTER_URL,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'

@@ -2,7 +2,7 @@ const axios = require('axios');
 const { getLang } = require('./cookie');
 
 const request = axios.create({
-  baseURL: `https://mbbank3.mangoads.com.vn:8443/${getLang()}/api/fe`,
+  baseURL: `${process.env.BASE_URL}/${getLang()}/api/fe`,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'

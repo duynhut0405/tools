@@ -1,7 +1,7 @@
 import axios from 'axios';
 import request from '../utils/request';
 
-const url = 'https://mbbank3.mangoads.com.vn:8443/api';
+const url = process.env.MAP_URL;
 
 const getProvinceService = () => {
   return axios({

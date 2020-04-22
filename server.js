@@ -6,7 +6,7 @@ const nextI18next = require('./i18n');
 const fs = require('fs');
 const { getStoreFont } = require('./services/storefont');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const app = next({ dev: process.env.NODE_ENV !== 'production' });
 const handle = app.getRequestHandler();
 

@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const request = axios.create({
-  baseURL: 'https://api2.vietstock.vn/data/stocktradinginfo',
+  baseURL: process.env.MB_URL,
   crossDomain: true,
   headers: { 'Access-Control-Allow-Origin': '*' }
 });
