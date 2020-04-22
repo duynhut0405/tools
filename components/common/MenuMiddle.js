@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 

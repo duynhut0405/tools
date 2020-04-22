@@ -32,6 +32,13 @@ const Actions = {
 
   getMenuFooterBottom: () => ({
     type: Actions.GET_MENU_FOOTER_BOTTOM_REQUEST
+  }),
+
+  GET_MENU_SEARCH_REQUEST: 'GET_MENU_SEARCH_REQUEST',
+  GET_MENU_SEARCH_RESPONSE: 'GET_MENU_SEARCH_RESPONSE',
+
+  getMenuSearch: () => ({
+    type: Actions.GET_MENU_SEARCH_REQUEST
   })
 };
 

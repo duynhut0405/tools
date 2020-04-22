@@ -5,7 +5,8 @@ const initialState = {
   nav: [],
   footerTop: [],
   footerMain: [],
-  footerBottom: []
+  footerBottom: [],
+  menuSearch: []
 };
 
 const menuReducer = (state = initialState, action) => {

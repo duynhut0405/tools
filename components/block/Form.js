@@ -5,6 +5,7 @@ import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import { Input, Label } from 'reactstrap';
 import { sendMailService } from '../../services/form';
+import ReactLoading from 'react-loading';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -16,6 +17,7 @@ const propTypes = {
 function Form({ data, pageId, id }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const getFormByID = async () => {
     const res = await getFormbuilderByIdService(data.formdata);
     if (res && res.status === 200) {
@@ -35,8 +37,11 @@ function Form({ data, pageId, id }) {
     }));
   };
 
-  const onSend = event => {
+  const onSend = async event => {
     event.preventDefault();
+
+    setIsLoading(true);
+
     const dataSend = {
       content: JSON.stringify(formState),
       email: formState.email,
@@ -44,7 +49,12 @@ function Form({ data, pageId, id }) {
       idPage: pageId
     };
 
-    sendMailService(dataSend);
+    const send = await sendMailService(dataSend);
+    if (send && send !== undefined && send.status === 200) {
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
   };
 
   let padding = '';
@@ -136,15 +146,30 @@ function Form({ data, pageId, id }) {
             if (item.type === 'button') {
               return (
                 <React.Fragment>
-                  <div className={`col-12 text-center `}>
+                  <div className={`d-flex col-12 text-center `}>
                     <button className={`btn`} type={item.subtype}>
                       {item.label}
                     </button>
+                    {isLoading && (
+                      <ReactLoading
+                        style={{
+                          width: '20px',
+                          height: '20px',
+                          position: 'absolute',
+                          left: '65%',
+                          transform: 'translateY(-50%)',
+                          top: '50%'
+                        }}
+                        type={'spin'}
+                        color={'primary'}
+                        height={'15px'}
+                        width={'15px'}
+                      />
+                    )}
                   </div>
                 </React.Fragment>
               );
             }
-
             return null;
           })}
         </form>

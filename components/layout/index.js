@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { setLang, getFlag } from '../../utils/cookie';
 import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
-import '../../styles/custom.css';
+// import '../../styles/custom.css';
 import ReactHtmlParser from 'react-html-parser';
 import { useRouter } from 'next/router';
 
@@ -232,11 +232,6 @@ function Layout({
       <StickyContainer>
         <Head>
           <title>{title || 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
-          <link
-            rel="icon"
-            href="https://www.mbbank.com.vn/images/icons/favicon.ico"
-            type="image/x-icon"
-          />
           {ReactHtmlParser(canonical)}
           {meta_title && <meta name="title" content={meta_title} />}
           {meta_description && <meta name="description" content={meta_description} />}
@@ -429,7 +424,7 @@ function Layout({
                         <div className="col-4" key={values.id}>
                           <a className="item" href={values.url}>
                             <span className="img">
-                              <img src={values.icon} alt="" />
+                              <img src={`${process.env.DOMAIN}${values.icon}`} alt="" />
                             </span>
                             <div className="divtext">
                               <h4 className="title">{values.name}</h4>
@@ -443,7 +438,7 @@ function Layout({
                       <div className="col-4" key={values.id}>
                         <a className="item" href={`/page/${values.slugPages}`}>
                           <span className="img">
-                            <img src={values.icon} alt="" />
+                            <img src={`${process.env.DOMAIN}${values.icon}`} alt="" />
                           </span>
                           <div className="divtext">
                             <h4 className="title">{values.name}</h4>

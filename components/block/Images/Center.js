@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 
-import Background from '../../../public/static/images/#f5f4f4.png';
 const propTypes = {
   items: PropTypes.object,
   padding: PropTypes.string,
@@ -76,7 +75,7 @@ function ImageCenter({ items, padding, id, type }) {
               className="bgvideo loaded"
               data-lazy-type="bg"
               data-lazy-src="public/images/bg-ab-10.jpg"
-              style={{ backgroundImage: `url(${Background})` }}
+              style={{ backgroundImage: `url(/static/images/#f5f4f4.png)` }}
             >
               <div className="entry-head text-center">
                 <h2 className="ht">{ReactHtmlParser(items.note_1)}</h2>

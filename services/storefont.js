@@ -1,4 +1,4 @@
-import request from '../utils/request';
+const request = require('../utils/request');
 
 const getStoreFont = name => {
   return request({
@@ -12,4 +12,5 @@ const getStoreFont = name => {
       return error.response.data;
     });
 };
-export { getStoreFont };
+
+module.exports = { getStoreFont };

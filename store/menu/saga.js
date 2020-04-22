@@ -106,12 +106,31 @@ function* getMenuFooterBottomSaga() {
   });
 }
 
+function* getMenuSearchSaga() {
+  yield takeLatest(actions.GET_MENU_SEARCH_REQUEST, function*() {
+    try {
+      const res = yield getMenuItemByPosition('menu search');
+      if (res.status === 200) {
+        yield put({
+          type: actions.GET_MENU_SEARCH_RESPONSE,
+          data: nest(res.data.menuItems)
+        });
+      } else {
+        // console.log(res);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+}
+
 export default function* rootSaga() {
   yield all([
     fork(getMenuHeaderSaga),
     fork(getMenuNavSaga),
     fork(getMenuFooterTopSaga),
     fork(getMenuFooterMainSaga),
-    fork(getMenuFooterBottomSaga)
+    fork(getMenuFooterBottomSaga),
+    fork(getMenuSearchSaga)
   ]);
 }
