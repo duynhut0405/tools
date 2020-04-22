@@ -20,7 +20,7 @@ const getYear = async setData => {
   }
 };
 
-function Filler({ t, type, setDate, setType, center, year }) {
+function Filler({ t, type, setDate, setType, center, year }) {//
   const [listYear, setListYear] = useState([]);
   useEffect(() => {
     getYear(setListYear);
