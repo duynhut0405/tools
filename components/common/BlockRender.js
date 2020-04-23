@@ -35,6 +35,7 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import NewCard from '../NewCard';
 import TableRate from '../tableRate';
+import UserManual from '../block/UserManual'
 
 const propTypes = {
   data: PropTypes.array,
@@ -267,6 +268,11 @@ function BlockRender({ data, pageId }) {
               if (values.name === 'Bảng tỷ giá' && values.content !== null) {
                 return (
                   <TableRate key={index} data={JSON.parse(values.content)} id={values.id} search />
+                );
+              }
+              if (values.name === 'Hướng dẫn sử dụng' && values.content !== null) {
+                return (
+                  <UserManual key={index} data={JSON.parse(values.content)} id={values.id} />
                 );
               }
               return null;
