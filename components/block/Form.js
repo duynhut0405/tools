@@ -63,6 +63,7 @@ function Form({ data, pageId, id }) {
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
+      setFormState({})
     } else {
       setIsLoading(false);
     }

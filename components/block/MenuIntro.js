@@ -5,7 +5,7 @@ import { Input, Label } from 'reactstrap';
 import { sendMailService } from '../../services/form';
 import PropTypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
-// import debounce from 'lodash/debounce';
+import ReactLoading from 'react-loading';
 
 const propTypes = {
   data: PropTypes.object,
@@ -18,6 +18,7 @@ const propTypes = {
 function MenuIntro({ data, pageId, optionWidth }) {
   const [formdata, setFormData] = useState({});
   const [formState, setFormState] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const getFormByID = async () => {
     const res = await getFormbuilderByIdService(Number(data.formdata));
     if (res && res.status === 200) {
@@ -58,8 +59,9 @@ function MenuIntro({ data, pageId, optionWidth }) {
     return result;
   };
 
-  const onSend = event => {
+  const onSend = async event => {
     event.preventDefault();
+    setIsLoading(true);
     const dataSend = {
       content: JSON.stringify(formState),
       contentMail: convertContent(formState),
@@ -67,7 +69,15 @@ function MenuIntro({ data, pageId, optionWidth }) {
       idForm: data.formdata,
       idPage: pageId
     };
-    sendMailService(dataSend);
+
+    //sendMailService(dataSend);
+    const send = await sendMailService(dataSend);
+    if (send && send !== undefined && send.status === 200) {
+      setIsLoading(false);
+      setFormState({});
+    } else {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -208,6 +218,22 @@ function MenuIntro({ data, pageId, optionWidth }) {
                             <button className="btn" type={item.subtype}>
                               {item.label}
                             </button>
+                            {isLoading && (
+                              <ReactLoading
+                                style={{
+                                  width: '20px',
+                                  height: '20px',
+                                  position: 'absolute',
+                                  left: '82%',
+                                  transform: 'translateY(-50%)',
+                                  top: '50%'
+                                }}
+                                type={'spin'}
+                                color={'primary'}
+                                height={'15px'}
+                                width={'15px'}
+                              />
+                            )}
                           </div>
                         </React.Fragment>
                       );
