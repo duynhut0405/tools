@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
-import RateSelect from './RateSelect';
+import currency from './dataCurrent.json';
 import ExchangeRate from './exchangeRate';
+import RateSelect from './RateSelect';
 
 const propTypes = {
   data: PropTypes.object,
@@ -14,18 +15,42 @@ const propTypes = {
 function FormRate({ data, interestRate }) {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
-  const [currencyFrom, setcurrencyFrom] = useState('EUR');
+  const [currencyFrom, setcurrencyFrom] = useState('VND');
   const [currencyTo, setcurrencyTo] = useState('USD');
-  //
+  const [arrTo, setArrTo] = useState(data.exchangeRateDetail);
   const { t } = useTranslation();
+
+  const getCurrentTo = (name) => {
+    const obj = currency.content.find(item => item.currency === name);
+    if (obj) {
+      setArrTo(obj.children)
+    } else {
+      setArrTo(data.exchangeRateDetail);
+    }
+  }
+
   const getSellBycurrency = currency => {
     const obj = data.exchangeRateDetail.find(item => item.currency === currency);
     return obj.sell;
   };
-  const handleChangeFrom = e => {
-    setFrom(e.target.value);
-    setTo(getSellBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
+
+  const getBuyTransferBycurrency = currency => {
+    const obj = data.exchangeRateDetail.find(item => item.currency === currency);
+    return obj.buy_transfer;
   };
+
+  const Calculator = () => {
+    console.log('getBuyTransferBycurrency(currencyFrom) :', getBuyTransferBycurrency(currencyFrom) )
+    console.log('getSellBycurrency(currencyTo) :', getSellBycurrency(currencyTo) )
+    const result = Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo))
+    setTo(result.toLocaleString(navigator.language, { minimumFractionDigits: 4 }));
+  };
+
+  useEffect(() => {
+    if (from !== '' || currencyFrom !== 'VND' || currencyTo !== 'USD') {
+      Calculator()
+    }
+  }, [from, currencyFrom, currencyTo])
 
   return (
     <section className="sec-b sec-tb sec-tigia">
@@ -49,7 +74,10 @@ function FormRate({ data, interestRate }) {
                     <RateSelect
                       data={data.exchangeRateDetail}
                       defaultValue={currencyFrom}
-                      handleChangeOption={e => setcurrencyFrom(e)}
+                      handleChangeOption={value => {
+                        setcurrencyFrom(value);
+                        getCurrentTo(value)
+                      }}
                     />
                     <i className="icon-arrow-3"></i>
                   </span>
@@ -58,16 +86,18 @@ function FormRate({ data, interestRate }) {
                     placeholder={t('amount')}
                     name="from"
                     value={from}
-                    onChange={handleChangeFrom}
+                    onChange={e => setFrom(e.target.value)}
                   />
                 </div>
                 <div>{t('to')}</div>
                 <div className="input-group">
                   <span className="input-group-addon none">
                     <RateSelect
-                      data={data.exchangeRateDetail}
+                      data={arrTo}
                       defaultValue={currencyTo}
-                      handleChangeOption={e => setcurrencyTo(e)}
+                      handleChangeOption={e => {
+                        setcurrencyTo(e)
+                      }}
                     />
                     <i className="icon-arrow-3"></i>
                   </span>
