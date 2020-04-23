@@ -18,7 +18,7 @@ import { withTranslation } from '../../i18n';
 import { compose } from 'redux';
 // import '../../styles/custom.css';
 import ReactHtmlParser from 'react-html-parser';
-import { useRouter } from 'next/router';
+import debounce from 'lodash/debounce';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -43,7 +43,9 @@ const propTypes = {
   meta_title: PropTypes.string,
   meta_description: PropTypes.string,
   meta_keyword: PropTypes.string,
-  miniImage: PropTypes.string
+  miniImage: PropTypes.string,
+  getMenuSearch: PropTypes.func,
+  menuSearch: PropTypes.array
 };
 
 function Layout({
@@ -59,6 +61,10 @@ function Layout({
   getSocialLink,
   menuHeader,
   menuNav,
+  menuSearch,
+  canonical,
+  noIndex,
+  miniImage,
   menuFooterTop,
   menuFooterBottom,
   menuFooterMain,
@@ -67,15 +73,12 @@ function Layout({
   getMenuFooterTop,
   getMenuFooterMain,
   getMenuFooterBottom,
-  canonical,
-  noIndex,
-  miniImage
+  getMenuSearch
 }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
+  const [query, setQuery] = useState(null);
   const [flag, setFlag] = useState('vn');
   const { i18n, t } = useTranslation();
-
-  const router = useRouter();
 
   useEffect(() => {
     getMenuHeader();
@@ -85,6 +88,7 @@ function Layout({
     getMenuFooterBottom();
     getSettingFooter();
     getSocialLink();
+    getMenuSearch();
   }, []);
 
   useEffect(() => {
@@ -136,6 +140,7 @@ function Layout({
       }
     );
   };
+
   const footerItem = data => {
     return map(data, (item, index) => {
       if (item.children.length > 0) {
@@ -211,7 +216,7 @@ function Layout({
     element.placeholder = `${t('enter_search')}.....`;
   };
 
-  const onBlur = () => {
+  const onClose = () => {
     const element = document.getElementById('search');
     const box = document.getElementById('search-sg');
     element.style = 'width: 70px';
@@ -226,6 +231,23 @@ function Layout({
     body.classList.add('fixed-screen');
     result.style = `display: block`;
   };
+
+  const onChangeSuggest = url => {
+    setQuery(url);
+    const body = document.getElementsByTagName('body')[0];
+    const result = document.getElementById('search-result');
+    body.classList.add('fixed-screen');
+    result.style = `display: block`;
+    const element = document.getElementById('search');
+    const box = document.getElementById('search-sg');
+    element.style = 'width: 70px';
+    box.style = 'display: none';
+    element.placeholder = t('search');
+  };
+
+  const onChangeSearch = debounce(value => {
+    setQuery(value);
+  }, 3000);
 
   return (
     <>
@@ -264,7 +286,8 @@ function Layout({
                       type="text"
                       placeholder={t('search')}
                       onFocus={onFocus}
-                      onBlur={onBlur}
+                      // onBlur={onBlur}
+                      onChange={event => onChangeSearch(event.target.value)}
                       style={{ width: '70px' }}
                     />
                   </form>
@@ -316,7 +339,7 @@ function Layout({
                   </div>
                 </li>
               </ul>
-              <Suggest />
+              <Suggest data={menuSearch} onChangeSuggest={onChangeSuggest} onClose={onClose} />
             </div>
           </div>
           <Sticky topOffset={40}>
@@ -410,7 +433,7 @@ function Layout({
               </div>
             )}
           </Sticky>
-          <SearchResult />
+          <SearchResult query={query} />
           <div>{children}</div>
           {/* contact */}
           <section className="sec-cta">
@@ -637,7 +660,8 @@ const mapStateToProps = state => {
     menuNav: state.menuReducer.nav,
     menuFooterTop: state.menuReducer.footerTop,
     menuFooterMain: state.menuReducer.footerMain,
-    menuFooterBottom: state.menuReducer.footerBottom
+    menuFooterBottom: state.menuReducer.footerBottom,
+    menuSearch: state.menuReducer.menuSearch
   };
 };
 
@@ -648,7 +672,8 @@ const mapDispatchToProps = {
   getMenuNav: MenuActions.getMenuNav,
   getMenuFooterTop: MenuActions.getMenuFooterTop,
   getMenuFooterMain: MenuActions.getMenuFooterMain,
-  getMenuFooterBottom: MenuActions.getMenuFooterBottom
+  getMenuFooterBottom: MenuActions.getMenuFooterBottom,
+  getMenuSearch: MenuActions.getMenuSearch
 };
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -36,6 +36,11 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         footerBottom: action.data
       };
+    case Actions.GET_MENU_SEARCH_RESPONSE:
+      return {
+        ...state,
+        menuSearch: action.data
+      };
     default:
       return state;
   }
