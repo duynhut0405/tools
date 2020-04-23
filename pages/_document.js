@@ -36,10 +36,6 @@ class MyDocument extends Document {
           />
           <meta property="og:site_name" content="MBBANK" />
           <meta property="og:url" content={process.env.LINK_DOMAIN} />
-          <meta
-            property="og:image"
-            content={`${process.env.LINK_DOMAIN}/static/icons/apple-touch-icon.png`}
-          />
           <GtagScript />
         </Head>
         <body>

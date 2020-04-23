@@ -2,7 +2,7 @@ const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
 const withFonts = require('nextjs-fonts');
 const withPWA = require('next-pwa');
-const { getRouer, getNewRouter, getCategoryRouter } = require('./services/router');
+// const { getRouer, getNewRouter, getCategoryRouter } = require('./services/router');
 
 module.exports = withPWA(
   withFonts(
