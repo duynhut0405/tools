@@ -27,7 +27,7 @@ class MyDocument extends Document {
           />
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png" />
           <link rel="manifest" href="/static/manifest.json" />
-          <link rel="shortcut icon" href="favicon.ico" />
+          <link rel="shortcut icon" href="/favicon.ico" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="MB NGÂN HÀNG QUÂN ĐỘI | MBBANK" />
           <meta

@@ -3,6 +3,7 @@ import find from 'lodash/find';
 import Step from './Step';
 import FormWapper from './FormWapper';
 import { sendMailService } from '../../../services/form';
+import map from 'lodash/map';
 import Proptypes from 'prop-types';
 
 const propTypes = {
@@ -15,12 +16,25 @@ function FormStep({ data, pageId, id }) {
   const [formActive, setFormActive] = useState(1);
   const [formSate, setFormState] = useState({ content: [], email: '', idForm: '', idPage: null });
 
+  const convertContent = value => {
+    let result = '';
+    map(value, item => {
+      for (const key in item) {
+        if (item.hasOwnProperty(key)) {
+          result += `<p>${item[key]}</p>`;
+        }
+      }
+    });
+    return result;
+  };
+
   useEffect(() => {
     if (data.form !== null && formActive > data.form.length) {
       const email = find(formSate.content, value => value).email;
       const idForm = find(data.form, value => value).value;
       const body = {
         content: JSON.stringify(formSate.content),
+        contentMail: convertContent(formSate.content),
         email: email,
         idForm: idForm,
         idPage: pageId

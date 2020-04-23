@@ -37,6 +37,16 @@ function Form({ data, pageId, id }) {
     }));
   };
 
+  const convertContent = value => {
+    let result = '';
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        result += `<p>${value[key]}</p>`;
+      }
+    }
+    return result;
+  };
+
   const onSend = async event => {
     event.preventDefault();
 
@@ -44,6 +54,7 @@ function Form({ data, pageId, id }) {
 
     const dataSend = {
       content: JSON.stringify(formState),
+      contentMail: convertContent(formState),
       email: formState.email,
       idForm: data.formdata,
       idPage: pageId
@@ -104,6 +115,7 @@ function Form({ data, pageId, id }) {
                         type="radio"
                         name={item.name}
                         value={items.value}
+                        required={item.required}
                         onChange={e => handleChange(e)}
                       />
                       <span></span>
@@ -120,6 +132,7 @@ function Form({ data, pageId, id }) {
                       className="input"
                       name={item.name}
                       type={item.subtype}
+                      required={item.required}
                       placeholder={item.placeholder}
                       onChange={e => handleChange(e)}
                     />
@@ -137,6 +150,7 @@ function Form({ data, pageId, id }) {
                       type={item.subtype}
                       name={item.name}
                       rows={item.rows}
+                      required={item.required}
                       placeholder={item.placeholder}
                       onChange={e => handleChange(e)}
                     />

@@ -49,11 +49,22 @@ function MenuIntro({ data, pageId, optionWidth }) {
     }));
   };
 
+  const convertContent = value => {
+    let result = '';
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        result += `<p>${value[key]}</p>`;
+      }
+    }
+    return result;
+  };
+
   const onSend = async event => {
     event.preventDefault();
     setIsLoading(true);
     const dataSend = {
       content: JSON.stringify(formState),
+      contentMail: convertContent(formState),
       email: formState.email,
       idForm: data.formdata,
       idPage: pageId
@@ -63,11 +74,12 @@ function MenuIntro({ data, pageId, optionWidth }) {
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
-      setFormState({})
+      setFormState({});
     } else {
       setIsLoading(false);
     }
   };
+
   return (
     <React.Fragment>
       <section className=" menuIntro sec-menu">
@@ -150,7 +162,13 @@ function MenuIntro({ data, pageId, optionWidth }) {
                         <div className="mb-30 text-center">
                           {map(item.values, (items, key) => (
                             <label className="radio" key={key} style={{ marginLeft: '20px' }}>
-                              <input type="radio" name={item.name} />
+                              <input
+                                type="radio"
+                                name={item.name}
+                                value={items.value}
+                                required={item.required}
+                                onChange={e => handleChange(e)}
+                              />
                               <span></span>
                               {items.label}
                             </label>
@@ -167,8 +185,9 @@ function MenuIntro({ data, pageId, optionWidth }) {
                               className="input"
                               name={item.name}
                               type={item.subtype}
+                              required={item.required}
                               placeholder={item.placeholder}
-                              onChange={e => handleChange(e)}
+                              onBlur={e => handleChange(e)}
                             />
                           </div>
                         </React.Fragment>
@@ -182,10 +201,11 @@ function MenuIntro({ data, pageId, optionWidth }) {
                             <Input
                               className="input"
                               type={item.subtype}
+                              required={item.required}
                               name={item.name}
                               rows={item.rows}
                               placeholder={item.placeholder}
-                              onChange={e => handleChange(e)}
+                              onBlur={e => handleChange(e)}
                             />
                           </div>
                         </React.Fragment>

@@ -1,41 +1,55 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import map from 'lodash/map';
 
-function Suggest() {
+const propTypes = {
+  data: PropTypes.array,
+  onChangeSuggest: PropTypes.func,
+  onClose: PropTypes.func
+};
+
+function Suggest({ data, onChangeSuggest, onClose }) {
+  const renderMenuItems = (menuItems, index) => {
+    return map(menuItems, (menu, i) => {
+      return (
+        <a
+          href="#"
+          className={index === 2 ? 'tag' : 'key'}
+          key={i}
+          onClick={() => onChangeSuggest(menu.url)}
+        >
+          {menu.url}
+        </a>
+      );
+    });
+  };
+
+  const renderMenu = list => {
+    return map(list, (menu, index) => {
+      return (
+        <div className={index + 1 === 2 ? 'sg sv' : 'sg kw'} key={index}>
+          <span className="b cl1">{menu.name}</span>
+          <div className={index + 1 === 2 ? 'tags' : 'key'}>
+            {menu.children.length > 0 && renderMenuItems(menu.children, index + 1)}
+          </div>
+        </div>
+      );
+    });
+  };
+
   return (
     <div id="search-sg" style={{ display: 'none' }}>
       <div className="container">
         <a href="#" id="logo">
           <img src="assets/images/logo-blue.svg" alt="" />
         </a>
-        <div className="suggest">
-          <div className="sg kw">
-            <span className="b cl1">Từ khóa phổ biến</span>
-            <div className="key">
-              <a href="#">vay vốn</a>
-              <a href="#">ngân hàng số</a>
-              <a href="#">thẻ tín dụng quốc tế</a>
-              <a href="#">tiền hửi thanh toán</a>
-            </div>
-          </div>
-          <div className="sg sv">
-            <span className="b cl1">Dịch vụ gợi ý</span>
-            <div className="tags">
-              <a className="tag" href="#">
-                Ngân hàng số dành cho doanh nghiệp
-              </a>
-              <a className="tag" href="#">
-                Ngân hàng đầu tư
-              </a>
-              <a className="tag" href="#">
-                Quản lý dòng tiền
-              </a>
-            </div>
-          </div>
-        </div>
-        <span className="icon-close close-sg"></span>
+        <div className="suggest">{renderMenu(data)}</div>
+        <span className="icon-close close-sg" onClick={onClose}></span>
       </div>
     </div>
   );
 }
+
+Suggest.propTypes = propTypes;
 
 export default Suggest;

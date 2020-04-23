@@ -83,6 +83,7 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
                       <input
                         type="radio"
                         name={item.name}
+                        required={item.required}
                         value={items.value}
                         onChange={e => handleChange(e)}
                       />
@@ -101,6 +102,7 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
                       style={{ width: '100%' }}
                       className="input"
                       name={item.name}
+                      required={item.required}
                       type={item.subtype}
                       placeholder={item.placeholder}
                       onChange={e => handleChange(e)}
@@ -119,6 +121,7 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
                       className="input"
                       type={item.subtype}
                       name={item.name}
+                      required={item.required}
                       rows={item.rows}
                       placeholder={item.placeholder}
                       onChange={e => handleChange(e)}
