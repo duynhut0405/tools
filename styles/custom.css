@@ -157,6 +157,35 @@ ul.menu.line > li button.search-sg i {
   background: transparent;
 }
 
+.sec-tigia .divtigia .tab-menu .tg-tab {
+  text-align: left;
+  padding-left: 0px;
+  font-size: 24px;
+  color: #333;
+  text-transform: uppercase;
+  background-color: #fff;
+  border-bottom: 1px solid #d6d6d6;
+}
+.sec-tigia .divtigia {
+  border: 1px solid #ececec;
+  background-color: #fff;
+  padding: 15px;
+}
+.cttab-v3 .tab-menu > div {
+  display: table-cell !important;
+  vertical-align: middle;
+  height: 55px;
+  width: 25%;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(224, 240, 255, 0.5);
+  color: #141ed2;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 @media only screen and (max-width: 767px) {
   .search-result .cttab-v3 .tab-menu > div {
     display: inline-block !important;
