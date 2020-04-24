@@ -10,7 +10,11 @@ const propTypes = {
 
 function RateSelect({ data, defaultValue, handleChangeOption }) {
   return (
-    <select className="select" defaultValue={defaultValue} onChange={e => handleChangeOption(e.target.value)}>
+    <select
+      className="select"
+      defaultValue={defaultValue}
+      onChange={e => handleChangeOption(e.target.value)}
+    >
       {map(data, value => (
         <option key={value.id} value={value.currency}>
           {value.currency}

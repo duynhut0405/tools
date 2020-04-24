@@ -20,14 +20,14 @@ function FormRate({ data, interestRate }) {
   const [arrTo, setArrTo] = useState(data.exchangeRateDetail);
   const { t } = useTranslation();
 
-  const getCurrentTo = (name) => {
+  const getCurrentTo = name => {
     const obj = currency.content.find(item => item.currency === name);
     if (obj) {
-      setArrTo(obj.children)
+      setArrTo(obj.children);
     } else {
       setArrTo(data.exchangeRateDetail);
     }
-  }
+  };
 
   const getSellBycurrency = currency => {
     const obj = data.exchangeRateDetail.find(item => item.currency === currency);
@@ -40,23 +40,22 @@ function FormRate({ data, interestRate }) {
   };
 
   const Calculator = () => {
-    console.log('getBuyTransferBycurrency(currencyFrom) :', getBuyTransferBycurrency(currencyFrom) )
-    console.log('getSellBycurrency(currencyTo) :', getSellBycurrency(currencyTo) )
-    const result = Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo))
+    const result =
+      Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
     setTo(result.toLocaleString(navigator.language, { minimumFractionDigits: 4 }));
   };
 
   useEffect(() => {
     if (from !== '' || currencyFrom !== 'VND' || currencyTo !== 'USD') {
-      Calculator()
+      Calculator();
     }
-  }, [from, currencyFrom, currencyTo])
+  }, [from, currencyFrom, currencyTo]);
 
   return (
-    <section className="sec-b sec-tb sec-tigia">
+    <section className="sec-b sec-tigia sec-h-2">
       {data !== undefined && (
         <div className="container">
-          <div className="row list-item">
+          <div className="row list-item list-2">
             <div className="col-lg-7">
               <ExchangeRate
                 tab1={t('exchange_rate')}
@@ -76,7 +75,7 @@ function FormRate({ data, interestRate }) {
                       defaultValue={currencyFrom}
                       handleChangeOption={value => {
                         setcurrencyFrom(value);
-                        getCurrentTo(value)
+                        getCurrentTo(value);
                       }}
                     />
                     <i className="icon-arrow-3"></i>
@@ -96,7 +95,7 @@ function FormRate({ data, interestRate }) {
                       data={arrTo}
                       defaultValue={currencyTo}
                       handleChangeOption={e => {
-                        setcurrencyTo(e)
+                        setcurrencyTo(e);
                       }}
                     />
                     <i className="icon-arrow-3"></i>

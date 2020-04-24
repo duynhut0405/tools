@@ -1,108 +1,39 @@
-import Box from '@material-ui/core/Box';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import TableRate from './Table';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
-const AntTabs = withStyles({
-  root: {
-    borderBottom: '1px solid #ddd'
-  },
-  indicator: {
-    backgroundColor: '#9BE6C8'
-  }
-})(Tabs);
-
-const AntTab = withStyles(theme => ({
-  root: {
-    opacity: 1,
-    fontSize: '24px',
-    fontWeight: theme.typography.fontWeightBold,
-    marginRight: theme.spacing(4),
-    '&:hover': {
-      color: '#9BE6C8'
-    },
-    '&:focus': {
-      color: '#9BE6C8'
-    },
-    '&$selected': {
-      opacity: 1,
-      color: '#9BE6C8',
-      fontSize: '24px',
-      fontWeight: theme.typography.fontWeightBold
-    }
-  },
-  selected: {}
-}))(props => <Tab disableRipple {...props} />);
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
+function ExchangeRate({ data1, data2 }) {
+  const [tab, setTab] = useState('tab1');
+  const { t } = useTranslation();
   return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      style={{ height: '250px', overflow: 'auto' }}
-      hidden={value !== index}
-      id={`scrollable-prevent-tabpanel-${index}`}
-      aria-labelledby={`scrollable-prevent-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired
-};
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  padding: {
-    padding: theme.spacing(3)
-  },
-  demo1: {
-    color: '#333333',
-    backgroundColor: '#ffffff'
-  }
-}));
-
-function ExchangeRate({ tab1, tab2, data1, data2 }) {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  return (
-    <div className="divtigia">
-      <div className={classes.demo1}>
-        <AntTabs
-          initialSelectedIndex={0}
-          value={value}
-          onChange={handleChange}
-          aria-label="ant example"
-        >
-          <AntTab label={tab1} />
-          <AntTab label={tab2} />
-        </AntTabs>
+    <div className="cttab-v3 divtigia">
+      <div className="tab-menu">
+        <div className={tab === 'tab1' ? 'tg-tab active' : 'tg-tab'} onClick={() => setTab('tab1')}>
+          {t('exchange_rate')}
+        </div>
+        <div className={tab === 'tab2' ? 'tg-tab active' : 'tg-tab'} onClick={() => setTab('tab2')}>
+          {t('interest_rate')} <span className="cl5 text-normal fs18">(%/ năm)</span>
+        </div>
       </div>
-
-      <TabPanel value={value} index={0}>
-        <TableRate type="exchange" data={data1.exchangeRateDetail} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <TableRate type="interest" data={data2} />
-      </TabPanel>
+      <div className="tab-content">
+        <div
+          className={tab === 'tab1' ? 'active' : ''}
+          style={{ height: '250px', overflow: 'auto' }}
+        >
+          <div className="tab-inner">
+            <TableRate type="exchange" data={data1.exchangeRateDetail} />
+          </div>
+        </div>
+        <div
+          className={tab === 'tab2' ? 'active' : ''}
+          style={{ height: '250px', overflow: 'auto' }}
+        >
+          <div className="tab-inner">
+            <TableRate type="interest" data={data2} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -110,7 +41,8 @@ function ExchangeRate({ tab1, tab2, data1, data2 }) {
 ExchangeRate.propTypes = {
   tab1: PropTypes.string,
   tab2: PropTypes.string,
-  data1: PropTypes.object
+  data1: PropTypes.object,
+  data2: PropTypes.any
 };
 
 export default ExchangeRate;
