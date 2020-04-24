@@ -54,8 +54,6 @@ function New({ socialLink, news, category_name, category_url }) {
             </div>
             <img
               className="img br loaded loaded lazyload"
-             
-              data-lazy-data-src="/static/images/heading-10.svg"
               data-src="/static/images/heading-10.svg"
               alt="images"
             />
@@ -94,8 +92,6 @@ function New({ socialLink, news, category_name, category_url }) {
                         <div className="img">
                           <img
                             className="lazyload"
-                           
-                            data-lazy-data-src={`${process.env.DOMAIN}${item.baseImage}`}
                             data-src={`${process.env.DOMAIN}${item.baseImage}`}
                             alt="images"
                           />

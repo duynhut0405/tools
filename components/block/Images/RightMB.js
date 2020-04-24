@@ -20,6 +20,7 @@ function ImageRightMB({ items, padding, id, type }) {
                   className="lazyload"
                   data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                  alt="images"
                 />
               </div>
             )}

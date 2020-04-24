@@ -34,8 +34,7 @@ function Carousels({ silder }) {
                       <div className="img">
                         <img
                           className="lazyload"
-                         
-                          data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                          alt="images"
                           data-src={`${process.env.DOMAIN}${item.urlImage}`}
                         />
                       </div>

@@ -60,8 +60,7 @@ function MenuMiddle({ data, query }) {
                               <div className="img">
                                 <img
                                   className="lazyload"
-                                 
-                                  data-lazy-data-src={`${process.env.DOMAIN}${item.icon}`}
+                                  alt="images"
                                   data-src={`${process.env.DOMAIN}${item.icon}`}
                                 />
                               </div>
@@ -107,8 +106,7 @@ function MenuMiddle({ data, query }) {
                               <div className="img">
                                 <img
                                   className="lazyload"
-                                 
-                                  data-lazy-data-src={`${process.env.DOMAIN}${item.icon}`}
+                                  alt="images"
                                   data-src={`${process.env.DOMAIN}${item.icon}`}
                                 />
                               </div>
@@ -133,8 +131,7 @@ function MenuMiddle({ data, query }) {
                               <div className="img">
                                 <img
                                   className="lazyload"
-                                 
-                                  data-lazy-data-src={`${process.env.DOMAIN}${item.icon}`}
+                                  alt="images"
                                   data-src={`${process.env.DOMAIN}${item.icon}`}
                                 />
                               </div>

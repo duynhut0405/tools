@@ -23,6 +23,7 @@ function ItemIcon({ data }) {
                     className="lazyload"
                     data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
                     data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                    alt="images"
                   />
                 </div>
                 <h4 className="title">{item.note_1}</h4>
@@ -46,9 +47,9 @@ function ItemIcon({ data }) {
             >
               <img
                 className="lazyload"
-                data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
                 data-src={`${process.env.DOMAIN}${item.urlImage}`}
                 width="25"
+                alt="images"
               />
               {item.note_1}
             </a>

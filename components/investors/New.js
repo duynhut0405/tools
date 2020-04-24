@@ -42,7 +42,7 @@ function News({ category, padding }) {
                     <div className="img tRes_71">
                       <img
                         className="lazyload"
-                        data-lazy-data-src={`${process.env.DOMAIN}${item.base_image}`}
+                        alt="images"
                         data-src={`${process.env.DOMAIN}${item.base_image}`}
                       />
                     </div>
