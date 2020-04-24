@@ -21,6 +21,9 @@ function TabQuestions({ data, id }) {
   } else {
     padding = 'sec-';
   }
+
+  const numberShowData = data.numberQuestion !== undefined ? data.numberQuestion : 5;
+  
   return (
     <React.Fragment>
       <main id="main" className={`${padding} tabQuestions`}>
@@ -46,7 +49,7 @@ function TabQuestions({ data, id }) {
               {map(data.listTab, (item, index) => (
                 <div className={classnames({ active: activeTab === String(index) })} key={index}>
                   <div className="tab-inner">
-                    <TabQuestionsItems data={item} indexTab={index} />
+                    <TabQuestionsItems data={item} indexTab={index} number={numberShowData}/>
                   </div>
                 </div>
               ))}
@@ -54,7 +57,7 @@ function TabQuestions({ data, id }) {
           </div>
         </div>
       </main>
-    </React.Fragment>
+    </React.Fragment>//
   );
 }
 

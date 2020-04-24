@@ -40,7 +40,6 @@ module.exports = withPWA(
           let router = [];
           let newRouter = [];
           let categoryRouter = [];
-
           const res = await getRouer();
           if (res && res !== undefined && res.status === 200) {
             router = res.data.reduce(

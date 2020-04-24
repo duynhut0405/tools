@@ -11,43 +11,71 @@ const propTypes = {
   data: Proptypes.object.isRequired,
   indexTab: Proptypes.number.isRequired
 };
-function TabQuestionsItem({ data, indexTab }) {
-  const [categories, setCategories] = useState({});
-  const [formState, setFormState] = useState({});
+function TabQuestionsItem({ data, indexTab, number }) {
+  const [categories, setCategories] = useState({}); //category: data.categoryDefault
+  const [formState, setFormState] = useState({
+    category: {}
+  });
   const [newsAnswer, setNewsAnswer] = useState({});
   const [page, setPage] = useState(1);
 
   const onChangeCategory = event => {
+
     setFormState(formState => ({
       ...formState,
       category: event
     }));
   };
 
-  const onChangeChildCategory = async event => {
+  const onChangeChildCategory = async event => {//
     setFormState(formState => ({
       ...formState,
       childCategory: event
     }));
-    const res = await findAllNewsByCategory(event.value, page, 2);
+  };
+
+  const getNewsByCategories = async (value, page, number) => {
+    const res = await findAllNewsByCategory(value, page, number);
     if (res && res.status === 200) {
       setNewsAnswer(res.data);
     }
-  };
+  }
   const getFullCategoryByID = async () => {
-    const res = await getFullCategoryByIdService(data.category.value);
-    if (res && res.status === 200) {
-      setCategories(res.data.categoriesList);
+    if (data.category) {
+      const res = await getFullCategoryByIdService(data.category.value);
+      if (res && res.status === 200) {
+        setCategories(res.data.categoriesList);
+        if (res.data && res.data.categoriesList.length > 0 && res.data.categoriesList[0].categoriesList.length > 0) {
+          setFormState(formState => ({
+            category: { label: res.data.categoriesList[0].name, value: res.data.categoriesList[0].id, categoriesList: res.data.categoriesList[0].categoriesList },
+            childCategory: { label: res.data.categoriesList[0].categoriesList[0].name, value: res.data.categoriesList[0].categoriesList[0].id }
+          }))
+        }
+        else if (res.data && res.data.categoriesList.length > 0) {
+          setFormState(formState => ({
+            category: { label: res.data.categoriesList[0].name, value: res.data.categoriesList[0].id, categoriesList: res.data.categoriesList[0].categoriesList }
+          }))
+        } else {
+          setFormState(formState => ({}))
+        }
+      }
     }
   };
 
+
   useEffect(() => {
     getFullCategoryByID();
+
   }, []);
 
   useEffect(() => {
+    if (formState.childCategory)
+      getNewsByCategories(formState.childCategory.value, page, number)
+  }, [formState.childCategory])
+
+  useEffect(() => {
     const findAllNewByCategory = async () => {
-      const res = await findAllNewsByCategory(formState.childCategory.value, page, 2);
+      const res = await findAllNewsByCategory(formState.childCategory.value, page, number);
       if (res && res.status === 200) {
         setNewsAnswer(res.data);
       }
@@ -64,7 +92,7 @@ function TabQuestionsItem({ data, indexTab }) {
           <h3 className="ctext">Sản phẩm/ Dịch vụ</h3>
           <Select
             name="category"
-            value={formState.category || ''}
+            value={formState.category || categories[0] || ''}
             onChange={event => onChangeCategory(event)}
             options={map(categories, category => ({
               label: category.name,
@@ -92,7 +120,7 @@ function TabQuestionsItem({ data, indexTab }) {
             <div className="accodion-tab ">
               <input type="checkbox" id={`chck_${indexTab}_${index + 1}`} />
               <label className="accodion-title" htmlFor={`chck_${indexTab}_${index + 1}`}>
-                <span>{`${index + 1}. ${item.title}`}</span>
+                <span>{` ${item.title}`}</span>
                 <span className="triangle">
                   <i className="icon-plus"></i>
                 </span>
