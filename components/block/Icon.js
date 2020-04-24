@@ -406,7 +406,6 @@ function Icon({ data, id }) {
                             <img
                               className="lazyload"
                               alt="images"
-                             
                               data-src={`${process.env.DOMAIN}${items.urlImage}`}
                             />
                           </div>

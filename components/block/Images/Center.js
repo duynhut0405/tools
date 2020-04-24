@@ -29,8 +29,7 @@ function ImageCenter({ items, padding, id, type }) {
                 data-video="autoplay=1&amp;controls=1&amp;mute=0"
               >
                 <img
-                 className="lazyload"
-                 
+                  className="lazyload"
                   data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   alt="images"
@@ -89,8 +88,7 @@ function ImageCenter({ items, padding, id, type }) {
                   data-video="autoplay=1&amp;controls=1&amp;mute=0"
                 >
                   <img
-                   className="lazyload"
-                   
+                    className="lazyload"
                     data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
                     data-src={`${process.env.DOMAIN}${items.urlImage}`}
                     alt="images"

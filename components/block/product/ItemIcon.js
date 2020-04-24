@@ -21,7 +21,6 @@ function ItemIcon({ data }) {
                 <div className="img">
                   <img
                     className="lazyload"
-                   
                     data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
                     data-src={`${process.env.DOMAIN}${item.urlImage}`}
                   />
@@ -47,7 +46,6 @@ function ItemIcon({ data }) {
             >
               <img
                 className="lazyload"
-               
                 data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
                 data-src={`${process.env.DOMAIN}${item.urlImage}`}
                 width="25"

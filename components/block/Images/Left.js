@@ -24,7 +24,6 @@ function ImageLeft({ items, padding, id, type }) {
               >
                 <img
                   className="lazyload"
-                 
                   data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   alt="images"

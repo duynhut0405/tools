@@ -16,7 +16,6 @@ function ItemImages({ data }) {
               <a href={item.url === undefined ? '#' : item.url} className="item tRes_66">
                 <img
                   className="lazyload"
-                 
                   data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
                   data-src={`${process.env.DOMAIN}${item.urlImage}`}
                 />
