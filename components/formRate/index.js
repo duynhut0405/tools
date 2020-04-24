@@ -13,8 +13,8 @@ const propTypes = {
 };
 
 function FormRate({ data, interestRate }) {
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
+  const [from, setFrom] = useState(0);
+  const [to, setTo] = useState(0);
   const [currencyFrom, setcurrencyFrom] = useState('VND');
   const [currencyTo, setcurrencyTo] = useState('USD');
   const [arrTo, setArrTo] = useState(data.exchangeRateDetail);
@@ -25,13 +25,15 @@ function FormRate({ data, interestRate }) {
     if (obj) {
       setArrTo(obj.children);
     } else {
-      setArrTo(data.exchangeRateDetail);
+      setArrTo([]);
     }
   };
 
   const getSellBycurrency = currency => {
     const obj = data.exchangeRateDetail.find(item => item.currency === currency);
-    return obj.sell;
+    if (obj) {
+      return obj.sell;
+    } else return 0
   };
 
   const getBuyTransferBycurrency = currency => {
@@ -40,9 +42,15 @@ function FormRate({ data, interestRate }) {
   };
 
   const Calculator = () => {
-    const result =
-      Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
-    setTo(result.toLocaleString(navigator.language, { minimumFractionDigits: 4 }));
+    if (getSellBycurrency(currencyTo) === 0) setTo(0)
+    else {
+      const result =
+        Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
+      if (result === 0) { setTo(0) } else {
+        setTo(result.toLocaleString(navigator.language, { minimumFractionDigits: 4 }));
+      }
+
+    }
   };
 
   useEffect(() => {
@@ -85,7 +93,7 @@ function FormRate({ data, interestRate }) {
                     placeholder={t('amount')}
                     name="from"
                     value={from}
-                    onChange={e => setFrom(e.target.value)}
+                    onChange={e => { setFrom(e.target.value) }}
                   />
                 </div>
                 <div>{t('to')}</div>
