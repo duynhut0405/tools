@@ -85,6 +85,7 @@ function Card({ data, type, optionWidth, id }) {
                                 className="lazyload"
                                 data-lazy-type="image"
                                 src={`${process.env.DOMAIN}${items.urlImage}`}
+                                alt="images"
                               />
                             </div>
                           </div>
@@ -124,6 +125,7 @@ function Card({ data, type, optionWidth, id }) {
                             className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
@@ -145,6 +147,7 @@ function Card({ data, type, optionWidth, id }) {
                             className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
@@ -166,6 +169,7 @@ function Card({ data, type, optionWidth, id }) {
                             className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
@@ -187,6 +191,7 @@ function Card({ data, type, optionWidth, id }) {
                             className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
@@ -208,6 +213,7 @@ function Card({ data, type, optionWidth, id }) {
                             className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">

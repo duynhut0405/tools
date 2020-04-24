@@ -215,11 +215,13 @@ function Pages({ data, type, id, optionWidth }) {
                   <a href={`/page/${items.slug}`} className="link">
                     <div className="img">
                       <img
+                        className="lazyload"
                         src={
                           items.baseImage === null
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${items.baseImage}`
                         }
+                        alt="images"
                       />
                     </div>
                     <div className="divtext">

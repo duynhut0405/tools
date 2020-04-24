@@ -68,7 +68,7 @@ function CustomPageItem({ data, indexTab }) {
                 <div className="item ef-img-t item_carousel" key={index}>
                   <a href={`/page/${items.slug}`} className="link">
                     <div className="img tRes_70">
-                      <img src={`${process.env.DOMAIN}${items.baseImage}`} />
+                      <img src={`${process.env.DOMAIN}${items.baseImage}`} alt="images" />
                     </div>
                     <div className="divtext">
                       <h4 className="title line2">{items.name}</h4>

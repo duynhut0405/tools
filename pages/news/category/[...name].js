@@ -53,6 +53,7 @@ function CategoryDetail({ routerURL, category }) {
               data-lazy-type="image"
               data-lazy-src="/static/images/heading-10.svg"
               src="/static/images/heading-10.svg"
+              alt="images"
             />
           </section>
           <AboutCategory data={data} categories={data.categoryNews} />

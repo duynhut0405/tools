@@ -46,6 +46,7 @@ function DetailPerson({ data, detailPerson, getDetailPerson, id }) {
                         className="lazyload"
                         data-lazy-type="image"
                         src={`${process.env.DOMAIN}${item.urlImage}`}
+                        alt="images"
                       />
                     </div>
                     <div className="divtext">

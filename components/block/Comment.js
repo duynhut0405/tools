@@ -70,6 +70,7 @@ function Comment({ data, id }) {
                         data-lazy-type="image"
                         data-lazy-src={item.image}
                         src={`${process.env.DOMAIN}${item.urlImage}`}
+                        alt="images"
                       />
                     </span>
                   </div>

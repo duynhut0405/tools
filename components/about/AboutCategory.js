@@ -48,6 +48,7 @@ function AboutCategory({ data, categories }) {
                         data-lazy-type="image"
                         data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
                         src={`${process.env.DOMAIN}${item.base_image}`}
+                        alt="images"
                       />
                     </div>
                     <div className="divtext">

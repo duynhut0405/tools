@@ -193,7 +193,7 @@ function Form({ data, pageId, id }) {
         <img
           className="lazyload"
           data-lazy-type="image"
-          alt=""
+          alt="images"
           src={`${process.env.DOMAIN}${data.urlImage}`}
         ></img>
       )}

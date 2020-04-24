@@ -147,7 +147,7 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
             <React.Fragment>
               <div className="col-12">
                 <div className="text-center">
-                  <img src="/static/images/ico-dangky.svg" alt="" />
+                  <img src="/static/images/ico-dangky.svg" alt="images" />
                 </div>
               </div>
 

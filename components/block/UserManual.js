@@ -46,17 +46,29 @@ function UserManual({ data, id }) {
                     <div className="owl-item cloned" style={{ width: '248px' }}>
                       <div className="item">
                         {' '}
-                        <img className="lazyload" data-src={data.listDetail[0].image} alt="" />{' '}
+                        <img
+                          className="lazyload"
+                          data-src={data.listDetail[0].image}
+                          alt="images"
+                        />{' '}
                       </div>
                     </div>
                     <div className="owl-item cloned" style={{ width: '248px' }}>
                       <div className="item">
-                        <img className="lazyload" data-src={data.listDetail[0].image} alt="" />{' '}
+                        <img
+                          className="lazyload"
+                          data-src={data.listDetail[0].image}
+                          alt="images"
+                        />{' '}
                       </div>
                     </div>
                     <div className="owl-item cloned" style={{ width: '248px' }}>
                       <div className="item">
-                        <img className="lazyload" data-src={data.listDetail[0].image} alt="" />
+                        <img
+                          className="lazyload"
+                          data-src={data.listDetail[0].image}
+                          alt="images"
+                        />
                       </div>
                     </div>
 
@@ -65,7 +77,7 @@ function UserManual({ data, id }) {
                         <img
                           className="lazyload"
                           data-src={data.listDetail[step - 1].image}
-                          alt=""
+                          alt="images"
                           src={data.listDetail[step - 1].image}
                           style={{ opacity: 1 }}
                         />{' '}

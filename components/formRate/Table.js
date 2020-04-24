@@ -28,7 +28,7 @@ function TableRate({ data, type }) {
                   <img
                     className="lazyload"
                     src={`static/currency/${value.currency}.png`}
-                    alt=""
+                    alt="images"
                     style={{ top: '-1px' }}
                     width="24"
                   />

@@ -80,7 +80,12 @@ function Post({ data, type }) {
                   <div className="col-md-6" key={item.newsId}>
                     <a href="#" className="item efch-<?php echo $i+1; ?> ef-img-l equal">
                       <div className="img tRes_71">
-                        <img className="lazyload" data-lazy-type="image" src={item.base_image} />
+                        <img
+                          alt="images"
+                          className="lazyload"
+                          data-lazy-type="image"
+                          src={item.base_image}
+                        />
                       </div>
                       <div className="divtext">
                         <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
@@ -98,7 +103,12 @@ function Post({ data, type }) {
                 <div className="list-6" key={item.newsId}>
                   <a href="#" className="item item-inline-table">
                     <div className="img">
-                      <img className="lazyload" data-lazy-type="image" src={item.base_image} />
+                      <img
+                        alt="images"
+                        className="lazyload"
+                        data-lazy-type="image"
+                        src={item.base_image}
+                      />
                     </div>
                     <div className="divtext">
                       <h4 className="title line4">{item.title}</h4>
@@ -136,7 +146,12 @@ function Post({ data, type }) {
                 key={item.newsId}
               >
                 <div className="img tRes_71">
-                  <img className="lazyload" data-lazy-type="image" src={item.base_image} />
+                  <img
+                    alt="images"
+                    className="lazyload"
+                    data-lazy-type="image"
+                    src={item.base_image}
+                  />
                 </div>
                 <div className="divtext">
                   <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>

@@ -33,7 +33,7 @@ function ImageCenter({ items, padding, id, type }) {
                   data-lazy-type="image"
                   data-lazy-src={`${process.env.DOMAIN}${items.urlImage}`}
                   src={`${process.env.DOMAIN}${items.urlImage}`}
-                  alt=""
+                  alt="images"
                 />
                 {items.video_url !== undefined && (
                   <span
@@ -93,7 +93,7 @@ function ImageCenter({ items, padding, id, type }) {
                     data-lazy-type="image"
                     data-lazy-src={`${process.env.DOMAIN}${items.urlImage}`}
                     src={`${process.env.DOMAIN}${items.urlImage}`}
-                    alt=""
+                    alt="images"
                   />
                   {items.video_url !== undefined && (
                     <span

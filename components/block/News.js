@@ -151,6 +151,7 @@ function News({ data, type, id, optionWidth }) {
                               ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
+                          alt="images"
                         />
                       </div>
                       <div className="divtext">
@@ -177,6 +178,7 @@ function News({ data, type, id, optionWidth }) {
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
+                        alt="images"
                       />
                     </div>
                     <div className="divtext">
@@ -245,6 +247,7 @@ function News({ data, type, id, optionWidth }) {
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
                         style={{ height: '187px' }}
+                        alt="images"
                       />
                     </div>
                     <div className="divtext">
@@ -321,6 +324,7 @@ function News({ data, type, id, optionWidth }) {
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.base_image}`
                         }
+                        alt="images"
                       />
                     </div>
                     <div className="divtext">
@@ -394,6 +398,7 @@ function News({ data, type, id, optionWidth }) {
                       ? `/images/imgdefault.jpg`
                       : `${process.env.DOMAIN}${data.urlImage}`
                   }
+                  alt="images"
                 />
               </a>
             </div>
@@ -411,6 +416,7 @@ function News({ data, type, id, optionWidth }) {
                               ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
+                          alt="images"
                         />
                         <div className="divtext">
                           <h4 className="title line2">{item.title}</h4>
@@ -429,13 +435,14 @@ function News({ data, type, id, optionWidth }) {
                         <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l `}>
                           <div className="img tRes_51">
                             <img
-                             className="lazyload"
+                              className="lazyload"
                               data-lazy-type="image"
                               src={
                                 item.base_image === null
                                   ? `/images/imgdefault.jpg`
                                   : `${process.env.DOMAIN}${item.base_image}`
                               }
+                              alt="images"
                             />
                           </div>
                           <div className="divtext">
@@ -481,13 +488,14 @@ function News({ data, type, id, optionWidth }) {
                 <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l`}>
                   <div className="img tRes_71">
                     <img
-                     className="lazyload"
+                      className="lazyload"
                       data-lazy-type="image"
                       src={
                         item.base_image === null
                           ? `/images/imgdefault.jpg`
                           : `${process.env.DOMAIN}${item.base_image}`
                       }
+                      alt="images"
                     />
                   </div>
                   <div className="divtext">
@@ -573,13 +581,14 @@ function News({ data, type, id, optionWidth }) {
                     <React.Fragment>
                       <a href={`/news/${item.url}`} className="item  tRes_56 video">
                         <img
-                         className="lazyload"
+                          className="lazyload"
                           data-lazy-type="image"
                           src={
                             item.base_image === null
                               ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
                           }
+                          alt="images"
                         ></img>
                         <div className="divtext">
                           <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
@@ -602,13 +611,14 @@ function News({ data, type, id, optionWidth }) {
                           <React.Fragment>
                             <div className="img tRes_56 video cl">
                               <img
-                               className="lazyload"
+                                className="lazyload"
                                 data-lazy-type="image"
                                 src={
                                   item.base_image === null
                                     ? `/images/imgdefault.jpg`
                                     : `${process.env.DOMAIN}${item.base_image}`
                                 }
+                                alt="images"
                               />
                             </div>
                             <div className="divtext">

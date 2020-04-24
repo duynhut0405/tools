@@ -25,7 +25,7 @@ function Banner({ data, id }) {
             <div className="col-md-4">
               <img
                 src={`${process.env.DOMAIN}${data.urlImage}`}
-                alt=""
+                alt="images"
                 className="img loaded lazyload"
               />
             </div>

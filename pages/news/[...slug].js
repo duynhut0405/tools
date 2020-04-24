@@ -57,6 +57,7 @@ function New({ socialLink, news, category_name, category_url }) {
               data-lazy-type="image"
               data-lazy-src="/static/images/heading-10.svg"
               src="/static/images/heading-10.svg"
+              alt="images"
             />
           </section>
           <main id="main" className="sec-b page-news-detail">
@@ -96,6 +97,7 @@ function New({ socialLink, news, category_name, category_url }) {
                             data-lazy-type="image"
                             data-lazy-src={`${process.env.DOMAIN}${item.baseImage}`}
                             src={`${process.env.DOMAIN}${item.baseImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
