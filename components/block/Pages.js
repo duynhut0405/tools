@@ -69,7 +69,7 @@ function Pages({ data, type, id, optionWidth }) {
                 <a href={`/page/${item.slug}`} className="item ">
                   <div className="img tRes_71">
                     <img
-                      className="lazy-hidden"
+                      className="lazyload"
                       data-lazy-type="image"
                       src={
                         item.baseImage === null
@@ -102,7 +102,7 @@ function Pages({ data, type, id, optionWidth }) {
                 <a href={`/page/${item.slug}`} className="item item-inline-table style-colummb">
                   <div className="img">
                     <img
-                      className="lazy-hidden"
+                      className="lazyload"
                       data-lazy-type="image"
                       src={
                         item.baseImage === null
@@ -136,7 +136,7 @@ function Pages({ data, type, id, optionWidth }) {
                 <a href={`/page/${values.slug}`} className="item item-inline-table">
                   <div className="img">
                     <img
-                      className="lazy-hidden"
+                      className="lazyload"
                       data-lazy-type="image"
                       src={
                         values.baseImage === null

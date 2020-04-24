@@ -53,7 +53,7 @@ function New({ socialLink, news, category_name, category_url }) {
               </div>
             </div>
             <img
-              className="img br loaded loaded"
+              className="img br loaded loaded lazyload"
               data-lazy-type="image"
               data-lazy-src="/static/images/heading-10.svg"
               src="/static/images/heading-10.svg"
@@ -92,7 +92,7 @@ function New({ socialLink, news, category_name, category_url }) {
                       <a href={`/news/${item.url}`} className="item item-inline-table">
                         <div className="img">
                           <img
-                            className=" loaded loaded"
+                            className="lazyload"
                             data-lazy-type="image"
                             data-lazy-src={`${process.env.DOMAIN}${item.baseImage}`}
                             src={`${process.env.DOMAIN}${item.baseImage}`}

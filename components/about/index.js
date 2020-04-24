@@ -80,7 +80,7 @@ function About({ data, listNews, getNews, id }) {
                   <a href={`/news/${item.url}`} className="item efch-2 ef-img-l equal">
                     <div className="img">
                       <img
-                        className=" loaded loaded"
+                        className="lazyload"
                         data-lazy-type="image"
                         data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
                         src={`${process.env.DOMAIN}${item.base_image}`}

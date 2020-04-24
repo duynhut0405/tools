@@ -63,7 +63,7 @@ function Form({ data, pageId, id }) {
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
-      setFormState({})
+      setFormState({});
     } else {
       setIsLoading(false);
     }
@@ -191,7 +191,7 @@ function Form({ data, pageId, id }) {
       </div>
       {data.image && (
         <img
-          className=" br  loaded"
+          className="lazyload"
           data-lazy-type="image"
           alt=""
           src={`${process.env.DOMAIN}${data.urlImage}`}

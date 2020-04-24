@@ -11,6 +11,8 @@ import '../styles/question.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'react-rangeslider/lib/index.css';
 import 'react-multi-carousel/lib/styles.css';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 class NextApp extends App {
   static async getInitialProps({ Component, ctx }) {

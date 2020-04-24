@@ -206,7 +206,6 @@ function Layout({
     i18n.changeLanguage(lang);
     setFlag(flags);
     setLang(lang, flags);
-    window.reload()
   };
 
   const onFocus = () => {
@@ -316,7 +315,7 @@ function Layout({
                   <div className="dropdown language">
                     <div className="title">
                       <span>
-                        <img src={`/static/flags/${flag}.png`} alt="" />
+                        <img className="lazyload" src={`/static/flags/${flag}.png`} alt="" />
                       </span>
                       <i className="icon-arrow-2 ib"></i>
                     </div>
@@ -325,12 +324,13 @@ function Layout({
                         <ul className="menu">
                           <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
                             <a onClick={() => changeLang('en', 'gb')} title="English (en)">
-                              <img src="/static/flags/gb.png" alt="" /> <span>English</span>
+                              <img className="lazyload" src="/static/flags/gb.png" alt="" />{' '}
+                              <span>English</span>
                             </a>
                           </li>
                           <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
                             <a onClick={() => changeLang('vi', 'vn')} title="Tiếng Việt (vi)">
-                              <img src="/static/images/flags/vn.png" alt="" />
+                              <img className="lazyload" src="/static/images/flags/vn.png" alt="" />
                               <span>Tiếng Việt</span>
                             </a>
                           </li>
@@ -340,8 +340,8 @@ function Layout({
                   </div>
                 </li>
               </ul>
-              <Suggest data={menuSearch} onChangeSuggest={onChangeSuggest} onClose={onClose} />
             </div>
+            <Suggest data={menuSearch} onChangeSuggest={onChangeSuggest} onClose={onClose} />
           </div>
           <Sticky topOffset={40}>
             {({ style }) => (
@@ -350,6 +350,7 @@ function Layout({
                   <div className="container">
                     <a href="/" id="logo">
                       <img
+                        className="lazyload"
                         src={
                           personalLayout === 1 || personalLayout === true
                             ? '/static/images/svg/logo-priority.svg'
@@ -396,7 +397,7 @@ function Layout({
                         <div className="dropdown language">
                           <div className="title">
                             <span>
-                              <img src={`/static/flags/${flag}.png`} alt="" />
+                              <img className="lazyload" src={`/static/flags/${flag}.png`} alt="" />
                             </span>
                             <i className="icon-arrow-2 ib"></i>
                           </div>
@@ -405,13 +406,21 @@ function Layout({
                               <ul className="menu">
                                 <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
                                   <a title="English (en)" onClick={() => changeLang('en', 'gb')}>
-                                    <img src="/static/images/flags/gb.png" alt="" />
+                                    <img
+                                      className="lazyload"
+                                      src="/static/images/flags/gb.png"
+                                      alt=""
+                                    />
                                     <span>English</span>
                                   </a>
                                 </li>
                                 <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
                                   <a title="Tiếng Việt (vi)" onClick={() => changeLang('vi', 'vn')}>
-                                    <img src="/static/images/flags/vn.png" alt="" />
+                                    <img
+                                      className="lazyload"
+                                      src="/static/images/flags/vn.png"
+                                      alt=""
+                                    />
                                     <span>Tiếng Việt</span>
                                   </a>
                                 </li>
@@ -448,7 +457,11 @@ function Layout({
                         <div className="col-4" key={values.id}>
                           <a className="item" href={values.url}>
                             <span className="img">
-                              <img src={`${process.env.DOMAIN}${values.icon}`} alt="" />
+                              <img
+                                className="lazyload"
+                                src={`${process.env.DOMAIN}${values.icon}`}
+                                alt=""
+                              />
                             </span>
                             <div className="divtext">
                               <h4 className="title">{values.name}</h4>
@@ -462,7 +475,11 @@ function Layout({
                       <div className="col-4" key={values.id}>
                         <a className="item" href={`/page/${values.slugPages}`}>
                           <span className="img">
-                            <img src={`${process.env.DOMAIN}${values.icon}`} alt="" />
+                            <img
+                              className="lazyload"
+                              src={`${process.env.DOMAIN}${values.icon}`}
+                              alt=""
+                            />
                           </span>
                           <div className="divtext">
                             <h4 className="title">{values.name}</h4>
@@ -560,11 +577,11 @@ function Layout({
             <div className="wdownload">
               <span className="stitle">{t('donwload_app_today')}</span>&nbsp;
               <a href="#">
-                <img src="/static/images/btt-chplay-mb.svg" alt="" />
+                <img className="lazyload" src="/static/images/btt-chplay-mb.svg" alt="" />
               </a>{' '}
               &nbsp;
               <a href="#">
-                <img src="/static/images/btt-google-mb.svg" alt="" />
+                <img className="lazyload" src="/static/images/btt-google-mb.svg" alt="" />
               </a>
             </div>
           </section>
@@ -597,7 +614,7 @@ function Layout({
                 <div className="col-3">
                   <a className="item " href="#">
                     <span className="img">
-                      <img src="/static/images/svg/home.svg" alt="" />
+                      <img className="lazyload" src="/static/images/svg/home.svg" alt="" />
                     </span>
                     <span className="name">{t('home')}</span>
                   </a>
@@ -605,7 +622,7 @@ function Layout({
                 <div className="col-3">
                   <a className="item" href="#">
                     <span className="img">
-                      <img src="/static/images/svg/folder.svg" alt="" />
+                      <img className="lazyload" src="/static/images/svg/folder.svg" alt="" />
                     </span>
                     <span className="name">{t('product')}</span>
                   </a>
@@ -613,7 +630,7 @@ function Layout({
                 <div className="col-3">
                   <a className="item " href="#">
                     <span className="img">
-                      <img src="/static/images/svg/MB.svg" alt="" />
+                      <img className="lazyload" src="/static/images/svg/MB.svg" alt="" />
                     </span>
                     <span className="name">MB++</span>
                   </a>
@@ -621,7 +638,7 @@ function Layout({
                 <div className="col-3">
                   <a className="item " href="#">
                     <span className="img">
-                      <img src="/static/images/svg/giadinh.svg" alt="" />
+                      <img className="lazyload" src="/static/images/svg/giadinh.svg" alt="" />
                     </span>
                     <span className="name">{t('family')}</span>
                   </a>
@@ -629,7 +646,7 @@ function Layout({
                 <div className="col-3">
                   <a className="item " href="#">
                     <span className="img">
-                      <img src="/static/images/svg/tienich.svg" alt="" />
+                      <img className="lazyload" src="/static/images/svg/tienich.svg" alt="" />
                     </span>
                     <span className="name">{t('utilities')}</span>
                   </a>

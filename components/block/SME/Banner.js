@@ -23,7 +23,11 @@ function Banner({ data, id }) {
         <div className="container">
           <div className="row list-item flex">
             <div className="col-md-4">
-              <img src={`${process.env.DOMAIN}${data.urlImage}`} alt="" className="img loaded" />
+              <img
+                src={`${process.env.DOMAIN}${data.urlImage}`}
+                alt=""
+                className="img loaded lazyload"
+              />
             </div>
             <div className="col-md-5">
               <p className="desc">{data.description}</p>

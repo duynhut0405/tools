@@ -28,24 +28,31 @@ function Carousels({ silder }) {
           >
             {map(silder, (item, index) => (
               <div className="container" key={index}>
-                {item.options === '3' &&
+                {item.options === '3' && (
                   <div className="row center">
                     <div className="col-md-6">
-                      <div className="img"><img className=" loaded loaded" data-lazy-type="image" data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`} src={`${process.env.DOMAIN}${item.urlImage}`} /></div>
+                      <div className="img">
+                        <img
+                          className="lazyload"
+                          data-lazy-type="image"
+                          data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
+                          src={`${process.env.DOMAIN}${item.urlImage}`}
+                        />
+                      </div>
                     </div>
                     <div className="col-md-6">
                       <blockquote>{ReactHtmlParser(item.note_1)}</blockquote>
-
                     </div>
                   </div>
-                }
-                {item.options === '1' || item.options === '2' &&
-                  <>
-                    <div className="divtext text-left-mg ">
-                      <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(item.note_1)}</h1>
-                      <p className="cl1">{ReactHtmlParser(item.note_2)}</p>
-                      <div className="text_content3">{item.note_3}</div>
-                      {item.text_action === null ||
+                )}
+                {item.options === '1' ||
+                  (item.options === '2' && (
+                    <>
+                      <div className="divtext text-left-mg ">
+                        <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(item.note_1)}</h1>
+                        <p className="cl1">{ReactHtmlParser(item.note_2)}</p>
+                        <div className="text_content3">{item.note_3}</div>
+                        {item.text_action === null ||
                         item.text_action === undefined ||
                         item.text_action === '' ? (
                           ''
@@ -61,26 +68,34 @@ function Carousels({ silder }) {
                             {item.text_action}
                           </a>
                         )}
-                      {item.video_url !== undefined && item.video_url !== '' && (
-                        <div>
-                          <iframe src={item.video_url} />
-                        </div>
-                      )}
-                    </div>
-                    <div className="wimg">
-                      <img
-                        className={item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'}
-                        src={`${process.env.DOMAIN}${item.urlImage}`}
-                        alt="icon"
-                      />
-                      <img
-                        className={item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'}
-                        src={`${process.env.DOMAIN}${item.urlImageMobile}`}
-                        alt="icon"
-                      />
-                    </div>
-                  </>
-                }
+                        {item.video_url !== undefined && item.video_url !== '' && (
+                          <div>
+                            <iframe src={item.video_url} />
+                          </div>
+                        )}
+                      </div>
+                      <div className="wimg">
+                        <img
+                          className={
+                            item.options === '2'
+                              ? 'img-center img-pc lazyload'
+                              : 'img-right img-pc lazyload'
+                          }
+                          src={`${process.env.DOMAIN}${item.urlImage}`}
+                          alt="icon"
+                        />
+                        <img
+                          className={
+                            item.options === '2'
+                              ? 'img-center img-mb lazyload'
+                              : 'img-right img-mb lazyload'
+                          }
+                          src={`${process.env.DOMAIN}${item.urlImageMobile}`}
+                          alt="icon"
+                        />
+                      </div>
+                    </>
+                  ))}
               </div>
             ))}
           </Carousel>

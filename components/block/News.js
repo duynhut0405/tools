@@ -98,6 +98,7 @@ function News({ data, type, id, optionWidth }) {
                         ? `/images/imgdefault.jpg`
                         : `${process.env.DOMAIN}${item.base_image}`
                     }
+                    className="lazyload"
                     alt="icon"
                   />
                 </div>
@@ -143,7 +144,7 @@ function News({ data, type, id, optionWidth }) {
                     <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l equal`}>
                       <div className="img tRes_71">
                         <img
-                          className="lazy-hidden"
+                          className="lazyload"
                           data-lazy-type="image"
                           src={
                             item.base_image === null
@@ -169,7 +170,7 @@ function News({ data, type, id, optionWidth }) {
                   <a key={index} href={`/news/${item.url}`} className="item item-inline-table">
                     <div className="img">
                       <img
-                        className="lazy-hidden"
+                        className="lazyload"
                         data-lazy-type="image"
                         src={
                           item.base_image === null
@@ -236,7 +237,7 @@ function News({ data, type, id, optionWidth }) {
                   >
                     <div className="img tRes_71">
                       <img
-                        className="lazy-hidden"
+                        className="lazyload"
                         data-lazy-type="image"
                         src={
                           item.base_image === null
@@ -313,7 +314,7 @@ function News({ data, type, id, optionWidth }) {
                   <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
                     <div className="img tRes_71">
                       <img
-                        className=" loaded loaded"
+                        className="lazyload"
                         data-lazy-type="image"
                         src={
                           item.base_image === null
@@ -341,7 +342,7 @@ function News({ data, type, id, optionWidth }) {
                     <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
                       <div className="img tRes_71">
                         <img
-                          className=" loaded loaded"
+                         className="lazyload"
                           data-lazy-type="image"
                           src={item.base_image}
                         />
@@ -386,10 +387,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="col-lg-4">
               <a href={data.url} className="item-banner  tRes ">
                 <img
-                  className=" loaded loaded"
+                  className="lazyload"
                   data-lazy-type="image"
                   src={
-                    data.urlImage === null ? `/images/imgdefault.jpg` : `${process.env.DOMAIN}${data.urlImage}`
+                    data.urlImage === null
+                      ? `/images/imgdefault.jpg`
+                      : `${process.env.DOMAIN}${data.urlImage}`
                   }
                 />
               </a>
@@ -401,7 +404,7 @@ function News({ data, type, id, optionWidth }) {
                     return (
                       <a href={`/news/${item.url}`} className="item  tRes_39 ">
                         <img
-                          className=" loaded loaded"
+                          className="lazyload"
                           data-lazy-type="image"
                           src={
                             item.base_image === null
@@ -426,7 +429,7 @@ function News({ data, type, id, optionWidth }) {
                         <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l `}>
                           <div className="img tRes_51">
                             <img
-                              className=" loaded loaded"
+                             className="lazyload"
                               data-lazy-type="image"
                               src={
                                 item.base_image === null
@@ -478,7 +481,7 @@ function News({ data, type, id, optionWidth }) {
                 <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l`}>
                   <div className="img tRes_71">
                     <img
-                      className=" loaded loaded"
+                     className="lazyload"
                       data-lazy-type="image"
                       src={
                         item.base_image === null
@@ -570,7 +573,7 @@ function News({ data, type, id, optionWidth }) {
                     <React.Fragment>
                       <a href={`/news/${item.url}`} className="item  tRes_56 video">
                         <img
-                          className=" loaded loaded"
+                         className="lazyload"
                           data-lazy-type="image"
                           src={
                             item.base_image === null
@@ -599,7 +602,7 @@ function News({ data, type, id, optionWidth }) {
                           <React.Fragment>
                             <div className="img tRes_56 video cl">
                               <img
-                                className=" loaded loaded"
+                               className="lazyload"
                                 data-lazy-type="image"
                                 src={
                                   item.base_image === null

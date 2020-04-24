@@ -186,6 +186,43 @@ ul.menu.line > li button.search-sg i {
   font-weight: 600;
 }
 
+#panel #search-sg {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 10px 0px;
+  background-color: #f1f1f1;
+  color: #bbb;
+  transition: 0.3s all ease-in-out;
+}
+
+#search-sg #logo {
+  position: absolute !important;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#search-sg #logo img {
+  display: block;
+}
+
+@media only screen and (min-width: 1200px) {
+  #search-sg #logo {
+    height: 80px;
+  }
+  #search-sg #logo img {
+    max-height: 70px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .search-result .cttab-v3 .tab-menu > div {
     display: inline-block !important;

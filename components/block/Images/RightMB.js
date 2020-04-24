@@ -17,7 +17,7 @@ function ImageRightMB({ items, padding, id, type }) {
             {items.video_url === undefined && (
               <div className="img tRes_66 efch-2 ef-img-r ">
                 <img
-                  className=" loaded loaded"
+                  className="lazyload"
                   data-lazy-type="image"
                   data-lazy-src={`${process.env.DOMAIN}${items.urlImage}`}
                   src={`${process.env.DOMAIN}${items.urlImage}`}

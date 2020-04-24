@@ -38,14 +38,14 @@ function PopupItems({ item, modal, setModal }) {
             </span>
             <div className="logo">
               <a href="./">
-                <img src="/static/images/logo-blue.svg" alt="" />
+                <img className="lazyload" src="/images/logo-blue.svg" alt="" />
               </a>
             </div>
             <div className="row bottom">
               <div className="col-md-5">
                 <div className="img tRes">
                   <img
-                    className=" loaded loaded"
+                    className="lazyload"
                     data-lazy-type="image"
                     data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
                     src={`${process.env.DOMAIN}${item.urlImage}`}

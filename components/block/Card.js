@@ -82,7 +82,7 @@ function Card({ data, type, optionWidth, id }) {
                           <div className="col-md-6 efch-1 ef-img-t">
                             <div className="img">
                               <img
-                                className="loaded"
+                                className="lazyload"
                                 data-lazy-type="image"
                                 src={`${process.env.DOMAIN}${items.urlImage}`}
                               />
@@ -121,7 +121,7 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-1  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
+                            className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
                           />
@@ -142,7 +142,7 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-2  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
+                            className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
                           />
@@ -163,7 +163,7 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-2  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
+                            className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
                           />
@@ -184,7 +184,7 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-2  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
+                            className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
                           />
@@ -205,7 +205,7 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-2  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
+                            className="lazyload"
                             data-lazy-type="image"
                             src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
                           />

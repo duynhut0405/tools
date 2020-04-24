@@ -49,7 +49,7 @@ function CategoryDetail({ routerURL, category }) {
               </div>
             </div>
             <img
-              className="img br loaded loaded"
+              className="img br loaded loaded lazyload"
               data-lazy-type="image"
               data-lazy-src="/static/images/heading-10.svg"
               src="/static/images/heading-10.svg"

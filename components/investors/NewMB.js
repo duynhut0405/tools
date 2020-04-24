@@ -47,7 +47,7 @@ function NewMB({ t, data, padding }) {
                         <a className="item efch-2 ef-img-l equal">
                           <div className="img tRes_71">
                             <img
-                              className=" loaded loaded"
+                              className="lazyload"
                               data-lazy-type="image"
                               data-lazy-src={`${process.env.DOMAIN}${news.base_image}`}
                               src={`${process.env.DOMAIN}${news.base_image}`}
@@ -78,7 +78,7 @@ function NewMB({ t, data, padding }) {
                       <a className="item item-inline-table">
                         <div className="img">
                           <img
-                            className=" loaded loaded"
+                            className="lazyload"
                             data-lazy-type="image"
                             data-lazy-src={`${process.env.DOMAIN}${news.base_image}`}
                             src={`${process.env.DOMAIN}${news.base_image}`}

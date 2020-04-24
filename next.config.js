@@ -33,9 +33,9 @@ module.exports = withPWA(
           MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api',
           ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe'
         },
-        pwa: {
-          dest: 'public'
-        },
+        // pwa: {
+        //   dest: 'public'
+        // },
         exportPathMap: async function() {
           let router = [];
           let newRouter = [];

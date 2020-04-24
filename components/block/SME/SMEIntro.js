@@ -26,14 +26,14 @@ function BlockSMEIntro({ data, optionWidth, id }) {
         <img
           src="/static/images/smeCare/care-logo.png"
           alt=""
-          className="img loaded loaded mb-20"
+          className="img loaded loaded mb-20 lazyload"
         />
         <div className="row list-item">
           <div className="col-md-3">
             <a href="https://smecare.com.vn/">
               <div className="flex">
                 <div className="img_care">
-                  <img src="/static/images/smeCare/C.png" alt="" />
+                  <img className="lazyload" src="/static/images/smeCare/C.png" alt="" />
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Capital</h3>
@@ -46,7 +46,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
             <a href="https://smecare.com.vn/">
               <div className="flex">
                 <div className="img_care">
-                  <img src="/static/images/smeCare/A.png" alt="" />
+                  <img className="lazyload" src="/static/images/smeCare/A.png" alt="" />
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Advertising</h3>
@@ -59,7 +59,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
             <a href="https://smecare.com.vn/">
               <div className="flex">
                 <div className="img_care">
-                  <img src="/static/images/smeCare/R.png" alt="" />
+                  <img className="lazyload" src="/static/images/smeCare/R.png" alt="" />
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Relation</h3>
@@ -72,7 +72,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
             <a href="https://smecare.com.vn/">
               <div className="flex">
                 <div className="img_care">
-                  <img src="/static/images/smeCare/E.png" alt="" />
+                  <img className="lazyload" src="/static/images/smeCare/E.png" alt="" />
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Education</h3>

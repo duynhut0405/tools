@@ -59,7 +59,7 @@ function MenuMiddle({ data, query }) {
                             <a href={`/page/${item.slugPages}`} className="link">
                               <div className="img">
                                 <img
-                                  className=" loaded loaded"
+                                  className="lazyload"
                                   data-lazy-type="image"
                                   data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
                                   src={`${process.env.DOMAIN}${item.icon}`}
@@ -106,7 +106,7 @@ function MenuMiddle({ data, query }) {
                             <a href={`/page/${item.slugPages}`} className="link">
                               <div className="img">
                                 <img
-                                  className=" loaded loaded"
+                                  className="lazyload"
                                   data-lazy-type="image"
                                   data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
                                   src={`${process.env.DOMAIN}${item.icon}`}
@@ -132,7 +132,7 @@ function MenuMiddle({ data, query }) {
                             <a href={`/page/${item.slugPages}`} className="link">
                               <div className="img">
                                 <img
-                                  className=" loaded loaded"
+                                  className="lazyload"
                                   data-lazy-type="image"
                                   data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
                                   src={`${process.env.DOMAIN}${item.icon}`}

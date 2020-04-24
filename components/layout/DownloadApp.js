@@ -23,16 +23,16 @@ function DownloadApp({ t }) {
   return (
     <div className="wapp">
       <span className="code">
-        <img src="/static/images/svg/qr.svg" alt="" />
+        <img className="lazyload" src="/static/images/svg/qr.svg" alt="" />
       </span>
       <div className="app">
         <p className="stitle">{t('donwload_app_today')}</p>
         <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
-          <img src="/static/images/btt-google.svg" alt="" />
+          <img className="lazyload" src="/static/images/btt-google.svg" alt="" />
         </a>
         &nbsp;
         <a href={linkApp.ios} target="_blank" rel="noopener noreferrer">
-          <img src="/static/images/btt-chplay.svg" alt="" />
+          <img className="lazyload" src="/static/images/btt-chplay.svg" alt="" />
         </a>
       </div>
     </div>
