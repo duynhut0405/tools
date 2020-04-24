@@ -13,7 +13,7 @@
 
 // If the loader is already loaded, just stop.
 if (!self.define) {
-  const singleRequire = name => {  
+  const singleRequire = name => {
     if (name !== 'require') {
       name = name + '.js';
     }

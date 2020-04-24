@@ -6,8 +6,8 @@
 .pnp.js
 
 # public file
-public/sw.js
-public/sw.js.map
+/public/sw.js*
+/public/sw.js.map*
 
 # testing
 /coverage
