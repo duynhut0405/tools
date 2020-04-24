@@ -34,9 +34,9 @@ function Carousels({ silder }) {
                       <div className="img">
                         <img
                           className="lazyload"
-                          data-lazy-type="image"
-                          data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
-                          src={`${process.env.DOMAIN}${item.urlImage}`}
+                         
+                          data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
                         />
                       </div>
                     </div>
@@ -70,7 +70,7 @@ function Carousels({ silder }) {
                         )}
                         {item.video_url !== undefined && item.video_url !== '' && (
                           <div>
-                            <iframe src={item.video_url} />
+                            <iframe data-src={item.video_url} />
                           </div>
                         )}
                       </div>
@@ -81,7 +81,7 @@ function Carousels({ silder }) {
                               ? 'img-center img-pc lazyload'
                               : 'img-right img-pc lazyload'
                           }
-                          src={`${process.env.DOMAIN}${item.urlImage}`}
+                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
                           alt="icon"
                         />
                         <img
@@ -90,7 +90,7 @@ function Carousels({ silder }) {
                               ? 'img-center img-mb lazyload'
                               : 'img-right img-mb lazyload'
                           }
-                          src={`${process.env.DOMAIN}${item.urlImageMobile}`}
+                          data-src={`${process.env.DOMAIN}${item.urlImageMobile}`}
                           alt="icon"
                         />
                       </div>

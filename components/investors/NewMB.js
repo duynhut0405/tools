@@ -48,9 +48,9 @@ function NewMB({ t, data, padding }) {
                           <div className="img tRes_71">
                             <img
                               className="lazyload"
-                              data-lazy-type="image"
-                              data-lazy-src={`${process.env.DOMAIN}${news.base_image}`}
-                              src={`${process.env.DOMAIN}${news.base_image}`}
+                             
+                              data-lazy-data-src={`${process.env.DOMAIN}${news.base_image}`}
+                              data-src={`${process.env.DOMAIN}${news.base_image}`}
                             />
                           </div>
                           <div className="divtext">
@@ -79,9 +79,9 @@ function NewMB({ t, data, padding }) {
                         <div className="img">
                           <img
                             className="lazyload"
-                            data-lazy-type="image"
-                            data-lazy-src={`${process.env.DOMAIN}${news.base_image}`}
-                            src={`${process.env.DOMAIN}${news.base_image}`}
+                           
+                            data-lazy-data-src={`${process.env.DOMAIN}${news.base_image}`}
+                            data-src={`${process.env.DOMAIN}${news.base_image}`}
                           />
                         </div>
                         <div className="divtext">

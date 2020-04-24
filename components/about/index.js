@@ -81,9 +81,7 @@ function About({ data, listNews, getNews, id }) {
                     <div className="img">
                       <img
                         className="lazyload"
-                        data-lazy-type="image"
-                        data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
-                        src={`${process.env.DOMAIN}${item.base_image}`}
+                        data-src={`${process.env.DOMAIN}${item.base_image}`}
                         alt="images"
                       />
                     </div>

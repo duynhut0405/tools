@@ -30,7 +30,7 @@ function UserManual({ data, id }) {
             <div
               className="w-sync-1 loaded"
               data-lazy-type="bg"
-              data-lazy-src={data.image}
+              data-lazy-data-src={data.image}
               style={{ backgroundImage: `url(${data.image})` }}
             >
               <div className="sync-1 owl-carousel s-loop owl-loaded owl-drag" paramowl="margin=0">
@@ -48,7 +48,7 @@ function UserManual({ data, id }) {
                         {' '}
                         <img
                           className="lazyload"
-                          data-src={data.listDetail[0].image}
+                          data-data-src={data.listDetail[0].image}
                           alt="images"
                         />{' '}
                       </div>
@@ -57,7 +57,7 @@ function UserManual({ data, id }) {
                       <div className="item">
                         <img
                           className="lazyload"
-                          data-src={data.listDetail[0].image}
+                          data-data-src={data.listDetail[0].image}
                           alt="images"
                         />{' '}
                       </div>
@@ -66,7 +66,7 @@ function UserManual({ data, id }) {
                       <div className="item">
                         <img
                           className="lazyload"
-                          data-src={data.listDetail[0].image}
+                          data-data-src={data.listDetail[0].image}
                           alt="images"
                         />
                       </div>
@@ -76,9 +76,9 @@ function UserManual({ data, id }) {
                       <div className="item">
                         <img
                           className="lazyload"
-                          data-src={data.listDetail[step - 1].image}
+                          data-data-src={data.listDetail[step - 1].image}
                           alt="images"
-                          src={data.listDetail[step - 1].image}
+                          data-src={data.listDetail[step - 1].image}
                           style={{ opacity: 1 }}
                         />{' '}
                       </div>

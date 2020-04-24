@@ -21,7 +21,7 @@ function AllNews({ data, title }) {
               <div className="row mb-4" key={index}>
                 <div className="col-sm-4">
                   <div className="mb-cate-news-img">
-                    <img className="lazyload" data-lazy-type="image" src={news.base_image} />
+                    <img className="lazyload" data-src={news.base_image} />
                   </div>
                 </div>
                 <div className="col-sm-8">

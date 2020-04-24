@@ -19,7 +19,7 @@ function Stock() {
       <div className="widget-ndt">
         <div>
           <a href="./">
-            <img className="lazyload" height="50" src="/images/logo-blue.svg" alt="images" />
+            <img className="lazyload" height="50" data-src="/images/logo-blue.svg" alt="images" />
           </a>
         </div>
 

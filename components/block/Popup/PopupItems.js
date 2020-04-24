@@ -1,6 +1,5 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { Modal, ModalBody } from 'reactstrap';
 import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
@@ -38,7 +37,7 @@ function PopupItems({ item, modal, setModal }) {
             </span>
             <div className="logo">
               <a href="./">
-                <img className="lazyload" src="/images/logo-blue.svg" alt="images" />
+                <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
               </a>
             </div>
             <div className="row bottom">
@@ -46,9 +45,9 @@ function PopupItems({ item, modal, setModal }) {
                 <div className="img tRes">
                   <img
                     className="lazyload"
-                    data-lazy-type="image"
-                    data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
-                    src={`${process.env.DOMAIN}${item.urlImage}`}
+                   
+                    data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                    data-src={`${process.env.DOMAIN}${item.urlImage}`}
                   />
                 </div>
               </div>

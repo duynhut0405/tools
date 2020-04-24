@@ -50,9 +50,9 @@ function CategoryDetail({ routerURL, category }) {
             </div>
             <img
               className="img br loaded loaded lazyload"
-              data-lazy-type="image"
-              data-lazy-src="/static/images/heading-10.svg"
-              src="/static/images/heading-10.svg"
+             
+              data-lazy-data-src="/static/images/heading-10.svg"
+              data-src="/static/images/heading-10.svg"
               alt="images"
             />
           </section>

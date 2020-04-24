@@ -11,7 +11,7 @@ function Widget({ data }) {
     <React.Fragment>
       <div>
         <a href="./" className="logo">
-          <img className="lazyload" src="/images/logo-blue.svg" alt="images" />
+          <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
         </a>
       </div>
       {ReactHtmlParser(data.footer_brief)}

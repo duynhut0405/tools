@@ -1,7 +1,6 @@
 import { map } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import { Input, Label } from 'reactstrap';
 import { sendMailService } from '../../services/form';
 import PropTypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
@@ -180,8 +179,8 @@ function MenuIntro({ data, pageId, optionWidth }) {
                       return (
                         <React.Fragment>
                           <div className="col-12">
-                            {item.label && <Label>{item.label}</Label>}
-                            <Input
+                            {item.label && <label>{item.label}</label>}
+                            <input
                               className="input"
                               name={item.name}
                               type={item.subtype}
@@ -197,8 +196,8 @@ function MenuIntro({ data, pageId, optionWidth }) {
                       return (
                         <React.Fragment>
                           <div className="col-12">
-                            {item.label && <Label>{item.label}</Label>}
-                            <Input
+                            {item.label && <label>{item.label}</label>}
+                            <input
                               className="input"
                               type={item.subtype}
                               required={item.required}

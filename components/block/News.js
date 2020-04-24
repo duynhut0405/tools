@@ -93,7 +93,7 @@ function News({ data, type, id, optionWidth }) {
               <div className="post_content mb-3">
                 <div style={{ height: '230px', width: '100%', overflow: 'hidden' }}>
                   <img
-                    src={
+                    data-src={
                       item.baseImage === null
                         ? `/images/imgdefault.jpg`
                         : `${process.env.DOMAIN}${item.base_image}`
@@ -145,8 +145,7 @@ function News({ data, type, id, optionWidth }) {
                       <div className="img tRes_71">
                         <img
                           className="lazyload"
-                          data-lazy-type="image"
-                          src={
+                          data-src={
                             item.base_image === null
                               ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
@@ -172,8 +171,7 @@ function News({ data, type, id, optionWidth }) {
                     <div className="img">
                       <img
                         className="lazyload"
-                        data-lazy-type="image"
-                        src={
+                        data-src={
                           item.base_image === null
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.base_image}`
@@ -240,8 +238,7 @@ function News({ data, type, id, optionWidth }) {
                     <div className="img tRes_71">
                       <img
                         className="lazyload"
-                        data-lazy-type="image"
-                        src={
+                        data-src={
                           item.base_image === null
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.base_image}`
@@ -318,8 +315,7 @@ function News({ data, type, id, optionWidth }) {
                     <div className="img tRes_71">
                       <img
                         className="lazyload"
-                        data-lazy-type="image"
-                        src={
+                        data-src={
                           item.base_image === null
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.base_image}`
@@ -347,8 +343,8 @@ function News({ data, type, id, optionWidth }) {
                       <div className="img tRes_71">
                         <img
                          className="lazyload"
-                          data-lazy-type="image"
-                          src={item.base_image}
+                         
+                          data-src={item.base_image}
                         />
                       </div>
                       <div className="divtext">
@@ -392,8 +388,7 @@ function News({ data, type, id, optionWidth }) {
               <a href={data.url} className="item-banner  tRes ">
                 <img
                   className="lazyload"
-                  data-lazy-type="image"
-                  src={
+                  data-src={
                     data.urlImage === null
                       ? `/images/imgdefault.jpg`
                       : `${process.env.DOMAIN}${data.urlImage}`
@@ -410,8 +405,7 @@ function News({ data, type, id, optionWidth }) {
                       <a href={`/news/${item.url}`} className="item  tRes_39 ">
                         <img
                           className="lazyload"
-                          data-lazy-type="image"
-                          src={
+                          data-src={
                             item.base_image === null
                               ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
@@ -436,8 +430,7 @@ function News({ data, type, id, optionWidth }) {
                           <div className="img tRes_51">
                             <img
                               className="lazyload"
-                              data-lazy-type="image"
-                              src={
+                              data-src={
                                 item.base_image === null
                                   ? `/images/imgdefault.jpg`
                                   : `${process.env.DOMAIN}${item.base_image}`
@@ -489,8 +482,7 @@ function News({ data, type, id, optionWidth }) {
                   <div className="img tRes_71">
                     <img
                       className="lazyload"
-                      data-lazy-type="image"
-                      src={
+                      data-src={
                         item.base_image === null
                           ? `/images/imgdefault.jpg`
                           : `${process.env.DOMAIN}${item.base_image}`
@@ -582,8 +574,7 @@ function News({ data, type, id, optionWidth }) {
                       <a href={`/news/${item.url}`} className="item  tRes_56 video">
                         <img
                           className="lazyload"
-                          data-lazy-type="image"
-                          src={
+                          data-src={
                             item.base_image === null
                               ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${item.base_image}`
@@ -612,8 +603,7 @@ function News({ data, type, id, optionWidth }) {
                             <div className="img tRes_56 video cl">
                               <img
                                 className="lazyload"
-                                data-lazy-type="image"
-                                src={
+                                data-src={
                                   item.base_image === null
                                     ? `/images/imgdefault.jpg`
                                     : `${process.env.DOMAIN}${item.base_image}`

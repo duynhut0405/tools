@@ -98,7 +98,7 @@ function Icon({ data, id }) {
                             <img
                               className="lazyload"
                               alt="icon"
-                              src={`${process.env.DOMAIN}${items.urlImage}`}
+                              data-src={`${process.env.DOMAIN}${items.urlImage}`}
                             />
                           </div>
                           <div className="title">{items.note_1}</div>
@@ -141,10 +141,8 @@ function Icon({ data, id }) {
                         <div className="img">
                           <img
                             className="lazyload"
-                            data-lazy-type="image"
                             alt="images"
-                            data-lazy-src={`${process.env.DOMAIN}${items.urlImage}`}
-                            src={`${process.env.DOMAIN}${items.urlImage}`}
+                            data-src={`${process.env.DOMAIN}${items.urlImage}`}
                           />
                         </div>
                         <div className="title">{items.note_1}</div>
@@ -177,7 +175,7 @@ function Icon({ data, id }) {
                             <img
                               className="lazyload"
                               alt="images"
-                              src={`${process.env.DOMAIN}${items.urlImage}`}
+                              data-src={`${process.env.DOMAIN}${items.urlImage}`}
                             />
                           </div>
                           <div className="divtext">
@@ -222,9 +220,8 @@ function Icon({ data, id }) {
                         <div className="img">
                           <img
                             className="lazyload"
-                            data-lazy-type="image"
                             alt="images"
-                            src={`${process.env.DOMAIN}${item.urlImage}`}
+                            data-src={`${process.env.DOMAIN}${item.urlImage}`}
                             style={{ width: '160px', height: '52px' }}
                           />
                         </div>
@@ -274,9 +271,8 @@ function Icon({ data, id }) {
                         <div className="img ">
                           <img
                             className="lazyload"
-                            data-lazy-type="image"
                             alt="images"
-                            src={`${process.env.DOMAIN}${items.urlImage}`}
+                            data-src={`${process.env.DOMAIN}${items.urlImage}`}
                           />
                         </div>
                         <div className="divtext">
@@ -306,9 +302,8 @@ function Icon({ data, id }) {
                         <div className="img ">
                           <img
                             className="lazyload"
-                            data-lazy-type="image"
                             alt="images"
-                            src={`${process.env.DOMAIN}${items.urlImage}`}
+                            data-src={`${process.env.DOMAIN}${items.urlImage}`}
                           />
                         </div>
                         <div className="divtext">
@@ -356,7 +351,7 @@ function Icon({ data, id }) {
                       >
                         <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
                           <img
-                            src={`${process.env.DOMAIN}${items.urlImage}`}
+                            data-src={`${process.env.DOMAIN}${items.urlImage}`}
                             className="lazyload"
                             alt="images"
                           />
@@ -411,8 +406,8 @@ function Icon({ data, id }) {
                             <img
                               className="lazyload"
                               alt="images"
-                              data-lazy-type="image"
-                              src={`${process.env.DOMAIN}${items.urlImage}`}
+                             
+                              data-src={`${process.env.DOMAIN}${items.urlImage}`}
                             />
                           </div>
                           <div className="divtext">

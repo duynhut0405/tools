@@ -31,8 +31,7 @@ function MiniTabItem({ data }) {
               <div className="img">
                 <img
                   className="lazyload"
-                  data-lazy-type="image"
-                  src={
+                  data-src={
                     item.baseImage === null
                       ? `/images/imgdefault.jpg`
                       : `${process.env.DOMAIN}${item.baseImage}`

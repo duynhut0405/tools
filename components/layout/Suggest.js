@@ -41,7 +41,7 @@ function Suggest({ data, onChangeSuggest, onClose }) {
     <div id="search-sg" style={{ display: 'none' }}>
       <div className="container">
         <a href="#" id="logo">
-          <img className="lazyload" src="/images/logo-blue.svg" alt="images" />
+          <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
         </a>
         <div className="suggest">{renderMenu(data)}</div>
         <span className="icon-close close-sg" onClick={onClose}></span>

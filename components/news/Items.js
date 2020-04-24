@@ -13,7 +13,7 @@ function NewItems({ data }) {
       <div className="item-img">
         <img
           className="lazyload"
-          src={
+          data-src={
             data.base_image === null
               ? `https://th2dev.mangoads.com.vn/themes/storefront/public/images/image.svg?v=5e12e47624638`
               : `${process.env.DOMAIN}${data.base_image}`

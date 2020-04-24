@@ -1,8 +1,8 @@
 @charset "UTF-8";
 @font-face {
   font-family: 'icomoon';
-  src: url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5');
-  src: url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5#iefix') format('embedded-opentype'),
+  data-src: url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5');
+  data-src: url('/static/fonts/icomoon/fonts/icomoon.eot?suyyn5#iefix') format('embedded-opentype'),
     url('/static/fonts/icomoon/fonts/icomoon.ttf?suyyn5') format('truetype'),
     url('/static/fonts/icomoon/fonts/icomoon.woff?suyyn5') format('woff'),
     url('/static/fonts/icomoon/fonts/icomoon.svg?suyyn5#icomoon') format('svg');
@@ -13,25 +13,25 @@
 
 @font-face {
   font-family: 'Averta';
-  src: url(/static/fonts/averta/AvertaStdCY-Light.otf);
+  data-src: url(/static/fonts/averta/AvertaStdCY-Light.otf);
   font-weight: 300;
 }
 
 @font-face {
   font-family: 'Averta';
-  src: url(/static/fonts/averta/AvertaStdCY-Regular.otf);
+  data-src: url(/static/fonts/averta/AvertaStdCY-Regular.otf);
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Averta';
-  src: url(/static/fonts/averta/AvertaStdCY-Semibold.otf);
+  data-src: url(/static/fonts/averta/AvertaStdCY-Semibold.otf);
   font-weight: 600;
 }
 
 @font-face {
   font-family: 'Averta';
-  src: url(/static/fonts/averta/AvertaStdCY-Bold.otf);
+  data-src: url(/static/fonts/averta/AvertaStdCY-Bold.otf);
   font-weight: 700;
 }
 
