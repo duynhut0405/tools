@@ -42,7 +42,7 @@ const propTypes = {
   pageId: PropTypes.number
 };
 
-function BlockRender({ data, pageId }) {
+function BlockRender({ data, pageId }) {//
   return (
     <>
       {data !== undefined && (

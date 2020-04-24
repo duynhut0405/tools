@@ -9,7 +9,6 @@ const propTypes = {
 };
 
 function UserManual({ data, id }) {
-    console.log('data:', data)
     let padding = '';
     if (data.optionWidth === '2') {
         padding = 'sec-tb';
