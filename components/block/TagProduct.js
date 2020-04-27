@@ -1,6 +1,8 @@
 import React from 'react';
 import { ItemImages, ItemIcon } from './product/index';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import { withTranslation } from '../../i18n';
 
 const propTypes = {
   data: PropTypes.array,
@@ -19,11 +21,19 @@ function TagProduct({ data, id }) {
     padding = 'sec-';
   }
 
+  const { t } = useTranslation();
+
   return (
     <section className={`${padding} sec-h-2 bg-gray group-ef loaded hot-products`} id={id}>
       <div className="container">
         <div className="entry-head text-center">
-          <h2 className="ht efch-1 ef-img-t">{data.title || ''}</h2>
+          <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
+          {data[0].linkurl !== undefined && (
+            <a className="viewall" href={data[0].linkurl === '' ? '!#' : data[0].linkurl}>
+              {t('view')}
+              <i className="icon-arrow-1"></i>
+            </a>
+          )}
         </div>
         <ItemImages data={data} />
         <ItemIcon data={data} />
@@ -34,4 +44,4 @@ function TagProduct({ data, id }) {
 
 TagProduct.propTypes = propTypes;
 
-export default TagProduct;
+export default withTranslation('common')(TagProduct);
