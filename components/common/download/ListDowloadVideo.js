@@ -63,15 +63,18 @@ function ListDowloadFIle({
   } else {
     padding = 'sec-';
   }
+  console.log('data:', data)
 
   return (
     <div className={`accodion accodion-2 container ${padding} downloadvideo`} id={id}>
       {data && (
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">{title}</h2>
-          <a className="viewall" href={data === undefined || data.url === '' ? '#' : data.url}>
-            Xem tất cả <i className="icon-arrow-1"></i>
-          </a>
+          {data.url !== undefined && (
+            <a className="viewall" href={data.url === '' ? '!#' : data.url}>
+              Xem tất cả <i className="icon-arrow-1"></i>
+            </a>
+          )}
         </div>
       )}
       <Fillter

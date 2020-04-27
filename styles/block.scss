@@ -104,3 +104,19 @@
     width: 100% !important;
   }
 }
+
+.subquote {
+  font-weight: bold;
+  &__people {
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  &__pos {
+    font-size: 16px;
+    color: gray;
+  }
+}
+
+blockquote p {
+  margin-bottom: 0;
+}
