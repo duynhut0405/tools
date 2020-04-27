@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { convertTitle } from '../../../utils/convertPadding';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { withTranslation } from '../../../i18n';
 
 const propTypes = {
   type: PropTypes.number,
@@ -63,7 +65,8 @@ function ListDowloadFIle({
   } else {
     padding = 'sec-';
   }
-  console.log('data:', data)
+
+  const { t } = useTranslation();
 
   return (
     <div className={`accodion accodion-2 container ${padding} downloadvideo`} id={id}>
@@ -72,7 +75,7 @@ function ListDowloadFIle({
           <h2 className="ht efch-1 ef-img-l">{title}</h2>
           {data.url !== undefined && (
             <a className="viewall" href={data.url === '' ? '!#' : data.url}>
-              Xem tất cả <i className="icon-arrow-1"></i>
+              {t('view')} <i className="icon-arrow-1"></i>
             </a>
           )}
         </div>
@@ -112,4 +115,6 @@ const mapDispatchToProps = {
 
 ListDowloadFIle.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(ListDowloadFIle);
+export default withTranslation('common')(
+  connect(mapStateToProp, mapDispatchToProps)(ListDowloadFIle)
+);
