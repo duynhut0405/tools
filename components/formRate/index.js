@@ -33,7 +33,8 @@ function FormRate({ data, interestRate }) {
     const obj = data.exchangeRateDetail.find(item => item.currency === currency);
     if (obj) {
       return obj.sell;
-    } else return 0
+    }
+    return 0;
   };
 
   const getBuyTransferBycurrency = currency => {
@@ -42,14 +43,16 @@ function FormRate({ data, interestRate }) {
   };
 
   const Calculator = () => {
-    if (getSellBycurrency(currencyTo) === 0) setTo(0)
-    else {
+    if (getSellBycurrency(currencyTo) === 0) {
+      setTo(0);
+    } else {
       const result =
         Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
-      if (result === 0) { setTo(0) } else {
+      if (result === 0) {
+        setTo(0);
+      } else {
         setTo(result.toLocaleString(navigator.language, { minimumFractionDigits: 4 }));
       }
-
     }
   };
 
@@ -93,7 +96,9 @@ function FormRate({ data, interestRate }) {
                     placeholder={t('amount')}
                     name="from"
                     value={from}
-                    onChange={e => { setFrom(e.target.value) }}
+                    onChange={e => {
+                      setFrom(e.target.value);
+                    }}
                   />
                 </div>
                 <div>{t('to')}</div>
