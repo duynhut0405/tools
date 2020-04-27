@@ -7,89 +7,43 @@ import DownloadApp from './DownloadApp';
 import Suggest from './Suggest';
 import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
-import map from 'lodash/map';
-import { LayoutActions, MenuActions } from '../../store/actions';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Head from 'next/head';
-import { useTranslation } from 'react-i18next';
 import { setLang, getFlag } from '../../utils/cookie';
-import { withTranslation } from '../../i18n';
-import { compose } from 'redux';
-// import '../../styles/custom.css';
-import ReactHtmlParser from 'react-html-parser';
+import Link from 'next/link';
+import map from 'lodash/map';
 import debounce from 'lodash/debounce';
+import { withTranslation } from '../../i18n';
+import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 const propTypes = {
   settingFooter: PropTypes.object,
   socialLink: PropTypes.object,
   children: PropTypes.node,
-  getSettingFooter: PropTypes.func,
-  getSocialLink: PropTypes.func,
-  title: PropTypes.any,
   personalLayout: PropTypes.number,
   menuHeader: PropTypes.array,
   menuNav: PropTypes.array,
   menuFooterTop: PropTypes.array,
   menuFooterBottom: PropTypes.array,
   menuFooterMain: PropTypes.array,
-  getMenuHeader: PropTypes.func,
-  getMenuNav: PropTypes.func,
-  getMenuFooterTop: PropTypes.func,
-  getMenuFooterMain: PropTypes.func,
-  getMenuFooterBottom: PropTypes.func,
-  canonical: PropTypes.string,
-  noIndex: PropTypes.bool,
-  meta_title: PropTypes.string,
-  meta_description: PropTypes.string,
-  meta_keyword: PropTypes.string,
-  miniImage: PropTypes.string,
-  getMenuSearch: PropTypes.func,
   menuSearch: PropTypes.array
 };
 
 function Layout({
-  title,
-  meta_title,
-  meta_description,
-  meta_keyword,
   personalLayout,
   children,
   settingFooter,
   socialLink,
-  getSettingFooter,
-  getSocialLink,
   menuHeader,
   menuNav,
   menuSearch,
-  canonical,
-  noIndex,
-  miniImage,
   menuFooterTop,
   menuFooterBottom,
-  menuFooterMain,
-  getMenuHeader,
-  getMenuNav,
-  getMenuFooterTop,
-  getMenuFooterMain,
-  getMenuFooterBottom,
-  getMenuSearch
+  menuFooterMain
 }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [query, setQuery] = useState(null);
   const [flag, setFlag] = useState('vn');
   const { i18n, t } = useTranslation();
-
-  useEffect(() => {
-    getMenuHeader();
-    getMenuNav();
-    getMenuFooterTop();
-    getMenuFooterMain();
-    getMenuFooterBottom();
-    getSettingFooter();
-    getSocialLink();
-    getMenuSearch();
-  }, []);
 
   useEffect(() => {
     setFlag(getFlag());
@@ -104,13 +58,6 @@ function Layout({
     }
   }, [activeDrawer]);
 
-  useEffect(() => {
-    if (personalLayout === 1 || personalLayout === true) {
-      const body = document.getElementsByTagName('body')[0];
-      body.classList.add('mb-priority');
-    }
-  }, [personalLayout]);
-
   const nestChild = items => {
     return map(
       items.sort((a, b) => a.position - b.position),
@@ -118,9 +65,11 @@ function Layout({
         if (item.type === '4') {
           return (
             <li key={item.id} className={item.children.length > 0 ? 'children ' : null}>
-              <a href={item.url} target="_blank" rel="noopener noreferrer">
-                <span>{item.name}</span>
-              </a>
+              <Link href={item.url}>
+                <a target="_blank" rel="noopener noreferrer">
+                  <span>{item.name}</span>
+                </a>
+              </Link>
               <div className="wrapul">
                 {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
               </div>
@@ -129,9 +78,11 @@ function Layout({
         }
         return (
           <li key={item.id} className={item.children.length > 0 ? 'children ' : null}>
-            <a href={`/page/${item.slugPages}`}>
-              <span>{item.name}</span>
-            </a>
+            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+              <a>
+                <span>{item.name}</span>
+              </a>
+            </Link>
             <div className="wrapul">
               {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
             </div>
@@ -154,22 +105,23 @@ function Layout({
       if (item.type === '4') {
         return (
           <li key={index}>
-            <a
-              className={item.children.length > 0 ? 'title' : ''}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {item.name}
-            </a>
+            <Link href={item.url}>
+              <a
+                className={item.children.length > 0 ? 'title' : ''}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.name}
+              </a>
+            </Link>
           </li>
         );
       }
       return (
         <li key={index}>
-          <a className={item.children.length > 0 ? 'title' : ''} href={`/page/${item.slugPages}`}>
-            {item.name}
-          </a>
+          <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+            <a className={item.children.length > 0 ? 'title' : ''}>{item.name}</a>
+          </Link>
         </li>
       );
     });
@@ -252,26 +204,6 @@ function Layout({
   return (
     <>
       <StickyContainer>
-        <Head>
-          <title>{title || 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
-          {ReactHtmlParser(canonical)}
-          {meta_title && <meta name="title" content={meta_title} />}
-          {meta_description && <meta name="description" content={meta_description} />}
-          {meta_keyword && <meta name="keywords" content={meta_keyword} />}
-          {noIndex && <meta name="robots" content="noindex, nofollow" />}
-          {!noIndex && <meta name="robots" content="index, follow" />}
-          <meta
-            property="og:image"
-            itemProp="thumbnaiUrl"
-            content={
-              miniImage
-                ? `${process.env.DOMAIN}${miniImage}`
-                : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
-            }
-          />
-          <meta property="og:image:width" content="800" />
-          <meta property="og:image:height" content="354" />
-        </Head>
         <div id="wrapper">
           <div id="panel">
             <div className="container">
@@ -298,15 +230,19 @@ function Layout({
                     if (values.type === '4') {
                       return (
                         <li key={key}>
-                          <a href={values.url} target="_blank" rel="noopener noreferrer">
-                            {values.name}
-                          </a>
+                          <Link href={values.url}>
+                            <a target="_blank" rel="noopener noreferrer">
+                              {values.name}
+                            </a>
+                          </Link>
                         </li>
                       );
                     }
                     return (
                       <li key={key}>
-                        <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                        <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
+                          <a>{values.name}</a>
+                        </Link>
                       </li>
                     );
                   }
@@ -327,24 +263,28 @@ function Layout({
                       <div className="inner">
                         <ul className="menu">
                           <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
-                            <a onClick={() => changeLang('en', 'gb')} title="English (en)">
-                              <img
-                                className="lazyload"
-                                data-src="/static/flags/gb.png"
-                                alt="images"
-                              />{' '}
-                              <span>English</span>
-                            </a>
+                            <Link href="#">
+                              <a onClick={() => changeLang('en', 'gb')} title="English (en)">
+                                <img
+                                  className="lazyload"
+                                  data-src="/static/flags/gb.png"
+                                  alt="images"
+                                />
+                                <span>English</span>
+                              </a>
+                            </Link>
                           </li>
                           <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
-                            <a onClick={() => changeLang('vi', 'vn')} title="Tiếng Việt (vi)">
-                              <img
-                                className="lazyload"
-                                data-src="/static/images/flags/vn.png"
-                                alt="images"
-                              />
-                              <span>Tiếng Việt</span>
-                            </a>
+                            <Link href="#">
+                              <a onClick={() => changeLang('vi', 'vn')} title="Tiếng Việt (vi)">
+                                <img
+                                  className="lazyload"
+                                  data-src="/static/images/flags/vn.png"
+                                  alt="images"
+                                />
+                                <span>Tiếng Việt</span>
+                              </a>
+                            </Link>
                           </li>
                         </ul>
                       </div>
@@ -360,44 +300,45 @@ function Layout({
               <div className="setzindex" style={style}>
                 <header id="header" role="banner">
                   <div className="container">
-                    <a href="/" id="logo">
-                      <img
-                        className="lazyload"
-                        data-src={
-                          personalLayout === 1 || personalLayout === true
-                            ? '/static/images/svg/logo-priority.svg'
-                            : '/static/images/svg/logo.svg'
-                        }
-                        alt="logo"
-                      />
-                    </a>
+                    <Link href="/">
+                      <a id="logo">
+                        <img
+                          id="img_log"
+                          className="lazyload"
+                          data-src={
+                            personalLayout === 1 || personalLayout === true
+                              ? '/static/images/svg/logo-priority.svg'
+                              : '/static/images/svg/logo.svg'
+                          }
+                          alt="logo"
+                        />
+                      </a>
+                    </Link>
                     <div className="wrap-menu-header">
                       <ul className="menu-top-header" data-style="1">
                         {nestChild(menuNav)}
                         <li className="highlight children">
                           <span className="showsubmenu icon-arrow-2 ib"></span>
-                          <a href="#">
-                            <span>Ebanking</span>
-                          </a>
+                          <Link href="#">
+                            <a>
+                              <span>Ebanking</span>
+                            </a>
+                          </Link>
                           <div className="wrapul">
                             <ul>
                               <li>
-                                <a
-                                  href="https://online.mbbank.com.vn/retail/EstablishSession"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  Cá Nhân
-                                </a>
+                                <Link href="https://online.mbbank.com.vn/retail/EstablishSession">
+                                  <a target="_blank" rel="noopener noreferrer">
+                                    Cá Nhân
+                                  </a>
+                                </Link>
                               </li>
                               <li>
-                                <a
-                                  href="https://emb.mbbank.com.vn/corp/EstablishSession"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  Doanh nghiệp
-                                </a>
+                                <Link href="https://emb.mbbank.com.vn/corp/EstablishSession">
+                                  <a target="_blank" rel="noopener noreferrer">
+                                    Doanh nghiệp
+                                  </a>
+                                </Link>
                               </li>
                             </ul>
                           </div>
@@ -421,24 +362,31 @@ function Layout({
                             <div className="inner">
                               <ul className="menu">
                                 <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
-                                  <a title="English (en)" onClick={() => changeLang('en', 'gb')}>
-                                    <img
-                                      className="lazyload"
-                                      data-src="/static/images/flags/gb.png"
-                                      alt="images"
-                                    />
-                                    <span>English</span>
-                                  </a>
+                                  <Link href="#">
+                                    <a title="English (en)" onClick={() => changeLang('en', 'gb')}>
+                                      <img
+                                        className="lazyload"
+                                        data-src="/static/images/flags/gb.png"
+                                        alt="images"
+                                      />
+                                      <span>English</span>
+                                    </a>
+                                  </Link>
                                 </li>
                                 <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
-                                  <a title="Tiếng Việt (vi)" onClick={() => changeLang('vi', 'vn')}>
-                                    <img
-                                      className="lazyload"
-                                      data-src="/static/images/flags/vn.png"
-                                      alt="images"
-                                    />
-                                    <span>Tiếng Việt</span>
-                                  </a>
+                                  <Link href="#">
+                                    <a
+                                      title="Tiếng Việt (vi)"
+                                      onClick={() => changeLang('vi', 'vn')}
+                                    >
+                                      <img
+                                        className="lazyload"
+                                        data-src="/static/images/flags/vn.png"
+                                        alt="images"
+                                      />
+                                      <span>Tiếng Việt</span>
+                                    </a>
+                                  </Link>
                                 </li>
                               </ul>
                             </div>
@@ -471,7 +419,28 @@ function Layout({
                     if (values.type === '4') {
                       return (
                         <div className="col-4" key={values.id}>
-                          <a className="item" href={values.url}>
+                          <Link href={values.url}>
+                            <a className="item">
+                              <span className="img">
+                                <img
+                                  className="lazyload"
+                                  data-src={`${process.env.DOMAIN}${values.icon}`}
+                                  alt="images"
+                                />
+                              </span>
+                              <div className="divtext">
+                                <h4 className="title">{values.name}</h4>
+                                <div className="desc">{values.description}</div>
+                              </div>
+                            </a>
+                          </Link>
+                        </div>
+                      );
+                    }
+                    return (
+                      <div className="col-4" key={values.id}>
+                        <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
+                          <a className="item">
                             <span className="img">
                               <img
                                 className="lazyload"
@@ -484,24 +453,7 @@ function Layout({
                               <div className="desc">{values.description}</div>
                             </div>
                           </a>
-                        </div>
-                      );
-                    }
-                    return (
-                      <div className="col-4" key={values.id}>
-                        <a className="item" href={`/page/${values.slugPages}`}>
-                          <span className="img">
-                            <img
-                              className="lazyload"
-                              data-src={`${process.env.DOMAIN}${values.icon}`}
-                              alt="images"
-                            />
-                          </span>
-                          <div className="divtext">
-                            <h4 className="title">{values.name}</h4>
-                            <div className="desc">{values.description}</div>
-                          </div>
-                        </a>
+                        </Link>
                       </div>
                     );
                   }
@@ -556,15 +508,19 @@ function Layout({
                         if (values.type === '4') {
                           return (
                             <li key={key}>
-                              <a href={values.url} target="_blank" rel="noopener noreferrer">
-                                {values.name}
-                              </a>
+                              <Link href={values.url}>
+                                <a target="_blank" rel="noopener noreferrer">
+                                  {values.name}
+                                </a>
+                              </Link>
                             </li>
                           );
                         }
                         return (
                           <li key={key}>
-                            <a href={`/page/${values.slugPages}`}>{values.name}</a>
+                            <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
+                              <a>{values.name}</a>
+                            </Link>
                           </li>
                         );
                       }
@@ -592,21 +548,25 @@ function Layout({
             </div>
             <div className="wdownload">
               <span className="stitle">{t('donwload_app_today')}</span>&nbsp;
-              <a href="#">
-                <img
-                  className="lazyload"
-                  data-src="/static/images/btt-chplay-mb.svg"
-                  alt="images"
-                />
-              </a>{' '}
+              <Link href="#">
+                <a>
+                  <img
+                    className="lazyload"
+                    data-src="/static/images/btt-chplay-mb.svg"
+                    alt="images"
+                  />
+                </a>
+              </Link>
               &nbsp;
-              <a href="#">
-                <img
-                  className="lazyload"
-                  data-src="/static/images/btt-google-mb.svg"
-                  alt="images"
-                />
-              </a>
+              <Link href="#">
+                <a>
+                  <img
+                    className="lazyload"
+                    data-src="/static/images/btt-google-mb.svg"
+                    alt="images"
+                  />
+                </a>
+              </Link>
             </div>
           </section>
           <div id="footer-mb" className="group-ef loaded">
@@ -636,60 +596,74 @@ function Layout({
             <div className="menu-footer-mb">
               <div className="row">
                 <div className="col-3">
-                  <a className="item " href="#">
-                    <span className="img">
-                      <img
-                        className="lazyload"
-                        data-src="/static/images/svg/home.svg"
-                        alt="images"
-                      />
-                    </span>
-                    <span className="name">{t('home')}</span>
-                  </a>
+                  <Link href="#">
+                    <a className="item ">
+                      <span className="img">
+                        <img
+                          className="lazyload"
+                          data-src="/static/images/svg/home.svg"
+                          alt="images"
+                        />
+                      </span>
+                      <span className="name">{t('home')}</span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="col-3">
-                  <a className="item" href="#">
-                    <span className="img">
-                      <img
-                        className="lazyload"
-                        data-src="/static/images/svg/folder.svg"
-                        alt="images"
-                      />
-                    </span>
-                    <span className="name">{t('product')}</span>
-                  </a>
+                  <Link href="#">
+                    <a className="item">
+                      <span className="img">
+                        <img
+                          className="lazyload"
+                          data-src="/static/images/svg/folder.svg"
+                          alt="images"
+                        />
+                      </span>
+                      <span className="name">{t('product')}</span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="col-3">
-                  <a className="item " href="#">
-                    <span className="img">
-                      <img className="lazyload" data-src="/static/images/svg/MB.svg" alt="images" />
-                    </span>
-                    <span className="name">MB++</span>
-                  </a>
+                  <Link href="#">
+                    <a className="item ">
+                      <span className="img">
+                        <img
+                          className="lazyload"
+                          data-src="/static/images/svg/MB.svg"
+                          alt="images"
+                        />
+                      </span>
+                      <span className="name">MB++</span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="col-3">
-                  <a className="item " href="#">
-                    <span className="img">
-                      <img
-                        className="lazyload"
-                        data-src="/static/images/svg/giadinh.svg"
-                        alt="images"
-                      />
-                    </span>
-                    <span className="name">{t('family')}</span>
-                  </a>
+                  <Link href="#">
+                    <a className="item ">
+                      <span className="img">
+                        <img
+                          className="lazyload"
+                          data-src="/static/images/svg/giadinh.svg"
+                          alt="images"
+                        />
+                      </span>
+                      <span className="name">{t('family')}</span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="col-3">
-                  <a className="item " href="#">
-                    <span className="img">
-                      <img
-                        className="lazyload"
-                        data-src="/static/images/svg/tienich.svg"
-                        alt="images"
-                      />
-                    </span>
-                    <span className="name">{t('utilities')}</span>
-                  </a>
+                  <Link href="#">
+                    <a className="item ">
+                      <span className="img">
+                        <img
+                          className="lazyload"
+                          data-src="/static/images/svg/tienich.svg"
+                          alt="images"
+                        />
+                      </span>
+                      <span className="name">{t('utilities')}</span>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -710,30 +684,4 @@ function Layout({
 
 Layout.propTypes = propTypes;
 
-const mapStateToProps = state => {
-  return {
-    settingFooter: state.layoutReducer.settingFooter,
-    socialLink: state.layoutReducer.socialLink,
-    menuHeader: state.menuReducer.header,
-    menuNav: state.menuReducer.nav,
-    menuFooterTop: state.menuReducer.footerTop,
-    menuFooterMain: state.menuReducer.footerMain,
-    menuFooterBottom: state.menuReducer.footerBottom,
-    menuSearch: state.menuReducer.menuSearch
-  };
-};
-
-const mapDispatchToProps = {
-  getSettingFooter: LayoutActions.getSettingFooterAction,
-  getSocialLink: LayoutActions.getSocailinkAction,
-  getMenuHeader: MenuActions.getMenuHeader,
-  getMenuNav: MenuActions.getMenuNav,
-  getMenuFooterTop: MenuActions.getMenuFooterTop,
-  getMenuFooterMain: MenuActions.getMenuFooterMain,
-  getMenuFooterBottom: MenuActions.getMenuFooterBottom,
-  getMenuSearch: MenuActions.getMenuSearch
-};
-
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(withTranslation('common'), withConnect)(Layout);
+export default withTranslation('common')(Layout);

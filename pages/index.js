@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../components/common';
 import FormRate from '../components/formRate';
-import Layout from '../components/layout';
+import Head from 'next/head';
 import { getRateService, getInterestRateService } from '../services/rate';
 import { getPageService } from '../services/page';
 import filter from 'lodash/filter';
@@ -19,16 +19,29 @@ const propTypes = {
 function Home({ page, silder, menuMiddle, listRate, listInterestRate }) {
   useEffect(() => {
     document.body.classList.add('home');
+    document.body.classList.remove(`mb-priority`);
+    document.getElementById('img_log').src = '/static/images/svg/logo.svg';
   });
 
   return (
-    <Layout
-      title={page.meta_title}
-      meta_title={page.meta_title}
-      meta_description={page.meta_description}
-      meta_keyword={page.meta_keyword}
-      miniImage={page.miniImage}
-    >
+    <React.Fragment>
+      <Head>
+        <title>{page ? page.meta_title : 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
+        <meta name="title" content={page ? page.meta_title : ''} />
+        <meta name="description" content={page ? page.meta_description : ''} />
+        <meta name="keywords" content={page ? page.meta_keyword : ''} />
+        <meta
+          property="og:image"
+          itemProp="thumbnaiUrl"
+          content={
+            page.miniImage
+              ? `${process.env.DOMAIN}${page.miniImage}`
+              : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
+          }
+        />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="354" />
+      </Head>
       <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={[]} />}
         <Carousel silder={silder} />
@@ -36,7 +49,7 @@ function Home({ page, silder, menuMiddle, listRate, listInterestRate }) {
         <BlockRender data={page.pageBlocks} pageId={page.id} />
         <FormRate data={listRate} interestRate={listInterestRate} />
       </div>
-    </Layout>
+    </React.Fragment>
   );
 }
 
@@ -58,12 +71,7 @@ Home.getInitialProps = async () => {
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
     menuMiddle = pageResponse.data.menuMiddle;
-    const silderData = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
-    for (let i = 0; i < silderData.length; i++) {
-      if (silderData[i].content !== null) {
-        silder = [...silder, ...JSON.parse(silderData[i].content)];
-      }
-    }
+    silder = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
   }
   return {
     listRate,

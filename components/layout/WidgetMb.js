@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 import { Social } from '../common';
@@ -12,15 +13,19 @@ function Widget({ data, socialLink }) {
   return (
     <div className="widget widget-info">
       <div>
-        <a href="./" className="logo">
-          <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
-        </a>
+        <Link href="/">
+          <a className="logo">
+            <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+          </a>
+        </Link>
       </div>
       {ReactHtmlParser(data.footer_brief)}
       <div className="call">
-        <a href={`tel:${data.footer_address}`} className="phone">
-          <i className="icon-phone-1"></i> {data.footer_address}
-        </a>
+        <Link href={`tel:${data.footer_address}`}>
+          <a className="phone">
+            <i className="icon-phone-1"></i> {data.footer_address}
+          </a>
+        </Link>
         <Social data={socialLink} />
       </div>
     </div>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import classnames from 'classnames';
 import SubMenu from './submenu';
+import Link from 'next/link';
 import { withTranslation } from '../../../i18n';
 
 const propTypes = {
@@ -34,9 +35,12 @@ function ModalDrawer({ t, menu, menuHeader, onSearch }) {
             }}
           ></span>
         )}
-        <a href={`/page/${item.slugPages}`}>
-          <span>{item.name}</span>
-        </a>
+        <Link href="/page/[...slug]" as={`/page/${item.slugPages}`}>
+          <a>
+            <span>{item.name}</span>
+          </a>
+        </Link>
+
         {item.children.length > 0 && (
           <ul style={{ display: activeTab && indexMenu === item.id ? 'block' : 'none' }}>
             <SubMenu menu={item.children} />

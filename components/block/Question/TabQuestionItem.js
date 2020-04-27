@@ -20,14 +20,14 @@ function TabQuestionsItem({ data, indexTab, number }) {
   const [page, setPage] = useState(1);
 
   const onChangeCategory = event => {
-
     setFormState(formState => ({
       ...formState,
       category: event
     }));
   };
 
-  const onChangeChildCategory = async event => {//
+  const onChangeChildCategory = async event => {
+    //
     setFormState(formState => ({
       ...formState,
       childCategory: event
@@ -39,39 +39,52 @@ function TabQuestionsItem({ data, indexTab, number }) {
     if (res && res.status === 200) {
       setNewsAnswer(res.data);
     }
-  }
+  };
   const getFullCategoryByID = async () => {
     if (data.category) {
       const res = await getFullCategoryByIdService(data.category.value);
       if (res && res.status === 200) {
         setCategories(res.data.categoriesList);
-        if (res.data && res.data.categoriesList.length > 0 && res.data.categoriesList[0].categoriesList.length > 0) {
+        if (
+          res.data &&
+          res.data.categoriesList.length > 0 &&
+          res.data.categoriesList[0].categoriesList.length > 0
+        ) {
           setFormState(formState => ({
-            category: { label: res.data.categoriesList[0].name, value: res.data.categoriesList[0].id, categoriesList: res.data.categoriesList[0].categoriesList },
-            childCategory: { label: res.data.categoriesList[0].categoriesList[0].name, value: res.data.categoriesList[0].categoriesList[0].id }
-          }))
-        }
-        else if (res.data && res.data.categoriesList.length > 0) {
+            category: {
+              label: res.data.categoriesList[0].name,
+              value: res.data.categoriesList[0].id,
+              categoriesList: res.data.categoriesList[0].categoriesList
+            },
+            childCategory: {
+              label: res.data.categoriesList[0].categoriesList[0].name,
+              value: res.data.categoriesList[0].categoriesList[0].id
+            }
+          }));
+        } else if (res.data && res.data.categoriesList.length > 0) {
           setFormState(formState => ({
-            category: { label: res.data.categoriesList[0].name, value: res.data.categoriesList[0].id, categoriesList: res.data.categoriesList[0].categoriesList }
-          }))
+            category: {
+              label: res.data.categoriesList[0].name,
+              value: res.data.categoriesList[0].id,
+              categoriesList: res.data.categoriesList[0].categoriesList
+            }
+          }));
         } else {
-          setFormState(formState => ({}))
+          setFormState(formState => ({}));
         }
       }
     }
   };
 
-
   useEffect(() => {
     getFullCategoryByID();
-
   }, []);
 
   useEffect(() => {
-    if (formState.childCategory)
-      getNewsByCategories(formState.childCategory.value, page, number)
-  }, [formState.childCategory])
+    if (formState.childCategory) {
+      getNewsByCategories(formState.childCategory.value, page, number);
+    }
+  }, [formState.childCategory]);
 
   useEffect(() => {
     const findAllNewByCategory = async () => {

@@ -12,8 +12,8 @@ function QuestionItems({ question, answer }) {
 
   return (
     <div className="accodion-tab accodion-1-1 ">
-      <input type="checkbox" checked={active} />
-      <label className="accodion-title" onClick={() => setAcive(!active)}>
+      <input type="checkbox" checked={active} onClick={() => setAcive(!active)} />
+      <label className="accodion-title">
         <span>{question}</span>
         <span className="triangle">
           <i className="icon-plus"></i>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { LayoutActions } from '../../store/actions';
 import Map from '../../components/common/Map';
 import { connect } from 'react-redux';
-// import GoogleMapReact from 'google-map-react';
 
 const propTypes = {
   settingFooter: PropTypes.object,

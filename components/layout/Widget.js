@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 
@@ -10,9 +11,11 @@ function Widget({ data }) {
   return (
     <React.Fragment>
       <div>
-        <a href="./" className="logo">
-          <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
-        </a>
+        <Link href="/">
+          <a className="logo">
+            <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+          </a>
+        </Link>
       </div>
       {ReactHtmlParser(data.footer_brief)}
       {/* <div className="call">

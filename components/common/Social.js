@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Proptypes from 'prop-types';
 
 const propTypes = {
@@ -9,48 +10,32 @@ function Social({ data }) {
   return (
     <ul className="blog-item-social ">
       <li>
-        <a
-          className="item"
-          title="Facebook"
-          href={data.facebook}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="icon-facebook"></i>
-        </a>
+        <Link href={data.facebook}>
+          <a className="item" title="Facebook" target="_blank" rel="noopener noreferrer">
+            <i className="icon-facebook"></i>
+          </a>
+        </Link>
       </li>
       <li>
-        <a
-          className="item"
-          title="Instagram"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={data.instagram}
-        >
-          <i className="icon-instagram"></i>
-        </a>
+        <Link href={data.instagram}>
+          <a className="item" title="Instagram" target="_blank" rel="noopener noreferrer">
+            <i className="icon-instagram"></i>
+          </a>
+        </Link>
       </li>
       <li>
-        <a
-          className="item"
-          title="Twitter"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={data.twitter}
-        >
-          <i className="icon-twitter"></i>
-        </a>
+        <Link href={data.twitter}>
+          <a className="item" title="Twitter" target="_blank" rel="noopener noreferrer">
+            <i className="icon-twitter"></i>
+          </a>
+        </Link>
       </li>
       <li>
-        <a
-          className="item"
-          title="Youtube"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={data.youtube}
-        >
-          <i className="icon-youtube-2"></i>
-        </a>
+        <Link href={data.youtube}>
+          <a className="item" title="Youtube" target="_blank" rel="noopener noreferrer">
+            <i className="icon-youtube-2"></i>
+          </a>
+        </Link>
       </li>
     </ul>
   );

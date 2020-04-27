@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../components/layout';
+import Head from 'next/head';
 import { Social } from '../../components/common';
 import { getNewByUri } from '../../services/news';
 import moment from 'moment';
@@ -21,14 +21,39 @@ const propTypes = {
 function New({ socialLink, news, category_name, category_url }) {
   const { t } = useTranslation();
   return (
-    <Layout
-      title={news.news.meta_title}
-      meta_title={news.news.meta_title}
-      meta_description={news.news.meta_description}
-      meta_keyword={news.news.meta_keyword}
-      miniImage={news.news.miniImage}
-      personalLayout={news.news.layoutInvestors}
-    >
+    <React.Fragment>
+      <Head>
+        <title>
+          {news && news.news && news.news.meta_title
+            ? news.news.meta_title
+            : 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}
+        </title>
+        <meta
+          name="title"
+          content={news && news.meta_title && news.news.meta_title ? news.news.meta_title : ''}
+        />
+        <meta
+          name="description"
+          content={
+            news && news.news && news.news.meta_description ? news.news.meta_description : ''
+          }
+        />
+        <meta
+          name="keywords"
+          content={news && news.news && news.news.meta_keyword ? news.news.meta_keyword : ''}
+        />
+        <meta
+          property="og:image"
+          itemProp="thumbnaiUrl"
+          content={
+            news && news.news && news.news.miniImage
+              ? `${process.env.DOMAIN}${news.news.miniImage}`
+              : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
+          }
+        />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="354" />
+      </Head>
       {news.news !== null && (
         <>
           <div className="entry-breadcrumb">
@@ -110,7 +135,7 @@ function New({ socialLink, news, category_name, category_url }) {
           </section>
         </>
       )}
-    </Layout>
+    </React.Fragment>
   );
 }
 

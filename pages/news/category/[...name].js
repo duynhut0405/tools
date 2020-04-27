@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Layout from '../../../components/layout';
+import Head from 'next/head';
 import map from 'lodash/map';
 import { getNewsByCategorySlug } from '../../../services/news';
 import { Pagination } from '../../../components/common';
@@ -31,13 +31,24 @@ function CategoryDetail({ routerURL, category }) {
   }, [page]);
 
   return (
-    <Layout
-      title={data === null ? '' : data.name}
-      meta_title={data === null ? '' : data.meta_title}
-      meta_description={data === null ? '' : data.meta_description}
-      meta_keyword={data === null ? '' : data.meta_keyword}
-      miniImage={data === null ? null : data.base_image}
-    >
+    <React.Fragment>
+      <Head>
+        <title>{data ? data.meta_title : 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
+        <meta name="title" content={data ? data.meta_title : ''} />
+        <meta name="description" content={data ? data.meta_description : ''} />
+        <meta name="keywords" content={data ? data.meta_keyword : ''} />
+        <meta
+          property="og:image"
+          itemProp="thumbnaiUrl"
+          content={
+            data.miniImage
+              ? `${process.env.DOMAIN}${data.miniImage}`
+              : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
+          }
+        />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="354" />
+      </Head>
       {data !== null && (
         <div className="main_content">
           <section className="banner-heading-3 next-shadow">
@@ -58,7 +69,7 @@ function CategoryDetail({ routerURL, category }) {
           <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
         </div>
       )}
-    </Layout>
+    </React.Fragment>
   );
 }
 
