@@ -33,10 +33,9 @@ function Carousels({ silder }) {
                     <div className="col-md-6">
                       <div className="img">
                         <img
-                          className=" loaded loaded"
-                          data-lazy-type="image"
-                          data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
-                          src={`${process.env.DOMAIN}${item.urlImage}`}
+                          className="lazyload"
+                          alt="images"
+                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
                         />
                       </div>
                     </div>
@@ -70,23 +69,27 @@ function Carousels({ silder }) {
                         )}
                         {item.video_url !== undefined && item.video_url !== '' && (
                           <div>
-                            <iframe src={item.video_url} />
+                            <iframe data-src={item.video_url} />
                           </div>
                         )}
                       </div>
                       <div className="wimg">
                         <img
                           className={
-                            item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'
+                            item.options === '2'
+                              ? 'img-center img-pc lazyload'
+                              : 'img-right img-pc lazyload'
                           }
-                          src={`${process.env.DOMAIN}${item.urlImage}`}
+                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
                           alt="icon"
                         />
                         <img
                           className={
-                            item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'
+                            item.options === '2'
+                              ? 'img-center img-mb lazyload'
+                              : 'img-right img-mb lazyload'
                           }
-                          src={`${process.env.DOMAIN}${item.urlImageMobile}`}
+                          data-src={`${process.env.DOMAIN}${item.urlImageMobile}`}
                           alt="icon"
                         />
                       </div>

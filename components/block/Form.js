@@ -3,7 +3,6 @@ import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import { Input, Label } from 'reactstrap';
 import { sendMailService } from '../../services/form';
 import ReactLoading from 'react-loading';
 
@@ -63,7 +62,7 @@ function Form({ data, pageId, id }) {
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
-      setFormState({})
+      setFormState({});
     } else {
       setIsLoading(false);
     }
@@ -128,7 +127,7 @@ function Form({ data, pageId, id }) {
               return (
                 <React.Fragment>
                   <div className={`col-12 ${item.className}`}>
-                    <Input
+                    <input
                       className="input"
                       name={item.name}
                       type={item.subtype}
@@ -144,8 +143,8 @@ function Form({ data, pageId, id }) {
               return (
                 <React.Fragment>
                   <div className={`col-12 ${item.className}`}>
-                    {item.label && <Label>{item.label}</Label>}
-                    <Input
+                    {item.label && <label>{item.label}</label>}
+                    <input
                       className="input"
                       type={item.subtype}
                       name={item.name}
@@ -191,10 +190,9 @@ function Form({ data, pageId, id }) {
       </div>
       {data.image && (
         <img
-          className=" br  loaded"
-          data-lazy-type="image"
-          alt=""
-          src={`${process.env.DOMAIN}${data.urlImage}`}
+          className="lazyload"
+          alt="images"
+          data-src={`${process.env.DOMAIN}${data.urlImage}`}
         ></img>
       )}
     </section>

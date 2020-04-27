@@ -41,10 +41,9 @@ function News({ category, padding }) {
                   <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
                     <div className="img tRes_71">
                       <img
-                        className=" loaded loaded"
-                        data-lazy-type="image"
-                        data-lazy-src={`${process.env.DOMAIN}${item.base_image}`}
-                        src={`${process.env.DOMAIN}${item.base_image}`}
+                        className="lazyload"
+                        alt="images"
+                        data-src={`${process.env.DOMAIN}${item.base_image}`}
                       />
                     </div>
                     <div className="divtext">

@@ -30,9 +30,8 @@ function MiniTabItem({ data }) {
             <a href={`/page/${item.slug}`} className="item item-inline-table">
               <div className="img">
                 <img
-                  className="lazy-hidden"
-                  data-lazy-type="image"
-                  src={
+                  className="lazyload"
+                  data-src={
                     item.baseImage === null
                       ? `/images/imgdefault.jpg`
                       : `${process.env.DOMAIN}${item.baseImage}`

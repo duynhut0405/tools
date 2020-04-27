@@ -12,12 +12,12 @@ getStoreFont('gtmId').then(res => {
 export const GtagScript = () => {
   return (
     <>
-      <script async src={`https://www.googletagmanager.com/gtm.js?id=GTM-${GA_TRACKING_ID}`} />
+      <script async data-src={`https://www.googletagmanager.com/gtm.js?id=GTM-${GA_TRACKING_ID}`} />
       <script
         dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.data-src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-${GA_TRACKING_ID}');`
         }}
@@ -35,7 +35,7 @@ export const GtagNoscript = () => (
   <>
     <noscript>
       <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=GTM-GTM-WJ5ZZB`}
+        data-src={`https://www.googletagmanager.com/ns.html?id=GTM-GTM-WJ5ZZB`}
         height="0"
         width="0"
         style={style}

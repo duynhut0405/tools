@@ -30,7 +30,7 @@ function DowloadVideo({ year, data, fileIcon, showYear }) {
             data-id="2UrWPUAr68A"
             data-video="autoplay=1&amp;controls=1&amp;mute=0"
           >
-            <iframe src={urlVideo}></iframe>
+            <iframe data-src={urlVideo}></iframe>
           </div>
         </div>
         <div className="col-lg-6">

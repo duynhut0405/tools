@@ -20,10 +20,10 @@ function ItemIcon({ data }) {
               <a href={item.url === undefined ? '#' : item.url} className="item">
                 <div className="img">
                   <img
-                    className=" loaded loaded"
-                    data-lazy-type="image"
-                    data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
-                    src={`${process.env.DOMAIN}${item.urlImage}`}
+                    className="lazyload"
+                    data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                    data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                    alt="images"
                   />
                 </div>
                 <h4 className="title">{item.note_1}</h4>
@@ -46,10 +46,10 @@ function ItemIcon({ data }) {
               key={index}
             >
               <img
-                data-lazy-type="image"
-                data-lazy-src={`${process.env.DOMAIN}${item.urlImage}`}
-                src={`${process.env.DOMAIN}${item.urlImage}`}
+                className="lazyload"
+                data-src={`${process.env.DOMAIN}${item.urlImage}`}
                 width="25"
+                alt="images"
               />
               {item.note_1}
             </a>

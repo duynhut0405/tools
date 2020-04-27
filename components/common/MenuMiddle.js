@@ -59,10 +59,9 @@ function MenuMiddle({ data, query }) {
                             <a href={`/page/${item.slugPages}`} className="link">
                               <div className="img">
                                 <img
-                                  className=" loaded loaded"
-                                  data-lazy-type="image"
-                                  data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
-                                  src={`${process.env.DOMAIN}${item.icon}`}
+                                  className="lazyload"
+                                  alt="images"
+                                  data-src={`${process.env.DOMAIN}${item.icon}`}
                                 />
                               </div>
                               <div className="title">{item.name}</div>
@@ -106,10 +105,9 @@ function MenuMiddle({ data, query }) {
                             <a href={`/page/${item.slugPages}`} className="link">
                               <div className="img">
                                 <img
-                                  className=" loaded loaded"
-                                  data-lazy-type="image"
-                                  data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
-                                  src={`${process.env.DOMAIN}${item.icon}`}
+                                  className="lazyload"
+                                  alt="images"
+                                  data-src={`${process.env.DOMAIN}${item.icon}`}
                                 />
                               </div>
                               <div className="title">{item.name}</div>
@@ -132,10 +130,9 @@ function MenuMiddle({ data, query }) {
                             <a href={`/page/${item.slugPages}`} className="link">
                               <div className="img">
                                 <img
-                                  className=" loaded loaded"
-                                  data-lazy-type="image"
-                                  data-lazy-src={`${process.env.DOMAIN}${item.icon}`}
-                                  src={`${process.env.DOMAIN}${item.icon}`}
+                                  className="lazyload"
+                                  alt="images"
+                                  data-src={`${process.env.DOMAIN}${item.icon}`}
                                 />
                               </div>
                               <div className="title">{item.name}</div>

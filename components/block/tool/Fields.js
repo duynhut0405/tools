@@ -45,7 +45,7 @@ function Fields({ title, value, month, minValue, maxValue, oneHandle }) {
 Fields.propTypes = propTypes;
 
 Fields.defaultProps = {
-  maxValue: 100000000,
+  maxValue: 100000000000,
   minValue: 5000000
 };
 

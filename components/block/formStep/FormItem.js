@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Label } from 'reactstrap';
 import { getFormbuilderByIdService } from '../../../services/form';
 import ReactHtmlParser from 'react-html-parser';
 import map from 'lodash/map';
@@ -97,8 +96,8 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
               return (
                 <React.Fragment key={index}>
                   <div className={`col-12 ${item.className}`}>
-                    {item.label && <Label>{item.label}</Label>}
-                    <Input
+                    {item.label && <label>{item.label}</label>}
+                    <input
                       style={{ width: '100%' }}
                       className="input"
                       name={item.name}
@@ -115,8 +114,8 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
               return (
                 <React.Fragment key={index}>
                   <div className={`col-12 ${item.className}`}>
-                    {item.label && <Label>{item.label}</Label>}
-                    <Input
+                    {item.label && <label>{item.label}</label>}
+                    <input
                       style={{ width: '100%' }}
                       className="input"
                       type={item.subtype}
@@ -147,7 +146,7 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
             <React.Fragment>
               <div className="col-12">
                 <div className="text-center">
-                  <img src="/static/images/ico-dangky.svg" alt="" />
+                  <img data-src="/static/images/ico-dangky.svg" alt="images" />
                 </div>
               </div>
 

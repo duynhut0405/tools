@@ -24,11 +24,7 @@ function HotNews({ data, title }) {
                     <div className="col-md-6" key={index}>
                       <a href={`/news/${hotNews.url}`} className="item efch-0 ef-img-l equal">
                         <div className="img tRes_71">
-                          <img
-                            className="lazy-hidden"
-                            data-lazy-type="image"
-                            src={hotNews.base_image}
-                          />
+                          <img className="lazyload" alt="images" data-src={hotNews.base_image} />
                         </div>
                         <div className="divtext">
                           <div className="date">
@@ -52,11 +48,7 @@ function HotNews({ data, title }) {
                   return (
                     <a href={`/news/${hotNews.url}`} className="item item-inline-table" key={index}>
                       <div className="img">
-                        <img
-                          className="lazy-hidden"
-                          data-lazy-type="image"
-                          src={hotNews.base_image}
-                        />
+                        <img className="lazyload" alt="images" data-src={hotNews.base_image} />
                       </div>
                       <div className="divtext">
                         <h4 className="title line4">{hotNews.title}</h4>

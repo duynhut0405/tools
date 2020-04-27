@@ -22,13 +22,13 @@ const handle = app.getRequestHandler();
   if (resRobots && resRobots !== undefined && resRobots.status === 200) {
     file = resRobots.data.robots.text;
   }
-
   fs.open('public/robots.txt', 'w+', (err, fd) => {
     if (!err) {
       fs.writeFile(fd, file, writeErr => {
         if (writeErr) {
           return writeErr;
         }
+
         return fs.close(fd, closeErr => {
           return closeErr;
         });

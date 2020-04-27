@@ -23,11 +23,10 @@ function ImageRight({ items, padding, id, type }) {
                 data-video="autoplay=1&amp;controls=1&amp;mute=0"
               >
                 <img
-                  className=" loaded loaded"
-                  data-lazy-type="image"
-                  data-lazy-src={`${process.env.DOMAIN}${items.urlImage}`}
-                  src={`${process.env.DOMAIN}${items.urlImage}`}
-                  alt=""
+                  className="lazyload"
+                  data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                  data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                  alt="images"
                 />
                 {items.video_url !== undefined && (
                   <span
@@ -57,7 +56,7 @@ function ImageRight({ items, padding, id, type }) {
                   frameBorder="0"
                   allowFullScreen="1"
                   allow="autoplay; encrypted-media;"
-                  src={`${items.video_url}?rel=0&autoplay=1`}
+                  data-src={`${items.video_url}?rel=0&autoplay=1`}
                 ></iframe>
               </div>
             )}

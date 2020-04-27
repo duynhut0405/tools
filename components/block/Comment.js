@@ -66,10 +66,9 @@ function Comment({ data, id }) {
                   <div className="ctext ">
                     <span className="img tRes">
                       <img
-                        className=" loaded loaded"
-                        data-lazy-type="image"
-                        data-lazy-src={item.image}
-                        src={`${process.env.DOMAIN}${item.urlImage}`}
+                        className="lazyload"
+                        data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                        alt="images"
                       />
                     </span>
                   </div>

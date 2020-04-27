@@ -69,9 +69,8 @@ function Pages({ data, type, id, optionWidth }) {
                 <a href={`/page/${item.slug}`} className="item ">
                   <div className="img tRes_71">
                     <img
-                      className="lazy-hidden"
-                      data-lazy-type="image"
-                      src={
+                      className="lazyload"
+                      data-src={
                         item.baseImage === null
                           ? `/images/imgdefault.jpg`
                           : `${process.env.DOMAIN}${item.baseImage}`
@@ -102,9 +101,8 @@ function Pages({ data, type, id, optionWidth }) {
                 <a href={`/page/${item.slug}`} className="item item-inline-table style-colummb">
                   <div className="img">
                     <img
-                      className="lazy-hidden"
-                      data-lazy-type="image"
-                      src={
+                      className="lazyload"
+                      data-src={
                         item.baseImage === null
                           ? `/images/imgdefault.jpg`
                           : `${process.env.DOMAIN}${item.baseImage}`
@@ -136,9 +134,8 @@ function Pages({ data, type, id, optionWidth }) {
                 <a href={`/page/${values.slug}`} className="item item-inline-table">
                   <div className="img">
                     <img
-                      className="lazy-hidden"
-                      data-lazy-type="image"
-                      src={
+                      className="lazyload"
+                      data-src={
                         values.baseImage === null
                           ? `/images/imgdefault.jpg`
                           : `${process.env.DOMAIN}${values.baseImage}`
@@ -215,11 +212,13 @@ function Pages({ data, type, id, optionWidth }) {
                   <a href={`/page/${items.slug}`} className="link">
                     <div className="img">
                       <img
-                        src={
+                        className="lazyload"
+                        data-src={
                           items.baseImage === null
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${items.baseImage}`
                         }
+                        alt="images"
                       />
                     </div>
                     <div className="divtext">

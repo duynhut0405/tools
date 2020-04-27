@@ -13,7 +13,7 @@ function SingerPost({ data, id }) {
       <h2 className="title mb-5">{data.title}</h2>
       <div className="row">
         <div className="col-sm-7">
-          <img src={data.news.base_image} alt="icon" />
+          <img className="lazyload" data-src={data.news.base_image} alt="icon" />
         </div>
         <div className="col-sm-5">
           <div className="content">

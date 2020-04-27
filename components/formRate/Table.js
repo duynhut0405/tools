@@ -26,8 +26,9 @@ function TableRate({ data, type }) {
               <tr key={value.id}>
                 <td style={{ display: 'flex' }}>
                   <img
-                    src={`static/currency/${value.currency}.svg`}
-                    alt=""
+                    className="lazyload"
+                    data-src={`static/currency/${value.currency}.png`}
+                    alt="images"
                     style={{ top: '-1px' }}
                     width="24"
                   />

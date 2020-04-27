@@ -82,9 +82,9 @@ function Card({ data, type, optionWidth, id }) {
                           <div className="col-md-6 efch-1 ef-img-t">
                             <div className="img">
                               <img
-                                className="loaded"
-                                data-lazy-type="image"
-                                src={`${process.env.DOMAIN}${items.urlImage}`}
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                                alt="images"
                               />
                             </div>
                           </div>
@@ -121,9 +121,9 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-1  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
-                            data-lazy-type="image"
-                            src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
+                            className="lazyload"
+                            data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
@@ -142,9 +142,9 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-2  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
-                            data-lazy-type="image"
-                            src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
+                            className="lazyload"
+                            data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
@@ -163,9 +163,9 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-2  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
-                            data-lazy-type="image"
-                            src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
+                            className="lazyload"
+                            data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
@@ -184,9 +184,9 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-2  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
-                            data-lazy-type="image"
-                            src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
+                            className="lazyload"
+                            data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">
@@ -205,9 +205,9 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="item item-2  ">
                         <div className="img tRes_92">
                           <img
-                            className="loaded loaded"
-                            data-lazy-type="image"
-                            src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
+                            className="lazyload"
+                            data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
+                            alt="images"
                           />
                         </div>
                         <div className="divtext">

@@ -60,7 +60,7 @@ function SearchResult({ t, query }) {
       <section id="top-search-result">
         <div className="container">
           <a href="/" id="logo">
-            <img src="/static/images/logo-blue.svg" alt="" />
+            <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
           </a>
           <span className="icon-close close-sg" onClick={onClose}></span>
           <form name="search" className="search-field" autoComplete="off" onSubmit={onSubmit}>

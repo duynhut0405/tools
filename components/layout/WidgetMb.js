@@ -13,7 +13,7 @@ function Widget({ data, socialLink }) {
     <div className="widget widget-info">
       <div>
         <a href="./" className="logo">
-          <img src="/static/images/logo-blue.svg" alt="" />
+          <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
         </a>
       </div>
       {ReactHtmlParser(data.footer_brief)}

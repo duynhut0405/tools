@@ -21,7 +21,7 @@ function Product({ data, id }) {
                 <div className="post_content mb-3">
                   <div>
                     <a href={`/page/${items.slug}`}>
-                      <img src={items.baseImage} alt="icon" />
+                      <img className="lazyload" data-src={items.baseImage} alt="icon" />
                     </a>
                   </div>
                   <div className="content">
@@ -39,7 +39,7 @@ function Product({ data, id }) {
               <div className="row mb-3 mr-4 page_wapper">
                 <div className="col-sm-5 img_wapper">
                   <a href={`/page/${items.slug}`}>
-                    <img src={items.miniImage} alt="icon" />
+                    <img className="lazyload" data-src={items.miniImage} alt="icon" />
                   </a>
                 </div>
                 <div className="col-sm-7 content">
