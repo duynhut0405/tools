@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { map } from 'lodash';
+import { map, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';
@@ -32,7 +32,7 @@ function Carousels({ silder }) {
             emulateTouch
             showIndicators={false}
           >
-            {map(silder, (item, index) => (
+            {map(data, (item, index) => (
               <div className="container" key={index}>
                 {item.options === '3' && (
                   <div className="row center">
