@@ -26,6 +26,7 @@ function FormRate({ data, interestRate }) {
       setArrTo(obj.children);
     } else {
       setArrTo([]);
+      setTo(0);
     }
   };
 

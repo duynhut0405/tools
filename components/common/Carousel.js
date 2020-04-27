@@ -10,11 +10,12 @@ const propType = {
 };
 
 function Carousels({ silder }) {
-  // console.log('slider:', slider)
   // const getItems = (index, item) => {
   //   const url = item.props.children[0].props.href;
   //   window.location.href = url;
   // };
+  console.log(silder);
+
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
@@ -41,6 +42,11 @@ function Carousels({ silder }) {
                     </div>
                     <div className="col-md-6">
                       <blockquote>{ReactHtmlParser(item.note_2)}</blockquote>
+                      <div className="sub-quote">
+                        <div className="text-center font-weight-bold">-</div>
+                        <div className="text-center text-uppercase">{item.namePerson}</div>
+                        <div className="text-center text-uppercase ">{item.position}</div>
+                      </div>
                     </div>
                   </div>
                 )}
