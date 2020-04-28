@@ -33,10 +33,10 @@ function CategoryDetail({ routerURL, category }) {
   return (
     <React.Fragment>
       <Head>
-        <title>{data ? data.meta_title : 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
-        <meta name="title" content={data ? data.meta_title : ''} />
-        <meta name="description" content={data ? data.meta_description : ''} />
-        <meta name="keywords" content={data ? data.meta_keyword : ''} />
+        <title>{data.meta_title || data.name}</title>
+        <meta name="title" content={data.meta_title || data.name} />
+        <meta name="description" content={data.meta_description || ''} />
+        <meta name="keywords" content={data.meta_keyword || ''} />
         <meta
           property="og:image"
           itemProp="thumbnaiUrl"

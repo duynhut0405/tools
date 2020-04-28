@@ -2,13 +2,13 @@ import React from 'react';
 import Head from 'next/head';
 import { Social } from '../../components/common';
 import { getNewByUri } from '../../services/news';
+import { getSocialLink } from '../../utils/fetch';
 import moment from 'moment';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
 import { withTranslation } from '../../i18n';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 const propTypes = {
   socialLink: PropTypes.object,
@@ -18,19 +18,19 @@ const propTypes = {
   relatedPost: PropTypes.array
 };
 
-function New({ socialLink, news, category_name, category_url }) {
+function New({ news, category_name, category_url, socialLink }) {
   const { t } = useTranslation();
   return (
     <React.Fragment>
       <Head>
         <title>
-          {news && news.news && news.news.meta_title
-            ? news.news.meta_title
-            : 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}
+          {news && news.news && news.news.meta_title ? news.news.meta_title : news.news.name}
         </title>
         <meta
           name="title"
-          content={news && news.meta_title && news.news.meta_title ? news.news.meta_title : ''}
+          content={
+            news && news.meta_title && news.news.meta_title ? news.news.meta_title : news.news.name
+          }
         />
         <meta
           name="description"
@@ -88,7 +88,8 @@ function New({ socialLink, news, category_name, category_url }) {
               <div className=" max750">
                 <div className="top-heading">
                   <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div>
-                  <Social data={socialLink} />
+                  {socialLink && <Social data={socialLink.socialLink} />}
+                  {/* {console.log(socialLink)} */}
                 </div>
 
                 <div className="entry-content">{ReactHtmlParser(news.news.description)}</div>
@@ -139,12 +140,6 @@ function New({ socialLink, news, category_name, category_url }) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    socialLink: state.layoutReducer.socialLink
-  };
-};
-
 New.propTypes = propTypes;
 
 New.getInitialProps = async ctx => {
@@ -173,11 +168,14 @@ New.getInitialProps = async ctx => {
       category_url = newResponse.data.news.categories[0].slug;
     }
   }
+
+  const socialLink = await getSocialLink();
   return {
     news,
     category_name,
-    category_url
+    category_url,
+    socialLink
   };
 };
 
-export default connect(mapStateToProps, null)(withTranslation('common')(New));
+export default withTranslation('common')(New);

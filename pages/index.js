@@ -26,10 +26,10 @@ function Home({ page, silder, menuMiddle, listRate, listInterestRate }) {
   return (
     <React.Fragment>
       <Head>
-        <title>{page ? page.meta_title : 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
-        <meta name="title" content={page ? page.meta_title : ''} />
-        <meta name="description" content={page ? page.meta_description : ''} />
-        <meta name="keywords" content={page ? page.meta_keyword : ''} />
+        <title>{page.meta_title || page.name}</title>
+        <meta name="title" content={page.meta_title || ''} />
+        <meta name="description" content={page.meta_description || ''} />
+        <meta name="keywords" content={page.meta_keyword || ''} />
         <meta
           property="og:image"
           itemProp="thumbnaiUrl"
