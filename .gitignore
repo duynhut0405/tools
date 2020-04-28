@@ -11,6 +11,7 @@
 /public/sw.js.map*
 /public/workbox-1a4a986e.js
 /public/workbox-1a4a986e.js.map
+/public/robots.txt
 
 # testing
 /coverage
