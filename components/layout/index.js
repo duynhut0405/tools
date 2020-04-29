@@ -64,12 +64,10 @@ function Layout({
       item => {
         if (item.type === '4') {
           return (
-            <li key={item.id} className={item.children.length > 0 ? 'children ' : null}>
-              <Link href={item.url}>
-                <a target="_blank" rel="noopener noreferrer">
-                  <span>{item.name}</span>
-                </a>
-              </Link>
+            <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <span>{item.name}</span>
+              </a>
               <div className="wrapul">
                 {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
               </div>
@@ -77,7 +75,7 @@ function Layout({
           );
         }
         return (
-          <li key={item.id} className={item.children.length > 0 ? 'children ' : null}>
+          <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
             <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
               <a>
                 <span>{item.name}</span>
@@ -105,15 +103,14 @@ function Layout({
       if (item.type === '4') {
         return (
           <li key={index}>
-            <Link href={item.url}>
-              <a
-                className={item.children.length > 0 ? 'title' : ''}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.name}
-              </a>
-            </Link>
+            <a
+              href={item.url}
+              className={item.children.length > 0 ? 'title' : ''}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {item.name}
+            </a>
           </li>
         );
       }
@@ -230,11 +227,9 @@ function Layout({
                     if (values.type === '4') {
                       return (
                         <li key={key}>
-                          <Link href={values.url}>
-                            <a target="_blank" rel="noopener noreferrer">
-                              {values.name}
-                            </a>
-                          </Link>
+                          <a href={values.url} target="_blank" rel="noopener noreferrer">
+                            {values.name}
+                          </a>
                         </li>
                       );
                     }
@@ -319,26 +314,28 @@ function Layout({
                         {nestChild(menuNav)}
                         <li className="highlight children">
                           <span className="showsubmenu icon-arrow-2 ib"></span>
-                          <Link href="#">
-                            <a>
-                              <span>Ebanking</span>
-                            </a>
-                          </Link>
+                          <a href="#">
+                            <span>Ebanking</span>
+                          </a>
                           <div className="wrapul">
                             <ul>
                               <li>
-                                <Link href="https://online.mbbank.com.vn/retail/EstablishSession">
-                                  <a target="_blank" rel="noopener noreferrer">
-                                    Cá Nhân
-                                  </a>
-                                </Link>
+                                <a
+                                  href="https://online.mbbank.com.vn/retail/EstablishSession"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Cá Nhân
+                                </a>
                               </li>
                               <li>
-                                <Link href="https://emb.mbbank.com.vn/corp/EstablishSession">
-                                  <a target="_blank" rel="noopener noreferrer">
-                                    Doanh nghiệp
-                                  </a>
-                                </Link>
+                                <a
+                                  href="https://emb.mbbank.com.vn/corp/EstablishSession"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Doanh nghiệp
+                                </a>
                               </li>
                             </ul>
                           </div>
@@ -419,21 +416,19 @@ function Layout({
                     if (values.type === '4') {
                       return (
                         <div className="col-4" key={values.id}>
-                          <Link href={values.url}>
-                            <a className="item">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.DOMAIN}${values.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <div className="divtext">
-                                <h4 className="title">{values.name}</h4>
-                                <div className="desc">{values.description}</div>
-                              </div>
-                            </a>
-                          </Link>
+                          <a href={values.url} className="item">
+                            <span className="img">
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${values.icon}`}
+                                alt="images"
+                              />
+                            </span>
+                            <div className="divtext">
+                              <h4 className="title">{values.name}</h4>
+                              <div className="desc">{values.description}</div>
+                            </div>
+                          </a>
                         </div>
                       );
                     }
@@ -508,11 +503,9 @@ function Layout({
                         if (values.type === '4') {
                           return (
                             <li key={key}>
-                              <Link href={values.url}>
-                                <a target="_blank" rel="noopener noreferrer">
-                                  {values.name}
-                                </a>
-                              </Link>
+                              <a href={values.url} target="_blank" rel="noopener noreferrer">
+                                {values.name}
+                              </a>
                             </li>
                           );
                         }
@@ -548,25 +541,21 @@ function Layout({
             </div>
             <div className="wdownload">
               <span className="stitle">{t('donwload_app_today')}</span>&nbsp;
-              <Link href="#">
-                <a>
-                  <img
-                    className="lazyload"
-                    data-src="/static/images/btt-chplay-mb.svg"
-                    alt="images"
-                  />
-                </a>
-              </Link>
+              <a href="#">
+                <img
+                  className="lazyload"
+                  data-src="/static/images/btt-chplay-mb.svg"
+                  alt="images"
+                />
+              </a>
               &nbsp;
-              <Link href="#">
-                <a>
-                  <img
-                    className="lazyload"
-                    data-src="/static/images/btt-google-mb.svg"
-                    alt="images"
-                  />
-                </a>
-              </Link>
+              <a href="#">
+                <img
+                  className="lazyload"
+                  data-src="/static/images/btt-google-mb.svg"
+                  alt="images"
+                />
+              </a>
             </div>
           </section>
           <div id="footer-mb" className="group-ef loaded">
@@ -596,74 +585,60 @@ function Layout({
             <div className="menu-footer-mb">
               <div className="row">
                 <div className="col-3">
-                  <Link href="#">
-                    <a className="item ">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/home.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{t('home')}</span>
-                    </a>
-                  </Link>
+                  <a href="#" className="item ">
+                    <span className="img">
+                      <img
+                        className="lazyload"
+                        data-src="/static/images/svg/home.svg"
+                        alt="images"
+                      />
+                    </span>
+                    <span className="name">{t('home')}</span>
+                  </a>
                 </div>
                 <div className="col-3">
-                  <Link href="#">
-                    <a className="item">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/folder.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{t('product')}</span>
-                    </a>
-                  </Link>
+                  <a href="#" className="item">
+                    <span className="img">
+                      <img
+                        className="lazyload"
+                        data-src="/static/images/svg/folder.svg"
+                        alt="images"
+                      />
+                    </span>
+                    <span className="name">{t('product')}</span>
+                  </a>
                 </div>
                 <div className="col-3">
-                  <Link href="#">
-                    <a className="item ">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/MB.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">MB++</span>
-                    </a>
-                  </Link>
+                  <a href="#" className="item ">
+                    <span className="img">
+                      <img className="lazyload" data-src="/static/images/svg/MB.svg" alt="images" />
+                    </span>
+                    <span className="name">MB++</span>
+                  </a>
                 </div>
                 <div className="col-3">
-                  <Link href="#">
-                    <a className="item ">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/giadinh.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{t('family')}</span>
-                    </a>
-                  </Link>
+                  <a href="#" className="item ">
+                    <span className="img">
+                      <img
+                        className="lazyload"
+                        data-src="/static/images/svg/giadinh.svg"
+                        alt="images"
+                      />
+                    </span>
+                    <span className="name">{t('family')}</span>
+                  </a>
                 </div>
                 <div className="col-3">
-                  <Link href="#">
-                    <a className="item ">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/tienich.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{t('utilities')}</span>
-                    </a>
-                  </Link>
+                  <a href="#" className="item ">
+                    <span className="img">
+                      <img
+                        className="lazyload"
+                        data-src="/static/images/svg/tienich.svg"
+                        alt="images"
+                      />
+                    </span>
+                    <span className="name">{t('utilities')}</span>
+                  </a>
                 </div>
               </div>
             </div>

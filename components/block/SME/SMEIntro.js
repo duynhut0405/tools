@@ -2,9 +2,9 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 const propTypes = {
-  data: Proptypes.object.isRequired,
-  indexTab: Proptypes.number.isRequired,
-  optionWidth: Proptypes.string,
+  data: Proptypes.object,
+  indexTab: Proptypes.number,
+  optionWidth: Proptypes.number,
   id: Proptypes.number
 };
 

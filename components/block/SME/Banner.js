@@ -2,7 +2,7 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 const propTypes = {
-  data: Proptypes.object.isRequired,
+  data: Proptypes.object,
   id: Proptypes.number
 };
 

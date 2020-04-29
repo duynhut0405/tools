@@ -570,7 +570,7 @@ function News({ data, type, id, optionWidth }) {
               {map(listCategory, (item, index) => {
                 if (index === 0) {
                   return (
-                    <React.Fragment>
+                    <React.Fragment key={index}>
                       <a href={`/news/${item.url}`} className="item  tRes_56 video">
                         <img
                           className="lazyload"
