@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { map } from 'lodash';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -22,18 +23,20 @@ function HotNews({ data, title }) {
                 if (index < 2) {
                   return (
                     <div className="col-md-6" key={index}>
-                      <a href={`/news/${hotNews.url}`} className="item efch-0 ef-img-l equal">
-                        <div className="img tRes_71">
-                          <img className="lazyload" alt="images" data-src={hotNews.base_image} />
-                        </div>
-                        <div className="divtext">
-                          <div className="date">
-                            {moment(hotNews.created_at).format('DD/MM/YYYY')}
+                      <Link href="/news/[...slug]" as={`/news/${hotNews.url}`}>
+                        <a className="item efch-0 ef-img-l equal">
+                          <div className="img tRes_71">
+                            <img className="lazyload" alt="images" data-src={hotNews.base_image} />
                           </div>
-                          <h4 className="title line2">{hotNews.title}</h4>
-                          <div className="desc line2">{hotNews.shortDescription}</div>
-                        </div>
-                      </a>
+                          <div className="divtext">
+                            <div className="date">
+                              {moment(hotNews.created_at).format('DD/MM/YYYY')}
+                            </div>
+                            <h4 className="title line2">{hotNews.title}</h4>
+                            <div className="desc line2">{hotNews.shortDescription}</div>
+                          </div>
+                        </a>
+                      </Link>
                     </div>
                   );
                 }
@@ -46,14 +49,16 @@ function HotNews({ data, title }) {
               {map(data, (hotNews, index) => {
                 if (index > 2) {
                   return (
-                    <a href={`/news/${hotNews.url}`} className="item item-inline-table" key={index}>
-                      <div className="img">
-                        <img className="lazyload" alt="images" data-src={hotNews.base_image} />
-                      </div>
-                      <div className="divtext">
-                        <h4 className="title line4">{hotNews.title}</h4>
-                      </div>
-                    </a>
+                    <Link key={index} href="/news/[...slug]" as={`/news/${hotNews.url}`}>
+                      <a className="item item-inline-table">
+                        <div className="img">
+                          <img className="lazyload" alt="images" data-src={hotNews.base_image} />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title line4">{hotNews.title}</h4>
+                        </div>
+                      </a>
+                    </Link>
                   );
                 }
                 return null;

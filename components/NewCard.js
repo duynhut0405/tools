@@ -34,6 +34,7 @@ function NewCard({ data, id }) {
                         <a
                           href={items.urlTitle}
                           target="_blank"
+                          rel="noopener noreferrer"
                           className="font-weight-bold title equal line2"
                         >
                           <div>{items.titleCard}</div>

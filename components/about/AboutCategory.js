@@ -4,7 +4,7 @@ import { map } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import PropTypes from 'prop-types';
-// import Pagination from '../common/Pagination';
+import Link from 'next/link';
 
 const propTypes = {
   data: PropTypes.object,
@@ -41,25 +41,26 @@ function AboutCategory({ data, categories }) {
             {map(data.news, item => {
               return (
                 <div className="col-md-4" key={item.newsId}>
-                  <a href={`/news/${item.url}`} className="item efch-2 ef-img-l equal">
-                    <div className="img tRes_71">
-                      <img
-                        className="lazyload"
-                        data-src={`${process.env.DOMAIN}${item.base_image}`}
-                        alt="images"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <div className="date">{moment(item.created_at).format('DD/MM/YYYY')}</div>
-                      <h4 className="title line2">{item.title}</h4>
-                      <div className="desc line2">{item.shortDescription}</div>
-                    </div>
-                  </a>
+                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                    <a className="item efch-2 ef-img-l equal">
+                      <div className="img tRes_71">
+                        <img
+                          className="lazyload"
+                          data-src={`${process.env.DOMAIN}${item.base_image}`}
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD/MM/YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
               );
             })}
           </div>
-          {/* <Pagination setPage={setPage} page={page} size={data.size} /> */}
         </div>
       </main>
     </>

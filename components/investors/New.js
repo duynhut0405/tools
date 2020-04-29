@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { map } from 'lodash';
 import moment from 'moment';
 import Stock from './Stock';
@@ -38,20 +39,22 @@ function News({ category, padding }) {
             if (index < 2) {
               return (
                 <div className="col-md-4" key={index}>
-                  <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
-                    <div className="img tRes_71">
-                      <img
-                        className="lazyload"
-                        alt="images"
-                        data-src={`${process.env.DOMAIN}${item.base_image}`}
-                      />
-                    </div>
-                    <div className="divtext">
-                      <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                      <h4 className="title line2">{item.title}</h4>
-                      <div className="desc line2">{ReactHtmlParser(item.shortDescription)}</div>
-                    </div>
-                  </a>
+                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                    <a className="item efch-2 ef-img-l ">
+                      <div className="img tRes_71">
+                        <img
+                          className="lazyload"
+                          alt="images"
+                          data-src={`${process.env.DOMAIN}${item.base_image}`}
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{ReactHtmlParser(item.shortDescription)}</div>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
               );
             }

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { TabQuestion } from './tab';
 import PropTypes from 'prop-types';
 import { withTranslation } from '../../i18n';
+import Link from 'next/link';
 
 const propTypes = {
   data: PropTypes.object,
@@ -27,9 +28,9 @@ function OtherNews({ data, id }) {
       <div className="entry-head">
         <h2 className="ht efch-1 ef-img-l">{data.titleBlock}</h2>
         <p className="cl5"></p>
-        <a
-          className="viewall"
-          href={`/news/category/${
+        <Link
+          href="/news/category/[...name]"
+          as={`/news/category/${
             activeTab === 1
               ? `hoi-ap`
               : activeTab === 2
@@ -37,9 +38,11 @@ function OtherNews({ data, id }) {
               : 'tai-lieu-bieu-mau'
           }`}
         >
-          {t('view')}
-          <i className="icon-arrow-1"></i>
-        </a>
+          <a className="viewall">
+            {t('view')}
+            <i className="icon-arrow-1"></i>
+          </a>
+        </Link>
       </div>
       <div className="cttab-v3 tabs-total-3">
         <div className="wrap-tab-menu">

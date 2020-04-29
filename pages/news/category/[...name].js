@@ -24,6 +24,10 @@ function CategoryDetail({ routerURL, category }) {
 
   useEffect(() => {
     setData(category);
+    const body = document.getElementsByTagName('body')[0];
+    const logo = document.getElementById('img_log');
+    body.classList.remove('mb-priority');
+    logo.src = '/static/images/svg/logo.svg';
   }, [category]);
 
   useEffect(() => {

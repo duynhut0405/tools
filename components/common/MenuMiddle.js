@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Carousel from 'react-multi-carousel';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
@@ -56,16 +57,18 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <a href={`/page/${item.slugPages}`} className="link">
-                              <div className="img">
-                                <img
-                                  className="lazyload"
-                                  alt="images"
-                                  data-src={`${process.env.DOMAIN}${item.icon}`}
-                                />
-                              </div>
-                              <div className="title">{item.name}</div>
-                            </a>
+                            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+                              <a className="link">
+                                <div className="img">
+                                  <img
+                                    className="lazyload"
+                                    alt="images"
+                                    data-src={`${process.env.DOMAIN}${item.icon}`}
+                                  />
+                                </div>
+                                <div className="title">{item.name}</div>
+                              </a>
+                            </Link>
                           </div>
                         );
                       }
@@ -102,16 +105,18 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <a href={`/page/${item.slugPages}`} className="link">
-                              <div className="img">
-                                <img
-                                  className="lazyload"
-                                  alt="images"
-                                  data-src={`${process.env.DOMAIN}${item.icon}`}
-                                />
-                              </div>
-                              <div className="title">{item.name}</div>
-                            </a>
+                            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+                              <a className="link">
+                                <div className="img">
+                                  <img
+                                    className="lazyload"
+                                    alt="images"
+                                    data-src={`${process.env.DOMAIN}${item.icon}`}
+                                  />
+                                </div>
+                                <div className="title">{item.name}</div>
+                              </a>
+                            </Link>
                           </div>
                         );
                       }
@@ -127,16 +132,18 @@ function MenuMiddle({ data, query }) {
                       return (
                         <div className="col-4" key={key}>
                           <div className={query === item.slugPages ? 'item active' : 'item'}>
-                            <a href={`/page/${item.slugPages}`} className="link">
-                              <div className="img">
-                                <img
-                                  className="lazyload"
-                                  alt="images"
-                                  data-src={`${process.env.DOMAIN}${item.icon}`}
-                                />
-                              </div>
-                              <div className="title">{item.name}</div>
-                            </a>
+                            <Link href="/page/[name]" as={`/page/${item.slugPages}`}>
+                              <a className="link">
+                                <div className="img">
+                                  <img
+                                    className="lazyload"
+                                    alt="images"
+                                    data-src={`${process.env.DOMAIN}${item.icon}`}
+                                  />
+                                </div>
+                                <div className="title">{item.name}</div>
+                              </a>
+                            </Link>
                           </div>
                         </div>
                       );

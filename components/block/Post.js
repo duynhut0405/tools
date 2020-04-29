@@ -3,6 +3,8 @@ import { map, slice } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
+
 const propTypes = {
   data: Proptypes.object.isRequired,
   type: Proptypes.number
@@ -49,7 +51,9 @@ function Post({ data, type }) {
                   </div>
                   <p className="title">{item.title}</p>
                   <p className="show">
-                    <a href={`/news/${item.url}`}>Xem thêm</a>
+                    <Link href="/news/[...name]" as={`/news/${item.url}`}>
+                      <a>Xem thêm</a>
+                    </Link>
                   </p>
                 </div>
               </div>

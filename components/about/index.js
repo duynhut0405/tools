@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import moment from 'moment';
 import { map } from 'lodash';
 import { useTranslation } from 'react-i18next';
@@ -77,19 +78,21 @@ function About({ data, listNews, getNews, id }) {
             {map(listNews.news, item => {
               return (
                 <div className="col-md-4" key={item.newsId}>
-                  <a href={`/news/${item.url}`} className="item efch-2 ef-img-l equal">
-                    <div className="img">
-                      <img
-                        className="lazyload"
-                        data-src={`${process.env.DOMAIN}${item.base_image}`}
-                        alt="images"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <div className="cl6">Ngành ngân hàng</div>
-                      <h4 className="title line2">{item.title}</h4>
-                    </div>
-                  </a>
+                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                    <a className="item efch-2 ef-img-l equal">
+                      <div className="img">
+                        <img
+                          className="lazyload"
+                          data-src={`${process.env.DOMAIN}${item.base_image}`}
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="cl6">Ngành ngân hàng</div>
+                        <h4 className="title line2">{item.title}</h4>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
               );
             })}

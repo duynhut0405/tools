@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import { map } from 'lodash';
 import Carousel from 'react-multi-carousel';
+import Link from 'next/link';
 import { getPagesByIdService } from '../../../services/page';
+
 const propTypes = {
   data: Proptypes.object.isRequired,
   indexTab: Proptypes.number.isRequired
@@ -66,19 +68,21 @@ function CustomPageItem({ data, indexTab }) {
             >
               {map(listPage, (items, index) => (
                 <div className="item ef-img-t item_carousel" key={index}>
-                  <a href={`/page/${items.slug}`} className="link">
-                    <div className="img tRes_70">
-                      <img
-                        className="lazyload"
-                        data-src={`${process.env.DOMAIN}${items.baseImage}`}
-                        alt="images"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <h4 className="title line2">{items.name}</h4>
-                      <div className="desc line2 cl3">{items.meta_description}</div>
-                    </div>
-                  </a>
+                  <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                    <a className="link">
+                      <div className="img tRes_70">
+                        <img
+                          className="lazyload"
+                          data-src={`${process.env.DOMAIN}${items.baseImage}`}
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <h4 className="title line2">{items.name}</h4>
+                        <div className="desc line2 cl3">{items.meta_description}</div>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
               ))}
             </Carousel>

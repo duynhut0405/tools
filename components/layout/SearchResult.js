@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import { withTranslation } from '../../i18n';
 import debounce from 'lodash/debounce';
+import Link from 'next/link';
 
 const propTypes = {
   query: PropTypes.string,
@@ -59,9 +60,11 @@ function SearchResult({ t, query }) {
     <div id="search-result" style={{ display: 'none' }}>
       <section id="top-search-result">
         <div className="container">
-          <a href="/" id="logo">
-            <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
-          </a>
+          <Link href="/">
+            <a id="logo">
+              <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+            </a>
+          </Link>
           <span className="icon-close close-sg" onClick={onClose}></span>
           <form name="search" className="search-field" autoComplete="off" onSubmit={onSubmit}>
             <button type="submit" name="search-submit" className="icon-search-2"></button>
@@ -125,16 +128,24 @@ function SearchResult({ t, query }) {
                     {map(data.searchCommons, (news, index) => {
                       return (
                         <div className="search-item" key={index}>
-                          <a
-                            href={
+                          <Link
+                            href={news.type === 'news' ? `/news/[...slug]` : `/page/[...name]`}
+                            as={
                               news.type === 'news'
                                 ? `/news/${news.object.url}`
                                 : `/page/${news.object.slug}`
                             }
                           >
-                            {news.type === 'news' && <h3 className="ctext">{news.object.title}</h3>}
-                            {news.type === 'page' && <h3 className="ctext">{news.object.name}</h3>}
-                          </a>
+                            <a>
+                              {news.type === 'news' && (
+                                <h3 className="ctext">{news.object.title}</h3>
+                              )}
+                              {news.type === 'page' && (
+                                <h3 className="ctext">{news.object.name}</h3>
+                              )}
+                            </a>
+                          </Link>
+
                           {news.type === 'news' && <p>{news.object.shortDescription}</p>}
                         </div>
                       );

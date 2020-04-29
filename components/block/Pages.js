@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
-import { useTranslation } from 'react-i18next';
 import Carousel from 'react-multi-carousel';
 import CustomPageItem from './BlockPageItem/CustomPageItem';
+import Link from 'next/link';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -54,7 +54,6 @@ function Pages({ data, type, id, optionWidth }) {
       getPageBlock();
     }
   }, []);
-  const { t } = useTranslation();
 
   if (type && type === '1') {
     return (
@@ -66,23 +65,25 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="list-5 row list-item">
             {map(listPage, item => (
               <div className="col-md-4" key={item.id}>
-                <a href={`/page/${item.slug}`} className="item ">
-                  <div className="img tRes_71">
-                    <img
-                      className="lazyload"
-                      data-src={
-                        item.baseImage === null
-                          ? `/images/imgdefault.jpg`
-                          : `${process.env.DOMAIN}${item.baseImage}`
-                      }
-                      alt="icon"
-                    />
-                  </div>
-                  <div className="divtext">
-                    <h4 className="title">{item.name}</h4>
-                    <div className="desc line4">{item.meta_description}..</div>
-                  </div>
-                </a>
+                <Link href="/page/[...name]" as={`/page/${item.slug}`}>
+                  <a className="item">
+                    <div className="img tRes_71">
+                      <img
+                        className="lazyload"
+                        data-src={
+                          item.baseImage === null
+                            ? `/images/imgdefault.jpg`
+                            : `${process.env.DOMAIN}${item.baseImage}`
+                        }
+                        alt="icon"
+                      />
+                    </div>
+                    <div className="divtext">
+                      <h4 className="title">{item.name}</h4>
+                      <div className="desc line4">{item.meta_description}..</div>
+                    </div>
+                  </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -98,23 +99,25 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="list-7 list-item row">
             {map(listPage, item => (
               <div className="col-md-6" key={item.newsId}>
-                <a href={`/page/${item.slug}`} className="item item-inline-table style-colummb">
-                  <div className="img">
-                    <img
-                      className="lazyload"
-                      data-src={
-                        item.baseImage === null
-                          ? `/images/imgdefault.jpg`
-                          : `${process.env.DOMAIN}${item.baseImage}`
-                      }
-                      alt="icon"
-                    />
-                  </div>
-                  <div className="divtext">
-                    <h4 className="title line2">{item.name}</h4>
-                    <div className="desc line4">{item.meta_description}..</div>
-                  </div>
-                </a>
+                <Link href="/page/[...name]" as={`/page/${item.slug}`}>
+                  <a className="item item-inline-table style-colummb">
+                    <div className="img">
+                      <img
+                        className="lazyload"
+                        data-src={
+                          item.baseImage === null
+                            ? `/images/imgdefault.jpg`
+                            : `${process.env.DOMAIN}${item.baseImage}`
+                        }
+                        alt="icon"
+                      />
+                    </div>
+                    <div className="divtext">
+                      <h4 className="title line2">{item.name}</h4>
+                      <div className="desc line4">{item.meta_description}..</div>
+                    </div>
+                  </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -131,31 +134,33 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="list-7 list-item row">
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
-                <a href={`/page/${values.slug}`} className="item item-inline-table">
-                  <div className="img">
-                    <img
-                      className="lazyload"
-                      data-src={
-                        values.baseImage === null
-                          ? `/images/imgdefault.jpg`
-                          : `${process.env.DOMAIN}${values.baseImage}`
-                      }
-                      alt="icon"
-                    />
-                  </div>
-                  <div className="divtext">
-                    <h4 className="title line2">{values.name}</h4>
-                    <div className="desc line4">{values.meta_description}</div>
-                  </div>
-                </a>
+                <Link href="/page/[...name]" as={`/page/${values.slug}`}>
+                  <a className="item item-inline-table">
+                    <div className="img">
+                      <img
+                        className="lazyload"
+                        data-src={
+                          values.baseImage === null
+                            ? `/images/imgdefault.jpg`
+                            : `${process.env.DOMAIN}${values.baseImage}`
+                        }
+                        alt="icon"
+                      />
+                    </div>
+                    <div className="divtext">
+                      <h4 className="title line2">{values.name}</h4>
+                      <div className="desc line4">{values.meta_description}</div>
+                    </div>
+                  </a>
+                </Link>
               </div>
             ))}
           </div>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <a key={index} className="tag" href={`/page/${values.url}`}>
-                {values.name}
-              </a>
+              <Link key={index} href="/page/[...name]" as={`/page/${values.url}`}>
+                <a className="tag">{values.name}</a>
+              </Link>
             ))}
           </div>
         </div>
@@ -171,15 +176,17 @@ function Pages({ data, type, id, optionWidth }) {
           <ul className="cols-2 link2">
             {map(listPage, (values, index) => (
               <li key={index}>
-                <a href={`/page/${values.slug}`}>{values.name}</a>
+                <Link href="/page/[...name]" as={`/page/${values.slug}`}>
+                  <a>{values.name}</a>
+                </Link>
               </li>
             ))}
           </ul>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <a key={index} className="tag" href={values.url}>
-                {values.name}
-              </a>
+              <Link key={index} href={values.url}>
+                <a className="tag">{values.name}</a>
+              </Link>
             ))}
           </div>
         </div>
@@ -209,23 +216,25 @@ function Pages({ data, type, id, optionWidth }) {
             >
               {map(listPage, (items, index) => (
                 <div className="item ef-img-t item_carousel" key={index}>
-                  <a href={`/page/${items.slug}`} className="link">
-                    <div className="img">
-                      <img
-                        className="lazyload"
-                        data-src={
-                          items.baseImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${items.baseImage}`
-                        }
-                        alt="images"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <h4 className="title line2">{items.name}</h4>
-                      <div className="desc line2 cl3">{items.meta_description}</div>
-                    </div>
-                  </a>
+                  <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                    <a className="link">
+                      <div className="img">
+                        <img
+                          className="lazyload"
+                          data-src={
+                            items.baseImage === null
+                              ? `/images/imgdefault.jpg`
+                              : `${process.env.DOMAIN}${items.baseImage}`
+                          }
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <h4 className="title line2">{items.name}</h4>
+                        <div className="desc line2 cl3">{items.meta_description}</div>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
               ))}
             </Carousel>

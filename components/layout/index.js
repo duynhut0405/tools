@@ -29,7 +29,6 @@ const propTypes = {
 };
 
 function Layout({
-  personalLayout,
   children,
   settingFooter,
   socialLink,
@@ -300,11 +299,7 @@ function Layout({
                         <img
                           id="img_log"
                           className="lazyload"
-                          data-src={
-                            personalLayout === 1 || personalLayout === true
-                              ? '/static/images/svg/logo-priority.svg'
-                              : '/static/images/svg/logo.svg'
-                          }
+                          data-src="/static/images/svg/logo.svg"
                           alt="logo"
                         />
                       </a>

@@ -2,6 +2,7 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import { withTranslation } from '../../i18n';
 import map from 'lodash/map';
+import Link from 'next/link';
 
 const propTypes = {
   data: Proptypes.array,
@@ -14,9 +15,9 @@ function Breadcrumb({ t, data }) {
       <div className="container">
         <div className="breadcrumbs">
           {data.length > 0 ? (
-            <a href="/" className="item">
-              {t('home')}
-            </a>
+            <Link href="/">
+              <a className="item">{t('home')}</a>
+            </Link>
           ) : (
             <span className="item">{t('home')}</span>
           )}
@@ -29,9 +30,11 @@ function Breadcrumb({ t, data }) {
               );
             }
             return (
-              <a className="item" href={`/page/${slug.slug}`} key={index}>
-                {slug.name}
-              </a>
+              <Link href="/page/[...name]" as={`/page/${slug.slug}`}>
+                <a className="item" key={index}>
+                  {slug.name}
+                </a>
+              </Link>
             );
           })}
         </div>

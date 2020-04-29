@@ -36,7 +36,7 @@ function PopupItems({ item, modal, setModal }) {
               <i className="icon-close"> </i>
             </span>
             <div className="logo">
-              <a href="./">
+              <a href="/">
                 <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
               </a>
             </div>

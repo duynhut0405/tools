@@ -1,5 +1,6 @@
 import React from 'react';
 import { map } from 'lodash';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -20,14 +21,18 @@ function Product({ data, id }) {
               <div className="col-sm-4" key={items.id}>
                 <div className="post_content mb-3">
                   <div>
-                    <a href={`/page/${items.slug}`}>
-                      <img className="lazyload" data-src={items.baseImage} alt="icon" />
-                    </a>
+                    <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                      <a>
+                        <img className="lazyload" data-src={items.baseImage} alt="icon" />
+                      </a>
+                    </Link>
                   </div>
                   <div className="content">
-                    <a href={`/page/${items.slug}`}>
-                      <p className="title">{items.name}</p>
-                    </a>
+                    <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                      <a>
+                        <p className="title">{items.name}</p>
+                      </a>
+                    </Link>
                     <p className="text_content">{items.meta_description}</p>
                   </div>
                 </div>
@@ -38,14 +43,18 @@ function Product({ data, id }) {
             <div className="col-sm-4" key={items.id}>
               <div className="row mb-3 mr-4 page_wapper">
                 <div className="col-sm-5 img_wapper">
-                  <a href={`/page/${items.slug}`}>
-                    <img className="lazyload" data-src={items.miniImage} alt="icon" />
-                  </a>
+                  <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                    <a>
+                      <img className="lazyload" data-src={items.miniImage} alt="icon" />
+                    </a>
+                  </Link>
                 </div>
                 <div className="col-sm-7 content">
-                  <a href={`/page/${items.slug}`}>
-                    <p className="title">{items.name}</p>
-                  </a>
+                  <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                    <a>
+                      <p className="title">{items.name}</p>
+                    </a>
+                  </Link>
                   <p className="text_content">{items.meta_description}</p>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import Link from 'next/link';
 import { getStockServices } from '../../services/mb.services';
 
 const getStock = setData => {
@@ -18,9 +19,11 @@ function Stock() {
     <div className="col-md-4">
       <div className="widget-ndt">
         <div>
-          <a href="./">
-            <img className="lazyload" height="50" data-src="/images/logo-blue.svg" alt="images" />
-          </a>
+          <Link href="/">
+            <a>
+              <img className="lazyload" height="50" data-src="/images/logo-blue.svg" alt="images" />
+            </a>
+          </Link>
         </div>
 
         <div className="numbs">

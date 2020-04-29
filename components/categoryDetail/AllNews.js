@@ -1,6 +1,7 @@
 import React from 'react';
 import { map } from 'lodash';
 import moment from 'moment';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -30,7 +31,9 @@ function AllNews({ data, title }) {
                       <i className="icon-date-2"></i>
                       <span>{moment(news.created_at).format('DD/MM/YYYY')}</span>
                     </span>
-                    <a href={`/news/${news.url}`}>{news.title}</a>
+                    <Link href="/news/[...slug]" as={`/news/${news.url}`}>
+                      <a>{news.title}</a>
+                    </Link>
                     <p>{news.shortDescription}</p>
                   </div>
                 </div>

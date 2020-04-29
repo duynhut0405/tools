@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { Social } from '../../components/common';
 import { getNewByUri } from '../../services/news';
 import { getSocialLink } from '../../utils/fetch';
@@ -19,6 +20,19 @@ const propTypes = {
 };
 
 function New({ news, category_name, category_url, socialLink }) {
+  useEffect(() => {
+    if (news.news.layoutInvestors) {
+      const body = document.getElementsByTagName('body')[0];
+      const logo = document.getElementById('img_log');
+      body.classList.add('mb-priority');
+      logo.src = '/static/images/svg/logo-priority.svg';
+    } else {
+      const body = document.getElementsByTagName('body')[0];
+      const logo = document.getElementById('img_log');
+      body.classList.remove('mb-priority');
+      logo.src = '/static/images/svg/logo.svg';
+    }
+  }, [news.news.layoutInvestors]);
   const { t } = useTranslation();
   return (
     <React.Fragment>
@@ -59,12 +73,12 @@ function New({ news, category_name, category_url, socialLink }) {
           <div className="entry-breadcrumb">
             <div className="container">
               <div className="breadcrumbs">
-                <a className="item" href="/">
-                  {t('home')}
-                </a>
-                <a className="item" href={`/news/category/${category_url}`}>
-                  {category_name}
-                </a>
+                <Link href="/">
+                  <a className="item">{t('home')}</a>
+                </Link>
+                <Link href="/news/category/[...name]" as={`/news/category/${category_url}`}>
+                  <a className="item">{category_name}</a>
+                </Link>
                 {/* <span className="item">{news.news === null ? '' : news.news.title}</span> */}
               </div>
             </div>
@@ -97,9 +111,13 @@ function New({ news, category_name, category_url, socialLink }) {
                 <div className="tags">
                   <h2>{t('related_content')}</h2>
                   {map(news.news.categories, item => (
-                    <a className="tag" href={`/news/category/${item.slug}`} key={item.id}>
-                      {item.name}
-                    </a>
+                    <Link
+                      href="/news/category/[...name]"
+                      as={`/news/category/${item.slug}`}
+                      key={item.id}
+                    >
+                      <a className="tag">{item.name}</a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -114,20 +132,24 @@ function New({ news, category_name, category_url, socialLink }) {
                 {map(news.newsRelated, (item, index) => {
                   return (
                     <div className="col-md-6" key={index}>
-                      <a href={`/news/${item.url}`} className="item item-inline-table">
-                        <div className="img">
-                          <img
-                            className="lazyload"
-                            data-src={`${process.env.DOMAIN}${item.baseImage}`}
-                            alt="images"
-                          />
-                        </div>
-                        <div className="divtext">
-                          <div className="date">{moment(item.created_at).format('DD/MM/YYYY')}</div>
-                          <h4 className="title line2">{item.title}</h4>
-                          <div className="desc line3">{item.shortDescription}</div>
-                        </div>
-                      </a>
+                      <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                        <a className="item item-inline-table">
+                          <div className="img">
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${item.baseImage}`}
+                              alt="images"
+                            />
+                          </div>
+                          <div className="divtext">
+                            <div className="date">
+                              {moment(item.created_at).format('DD/MM/YYYY')}
+                            </div>
+                            <h4 className="title line2">{item.title}</h4>
+                            <div className="desc line3">{item.shortDescription}</div>
+                          </div>
+                        </a>
+                      </Link>
                     </div>
                   );
                 })}
@@ -149,6 +171,7 @@ New.getInitialProps = async ctx => {
   let news = null;
   let category_name = null;
   let category_url = null;
+  // let layoutInvestors = null;
   map(query, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
   const newResponse = await getNewByUri(routerURL);
@@ -159,6 +182,7 @@ New.getInitialProps = async ctx => {
     newResponse.status === 200
   ) {
     news = newResponse.data;
+    // layoutInvestors = newResponse.data.layoutInvestors;
     if (
       newResponse.data.news.categories &&
       newResponse.data.news.categories !== null &&

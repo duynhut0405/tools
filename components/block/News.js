@@ -6,6 +6,7 @@ import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
+import Link from 'next/link';
 import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
 
@@ -26,7 +27,7 @@ function News({ data, type, id, optionWidth }) {
   const listNewsTabs = slice(listCategory, 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   let padding = '';
   if (optionWidth === '2') {
@@ -108,7 +109,9 @@ function News({ data, type, id, optionWidth }) {
                   </div>
                   <p className="title">{item.title}</p>
                   <p className="show">
-                    <a href={`/news/${item.url}`}>{t('viewmore')}</a>
+                    <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                      <a>{t('viewmore')}</a>
+                    </Link>
                   </p>
                 </div>
               </div>
@@ -129,10 +132,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <a className="viewall" href={`/news/category/${slugCategory}`}>
-                {t('view')}
-                <i className="icon-arrow-1"></i>
-              </a>
+              <Link href={`/news/category/[...name]`} as={`/news/category/${slugCategory}`}>
+                <a className="viewall">
+                  {t('view')}
+                  <i className="icon-arrow-1"></i>
+                </a>
+              </Link>
             </div>
           )}
           {/* 2tabs main */}
@@ -141,8 +146,37 @@ function News({ data, type, id, optionWidth }) {
               <div className="list-5 row ">
                 {map(listNews, (item, index) => (
                   <div className="col-md-6" key={index}>
-                    <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l equal`}>
-                      <div className="img tRes_71">
+                    <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                      <a className={`item efch-${index} ef-img-l equal`}>
+                        <div className="img tRes_71">
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                        </div>
+                        <div className="divtext">
+                          <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                          <h4 className="title line2">{item.title}</h4>
+                          <div className="desc line2">{item.shortDescription}</div>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* 3tabs */}
+            <div className="col-lg-4">
+              <div className="list-6">
+                {map(listNewsTabs, (item, index) => (
+                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                    <a key={index} className="item item-inline-table">
+                      <div className="img">
                         <img
                           className="lazyload"
                           data-src={
@@ -154,44 +188,19 @@ function News({ data, type, id, optionWidth }) {
                         />
                       </div>
                       <div className="divtext">
-                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                        <h4 className="title line2">{item.title}</h4>
-                        <div className="desc line2">{item.shortDescription}</div>
+                        <h4 className="title line4">{item.title}</h4>
                       </div>
                     </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* 3tabs */}
-            <div className="col-lg-4">
-              <div className="list-6">
-                {map(listNewsTabs, (item, index) => (
-                  <a key={index} href={`/news/${item.url}`} className="item item-inline-table">
-                    <div className="img">
-                      <img
-                        className="lazyload"
-                        data-src={
-                          item.base_image === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${item.base_image}`
-                        }
-                        alt="images"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <h4 className="title line4">{item.title}</h4>
-                    </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <a className="btn lg" href={`/news/category/${slugCategory}`}>
-                {t('Xem Tất Cả')}
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="btn lg">{t('Xem Tất Cả')}</a>
+              </Link>
             </div>
           )}
         </div>
@@ -206,10 +215,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <a className="viewall" href={`/news/category/${slugCategory}`}>
-                {t('view')}
-                <i className="icon-arrow-1"></i>
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="viewall">
+                  {t('view')}
+                  <i className="icon-arrow-1"></i>
+                </a>
+              </Link>
             </div>
           )}
           <div className="wrap-carousel">
@@ -229,33 +240,34 @@ function News({ data, type, id, optionWidth }) {
             >
               {map(listCategory, (item, index) => (
                 <div className="slide-item" key={index}>
-                  <a
-                    href={`/news/${item.url}`}
-                    className={`item efch-${index} ef-img-l `}
-                    key={index}
-                    //style={{ height: '300px', width: '262px' }}
-                  >
-                    <div className="img tRes_71">
-                      <img
-                        className="lazyload"
-                        data-src={
-                          item.base_image === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${item.base_image}`
-                        }
-                        style={{ height: '187px' }}
-                        alt="images"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                      <h4 className="title">
-                        <ShowMoreText lines={1} more="" expanded={false} width={370}>
-                          {item.title}
-                        </ShowMoreText>
-                      </h4>
-                    </div>
-                  </a>
+                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                    <a
+                      className={`item efch-${index} ef-img-l `}
+                      key={index}
+                      //style={{ height: '300px', width: '262px' }}
+                    >
+                      <div className="img tRes_71">
+                        <img
+                          className="lazyload"
+                          data-src={
+                            item.base_image === null
+                              ? `/images/imgdefault.jpg`
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
+                          style={{ height: '187px' }}
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title">
+                          <ShowMoreText lines={1} more="" expanded={false} width={370}>
+                            {item.title}
+                          </ShowMoreText>
+                        </h4>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
               ))}
             </Carousel>
@@ -280,9 +292,9 @@ function News({ data, type, id, optionWidth }) {
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <a className="btn lg" href={`/news/category/${slugCategory}`}>
-                {t('Xem Tất Cả')}
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="btn lg">{t('Xem Tất Cả')}</a>
+              </Link>
             </div>
           )}
         </div>
@@ -297,21 +309,175 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head home">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <a className="viewall" href={`/news/category/${slugCategory}`}>
-                {t('view')}
-                <i className="icon-arrow-1"></i>
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="viewall">
+                  {t('view')}
+                  <i className="icon-arrow-1"></i>
+                </a>
+              </Link>
             </div>
           )}
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => {
-              // if (index < 3) {
               return (
                 <div
                   className={data.column === undefined ? `col-md-4` : `col-md-${data.column}`}
                   key={index}
                 >
-                  <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
+                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                    <a className="item efch-2 ef-img-l">
+                      <div className="img tRes_71">
+                        <img
+                          className="lazyload"
+                          data-src={
+                            item.base_image === null
+                              ? `/images/imgdefault.jpg`
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+          {(data.title === undefined || data.title === '') && (
+            <div className="text-center mt-4">
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="btn lg">{t('Xem Tất Cả')}</a>
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+  if (type === '6') {
+    return (
+      <section className={`${padding} sec-blog-2 news-${type} `} id={id}>
+        <div className="container">
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="viewall">
+                  {t('view')}
+                  <i className="icon-arrow-1"></i>
+                </a>
+              </Link>
+            </div>
+          )}
+          <div className="row list-item">
+            <div className="col-lg-4">
+              <a href={data.url} className="item-banner  tRes">
+                <img
+                  className="lazyload"
+                  data-src={
+                    data.urlImage === null
+                      ? `/images/imgdefault.jpg`
+                      : `${process.env.DOMAIN}${data.urlImage}`
+                  }
+                  alt="images"
+                />
+              </a>
+            </div>
+            <div className="col-lg-8">
+              <div className="list-1-1  mb-30 ">
+                {map(listCategory, (item, index) => {
+                  if (index === 0) {
+                    return (
+                      <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                        <a className="item  tRes_39">
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                          <div className="divtext">
+                            <h4 className="title line2">{item.title}</h4>
+                          </div>
+                        </a>
+                      </Link>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+              <div className="list-5 row list-item">
+                {map(listCategory, (item, index) => {
+                  if (index > 0 && index < 3) {
+                    return (
+                      <div className="col-md-6">
+                        <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                          <a className={`item efch-${index} ef-img-l `}>
+                            <div className="img tRes_51">
+                              <img
+                                className="lazyload"
+                                data-src={
+                                  item.base_image === null
+                                    ? `/images/imgdefault.jpg`
+                                    : `${process.env.DOMAIN}${item.base_image}`
+                                }
+                                alt="images"
+                              />
+                            </div>
+                            <div className="divtext">
+                              <h4 className="title line2">{item.title}</h4>
+                            </div>
+                          </a>
+                        </Link>
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            </div>
+          </div>
+          {(data.title === undefined || data.title === '') && (
+            <div className="text-center mt-4">
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="btn lg">{t('Xem Tất Cả')}</a>
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+  if (type === '7') {
+    return (
+      <section className={`${padding} news-${type}`} id={id}>
+        <div className="container">
+          {(data.title || data.title !== '') && (
+            <div className="entry-head">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="viewall">
+                  {t('view')}
+                  <i className="icon-arrow-1"></i>
+                </a>
+              </Link>
+            </div>
+          )}
+          <div className="list-5 row list-item">
+            {map(listCategory, (item, index) => (
+              <div className="col-md-4" key={index}>
+                <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                  <a className={`item efch-${index} ef-img-l`}>
                     <div className="img tRes_71">
                       <img
                         className="lazyload"
@@ -329,181 +495,15 @@ function News({ data, type, id, optionWidth }) {
                       <div className="desc line2">{item.shortDescription}</div>
                     </div>
                   </a>
-                </div>
-              );
-              // }
-            })}
-          </div>
-          {/* <div className="list-5 row list-item">
-            {map(listCategory, (item, index) => {
-              if (index >= 3) {
-                return (
-                  <div className="col-md-3" key={index}>
-                    <a href={`/news/${item.url}`} className="item efch-2 ef-img-l ">
-                      <div className="img tRes_71">
-                        <img
-                         className="lazyload"
-                         
-                          data-src={item.base_image}
-                        />
-                      </div>
-                      <div className="divtext">
-                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                        <h4 className="title line2">{item.title}</h4>
-                        <div className="desc line2">{item.shortDescription}</div>
-                      </div>
-                    </a>
-                  </div>
-                );
-              }
-            })}
-          </div> */}
-          {(data.title === undefined || data.title === '') && (
-            <div className="text-center mt-4">
-              <a className="btn lg" href={`/news/category/${slugCategory}`}>
-                {t('Xem Tất Cả')}
-              </a>
-            </div>
-          )}
-        </div>
-      </section>
-    );
-  }
-  if (type === '6') {
-    return (
-      <section className={`${padding} sec-blog-2 news-${type} `} id={id}>
-        <div className="container">
-          {(data.title || data.title !== '') && (
-            <div className="entry-head">
-              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-              <p className="cl5">{data.description}</p>
-              <a className="viewall" href={`/news/category/${slugCategory}`}>
-                {t('view')}
-                <i className="icon-arrow-1"></i>
-              </a>
-            </div>
-          )}
-          <div className="row list-item">
-            <div className="col-lg-4">
-              <a href={data.url} className="item-banner  tRes ">
-                <img
-                  className="lazyload"
-                  data-src={
-                    data.urlImage === null
-                      ? `/images/imgdefault.jpg`
-                      : `${process.env.DOMAIN}${data.urlImage}`
-                  }
-                  alt="images"
-                />
-              </a>
-            </div>
-            <div className="col-lg-8">
-              <div className="list-1-1  mb-30 ">
-                {map(listCategory, (item, index) => {
-                  if (index === 0) {
-                    return (
-                      <a href={`/news/${item.url}`} className="item  tRes_39 ">
-                        <img
-                          className="lazyload"
-                          data-src={
-                            item.base_image === null
-                              ? `/images/imgdefault.jpg`
-                              : `${process.env.DOMAIN}${item.base_image}`
-                          }
-                          alt="images"
-                        />
-                        <div className="divtext">
-                          <h4 className="title line2">{item.title}</h4>
-                        </div>
-                      </a>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-              <div className="list-5 row list-item">
-                {map(listCategory, (item, index) => {
-                  if (index > 0 && index < 3) {
-                    return (
-                      <div className="col-md-6">
-                        <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l `}>
-                          <div className="img tRes_51">
-                            <img
-                              className="lazyload"
-                              data-src={
-                                item.base_image === null
-                                  ? `/images/imgdefault.jpg`
-                                  : `${process.env.DOMAIN}${item.base_image}`
-                              }
-                              alt="images"
-                            />
-                          </div>
-                          <div className="divtext">
-                            <h4 className="title line2">{item.title}</h4>
-                          </div>
-                        </a>
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-            </div>
-          </div>
-          {(data.title === undefined || data.title === '') && (
-            <div className="text-center mt-4">
-              <a className="btn lg" href={`/news/category/${slugCategory}`}>
-                {t('Xem Tất Cả')}
-              </a>
-            </div>
-          )}
-        </div>
-      </section>
-    );
-  }
-  if (type === '7') {
-    return (
-      <section className={`${padding} news-${type}`} id={id}>
-        <div className="container">
-          {(data.title || data.title !== '') && (
-            <div className="entry-head">
-              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-              <p className="cl5">{data.description}</p>
-              <a className="viewall" href={`/news/category/${slugCategory}`}>
-                {t('view')}
-                <i className="icon-arrow-1"></i>
-              </a>
-            </div>
-          )}
-          <div className="list-5 row list-item">
-            {map(listCategory, (item, index) => (
-              <div className="col-md-4" key={index}>
-                <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l`}>
-                  <div className="img tRes_71">
-                    <img
-                      className="lazyload"
-                      data-src={
-                        item.base_image === null
-                          ? `/images/imgdefault.jpg`
-                          : `${process.env.DOMAIN}${item.base_image}`
-                      }
-                      alt="images"
-                    />
-                  </div>
-                  <div className="divtext">
-                    <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                    <h4 className="title line2">{item.title}</h4>
-                    <div className="desc line2">{item.shortDescription}</div>
-                  </div>
-                </a>
+                </Link>
               </div>
             ))}
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <a className="btn lg" href={`/news/category/${slugCategory}`}>
-                {t('Xem Tất Cả')}
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="btn lg">{t('Xem Tất Cả')}</a>
+              </Link>
             </div>
           )}
         </div>
@@ -518,33 +518,37 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <a className="viewall" href={`/news/category/${slugCategory}`}>
-                {t('view')}
-                <i className="icon-arrow-1"></i>
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="viewall">
+                  {t('view')}
+                  <i className="icon-arrow-1"></i>
+                </a>
+              </Link>
             </div>
           )}
           <div className="list-5 list-5-1 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
-                <a href={`/news/${item.url}`} className={`item efch-${index} ef-img-l equal`}>
-                  <div className="divtext">
-                    <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                    <h4 className="title line2">{item.title}</h4>
-                    <div className="desc line2">{item.shortDescription}</div>
-                    <span className="more cl1" style={{ display: 'block', paddingTop: '30px' }}>
-                      {t('look_more')}
-                    </span>
-                  </div>
-                </a>
+                <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                  <a className={`item efch-${index} ef-img-l equal`}>
+                    <div className="divtext">
+                      <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                      <h4 className="title line2">{item.title}</h4>
+                      <div className="desc line2">{item.shortDescription}</div>
+                      <span className="more cl1" style={{ display: 'block', paddingTop: '30px' }}>
+                        {t('look_more')}
+                      </span>
+                    </div>
+                  </a>
+                </Link>
               </div>
             ))}
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <a className="btn lg" href={`/news/category/${slugCategory}`}>
-                {t('Xem Tất Cả')}
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="btn lg">{t('Xem Tất Cả')}</a>
+              </Link>
             </div>
           )}
         </div>
@@ -559,10 +563,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <a className="viewall" href={`/news/category/${slugCategory}`}>
-                {t('view')}
-                <i className="icon-arrow-1"></i>
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="viewall">
+                  {t('view')}
+                  <i className="icon-arrow-1"></i>
+                </a>
+              </Link>
             </div>
           )}
           <div className="row list-item">
@@ -571,21 +577,25 @@ function News({ data, type, id, optionWidth }) {
                 if (index === 0) {
                   return (
                     <React.Fragment key={index}>
-                      <a href={`/news/${item.url}`} className="item  tRes_56 video">
-                        <img
-                          className="lazyload"
-                          data-src={
-                            item.base_image === null
-                              ? `/images/imgdefault.jpg`
-                              : `${process.env.DOMAIN}${item.base_image}`
-                          }
-                          alt="images"
-                        ></img>
-                        <div className="divtext">
-                          <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                          <h4 className="title line2">{item.title}</h4>
-                        </div>
-                      </a>
+                      <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                        <a className="item  tRes_56 video">
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          ></img>
+                          <div className="divtext">
+                            <div className="date">
+                              {moment(item.created_at).format('DD-MM-YYYY')}
+                            </div>
+                            <h4 className="title line2">{item.title}</h4>
+                          </div>
+                        </a>
+                      </Link>
                     </React.Fragment>
                   );
                 }
@@ -598,28 +608,30 @@ function News({ data, type, id, optionWidth }) {
                   if (index > 0 && index < 3) {
                     return (
                       <React.Fragment>
-                        <a href={`/news/${item.url}`} className="item item-inline-table">
-                          <React.Fragment>
-                            <div className="img tRes_56 video cl">
-                              <img
-                                className="lazyload"
-                                data-src={
-                                  item.base_image === null
-                                    ? `/images/imgdefault.jpg`
-                                    : `${process.env.DOMAIN}${item.base_image}`
-                                }
-                                alt="images"
-                              />
-                            </div>
-                            <div className="divtext">
-                              <div className="date">
-                                {moment(item.created_at).format('DD-MM-YYYY')}
+                        <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                          <a className="item item-inline-table">
+                            <React.Fragment>
+                              <div className="img tRes_56 video cl">
+                                <img
+                                  className="lazyload"
+                                  data-src={
+                                    item.base_image === null
+                                      ? `/images/imgdefault.jpg`
+                                      : `${process.env.DOMAIN}${item.base_image}`
+                                  }
+                                  alt="images"
+                                />
                               </div>
-                              <h4 className="title line2">{item.title}</h4>
-                              <div className="desc line3">{item.shortDescription}</div>
-                            </div>
-                          </React.Fragment>
-                        </a>
+                              <div className="divtext">
+                                <div className="date">
+                                  {moment(item.created_at).format('DD-MM-YYYY')}
+                                </div>
+                                <h4 className="title line2">{item.title}</h4>
+                                <div className="desc line3">{item.shortDescription}</div>
+                              </div>
+                            </React.Fragment>
+                          </a>
+                        </Link>
                       </React.Fragment>
                     );
                   }
@@ -630,9 +642,9 @@ function News({ data, type, id, optionWidth }) {
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <a className="btn lg" href={`/news/category/${slugCategory}`}>
-                {t('Xem Tất Cả')}
-              </a>
+              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+                <a className="btn lg">{t('Xem Tất Cả')}</a>
+              </Link>
             </div>
           )}
         </div>
