@@ -15,8 +15,8 @@ function Table({ t, data }) {
         <tbody>
           <tr>
             <th>{t('period')}</th>
-            <th>{t('USD')}</th>
-            <th>{t('VND')}</th>
+            <th className="col">{t('USD')}</th>
+            <th className="col">{t('VND')}</th>
           </tr>
           {map(data, rate => (
             <tr key={rate.id}>
