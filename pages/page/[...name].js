@@ -49,10 +49,10 @@ function Page({ page, silder, menuMiddle, routerURL, listSlug, slugClass, hasSid
   return (
     <React.Fragment>
       <Head>
-        <title>{page ? page.meta_title : 'MB NGÂN HÀNG QUÂN ĐỘI | MBBANK'}</title>
-        <meta name="title" content={page ? page.meta_title : ''} />
-        <meta name="description" content={page ? page.meta_description : ''} />
-        <meta name="keywords" content={page ? page.meta_keyword : ''} />
+        <title>{page.meta_title || page.name}</title>
+        <meta name="title" content={page.meta_title || page.name} />
+        <meta name="description" content={page.meta_description || ''} />
+        <meta name="keywords" content={page.meta_keyword || ''} />
         {noIndex && <meta name="robots" content="noindex, nofollow" />}
         {!noIndex && <meta name="robots" content="index, follow" />}
         {ReactHtmlParser(link_canonical)}
