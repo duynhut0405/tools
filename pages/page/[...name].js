@@ -18,7 +18,7 @@ const propTypes = {
   hasSideber: PropTypes.number
 };
 
-function Page({ page, silder, menuMiddle, routerURL, listSlug, slugClass, hasSideber }) {
+function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSideber }) {
   const link_canonical = page.meta_keyword
     ? page.meta_keyword
     : `<link rel="canonical" href="${process.env.LINK_DOMAIN}/page/${page.slug}">`;

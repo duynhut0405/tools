@@ -39,9 +39,9 @@ function Carousels({ silder }) {
                     <div className="col-md-6">
                       <div className="img">
                         <img
-                          className="lazyload"
+                          className="images"
                           alt="images"
-                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                          src={`${process.env.DOMAIN}${item.urlImage}`}
                         />
                       </div>
                     </div>
@@ -60,7 +60,7 @@ function Carousels({ silder }) {
                     <>
                       <div className="divtext text-left-mg ">
                         <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(item.note_1)}</h1>
-                        <p className="cl1">{ReactHtmlParser(item.note_2)}</p>
+                        <div className="cl1">{ReactHtmlParser(item.note_2)}</div>
                         <div className="text_content3">{item.note_3}</div>
                         {item.text_action === null ||
                         item.text_action === undefined ||
@@ -87,20 +87,16 @@ function Carousels({ silder }) {
                       <div className="wimg">
                         <img
                           className={
-                            item.options === '2'
-                              ? 'img-center img-pc lazyload'
-                              : 'img-right img-pc lazyload'
+                            item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'
                           }
-                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                          src={`${process.env.DOMAIN}${item.urlImage}`}
                           alt="icon"
                         />
                         <img
                           className={
-                            item.options === '2'
-                              ? 'img-center img-mb lazyload'
-                              : 'img-right img-mb lazyload'
+                            item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'
                           }
-                          data-src={`${process.env.DOMAIN}${item.urlImageMobile}`}
+                          src={`${process.env.DOMAIN}${item.urlImageMobile}`}
                           alt="icon"
                         />
                       </div>
