@@ -42,6 +42,12 @@ function MenuIntro({ data, pageId, optionWidth }) {
     getFormByID();
   }, []);
 
+  useEffect(() => {
+    const listModal = document.getElementsByClassName('myModal');
+    const wrapper = document.getElementById('wrapper');
+    map(listModal, modalItems => wrapper.appendChild(modalItems));
+  }, []);
+
   const handleChange = event => {
     event.persist();
     setFormState(() => ({
@@ -72,6 +78,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
     };
 
     //sendMailService(dataSend);
+    setModal(!modal);
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
@@ -243,12 +250,12 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     return null;
                   })}
                 </form>
-                <PopupThankyou modal={modal} setModal={setModal} />
               </div>
             </div>
           </div>
         </div>
       </section>
+      <PopupThankyou modal={modal} setModal={setModal} />
     </React.Fragment>
   );
 }
