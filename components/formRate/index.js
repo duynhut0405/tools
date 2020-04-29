@@ -21,19 +21,26 @@ function FormRate({ data, interestRate }) {
   const { t } = useTranslation();
 
   const getCurrentTo = name => {
-    const obj = currency.content.find(item => item.currency === name);
-    if (obj) {
-      setArrTo(obj.children);
+    if (name === 'VND') {
+      setArrTo(data.exchangeRateDetail);
     } else {
-      setArrTo([]);
-      setTo(0);
+      const obj = currency.content.find(item => item.currency === name);
+      if (obj) {
+        setArrTo(obj.children);
+        setcurrencyTo(obj.children[0].currency);
+      } else {
+        setArrTo([]);
+        setcurrencyTo('');
+        setTo(0);
+      }
     }
   };
 
   const getSellBycurrency = currency => {
     const obj = data.exchangeRateDetail.find(item => item.currency === currency);
     if (obj) {
-      return obj.sell;
+      const result = obj.sell !== null ? obj.sell : 0;
+      return result;
     }
     return 0;
   };
@@ -47,18 +54,23 @@ function FormRate({ data, interestRate }) {
     if (getSellBycurrency(currencyTo) === 0) {
       setTo(0);
     } else {
+      console.log(
+        'getBuyTransferBycurrency(currencyFrom):',
+        getBuyTransferBycurrency(currencyFrom)
+      );
+      console.log('getSellBycurrency(currencyTo):', getSellBycurrency(currencyTo));
       const result =
         Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
       if (result === 0) {
         setTo(0);
       } else {
-        setTo(result.toLocaleString(navigator.language, { minimumFractionDigits: 4 }));
+        setTo(result.toFixed(4));
       }
     }
   };
 
   useEffect(() => {
-    if (from !== '' || currencyFrom !== 'VND' || currencyTo !== 'USD') {
+    if (from !== 0 || currencyFrom !== 'VND' || currencyTo !== 'USD') {
       Calculator();
     }
   }, [from, currencyFrom, currencyTo]);
