@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import { map } from 'lodash';
 import { InvestorsActions } from '../../store/actions';
@@ -24,6 +24,13 @@ function DetailPerson({ data, detailPerson, getDetailPerson, id }) {
   } else {
     padding = 'sec-';
   }
+
+  useEffect(() => {
+    const listModal = document.getElementsByClassName('myModal');
+    const wrapper = document.getElementById('wrapper');
+    map(listModal, modalItems => wrapper.appendChild(modalItems));
+  }, []);
+
   return (
     <main id="main" className={`${padding} person`}>
       <div className="container" id={id}>

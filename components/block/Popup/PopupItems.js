@@ -45,8 +45,7 @@ function PopupItems({ item, modal, setModal }) {
                 <div className="img tRes">
                   <img
                     className="lazyload"
-                    data-lazy-data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                    data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                    src={`${process.env.DOMAIN}${item.urlImage}`}
                     alt="images"
                   />
                 </div>
