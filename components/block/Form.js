@@ -29,7 +29,6 @@ function Form({ data, pageId, id }) {
   }, []);
 
   const handleChange = event => {
-    console.log('value:', event.target.value);
     event.persist();
     setFormState(() => ({
       ...formState,
@@ -79,7 +78,6 @@ function Form({ data, pageId, id }) {
   } else {
     padding = 'sec-';
   }
-console.log('formState:', formState)
   return (
     <section className={`${padding} sec-tuvan form-register`} id={id}>
       <div className="container">

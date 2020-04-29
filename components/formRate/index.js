@@ -54,11 +54,6 @@ function FormRate({ data, interestRate }) {
     if (getSellBycurrency(currencyTo) === 0) {
       setTo(0);
     } else {
-      console.log(
-        'getBuyTransferBycurrency(currencyFrom):',
-        getBuyTransferBycurrency(currencyFrom)
-      );
-      console.log('getSellBycurrency(currencyTo):', getSellBycurrency(currencyTo));
       const result =
         Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
       if (result === 0) {
