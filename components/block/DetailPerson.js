@@ -56,7 +56,7 @@ function DetailPerson({ data, detailPerson, getDetailPerson, id }) {
                 </div>
               </React.Fragment>
             ))}
-            <PopupItems item={detailPerson} modal={modal} setModal={setModal} />
+            <PopupItems item={detailPerson} modal={modal} setModal={setModal} name="detailPerson" />
           </div>
         </div>
       </div>

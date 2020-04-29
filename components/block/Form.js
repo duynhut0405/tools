@@ -5,6 +5,7 @@ import { map } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import { sendMailService } from '../../services/form';
 import ReactLoading from 'react-loading';
+import PopupThankyou from './Popup/PopupThankyou';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -17,6 +18,7 @@ function Form({ data, pageId, id }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [modal, setModal] = useState(false);
   const getFormByID = async () => {
     const res = await getFormbuilderByIdService(data.formdata);
     if (res && res.status === 200) {
@@ -62,6 +64,7 @@ function Form({ data, pageId, id }) {
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
+      setModal(!modal);
       setFormState({});
     } else {
       setIsLoading(false);
@@ -78,6 +81,7 @@ function Form({ data, pageId, id }) {
   } else {
     padding = 'sec-';
   }
+
   return (
     <section className={`${padding} sec-tuvan form-register`} id={id}>
       <div className="container">
@@ -186,6 +190,7 @@ function Form({ data, pageId, id }) {
             return null;
           })}
         </form>
+        <PopupThankyou modal={modal} setModal={setModal} />
       </div>
       {data.image && (
         <img
