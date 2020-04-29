@@ -78,7 +78,6 @@ function Form({ data, pageId, id }) {
   } else {
     padding = 'sec-';
   }
-
   return (
     <section className={`${padding} sec-tuvan form-register`} id={id}>
       <div className="container">
