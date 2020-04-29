@@ -21,7 +21,7 @@ const propTypes = {
 
 function New({ news, category_name, category_url, socialLink }) {
   useEffect(() => {
-    if (news.news.layoutInvestors) {
+    if (news && news.news.layoutInvestors) {
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       body.classList.add('mb-priority');
@@ -32,43 +32,37 @@ function New({ news, category_name, category_url, socialLink }) {
       body.classList.remove('mb-priority');
       logo.src = '/static/images/svg/logo.svg';
     }
-  }, [news.news.layoutInvestors]);
+  }, [news]);
   const { t } = useTranslation();
   return (
     <React.Fragment>
-      <Head>
-        <title>
-          {news && news.news && news.news.meta_title ? news.news.meta_title : news.news.name}
-        </title>
-        <meta
-          name="title"
-          content={
-            news && news.meta_title && news.news.meta_title ? news.news.meta_title : news.news.name
-          }
-        />
-        <meta
-          name="description"
-          content={
-            news && news.news && news.news.meta_description ? news.news.meta_description : ''
-          }
-        />
-        <meta
-          name="keywords"
-          content={news && news.news && news.news.meta_keyword ? news.news.meta_keyword : ''}
-        />
-        <meta
-          property="og:image"
-          itemProp="thumbnaiUrl"
-          content={
-            news && news.news && news.news.miniImage
-              ? `${process.env.DOMAIN}${news.news.miniImage}`
-              : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
-          }
-        />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="354" />
-      </Head>
-      {news.news !== null && (
+      {news && news.news && (
+        <Head>
+          <title>{news.news.meta_title ? news.news.meta_title : news.news.name}</title>
+          <meta
+            name="title"
+            content={news.news.meta_title ? news.news.meta_title : news.news.name}
+          />
+          <meta
+            name="description"
+            content={news.news.meta_description ? news.news.meta_description : ''}
+          />
+          <meta name="keywords" content={news.news.meta_keyword ? news.news.meta_keyword : ''} />
+          <meta
+            property="og:image"
+            itemProp="thumbnaiUrl"
+            content={
+              news.news.miniImage
+                ? `${process.env.DOMAIN}${news.news.miniImage}`
+                : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
+            }
+          />
+          <meta property="og:image:width" content="800" />
+          <meta property="og:image:height" content="354" />
+        </Head>
+      )}
+
+      {news && news.news !== null && (
         <>
           <div className="entry-breadcrumb">
             <div className="container">
