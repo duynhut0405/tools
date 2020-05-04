@@ -8,8 +8,7 @@ const propTypes = {
   modal: Proptypes.bool,
   setModal: Proptypes.func
 };
-function PopupItems({ item, modal, setModal }) {
-  const toggle = () => setModal(!modal);
+function PopupItems({ modal, setModal }) {
   const { t } = useTranslation();
 
   return (
@@ -17,12 +16,12 @@ function PopupItems({ item, modal, setModal }) {
       <div
         id="thankyouModal"
         className={`myModal thankyouModal ${modal ? `active` : null}`}
-        toggle={toggle}
+        onClick={setModal}
       >
         <span
           className="btnModal overlay"
           onClick={() => {
-            setModal(!modal);
+            setModal();
             document.body.classList.remove('showModal');
           }}
         ></span>
@@ -31,7 +30,7 @@ function PopupItems({ item, modal, setModal }) {
             <span
               className="btnModal btn-close"
               onClick={() => {
-                setModal(!modal);
+                setModal();
                 document.body.classList.remove('showModal');
               }}
             >

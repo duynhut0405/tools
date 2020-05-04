@@ -174,7 +174,7 @@ function News({ data, type, id, optionWidth }) {
             <div className="col-lg-4">
               <div className="list-6">
                 {map(listNewsTabs, (item, index) => (
-                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                  <Link href="/news/[...slug]" as={`/news/${item.url}`} key={index}>
                     <a key={index} className="item item-inline-table">
                       <div className="img">
                         <img

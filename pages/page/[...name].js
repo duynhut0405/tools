@@ -35,14 +35,18 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
     if (hasSideber === 1) {
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
-      body.classList.add('mb-priority');
-      logo.src = '/static/images/svg/logo-priority.svg';
+      if (body && logo) {
+        body.classList.add('mb-priority');
+        logo.src = '/static/images/svg/logo-priority.svg';
+      }
     }
     if (hasSideber === 0) {
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
-      body.classList.remove('mb-priority');
-      logo.src = '/static/images/svg/logo.svg';
+      if (body && logo) {
+        body.classList.remove('mb-priority');
+        logo.src = '/static/images/svg/logo.svg';
+      }
     }
   }, [page, hasSideber]);
 

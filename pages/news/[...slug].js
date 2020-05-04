@@ -24,13 +24,17 @@ function New({ news, category_name, category_url, socialLink }) {
     if (news && news.news.layoutInvestors) {
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
-      body.classList.add('mb-priority');
-      logo.src = '/static/images/svg/logo-priority.svg';
+      if (body && logo) {
+        body.classList.add('mb-priority');
+        logo.src = '/static/images/svg/logo-priority.svg';
+      }
     } else {
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
-      body.classList.remove('mb-priority');
-      logo.src = '/static/images/svg/logo.svg';
+      if (body && logo) {
+        body.classList.remove('mb-priority');
+        logo.src = '/static/images/svg/logo.svg';
+      }
     }
   }, [news]);
   const { t } = useTranslation();

@@ -5,7 +5,7 @@ import { sendMailService } from '../../services/form';
 import PropTypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import ReactLoading from 'react-loading';
-import PopupThankyou from './Popup/PopupThankyou';
+// import PopupThankyou from './Popup/PopupThankyou';
 
 const propTypes = {
   data: PropTypes.object,
@@ -15,17 +15,18 @@ const propTypes = {
   optionWidth: PropTypes.string
 };
 
+const getFormByID = async (data, setData) => {
+  const res = await getFormbuilderByIdService(Number(data.formdata));
+  if (res && res.status === 200) {
+    setData(JSON.parse(res.data.list));
+  }
+};
+
 function MenuIntro({ data, pageId, optionWidth }) {
   const [formdata, setFormData] = useState({});
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
-  const getFormByID = async () => {
-    const res = await getFormbuilderByIdService(Number(data.formdata));
-    if (res && res.status === 200) {
-      setFormData(JSON.parse(res.data.list));
-    }
-  };
 
   let padding = '';
   if (optionWidth === '2') {
@@ -39,14 +40,17 @@ function MenuIntro({ data, pageId, optionWidth }) {
   }
 
   useEffect(() => {
-    getFormByID();
-  }, []);
+    getFormByID(data, setFormData);
+  }, [getFormByID]);
 
-  useEffect(() => {
-    const listModal = document.getElementsByClassName('myModal');
-    const wrapper = document.getElementById('wrapper');
-    map(listModal, modalItems => wrapper.appendChild(modalItems));
-  }, []);
+  // useEffect(() => {
+  //   const listModal = document.getElementsByClassName('myModal');
+  //   const wrapper = document.getElementById('wrapper');
+  //   console.log(listModal);
+  //   if (listModal && wrapper) {
+  //     map(listModal, modalItems => wrapper.appendChild(modalItems));
+  //   }
+  // }, []);
 
   const handleChange = event => {
     event.persist();
@@ -78,7 +82,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
     };
 
     //sendMailService(dataSend);
-    setModal(!modal);
+    // setModal(!modal);
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
@@ -115,23 +119,6 @@ function MenuIntro({ data, pageId, optionWidth }) {
               </div>
               <div className="boxwidget-2">
                 <div>{ReactHtmlParser(data.descriptionBot)}</div>
-                {/* {data.contact_1 !== undefined && (
-                  <Row>
-                    <Col xs="5">
-                      <div className="contact">
-                        <h3 className="">{data.contact_1}</h3>
-                        <i className="icon-arrow-1"></i>
-                      </div>
-                    </Col>
-                    <Col xs="7">
-                      <div className="contact">
-                        <h3 className="">{data.contact_2}</h3>
-                        <i className="icon-arrow-1"></i>
-                      </div>
-                    </Col>
-                  </Row>
-               
-                )} */}
                 <div className="row">
                   <div className="col-md-5">
                     <a className="btnPhone" href="tel:1900545426">
@@ -152,7 +139,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                   {map(formdata, (item, index) => {
                     if (item.type === 'header') {
                       return (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                           <div className="max600 entry-head text-center">
                             {ReactHtmlParser(item.label)}
                           </div>
@@ -168,7 +155,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     }
                     if (item.type === 'radio-group') {
                       return (
-                        <div className="mb-30 text-center">
+                        <div className="mb-30 text-center" key={index}>
                           {map(item.values, (items, key) => (
                             <label className="radio" key={key} style={{ marginLeft: '20px' }}>
                               <input
@@ -187,7 +174,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     }
                     if (item.type === 'text') {
                       return (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                           <div className="col-12">
                             {item.label && <label>{item.label}</label>}
                             <input
@@ -204,7 +191,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     }
                     if (item.type === 'textarea') {
                       return (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                           <div className="col-12">
                             {item.label && <label>{item.label}</label>}
                             <input
@@ -222,7 +209,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     }
                     if (item.type === 'button') {
                       return (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                           <div className="col-12 text-center">
                             <button className="btn" type={item.subtype}>
                               {item.label}
@@ -255,7 +242,26 @@ function MenuIntro({ data, pageId, optionWidth }) {
           </div>
         </div>
       </section>
-      <PopupThankyou modal={modal} setModal={setModal} />
+      {/* <PopupThankyou modal={modal} setModal={() => setModal(!modal)} /> */}
+      {/* <div id="thankyouModal" className={`myModal thankyouModal ${modal ? `active` : null}`}>
+        <span className="btnModal overlay"></span>
+        <div className="container  max500 middle">
+          <div className="contentModal">
+            <span className="btnModal btn-close" onClick={() => setModal(false)}>
+              <i className="icon-close"> </i>
+            </span>
+            <div className="logo">
+              <a href="/">
+                <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+              </a>
+            </div>
+            <div className="divtext">
+              <h2 className="title cl1">Thank you</h2>
+              <div className="desc "><p>{t('thankyou')}</p></div>
+            </div>
+          </div>
+        </div>
+      </div> */}
     </React.Fragment>
   );
 }
