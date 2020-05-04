@@ -204,7 +204,7 @@ function Form({ data, pageId, id }) {
           data-src={`${process.env.DOMAIN}${data.urlImage}`}
         ></img>
       )}
-      <PopupThankyou modal={modal} setModal={setModal} />
+      <PopupThankyou modal={modal} setModal={() => setModal(false)} />
     </section>
   );
 }
