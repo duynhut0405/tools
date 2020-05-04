@@ -27,12 +27,7 @@ function UserManual({ data, id }) {
       <div className="container">
         <div className="row center">
           <div className="col-md-5">
-            <div
-              className="w-sync-1 loaded"
-              data-lazy-type="bg"
-              data-lazy-data-src={data.image}
-              style={{ backgroundImage: `url(${data.image})` }}
-            >
+            <div className="w-sync-1 loaded" style={{ backgroundImage: `url(${data.image})` }}>
               <div className="sync-1 owl-carousel s-loop owl-loaded owl-drag" paramowl="margin=0">
                 <div className="owl-stage-outer">
                   <div
@@ -48,27 +43,19 @@ function UserManual({ data, id }) {
                         {' '}
                         <img
                           className="lazyload"
-                          data-data-src={data.listDetail[0].image}
+                          src={data.listDetail[0].image}
                           alt="images"
                         />{' '}
                       </div>
                     </div>
                     <div className="owl-item cloned" style={{ width: '248px' }}>
                       <div className="item">
-                        <img
-                          className="lazyload"
-                          data-data-src={data.listDetail[0].image}
-                          alt="images"
-                        />{' '}
+                        <img className="lazyload" src={data.listDetail[0].image} alt="images" />{' '}
                       </div>
                     </div>
                     <div className="owl-item cloned" style={{ width: '248px' }}>
                       <div className="item">
-                        <img
-                          className="lazyload"
-                          data-data-src={data.listDetail[0].image}
-                          alt="images"
-                        />
+                        <img className="lazyload" src={data.listDetail[0].image} alt="images" />
                       </div>
                     </div>
 
@@ -76,9 +63,8 @@ function UserManual({ data, id }) {
                       <div className="item">
                         <img
                           className="lazyload"
-                          data-data-src={data.listDetail[step - 1].image}
                           alt="images"
-                          data-src={data.listDetail[step - 1].image}
+                          src={data.listDetail[step - 1].image}
                           style={{ opacity: 1 }}
                         />{' '}
                       </div>
