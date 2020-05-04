@@ -199,7 +199,7 @@ function Form({ data, pageId, id }) {
       </div>
       {data.image && (
         <img
-          className="lazyload"
+          className="lazyload br"
           alt="images"
           data-src={`${process.env.DOMAIN}${data.urlImage}`}
         ></img>
