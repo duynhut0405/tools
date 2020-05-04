@@ -5,7 +5,7 @@ import { sendMailService } from '../../services/form';
 import PropTypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import ReactLoading from 'react-loading';
-// import PopupThankyou from './Popup/PopupThankyou';
+import PopupThankyou from './Popup/PopupThankyou';
 
 const propTypes = {
   data: PropTypes.object,
@@ -82,7 +82,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
     };
 
     //sendMailService(dataSend);
-    // setModal(!modal);
+    setModal(!modal);
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
@@ -242,26 +242,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
           </div>
         </div>
       </section>
-      {/* <PopupThankyou modal={modal} setModal={() => setModal(!modal)} /> */}
-      {/* <div id="thankyouModal" className={`myModal thankyouModal ${modal ? `active` : null}`}>
-        <span className="btnModal overlay"></span>
-        <div className="container  max500 middle">
-          <div className="contentModal">
-            <span className="btnModal btn-close" onClick={() => setModal(false)}>
-              <i className="icon-close"> </i>
-            </span>
-            <div className="logo">
-              <a href="/">
-                <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
-              </a>
-            </div>
-            <div className="divtext">
-              <h2 className="title cl1">Thank you</h2>
-              <div className="desc "><p>{t('thankyou')}</p></div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      <PopupThankyou modal={modal} setModal={() => setModal(false)} />
     </React.Fragment>
   );
 }
