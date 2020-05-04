@@ -132,7 +132,7 @@ function MenuMiddle({ data, query }) {
                       return (
                         <div className="col-4" key={key}>
                           <div className={query === item.slugPages ? 'item active' : 'item'}>
-                            <Link href="/page/[name]" as={`/page/${item.slugPages}`}>
+                            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
                               <a className="link">
                                 <div className="img">
                                   <img

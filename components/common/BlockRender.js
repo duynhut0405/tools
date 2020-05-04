@@ -35,14 +35,15 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import NewCard from '../NewCard';
 import TableRate from '../tableRate';
-import UserManual from '../block/UserManual'
+import UserManual from '../block/UserManual';
 
 const propTypes = {
   data: PropTypes.array,
   pageId: PropTypes.number
 };
 
-function BlockRender({ data, pageId }) {//
+function BlockRender({ data, pageId }) {
+  //
   return (
     <>
       {data !== undefined && (
@@ -271,9 +272,7 @@ function BlockRender({ data, pageId }) {//
                 );
               }
               if (values.name === 'Hướng dẫn sử dụng' && values.content !== null) {
-                return (
-                  <UserManual key={index} data={JSON.parse(values.content)} id={values.id} />
-                );
+                return <UserManual key={index} data={JSON.parse(values.content)} id={values.id} />;
               }
               return null;
             }
