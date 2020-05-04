@@ -136,7 +136,7 @@ function SearchResult({ t, query }) {
                                 : `/page/${news.object.slug}`
                             }
                           >
-                            <a>
+                            <a onClick={onClose}>
                               {news.type === 'news' && (
                                 <h3 className="ctext">{news.object.title}</h3>
                               )}
