@@ -33,7 +33,7 @@ function Carousels({ silder }) {
             showIndicators={false}
           >
             {map(data, (item, index) => (
-              <div className="container" key={index}>
+              <div className={`container  option-${item.options}`} key={index}>
                 {item.options === '3' && (
                   <div className="row center">
                     <div className="col-md-6">

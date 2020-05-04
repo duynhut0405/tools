@@ -1,0 +1,6 @@
+# robots.txt
+User-agent: *
+Disallow: /NextJS/
+Disallow: /api/
+Disallow: /resources/
+Disallow: /bin/
