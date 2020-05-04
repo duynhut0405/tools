@@ -17,12 +17,9 @@ function Widget({ data }) {
           </a>
         </Link>
       </div>
-      {ReactHtmlParser(data.footer_brief)}
-      {/* <div className="call">
-        <a href={`tel:${data.footer_address}`}>
-          <i className="icon-phone-1"></i> {data.footer_address}
-        </a>
-      </div> */}
+      <React.Fragment>
+        {data && data.footer_brief !== undefined && ReactHtmlParser(data.footer_brief)}
+      </React.Fragment>
     </React.Fragment>
   );
 }
