@@ -104,7 +104,7 @@ function Form({ data, pageId, id }) {
               return (
                 <React.Fragment>
                   <div className={`col-12`}>
-                    <h2 className={`text-center ${item.className}`}>
+                    <h2 className={`text-center__ ${item.className}`}>
                       {ReactHtmlParser(item.label)}
                     </h2>
                   </div>
@@ -189,7 +189,7 @@ function Form({ data, pageId, id }) {
             if (item.type === 'button') {
               return (
                 <React.Fragment>
-                  <div className={`d-flex col-12 text-center `}>
+                  <div className={`d-flex col-12 text-center__ `}>
                     <button className={`btn`} type={item.subtype}>
                       {item.label}
                     </button>
