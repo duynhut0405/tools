@@ -141,108 +141,110 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id,
   };
 
   return (
-    <div className={`container ${padding} tool-${types}`} id={id}>
-      <h2 className="ht">{title}</h2>
-      <div className="cttab-xx  sec-b sec-tb">
-        <div className="w-menu-over">
-          <div className="p-tool1__select1 p-tool1__select1-js">
-            <label className="option1 radio">
-              {t('loan_limit')}
-              <input
-                type="radio"
-                checked={type === 1}
-                name="radio-loan1"
-                onChange={() => {
-                  setType(1);
-                  setMaxMonth(12);
-                  setTitle(t('loan_limit'));
-                }}
-              />
-              <span className="checkmark1"></span>
-            </label>
-            <label className="option1 radio">
-              {t('tool_product_business.investment_loan')}
-              <input
-                type="radio"
-                checked={type === 2}
-                name="radio-loan2"
-                onChange={() => {
-                  setType(2);
-                  setMaxMonth(84);
-                  setTitle(t('tool_product_business.investment_loan'));
-                }}
-              />
-              <span className="checkmark1"></span>
-            </label>
+    <div className={`${padding} tool-${types}`} id={id}>
+      <div className="container">
+        <h2 className="ht">{title}</h2>
+        <div className="cttab-xx  sec-b sec-tb">
+          <div className="w-menu-over">
+            <div className="p-tool1__select1 p-tool1__select1-js">
+              <label className="option1 radio">
+                {t('loan_limit')}
+                <input
+                  type="radio"
+                  checked={type === 1}
+                  name="radio-loan1"
+                  onChange={() => {
+                    setType(1);
+                    setMaxMonth(12);
+                    setTitle(t('loan_limit'));
+                  }}
+                />
+                <span className="checkmark1"></span>
+              </label>
+              <label className="option1 radio">
+                {t('tool_product_business.investment_loan')}
+                <input
+                  type="radio"
+                  checked={type === 2}
+                  name="radio-loan2"
+                  onChange={() => {
+                    setType(2);
+                    setMaxMonth(84);
+                    setTitle(t('tool_product_business.investment_loan'));
+                  }}
+                />
+                <span className="checkmark1"></span>
+              </label>
+            </div>
           </div>
-        </div>
-        <div className="tab-content">
-          <div className="active">
-            <div className="tab-inner">
-              <div className="form-vay-von">
-                <div className="row ">
-                  <div className="col-md-7 ">
-                    <div className="inner">
-                      <FieldInput
-                        label={t('total')}
-                        maxValue={maxValue}
-                        value={total_capital_needs}
-                        onChange={value => setTotalCapitalNeeds(value)}
-                      />
-                      <FieldInput
-                        label={t('tool_result.equity_capital')}
-                        maxValue={maxValue}
-                        value={equity_capital}
-                        onChange={value => setEquityCapital(value)}
-                      />
-                      <FieldInput
-                        label={t('total')}
-                        maxValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
-                        onBlur={onBlur}
-                        value={amount}
-                        onChange={value => setAmount(value)}
-                      />
-                      <FieldInput
-                        label={t('loan_term')}
-                        maxValue={maxMonth}
-                        value={month}
-                        note
-                        onChange={value => setMonth(value)}
+          <div className="tab-content">
+            <div className="active">
+              <div className="tab-inner">
+                <div className="form-vay-von">
+                  <div className="row ">
+                    <div className="col-md-7 ">
+                      <div className="inner">
+                        <FieldInput
+                          label={t('total')}
+                          maxValue={maxValue}
+                          value={total_capital_needs}
+                          onChange={value => setTotalCapitalNeeds(value)}
+                        />
+                        <FieldInput
+                          label={t('tool_result.equity_capital')}
+                          maxValue={maxValue}
+                          value={equity_capital}
+                          onChange={value => setEquityCapital(value)}
+                        />
+                        <FieldInput
+                          label={t('total')}
+                          maxValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
+                          onBlur={onBlur}
+                          value={amount}
+                          onChange={value => setAmount(value)}
+                        />
+                        <FieldInput
+                          label={t('loan_term')}
+                          maxValue={maxMonth}
+                          value={month}
+                          note
+                          onChange={value => setMonth(value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-5">
+                      <Result
+                        title={title}
+                        interest_rate={interest_rate}
+                        amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
+                        monthlyInterest={null} //tiền lãi hàng tháng
+                        monthlypayment={monthlypayment} //Tiền gốc hàng tháng
+                        equity_capital={Number(equity_capital.replace(/[^0-9.-]+/g, ''))} // vốn tự có
+                        month={month}
+                        totalAmount={totalAmount}
                       />
                     </div>
                   </div>
-                  <div className="col-md-5">
-                    <Result
-                      title={title}
-                      interest_rate={interest_rate}
-                      amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={null} //tiền lãi hàng tháng
-                      monthlypayment={monthlypayment} //Tiền gốc hàng tháng
-                      equity_capital={Number(equity_capital.replace(/[^0-9.-]+/g, ''))} // vốn tự có
-                      month={month}
-                      totalAmount={totalAmount}
-                    />
-                  </div>
+                  <p className="note">{t('tool_note')}</p>
+                  <a className="btn" onClick={calculation}>
+                    {t('show_table')}
+                  </a>
                 </div>
-                <p className="note">{t('tool_note')}</p>
-                <a className="btn" onClick={calculation}>
-                  {t('show_table')}
-                </a>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* table */}
-      <Table
-        data={table}
-        active={active}
-        setActive={() => setActive(!active)}
-        show_result={show_result}
-        sum={sum}
-        interest={interest}
-      />
+        {/* table */}
+        <Table
+          data={table}
+          active={active}
+          setActive={() => setActive(!active)}
+          show_result={show_result}
+          sum={sum}
+          interest={interest}
+        />
+      </div>
     </div>
   );
 }

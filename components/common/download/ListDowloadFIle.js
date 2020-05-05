@@ -72,37 +72,39 @@ function ListDowloadFIle({
   }
 
   return (
-    <div className={`${padding} accodion accodion-2 container downloadfile`} id={id}>
-      {data && (
-        <div className="entry-head">
-          <h2 className="ht efch-1 ef-img-l">{title}</h2>
-          <a className="viewall" href={data === undefined || data.url === '' ? '#' : data.url}>
-            Xem tất cả <i className="icon-arrow-1"></i>
-          </a>
-        </div>
-      )}
-      {search && (
-        <Fillter
-          center
-          year={year}
-          type={listType}
-          setDate={event => setYear(event.target.value)}
-          setType={event => setDataType(event.target.value)}
-        />
-      )}
+    <div className={`${padding} accodion accodion-2 downloadfile`} id={id}>
       <div className="container">
-        {listRegulation.investors && listRegulation.investors.length > 0 && (
-          <div className="sec">
-            {noQuestion && <File data={listRegulation.investors} />}
-            {!noQuestion && (
-              <FileList year={year} data={listRegulation.investors} isChecked={true} />
-            )}
+        {data && (
+          <div className="entry-head">
+            <h2 className="ht efch-1 ef-img-l">{title}</h2>
+            <a className="viewall" href={data === undefined || data.url === '' ? '#' : data.url}>
+              Xem tất cả <i className="icon-arrow-1"></i>
+            </a>
           </div>
         )}
+        {search && (
+          <Fillter
+            center
+            year={year}
+            type={listType}
+            setDate={event => setYear(event.target.value)}
+            setType={event => setDataType(event.target.value)}
+          />
+        )}
+        <div className="container">
+          {listRegulation.investors && listRegulation.investors.length > 0 && (
+            <div className="sec">
+              {noQuestion && <File data={listRegulation.investors} />}
+              {!noQuestion && (
+                <FileList year={year} data={listRegulation.investors} isChecked={true} />
+              )}
+            </div>
+          )}
+        </div>
+        {listRegulation.size > 1 && (
+          <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
+        )}
       </div>
-      {listRegulation.size > 1 && (
-        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
-      )}
     </div>
   );
 }

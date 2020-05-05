@@ -100,63 +100,65 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate, pad
   };
 
   return (
-    <div className={`container ${padding} tool-${type}`} id={id}>
-      <h2 className="ht">{t('tool_consumer_loans.title')}</h2>
-      <div className="cttab-xx  sec-b">
-        <div className="tab-content">
-          <div className="active">
-            <div className="tab-inner ">
-              <div className="form-vay-von">
-                <div className="row ">
-                  <div className="col-md-7 ">
-                    <div className="inner">
-                      <FieldInput
-                        label={t('loan')}
-                        maxValue={maxValue}
-                        value={loan_amount}
-                        onChange={value => setLoanAmount(value)}
-                      />
-                      <FieldInput
-                        label={t('loan_term')}
-                        maxValue={84}
-                        value={month}
-                        onChange={value => setMonth(value)}
+    <div className={`${padding} tool-${type}`} id={id}>
+      <div className="container">
+        <h2 className="ht">{t('tool_consumer_loans.title')}</h2>
+        <div className="cttab-xx  sec-b">
+          <div className="tab-content">
+            <div className="active">
+              <div className="tab-inner ">
+                <div className="form-vay-von">
+                  <div className="row ">
+                    <div className="col-md-7 ">
+                      <div className="inner">
+                        <FieldInput
+                          label={t('loan')}
+                          maxValue={maxValue}
+                          value={loan_amount}
+                          onChange={value => setLoanAmount(value)}
+                        />
+                        <FieldInput
+                          label={t('loan_term')}
+                          maxValue={84}
+                          value={month}
+                          onChange={value => setMonth(value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-5">
+                      <Result
+                        title={t('tool_consumer_loans.title')}
+                        subtitle={t('loan_amount')}
+                        interest_rate={interest_rate}
+                        amount={Number(loan_amount.replace(/[^0-9.-]+/g, ''))}
+                        monthlyInterest={null} //tiền lãi hàng tháng
+                        monthlypayment={monthlypayment} //Tiền gốc hàng tháng
+                        equity_capital={null} // vốn tự có
+                        month={month}
+                        totalAmount={sum + interest}
                       />
                     </div>
                   </div>
-                  <div className="col-md-5">
-                    <Result
-                      title={t('tool_consumer_loans.title')}
-                      subtitle={t('loan_amount')}
-                      interest_rate={interest_rate}
-                      amount={Number(loan_amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={null} //tiền lãi hàng tháng
-                      monthlypayment={monthlypayment} //Tiền gốc hàng tháng
-                      equity_capital={null} // vốn tự có
-                      month={month}
-                      totalAmount={sum + interest}
-                    />
-                  </div>
+                  <p className="note">{t('tool_note')}</p>
+                  <a className="btn" onClick={calculation}>
+                    {t('show_table')}
+                  </a>
                 </div>
-                <p className="note">{t('tool_note')}</p>
-                <a className="btn" onClick={calculation}>
-                  {t('show_table')}
-                </a>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* table */}
-      <Table
-        data={table}
-        active={active}
-        setActive={() => setActive(!active)}
-        show_result={show_result}
-        sum={sum}
-        interest={interest}
-      />
+        {/* table */}
+        <Table
+          data={table}
+          active={active}
+          setActive={() => setActive(!active)}
+          show_result={show_result}
+          sum={sum}
+          interest={interest}
+        />
+      </div>
     </div>
   );
 }

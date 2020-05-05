@@ -28,18 +28,20 @@ function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, ge
     seachRegulation(datatype, year, page);
   }, [year, datatype, page]);
   return (
-    <div className="accodion accodion-2 container sec">
-      <Fillter
-        center
-        year={year}
-        type={typeRegulation}
-        setDate={event => setYear(event.target.value)}
-        setType={event => setDataType(event.target.value)}
-      />
-      <DowloadFile data={listRegulation.investors} year={year} isChecked />
-      {listRegulation.size > 1 && (
-        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
-      )}
+    <div className="accodion accodion-2 sec">
+      <div className="container">
+        <Fillter
+          center
+          year={year}
+          type={typeRegulation}
+          setDate={event => setYear(event.target.value)}
+          setType={event => setDataType(event.target.value)}
+        />
+        <DowloadFile data={listRegulation.investors} year={year} isChecked />
+        {listRegulation.size > 1 && (
+          <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
+        )}
+      </div>
     </div>
   );
 }

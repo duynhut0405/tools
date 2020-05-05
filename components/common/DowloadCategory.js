@@ -48,14 +48,16 @@ function DowloadCategory({
 
   return (
     <React.Fragment>
-      <div className={`accodion accodion-2 container ${padding} downloadcategory`} id={id}>
-        <Fillter
-          type={typeRegulation}
-          setDate={event => setYear(event.target.value)}
-          setType={event => setDataType(event.target.value)}
-        />
-        <DowloadFile data={listRegulation} year={year} isChecked />
-        <DowloadVideo data={listRegulation} year={year} />
+      <div className={`accodion accodion-2 ${padding} downloadcategory`} id={id}>
+        <div className="container">
+          <Fillter
+            type={typeRegulation}
+            setDate={event => setYear(event.target.value)}
+            setType={event => setDataType(event.target.value)}
+          />
+          <DowloadFile data={listRegulation} year={year} isChecked />
+          <DowloadVideo data={listRegulation} year={year} />
+        </div>
       </div>
     </React.Fragment>
   );

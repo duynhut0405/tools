@@ -69,34 +69,37 @@ function ListDowloadFIle({
   const { t } = useTranslation();
 
   return (
-    <div className={`accodion accodion-2 container ${padding} downloadvideo`} id={id}>
-      {data && (
-        <div className="entry-head">
-          <h2 className="ht efch-1 ef-img-l">{title}</h2>
-          {data.url !== undefined && (
-            <a className="viewall" href={data.url === '' ? '!#' : data.url}>
-              {t('view')} <i className="icon-arrow-1"></i>
-            </a>
+    <div className={`accodion accodion-2 ${padding} downloadvideo`} id={id}>
+      <div className="container">
+        {data && (
+          <div className="entry-head">
+            <h2 className="ht efch-1 ef-img-l">{title}</h2>
+            {data.url !== undefined && (
+              <a className="viewall" href={data.url === '' ? '!#' : data.url}>
+                {t('view')} <i className="icon-arrow-1"></i>
+              </a>
+            )}
+          </div>
+        )}
+
+        <Fillter
+          center
+          year={year}
+          type={listType}
+          setDate={event => setYear(event.target.value)}
+          setType={event => setDataType(event.target.value)}
+        />
+
+        <div className="sec-tb">
+          {listRegulation.investors && listRegulation.investors.length > 0 && (
+            <DowloadVideo data={listRegulation.investors} year={year} isChecked={true} fileIcon />
           )}
         </div>
-      )}
-      <Fillter
-        center
-        year={year}
-        type={listType}
-        setDate={event => setYear(event.target.value)}
-        setType={event => setDataType(event.target.value)}
-      />
 
-      <div className="sec-tb">
-        {listRegulation.investors && listRegulation.investors.length > 0 && (
-          <DowloadVideo data={listRegulation.investors} year={year} isChecked={true} fileIcon />
+        {listRegulation.size > 1 && (
+          <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
         )}
       </div>
-
-      {listRegulation.size > 1 && (
-        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
-      )}
     </div>
   );
 }

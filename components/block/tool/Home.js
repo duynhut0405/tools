@@ -130,132 +130,134 @@ function ToolHome({ t, maxValue, interest_rate, padding, id, type }) {
   };
 
   return (
-    <div className={`container ${padding} tool-${type}`} id={id}>
-      <h2 className="ht">{title}</h2>
-      <div className="cttab-xx  sec-b sec-tb">
-        <div className="w-menu-over">
-          <div className="p-tool1__select1 p-tool1__select1-js">
-            <label className="option1 radio">
-              {t('tool_options.housing_loan')}
-              <input
-                type="radio"
-                checked={checked === '1'}
-                name="radio-loan"
-                onChange={() => {
-                  setChecked('1');
-                  setTitle(t('tool_options.housing_loan'));
-                }}
-              />
-              <span className="checkmark1"></span>
-            </label>
-            <label className="option1 radio">
-              {t('tool_options.loans_for_project_houses')}
-              <input
-                type="radio"
-                checked={checked === '2'}
-                name="radio-loan"
-                onChange={() => {
-                  setChecked('2');
-                  setTitle(t('tool_options.loans_for_project_houses'));
-                }}
-              />
-              <span className="checkmark1"></span>
-            </label>
-            <label className="option1 radio">
-              {t('tool_options.lending_for_construction_and_repair_of_houses')}
-              <input
-                type="radio"
-                checked={checked === '3'}
-                name="radio-loan"
-                onChange={() => {
-                  setChecked('3');
-                  setTitle(t('tool_options.lending_for_construction_and_repair_of_houses'));
-                }}
-              />
-              <span className="checkmark1"></span>
-            </label>
-            <label className="option1 radio">
-              {t('tool_options.lending_for_home_furnishings')}
-              <input
-                type="radio"
-                checked={checked === '4'}
-                name="radio-loan"
-                onChange={() => {
-                  setChecked('4');
-                  setTitle(t('tool_options.lending_for_home_furnishings'));
-                }}
-              />
-              <span className="checkmark1"></span>
-            </label>
+    <div className={`${padding} tool-${type}`} id={id}>
+      <div className="container">
+        <h2 className="ht">{title}</h2>
+        <div className="cttab-xx  sec-b sec-tb">
+          <div className="w-menu-over">
+            <div className="p-tool1__select1 p-tool1__select1-js">
+              <label className="option1 radio">
+                {t('tool_options.housing_loan')}
+                <input
+                  type="radio"
+                  checked={checked === '1'}
+                  name="radio-loan"
+                  onChange={() => {
+                    setChecked('1');
+                    setTitle(t('tool_options.housing_loan'));
+                  }}
+                />
+                <span className="checkmark1"></span>
+              </label>
+              <label className="option1 radio">
+                {t('tool_options.loans_for_project_houses')}
+                <input
+                  type="radio"
+                  checked={checked === '2'}
+                  name="radio-loan"
+                  onChange={() => {
+                    setChecked('2');
+                    setTitle(t('tool_options.loans_for_project_houses'));
+                  }}
+                />
+                <span className="checkmark1"></span>
+              </label>
+              <label className="option1 radio">
+                {t('tool_options.lending_for_construction_and_repair_of_houses')}
+                <input
+                  type="radio"
+                  checked={checked === '3'}
+                  name="radio-loan"
+                  onChange={() => {
+                    setChecked('3');
+                    setTitle(t('tool_options.lending_for_construction_and_repair_of_houses'));
+                  }}
+                />
+                <span className="checkmark1"></span>
+              </label>
+              <label className="option1 radio">
+                {t('tool_options.lending_for_home_furnishings')}
+                <input
+                  type="radio"
+                  checked={checked === '4'}
+                  name="radio-loan"
+                  onChange={() => {
+                    setChecked('4');
+                    setTitle(t('tool_options.lending_for_home_furnishings'));
+                  }}
+                />
+                <span className="checkmark1"></span>
+              </label>
+            </div>
           </div>
-        </div>
-        <div className="tab-content">
-          <div className="active">
-            <div className="tab-inner  ">
-              <div className="form-vay-von">
-                <div className="row ">
-                  <div className="col-md-7 ">
-                    <div className="inner">
-                      <FieldInput
-                        label={t('estimated_home_purchase_value')}
-                        maxValue={maxValue}
-                        value={estimate_rate}
-                        onChange={value => setEstimateRate(value)}
-                      />
-                      <FieldInput
-                        label={t('estimated_value_of_collateral')}
-                        maxValue={maxValue}
-                        value={estimate_mortgage}
-                        onChange={value => setEstimateMortgage(value)}
-                      />
-                      <FieldInput
-                        label={t('amount_can_borrowed')}
-                        maxValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
-                        value={amount}
-                        onBlur={onBlur}
-                        onChange={value => SetAmount(value)}
-                      />
-                      <FieldInput
-                        label={t('loan_term')}
-                        maxValue={84}
-                        value={month}
-                        note
-                        onChange={value => setMonth(value)}
+          <div className="tab-content">
+            <div className="active">
+              <div className="tab-inner  ">
+                <div className="form-vay-von">
+                  <div className="row ">
+                    <div className="col-md-7 ">
+                      <div className="inner">
+                        <FieldInput
+                          label={t('estimated_home_purchase_value')}
+                          maxValue={maxValue}
+                          value={estimate_rate}
+                          onChange={value => setEstimateRate(value)}
+                        />
+                        <FieldInput
+                          label={t('estimated_value_of_collateral')}
+                          maxValue={maxValue}
+                          value={estimate_mortgage}
+                          onChange={value => setEstimateMortgage(value)}
+                        />
+                        <FieldInput
+                          label={t('amount_can_borrowed')}
+                          maxValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
+                          value={amount}
+                          onBlur={onBlur}
+                          onChange={value => SetAmount(value)}
+                        />
+                        <FieldInput
+                          label={t('loan_term')}
+                          maxValue={84}
+                          value={month}
+                          note
+                          onChange={value => setMonth(value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-5">
+                      <Result
+                        title={title}
+                        interest_rate={interest_rate}
+                        amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
+                        monthlyInterest={null} //tiền lãi hàng tháng
+                        monthlypayment={monthlypayment} //Tiền gốc hàng tháng
+                        equity_capital={Number(estimate_mortgage.replace(/[^0-9.-]+/g, ''))} // vốn tự có
+                        month={month}
+                        totalAmount={totalAmount}
                       />
                     </div>
                   </div>
-                  <div className="col-md-5">
-                    <Result
-                      title={title}
-                      interest_rate={interest_rate}
-                      amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
-                      monthlyInterest={null} //tiền lãi hàng tháng
-                      monthlypayment={monthlypayment} //Tiền gốc hàng tháng
-                      equity_capital={Number(estimate_mortgage.replace(/[^0-9.-]+/g, ''))} // vốn tự có
-                      month={month}
-                      totalAmount={totalAmount}
-                    />
-                  </div>
+                  <a className="btn" onClick={calculation}>
+                    {t('show_table')}
+                  </a>
+                  <p className="note">{t('tool_note')}</p>
                 </div>
-                <a className="btn" onClick={calculation}>
-                  {t('show_table')}
-                </a>
-                <p className="note">{t('tool_note')}</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* table */}
-      <Table
-        data={table}
-        active={active}
-        setActive={() => setActive(!active)}
-        show_result={show_result}
-        sum={sum}
-        interest={interest}
-      />
+        {/* table */}
+        <Table
+          data={table}
+          active={active}
+          setActive={() => setActive(!active)}
+          show_result={show_result}
+          sum={sum}
+          interest={interest}
+        />
+      </div>
     </div>
   );
 }

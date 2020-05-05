@@ -50,31 +50,33 @@ function ListDowloadQA({
   }, [page]);
 
   return (
-    <div className="accodion accodion-1 container">
-      {search && (
-        <Fillter
-          center
-          year={year}
-          type={listType}
-          setDate={event => setYear(event.target.value)}
-          setType={event => setDataType(event.target.value)}
-        />
-      )}
-      <section className="sec sec-cauhoi">
-        {map(listRegulation.investors, (item, index) => {
-          return (
-            <Question
-              key={index}
-              answer={item.description}
-              question={item.name}
-              isChecked={index === 0 ? true : false}
-            />
-          );
-        })}
-      </section>
-      {listRegulation.size > 1 && (
-        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
-      )}
+    <div className="accodion accodion-1">
+      <div className="container">
+        {search && (
+          <Fillter
+            center
+            year={year}
+            type={listType}
+            setDate={event => setYear(event.target.value)}
+            setType={event => setDataType(event.target.value)}
+          />
+        )}
+        <section className="sec sec-cauhoi">
+          {map(listRegulation.investors, (item, index) => {
+            return (
+              <Question
+                key={index}
+                answer={item.description}
+                question={item.name}
+                isChecked={index === 0 ? true : false}
+              />
+            );
+          })}
+        </section>
+        {listRegulation.size > 1 && (
+          <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
+        )}
+      </div>
     </div>
   );
 }

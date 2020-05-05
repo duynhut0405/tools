@@ -29,27 +29,29 @@ function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, ge
   }, [datatype, page, year]);
 
   return (
-    <div className="accodion accodion-2 container sec">
-      <Fillter
-        center
-        year={year}
-        type={typeRegulation}
-        setDate={event => setYear(event.target.value)}
-        setType={event => setDataType(event.target.value)}
-      />
-      {map(listRegulation, item => {
-        if (item.investors.length > 0) {
-          return (
-            <div className="sec-tb" key={item.year}>
-              <DowloadVideo data={item.investors} year={item.year} isChecked />
-            </div>
-          );
-        }
-        return null;
-      })}
-      {listRegulation.size > 1 && (
-        <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
-      )}
+    <div className="accodion accodion-2 sec">
+      <div className="container">
+        <Fillter
+          center
+          year={year}
+          type={typeRegulation}
+          setDate={event => setYear(event.target.value)}
+          setType={event => setDataType(event.target.value)}
+        />
+        {map(listRegulation, item => {
+          if (item.investors.length > 0) {
+            return (
+              <div className="sec-tb" key={item.year}>
+                <DowloadVideo data={item.investors} year={item.year} isChecked />
+              </div>
+            );
+          }
+          return null;
+        })}
+        {listRegulation.size > 1 && (
+          <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
+        )}
+      </div>
     </div>
   );
 }
