@@ -16,7 +16,7 @@ function Questions({ data, id }) {
   const [page, setPage] = useState(1);
   const [active, setActive] = useState(false);
   const [newsAnswer, setNewsAnswer] = useState({});
-  
+
   // const list = slice(data.listBlock, 0, page);
   const list = data.listBlock;
   const { t } = useTranslation();
@@ -72,11 +72,21 @@ function Questions({ data, id }) {
             <div className="accodion accodion-1 accodion-1-2">
               {Number(data.optionChoose) === 1 &&
                 map(list, (item, index) => (
-                  <Question key={index} answer={item.answer} question={item.question} />
+                  <Question
+                    key={index}
+                    index={index}
+                    answer={item.answer}
+                    question={item.question}
+                  />
                 ))}
               {Number(data.optionChoose) === 2 &&
                 map(newsAnswer.news, (item, index) => (
-                  <Question key={index} answer={item.description} question={item.title} />
+                  <Question
+                    key={index}
+                    index={index}
+                    answer={item.description}
+                    question={item.title}
+                  />
                 ))}
             </div>
             {data.listBlock.length > 4 && (
