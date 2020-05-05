@@ -457,7 +457,7 @@ function Layout({
               <div className="row">
                 <div className="col-md-6   efch-2 ef-img-r">
                   <p className="stitle">{t('sign_up_promotional')}</p>
-                  <form role="search" method="get" className="searchform " action="">
+                  <form role="search" method="get" className="" action="">
                     <div>
                       <input
                         type="text"
@@ -524,7 +524,7 @@ function Layout({
           <section className="sec-download-mb">
             <div className="wform">
               <p className="stitle">{t('sign_up_promotional')}</p>
-              <form role="search" method="get" className="searchform " action="">
+              <form role="search" method="get" className="" action="">
                 <div className="aaa">
                   <input type="text" placeholder={t('enter_email')} name="s" className="input" />
                 </div>

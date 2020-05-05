@@ -29,7 +29,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
           className="img loaded loaded mb-20 lazyload"
         />
         <div className="row list-item">
-          <div className="col-md-3">
+          <div className="col-md-3 col-sm-6">
             <a href="https://smecare.com.vn/">
               <div className="flex">
                 <div className="img_care">
@@ -42,7 +42,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
               </div>
             </a>
           </div>{' '}
-          <div className="col-md-3">
+          <div className="col-md-3 col-sm-6">
             <a href="https://smecare.com.vn/">
               <div className="flex">
                 <div className="img_care">
@@ -55,7 +55,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
               </div>
             </a>
           </div>{' '}
-          <div className="col-md-3">
+          <div className="col-md-3 col-sm-6">
             <a href="https://smecare.com.vn/">
               <div className="flex">
                 <div className="img_care">
@@ -68,7 +68,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
               </div>
             </a>
           </div>{' '}
-          <div className="col-md-3">
+          <div className="col-md-3 col-sm-6">
             <a href="https://smecare.com.vn/">
               <div className="flex">
                 <div className="img_care">
