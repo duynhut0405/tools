@@ -32,7 +32,7 @@ function SubMenu({ menu }) {
             )}
 
             <a href={item.url} target="_blank" rel="noopener noreferrer">
-              {items.name}
+              {item.name}
             </a>
 
             {item.children.length > 0 && (

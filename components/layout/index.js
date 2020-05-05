@@ -299,7 +299,7 @@ function Layout({
                         <img
                           id="img_log"
                           className="lazyload"
-                          data-src="/static/images/svg/logo.svg"
+                          src="/static/images/svg/logo.svg"
                           alt="logo"
                         />
                       </a>
