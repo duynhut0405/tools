@@ -56,7 +56,7 @@ function ImageLeft({ items, padding, id, type }) {
                   frameBorder="0"
                   allowFullScreen="1"
                   allow="autoplay; encrypted-media;"
-                  data-src={`${items.video_url}?rel=0&autoplay=1`}
+                  src={`${items.video_url}?rel=0&autoplay=1`}
                 ></iframe>
               </div>
             )}
