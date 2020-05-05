@@ -534,24 +534,7 @@ function Layout({
                 </button>
               </form>
             </div>
-            <div className="wdownload">
-              <span className="stitle">{t('donwload_app_today')}</span>&nbsp;
-              <a href="#">
-                <img
-                  className="lazyload"
-                  data-src="/static/images/btt-chplay-mb.svg"
-                  alt="images"
-                />
-              </a>
-              &nbsp;
-              <a href="#">
-                <img
-                  className="lazyload"
-                  data-src="/static/images/btt-google-mb.svg"
-                  alt="images"
-                />
-              </a>
-            </div>
+            <DownloadApp mobile />
           </section>
           <div id="footer-mb" className="group-ef loaded">
             <div className="container">
