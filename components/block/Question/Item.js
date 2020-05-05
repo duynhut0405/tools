@@ -4,16 +4,22 @@ import Proptypes from 'prop-types';
 
 const propTypes = {
   question: Proptypes.string,
-  answer: Proptypes.string
+  answer: Proptypes.string,
+  index: Proptypes.number
 };
 
-function QuestionItems({ question, answer }) {
+function QuestionItems({ question, answer, index }) {
   const [active, setAcive] = useState(false);
 
   return (
     <div className="accodion-tab accodion-1-1 ">
-      <input type="checkbox" checked={active} onClick={() => setAcive(!active)} />
-      <label className="accodion-title">
+      <input
+        id={`checkbox_${index}`}
+        type="checkbox"
+        checked={active}
+        onClick={() => setAcive(!active)}
+      />
+      <label htmlFor={`checkbox_${index}`} className="accodion-title">
         <span>{question}</span>
         <span className="triangle">
           <i className="icon-plus"></i>

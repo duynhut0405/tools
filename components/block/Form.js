@@ -77,6 +77,13 @@ function Form({ data, pageId, id }) {
     }
   };
 
+  const onKeyPress = e => {
+    const reg = /^[0-8]/;
+    if (!reg.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   let padding = '';
   if (data.optionWidth === '2') {
     padding = 'sec-tb';
@@ -136,14 +143,27 @@ function Form({ data, pageId, id }) {
               return (
                 <React.Fragment>
                   <div className={`col-12 ${item.className}`}>
-                    <input
-                      className="input"
-                      name={item.name}
-                      type={item.subtype}
-                      required={item.required}
-                      placeholder={item.placeholder}
-                      onChange={e => handleChange(e)}
-                    />
+                    {item.subtype !== 'tel' && (
+                      <input
+                        className="input"
+                        name={item.name}
+                        type={item.subtype}
+                        required={item.required}
+                        placeholder={item.placeholder}
+                        onChange={e => handleChange(e)}
+                      />
+                    )}
+                    {item.subtype === 'tel' && (
+                      <input
+                        className="input"
+                        name={item.name}
+                        type={item.subtype}
+                        required={item.required}
+                        placeholder={item.placeholder}
+                        onKeyPress={onKeyPress}
+                        onChange={e => handleChange(e)}
+                      />
+                    )}
                   </div>
                 </React.Fragment>
               );
@@ -153,7 +173,7 @@ function Form({ data, pageId, id }) {
                 <React.Fragment>
                   <div className={`col-12 ${item.className}`}>
                     {item.label && <label>{item.label}</label>}
-                    <input
+                    <textarea
                       className="input"
                       type={item.subtype}
                       name={item.name}
@@ -199,7 +219,7 @@ function Form({ data, pageId, id }) {
       </div>
       {data.image && (
         <img
-          className="lazyload br"
+          className=" br loaded loaded lazyload"
           alt="images"
           data-src={`${process.env.DOMAIN}${data.urlImage}`}
         ></img>
