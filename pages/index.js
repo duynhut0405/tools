@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../components/common';
 import FormRate from '../components/formRate';
 import Head from 'next/head';
@@ -11,13 +11,34 @@ import Proptypes from 'prop-types';
 const propTypes = {
   page: Proptypes.object,
   silder: Proptypes.array,
-  menuMiddle: Proptypes.object,
-  listRate: Proptypes.object,
-  listInterestRate: Proptypes.array
+  menuMiddle: Proptypes.object
 };
 
-function Home({ page, silder, menuMiddle, listRate, listInterestRate }) {
+function Home({ page, silder, menuMiddle }) {
+  const [listInterestRate, setListInterestRate] = useState([]);
+  const [listRate, setlistRate] = useState([]);
+
+  const getInterestRate = async () => {
+    const interestRateRes = await getInterestRateService();
+    if (interestRateRes && interestRateRes !== undefined && interestRateRes.status === 200) {
+      setListInterestRate(interestRateRes.data);
+    }
+  };
+
+  const getRate = async () => {
+    const rateResponse = await getRateService();
+    if (rateResponse && rateResponse !== undefined && rateResponse.status === 200) {
+      setlistRate(rateResponse.data);
+    }
+  };
+
+  useEffect(async () => {
+    getInterestRate();
+    getRate();
+  }, []);
+
   useEffect(() => {
+    document.body.className = '';
     document.body.classList.add('home');
     document.body.classList.remove(`mb-priority`);
     document.getElementById('img_log').src = '/static/images/svg/logo.svg';
@@ -54,16 +75,6 @@ function Home({ page, silder, menuMiddle, listRate, listInterestRate }) {
 }
 
 Home.getInitialProps = async () => {
-  let listRate = [],
-    listInterestRate = [];
-  const rateResponse = await getRateService();
-  if (rateResponse && rateResponse !== undefined && rateResponse.status === 200) {
-    listRate = rateResponse.data;
-  }
-  const interestRateRes = await getInterestRateService();
-  if (interestRateRes && interestRateRes !== undefined && interestRateRes.status === 200) {
-    listInterestRate = interestRateRes.data;
-  }
   let page = {};
   let silder = [];
   let menuMiddle = {};
@@ -74,11 +85,9 @@ Home.getInitialProps = async () => {
     silder = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
   }
   return {
-    listRate,
     page,
     silder,
-    menuMiddle,
-    listInterestRate
+    menuMiddle
   };
 };
 

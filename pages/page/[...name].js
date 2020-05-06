@@ -25,6 +25,8 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
   const noIndex = page.noIndex ? page.noIndex : '';
 
   useEffect(() => {
+    document.body.className = '';
+    document.body.classList.remove('home');
     document.body.classList.add('page');
     if (slugClass) {
       document.body.classList.add(`${slugClass}`);

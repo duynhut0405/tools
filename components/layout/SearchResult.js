@@ -119,7 +119,10 @@ function SearchResult({ t, query }) {
                 <div className="total-search">
                   <p>
                     Tìm thấy
-                    <span className="total"> {20 * data.size} </span>
+                    <span className="total">
+                      {' '}
+                      {data.size === 0 ? data.searchCommons.length : 20 * data.size}{' '}
+                    </span>
                     kết quả
                   </p>
                 </div>
