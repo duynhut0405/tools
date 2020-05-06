@@ -24,12 +24,11 @@ function TableRate({ data, type }) {
           {map(data, value => {
             return (
               <tr key={value.id}>
-                <td style={{ display: 'flex' }}>
+                <td className="td-img">
                   <img
                     className="lazyload"
                     data-src={`static/currency/${value.currency}.png`}
                     alt="images"
-                    style={{ top: '-1px' }}
                     width="24"
                   />
                   {value.currency}
