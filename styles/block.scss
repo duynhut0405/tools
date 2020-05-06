@@ -129,20 +129,20 @@ html, body {
   width: 35% !important;
 }
 
-.heading-new .img-pc {
+.banner-heading-3 .img-pc {
   display: block;
 }
 
-.heading-new .img-mb {
+.banner-heading-3 .img-mb {
   display: none;
 }
 
 @media only screen and (max-width: 768px) {
-  .heading-new .img-pc {
+  .banner-heading-3 .img-pc {
     display: none;
   }
 
-  .heading-new .img-mb {
+  .banner-heading-3 .img-mb {
     display: block;
   }
 }

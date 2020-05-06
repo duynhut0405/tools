@@ -89,18 +89,16 @@ function New({ news, category_name, category_url, socialLink }) {
                 </div>
               </div>
             </div>
-            <div className="heading-new">
-              <img
-                className="img img-pc br loaded loaded lazyload"
-                data-src="/static/images/heading-new-pc.jpeg"
-                alt="images"
-              />
-              <img
-                className="img img-mb br loaded loaded lazyload"
-                data-src="/static/images/heading-new-mobile.png"
-                alt="images"
-              />
-            </div>
+            <img
+              className="img img-pc br loaded loaded lazyload"
+              data-src="/static/images/heading-10-pc.svg"
+              alt="images"
+            />
+            <img
+              className="img img-mb br loaded loaded lazyload"
+              data-src="/static/images/heading-10-mb.svg"
+              alt="images"
+            />
           </section>
           <main id="main" className="sec-b page-news-detail">
             <div className="container">
