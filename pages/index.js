@@ -18,6 +18,7 @@ const propTypes = {
 
 function Home({ page, silder, menuMiddle, listRate, listInterestRate }) {
   useEffect(() => {
+    document.body.className = '';
     document.body.classList.add('home');
     document.body.classList.remove(`mb-priority`);
     document.getElementById('img_log').src = '/static/images/svg/logo.svg';
