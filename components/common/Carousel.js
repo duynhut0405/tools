@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { map, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
@@ -10,20 +10,20 @@ const propType = {
 };
 
 function Carousels({ silder }) {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    let listItems = [];
-    for (let i = 0; i < silder.length; i++) {
-      if (silder[i].content !== null) {
-        listItems = [...listItems, ...JSON.parse(silder[i].content)];
-      }
-    }
-    setData(listItems);
-  }, [silder]);
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   let listItems = [];
+  //   for (let i = 0; i < silder.length; i++) {
+  //     if (silder[i].content !== null) {
+  //       listItems = [...listItems, ...JSON.parse(silder[i].content)];
+  //     }
+  //   }
+  //   setData(listItems);
+  // }, [silder]);
 
   return (
     <React.Fragment>
-      {!isEmpty(data) && (
+      {!isEmpty(silder) && (
         <section className={` silder banner-heading-1 home next-shadow`}>
           <Carousel
             showThumbs={false}
@@ -32,7 +32,7 @@ function Carousels({ silder }) {
             emulateTouch
             showIndicators={false}
           >
-            {map(data, (item, index) => (
+            {map(silder, (item, index) => (
               <div className={`container  option-${item.options}`} key={index}>
                 {item.options === '3' && (
                   <div className="row center">

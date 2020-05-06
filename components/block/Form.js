@@ -19,6 +19,7 @@ function Form({ data, pageId, id }) {
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
+
   const getFormByID = async () => {
     const res = await getFormbuilderByIdService(data.formdata);
     if (res && res.status === 200) {
@@ -28,7 +29,7 @@ function Form({ data, pageId, id }) {
 
   useEffect(() => {
     getFormByID();
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     const listModal = document.getElementsByClassName('myModal');
