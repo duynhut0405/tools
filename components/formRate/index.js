@@ -47,7 +47,11 @@ function FormRate({ data, interestRate }) {
 
   const getBuyTransferBycurrency = currency => {
     const obj = data.exchangeRateDetail.find(item => item.currency === currency);
-    return obj.buy_transfer;
+    if (obj) {
+      const result = obj.buy_transfer !== null ? obj.buy_transfer : 0;
+      return result;
+    }
+    return 0;
   };
 
   const Calculator = () => {
