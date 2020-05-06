@@ -26,7 +26,6 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
 
   useEffect(() => {
     document.body.className = '';
-    document.body.classList.remove('home');
     document.body.classList.add('page');
     if (slugClass) {
       document.body.classList.add(`${slugClass}`);
@@ -106,7 +105,12 @@ Page.getInitialProps = async ctx => {
     page = pageResponse.data;
     hasSideber = pageResponse.data.has_sidebar;
     menuMiddle = pageResponse.data.menuMiddle;
-    silder = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
+    const silderData = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
+    for (let i = 0; i < silderData.length; i++) {
+      if (silderData[i].content !== null) {
+        silder = [...silder, ...JSON.parse(silderData[i].content)];
+      }
+    }
   }
   if (listPageBySlug && listPageBySlug !== undefined && listPageBySlug.status === 200) {
     listSlug = listPageBySlug.data;

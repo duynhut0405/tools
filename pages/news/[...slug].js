@@ -21,6 +21,8 @@ const propTypes = {
 
 function New({ news, category_name, category_url, socialLink }) {
   useEffect(() => {
+    document.body.className = '';
+    document.body.classList.add('page');
     if (news && news.news.layoutInvestors) {
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');

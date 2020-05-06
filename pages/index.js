@@ -20,7 +20,6 @@ function Home({ page, silder, menuMiddle, listRate, listInterestRate }) {
   useEffect(() => {
     document.body.className = '';
     document.body.classList.add('home');
-    document.body.classList.remove(`mb-priority`);
     document.getElementById('img_log').src = '/static/images/svg/logo.svg';
   });
 
@@ -72,7 +71,12 @@ Home.getInitialProps = async () => {
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
     menuMiddle = pageResponse.data.menuMiddle;
-    silder = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
+    const silderData = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
+    for (let i = 0; i < silderData.length; i++) {
+      if (silderData[i].content !== null) {
+        silder = [...silder, ...JSON.parse(silderData[i].content)];
+      }
+    }
   }
   return {
     listRate,
