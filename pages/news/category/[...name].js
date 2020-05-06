@@ -24,6 +24,8 @@ function CategoryDetail({ routerURL, category }) {
 
   useEffect(() => {
     setData(category);
+    document.body.className = '';
+    document.body.classList.add('page');
     const body = document.getElementsByTagName('body')[0];
     const logo = document.getElementById('img_log');
     body.classList.remove('mb-priority');
