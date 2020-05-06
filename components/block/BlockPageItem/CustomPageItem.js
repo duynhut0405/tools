@@ -25,7 +25,8 @@ function CustomPageItem({ data, indexTab }) {
     if (data.pages) {
       getPageBlock();
     }
-  }, []);
+  }, [data]);
+
   const responsiveTwo = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },

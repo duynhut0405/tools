@@ -5,6 +5,7 @@ import { getPagesByIdService } from '../../services/page';
 import Carousel from 'react-multi-carousel';
 import CustomPageItem from './BlockPageItem/CustomPageItem';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -34,6 +35,7 @@ function Pages({ data, type, id, optionWidth }) {
   } else {
     padding = 'sec-';
   }
+  const router = useRouter();
 
   const responsiveTwo = {
     desktop: {
@@ -49,11 +51,12 @@ function Pages({ data, type, id, optionWidth }) {
       items: 1
     }
   };
+
   useEffect(() => {
     if (data.pages) {
       getPageBlock();
     }
-  }, []);
+  }, [data]);
 
   if (type && type === '1') {
     return (
