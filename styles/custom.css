@@ -359,16 +359,17 @@ div#lanhdaoModal {
   z-index: 9999999;
 }
 
-input[type='date'] {
+.react-datepicker-wrapper input {
+  background: #fff url(/static/images/svg/other/calendar.svg) 97% 50% no-repeat;
+  background-size: 20px;
   display: block;
-
-  /* Solution 1 */
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  min-height: 1.2em;
-
-  /* Solution 2 */
-  /* min-width: 96%; */
+  width: 500px;
+  height: 50px;
+  line-height: 50px;
+  margin: auto;
+  border-radius: 5px;
+  border: 1px solid #ececec;
+  padding: 0 15px;
 }
 
 /* End edit*/
