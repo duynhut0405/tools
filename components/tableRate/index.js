@@ -39,7 +39,7 @@ function TableRate({ data, id, search }) {
   return (
     <section className={`${options} tableRate`} id={id}>
       <div className="container">
-        {search && <Search changeDate={event => setDate(event.target.value)} onSubmit={onSeach} />}
+        {search && <Search changeDate={event => setDate(event)} date={date} onSubmit={onSeach} />}
         <Table data={list.exchangeRateDetail} />
       </div>
     </section>

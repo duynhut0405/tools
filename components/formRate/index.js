@@ -19,7 +19,7 @@ function FormRate({ data, interestRate }) {
   const [currencyTo, setcurrencyTo] = useState('USD');
   const [arrTo, setArrTo] = useState(data.exchangeRateDetail);
   const { t } = useTranslation();
-
+console.log('data.exchangeRateDetail:', data.exchangeRateDetail)
   const getCurrentTo = name => {
     if (name === 'VND') {
       setArrTo(data.exchangeRateDetail);
