@@ -33,7 +33,7 @@ module.exports = withPWA(
           MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api',
           ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe'
         },
-        exportTrailingSlash: true
+        exportTrailingSlash: true,
         // pwa: {
         //   dest: 'public'
         // },
