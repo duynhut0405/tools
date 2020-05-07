@@ -13,13 +13,15 @@ const propTypes = {
 };
 
 function FormRate({ data, interestRate }) {
-  const [from, setFrom] = useState(0);
+  const [From, setFrom] = useState(0);
   const [to, setTo] = useState(0);
-  const [currencyFrom, setcurrencyFrom] = useState('VND');
-  const [currencyTo, setcurrencyTo] = useState('USD');
-  const [arrTo, setArrTo] = useState(data.exchangeRateDetail);
+  const [currencyFrom, setcurrencyFrom] = useState('USD');
+  const [currencyTo, setcurrencyTo] = useState('VND');
+  const arrCurrency = data.exchangeRateDetail
+    ? [...data.exchangeRateDetail, { currency: 'VND' }]
+    : [{}];
+  const [arrTo, setArrTo] = useState(arrCurrency ? arrCurrency : []);
   const { t } = useTranslation();
-console.log('data.exchangeRateDetail:', data.exchangeRateDetail)
   const getCurrentTo = name => {
     if (name === 'VND') {
       setArrTo(data.exchangeRateDetail);
@@ -55,11 +57,17 @@ console.log('data.exchangeRateDetail:', data.exchangeRateDetail)
   };
 
   const Calculator = () => {
-    if (getSellBycurrency(currencyTo) === 0) {
+    if (currencyTo === 'VND') {
+      const rs = Number(From) * getSellBycurrency(currencyFrom);
+      setTo(rs.toFixed(4));
+    } else if (currencyFrom === 'VND') {
+      const rs = Number(From) / getSellBycurrency(currencyTo);
+      setTo(rs.toFixed(4));
+    } else if (getSellBycurrency(currencyTo) === 0) {
       setTo(0);
     } else {
       const result =
-        Number(from) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
+        Number(From) * (getBuyTransferBycurrency(currencyFrom) / getSellBycurrency(currencyTo));
       if (result === 0) {
         setTo(0);
       } else {
@@ -69,10 +77,15 @@ console.log('data.exchangeRateDetail:', data.exchangeRateDetail)
   };
 
   useEffect(() => {
-    if (from !== 0 || currencyFrom !== 'VND' || currencyTo !== 'USD') {
+    getCurrentTo('USD');
+    setcurrencyTo('VND');
+  }, []);
+
+  useEffect(() => {
+    if (From !== 0 || currencyFrom !== 'USD' || currencyTo !== 'VND') {
       Calculator();
     }
-  }, [from, currencyFrom, currencyTo]);
+  }, [From, currencyFrom, currencyTo]);
 
   return (
     <section className="sec-b sec-tigia sec-h-2">
@@ -94,7 +107,7 @@ console.log('data.exchangeRateDetail:', data.exchangeRateDetail)
                 <div className="input-group">
                   <span className="input-group-addon none arrow">
                     <RateSelect
-                      data={data.exchangeRateDetail}
+                      data={arrCurrency}
                       defaultValue={currencyFrom}
                       handleChangeOption={value => {
                         setcurrencyFrom(value);
@@ -107,7 +120,7 @@ console.log('data.exchangeRateDetail:', data.exchangeRateDetail)
                     className="input"
                     placeholder={t('amount')}
                     name="from"
-                    value={from}
+                    value={From}
                     onChange={e => {
                       setFrom(e.target.value);
                     }}

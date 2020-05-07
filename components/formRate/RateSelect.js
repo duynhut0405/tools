@@ -9,17 +9,28 @@ const propTypes = {
 };
 
 function RateSelect({ data, defaultValue, handleChangeOption }) {
+  console.log('defaultValue:', defaultValue);
+  
   return (
     <select
       className="select"
-      defaultValue={defaultValue}
+      //defaultValue={'VND'}
       onChange={e => handleChangeOption(e.target.value)}
     >
-      {map(data, value => (
-        <option key={value.id} value={value.currency}>
-          {value.currency}
-        </option>
-      ))}
+      {map(data, (value, index) => {
+        if (value.currency === defaultValue) {
+          return (
+            <option selected key={index} value={value.currency}>
+              {value.currency}
+            </option>
+          );
+        }
+        return (
+          <option key={index} value={value.currency}>
+            {value.currency}
+          </option>
+        );
+      })}
     </select>
   );
 }
