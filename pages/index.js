@@ -32,7 +32,7 @@ function Home({ page, silder, menuMiddle }) {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     getInterestRate();
     getRate();
   }, []);
