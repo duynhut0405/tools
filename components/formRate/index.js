@@ -30,6 +30,9 @@ function FormRate({ data, interestRate }) {
       if (obj) {
         setArrTo(obj.children);
         setcurrencyTo(obj.children[0].currency);
+        if (obj.children[0].currency === 'VND') {
+          Calculator();
+        }
       } else {
         setArrTo([]);
         setcurrencyTo('');
