@@ -33,7 +33,7 @@ function SearchResult({ t, query }) {
 
   useEffect(() => {
     fetch({ search: search, page: page, number: 20, type: type }, setData);
-  }, [page, type]);
+  }, [page, type, search]);
 
   const onClose = () => {
     const body = document.getElementsByTagName('body')[0];
@@ -49,7 +49,7 @@ function SearchResult({ t, query }) {
 
   const onChangeSearch = debounce(value => {
     setSearch(value);
-  }, 3000);
+  }, 500);
 
   const onSubmit = event => {
     event.preventDefault();
