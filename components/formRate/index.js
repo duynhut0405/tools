@@ -34,9 +34,9 @@ function FormRate({ data, interestRate }) {
           Calculator();
         }
       } else {
-        setArrTo([]);
-        setcurrencyTo('');
-        setTo(0);
+        setArrTo([{ currency: 'VND' }]);
+        setcurrencyTo('VND');
+        Calculator();
       }
     }
   };
