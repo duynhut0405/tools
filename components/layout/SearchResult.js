@@ -55,7 +55,6 @@ function SearchResult({ t, query }) {
     event.preventDefault();
     fetch({ search: search, page: page, number: 20, type: type }, setData);
   };
-
   return (
     <div id="search-result" style={{ display: 'none' }}>
       <section id="top-search-result">
@@ -88,7 +87,7 @@ function SearchResult({ t, query }) {
                 onClick={() => {
                   setTabActive(1);
                   setType(null);
-                  setSearch(null);
+                  setSearch(search);
                 }}
               >
                 <span>Tất cả</span>
@@ -98,7 +97,7 @@ function SearchResult({ t, query }) {
                 onClick={() => {
                   setTabActive(2);
                   setType('news');
-                  setSearch(null);
+                  setSearch(search);
                 }}
               >
                 <span>Tin tức</span>
@@ -108,7 +107,7 @@ function SearchResult({ t, query }) {
                 onClick={() => {
                   setTabActive(3);
                   setType('page');
-                  setSearch(null);
+                  setSearch(search);
                 }}
               >
                 <span>Sản phẩm</span>
