@@ -9,8 +9,6 @@ const propTypes = {
 };
 
 function RateSelect({ data, defaultValue, handleChangeOption }) {
-  console.log('defaultValue:', defaultValue);
-  
   return (
     <select
       className="select"
