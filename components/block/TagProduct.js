@@ -28,7 +28,7 @@ function TagProduct({ data, id }) {
       <div className="container">
         <div className="entry-head text-center">
           <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
-          {data[0].linkurl !== undefined && (
+          {data[0].linkurl !== undefined && data[0].linkurl !== '' && (
             <a className="viewall" href={data[0].linkurl === '' ? '!#' : data[0].linkurl}>
               {t('view')}
               <i className="icon-arrow-1"></i>

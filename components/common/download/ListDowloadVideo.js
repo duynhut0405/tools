@@ -67,14 +67,14 @@ function ListDowloadFIle({
   }
 
   const { t } = useTranslation();
-
+  console.log('data.url:', data.url);
   return (
     <div className={`accodion accodion-2 ${padding} downloadvideo`} id={id}>
       <div className="container">
         {data && (
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{title}</h2>
-            {data.url !== undefined && (
+            {data.url !== undefined && data.url !== '' && (
               <a className="viewall" href={data.url === '' ? '!#' : data.url}>
                 {t('view')} <i className="icon-arrow-1"></i>
               </a>
