@@ -7,6 +7,8 @@ import { getCategoryByIdService } from '../../services/category';
 import { useTranslation } from 'react-i18next';
 import { withTranslation } from '../../i18n';
 import Link from 'next/link';
+import { getLang } from '../../utils/cookie';
+import { LinkNew, LinkCategory } from '../common/link';
 import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
 
@@ -26,6 +28,7 @@ function News({ data, type, id, optionWidth }) {
   const listNews = slice(listCategory, 0, 2);
   const listNewsTabs = slice(listCategory, 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
+  const lang = getLang();
 
   const { t } = useTranslation();
 
@@ -109,9 +112,9 @@ function News({ data, type, id, optionWidth }) {
                   </div>
                   <p className="title">{item.title}</p>
                   <p className="show">
-                    <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                    <LinkNew name={item.url} lang={lang}>
                       <a>{t('viewmore')}</a>
-                    </Link>
+                    </LinkNew>
                   </p>
                 </div>
               </div>
@@ -132,12 +135,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <Link href={`/news/category/[...name]`} as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="viewall">
                   {t('view')}
                   <i className="icon-arrow-1"></i>
                 </a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
           {/* 2tabs main */}
@@ -146,7 +149,7 @@ function News({ data, type, id, optionWidth }) {
               <div className="list-5 row ">
                 {map(listNews, (item, index) => (
                   <div className="col-md-6" key={index}>
-                    <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                    <LinkNew lang={lang} name={item.url} A>
                       <a className={`item efch-${index} ef-img-l equal`}>
                         <div className="img tRes_71">
                           <img
@@ -165,7 +168,7 @@ function News({ data, type, id, optionWidth }) {
                           <div className="desc line2">{item.shortDescription}</div>
                         </div>
                       </a>
-                    </Link>
+                    </LinkNew>
                   </div>
                 ))}
               </div>
@@ -174,7 +177,7 @@ function News({ data, type, id, optionWidth }) {
             <div className="col-lg-4">
               <div className="list-6">
                 {map(listNewsTabs, (item, index) => (
-                  <Link href="/news/[...slug]" as={`/news/${item.url}`} key={index}>
+                  <LinkNew lang={lang} name={item.url} key={index}>
                     <a key={index} className="item item-inline-table">
                       <div className="img">
                         <img
@@ -191,16 +194,16 @@ function News({ data, type, id, optionWidth }) {
                         <h4 className="title line4">{item.title}</h4>
                       </div>
                     </a>
-                  </Link>
+                  </LinkNew>
                 ))}
               </div>
             </div>
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="btn lg">{t('Xem Tất Cả')}</a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
         </div>
@@ -215,12 +218,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="viewall">
                   {t('view')}
                   <i className="icon-arrow-1"></i>
                 </a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
           <div className="wrap-carousel">
@@ -240,7 +243,7 @@ function News({ data, type, id, optionWidth }) {
             >
               {map(listCategory, (item, index) => (
                 <div className="slide-item" key={index}>
-                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                  <LinkNew lang={lang} name={item.url}>
                     <a
                       className={`item efch-${index} ef-img-l `}
                       key={index}
@@ -267,7 +270,7 @@ function News({ data, type, id, optionWidth }) {
                         </h4>
                       </div>
                     </a>
-                  </Link>
+                  </LinkNew>
                 </div>
               ))}
             </Carousel>
@@ -292,9 +295,9 @@ function News({ data, type, id, optionWidth }) {
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="btn lg">{t('Xem Tất Cả')}</a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
         </div>
@@ -309,12 +312,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head home">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="viewall">
                   {t('view')}
                   <i className="icon-arrow-1"></i>
                 </a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
           <div className="list-5 row list-item">
@@ -324,7 +327,7 @@ function News({ data, type, id, optionWidth }) {
                   className={data.column === undefined ? `col-md-4` : `col-md-${data.column}`}
                   key={index}
                 >
-                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                  <LinkNew lang={lang} name={item.url}>
                     <a className="item efch-2 ef-img-l">
                       <div className="img tRes_71">
                         <img
@@ -343,16 +346,16 @@ function News({ data, type, id, optionWidth }) {
                         <div className="desc line2">{item.shortDescription}</div>
                       </div>
                     </a>
-                  </Link>
+                  </LinkNew>
                 </div>
               );
             })}
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="btn lg">{t('Xem Tất Cả')}</a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
         </div>
@@ -367,12 +370,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="viewall">
                   {t('view')}
                   <i className="icon-arrow-1"></i>
                 </a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
           <div className="row list-item">
@@ -394,7 +397,7 @@ function News({ data, type, id, optionWidth }) {
                 {map(listCategory, (item, index) => {
                   if (index === 0) {
                     return (
-                      <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                      <LinkNew lang={lang} name={item.url}>
                         <a className="item  tRes_39">
                           <img
                             className="lazyload"
@@ -409,7 +412,7 @@ function News({ data, type, id, optionWidth }) {
                             <h4 className="title line2">{item.title}</h4>
                           </div>
                         </a>
-                      </Link>
+                      </LinkNew>
                     );
                   }
                   return null;
@@ -420,7 +423,7 @@ function News({ data, type, id, optionWidth }) {
                   if (index > 0 && index < 3) {
                     return (
                       <div className="col-md-6">
-                        <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                        <LinkNew lang={lang} name={item.url}>
                           <a className={`item efch-${index} ef-img-l `}>
                             <div className="img tRes_51">
                               <img
@@ -437,7 +440,7 @@ function News({ data, type, id, optionWidth }) {
                               <h4 className="title line2">{item.title}</h4>
                             </div>
                           </a>
-                        </Link>
+                        </LinkNew>
                       </div>
                     );
                   }
@@ -448,9 +451,9 @@ function News({ data, type, id, optionWidth }) {
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="btn lg">{t('Xem Tất Cả')}</a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
         </div>
@@ -465,18 +468,18 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="viewall">
                   {t('view')}
                   <i className="icon-arrow-1"></i>
                 </a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
           <div className="list-5 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
-                <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                <LinkNew lang={lang} name={item.url}>
                   <a className={`item efch-${index} ef-img-l`}>
                     <div className="img tRes_71">
                       <img
@@ -495,15 +498,15 @@ function News({ data, type, id, optionWidth }) {
                       <div className="desc line2">{item.shortDescription}</div>
                     </div>
                   </a>
-                </Link>
+                </LinkNew>
               </div>
             ))}
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="btn lg">{t('Xem Tất Cả')}</a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
         </div>
@@ -518,18 +521,18 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="viewall">
                   {t('view')}
                   <i className="icon-arrow-1"></i>
                 </a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
           <div className="list-5 list-5-1 row list-item">
             {map(listCategory, (item, index) => (
               <div className="col-md-4" key={index}>
-                <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                <LinkNew lang={lang} name={item.url}>
                   <a className={`item efch-${index} ef-img-l equal`}>
                     <div className="divtext">
                       <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
@@ -540,15 +543,15 @@ function News({ data, type, id, optionWidth }) {
                       </span>
                     </div>
                   </a>
-                </Link>
+                </LinkNew>
               </div>
             ))}
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="btn lg">{t('Xem Tất Cả')}</a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
         </div>
@@ -563,12 +566,12 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="viewall">
                   {t('view')}
                   <i className="icon-arrow-1"></i>
                 </a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
           <div className="row list-item">
@@ -577,7 +580,7 @@ function News({ data, type, id, optionWidth }) {
                 if (index === 0) {
                   return (
                     <React.Fragment key={index}>
-                      <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                      <LinkNew lang={lang} name={item.url}>
                         <a className="item  tRes_56 video">
                           <img
                             className="lazyload"
@@ -595,7 +598,7 @@ function News({ data, type, id, optionWidth }) {
                             <h4 className="title line2">{item.title}</h4>
                           </div>
                         </a>
-                      </Link>
+                      </LinkNew>
                     </React.Fragment>
                   );
                 }
@@ -608,7 +611,7 @@ function News({ data, type, id, optionWidth }) {
                   if (index > 0 && index < 3) {
                     return (
                       <React.Fragment>
-                        <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                        <LinkNew lang={lang} name={item.url}>
                           <a className="item item-inline-table">
                             <React.Fragment>
                               <div className="img tRes_56 video cl">
@@ -631,7 +634,7 @@ function News({ data, type, id, optionWidth }) {
                               </div>
                             </React.Fragment>
                           </a>
-                        </Link>
+                        </LinkNew>
                       </React.Fragment>
                     );
                   }
@@ -642,9 +645,9 @@ function News({ data, type, id, optionWidth }) {
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
-              <Link href="/news/category/[...name]" as={`/news/category/${slugCategory}`}>
+              <LinkCategory lang={lang} name={slugCategory}>
                 <a className="btn lg">{t('Xem Tất Cả')}</a>
-              </Link>
+              </LinkCategory>
             </div>
           )}
         </div>

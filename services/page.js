@@ -1,4 +1,5 @@
 import request from '../utils/request';
+import requestLang from '../utils/requestLang';
 
 const getPageService = name => {
   return request({
@@ -29,4 +30,17 @@ const getListPageBySlug = data => {
   });
 };
 
-export { getPageService, getPagesByIdService, getListPageBySlug };
+const getPageMutiLangBySlug = (lang, name) => {
+  return requestLang({
+    url: `${lang}/api/fe/pages/name?name=${name}`,
+    method: 'POST'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
+export { getPageService, getPagesByIdService, getListPageBySlug, getPageMutiLangBySlug };

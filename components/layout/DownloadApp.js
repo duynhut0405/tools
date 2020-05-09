@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { withTranslation } from '../../i18n';
 import { getStoreFont } from '../../services/storefont';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -15,8 +16,9 @@ const getData = async setData => {
   }
 };
 
-function DownloadApp({ t, mobile }) {
+function DownloadApp({ mobile }) {
   const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
+  const lang = getLang();
   useEffect(() => {
     getData(setLinkApp);
   }, [getData]);
@@ -29,7 +31,7 @@ function DownloadApp({ t, mobile }) {
             <img className="lazyload" data-src="/static/images/svg/qr.svg" alt="images" />
           </span>
           <div className="app">
-            <p className="stitle">{t('donwload_app_today')}</p>
+            <p className="stitle">{t(lang, 'donwload_app_today')}</p>
             <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
               <img className="lazyload" data-src="/static/images/btt-google.svg" alt="images" />
             </a>
@@ -42,7 +44,7 @@ function DownloadApp({ t, mobile }) {
       )}
       {mobile && (
         <>
-          <span className="stitle">{t('donwload_app_today')}</span>
+          <span className="stitle">{t(lang, 'donwload_app_today')}</span>
           <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
             <img className="lazyload" data-src="/static/images/btt-chplay-mb.svg" alt="images" />
           </a>
@@ -58,4 +60,4 @@ function DownloadApp({ t, mobile }) {
 
 DownloadApp.propTypes = propTypes;
 
-export default withTranslation('common')(DownloadApp);
+export default DownloadApp;

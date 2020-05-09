@@ -7,12 +7,16 @@ import DownloadApp from './DownloadApp';
 import Suggest from './Suggest';
 import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { setLang, getFlag } from '../../utils/cookie';
+import Cookies from 'js-cookie';
+import { LinkPage } from '../common/link';
+import { getMemnu, getSetting, getSocialLink } from '../../utils/fetch';
+import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
 import debounce from 'lodash/debounce';
 import { withTranslation } from '../../i18n';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
+// import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -25,28 +29,46 @@ const propTypes = {
   menuFooterTop: PropTypes.array,
   menuFooterBottom: PropTypes.array,
   menuFooterMain: PropTypes.array,
-  menuSearch: PropTypes.array
+  menuSearch: PropTypes.array,
+  lang: PropTypes.string
 };
 
-function Layout({
-  children,
-  settingFooter,
-  socialLink,
-  menuHeader,
-  menuNav,
-  menuSearch,
-  menuFooterTop,
-  menuFooterBottom,
-  menuFooterMain
-}) {
+function Layout({ children, lang }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
+  const [menuHeader, setMenuHeader] = useState([]);
+  const [menuNav, setMenuNav] = useState([]);
+  const [menuSearch, setMenuSearch] = useState([]);
+  const [menuFooterTop, setMenuFooterTop] = useState([]);
+  const [menuFooterBottom, setMenuFooterBottom] = useState([]);
+  const [menuFooterMain, setMenuFooterMain] = useState([]);
+  const [settingFooter, setSettingFooter] = useState({});
+  const [socialLink, setSocialLink] = useState({});
   const [query, setQuery] = useState(null);
-  const [flag, setFlag] = useState('vn');
-  const { i18n, t } = useTranslation();
+  const router = useRouter();
+
+  const fetchMenu = async () => {
+    const _menuHeader = await getMemnu(lang, 'top_top');
+    const _menuNav = await getMemnu(lang, 'top2');
+    const _menuFooterTop = await getMemnu(lang, 'Menu footer top');
+    const _menuFooterMain = await getMemnu(lang, 'Menu footer main');
+    const _menuFooterBottom = await getMemnu(lang, 'menu footer bottom');
+    const _menuSearch = await getMemnu(lang, 'menu search');
+    const _setting = await getSetting(lang);
+    const _socialLink = await getSocialLink(lang);
+
+    setMenuHeader(_menuHeader);
+    setMenuNav(_menuNav);
+    setMenuSearch(_menuSearch);
+    setMenuFooterTop(_menuFooterTop);
+    setMenuFooterBottom(_menuFooterBottom);
+    setMenuFooterMain(_menuFooterMain);
+    setSettingFooter(_setting.general);
+    setSocialLink(_socialLink.socialLink);
+  };
 
   useEffect(() => {
-    setFlag(getFlag());
-  }, [getFlag]);
+    fetchMenu();
+  }, [lang]);
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
@@ -75,11 +97,11 @@ function Layout({
         }
         return (
           <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
-            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+            <LinkPage lang={lang} name={item.slugPages}>
               <a>
                 <span>{item.name}</span>
               </a>
-            </Link>
+            </LinkPage>
             <div className="wrapul">
               {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
             </div>
@@ -115,9 +137,9 @@ function Layout({
       }
       return (
         <li key={index}>
-          <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+          <LinkPage lang={lang} name={item.slugPages}>
             <a className={item.children.length > 0 ? 'title' : ''}>{item.name}</a>
-          </Link>
+          </LinkPage>
         </li>
       );
     });
@@ -150,10 +172,20 @@ function Layout({
     });
   };
 
-  const changeLang = (lang, flags) => {
-    i18n.changeLanguage(lang);
-    setFlag(flags);
-    setLang(lang, flags);
+  const changeLang = _lang => {
+    const regex = new RegExp(`^/(${['vi', 'en'].join('|')})`);
+    const path = router.asPath.replace(regex, `/${_lang}`);
+    if (_lang === 'vi') {
+      if (path === '/vi') {
+        router.push('/');
+      } else {
+        router.push(path.slice(3, path.length));
+      }
+      Cookies.set('lang', 'vi');
+    } else if (_lang === 'en' && lang !== 'en') {
+      Cookies.set('lang', 'en');
+      router.push(`/en${path}`);
+    }
   };
 
   const onFocus = () => {
@@ -161,7 +193,7 @@ function Layout({
     const box = document.getElementById('search-sg');
     element.style = 'width: 200px';
     box.style = 'display: block';
-    element.placeholder = `${t('enter_search')}.....`;
+    element.placeholder = `${t(lang, 'enter_search')}.....`;
   };
 
   const onClose = () => {
@@ -169,7 +201,7 @@ function Layout({
     const box = document.getElementById('search-sg');
     element.style = 'width: 70px';
     box.style = 'display: none';
-    element.placeholder = t('search');
+    element.placeholder = t(lang, 'search');
   };
 
   const onSearch = event => {
@@ -212,7 +244,7 @@ function Layout({
                     <input
                       id="search"
                       type="text"
-                      placeholder={t('search')}
+                      placeholder={t(lang, 'search')}
                       onFocus={onFocus}
                       // onBlur={onBlur}
                       onChange={event => onChangeSearch(event.target.value)}
@@ -234,9 +266,9 @@ function Layout({
                     }
                     return (
                       <li key={key}>
-                        <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
+                        <LinkPage lang={lang} name={values.slugPages}>
                           <a>{values.name}</a>
-                        </Link>
+                        </LinkPage>
                       </li>
                     );
                   }
@@ -247,7 +279,7 @@ function Layout({
                       <span>
                         <img
                           className="lazyload"
-                          data-src={`/static/flags/${flag}.png`}
+                          data-src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
                           alt="images"
                         />
                       </span>
@@ -256,29 +288,25 @@ function Layout({
                     <div className="content">
                       <div className="inner">
                         <ul className="menu">
-                          <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
-                            <Link href="#">
-                              <a onClick={() => changeLang('en', 'gb')} title="English (en)">
-                                <img
-                                  className="lazyload"
-                                  data-src="/static/flags/gb.png"
-                                  alt="images"
-                                />
-                                <span>English</span>
-                              </a>
-                            </Link>
+                          <li className={lang === 'en' ? 'lang-en active' : 'lang-en'}>
+                            <a onClick={() => changeLang('en')} title="English (en)">
+                              <img
+                                className="lazyload"
+                                data-src="/static/flags/gb.png"
+                                alt="images"
+                              />
+                              <span>English</span>
+                            </a>
                           </li>
-                          <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
-                            <Link href="#">
-                              <a onClick={() => changeLang('vi', 'vn')} title="Tiếng Việt (vi)">
-                                <img
-                                  className="lazyload"
-                                  data-src="/static/images/flags/vn.png"
-                                  alt="images"
-                                />
-                                <span>Tiếng Việt</span>
-                              </a>
-                            </Link>
+                          <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}>
+                            <a onClick={() => changeLang('vi')} title="Tiếng Việt (vi)">
+                              <img
+                                className="lazyload"
+                                data-src="/static/images/flags/vn.png"
+                                alt="images"
+                              />
+                              <span>Tiếng Việt</span>
+                            </a>
                           </li>
                         </ul>
                       </div>
@@ -294,16 +322,30 @@ function Layout({
               <div className="setzindex" style={style}>
                 <header id="header" role="banner">
                   <div className="container">
-                    <Link href="/">
-                      <a id="logo">
-                        <img
-                          id="img_log"
-                          className="lazyload"
-                          src="/static/images/svg/logo.svg"
-                          alt="logo"
-                        />
-                      </a>
-                    </Link>
+                    {lang === 'en' && (
+                      <Link href="/en">
+                        <a id="logo">
+                          <img
+                            id="img_log"
+                            className="lazyload"
+                            src="/static/images/svg/logo.svg"
+                            alt="logo"
+                          />
+                        </a>
+                      </Link>
+                    )}
+                    {lang === 'vi' && (
+                      <Link href="/">
+                        <a id="logo">
+                          <img
+                            id="img_log"
+                            className="lazyload"
+                            src="/static/images/svg/logo.svg"
+                            alt="logo"
+                          />
+                        </a>
+                      </Link>
+                    )}
                     <div className="wrap-menu-header">
                       <ul className="menu-top-header" data-style="1">
                         {nestChild(menuNav)}
@@ -344,7 +386,7 @@ function Layout({
                             <span>
                               <img
                                 className="lazyload"
-                                data-src={`/static/flags/${flag}.png`}
+                                data-src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
                                 alt="images"
                               />
                             </span>
@@ -353,32 +395,25 @@ function Layout({
                           <div className="content">
                             <div className="inner">
                               <ul className="menu">
-                                <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
-                                  <Link href="#">
-                                    <a title="English (en)" onClick={() => changeLang('en', 'gb')}>
-                                      <img
-                                        className="lazyload"
-                                        data-src="/static/images/flags/gb.png"
-                                        alt="images"
-                                      />
-                                      <span>English</span>
-                                    </a>
-                                  </Link>
+                                <li className={lang === 'en' ? 'lang-en active' : 'lang-en'}>
+                                  <a title="English (en)" onClick={() => changeLang('en')}>
+                                    <img
+                                      className="lazyload"
+                                      data-src="/static/images/flags/gb.png"
+                                      alt="images"
+                                    />
+                                    <span>English</span>
+                                  </a>
                                 </li>
-                                <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
-                                  <Link href="#">
-                                    <a
-                                      title="Tiếng Việt (vi)"
-                                      onClick={() => changeLang('vi', 'vn')}
-                                    >
-                                      <img
-                                        className="lazyload"
-                                        data-src="/static/images/flags/vn.png"
-                                        alt="images"
-                                      />
-                                      <span>Tiếng Việt</span>
-                                    </a>
-                                  </Link>
+                                <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}>
+                                  <a title="Tiếng Việt (vi)" onClick={() => changeLang('vi')}>
+                                    <img
+                                      className="lazyload"
+                                      data-src="/static/images/flags/vn.png"
+                                      alt="images"
+                                    />
+                                    <span>Tiếng Việt</span>
+                                  </a>
                                 </li>
                               </ul>
                             </div>
@@ -429,7 +464,7 @@ function Layout({
                     }
                     return (
                       <div className="col-4" key={values.id}>
-                        <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
+                        <LinkPage lang={lang} name={values.slugPages}>
                           <a className="item">
                             <span className="img">
                               <img
@@ -443,7 +478,7 @@ function Layout({
                               <div className="desc">{values.description}</div>
                             </div>
                           </a>
-                        </Link>
+                        </LinkPage>
                       </div>
                     );
                   }
@@ -456,18 +491,18 @@ function Layout({
             <div className="container">
               <div className="row">
                 <div className="col-md-6   efch-2 ef-img-r">
-                  <p className="stitle">{t('sign_up_promotional')}</p>
+                  <p className="stitle">{t(lang, 'sign_up_promotional')}</p>
                   <form role="search" method="get" className="" action="">
                     <div>
                       <input
                         type="text"
-                        placeholder={t('enter_email')}
+                        placeholder={t(lang, 'enter_email')}
                         name="s"
                         className="input"
                       />
                     </div>
                     <button type="submit" className="btn btn-2">
-                      {t('registration')}
+                      {t(lang, 'registration')}
                     </button>
                   </form>
                 </div>
@@ -506,9 +541,9 @@ function Layout({
                         }
                         return (
                           <li key={key}>
-                            <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
+                            <LinkPage lang={lang} name={values.slugPages}>
                               <a>{values.name}</a>
-                            </Link>
+                            </LinkPage>
                           </li>
                         );
                       }
@@ -523,10 +558,15 @@ function Layout({
           </div>
           <section className="sec-download-mb">
             <div className="wform">
-              <p className="stitle">{t('sign_up_promotional')}</p>
+              <p className="stitle">{t(lang, 'sign_up_promotional')}</p>
               <form role="search" method="get" className="" action="">
                 <div className="aaa">
-                  <input type="text" placeholder={t('enter_email')} name="s" className="input" />
+                  <input
+                    type="text"
+                    placeholder={t(lang, 'enter_email')}
+                    name="s"
+                    className="input"
+                  />
                 </div>
 
                 <button type="submit" className="btn btn-2">
@@ -547,7 +587,7 @@ function Layout({
                 <div className="accodion-tab ">
                   <input type="checkbox" id="chck_mf" />
                   <label className="accodion-title" htmlFor="chck_mf">
-                    <span> {t('extend')} </span>{' '}
+                    <span> {t(lang, 'extend')} </span>
                     <span className="triangle">
                       <i className="icon-plus"></i>
                     </span>
@@ -571,7 +611,7 @@ function Layout({
                         alt="images"
                       />
                     </span>
-                    <span className="name">{t('home')}</span>
+                    <span className="name">{t(lang, 'home')}</span>
                   </a>
                 </div>
                 <div className="col-3">
@@ -583,7 +623,7 @@ function Layout({
                         alt="images"
                       />
                     </span>
-                    <span className="name">{t('product')}</span>
+                    <span className="name">{t(lang, 'product')}</span>
                   </a>
                 </div>
                 <div className="col-3">
@@ -603,7 +643,7 @@ function Layout({
                         alt="images"
                       />
                     </span>
-                    <span className="name">{t('family')}</span>
+                    <span className="name">{t(lang, 'family')}</span>
                   </a>
                 </div>
                 <div className="col-3">
@@ -615,7 +655,7 @@ function Layout({
                         alt="images"
                       />
                     </span>
-                    <span className="name">{t('utilities')}</span>
+                    <span className="name">{t(lang, 'utilities')}</span>
                   </a>
                 </div>
               </div>

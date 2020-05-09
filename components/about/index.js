@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import moment from 'moment';
 import { map } from 'lodash';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../i18n';
+import { getLang } from '../../utils/cookie';
+import { LinkNew } from '../common/link';
 import PropTypes from 'prop-types';
 import { NewsActions } from '../../store/actions';
 import { connect } from 'react-redux';
@@ -22,7 +22,7 @@ function About({ data, listNews, getNews, id }) {
   const [year, setYear] = useState(moment(date).format('YYYY'));
   const [page, setPage] = useState(1);
   const [listYear, setListYear] = useState([]);
-  const { t } = useTranslation();
+  const lang = getLang();
 
   let padding = '';
   if (data.optionWidth === '2') {
@@ -78,7 +78,7 @@ function About({ data, listNews, getNews, id }) {
             {map(listNews.news, item => {
               return (
                 <div className="col-md-4" key={item.newsId}>
-                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                  <LinkNew lang={lang} name={item.url}>
                     <a className="item efch-2 ef-img-l equal">
                       <div className="img">
                         <img
@@ -92,7 +92,7 @@ function About({ data, listNews, getNews, id }) {
                         <h4 className="title line2">{item.title}</h4>
                       </div>
                     </a>
-                  </Link>
+                  </LinkNew>
                 </div>
               );
             })}
@@ -116,4 +116,4 @@ const mapDispatchToProps = {
 
 About.propTypes = propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(About));
+export default connect(mapStateToProps, mapDispatchToProps)(About);

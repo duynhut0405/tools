@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import Layout from '../../../components/layout';
+import Layout from '../../../../components/layout';
 import map from 'lodash/map';
-import { getNewsByCategorySlug } from '../../../services/news';
-import { Pagination } from '../../../components/common';
+import { getNewsByCategorySlug } from '../../../../services/news';
+import { Pagination } from '../../../../components/common';
 import PropTypes from 'prop-types';
-import AboutCategory from '../../../components/about/AboutCategory';
+import AboutCategory from '../../../../components/about/AboutCategory';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   category: PropTypes.object,
@@ -34,29 +35,32 @@ function CategoryDetail({ routerURL, category }) {
   }, [category]);
 
   useEffect(() => {
+    Cookies.set('lang', 'en');
     fecthNews();
   }, [page]);
 
   return (
     <React.Fragment>
-      <Head>
-        <title>{data.meta_title || data.name}</title>
-        <meta name="title" content={data.meta_title || data.name} />
-        <meta name="description" content={data.meta_description || ''} />
-        <meta name="keywords" content={data.meta_keyword || ''} />
-        <meta
-          property="og:image"
-          itemProp="thumbnaiUrl"
-          content={
-            data.miniImage
-              ? `${process.env.DOMAIN}${data.miniImage}`
-              : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
-          }
-        />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="354" />
-      </Head>
-      <Layout lang="vi">
+      {data && (
+        <Head>
+          <title>{data.meta_title || data.name}</title>
+          <meta name="title" content={data.meta_title || data.name} />
+          <meta name="description" content={data.meta_description || ''} />
+          <meta name="keywords" content={data.meta_keyword || ''} />
+          <meta
+            property="og:image"
+            itemProp="thumbnaiUrl"
+            content={
+              data.miniImage
+                ? `${process.env.DOMAIN}${data.miniImage}`
+                : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
+            }
+          />
+          <meta property="og:image:width" content="800" />
+          <meta property="og:image:height" content="354" />
+        </Head>
+      )}
+      <Layout lang="en">
         {data !== null && (
           <div className="main_content">
             <section className="banner-heading-3 next-shadow">

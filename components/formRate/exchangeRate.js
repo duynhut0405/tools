@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import TableRate from './Table';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
 
 function ExchangeRate({ data1, data2 }) {
   const [tab, setTab] = useState('tab1');
-  const { t } = useTranslation();
+  const lang = getLang();
   return (
     <div className="cttab-v3 divtigia">
       <div className="tab-menu">
         <div className={tab === 'tab1' ? 'tg-tab active' : 'tg-tab'} onClick={() => setTab('tab1')}>
-          {t('exchange_rate')}
+          {t(lang, 'exchange_rate')}
         </div>
         <div className={tab === 'tab2' ? 'tg-tab active' : 'tg-tab'} onClick={() => setTab('tab2')}>
-          {t('interest_rate')} <span className="cl5 text-normal fs18">(%/ năm)</span>
+          {t(lang, 'interest_rate')} <span className="cl5 text-normal fs18">(%/ năm)</span>
         </div>
       </div>
       <div className="tab-content">

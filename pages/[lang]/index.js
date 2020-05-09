@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../components/common';
-import FormRate from '../components/formRate';
-import Layout from '../components/layout';
+import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../../components/common';
+import FormRate from '../../components/formRate';
+import Layout from '../../components/layout';
 import Head from 'next/head';
-import { getRateService, getInterestRateService } from '../services/rate';
-import { getPageMutiLangBySlug } from '../services/page';
+import { getRateService, getInterestRateService } from '../../services/rate';
+import { getPageMutiLangBySlug } from '../../services/page';
 import filter from 'lodash/filter';
 import Proptypes from 'prop-types';
 
@@ -62,7 +62,7 @@ function Home({ page, silder, menuMiddle }) {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout lang="vi">
+      <Layout lang="en">
         <div className="main_content">
           {page.breadCrumb && <Breadcrumb data={[]} />}
           <Carousel silder={silder} />
@@ -79,7 +79,7 @@ Home.getInitialProps = async () => {
   let page = {};
   let silder = [];
   let menuMiddle = {};
-  const pageResponse = await getPageMutiLangBySlug('vi', 'homepage');
+  const pageResponse = await getPageMutiLangBySlug('en', 'homepage');
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
     menuMiddle = pageResponse.data.menuMiddle;

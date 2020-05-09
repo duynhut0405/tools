@@ -5,7 +5,8 @@ import { getPagesByIdService } from '../../services/page';
 import Carousel from 'react-multi-carousel';
 import CustomPageItem from './BlockPageItem/CustomPageItem';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { LinkPage } from '../common/link';
+import { getLang } from '../../utils/cookie';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -17,6 +18,8 @@ const propTypes = {
 function Pages({ data, type, id, optionWidth }) {
   const [listPage, setListPage] = useState([]);
   const [refCarouselThree, setRefCarouselThree] = useState(null);
+  const lang = getLang();
+
   const getPageBlock = async () => {
     const ids = map(data.pages, values => values.value);
     const res = await getPagesByIdService(ids);
@@ -35,7 +38,6 @@ function Pages({ data, type, id, optionWidth }) {
   } else {
     padding = 'sec-';
   }
-  const router = useRouter();
 
   const responsiveTwo = {
     desktop: {
@@ -68,7 +70,7 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="list-5 row list-item">
             {map(listPage, item => (
               <div className="col-md-4" key={item.id}>
-                <Link href="/page/[...name]" as={`/page/${item.slug}`}>
+                <LinkPage lang={lang} name={item.slug}>
                   <a className="item">
                     <div className="img tRes_71">
                       <img
@@ -86,7 +88,7 @@ function Pages({ data, type, id, optionWidth }) {
                       <div className="desc line4">{item.meta_description}..</div>
                     </div>
                   </a>
-                </Link>
+                </LinkPage>
               </div>
             ))}
           </div>
@@ -102,7 +104,7 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="list-7 list-item row">
             {map(listPage, item => (
               <div className="col-md-6" key={item.newsId}>
-                <Link href="/page/[...name]" as={`/page/${item.slug}`}>
+                <LinkPage lang={lang} name={item.slug}>
                   <a className="item item-inline-table style-colummb">
                     <div className="img">
                       <img
@@ -120,7 +122,7 @@ function Pages({ data, type, id, optionWidth }) {
                       <div className="desc line4">{item.meta_description}..</div>
                     </div>
                   </a>
-                </Link>
+                </LinkPage>
               </div>
             ))}
           </div>
@@ -137,7 +139,7 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="list-7 list-item row">
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
-                <Link href="/page/[...name]" as={`/page/${values.slug}`}>
+                <LinkPage lang={lang} name={values.slug}>
                   <a className="item item-inline-table">
                     <div className="img">
                       <img
@@ -155,15 +157,15 @@ function Pages({ data, type, id, optionWidth }) {
                       <div className="desc line4">{values.meta_description}</div>
                     </div>
                   </a>
-                </Link>
+                </LinkPage>
               </div>
             ))}
           </div>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <Link key={index} href="/page/[...name]" as={`/page/${values.url}`}>
+              <LinkPage key={index} lang={lang} name={values.url}>
                 <a className="tag">{values.name}</a>
-              </Link>
+              </LinkPage>
             ))}
           </div>
         </div>
@@ -179,17 +181,17 @@ function Pages({ data, type, id, optionWidth }) {
           <ul className="cols-2 link2">
             {map(listPage, (values, index) => (
               <li key={index}>
-                <Link href="/page/[...name]" as={`/page/${values.slug}`}>
+                <LinkPage href="/page/[...name]" as={`/page/${values.slug}`}>
                   <a>{values.name}</a>
-                </Link>
+                </LinkPage>
               </li>
             ))}
           </ul>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <Link key={index} href={values.url}>
+              <LinkPage key={index} href={values.url}>
                 <a className="tag">{values.name}</a>
-              </Link>
+              </LinkPage>
             ))}
           </div>
         </div>
@@ -219,7 +221,7 @@ function Pages({ data, type, id, optionWidth }) {
             >
               {map(listPage, (items, index) => (
                 <div className="item ef-img-t item_carousel" key={index}>
-                  <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                  <LinkPage name={items.slug} lang={lang}>
                     <a className="link">
                       <div className="img">
                         <img
@@ -237,7 +239,7 @@ function Pages({ data, type, id, optionWidth }) {
                         <div className="desc line2 cl3">{items.meta_description}</div>
                       </div>
                     </a>
-                  </Link>
+                  </LinkPage>
                 </div>
               ))}
             </Carousel>
