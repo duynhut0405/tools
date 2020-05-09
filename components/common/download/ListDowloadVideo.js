@@ -67,7 +67,7 @@ function ListDowloadFIle({
   }
 
   const { t } = useTranslation();
-  console.log('data.url:', data.url);
+
   return (
     <div className={`accodion accodion-2 ${padding} downloadvideo`} id={id}>
       <div className="container">

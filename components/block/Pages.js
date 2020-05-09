@@ -56,7 +56,7 @@ function Pages({ data, type, id, optionWidth }) {
     if (data.pages) {
       getPageBlock();
     }
-  }, [data]);
+  }, []);
 
   if (type && type === '1') {
     return (

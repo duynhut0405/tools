@@ -27,8 +27,10 @@ function SearchResult({ t, query }) {
   const [type, setType] = useState(null);
 
   useEffect(() => {
-    setSearch(query);
-    fetch({ search: query, page: page, number: 20, type: null }, setData);
+    if (query !== null) {
+      setSearch(query);
+      fetch({ search: query, page: page, number: 20, type: null }, setData);
+    }
   }, [query]);
 
   useEffect(() => {

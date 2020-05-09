@@ -1,26 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { withTranslation } from '../../i18n';
-import { getStoreFont } from '../../services/storefont';
+
 import PropTypes from 'prop-types';
 
 const propTypes = {
   t: PropTypes.func,
-  mobile: PropTypes.bool
+  mobile: PropTypes.bool,
+  linkApp: PropTypes.object
 };
 
-const getData = async setData => {
-  const res = await getStoreFont('linkApp');
-  if (res && res !== undefined && res.status === 200) {
-    setData(res.data.linkApp);
-  }
-};
-
-function DownloadApp({ t, mobile }) {
-  const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
-  useEffect(() => {
-    getData(setLinkApp);
-  }, [getData]);
-
+const DownloadApp = ({ t, mobile, linkApp }) => {
   return (
     <div className={mobile ? 'wdownload' : 'wapp'}>
       {!mobile && (
@@ -54,7 +43,7 @@ function DownloadApp({ t, mobile }) {
       )}
     </div>
   );
-}
+};
 
 DownloadApp.propTypes = propTypes;
 
