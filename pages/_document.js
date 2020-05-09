@@ -35,6 +35,7 @@ class MyDocument extends Document {
             content="KHACH HANG CA NHA , KHACH HANG DOANH NGHIEP , CA NHAN CAO CAP , KHACH HANG DINH CHE"
           />
           <meta property="og:site_name" content="MBBANK" />
+          <script dangerouslySetInnerHTML={{ __html: 'history.scrollRestoration = "manual";' }} />
           <meta property="og:url" content={process.env.LINK_DOMAIN} />
           <GtagScript />
         </Head>
