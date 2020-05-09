@@ -27,13 +27,15 @@ function SearchResult({ t, query }) {
   const [type, setType] = useState(null);
 
   useEffect(() => {
-    setSearch(query);
-    fetch({ search: query, page: page, number: 20, type: null }, setData);
+    if (query !== null) {
+      setSearch(query);
+      fetch({ search: query, page: page, number: 20, type: null }, setData);
+    }
   }, [query]);
 
   useEffect(() => {
     fetch({ search: search, page: page, number: 20, type: type }, setData);
-  }, [page, type]);
+  }, [page, type, search]);
 
   const onClose = () => {
     const body = document.getElementsByTagName('body')[0];
@@ -49,13 +51,12 @@ function SearchResult({ t, query }) {
 
   const onChangeSearch = debounce(value => {
     setSearch(value);
-  }, 3000);
+  }, 500);
 
   const onSubmit = event => {
     event.preventDefault();
     fetch({ search: search, page: page, number: 20, type: type }, setData);
   };
-
   return (
     <div id="search-result" style={{ display: 'none' }}>
       <section id="top-search-result">
@@ -88,7 +89,7 @@ function SearchResult({ t, query }) {
                 onClick={() => {
                   setTabActive(1);
                   setType(null);
-                  setSearch(null);
+                  setSearch(search);
                 }}
               >
                 <span>Tất cả</span>
@@ -98,7 +99,7 @@ function SearchResult({ t, query }) {
                 onClick={() => {
                   setTabActive(2);
                   setType('news');
-                  setSearch(null);
+                  setSearch(search);
                 }}
               >
                 <span>Tin tức</span>
@@ -108,7 +109,7 @@ function SearchResult({ t, query }) {
                 onClick={() => {
                   setTabActive(3);
                   setType('page');
-                  setSearch(null);
+                  setSearch(search);
                 }}
               >
                 <span>Sản phẩm</span>

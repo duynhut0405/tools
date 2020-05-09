@@ -16,8 +16,8 @@ import map from 'lodash/map';
 import debounce from 'lodash/debounce';
 import { withTranslation } from '../../i18n';
 import { useRouter } from 'next/router';
-// import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { getStoreFont } from '../../services/storefont';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -33,6 +33,13 @@ const propTypes = {
   lang: PropTypes.string
 };
 
+const getData = async setData => {
+  const res = await getStoreFont('linkApp');
+  if (res && res !== undefined && res.status === 200) {
+    setData(res.data.linkApp);
+  }
+};
+
 function Layout({ children, lang }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [menuHeader, setMenuHeader] = useState([]);
@@ -44,6 +51,7 @@ function Layout({ children, lang }) {
   const [settingFooter, setSettingFooter] = useState({});
   const [socialLink, setSocialLink] = useState({});
   const [query, setQuery] = useState(null);
+  const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
   const router = useRouter();
 
   const fetchMenu = async () => {
@@ -69,6 +77,10 @@ function Layout({ children, lang }) {
   useEffect(() => {
     fetchMenu();
   }, [lang]);
+
+  useEffect(() => {
+    getData(setLinkApp);
+  }, []);
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
@@ -97,11 +109,11 @@ function Layout({ children, lang }) {
         }
         return (
           <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
-            <LinkPage lang={lang} name={item.slugPages}>
+            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
               <a>
                 <span>{item.name}</span>
               </a>
-            </LinkPage>
+            </Link>
             <div className="wrapul">
               {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
             </div>
@@ -136,10 +148,15 @@ function Layout({ children, lang }) {
         );
       }
       return (
-        <li key={index}>
+        <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
           <LinkPage lang={lang} name={item.slugPages}>
-            <a className={item.children.length > 0 ? 'title' : ''}>{item.name}</a>
+            <a>
+              <span>{item.name}</span>
+            </a>
           </LinkPage>
+          <div className="wrapul">
+            {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
+          </div>
         </li>
       );
     });
@@ -222,7 +239,7 @@ function Layout({ children, lang }) {
     const box = document.getElementById('search-sg');
     element.style = 'width: 70px';
     box.style = 'display: none';
-    element.placeholder = t('search');
+    element.placeholder = t(lang, 'search');
   };
 
   const onChangeSearch = debounce(value => {
@@ -405,15 +422,17 @@ function Layout({ children, lang }) {
                                     <span>English</span>
                                   </a>
                                 </li>
-                                <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}>
-                                  <a title="Tiếng Việt (vi)" onClick={() => changeLang('vi')}>
-                                    <img
-                                      className="lazyload"
-                                      data-src="/static/images/flags/vn.png"
-                                      alt="images"
-                                    />
-                                    <span>Tiếng Việt</span>
-                                  </a>
+                                <li className={lang === 'vn' ? 'lang-vi active' : 'lang-vi'}>
+                                  <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}>
+                                    <a title="Tiếng Việt (vi)" onClick={() => changeLang('vi')}>
+                                      <img
+                                        className="lazyload"
+                                        data-src="/static/images/flags/vn.png"
+                                        alt="images"
+                                      />
+                                      <span>Tiếng Việt</span>
+                                    </a>
+                                  </li>
                                 </li>
                               </ul>
                             </div>
@@ -507,7 +526,7 @@ function Layout({ children, lang }) {
                   </form>
                 </div>
                 <div className="col-md-6   efch-3 ef-img-r">
-                  <DownloadApp />
+                  <DownloadApp linkApp={linkApp} />
                 </div>
               </div>
             </div>
@@ -574,7 +593,7 @@ function Layout({ children, lang }) {
                 </button>
               </form>
             </div>
-            <DownloadApp mobile />
+            <DownloadApp mobile linkApp={linkApp} />
           </section>
           <div id="footer-mb" className="group-ef loaded">
             <div className="container">
@@ -587,7 +606,7 @@ function Layout({ children, lang }) {
                 <div className="accodion-tab ">
                   <input type="checkbox" id="chck_mf" />
                   <label className="accodion-title" htmlFor="chck_mf">
-                    <span> {t(lang, 'extend')} </span>
+                    <span> {t(lang, 'extend')} </span>{' '}
                     <span className="triangle">
                       <i className="icon-plus"></i>
                     </span>

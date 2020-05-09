@@ -18,7 +18,6 @@ function MenuMiddle({ data, query }) {
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
   const lang = getLang();
-  console.log(lang);
 
   useEffect(() => {
     if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
