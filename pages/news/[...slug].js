@@ -10,6 +10,7 @@ import ReactHtmlParser from 'react-html-parser';
 import t from '../../translation';
 import Layout from '../../components/layout';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   socialLink: PropTypes.object,
@@ -21,6 +22,7 @@ const propTypes = {
 
 function New({ news, category_name, category_url, socialLink }) {
   useEffect(() => {
+    Cookies.set('lang', 'vi');
     document.body.className = '';
     document.body.classList.add('page');
     if (news && news.news.layoutInvestors) {

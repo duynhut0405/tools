@@ -6,6 +6,7 @@ import { getNewsByCategorySlug } from '../../../services/news';
 import { Pagination } from '../../../components/common';
 import PropTypes from 'prop-types';
 import AboutCategory from '../../../components/about/AboutCategory';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   category: PropTypes.object,
@@ -24,6 +25,7 @@ function CategoryDetail({ routerURL, category }) {
   };
 
   useEffect(() => {
+    Cookies.set('lang', 'vi');
     setData(category);
     document.body.className = '';
     document.body.classList.add('page');

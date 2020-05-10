@@ -7,6 +7,7 @@ import { getRateService, getInterestRateService } from '../services/rate';
 import { getPageMutiLangBySlug } from '../services/page';
 import filter from 'lodash/filter';
 import Proptypes from 'prop-types';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   page: Proptypes.object,
@@ -33,15 +34,16 @@ function Home({ page, silder, menuMiddle }) {
   };
 
   useEffect(() => {
+    Cookies.set('lang', 'vi');
     getInterestRate();
     getRate();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     document.body.className = '';
     document.body.classList.add('home');
     document.getElementById('img_log').src = '/static/images/svg/logo.svg';
-  });
+  }, [page]);
 
   return (
     <React.Fragment>

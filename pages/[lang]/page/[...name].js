@@ -7,6 +7,7 @@ import filter from 'lodash/filter';
 import { getPageMutiLangBySlug, getListPageBySlug } from '../../../services/page';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   page: PropTypes.object,
@@ -25,6 +26,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
   const noIndex = page.noIndex ? page.noIndex : '';
 
   useEffect(() => {
+    Cookies.set('lang', 'en');
     document.body.className = '';
     document.body.classList.add('page');
     if (slugClass) {

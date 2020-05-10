@@ -25,6 +25,7 @@ function CategoryDetail({ routerURL, category }) {
   };
 
   useEffect(() => {
+    Cookies.set('lang', 'en');
     setData(category);
     document.body.className = '';
     document.body.classList.add('page');
@@ -35,7 +36,6 @@ function CategoryDetail({ routerURL, category }) {
   }, [category]);
 
   useEffect(() => {
-    Cookies.set('lang', 'en');
     fecthNews();
   }, [page]);
 
