@@ -20,27 +20,27 @@ const nested = (data, id = null, link = 'parentId') => {
     }));
 };
 
-export const getMemnu = async postion => {
+export const getMemnu = async (lang, postion) => {
   let data = [];
-  const res = await getMenuItemByPosition(postion);
+  const res = await getMenuItemByPosition(lang, postion);
   if (res && res !== undefined && res.status === 200) {
     data = nested(res.data.menuItems);
   }
   return data;
 };
 
-export const getSetting = async () => {
+export const getSetting = async lang => {
   let data = {};
-  const res = await getSettingFooterService();
+  const res = await getSettingFooterService(lang);
   if (res && res !== undefined && res.status === 200) {
     data = res.data;
   }
   return data;
 };
 
-export const getSocialLink = async () => {
+export const getSocialLink = async lang => {
   let data = {};
-  const res = await getSocialLinkService();
+  const res = await getSocialLinkService(lang);
   if (res && res !== undefined && res.status === 200) {
     data = res.data;
   }

@@ -2,7 +2,14 @@ const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
 const withFonts = require('nextjs-fonts');
 const withPWA = require('next-pwa');
-const { getRouer, getNewRouter, getCategoryRouter } = require('./services/router');
+const {
+  getRouer,
+  getNewRouter,
+  getCategoryRouter,
+  getCategoryRouteEN,
+  getNewRouterEN,
+  getRouterEN
+} = require('./services/router');
 
 module.exports = withPWA(
   withFonts(
@@ -41,6 +48,10 @@ module.exports = withPWA(
           let router = [];
           let newRouter = [];
           let categoryRouter = [];
+          let routerEN = [];
+          let newRouterEN = [];
+          let categoryRouterEN = [];
+
           const res = await getRouer();
           if (res && res !== undefined && res.status === 200) {
             router = res.data.reduce(
@@ -51,6 +62,18 @@ module.exports = withPWA(
               {}
             );
           }
+
+          const resEN = await getRouer();
+          if (resEN && resEN !== undefined && resEN.status === 200) {
+            routerEN = resEN.data.reduce(
+              (pages, data) =>
+                Object.assign({}, pages, {
+                  [`/[lang]/page/${data.slug}`]: { page: '/[lang]/page/[...name]' }
+                }),
+              {}
+            );
+          }
+
           const newResponse = await getNewRouter();
           if (newResponse && newResponse !== undefined && newResponse.status === 200) {
             newRouter = newResponse.data.reduce(
@@ -61,6 +84,18 @@ module.exports = withPWA(
               {}
             );
           }
+
+          const newResponseEN = await getNewRouter();
+          if (newResponseEN && newResponseEN !== undefined && newResponseEN.status === 200) {
+            newRouterEN = newResponseEN.data.reduce(
+              (pages, data) =>
+                Object.assign({}, pages, {
+                  [`/[lang]/news/${data.url}`]: { page: '/[lang]/news/[...slug]' }
+                }),
+              {}
+            );
+          }
+
           const categoryResponse = await getCategoryRouter();
           if (
             categoryResponse &&
@@ -75,11 +110,35 @@ module.exports = withPWA(
               {}
             );
           }
+
+          const categoryResponseEN = await getCategoryRouter();
+          if (
+            categoryResponseEN &&
+            categoryResponseEN !== undefined &&
+            categoryResponseEN.status === 200
+          ) {
+            categoryRouterEN = categoryResponseEN.data.reduce(
+              (pages, category) =>
+                Object.assign({}, pages, {
+                  [`/[lang]/news/category/${category.slug}`]: {
+                    page: '/[lang]/news/category/[...name]'
+                  }
+                }),
+              {}
+            );
+          }
+
           let pageRouter = Object.assign({}, router, {
             '/': { page: '/' }
           });
 
-          pageRouter = Object.assign(pageRouter, categoryRouter);
+          pageRouter = Object.assign(
+            pageRouter,
+            categoryRouter,
+            routerEN,
+            newRouterEN,
+            categoryRouterEN
+          );
           return Object.assign(newRouter, pageRouter);
         }
       })

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Social } from '../../components/common';
-import { getNewByUri } from '../../services/news';
-import { getSocialLink } from '../../utils/fetch';
+import { Social } from '../../../components/common';
+import { getNewByUri } from '../../../services/news';
+import { getSocialLink } from '../../../utils/fetch';
 import moment from 'moment';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
 import { useTranslation } from 'react-i18next';
-import Layout from '../../components/layout';
+import Layout from '../../../components/layout';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -67,7 +67,7 @@ function New({ news, category_name, category_url, socialLink }) {
           <meta property="og:image:height" content="354" />
         </Head>
       )}
-      <Layout lang="vi">
+      <Layout lang="en">
         {news && news.news !== null && (
           <>
             <div className="entry-breadcrumb">
@@ -76,7 +76,10 @@ function New({ news, category_name, category_url, socialLink }) {
                   <Link href="/">
                     <a className="item">{t('home')}</a>
                   </Link>
-                  <Link href="/news/category/[...name]" as={`/news/category/${category_url}`}>
+                  <Link
+                    href="/[lang]/news/category/[...name]"
+                    as={`/en/news/category/${category_url}`}
+                  >
                     <a className="item">{category_name}</a>
                   </Link>
                   {/* <span className="item">{news.news === null ? '' : news.news.title}</span> */}
@@ -117,8 +120,8 @@ function New({ news, category_name, category_url, socialLink }) {
                     <h2>{t('related_content')}</h2>
                     {map(news.news.categories, item => (
                       <Link
-                        href="/news/category/[...name]"
-                        as={`/news/category/${item.slug}`}
+                        href="/[lang]/news/category/[...name]"
+                        as={`/en/news/category/${item.slug}`}
                         key={item.id}
                       >
                         <a className="tag">{item.name}</a>
@@ -137,7 +140,7 @@ function New({ news, category_name, category_url, socialLink }) {
                   {map(news.newsRelated, (item, index) => {
                     return (
                       <div className="col-md-6" key={index}>
-                        <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                        <Link href="/[lang]/news/[...slug]" as={`/en/news/${item.url}`}>
                           <a className="item item-inline-table">
                             <div className="img">
                               <img
@@ -180,8 +183,8 @@ New.getInitialProps = async ctx => {
   // let layoutInvestors = null;
   map(query, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
-  const socialLink = await getSocialLink('vi');
-  const newResponse = await getNewByUri('vi', routerURL);
+  const socialLink = await getSocialLink('en');
+  const newResponse = await getNewByUri('en', routerURL);
   if (
     newResponse &&
     newResponse !== undefined &&

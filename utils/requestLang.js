@@ -1,10 +1,9 @@
 const axios = require('axios');
-const { getLang } = require('./cookie');
 
 const url = process.env.BASE_URL || 'https://mbbank3.mangoads.com.vn:8443';
 
 const request = axios.create({
-  baseURL: `${url}/${getLang()}/api/fe`,
+  baseURL: `${url}/`,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'
@@ -14,8 +13,8 @@ const request = axios.create({
 // before send request
 request.interceptors.request.use(
   config => {
-    const lang = getLang();
-    config.baseURL = `https://mbbank3.mangoads.com.vn:8443/${lang}/api/fe`;
+    // const lang = getLang();
+    // config.baseURL = `https://mbbank3.mangoads.com.vn:8443/${getLang()}/api/fe`;
     return config;
   },
   error => {

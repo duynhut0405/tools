@@ -1,4 +1,5 @@
 import request from '../utils/request';
+import requestLang from '../utils/requestLang';
 
 const getNewService = () => {
   return request({
@@ -13,9 +14,9 @@ const getNewService = () => {
     });
 };
 
-const getNewByUri = uri => {
-  return request({
-    url: `/news/url/${uri}`,
+const getNewByUri = (lang, uri) => {
+  return requestLang({
+    url: `${lang}/api/fe/news/url/${uri}`,
     method: 'GET'
   })
     .then(res => {

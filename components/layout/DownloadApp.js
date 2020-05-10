@@ -1,6 +1,6 @@
 import React from 'react';
-import { withTranslation } from '../../i18n';
-
+import { getLang } from '../../utils/cookie';
+import t from '../../translation';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -9,7 +9,8 @@ const propTypes = {
   linkApp: PropTypes.object
 };
 
-const DownloadApp = ({ t, mobile, linkApp }) => {
+const DownloadApp = ({ mobile, linkApp }) => {
+  const lang = getLang();
   return (
     <div className={mobile ? 'wdownload' : 'wapp'}>
       {!mobile && (
@@ -18,7 +19,7 @@ const DownloadApp = ({ t, mobile, linkApp }) => {
             <img className="lazyload" data-src="/static/images/svg/qr.svg" alt="images" />
           </span>
           <div className="app">
-            <p className="stitle">{t('donwload_app_today')}</p>
+            <p className="stitle">{t(lang, 'donwload_app_today')}</p>
             <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
               <img className="lazyload" data-src="/static/images/btt-google.svg" alt="images" />
             </a>
@@ -31,7 +32,7 @@ const DownloadApp = ({ t, mobile, linkApp }) => {
       )}
       {mobile && (
         <>
-          <span className="stitle">{t('donwload_app_today')}</span>
+          <span className="stitle">{t(lang, 'donwload_app_today')}</span>
           <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
             <img className="lazyload" data-src="/static/images/btt-chplay-mb.svg" alt="images" />
           </a>
@@ -47,4 +48,4 @@ const DownloadApp = ({ t, mobile, linkApp }) => {
 
 DownloadApp.propTypes = propTypes;
 
-export default withTranslation('common')(DownloadApp);
+export default DownloadApp;

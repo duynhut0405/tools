@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import Widget from './Widget';
 import WidgetMB from './WidgetMb';
 import { Social } from '../common';
@@ -7,12 +7,15 @@ import DownloadApp from './DownloadApp';
 import Suggest from './Suggest';
 import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { setLang, getFlag } from '../../utils/cookie';
+import Cookies from 'js-cookie';
+import { LinkPage } from '../common/link';
+import { getMemnu, getSetting, getSocialLink } from '../../utils/fetch';
+import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
 import debounce from 'lodash/debounce';
 import { withTranslation } from '../../i18n';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { getStoreFont } from '../../services/storefont';
 
@@ -26,7 +29,8 @@ const propTypes = {
   menuFooterTop: PropTypes.array,
   menuFooterBottom: PropTypes.array,
   menuFooterMain: PropTypes.array,
-  menuSearch: PropTypes.array
+  menuSearch: PropTypes.array,
+  lang: PropTypes.string
 };
 
 const getData = async setData => {
@@ -36,277 +40,318 @@ const getData = async setData => {
   }
 };
 
-const Layout = memo(
-  ({
-    children,
-    settingFooter,
-    socialLink,
-    menuHeader,
-    menuNav,
-    menuSearch,
-    menuFooterTop,
-    menuFooterBottom,
-    menuFooterMain
-  }) => {
-    const [activeDrawer, setActiveDrawwe] = useState(false);
-    const [query, setQuery] = useState(null);
-    const [flag, setFlag] = useState('vn');
-    const { i18n, t } = useTranslation();
-    const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
-    useEffect(() => {
-      setFlag(getFlag());
-    }, [getFlag]);
+function Layout({ children, lang }) {
+  const [activeDrawer, setActiveDrawwe] = useState(false);
+  const [menuHeader, setMenuHeader] = useState([]);
+  const [menuNav, setMenuNav] = useState([]);
+  const [menuSearch, setMenuSearch] = useState([]);
+  const [menuFooterTop, setMenuFooterTop] = useState([]);
+  const [menuFooterBottom, setMenuFooterBottom] = useState([]);
+  const [menuFooterMain, setMenuFooterMain] = useState([]);
+  const [settingFooter, setSettingFooter] = useState({});
+  const [socialLink, setSocialLink] = useState({});
+  const [query, setQuery] = useState(null);
+  const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
+  const router = useRouter();
 
-    useEffect(() => {
-      getData(setLinkApp);
-    }, []);
+  const fetchMenu = async () => {
+    const _menuHeader = await getMemnu(lang, 'top_top');
+    const _menuNav = await getMemnu(lang, 'top2');
+    const _menuFooterTop = await getMemnu(lang, 'Menu footer top');
+    const _menuFooterMain = await getMemnu(lang, 'Menu footer main');
+    const _menuFooterBottom = await getMemnu(lang, 'menu footer bottom');
+    const _menuSearch = await getMemnu(lang, 'menu search');
+    const _setting = await getSetting(lang);
+    const _socialLink = await getSocialLink(lang);
 
-    useEffect(() => {
-      const body = document.getElementsByTagName('body')[0];
-      if (activeDrawer) {
-        body.classList.add('showMenu');
-      } else {
-        body.classList.remove('showMenu');
-      }
-    }, [activeDrawer]);
+    setMenuHeader(_menuHeader);
+    setMenuNav(_menuNav);
+    setMenuSearch(_menuSearch);
+    setMenuFooterTop(_menuFooterTop);
+    setMenuFooterBottom(_menuFooterBottom);
+    setMenuFooterMain(_menuFooterMain);
+    setSettingFooter(_setting.general);
+    setSocialLink(_socialLink.socialLink);
+  };
 
-    const nestChild = items => {
-      return map(
-        items.sort((a, b) => a.position - b.position),
-        item => {
-          if (item.type === '4') {
-            return (
-              <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
-                <a href={item.url} target="_blank" rel="noopener noreferrer">
-                  <span>{item.name}</span>
-                </a>
-                <div className="wrapul">
-                  {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
-                </div>
-              </li>
-            );
-          }
+  useEffect(() => {
+    fetchMenu();
+  }, [lang]);
+
+  useEffect(() => {
+    getData(setLinkApp);
+  }, []);
+
+  useEffect(() => {
+    const body = document.getElementsByTagName('body')[0];
+    if (activeDrawer) {
+      body.classList.add('showMenu');
+    } else {
+      body.classList.remove('showMenu');
+    }
+  }, [activeDrawer]);
+
+  const nestChild = items => {
+    return map(
+      items.sort((a, b) => a.position - b.position),
+      item => {
+        if (item.type === '4') {
           return (
             <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
-              <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
-                <a>
-                  <span>{item.name}</span>
-                </a>
-              </Link>
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <span>{item.name}</span>
+              </a>
               <div className="wrapul">
                 {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
               </div>
             </li>
           );
         }
-      );
-    };
-
-    const footerItem = data => {
-      return map(data, (item, index) => {
-        if (item.children.length > 0) {
-          return (
-            <div className="widget" style={{ marginTop: 20 }} key={index}>
-              <h4 className="widget-title">{item.name}</h4>
-              <ul className="menu">{footerItem(item.children)}</ul>
-            </div>
-          );
-        }
-        if (item.type === '4') {
-          return (
-            <li key={index}>
-              <a
-                href={item.url}
-                className={item.children.length > 0 ? 'title' : ''}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.name}
-              </a>
-            </li>
-          );
-        }
         return (
-          <li key={index}>
+          <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
             <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
-              <a className={item.children.length > 0 ? 'title' : ''}>{item.name}</a>
+              <a>
+                <span>{item.name}</span>
+              </a>
             </Link>
+            <div className="wrapul">
+              {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
+            </div>
           </li>
         );
-      });
-    };
+      }
+    );
+  };
 
-    const renderFooter = items => {
-      return map(items, (values, key) => {
+  const footerItem = data => {
+    return map(data, (item, index) => {
+      if (item.children.length > 0) {
         return (
-          <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t" key={key}>
-            <div className="widget">
-              <h4 className="widget-title">{values.name}</h4>
-              <ul className="menu">{footerItem(values.children)}</ul>
-            </div>
-            {/* {key === items.length - 1 && <Social data={socialLink} />} */}
+          <div className="widget" style={{ marginTop: 20 }} key={index}>
+            <h4 className="widget-title">{item.name}</h4>
+            <ul className="menu">{footerItem(item.children)}</ul>
           </div>
         );
-      });
-    };
-
-    const renderFooterMobile = items => {
-      return map(items, (values, key) => {
+      }
+      if (item.type === '4') {
         return (
-          <div className="col-md-3 col-6  efch-2 ef-img-t" key={key}>
-            <div className="widget">
-              <h4 className="widget-title">{values.name}</h4>
-              <ul className="menu">{footerItem(values.children)}</ul>
-            </div>
-          </div>
+          <li key={index}>
+            <a
+              href={item.url}
+              className={item.children.length > 0 ? 'title' : ''}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {item.name}
+            </a>
+          </li>
         );
-      });
-    };
+      }
+      return (
+        <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
+          <LinkPage lang={lang} name={item.slugPages}>
+            <a>
+              <span>{item.name}</span>
+            </a>
+          </LinkPage>
+          <div className="wrapul">
+            {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
+          </div>
+        </li>
+      );
+    });
+  };
 
-    const changeLang = (lang, flags) => {
-      i18n.changeLanguage(lang);
-      setFlag(flags);
-      setLang(lang, flags);
-    };
+  const renderFooter = items => {
+    return map(items, (values, key) => {
+      return (
+        <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t" key={key}>
+          <div className="widget">
+            <h4 className="widget-title">{values.name}</h4>
+            <ul className="menu">{footerItem(values.children)}</ul>
+          </div>
+          {/* {key === items.length - 1 && <Social data={socialLink} />} */}
+        </div>
+      );
+    });
+  };
 
-    const onFocus = () => {
-      const element = document.getElementById('search');
-      const box = document.getElementById('search-sg');
-      element.style = 'width: 200px';
-      box.style = 'display: block';
-      element.placeholder = `${t('enter_search')}.....`;
-    };
+  const renderFooterMobile = items => {
+    return map(items, (values, key) => {
+      return (
+        <div className="col-md-3 col-6  efch-2 ef-img-t" key={key}>
+          <div className="widget">
+            <h4 className="widget-title">{values.name}</h4>
+            <ul className="menu">{footerItem(values.children)}</ul>
+          </div>
+        </div>
+      );
+    });
+  };
 
-    const onClose = () => {
-      const element = document.getElementById('search');
-      const box = document.getElementById('search-sg');
-      element.style = 'width: 70px';
-      box.style = 'display: none';
-      element.placeholder = t('search');
-    };
+  const changeLang = _lang => {
+    const regex = new RegExp(`^/(${['vi', 'en'].join('|')})`);
+    const path = router.asPath.replace(regex, `/${_lang}`);
+    if (_lang === 'vi') {
+      if (path === '/vi') {
+        router.push('/');
+      } else {
+        router.push(path.slice(3, path.length));
+      }
+      Cookies.set('lang', 'vi');
+    } else if (_lang === 'en' && lang !== 'en') {
+      Cookies.set('lang', 'en');
+      router.push(`/en${path}`);
+    }
+  };
 
-    const onSearch = event => {
-      event.preventDefault();
-      const body = document.getElementsByTagName('body')[0];
-      const result = document.getElementById('search-result');
-      body.classList.add('fixed-screen');
-      result.style = `display: block`;
-    };
+  const onFocus = () => {
+    const element = document.getElementById('search');
+    const box = document.getElementById('search-sg');
+    element.style = 'width: 200px';
+    box.style = 'display: block';
+    element.placeholder = `${t(lang, 'enter_search')}.....`;
+  };
 
-    const onChangeSuggest = url => {
-      setQuery(url);
-      const body = document.getElementsByTagName('body')[0];
-      const result = document.getElementById('search-result');
-      body.classList.add('fixed-screen');
-      result.style = `display: block`;
-      const element = document.getElementById('search');
-      const box = document.getElementById('search-sg');
-      element.style = 'width: 70px';
-      box.style = 'display: none';
-      element.placeholder = t('search');
-    };
+  const onClose = () => {
+    const element = document.getElementById('search');
+    const box = document.getElementById('search-sg');
+    element.style = 'width: 70px';
+    box.style = 'display: none';
+    element.placeholder = t(lang, 'search');
+  };
 
-    const onChangeSearch = debounce(value => {
-      setQuery(value);
-    }, 3000);
+  const onSearch = event => {
+    event.preventDefault();
+    const body = document.getElementsByTagName('body')[0];
+    const result = document.getElementById('search-result');
+    body.classList.add('fixed-screen');
+    result.style = `display: block`;
+  };
 
-    return (
-      <>
-        <StickyContainer>
-          <div id="wrapper">
-            <div id="panel">
-              <div className="container">
-                <ul className="menu line text-right">
-                  <li>
-                    <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
-                      <button className="search-sg" type="submit">
-                        <i className="icon-search-2"></i>
-                      </button>
-                      <input
-                        id="search"
-                        type="text"
-                        placeholder={t('search')}
-                        onFocus={onFocus}
-                        // onBlur={onBlur}
-                        onChange={event => onChangeSearch(event.target.value)}
-                        style={{ width: '70px' }}
-                      />
-                    </form>
-                  </li>
-                  {map(
-                    menuHeader.sort((a, b) => a.position - b.position),
-                    (values, key) => {
-                      if (values.type === '4') {
-                        return (
-                          <li key={key}>
-                            <a href={values.url} target="_blank" rel="noopener noreferrer">
-                              {values.name}
-                            </a>
-                          </li>
-                        );
-                      }
+  const onChangeSuggest = url => {
+    setQuery(url);
+    const body = document.getElementsByTagName('body')[0];
+    const result = document.getElementById('search-result');
+    body.classList.add('fixed-screen');
+    result.style = `display: block`;
+    const element = document.getElementById('search');
+    const box = document.getElementById('search-sg');
+    element.style = 'width: 70px';
+    box.style = 'display: none';
+    element.placeholder = t(lang, 'search');
+  };
+
+  const onChangeSearch = debounce(value => {
+    setQuery(value);
+  }, 3000);
+
+  return (
+    <>
+      <StickyContainer>
+        <div id="wrapper">
+          <div id="panel">
+            <div className="container">
+              <ul className="menu line text-right">
+                <li>
+                  <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
+                    <button className="search-sg" type="submit">
+                      <i className="icon-search-2"></i>
+                    </button>
+                    <input
+                      id="search"
+                      type="text"
+                      placeholder={t(lang, 'search')}
+                      onFocus={onFocus}
+                      // onBlur={onBlur}
+                      onChange={event => onChangeSearch(event.target.value)}
+                      style={{ width: '70px' }}
+                    />
+                  </form>
+                </li>
+                {map(
+                  menuHeader.sort((a, b) => a.position - b.position),
+                  (values, key) => {
+                    if (values.type === '4') {
                       return (
                         <li key={key}>
-                          <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
-                            <a>{values.name}</a>
-                          </Link>
+                          <a href={values.url} target="_blank" rel="noopener noreferrer">
+                            {values.name}
+                          </a>
                         </li>
                       );
                     }
-                  )}
-                  <li>
-                    <div className="dropdown language">
-                      <div className="title">
-                        <span>
-                          <img
-                            className="lazyload"
-                            data-src={`/static/flags/${flag}.png`}
-                            alt="images"
-                          />
-                        </span>
-                        <i className="icon-arrow-2 ib"></i>
-                      </div>
-                      <div className="content">
-                        <div className="inner">
-                          <ul className="menu">
-                            <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
-                              <Link href="#">
-                                <a onClick={() => changeLang('en', 'gb')} title="English (en)">
-                                  <img
-                                    className="lazyload"
-                                    data-src="/static/flags/gb.png"
-                                    alt="images"
-                                  />
-                                  <span>English</span>
-                                </a>
-                              </Link>
-                            </li>
-                            <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
-                              <Link href="#">
-                                <a onClick={() => changeLang('vi', 'vn')} title="Tiếng Việt (vi)">
-                                  <img
-                                    className="lazyload"
-                                    data-src="/static/images/flags/vn.png"
-                                    alt="images"
-                                  />
-                                  <span>Tiếng Việt</span>
-                                </a>
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
+                    return (
+                      <li key={key}>
+                        <LinkPage lang={lang} name={values.slugPages}>
+                          <a>{values.name}</a>
+                        </LinkPage>
+                      </li>
+                    );
+                  }
+                )}
+                <li>
+                  <div className="dropdown language">
+                    <div className="title">
+                      <span>
+                        <img
+                          className="lazyload"
+                          data-src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
+                          alt="images"
+                        />
+                      </span>
+                      <i className="icon-arrow-2 ib"></i>
+                    </div>
+                    <div className="content">
+                      <div className="inner">
+                        <ul className="menu">
+                          <li className={lang === 'en' ? 'lang-en active' : 'lang-en'}>
+                            <a onClick={() => changeLang('en')} title="English (en)">
+                              <img
+                                className="lazyload"
+                                data-src="/static/flags/gb.png"
+                                alt="images"
+                              />
+                              <span>English</span>
+                            </a>
+                          </li>
+                          <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}>
+                            <a onClick={() => changeLang('vi')} title="Tiếng Việt (vi)">
+                              <img
+                                className="lazyload"
+                                data-src="/static/images/flags/vn.png"
+                                alt="images"
+                              />
+                              <span>Tiếng Việt</span>
+                            </a>
+                          </li>
+                        </ul>
                       </div>
                     </div>
-                  </li>
-                </ul>
-              </div>
-              <Suggest data={menuSearch} onChangeSuggest={onChangeSuggest} onClose={onClose} />
+                  </div>
+                </li>
+              </ul>
             </div>
-            <Sticky topOffset={40}>
-              {({ style }) => (
-                <div className="setzindex" style={style}>
-                  <header id="header" role="banner">
-                    <div className="container">
+            <Suggest data={menuSearch} onChangeSuggest={onChangeSuggest} onClose={onClose} />
+          </div>
+          <Sticky topOffset={40}>
+            {({ style }) => (
+              <div className="setzindex" style={style}>
+                <header id="header" role="banner">
+                  <div className="container">
+                    {lang === 'en' && (
+                      <Link href="/en">
+                        <a id="logo">
+                          <img
+                            id="img_log"
+                            className="lazyload"
+                            src="/static/images/svg/logo.svg"
+                            alt="logo"
+                          />
+                        </a>
+                      </Link>
+                    )}
+                    {lang === 'vi' && (
                       <Link href="/">
                         <a id="logo">
                           <img
@@ -317,346 +362,337 @@ const Layout = memo(
                           />
                         </a>
                       </Link>
-                      <div className="wrap-menu-header">
-                        <ul className="menu-top-header" data-style="1">
-                          {nestChild(menuNav)}
-                          <li className="highlight children">
-                            <span className="showsubmenu icon-arrow-2 ib"></span>
-                            <a href="#">
-                              <span>Ebanking</span>
-                            </a>
-                            <div className="wrapul">
-                              <ul>
-                                <li>
-                                  <a
-                                    href="https://online.mbbank.com.vn/retail/EstablishSession"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    Cá Nhân
+                    )}
+                    <div className="wrap-menu-header">
+                      <ul className="menu-top-header" data-style="1">
+                        {nestChild(menuNav)}
+                        <li className="highlight children">
+                          <span className="showsubmenu icon-arrow-2 ib"></span>
+                          <a href="#">
+                            <span>Ebanking</span>
+                          </a>
+                          <div className="wrapul">
+                            <ul>
+                              <li>
+                                <a
+                                  href="https://online.mbbank.com.vn/retail/EstablishSession"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Cá Nhân
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  href="https://emb.mbbank.com.vn/corp/EstablishSession"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Doanh nghiệp
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="group-header">
+                      <div className="item ilang">
+                        <div className="dropdown language">
+                          <div className="title">
+                            <span>
+                              <img
+                                className="lazyload"
+                                data-src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
+                                alt="images"
+                              />
+                            </span>
+                            <i className="icon-arrow-2 ib"></i>
+                          </div>
+                          <div className="content">
+                            <div className="inner">
+                              <ul className="menu">
+                                <li className={lang === 'en' ? 'lang-en active' : 'lang-en'}>
+                                  <a title="English (en)" onClick={() => changeLang('en')}>
+                                    <img
+                                      className="lazyload"
+                                      data-src="/static/images/flags/gb.png"
+                                      alt="images"
+                                    />
+                                    <span>English</span>
                                   </a>
                                 </li>
-                                <li>
-                                  <a
-                                    href="https://emb.mbbank.com.vn/corp/EstablishSession"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    Doanh nghiệp
-                                  </a>
+                                <li className={lang === 'vn' ? 'lang-vi active' : 'lang-vi'}>
+                                  <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}>
+                                    <a title="Tiếng Việt (vi)" onClick={() => changeLang('vi')}>
+                                      <img
+                                        className="lazyload"
+                                        data-src="/static/images/flags/vn.png"
+                                        alt="images"
+                                      />
+                                      <span>Tiếng Việt</span>
+                                    </a>
+                                  </li>
                                 </li>
                               </ul>
                             </div>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="group-header">
-                        <div className="item ilang">
-                          <div className="dropdown language">
-                            <div className="title">
-                              <span>
-                                <img
-                                  className="lazyload"
-                                  data-src={`/static/flags/${flag}.png`}
-                                  alt="images"
-                                />
-                              </span>
-                              <i className="icon-arrow-2 ib"></i>
-                            </div>
-                            <div className="content">
-                              <div className="inner">
-                                <ul className="menu">
-                                  <li className={flag === 'gb' ? 'lang-en active' : 'lang-en'}>
-                                    <Link href="#">
-                                      <a
-                                        title="English (en)"
-                                        onClick={() => changeLang('en', 'gb')}
-                                      >
-                                        <img
-                                          className="lazyload"
-                                          data-src="/static/images/flags/gb.png"
-                                          alt="images"
-                                        />
-                                        <span>English</span>
-                                      </a>
-                                    </Link>
-                                  </li>
-                                  <li className={flag === 'vn' ? 'lang-vi active' : 'lang-vi'}>
-                                    <Link href="#">
-                                      <a
-                                        title="Tiếng Việt (vi)"
-                                        onClick={() => changeLang('vi', 'vn')}
-                                      >
-                                        <img
-                                          className="lazyload"
-                                          data-src="/static/images/flags/vn.png"
-                                          alt="images"
-                                        />
-                                        <span>Tiếng Việt</span>
-                                      </a>
-                                    </Link>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
                           </div>
                         </div>
-                        <div
-                          className="item imenu"
-                          onClick={() => {
-                            setActiveDrawwe(!activeDrawer);
-                          }}
-                        >
-                          <span className="menu-btn x"></span>
-                        </div>
+                      </div>
+                      <div
+                        className="item imenu"
+                        onClick={() => {
+                          setActiveDrawwe(!activeDrawer);
+                        }}
+                      >
+                        <span className="menu-btn x"></span>
                       </div>
                     </div>
-                  </header>
-                </div>
-              )}
-            </Sticky>
-            <SearchResult query={query} />
-            <div>{children}</div>
-            {/* contact */}
-            <section className="sec-cta">
-              <div className="container">
-                <div className="row center">
-                  {map(
-                    menuFooterTop.sort((a, b) => a.position - b.position),
-                    values => {
-                      if (values.type === '4') {
-                        return (
-                          <div className="col-4" key={values.id}>
-                            <a href={values.url} className="item">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.DOMAIN}${values.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <div className="divtext">
-                                <h4 className="title">{values.name}</h4>
-                                <div className="desc">{values.description}</div>
-                              </div>
-                            </a>
-                          </div>
-                        );
-                      }
+                  </div>
+                </header>
+              </div>
+            )}
+          </Sticky>
+          <SearchResult query={query} />
+          <div>{children}</div>
+          {/* contact */}
+          <section className="sec-cta">
+            <div className="container">
+              <div className="row center">
+                {map(
+                  menuFooterTop.sort((a, b) => a.position - b.position),
+                  values => {
+                    if (values.type === '4') {
                       return (
                         <div className="col-4" key={values.id}>
-                          <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
-                            <a className="item">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.DOMAIN}${values.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <div className="divtext">
-                                <h4 className="title">{values.name}</h4>
-                                <div className="desc">{values.description}</div>
-                              </div>
-                            </a>
-                          </Link>
+                          <a href={values.url} className="item">
+                            <span className="img">
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${values.icon}`}
+                                alt="images"
+                              />
+                            </span>
+                            <div className="divtext">
+                              <h4 className="title">{values.name}</h4>
+                              <div className="desc">{values.description}</div>
+                            </div>
+                          </a>
                         </div>
                       );
                     }
-                  )}
-                </div>
-              </div>
-            </section>
-            {/* tải appp */}
-            <section className="sec-download-pc group-ef loaded">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-6   efch-2 ef-img-r">
-                    <p className="stitle">{t('sign_up_promotional')}</p>
-                    <form role="search" method="get" className="" action="">
-                      <div>
-                        <input
-                          type="text"
-                          placeholder={t('enter_email')}
-                          name="s"
-                          className="input"
-                        />
+                    return (
+                      <div className="col-4" key={values.id}>
+                        <LinkPage lang={lang} name={values.slugPages}>
+                          <a className="item">
+                            <span className="img">
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${values.icon}`}
+                                alt="images"
+                              />
+                            </span>
+                            <div className="divtext">
+                              <h4 className="title">{values.name}</h4>
+                              <div className="desc">{values.description}</div>
+                            </div>
+                          </a>
+                        </LinkPage>
                       </div>
-                      <button type="submit" className="btn btn-2">
-                        {t('registration')}
-                      </button>
-                    </form>
-                  </div>
-                  <div className="col-md-6   efch-3 ef-img-r">
-                    <DownloadApp linkApp={linkApp} />
-                  </div>
-                </div>
+                    );
+                  }
+                )}
               </div>
-            </section>
-            <div id="footer-pc" className="group-ef loaded">
-              <div className="container">
-                <div className="row grid-space-10">
-                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                    <div className="widget widget-info">
-                      <Widget data={settingFooter} />
-                      <Social data={socialLink} />
+            </div>
+          </section>
+          {/* tải appp */}
+          <section className="sec-download-pc group-ef loaded">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6   efch-2 ef-img-r">
+                  <p className="stitle">{t(lang, 'sign_up_promotional')}</p>
+                  <form role="search" method="get" className="" action="">
+                    <div>
+                      <input
+                        type="text"
+                        placeholder={t(lang, 'enter_email')}
+                        name="s"
+                        className="input"
+                      />
                     </div>
-                  </div>
-                  {renderFooter(menuFooterMain)}
+                    <button type="submit" className="btn btn-2">
+                      {t(lang, 'registration')}
+                    </button>
+                  </form>
                 </div>
-                <div className="line"></div>
-                <div className="row grid-space-10">
-                  <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
-                    <ul className="menu line">
-                      {map(
-                        menuFooterBottom.sort((a, b) => a.position - b.position),
-                        (values, key) => {
-                          if (values.type === '4') {
-                            return (
-                              <li key={key}>
-                                <a href={values.url} target="_blank" rel="noopener noreferrer">
-                                  {values.name}
-                                </a>
-                              </li>
-                            );
-                          }
-                          return (
-                            <li key={key}>
-                              <Link href="/page/[...name]" as={`/page/${values.slugPages}`}>
-                                <a>{values.name}</a>
-                              </Link>
-                            </li>
-                          );
-                        }
-                      )}
-                    </ul>
-                  </div>
-                  <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
-                  </div>
+                <div className="col-md-6   efch-3 ef-img-r">
+                  <DownloadApp linkApp={linkApp} />
                 </div>
               </div>
             </div>
-            <section className="sec-download-mb">
-              <div className="wform">
-                <p className="stitle">{t('sign_up_promotional')}</p>
-                <form role="search" method="get" className="" action="">
-                  <div className="aaa">
-                    <input type="text" placeholder={t('enter_email')} name="s" className="input" />
-                  </div>
-
-                  <button type="submit" className="btn btn-2">
-                    Đăng ký
-                  </button>
-                </form>
-              </div>
-              <DownloadApp mobile linkApp={linkApp} />
-            </section>
-            <div id="footer-mb" className="group-ef loaded">
-              <div className="container">
-                <div className="row grid-space-10">
-                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                    <WidgetMB data={settingFooter} socialLink={socialLink} />
+          </section>
+          <div id="footer-pc" className="group-ef loaded">
+            <div className="container">
+              <div className="row grid-space-10">
+                <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                  <div className="widget widget-info">
+                    <Widget data={settingFooter} />
+                    <Social data={socialLink} />
                   </div>
                 </div>
-                <div className="accodion accodion-0">
-                  <div className="accodion-tab ">
-                    <input type="checkbox" id="chck_mf" />
-                    <label className="accodion-title" htmlFor="chck_mf">
-                      <span> {t('extend')} </span>{' '}
-                      <span className="triangle">
-                        <i className="icon-plus"></i>
-                      </span>
-                    </label>
-                    <div className="accodion-content">
-                      <div className="inner">
-                        <div className="row grid-space-10">
-                          {renderFooterMobile(menuFooterMain)}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {renderFooter(menuFooterMain)}
               </div>
-              <div className="menu-footer-mb">
-                <div className="row">
-                  <div className="col-3">
-                    <a href="#" className="item ">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/home.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{t('home')}</span>
-                    </a>
-                  </div>
-                  <div className="col-3">
-                    <a href="#" className="item">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/folder.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{t('product')}</span>
-                    </a>
-                  </div>
-                  <div className="col-3">
-                    <a href="#" className="item ">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/MB.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">MB++</span>
-                    </a>
-                  </div>
-                  <div className="col-3">
-                    <a href="#" className="item ">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/giadinh.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{t('family')}</span>
-                    </a>
-                  </div>
-                  <div className="col-3">
-                    <a href="#" className="item ">
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src="/static/images/svg/tienich.svg"
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{t('utilities')}</span>
-                    </a>
-                  </div>
+              <div className="line"></div>
+              <div className="row grid-space-10">
+                <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
+                  <ul className="menu line">
+                    {map(
+                      menuFooterBottom.sort((a, b) => a.position - b.position),
+                      (values, key) => {
+                        if (values.type === '4') {
+                          return (
+                            <li key={key}>
+                              <a href={values.url} target="_blank" rel="noopener noreferrer">
+                                {values.name}
+                              </a>
+                            </li>
+                          );
+                        }
+                        return (
+                          <li key={key}>
+                            <LinkPage lang={lang} name={values.slugPages}>
+                              <a>{values.name}</a>
+                            </LinkPage>
+                          </li>
+                        );
+                      }
+                    )}
+                  </ul>
+                </div>
+                <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
+                  <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
                 </div>
               </div>
             </div>
           </div>
-        </StickyContainer>
-        <ModalDrawer
-          menu={menuNav}
-          menuHeader={menuHeader}
-          onSearch={event => {
-            onSearch(event);
-            setActiveDrawwe(false);
-          }}
-        />
-      </>
-    );
-  }
-);
+          <section className="sec-download-mb">
+            <div className="wform">
+              <p className="stitle">{t(lang, 'sign_up_promotional')}</p>
+              <form role="search" method="get" className="" action="">
+                <div className="aaa">
+                  <input
+                    type="text"
+                    placeholder={t(lang, 'enter_email')}
+                    name="s"
+                    className="input"
+                  />
+                </div>
+
+                <button type="submit" className="btn btn-2">
+                  Đăng ký
+                </button>
+              </form>
+            </div>
+            <DownloadApp mobile linkApp={linkApp} />
+          </section>
+          <div id="footer-mb" className="group-ef loaded">
+            <div className="container">
+              <div className="row grid-space-10">
+                <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                  <WidgetMB data={settingFooter} socialLink={socialLink} />
+                </div>
+              </div>
+              <div className="accodion accodion-0">
+                <div className="accodion-tab ">
+                  <input type="checkbox" id="chck_mf" />
+                  <label className="accodion-title" htmlFor="chck_mf">
+                    <span> {t(lang, 'extend')} </span>{' '}
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div className="accodion-content">
+                    <div className="inner">
+                      <div className="row grid-space-10">{renderFooterMobile(menuFooterMain)}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="menu-footer-mb">
+              <div className="row">
+                <div className="col-3">
+                  <a href="#" className="item ">
+                    <span className="img">
+                      <img
+                        className="lazyload"
+                        data-src="/static/images/svg/home.svg"
+                        alt="images"
+                      />
+                    </span>
+                    <span className="name">{t(lang, 'home')}</span>
+                  </a>
+                </div>
+                <div className="col-3">
+                  <a href="#" className="item">
+                    <span className="img">
+                      <img
+                        className="lazyload"
+                        data-src="/static/images/svg/folder.svg"
+                        alt="images"
+                      />
+                    </span>
+                    <span className="name">{t(lang, 'product')}</span>
+                  </a>
+                </div>
+                <div className="col-3">
+                  <a href="#" className="item ">
+                    <span className="img">
+                      <img className="lazyload" data-src="/static/images/svg/MB.svg" alt="images" />
+                    </span>
+                    <span className="name">MB++</span>
+                  </a>
+                </div>
+                <div className="col-3">
+                  <a href="#" className="item ">
+                    <span className="img">
+                      <img
+                        className="lazyload"
+                        data-src="/static/images/svg/giadinh.svg"
+                        alt="images"
+                      />
+                    </span>
+                    <span className="name">{t(lang, 'family')}</span>
+                  </a>
+                </div>
+                <div className="col-3">
+                  <a href="#" className="item ">
+                    <span className="img">
+                      <img
+                        className="lazyload"
+                        data-src="/static/images/svg/tienich.svg"
+                        alt="images"
+                      />
+                    </span>
+                    <span className="name">{t(lang, 'utilities')}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </StickyContainer>
+      <ModalDrawer
+        menu={menuNav}
+        menuHeader={menuHeader}
+        onSearch={event => {
+          onSearch(event);
+          setActiveDrawwe(false);
+        }}
+      />
+    </>
+  );
+}
 
 Layout.propTypes = propTypes;
 

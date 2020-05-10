@@ -1,8 +1,8 @@
 import React from 'react';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
 import { rate } from '../../utils/currency';
 
 const propTypes = {
@@ -10,16 +10,16 @@ const propTypes = {
 };
 
 function TableRate({ data, type }) {
-  const { t } = useTranslation();
+  const lang = getLang();
   if (type === 'exchange') {
     return (
       <table className="table">
         <tbody>
           <tr>
-            <th>{t('codeNT')}</th>
-            <th>{t('buycash')}</th>
-            <th>{t('transfer')}</th>
-            <th>{t('sold_out')}</th>
+            <th>{t(lang, 'codeNT')}</th>
+            <th>{t(lang, 'buycash')}</th>
+            <th>{t(lang, 'transfer')}</th>
+            <th>{t(lang, 'sold_out')}</th>
           </tr>
           {map(data, value => {
             return (
@@ -48,9 +48,9 @@ function TableRate({ data, type }) {
       <table className="table">
         <tbody>
           <tr>
-            <th>{t('period')}</th>
-            <th>{t('USD')}</th>
-            <th>{t('VND')}</th>
+            <th>{t(lang, 'period')}</th>
+            <th>USD</th>
+            <th>VND</th>
           </tr>
           {map(data, value => {
             return (
@@ -69,4 +69,4 @@ function TableRate({ data, type }) {
 
 TableRate.propTypes = propTypes;
 
-export default withTranslation('common')(TableRate);
+export default TableRate;
