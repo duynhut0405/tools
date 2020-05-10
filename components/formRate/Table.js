@@ -16,10 +16,10 @@ function TableRate({ data, type }) {
       <table className="table">
         <tbody>
           <tr>
-            <th>{t(lang, 'codeNT')}</th>
-            <th>{t(lang, 'buycash')}</th>
-            <th>{t(lang, 'transfer')}</th>
-            <th>{t(lang, 'sold_out')}</th>
+            <th>{t('codeNT')}</th>
+            <th>{t('buycash')}</th>
+            <th>{t('transfer')}</th>
+            <th>{t('sold_out')}</th>
           </tr>
           {map(data, value => {
             return (
@@ -48,7 +48,7 @@ function TableRate({ data, type }) {
       <table className="table">
         <tbody>
           <tr>
-            <th>{t(lang, 'period')}</th>
+            <th>{t('period')}</th>
             <th>USD</th>
             <th>VND</th>
           </tr>

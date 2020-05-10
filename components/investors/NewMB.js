@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { findAllNewsByCategory } from '../../services/news';
-import Link from 'next/link';
 import map from 'lodash/map';
 import moment from 'moment';
 import Proptypes from 'prop-types';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
+import { LinkNew, LinkCategory } from '../common/link';
 
 const propTypes = {
   data: Proptypes.object,
@@ -19,8 +20,9 @@ const getNews = async (id, setData) => {
   }
 };
 
-function NewMB({ t, data, padding }) {
+function NewMB({ data, padding }) {
   const [listNews, setListNews] = useState([]);
+  const lang = getLang();
   useEffect(() => {
     getNews(data.value, setListNews);
   }, [getNews]);
@@ -30,11 +32,11 @@ function NewMB({ t, data, padding }) {
       <div className="container">
         <div className="entry-head">
           <h2 className="">{data.label}</h2>
-          <Link href="/news/category/[...slug]" as={`/news/category/${data.slug}`}>
+          <LinkCategory lang={lang} name={data.slug}>
             <a className="viewall">
               {t('view')} <i className="icon-arrow-1"></i>
             </a>
-          </Link>
+          </LinkCategory>
         </div>
         <div className="row list-item">
           <div className="col-lg-8 ">
@@ -43,7 +45,7 @@ function NewMB({ t, data, padding }) {
                 if (index < 2) {
                   return (
                     <div className="col-md-6" key={index}>
-                      <Link href="/news/[...slug]" as={`/news/${news.url}`}>
+                      <LinkNew lang={lang} name={news.url}>
                         <a className="item efch-2 ef-img-l equal">
                           <div className="img tRes_71">
                             <img
@@ -60,7 +62,7 @@ function NewMB({ t, data, padding }) {
                             <div className="desc line2">{news.shortDescription}</div>
                           </div>
                         </a>
-                      </Link>
+                      </LinkNew>
                     </div>
                   );
                 }
@@ -73,7 +75,7 @@ function NewMB({ t, data, padding }) {
               {map(listNews, (news, index) => {
                 if (index >= 2) {
                   return (
-                    <Link href="/news/[...slug]" as={`/news/${news.url}`} key={index}>
+                    <LinkNew lang={lang} name={news.url} key={index}>
                       <a className="item item-inline-table">
                         <div className="img">
                           <img
@@ -86,7 +88,7 @@ function NewMB({ t, data, padding }) {
                           <h4 className="title line4">{news.title}</h4>
                         </div>
                       </a>
-                    </Link>
+                    </LinkNew>
                   );
                 }
                 return null;
@@ -101,4 +103,4 @@ function NewMB({ t, data, padding }) {
 
 NewMB.propTypes = propTypes;
 
-export default withTranslation('common')(NewMB);
+export default NewMB;

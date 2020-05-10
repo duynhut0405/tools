@@ -99,16 +99,16 @@ function FormRate({ data, interestRate }) {
           <div className="row list-item list-2">
             <div className="col-lg-7">
               <ExchangeRate
-                tab1={t(lang, 'exchange_rate')}
-                tab2={t(lang, 'interest_rate')}
+                tab1={t('exchange_rate')}
+                tab2={t('interest_rate')}
                 data1={data}
                 data2={interestRate}
               />
             </div>
             <div className="col-lg-5">
               <div className="divquidoi">
-                <h2 className="exchange">{t(lang, 'change_foreign_currency')}</h2>
-                <div>{t(lang, 'transfer_from')}</div>
+                <h2 className="exchange">{t('change_foreign_currency')}</h2>
+                <div>{t('transfer_from')}</div>
                 <div className="input-group">
                   <span className="input-group-addon none arrow">
                     <RateSelect
@@ -123,7 +123,7 @@ function FormRate({ data, interestRate }) {
                   </span>
                   <input
                     className="input"
-                    placeholder={t(lang, 'amount')}
+                    placeholder={t('amount')}
                     name="from"
                     value={From}
                     onChange={e => {
@@ -131,7 +131,7 @@ function FormRate({ data, interestRate }) {
                     }}
                   />
                 </div>
-                <div>{t(lang, 'to')}</div>
+                <div>{t('to')}</div>
                 <div className="input-group">
                   <span className="input-group-addon none">
                     <RateSelect
@@ -143,9 +143,9 @@ function FormRate({ data, interestRate }) {
                     />
                     <i className="icon-arrow-3"></i>
                   </span>
-                  <input className="input" placeholder={t(lang, 'amount')} name="to" value={to} />
+                  <input className="input" placeholder={t('amount')} name="to" value={to} />
                 </div>
-                <p>{`${t(lang, 'updated_at')} ${moment(data.date_update).format('HH:mm')} ${t(
+                <p>{`${t('updated_at')} ${moment(data.date_update).format('HH:mm')} ${t(
                   lang,
                   'date'
                 )} ${moment(data.date_update).format('DD/MM/YYYY')}`}</p>

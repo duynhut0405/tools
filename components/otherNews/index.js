@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ListDowloadFIle } from '../common/download';
-import { useTranslation } from 'react-i18next';
 import { TabQuestion } from './tab';
 import PropTypes from 'prop-types';
-import { withTranslation } from '../../i18n';
-import Link from 'next/link';
+import { LinkCategory } from '../common/link';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
 
 const propTypes = {
   data: PropTypes.object,
@@ -12,7 +12,6 @@ const propTypes = {
 };
 function OtherNews({ data, id }) {
   const [activeTab, setActiveTab] = useState(1);
-  const { t } = useTranslation();
   let padding = '';
   if (data.optionWidth === '2') {
     padding = 'sec-tb';
@@ -23,27 +22,28 @@ function OtherNews({ data, id }) {
   } else {
     padding = 'sec-';
   }
+  const lang = getLang();
   return (
     <div className={`${padding} otherNews`} id={id}>
       <div className="container">
         <div className="entry-head">
           <h2 className="ht efch-1 ef-img-l">{data.titleBlock}</h2>
           <p className="cl5"></p>
-          <Link
-            href="/news/category/[...name]"
-            as={`/news/category/${
+          <LinkCategory
+            lang={lang}
+            name={
               activeTab === 1
                 ? `hoi-ap`
                 : activeTab === 2
                 ? 'bao-cao-xep-hang-tin-nhiem'
                 : 'tai-lieu-bieu-mau'
-            }`}
+            }
           >
             <a className="viewall">
               {t('view')}
               <i className="icon-arrow-1"></i>
             </a>
-          </Link>
+          </LinkCategory>
         </div>
         <div className="cttab-v3 tabs-total-3">
           <div className="wrap-tab-menu">
@@ -78,4 +78,4 @@ function OtherNews({ data, id }) {
 
 OtherNews.propTypes = propTypes;
 
-export default withTranslation('common')(OtherNews);
+export default OtherNews;

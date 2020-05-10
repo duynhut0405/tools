@@ -1,8 +1,7 @@
 import React from 'react';
 import RangeSlider from 'react-rangeslider';
 import ReactNumeric from 'react-numeric';
-import { withTranslation } from '../../../i18n';
-import { useTranslation } from 'react-i18next';
+import t from '../../../translation';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -15,7 +14,6 @@ const propTypes = {
 };
 
 function Fields({ title, value, month, minValue, maxValue, oneHandle }) {
-  const { t } = useTranslation();
   return (
     <div className="group-range-prcie">
       <div className="gtitle">
@@ -49,8 +47,4 @@ Fields.defaultProps = {
   minValue: 5000000
 };
 
-Fields.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'common']
-});
-
-export default withTranslation('common')(Fields);
+export default Fields;

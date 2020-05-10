@@ -4,10 +4,8 @@ import moment from 'moment';
 import Proptypes from 'prop-types';
 import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../i18n';
-import Link from 'next/link';
 import { getLang } from '../../utils/cookie';
+import t from '../../translation';
 import { LinkNew, LinkCategory } from '../common/link';
 import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
@@ -29,8 +27,6 @@ function News({ data, type, id, optionWidth }) {
   const listNewsTabs = slice(listCategory, 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
   const lang = getLang();
-
-  const { t } = useTranslation();
 
   let padding = '';
   if (optionWidth === '2') {
@@ -202,7 +198,7 @@ function News({ data, type, id, optionWidth }) {
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
               <LinkCategory lang={lang} name={slugCategory}>
-                <a className="btn lg">{t('Xem Tất Cả')}</a>
+                <a className="btn lg">{t('view')}</a>
               </LinkCategory>
             </div>
           )}
@@ -296,7 +292,7 @@ function News({ data, type, id, optionWidth }) {
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
               <LinkCategory lang={lang} name={slugCategory}>
-                <a className="btn lg">{t('Xem Tất Cả')}</a>
+                <a className="btn lg">{t('view')}</a>
               </LinkCategory>
             </div>
           )}
@@ -354,7 +350,7 @@ function News({ data, type, id, optionWidth }) {
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
               <LinkCategory lang={lang} name={slugCategory}>
-                <a className="btn lg">{t('Xem Tất Cả')}</a>
+                <a className="btn lg">{t('view')}</a>
               </LinkCategory>
             </div>
           )}
@@ -452,7 +448,7 @@ function News({ data, type, id, optionWidth }) {
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
               <LinkCategory lang={lang} name={slugCategory}>
-                <a className="btn lg">{t('Xem Tất Cả')}</a>
+                <a className="btn lg">{t('view')}</a>
               </LinkCategory>
             </div>
           )}
@@ -550,7 +546,7 @@ function News({ data, type, id, optionWidth }) {
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
               <LinkCategory lang={lang} name={slugCategory}>
-                <a className="btn lg">{t('Xem Tất Cả')}</a>
+                <a className="btn lg">{t('view')}</a>
               </LinkCategory>
             </div>
           )}
@@ -646,7 +642,7 @@ function News({ data, type, id, optionWidth }) {
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
               <LinkCategory lang={lang} name={slugCategory}>
-                <a className="btn lg">{t('Xem Tất Cả')}</a>
+                <a className="btn lg">{t('view')}</a>
               </LinkCategory>
             </div>
           )}
@@ -657,4 +653,4 @@ function News({ data, type, id, optionWidth }) {
 }
 News.propTypes = propTypes;
 
-export default withTranslation('common')(News);
+export default News;

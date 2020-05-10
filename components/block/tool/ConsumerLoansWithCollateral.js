@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 import { rate } from '../../../utils/currency';
 
 import Proptypes from 'prop-types';
@@ -17,7 +17,7 @@ const propTypes = {
   type: Proptypes.string
 };
 
-function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate, padding, id, type }) {
+function ConsumerLoansWithCollateral({ minValue, maxValue, interest_rate, padding, id, type }) {
   const [loan_amount, setLoanAmount] = useState('0');
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
@@ -102,7 +102,7 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate, pad
   return (
     <div className={`${padding} tool-${type}`} id={id}>
       <div className="container">
-        <h2 className="ht">{t('tool_consumer_loans.title')}</h2>
+        <h2 className="ht">{t('tool_consumer_loans_title')}</h2>
         <div className="cttab-xx  sec-b">
           <div className="tab-content">
             <div className="active">
@@ -127,7 +127,7 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate, pad
                     </div>
                     <div className="col-md-5">
                       <Result
-                        title={t('tool_consumer_loans.title')}
+                        title={t('tool_consumer_loans_title')}
                         subtitle={t('loan_amount')}
                         interest_rate={interest_rate}
                         amount={Number(loan_amount.replace(/[^0-9.-]+/g, ''))}
@@ -165,4 +165,4 @@ function ConsumerLoansWithCollateral({ t, minValue, maxValue, interest_rate, pad
 
 ConsumerLoansWithCollateral.propTypes = propTypes;
 
-export default withTranslation('common')(ConsumerLoansWithCollateral);
+export default ConsumerLoansWithCollateral;

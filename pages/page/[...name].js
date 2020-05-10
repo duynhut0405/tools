@@ -4,7 +4,7 @@ import Layout from '../../components/layout';
 import Head from 'next/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
-import { getPageService, getListPageBySlug } from '../../services/page';
+import { getPageMutiLangBySlug, getListPageBySlug } from '../../services/page';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 
@@ -101,7 +101,7 @@ Page.getInitialProps = async ctx => {
   let menuMiddle = {};
   let listSlug = [];
   let hasSideber = 0;
-  const pageResponse = await getPageService(routerURL);
+  const pageResponse = await getPageMutiLangBySlug('en', routerURL);
   const listPageBySlug = await getListPageBySlug(query.name);
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;

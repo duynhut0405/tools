@@ -11,11 +11,6 @@ const propTypes = {
 function Images({ data, id }) {
   return (
     <>
-      {/* <div className="container">
-        <div className={`entry-head text-${data[0].options}`} id={id}>
-          <h2 className="ht  efch-1 ef-img-t">{data[0].title}</h2>
-        </div>
-      </div> */}
       {map(data, (item, index) => {
         return (
           <div className="container" key={index}>

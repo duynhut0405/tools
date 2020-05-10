@@ -1,8 +1,7 @@
 import React from 'react';
 import { ItemImages, ItemIcon } from './product/index';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
 
 const propTypes = {
   data: PropTypes.array,
@@ -20,8 +19,6 @@ function TagProduct({ data, id }) {
   } else {
     padding = 'sec-';
   }
-
-  const { t } = useTranslation();
 
   return (
     <section className={`${padding} sec-h-2 bg-gray group-ef loaded hot-products`} id={id}>
@@ -44,4 +41,4 @@ function TagProduct({ data, id }) {
 
 TagProduct.propTypes = propTypes;
 
-export default withTranslation('common')(TagProduct);
+export default TagProduct;

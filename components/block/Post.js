@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { map, slice } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import t from '../../translation';
 import Link from 'next/link';
 
 const propTypes = {
@@ -14,8 +14,6 @@ function Post({ data, type }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const listNews = slice(data.news, 0, page);
-
-  const { t } = useTranslation();
   //   slice(data.news, 0, page)
 
   useEffect(() => {
@@ -52,7 +50,7 @@ function Post({ data, type }) {
                   <p className="title">{item.title}</p>
                   <p className="show">
                     <Link href="/news/[...name]" as={`/news/${item.url}`}>
-                      <a>Xem thêm</a>
+                      <a>{t('view_more')}</a>
                     </Link>
                   </p>
                 </div>
@@ -61,7 +59,9 @@ function Post({ data, type }) {
           ))}
         </div>
         <div className="btn">
-          <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
+          <button onClick={() => showPage()}>
+            {active === false ? `+ ${t('view_more')}` : `- ${t('collapse')}`}
+          </button>
         </div>
       </div>
     );
@@ -73,7 +73,7 @@ function Post({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href="#">
-              {t('view.viewall')} <i className="icon-arrow-1"></i>
+              {t('view')} <i className="icon-arrow-1"></i>
             </a>
           </div>
           {/* 2tabs main */}
@@ -124,7 +124,7 @@ function Post({ data, type }) {
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href="#">
-              {t('view.viewall')}
+              {t('view')}
               <i className="icon-arrow-1"></i>
             </a>
           </div>

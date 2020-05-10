@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 import { Social } from '../common';
+import { getLang } from '../../utils/cookie';
 
 const propTypes = {
   data: PropTypes.object,
@@ -10,14 +11,24 @@ const propTypes = {
 };
 
 function Widget({ data, socialLink }) {
+  const lang = getLang();
   return (
     <div className="widget widget-info">
       <div>
-        <Link href="/">
-          <a className="logo">
-            <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
-          </a>
-        </Link>
+        {lang === 'vi' && (
+          <Link href="/">
+            <a className="logo">
+              <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+            </a>
+          </Link>
+        )}
+        {lang === 'en' && (
+          <Link href="/en">
+            <a className="logo">
+              <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+            </a>
+          </Link>
+        )}
       </div>
       <React.Fragment>{data && ReactHtmlParser(data.footer_brief)}</React.Fragment>
       <div className="call">

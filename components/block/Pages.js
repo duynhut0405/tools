@@ -4,7 +4,6 @@ import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
 import Carousel from 'react-multi-carousel';
 import CustomPageItem from './BlockPageItem/CustomPageItem';
-import Link from 'next/link';
 import { LinkPage } from '../common/link';
 import { getLang } from '../../utils/cookie';
 
@@ -181,7 +180,7 @@ function Pages({ data, type, id, optionWidth }) {
           <ul className="cols-2 link2">
             {map(listPage, (values, index) => (
               <li key={index}>
-                <LinkPage href="/page/[...name]" as={`/page/${values.slug}`}>
+                <LinkPage name={values.slug} lang={lang}>
                   <a>{values.name}</a>
                 </LinkPage>
               </li>
@@ -189,7 +188,7 @@ function Pages({ data, type, id, optionWidth }) {
           </ul>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <LinkPage key={index} href={values.url}>
+              <LinkPage key={index} name={values.url} lang={lang}>
                 <a className="tag">{values.name}</a>
               </LinkPage>
             ))}

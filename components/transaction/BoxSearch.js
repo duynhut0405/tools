@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import { map, debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
 
 const propTypes = {
   listBranches: PropTypes.array,
@@ -18,7 +18,6 @@ const propTypes = {
 };
 
 function BoxSearch({
-  t,
   listBranches,
   listProvince,
   listDistrict,
@@ -114,4 +113,4 @@ function BoxSearch({
 
 BoxSearch.propTypes = propTypes;
 
-export default withTranslation('common')(BoxSearch);
+export default BoxSearch;

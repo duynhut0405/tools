@@ -63,12 +63,12 @@ module.exports = withPWA(
             );
           }
 
-          const resEN = await getRouer();
+          const resEN = await getRouterEN();
           if (resEN && resEN !== undefined && resEN.status === 200) {
             routerEN = resEN.data.reduce(
               (pages, data) =>
                 Object.assign({}, pages, {
-                  [`/[lang]/page/${data.slug}`]: { page: '/[lang]/page/[...name]' }
+                  [`/en/page/${data.slug}`]: { page: '/[lang]/page/[...name]' }
                 }),
               {}
             );
@@ -85,12 +85,12 @@ module.exports = withPWA(
             );
           }
 
-          const newResponseEN = await getNewRouter();
+          const newResponseEN = await getNewRouterEN();
           if (newResponseEN && newResponseEN !== undefined && newResponseEN.status === 200) {
             newRouterEN = newResponseEN.data.reduce(
               (pages, data) =>
                 Object.assign({}, pages, {
-                  [`/[lang]/news/${data.url}`]: { page: '/[lang]/news/[...slug]' }
+                  [`/en/news/${data.url}`]: { page: '/[lang]/news/[...slug]' }
                 }),
               {}
             );
@@ -111,7 +111,7 @@ module.exports = withPWA(
             );
           }
 
-          const categoryResponseEN = await getCategoryRouter();
+          const categoryResponseEN = await getCategoryRouteEN();
           if (
             categoryResponseEN &&
             categoryResponseEN !== undefined &&
@@ -120,7 +120,7 @@ module.exports = withPWA(
             categoryRouterEN = categoryResponseEN.data.reduce(
               (pages, category) =>
                 Object.assign({}, pages, {
-                  [`/[lang]/news/category/${category.slug}`]: {
+                  [`/en/news/category/${category.slug}`]: {
                     page: '/[lang]/news/category/[...name]'
                   }
                 }),
@@ -129,7 +129,8 @@ module.exports = withPWA(
           }
 
           let pageRouter = Object.assign({}, router, {
-            '/': { page: '/' }
+            '/': { page: '/' },
+            '/en': { page: '/[lang]' }
           });
 
           pageRouter = Object.assign(
