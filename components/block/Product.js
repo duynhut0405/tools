@@ -1,6 +1,7 @@
 import React from 'react';
 import { map } from 'lodash';
-import Link from 'next/link';
+import { LinkPage } from '../common/link';
+import { getLang } from '../../utils/cookie';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -9,6 +10,7 @@ const propTypes = {
 };
 
 function Product({ data, id }) {
+  const lang = getLang();
   return (
     <div className="post_block mb-5 pt-4" id={id}>
       <div className="title">
@@ -21,18 +23,18 @@ function Product({ data, id }) {
               <div className="col-sm-4" key={items.id}>
                 <div className="post_content mb-3">
                   <div>
-                    <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                    <LinkPage lang={lang} name={items.slug}>
                       <a>
                         <img className="lazyload" data-src={items.baseImage} alt="icon" />
                       </a>
-                    </Link>
+                    </LinkPage>
                   </div>
                   <div className="content">
-                    <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                    <LinkPage lang={lang} name={items.slug}>
                       <a>
                         <p className="title">{items.name}</p>
                       </a>
-                    </Link>
+                    </LinkPage>
                     <p className="text_content">{items.meta_description}</p>
                   </div>
                 </div>
@@ -43,18 +45,18 @@ function Product({ data, id }) {
             <div className="col-sm-4" key={items.id}>
               <div className="row mb-3 mr-4 page_wapper">
                 <div className="col-sm-5 img_wapper">
-                  <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                  <LinkPage lang={lang} name={items.slug}>
                     <a>
                       <img className="lazyload" data-src={items.miniImage} alt="icon" />
                     </a>
-                  </Link>
+                  </LinkPage>
                 </div>
                 <div className="col-sm-7 content">
-                  <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                  <LinkPage lang={lang} name={items.slug}>
                     <a>
                       <p className="title">{items.name}</p>
                     </a>
-                  </Link>
+                  </LinkPage>
                   <p className="text_content">{items.meta_description}</p>
                 </div>
               </div>

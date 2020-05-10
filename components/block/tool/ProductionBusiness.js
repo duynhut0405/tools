@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 import Proptypes from 'prop-types';
 import { rate } from '../../../utils/currency';
 const propTypes = {
@@ -15,7 +15,7 @@ const propTypes = {
   types: Proptypes.string
 };
 
-function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id, types }) {
+function ProductionBusiness({ minValue, maxValue, interest_rate, padding, id, types }) {
   const [total_capital_needs, setTotalCapitalNeeds] = useState('0');
   const [equity_capital, setEquityCapital] = useState('0');
   const [amount, setAmount] = useState('0');
@@ -32,7 +32,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id,
   const [active, setActive] = useState(false);
   const [sum, setSum] = useState(0);
   const [interest, setInterest] = useState(0);
-  const [title, setTitle] = useState(t('Vay hạn mức'));
+  const [title, setTitle] = useState(t('loan_limit'));
 
   useEffect(() => {
     const _total_capital_needs = Number(total_capital_needs.replace(/[^0-9.-]+/g, ''));
@@ -162,7 +162,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id,
                 <span className="checkmark1"></span>
               </label>
               <label className="option1 radio">
-                {t('tool_product_business.investment_loan')}
+                {t('tool_product_business_investment_loan')}
                 <input
                   type="radio"
                   checked={type === 2}
@@ -170,7 +170,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id,
                   onChange={() => {
                     setType(2);
                     setMaxMonth(84);
-                    setTitle(t('tool_product_business.investment_loan'));
+                    setTitle(t('tool_product_business_investment_loan'));
                   }}
                 />
                 <span className="checkmark1"></span>
@@ -191,7 +191,7 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id,
                           onChange={value => setTotalCapitalNeeds(value)}
                         />
                         <FieldInput
-                          label={t('tool_result.equity_capital')}
+                          label={t('tool_result_equity_capital')}
                           maxValue={maxValue}
                           value={equity_capital}
                           onChange={value => setEquityCapital(value)}
@@ -251,4 +251,4 @@ function ProductionBusiness({ t, minValue, maxValue, interest_rate, padding, id,
 
 ProductionBusiness.propTypes = propTypes;
 
-export default withTranslation('common')(ProductionBusiness);
+export default ProductionBusiness;

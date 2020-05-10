@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 import Proptypes from 'prop-types';
 import { rate } from '../../../utils/currency';
 
@@ -15,7 +15,7 @@ const propTypes = {
   type: Proptypes.string
 };
 
-function ToolHome({ t, maxValue, interest_rate, padding, id, type }) {
+function ToolHome({ maxValue, interest_rate, padding, id, type }) {
   const [estimate_rate, setEstimateRate] = useState('0');
   const [estimate_mortgage, setEstimateMortgage] = useState('0');
   const [amount, SetAmount] = useState('0');
@@ -30,7 +30,7 @@ function ToolHome({ t, maxValue, interest_rate, padding, id, type }) {
   const [totalAmount, setTotalAmount] = useState(0);
   const [show_result, setShowResult] = useState(false);
   const [checked, setChecked] = useState('1');
-  const [title, setTitle] = useState(t('tool_options.housing_loan'));
+  const [title, setTitle] = useState(t('tool_options_housing_loan'));
 
   useEffect(() => {
     const estimate_momney = (Number(estimate_rate.replace(/[^0-9.-]+/g, '')) * 80) / 100;
@@ -137,53 +137,53 @@ function ToolHome({ t, maxValue, interest_rate, padding, id, type }) {
           <div className="w-menu-over">
             <div className="p-tool1__select1 p-tool1__select1-js">
               <label className="option1 radio">
-                {t('tool_options.housing_loan')}
+                {t('tool_options_housing_loan')}
                 <input
                   type="radio"
                   checked={checked === '1'}
                   name="radio-loan"
                   onChange={() => {
                     setChecked('1');
-                    setTitle(t('tool_options.housing_loan'));
+                    setTitle(t('tool_options_housing_loan'));
                   }}
                 />
                 <span className="checkmark1"></span>
               </label>
               <label className="option1 radio">
-                {t('tool_options.loans_for_project_houses')}
+                {t('tool_options_loans_for_project_houses')}
                 <input
                   type="radio"
                   checked={checked === '2'}
                   name="radio-loan"
                   onChange={() => {
                     setChecked('2');
-                    setTitle(t('tool_options.loans_for_project_houses'));
+                    setTitle(t('tool_options_loans_for_project_houses'));
                   }}
                 />
                 <span className="checkmark1"></span>
               </label>
               <label className="option1 radio">
-                {t('tool_options.lending_for_construction_and_repair_of_houses')}
+                {t('tool_options_lending_for_construction_and_repair_of_houses')}
                 <input
                   type="radio"
                   checked={checked === '3'}
                   name="radio-loan"
                   onChange={() => {
                     setChecked('3');
-                    setTitle(t('tool_options.lending_for_construction_and_repair_of_houses'));
+                    setTitle(t('tool_options_lending_for_construction_and_repair_of_houses'));
                   }}
                 />
                 <span className="checkmark1"></span>
               </label>
               <label className="option1 radio">
-                {t('tool_options.lending_for_home_furnishings')}
+                {t('tool_options_lending_for_home_furnishings')}
                 <input
                   type="radio"
                   checked={checked === '4'}
                   name="radio-loan"
                   onChange={() => {
                     setChecked('4');
-                    setTitle(t('tool_options.lending_for_home_furnishings'));
+                    setTitle(t('tool_options_lending_for_home_furnishings'));
                   }}
                 />
                 <span className="checkmark1"></span>
@@ -264,4 +264,4 @@ function ToolHome({ t, maxValue, interest_rate, padding, id, type }) {
 
 ToolHome.propTypes = propTypes;
 
-export default withTranslation('common')(ToolHome);
+export default ToolHome;

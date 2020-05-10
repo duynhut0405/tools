@@ -7,7 +7,7 @@ import { getSocialLink } from '../../utils/fetch';
 import moment from 'moment';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
-import { useTranslation } from 'react-i18next';
+import t from '../../translation';
 import Layout from '../../components/layout';
 import PropTypes from 'prop-types';
 
@@ -39,7 +39,7 @@ function New({ news, category_name, category_url, socialLink }) {
       }
     }
   }, [news]);
-  const { t } = useTranslation();
+
   return (
     <React.Fragment>
       {news && news.news && (

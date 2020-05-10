@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 import { convertTitle } from '../../../utils/convertPadding';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 
 const propTypes = {
   type: PropTypes.number,
@@ -66,8 +65,6 @@ function ListDowloadFIle({
     padding = 'sec-';
   }
 
-  const { t } = useTranslation();
-
   return (
     <div className={`accodion accodion-2 ${padding} downloadvideo`} id={id}>
       <div className="container">
@@ -118,6 +115,4 @@ const mapDispatchToProps = {
 
 ListDowloadFIle.propTypes = propTypes;
 
-export default withTranslation('common')(
-  connect(mapStateToProp, mapDispatchToProps)(ListDowloadFIle)
-);
+export default connect(mapStateToProp, mapDispatchToProps)(ListDowloadFIle);

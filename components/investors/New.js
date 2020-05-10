@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { map } from 'lodash';
 import moment from 'moment';
 import Stock from './Stock';
 import { getNewCategoryIdService } from '../../services/news';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
+import { LinkNew } from '../common/link';
 
 const propTypes = {
   data: PropTypes.array,
@@ -23,6 +25,7 @@ const getNews = async (id, setData) => {
 
 function News({ category, padding }) {
   const [data, setData] = useState([]);
+  const lang = getLang();
   useEffect(() => {
     if (category !== null) {
       getNews(category.value, setData);
@@ -32,14 +35,14 @@ function News({ category, padding }) {
     <section className={`${padding} investors`}>
       <div className="container">
         <div className="entry-head text-center">
-          <h2 className="ht efch-1 ef-img-t">Cập nhật giao dịch MB</h2>
+          <h2 className="ht efch-1 ef-img-t">{t('update_mb')}</h2>
         </div>
         <div className="list-5 row list-item">
           {map(data, (item, index) => {
             if (index < 2) {
               return (
                 <div className="col-md-4" key={index}>
-                  <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                  <LinkNew lang={lang} name={item.url}>
                     <a className="item efch-2 ef-img-l ">
                       <div className="img tRes_71">
                         <img
@@ -54,7 +57,7 @@ function News({ category, padding }) {
                         <div className="desc line2">{ReactHtmlParser(item.shortDescription)}</div>
                       </div>
                     </a>
-                  </Link>
+                  </LinkNew>
                 </div>
               );
             }
@@ -62,24 +65,6 @@ function News({ category, padding }) {
           })}
           <Stock />
         </div>
-        {/* <div className="list-5 row list-item">
-          {map(data, (item, index) => {
-            if (index >= 2 && index < 6) {
-              return (
-                <div className="col-md-3" key={index}>
-                  <a href={`/news/${item.url}`} className="item efch-3 ef-img-l ">
-                    <div className="divtext">
-                      <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                      <h4 className="title line2">{item.title}</h4>
-                      <div className="desc line3">{ReactHtmlParser(item.shortDescription)}</div>
-                    </div>
-                  </a>
-                </div>
-              );
-            }
-            return null;
-          })}
-        </div> */}
       </div>
     </section>
   );

@@ -81,7 +81,7 @@ function BlockRender({ data, pageId }) {
                   />
                 );
               }
-              if (values.name === 'Installment Payment System') {
+              if (values.name === 'Installment Payment System' && values.content !== null) {
                 return (
                   <TablePayment
                     id={values.id}

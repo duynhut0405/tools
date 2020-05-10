@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { map, slice, isEmpty } from 'lodash';
+import { map, isEmpty } from 'lodash';
 import Question from './Item';
 import Proptypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 import { findAllNewsByCategory } from '../../../services/news';
 import Pagination from '../../common/Pagination';
 
@@ -17,9 +16,7 @@ function Questions({ data, id }) {
   const [active, setActive] = useState(false);
   const [newsAnswer, setNewsAnswer] = useState({});
 
-  // const list = slice(data.listBlock, 0, page);
   const list = data.listBlock;
-  const { t } = useTranslation();
 
   useEffect(() => {
     if (list.length === data.listBlock.length) {
@@ -109,4 +106,4 @@ function Questions({ data, id }) {
 
 Questions.propTypes = propTypes;
 
-export default withTranslation('common')(Questions);
+export default Questions;

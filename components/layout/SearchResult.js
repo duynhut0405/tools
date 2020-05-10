@@ -3,9 +3,11 @@ import { searchService } from '../../services/common';
 import { Pagination } from '../../components/common';
 import map from 'lodash/map';
 import PropTypes from 'prop-types';
-import { withTranslation } from '../../i18n';
 import debounce from 'lodash/debounce';
+import { getLang } from '../../utils/cookie';
+import { LinkNew, LinkPage } from '../common/link';
 import Link from 'next/link';
+import t from '../../translation';
 
 const propTypes = {
   query: PropTypes.string,
@@ -19,12 +21,13 @@ const fetch = async (query, setData) => {
   }
 };
 
-function SearchResult({ t, query }) {
+function SearchResult({ query }) {
   const [tabActive, setTabActive] = useState(1);
   const [data, setData] = useState({});
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState(null);
   const [type, setType] = useState(null);
+  const lang = getLang();
 
   useEffect(() => {
     if (query !== null) {
@@ -61,11 +64,22 @@ function SearchResult({ t, query }) {
     <div id="search-result" style={{ display: 'none' }}>
       <section id="top-search-result">
         <div className="container">
-          <Link href="/">
-            <a id="logo">
-              <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
-            </a>
-          </Link>
+          {lang === 'en' && (
+            <Link href="/en">
+              <a id="logo">
+                <a id="logo">
+                  <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+                </a>
+              </a>
+            </Link>
+          )}
+          {lang === 'vi' && (
+            <Link href="/">
+              <a id="logo">
+                <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+              </a>
+            </Link>
+          )}
           <span className="icon-close close-sg" onClick={onClose}></span>
           <form name="search" className="search-field" autoComplete="off" onSubmit={onSubmit}>
             <button type="submit" name="search-submit" className="icon-search-2"></button>
@@ -73,7 +87,7 @@ function SearchResult({ t, query }) {
             <input
               type="text"
               onChange={event => onChangeSearch(event.target.value)}
-              placeholder="Tìm kiếm ..."
+              placeholder={t('search')}
               className="search-input-transparent"
             />
           </form>
@@ -92,7 +106,7 @@ function SearchResult({ t, query }) {
                   setSearch(search);
                 }}
               >
-                <span>Tất cả</span>
+                <span>{t('all')}</span>
               </div>
               <div
                 className={tabActive === 2 ? 'active' : ''}
@@ -102,7 +116,7 @@ function SearchResult({ t, query }) {
                   setSearch(search);
                 }}
               >
-                <span>Tin tức</span>
+                <span>{t('news')}</span>
               </div>
               <div
                 className={tabActive === 3 ? 'active' : ''}
@@ -112,19 +126,19 @@ function SearchResult({ t, query }) {
                   setSearch(search);
                 }}
               >
-                <span>Sản phẩm</span>
+                <span>{t('product')}</span>
               </div>
             </div>
             <div className="tab-content">
               <div className="active">
                 <div className="total-search">
                   <p>
-                    Tìm thấy
+                    {t('find')}
                     <span className="total">
                       {' '}
                       {data.size === 0 ? data.searchCommons.length : 20 * data.size}{' '}
                     </span>
-                    kết quả
+                    {t('result')}
                   </p>
                 </div>
                 <div className="tab-inner">
@@ -132,24 +146,19 @@ function SearchResult({ t, query }) {
                     {map(data.searchCommons, (news, index) => {
                       return (
                         <div className="search-item" key={index}>
-                          <Link
-                            href={news.type === 'news' ? `/news/[...slug]` : `/page/[...name]`}
-                            as={
-                              news.type === 'news'
-                                ? `/news/${news.object.url}`
-                                : `/page/${news.object.slug}`
-                            }
-                          >
-                            <a onClick={onClose}>
-                              {news.type === 'news' && (
+                          {news.type === 'news' ? (
+                            <LinkNew lang={lang} name={news.object.url}>
+                              <a onClick={onClose}>
                                 <h3 className="ctext">{news.object.title}</h3>
-                              )}
-                              {news.type === 'page' && (
+                              </a>
+                            </LinkNew>
+                          ) : (
+                            <LinkPage lang={lang} name={news.object.slug}>
+                              <a onClick={onClose}>
                                 <h3 className="ctext">{news.object.name}</h3>
-                              )}
-                            </a>
-                          </Link>
-
+                              </a>
+                            </LinkPage>
+                          )}
                           {news.type === 'news' && <p>{news.object.shortDescription}</p>}
                         </div>
                       );
@@ -168,4 +177,4 @@ function SearchResult({ t, query }) {
 
 SearchResult.propTypes = propTypes;
 
-export default withTranslation('common')(SearchResult);
+export default SearchResult;

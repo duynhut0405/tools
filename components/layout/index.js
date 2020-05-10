@@ -14,7 +14,6 @@ import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
 import debounce from 'lodash/debounce';
-import { withTranslation } from '../../i18n';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { getStoreFont } from '../../services/storefont';
@@ -210,7 +209,7 @@ function Layout({ children, lang }) {
     const box = document.getElementById('search-sg');
     element.style = 'width: 200px';
     box.style = 'display: block';
-    element.placeholder = `${t(lang, 'enter_search')}.....`;
+    element.placeholder = `${t('enter_search')}.....`;
   };
 
   const onClose = () => {
@@ -218,7 +217,7 @@ function Layout({ children, lang }) {
     const box = document.getElementById('search-sg');
     element.style = 'width: 70px';
     box.style = 'display: none';
-    element.placeholder = t(lang, 'search');
+    element.placeholder = t('search');
   };
 
   const onSearch = event => {
@@ -239,7 +238,7 @@ function Layout({ children, lang }) {
     const box = document.getElementById('search-sg');
     element.style = 'width: 70px';
     box.style = 'display: none';
-    element.placeholder = t(lang, 'search');
+    element.placeholder = t('search');
   };
 
   const onChangeSearch = debounce(value => {
@@ -261,7 +260,7 @@ function Layout({ children, lang }) {
                     <input
                       id="search"
                       type="text"
-                      placeholder={t(lang, 'search')}
+                      placeholder={t('search')}
                       onFocus={onFocus}
                       // onBlur={onBlur}
                       onChange={event => onChangeSearch(event.target.value)}
@@ -510,18 +509,18 @@ function Layout({ children, lang }) {
             <div className="container">
               <div className="row">
                 <div className="col-md-6   efch-2 ef-img-r">
-                  <p className="stitle">{t(lang, 'sign_up_promotional')}</p>
+                  <p className="stitle">{t('sign_up_promotional')}</p>
                   <form role="search" method="get" className="" action="">
                     <div>
                       <input
                         type="text"
-                        placeholder={t(lang, 'enter_email')}
+                        placeholder={t('enter_email')}
                         name="s"
                         className="input"
                       />
                     </div>
                     <button type="submit" className="btn btn-2">
-                      {t(lang, 'registration')}
+                      {t('registration')}
                     </button>
                   </form>
                 </div>
@@ -577,15 +576,10 @@ function Layout({ children, lang }) {
           </div>
           <section className="sec-download-mb">
             <div className="wform">
-              <p className="stitle">{t(lang, 'sign_up_promotional')}</p>
+              <p className="stitle">{t('sign_up_promotional')}</p>
               <form role="search" method="get" className="" action="">
                 <div className="aaa">
-                  <input
-                    type="text"
-                    placeholder={t(lang, 'enter_email')}
-                    name="s"
-                    className="input"
-                  />
+                  <input type="text" placeholder={t('enter_email')} name="s" className="input" />
                 </div>
 
                 <button type="submit" className="btn btn-2">
@@ -606,7 +600,7 @@ function Layout({ children, lang }) {
                 <div className="accodion-tab ">
                   <input type="checkbox" id="chck_mf" />
                   <label className="accodion-title" htmlFor="chck_mf">
-                    <span> {t(lang, 'extend')} </span>{' '}
+                    <span> {t('extend')} </span>{' '}
                     <span className="triangle">
                       <i className="icon-plus"></i>
                     </span>
@@ -630,7 +624,7 @@ function Layout({ children, lang }) {
                         alt="images"
                       />
                     </span>
-                    <span className="name">{t(lang, 'home')}</span>
+                    <span className="name">{t('home')}</span>
                   </a>
                 </div>
                 <div className="col-3">
@@ -642,7 +636,7 @@ function Layout({ children, lang }) {
                         alt="images"
                       />
                     </span>
-                    <span className="name">{t(lang, 'product')}</span>
+                    <span className="name">{t('product')}</span>
                   </a>
                 </div>
                 <div className="col-3">
@@ -662,7 +656,7 @@ function Layout({ children, lang }) {
                         alt="images"
                       />
                     </span>
-                    <span className="name">{t(lang, 'family')}</span>
+                    <span className="name">{t('family')}</span>
                   </a>
                 </div>
                 <div className="col-3">
@@ -674,7 +668,7 @@ function Layout({ children, lang }) {
                         alt="images"
                       />
                     </span>
-                    <span className="name">{t(lang, 'utilities')}</span>
+                    <span className="name">{t('utilities')}</span>
                   </a>
                 </div>
               </div>
@@ -696,4 +690,4 @@ function Layout({ children, lang }) {
 
 Layout.propTypes = propTypes;
 
-export default withTranslation('common')(Layout);
+export default Layout;

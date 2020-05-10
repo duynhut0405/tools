@@ -1,8 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { map } from 'lodash';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
 import PropTypes from 'prop-types';
 import { getLang } from '../../utils/cookie';
 import { LinkNew } from '../common/link';
@@ -14,8 +13,8 @@ const propTypes = {
 };
 
 function AboutCategory({ data, categories }) {
-  const { t } = useTranslation();
   const lang = getLang();
+
   return (
     <>
       <main id="main" className="sec-tb">
@@ -30,7 +29,7 @@ function AboutCategory({ data, categories }) {
                     : `/en/news/category/${event.target.value}`;
               }}
             >
-              <option>{t('Select...')}</option>
+              <option>{t('select')}</option>
               {map(categories, (value, index) => (
                 <option key={index} value={value.slug}>
                   {value.name}
@@ -70,4 +69,4 @@ function AboutCategory({ data, categories }) {
 
 AboutCategory.propTypes = propTypes;
 
-export default withTranslation('common')(AboutCategory);
+export default AboutCategory;

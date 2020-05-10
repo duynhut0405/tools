@@ -1,7 +1,6 @@
 import Proptypes from 'prop-types';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 
 const propTypes = {
   item: Proptypes.object,
@@ -9,8 +8,6 @@ const propTypes = {
   setModal: Proptypes.func
 };
 function PopupItems({ modal, setModal }) {
-  const { t } = useTranslation();
-
   return (
     <div id="thankyouModal" className={`myModals thankyouModal ${modal ? `active` : null}`}>
       <span className="btnModal overlay"></span>
@@ -25,7 +22,7 @@ function PopupItems({ modal, setModal }) {
             </a>
           </div>
           <div className="divtext">
-            <h2 className="title cl1">Thank you</h2>
+            <h2 className="title cl1">{t('thank')}</h2>
             <div className="desc ">
               <p>{t('thankyou')}</p>
             </div>
@@ -38,4 +35,4 @@ function PopupItems({ modal, setModal }) {
 
 PopupItems.propTypes = propTypes;
 
-export default withTranslation('common')(PopupItems);
+export default PopupItems;

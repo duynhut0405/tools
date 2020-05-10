@@ -1,6 +1,7 @@
 import React from 'react';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
+import t from '../../../translation';
 
 const propTypes = {
   data: PropTypes.array
@@ -37,7 +38,7 @@ function ItemIcon({ data }) {
 
       <div className="col-lg-3 col-6 efch-7 ef-img-t">
         <div className="item item-2">
-          <h5 className="title">Truy cập nhanh</h5>
+          <h5 className="title">{t('fast_access')}</h5>
           {map(table, (item, index) => (
             <a
               className="btn btn-3 radius-8"

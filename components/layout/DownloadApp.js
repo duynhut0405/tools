@@ -1,5 +1,4 @@
 import React from 'react';
-import { getLang } from '../../utils/cookie';
 import t from '../../translation';
 import PropTypes from 'prop-types';
 
@@ -10,7 +9,6 @@ const propTypes = {
 };
 
 const DownloadApp = ({ mobile, linkApp }) => {
-  const lang = getLang();
   return (
     <div className={mobile ? 'wdownload' : 'wapp'}>
       {!mobile && (
@@ -19,7 +17,7 @@ const DownloadApp = ({ mobile, linkApp }) => {
             <img className="lazyload" data-src="/static/images/svg/qr.svg" alt="images" />
           </span>
           <div className="app">
-            <p className="stitle">{t(lang, 'donwload_app_today')}</p>
+            <p className="stitle">{t('donwload_app_today')}</p>
             <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
               <img className="lazyload" data-src="/static/images/btt-google.svg" alt="images" />
             </a>
@@ -32,7 +30,7 @@ const DownloadApp = ({ mobile, linkApp }) => {
       )}
       {mobile && (
         <>
-          <span className="stitle">{t(lang, 'donwload_app_today')}</span>
+          <span className="stitle">{t('donwload_app_today')}</span>
           <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
             <img className="lazyload" data-src="/static/images/btt-chplay-mb.svg" alt="images" />
           </a>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { findAllNewsByCategory } from '../../services/news';
-import Link from 'next/link';
 import map from 'lodash/map';
 import moment from 'moment';
 import Proptypes from 'prop-types';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
+import { LinkCategory, LinkNew } from '../common/link';
 
 const propTypes = {
   data: Proptypes.object,
@@ -19,8 +20,9 @@ const getNews = async (id, setData) => {
   }
 };
 
-function MBNotifi({ t, data, padding }) {
+function MBNotifi({ data, padding }) {
   const [listNews, setListNews] = useState([]);
+  const lang = getLang();
   useEffect(() => {
     getNews(data.value, setListNews);
   }, [getNews]);
@@ -30,17 +32,17 @@ function MBNotifi({ t, data, padding }) {
       <div className="container">
         <div className="entry-head">
           <h2 className="">{data.label}</h2>
-          <Link href="/news/category/[...slug]" as={`/news/category/${data.slug}`}>
+          <LinkCategory lang={lang} name={data.slug}>
             <a className="viewall">
               {t('view')} <i className="icon-arrow-1"></i>
             </a>
-          </Link>
+          </LinkCategory>
         </div>
         <div className="list-5 list-5-1 row list-item">
           {map(listNews, news => {
             return (
               <div className="col-md-4" key={news.newsId}>
-                <Link href="/news/[...slug]" as={`/news/${news.url}`}>
+                <LinkNew lang={lang} name={news.url}>
                   <a className="item efch-2 ef-img-l equal">
                     <div className="divtext">
                       <div className="date">{moment(news.created_at).format('DD/MM/YYYY')}</div>
@@ -49,7 +51,7 @@ function MBNotifi({ t, data, padding }) {
                       <span className="more cl1">{t('look_more')}</span>
                     </div>
                   </a>
-                </Link>
+                </LinkNew>
               </div>
             );
           })}
@@ -61,4 +63,4 @@ function MBNotifi({ t, data, padding }) {
 
 MBNotifi.propTypes = propTypes;
 
-export default withTranslation('common')(MBNotifi);
+export default MBNotifi;

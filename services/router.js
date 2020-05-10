@@ -56,7 +56,7 @@ const getCategoryRouter = () => {
 };
 
 const getRouterEN = () => {
-  return request({
+  return _request({
     url: `/pages`,
     method: 'GET'
   })
@@ -69,7 +69,7 @@ const getRouterEN = () => {
 };
 
 const getNewRouterEN = () => {
-  return request({
+  return _request({
     url: `/news/findallnotpagination`,
     method: 'GET'
   })
@@ -82,7 +82,7 @@ const getNewRouterEN = () => {
 };
 
 const getCategoryRouteEN = () => {
-  return request({
+  return _request({
     url: `/categorys`,
     method: 'GET'
   })
