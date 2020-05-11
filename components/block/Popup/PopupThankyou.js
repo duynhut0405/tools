@@ -1,6 +1,8 @@
 import Proptypes from 'prop-types';
 import React from 'react';
 import t from '../../../translation';
+import { getLang } from '../../../utils/cookie';
+import { LinkPage } from '../../common/link';
 
 const propTypes = {
   item: Proptypes.object,
@@ -8,6 +10,7 @@ const propTypes = {
   setModal: Proptypes.func
 };
 function PopupItems({ modal, setModal }) {
+  const lang = getLang();
   return (
     <div id="thankyouModal" className={`myModals thankyouModal ${modal ? `active` : null}`}>
       <span className="btnModal overlay"></span>
@@ -17,9 +20,20 @@ function PopupItems({ modal, setModal }) {
             <i className="icon-close"> </i>
           </span>
           <div className="logo">
-            <a href="/">
-              <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
-            </a>
+            {lang === 'vi' && (
+              <LinkPage name="/" lang={lang}>
+                <a>
+                  <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+                </a>
+              </LinkPage>
+            )}
+            {lang === 'en' && (
+              <LinkPage name="/en" lang={lang}>
+                <a>
+                  <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+                </a>
+              </LinkPage>
+            )}
           </div>
           <div className="divtext">
             <h2 className="title cl1">{t('thank')}</h2>

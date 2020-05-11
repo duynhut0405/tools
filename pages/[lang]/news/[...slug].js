@@ -74,7 +74,7 @@ function New({ news, category_name, category_url, socialLink }) {
             <div className="entry-breadcrumb">
               <div className="container">
                 <div className="breadcrumbs">
-                  <Link href="/">
+                  <Link href="/en">
                     <a className="item">{t('home')}</a>
                   </Link>
                   <Link

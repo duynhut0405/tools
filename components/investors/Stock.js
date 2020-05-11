@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { getStockServices } from '../../services/mb.services';
+import { getLang } from '../../utils/cookie';
 
 const getStock = setData => {
   const res = getStockServices();
@@ -12,6 +13,7 @@ const getStock = setData => {
 
 function Stock() {
   const [stock, setStock] = useState({});
+  const lang = getLang();
   useEffect(() => {
     getStock(setStock);
   }, [getStock]);
@@ -19,7 +21,7 @@ function Stock() {
     <div className="col-md-4">
       <div className="widget-ndt">
         <div>
-          <Link href="/">
+          <Link href={lang === 'vi' ? '/' : '/en'}>
             <a>
               <img className="lazyload" height="50" data-src="/images/logo-blue.svg" alt="images" />
             </a>

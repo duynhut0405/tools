@@ -1,6 +1,8 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
+import { LinkPage } from '../../common/link';
+import { getLang } from '../../../utils/cookie';
 
 const propTypes = {
   item: Proptypes.object,
@@ -9,6 +11,7 @@ const propTypes = {
 };
 function PopupItems({ item, modal, setModal }) {
   const toggle = () => setModal(!modal);
+  const lang = getLang();
 
   return (
     <React.Fragment>
@@ -36,9 +39,20 @@ function PopupItems({ item, modal, setModal }) {
               <i className="icon-close"> </i>
             </span>
             <div className="logo">
-              <a href="/">
-                <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
-              </a>
+              {lang === 'vi' && (
+                <LinkPage lang={lang} name="/">
+                  <a>
+                    <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+                  </a>
+                </LinkPage>
+              )}
+              {lang === 'en' && (
+                <LinkPage lang={lang} name="/en">
+                  <a>
+                    <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+                  </a>
+                </LinkPage>
+              )}
             </div>
             <div className="row bottom">
               <div className="col-md-5">
