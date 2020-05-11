@@ -121,7 +121,8 @@ blockquote p {
   margin-bottom: 0;
 }
 
-html, body {
+html,
+body {
   scroll-padding-top: 80px;
 }
 
@@ -144,5 +145,9 @@ html, body {
 
   .banner-heading-3 .img-mb {
     display: block;
+  }
+  html,
+  body {
+    scroll-padding-top: 0px;
   }
 }
