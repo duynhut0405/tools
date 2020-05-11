@@ -69,7 +69,12 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="list-5 row list-item">
             {map(listPage, item => (
               <div className="col-md-4" key={item.id}>
-                <LinkPage lang={lang} name={item.slug}>
+                <LinkPage
+                  lang={lang}
+                  name={
+                    item.linkurl !== '' && item.linkurl !== undefined ? item.linkurl : item.slug
+                  }
+                >
                   <a className="item">
                     <div className="img tRes_71">
                       <img
