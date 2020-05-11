@@ -81,9 +81,9 @@
     "tool_result_loan_amount": "Loan amount:",
     "tool_result_equity_capital": "Equity capital:",
     "tool_result_monthly_interest": "Monthly interest",
-    "tool_result_loan_term:": "Loan term:",
-    "tool_result_principal_monthly:": "Principal monthly:",
-    "tool_result_total_payment:": "Total payment:",
+    "tool_result_loan_term": "Loan term:",
+    "tool_result_principal_monthly": "Principal monthly:",
+    "tool_result_total_payment": "Total payment:",
     "tool_table_title": "View monthly payment spreadsheet",
     "tool_table_total": "Total",
     "tool_table_repayment_period": "Repayment period",
@@ -129,5 +129,8 @@
     "update_mb": "Update MB transactions",
     "find": "Find",
     "personal": "Personal",
-    "enterprise": "Enterprise"
+    "enterprise": "Enterprise",
+    "contacts": "Contacts",
+    "customer_service_time": "Customer service time",
+    "dead_office": "MBBank dead office"
 }

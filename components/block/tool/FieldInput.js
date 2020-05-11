@@ -2,6 +2,7 @@ import React from 'react';
 import { rate } from '../../../utils/currency';
 import Proptypes from 'prop-types';
 import ReactNumeric from 'react-numeric';
+import t from '../../../translation';
 // import CurrencyFormat  from 'react-currency-format';
 
 const propTypes = {
@@ -19,7 +20,7 @@ function FieldInput({ label, maxValue, value, onChange, note, onBlur }) {
       <div className="col-md-7">
         <h5 className="title">
           {label}
-          <br /> <span className="note">{note ? '(THÁNG)' : '(VNĐ)'} </span>
+          <br /> <span className="note">{note ? `(${t('month')})` : '(VNĐ)'} </span>
         </h5>
       </div>
 
