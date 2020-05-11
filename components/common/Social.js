@@ -10,7 +10,7 @@ function Social({ data }) {
     <ul className="blog-item-social ">
       <li>
         <a
-          href={data.facebook}
+          href={data ? data.facebook : '#'}
           className="item"
           title="Facebook"
           target="_blank"
@@ -21,7 +21,7 @@ function Social({ data }) {
       </li>
       <li>
         <a
-          href={data.instagram}
+          href={data ? data.instagram : '#'}
           className="item"
           title="Instagram"
           target="_blank"
@@ -32,7 +32,7 @@ function Social({ data }) {
       </li>
       <li>
         <a
-          href={data.twitter}
+          href={data ? data.twitter : '#'}
           className="item"
           title="Twitter"
           target="_blank"
@@ -43,7 +43,7 @@ function Social({ data }) {
       </li>
       <li>
         <a
-          href={data.youtube}
+          href={data ? data.youtube : '#'}
           className="item"
           title="Youtube"
           target="_blank"

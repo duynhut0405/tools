@@ -127,5 +127,7 @@
     "financial_report": "Financial report",
     "shareholders_meeting": "Shareholders meeting",
     "update_mb": "Update MB transactions",
-    "find": "Find"
+    "find": "Find",
+    "personal": "Personal",
+    "enterprise": "Enterprise"
 }

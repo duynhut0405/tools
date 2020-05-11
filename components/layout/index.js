@@ -260,7 +260,7 @@ function Layout({ children, lang }) {
                     <input
                       id="search"
                       type="text"
-                      placeholder={t('search')}
+                      placeholder={lang === 'vi' ? 'Tìm kiếm' : 'Search'}
                       onFocus={onFocus}
                       // onBlur={onBlur}
                       onChange={event => onChangeSearch(event.target.value)}
@@ -378,7 +378,7 @@ function Layout({ children, lang }) {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  Cá Nhân
+                                  {t('personal')}
                                 </a>
                               </li>
                               <li>
@@ -387,7 +387,7 @@ function Layout({ children, lang }) {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  Doanh nghiệp
+                                  {t('enterprise')}
                                 </a>
                               </li>
                             </ul>
@@ -514,7 +514,11 @@ function Layout({ children, lang }) {
                     <div>
                       <input
                         type="text"
-                        placeholder={t('enter_email')}
+                        placeholder={
+                          lang === 'vi'
+                            ? 'Nhập email để nhận thông tin!'
+                            : 'Enter email to receive information'
+                        }
                         name="s"
                         className="input"
                       />
@@ -579,11 +583,20 @@ function Layout({ children, lang }) {
               <p className="stitle">{t('sign_up_promotional')}</p>
               <form role="search" method="get" className="" action="">
                 <div className="aaa">
-                  <input type="text" placeholder={t('enter_email')} name="s" className="input" />
+                  <input
+                    type="text"
+                    placeholder={
+                      lang === 'vi'
+                        ? 'Nhập email để nhận thông tin!'
+                        : 'Enter email to receive information'
+                    }
+                    name="s"
+                    className="input"
+                  />
                 </div>
 
                 <button type="submit" className="btn btn-2">
-                  Đăng ký
+                  {t('registration')}
                 </button>
               </form>
             </div>

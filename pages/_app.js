@@ -11,7 +11,6 @@ import stores from '../store';
 import '../styles/block.scss';
 import '../styles/styles.css';
 import '../styles/custom.css';
-import '../styles/question.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'react-rangeslider/lib/index.css';
 import 'react-multi-carousel/lib/styles.css';
