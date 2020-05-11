@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { LayoutActions } from '../../store/actions';
 import Map from '../../components/common/Map';
-import { connect } from 'react-redux';
+import { getSetting } from '../../utils/fetch';
+import { getLang } from '../../utils/cookie';
+import t from '../../translation';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -12,9 +13,17 @@ const propTypes = {
   id: PropTypes.id
 };
 
-function Contact({ settingFooter, getSettingFooter, data, id }) {
+function Contact({ data, id }) {
+  const [settingFooter, setSettingFooter] = useState({});
+  const lang = getLang();
+
+  const fetch = async () => {
+    const res = await getSetting(lang);
+    setSettingFooter(res.general);
+  };
+
   useEffect(() => {
-    getSettingFooter();
+    fetch();
   }, []);
 
   let padding = '';
@@ -35,12 +44,12 @@ function Contact({ settingFooter, getSettingFooter, data, id }) {
           <div className="row">
             <div className="col-lg-4 col-md-6">
               <div className="widget widget-contact">
-                <h1 className="widget-title  h2">Liên hệ</h1>
+                <h1 className="widget-title  h2">{t('contacts')}</h1>
                 {settingFooter.information && (
                   <React.Fragment>
-                    <h3>Hội sở chính MBBank:</h3>
+                    <h3>{t('dead_office')}</h3>
                     <p>{settingFooter.information.place}</p>
-                    <h3>Thời gian phục vụ khách hàng</h3>
+                    <h3>{t('customer_service_time')}</h3>
                     <p>{settingFooter.information.time}</p>
                     <h3>Hotline</h3>
                     <div className="phone">
@@ -85,14 +94,4 @@ function Contact({ settingFooter, getSettingFooter, data, id }) {
 
 Contact.propTypes = propTypes;
 
-const mapStateToProps = state => {
-  return {
-    settingFooter: state.layoutReducer.settingFooter
-  };
-};
-
-const mapDispatchToProps = {
-  getSettingFooter: LayoutActions.getSettingFooterAction
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Contact);
+export default Contact;

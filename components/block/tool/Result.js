@@ -32,7 +32,7 @@ function Result({
       <h3>{title}</h3>
       <div className="row">
         <div className="col-md-6">
-          <h5 className="title">{t('loan_amount')}</h5>
+          <h5 className="title">{t('loan_amount')} :</h5>
         </div>
         <div className="col-md-6">
           <span className="t2">{rate(amount)}</span>
@@ -83,7 +83,7 @@ function Result({
       </div>
       <div className="row">
         <div className="col-md-6">
-          <h5 className="title">Lãi suất:</h5>
+          <h5 className="title">{t('interest_rate')} :</h5>
         </div>
         <div className="col-md-6">
           <span className="t4">{interest_rate}</span> <span className="t3">%</span>
