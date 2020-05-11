@@ -12,7 +12,7 @@ function ExchangeRate({ data1, data2 }) {
           {t('exchange_rate')}
         </div>
         <div className={tab === 'tab2' ? 'tg-tab active' : 'tg-tab'} onClick={() => setTab('tab2')}>
-          {t('interest_rate')} <span className="cl5 text-normal fs18">(%/ năm)</span>
+          {t('interest_rate')} <span className="cl5 text-normal fs18">{`(%/ ${t('year')})`}</span>
         </div>
       </div>
       <div className="tab-content">
