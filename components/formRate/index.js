@@ -146,7 +146,6 @@ function FormRate({ data, interestRate }) {
                   <input className="input" placeholder={t('amount')} name="to" value={to} />
                 </div>
                 <p>{`${t('updated_at')} ${moment(data.date_update).format('HH:mm')} ${t(
-                  lang,
                   'date'
                 )} ${moment(data.date_update).format('DD/MM/YYYY')}`}</p>
               </div>
