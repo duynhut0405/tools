@@ -20,17 +20,18 @@ const fetchListRate = async setlistRate => {
 };
 function Search({ changeDate, onSubmit, date }) {
   //
-  const [listRate, setlistRate] = useState([]);
+  const [listRate, setlistRate] = useState({});
 
   useEffect(() => {
     fetchListRate(setlistRate);
   }, []);
-  const dateDefault = new Date(listRate.created_at);
+
+  const dateDefault = Object.keys(listRate).length > 0 ? new Date(listRate.created_at) : new Date();
 
   return (
     <div className="search tigia mb-30 max950">
       <h3 className="ctext mg-0">{t('table_rate_search')}</h3>
-      <DatePicker selected={date} onChange={changeDate}></DatePicker>
+      <DatePicker selected={date === null ? dateDefault : date} onChange={changeDate}></DatePicker>
       <button className="btn lg" onClick={onSubmit}>
         {t('table_rate_submit')}
       </button>
