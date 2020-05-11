@@ -3,6 +3,8 @@ import { getFormbuilderByIdService } from '../../../services/form';
 import ReactHtmlParser from 'react-html-parser';
 import map from 'lodash/map';
 import t from '../../../translation';
+import { LinkPage } from '../../common/link';
+import { getLang } from '../../../utils/cookie';
 import Proptypes from 'prop-types';
 
 const propTypes = {
@@ -24,6 +26,7 @@ const getFormByID = async (id, setData) => {
 function FormItems({ data, step, totalStep, formActive, onNext }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
+  const lang = getLang();
 
   useEffect(() => {
     getFormByID(data.value, setFormData);
@@ -159,9 +162,16 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
 
               <div className="col-12 ">
                 <div className="text-center">
-                  <a className="btn" href="/">
-                    {t('form_step_go_home')}
-                  </a>
+                  {lang === 'vi' && (
+                    <LinkPage lang={lang} name="/">
+                      <a className="btn">{t('form_step_go_home')}</a>
+                    </LinkPage>
+                  )}
+                  {lang === 'en' && (
+                    <LinkPage lang={lang} name="/en">
+                      <a className="btn">{t('form_step_go_home')}</a>
+                    </LinkPage>
+                  )}
                 </div>
               </div>
             </React.Fragment>
