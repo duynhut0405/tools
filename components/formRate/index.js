@@ -2,7 +2,6 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import t from '../../translation';
-import { getLang } from '../../utils/cookie';
 import currency from './dataCurrent.json';
 import ExchangeRate from './exchangeRate';
 import RateSelect from './RateSelect';
@@ -22,29 +21,8 @@ function FormRate({ data, interestRate }) {
     : [{}];
   const [arrTo, setArrTo] = useState(arrCurrency ? arrCurrency : []);
 
-  const lang = getLang();
-
-  const getCurrentTo = name => {
-    if (name === 'VND') {
-      setArrTo(data.exchangeRateDetail);
-    } else {
-      const obj = currency.content.find(item => item.currency === name);
-      if (obj) {
-        setArrTo(obj.children);
-        setcurrencyTo(obj.children[0].currency);
-        if (obj.children[0].currency === 'VND') {
-          Calculator();
-        }
-      } else {
-        setArrTo([{ currency: 'VND' }]);
-        setcurrencyTo('VND');
-        Calculator();
-      }
-    }
-  };
-
-  const getSellBycurrency = currency => {
-    const obj = data.exchangeRateDetail.find(item => item.currency === currency);
+  const getSellBycurrency = _currency => {
+    const obj = data.exchangeRateDetail.find(item => item.currency === _currency);
     if (obj) {
       const result = obj.sell !== null ? obj.sell : 0;
       return result;
@@ -52,8 +30,8 @@ function FormRate({ data, interestRate }) {
     return 0;
   };
 
-  const getBuyTransferBycurrency = currency => {
-    const obj = data.exchangeRateDetail.find(item => item.currency === currency);
+  const getBuyTransferBycurrency = _currency => {
+    const obj = data.exchangeRateDetail.find(item => item.currency === _currency);
     if (obj) {
       const result = obj.buy_transfer !== null ? obj.buy_transfer : 0;
       return result;
@@ -77,6 +55,25 @@ function FormRate({ data, interestRate }) {
         setTo(0);
       } else {
         setTo(result - Math.floor(result) === 0 ? result : result.toFixed(4));
+      }
+    }
+  };
+
+  const getCurrentTo = name => {
+    if (name === 'VND') {
+      setArrTo(data.exchangeRateDetail);
+    } else {
+      const obj = currency.content.find(item => item.currency === name);
+      if (obj) {
+        setArrTo(obj.children);
+        setcurrencyTo(obj.children[0].currency);
+        if (obj.children[0].currency === 'VND') {
+          Calculator();
+        }
+      } else {
+        setArrTo([{ currency: 'VND' }]);
+        setcurrencyTo('VND');
+        Calculator();
       }
     }
   };

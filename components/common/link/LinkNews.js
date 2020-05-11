@@ -13,7 +13,7 @@ function LinkNews({ lang, name, children, ...rest }) {
   return (
     <>
       {lang === 'en' ? (
-        <Link href="/[lang]/news/[...slug]" as={`/${lang}/news/${name}`} {...rest}>
+        <Link href="/en/news/[...slug]" as={`/${lang}/news/${name}`} {...rest}>
           {children}
         </Link>
       ) : (
