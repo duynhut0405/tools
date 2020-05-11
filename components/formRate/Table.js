@@ -22,12 +22,13 @@ function TableRate({ data, type }) {
             <th>{t('sold_out')}</th>
           </tr>
           {map(data, value => {
+            const valueCurrency = value.currency.split(' ')[0];
             return (
               <tr key={value.id}>
                 <td className="td-img">
                   <img
                     className="lazyload"
-                    data-src={`static/currency/${value.currency}.png`}
+                    data-src={`static/currency/${valueCurrency}.png`}
                     alt="images"
                     width="24"
                   />
