@@ -77,10 +77,7 @@ function New({ news, category_name, category_url, socialLink }) {
                   <Link href="/en">
                     <a className="item">{t('home')}</a>
                   </Link>
-                  <Link
-                    href="/[lang]/news/category/[...name]"
-                    as={`/en/news/category/${category_url}`}
-                  >
+                  <Link href="/en/news/category/[...name]" as={`/en/news/category/${category_url}`}>
                     <a className="item">{category_name}</a>
                   </Link>
                   {/* <span className="item">{news.news === null ? '' : news.news.title}</span> */}
@@ -121,7 +118,7 @@ function New({ news, category_name, category_url, socialLink }) {
                     <h2>{t('related_content')}</h2>
                     {map(news.news.categories, item => (
                       <Link
-                        href="/[lang]/news/category/[...name]"
+                        href="/en/news/category/[...name]"
                         as={`/en/news/category/${item.slug}`}
                         key={item.id}
                       >
@@ -141,7 +138,7 @@ function New({ news, category_name, category_url, socialLink }) {
                   {map(news.newsRelated, (item, index) => {
                     return (
                       <div className="col-md-6" key={index}>
-                        <Link href="/[lang]/news/[...slug]" as={`/en/news/${item.url}`}>
+                        <Link href="/en/news/[...slug]" as={`/en/news/${item.url}`}>
                           <a className="item item-inline-table">
                             <div className="img">
                               <img
