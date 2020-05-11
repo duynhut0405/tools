@@ -26,7 +26,7 @@ function TableRate({ data, type }) {
                 <td className="td-img">
                   <img
                     className="lazyload"
-                    data-src={`static/currency/${valueCurrency}.png`}
+                    data-src={`/static/currency/${valueCurrency}.png`}
                     alt="images"
                     width="24"
                   />
