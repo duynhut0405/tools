@@ -6,6 +6,7 @@ import Carousel from 'react-multi-carousel';
 import CustomPageItem from './BlockPageItem/CustomPageItem';
 import { LinkPage } from '../common/link';
 import { getLang } from '../../utils/cookie';
+import t from '../../translation';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -65,16 +66,16 @@ function Pages({ data, type, id, optionWidth }) {
         <div className="container">
           <div className="entry-head text-center">
             {data.title && <h2 className="ht">{data.title}</h2>}
+            {data.linkurl !== undefined && data.linkurl !== '' && (
+              <a className="viewall" href={data.linkurl}>
+                {t('view')} <i className="icon-arrow-1"></i>
+              </a>
+            )}
           </div>
           <div className="list-5 row list-item">
             {map(listPage, item => (
               <div className="col-md-4" key={item.id}>
-                <LinkPage
-                  lang={lang}
-                  name={
-                    item.linkurl !== '' && item.linkurl !== undefined ? item.linkurl : item.slug
-                  }
-                >
+                <LinkPage lang={lang} name={item.slug}>
                   <a className="item">
                     <div className="img tRes_71">
                       <img
@@ -105,6 +106,11 @@ function Pages({ data, type, id, optionWidth }) {
       <div className="container" id={id}>
         <section className={`${padding} block-page block-type-2 category-${type}`}>
           <h2 className="ht styleht">{data.title}</h2>
+          {data.linkurl !== undefined && data.linkurl !== '' && (
+            <a className="viewall" href={data.linkurl}>
+              {t('view')} <i className="icon-arrow-1"></i>
+            </a>
+          )}
           <div className="list-7 list-item row">
             {map(listPage, item => (
               <div className="col-md-6" key={item.newsId}>
@@ -140,6 +146,11 @@ function Pages({ data, type, id, optionWidth }) {
       <section className={`${padding} bg-gray category-${type}`} id={id}>
         <div className="container">
           <h2 className="ht">{data.title}</h2>
+          {data.linkurl !== undefined && data.linkurl !== '' && (
+            <a className="viewall" href={data.linkurl}>
+              {t('view')} <i className="icon-arrow-1"></i>
+            </a>
+          )}
           <div className="list-7 list-item row">
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
@@ -167,7 +178,7 @@ function Pages({ data, type, id, optionWidth }) {
           </div>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <LinkPage key={index} lang={lang} name={values.url}>
+              <LinkPage key={index} lang={lang} name={values.slug}>
                 <a className="tag">{values.name}</a>
               </LinkPage>
             ))}
@@ -182,6 +193,11 @@ function Pages({ data, type, id, optionWidth }) {
         <div className="container">
           <div className="max750"></div>
           <h2 className="ht text-center">{data.title}</h2>
+          {data.linkurl !== undefined && data.linkurl !== '' && (
+            <a className="viewall" href={data.linkurl}>
+              {t('view')} <i className="icon-arrow-1"></i>
+            </a>
+          )}
           <ul className="cols-2 link2">
             {map(listPage, (values, index) => (
               <li key={index}>
@@ -208,6 +224,11 @@ function Pages({ data, type, id, optionWidth }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
+            {data.linkurl !== undefined && data.linkurl !== '' && (
+              <a className="viewall" href={data.linkurl}>
+                {t('view')} <i className="icon-arrow-1"></i>
+              </a>
+            )}
           </div>
           <div className="wrap-carousel">
             <Carousel
@@ -276,6 +297,11 @@ function Pages({ data, type, id, optionWidth }) {
         <div className="container">
           <div className="entry-head">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
+            {data.linkurl !== undefined && data.linkurl !== '' && (
+              <a className="viewall" href={data.linkurl}>
+                {t('view')} <i className="icon-arrow-1"></i>
+              </a>
+            )}
           </div>
           <div className="accodion accodion-1 accodion-1-1">
             {map(data.listTag, (value, index) => (
