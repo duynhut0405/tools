@@ -13,7 +13,7 @@ function LinkPage({ lang, name, children, ...rest }) {
   return (
     <>
       {lang === 'en' ? (
-        <Link href="/[lang]/page/[...name]" as={`/${lang}/page/${name}`} {...rest}>
+        <Link href="/en/page/[...name]" as={`/${lang}/page/${name}`} {...rest}>
           {children}
         </Link>
       ) : (
