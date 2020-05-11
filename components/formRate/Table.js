@@ -2,7 +2,6 @@ import React from 'react';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import t from '../../translation';
-import { getLang } from '../../utils/cookie';
 import { rate } from '../../utils/currency';
 
 const propTypes = {
@@ -10,7 +9,6 @@ const propTypes = {
 };
 
 function TableRate({ data, type }) {
-  const lang = getLang();
   if (type === 'exchange') {
     return (
       <table className="table">
@@ -27,7 +25,7 @@ function TableRate({ data, type }) {
                 <td className="td-img">
                   <img
                     className="lazyload"
-                    data-src={`static/currency/${value.currency}.png`}
+                    data-src={`/static/currency/${value.currency}.png`}
                     alt="images"
                     width="24"
                   />
