@@ -118,7 +118,9 @@ function News({ data, type, id, optionWidth }) {
           ))}
         </div>
         <div className="btn">
-          <button onClick={() => showPage()}>{active === false ? 'Xem thêm' : 'Thu gọn'}</button>
+          <button onClick={() => showPage()}>
+            {active === false ? `${t('viewmore')}` : `${t('collapse')}`}
+          </button>
         </div>
       </div>
     );
@@ -501,7 +503,7 @@ function News({ data, type, id, optionWidth }) {
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
               <LinkCategory lang={lang} name={slugCategory}>
-                <a className="btn lg">{t('Xem Tất Cả')}</a>
+                <a className="btn lg">{t('view')}</a>
               </LinkCategory>
             </div>
           )}

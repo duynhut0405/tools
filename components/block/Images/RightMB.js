@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import t from '../../../translation';
 
 const propTypes = {
   items: PropTypes.object,
@@ -32,7 +33,7 @@ function ImageRightMB({ items, padding, id, type }) {
                 <strong>{items.note_2}</strong>
               </p>
               <a className="btn lg" href={items.url === undefined ? '#' : items.url}>
-                Xem Thêm
+                {t('view_more')}
               </a>
             </div>
           </div>

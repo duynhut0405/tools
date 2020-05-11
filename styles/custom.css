@@ -372,4 +372,8 @@ div#lanhdaoModal {
   padding: 0 15px;
 }
 
+.dropdown .menu span {
+  margin-left: 5px;
+}
+
 /* End edit*/

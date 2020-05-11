@@ -8,6 +8,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { convertTitle } from '../../../utils/convertPadding';
 import { connect } from 'react-redux';
+import t from '../../../translation';
 
 const propTypes = {
   type: PropTypes.number,
@@ -78,7 +79,7 @@ function ListDowloadFIle({
           <div className="entry-head">
             <h2 className="ht efch-1 ef-img-l">{title}</h2>
             <a className="viewall" href={data === undefined || data.url === '' ? '#' : data.url}>
-              Xem tất cả <i className="icon-arrow-1"></i>
+              {t('view')} <i className="icon-arrow-1"></i>
             </a>
           </div>
         )}
