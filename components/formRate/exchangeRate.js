@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import TableRate from './Table';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import t from '../../translation';
 
 function ExchangeRate({ data1, data2 }) {
   const [tab, setTab] = useState('tab1');
-  const { t } = useTranslation();
   return (
     <div className="cttab-v3 divtigia">
       <div className="tab-menu">

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { LinkPage } from '../../common/link';
+import { getLang } from '../../../utils/cookie';
 import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import classnames from 'classnames';
+
 const propTypes = {
   menu: PropTypes.array
 };
@@ -10,6 +12,8 @@ const propTypes = {
 function SubMenu({ menu }) {
   const [activeTab, setActiveTab] = useState(false);
   const [indexMenu, setIndexMenu] = useState(null);
+  const lang = getLang();
+
   const nestChild = items => {
     return map(items, item => {
       if (item.type === '4') {
@@ -61,11 +65,11 @@ function SubMenu({ menu }) {
             ></span>
           )}
 
-          <Link href="/page/[...slug]" as={`/page/${item.slugPages}`}>
+          <LinkPage lang={lang} name={item.slugPages}>
             <a>
               <span>{item.name}</span>
             </a>
-          </Link>
+          </LinkPage>
 
           {item.children.length > 0 && (
             <ul style={{ display: activeTab && indexMenu === item.id ? 'block' : 'none' }}>

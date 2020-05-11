@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import { map } from 'lodash';
 import Carousel from 'react-multi-carousel';
+import { getLang } from '../../../utils/cookie';
+import { LinkPage } from '../../common/link';
 import Link from 'next/link';
 import { getPagesByIdService } from '../../../services/page';
 
@@ -13,6 +15,7 @@ function CustomPageItem({ data, indexTab }) {
   const [refCarouselTwo, setRefCarouselTwo] = useState(null);
   const [active, setActive] = useState(false);
   const [listPage, setListPage] = useState([]);
+  const lang = getLang();
   const getPageBlock = async () => {
     const ids = map(data.pages, values => values.value);
     const res = await getPagesByIdService(ids);
@@ -69,7 +72,7 @@ function CustomPageItem({ data, indexTab }) {
             >
               {map(listPage, (items, index) => (
                 <div className="item ef-img-t item_carousel" key={index}>
-                  <Link href="/page/[...name]" as={`/page/${items.slug}`}>
+                  <LinkPage lang={lang} name={items.slug}>
                     <a className="link">
                       <div className="img tRes_70">
                         <img
@@ -83,7 +86,7 @@ function CustomPageItem({ data, indexTab }) {
                         <div className="desc line2 cl3">{items.meta_description}</div>
                       </div>
                     </a>
-                  </Link>
+                  </LinkPage>
                 </div>
               ))}
             </Carousel>

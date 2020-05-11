@@ -1,4 +1,5 @@
 import request from '../utils/request';
+import requestLang from '../utils/requestLang';
 
 const getAllMenu = () => {
   return request({
@@ -26,9 +27,9 @@ const getMenuItemById = menuId => {
     });
 };
 
-const getSettingFooterService = () => {
-  return request({
-    url: `/common/general`,
+const getSettingFooterService = lang => {
+  return requestLang({
+    url: `${lang}/api/fe/common/general`,
     method: 'GET'
   })
     .then(res => {
@@ -39,9 +40,9 @@ const getSettingFooterService = () => {
     });
 };
 
-const getSocialLinkService = () => {
-  return request({
-    url: `/common/socialLink`,
+const getSocialLinkService = lang => {
+  return requestLang({
+    url: `${lang}/api/fe/common/socialLink`,
     method: 'GET'
   })
     .then(res => {
@@ -52,9 +53,9 @@ const getSocialLinkService = () => {
     });
 };
 
-const getMenuItemByPosition = data => {
-  return request({
-    url: `menu/position/${data}`,
+const getMenuItemByPosition = (lang, data) => {
+  return requestLang({
+    url: `${lang}/api/fe/menu/position/${data}`,
     method: 'GET'
   })
     .then(res => {

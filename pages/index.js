@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../components/common';
 import FormRate from '../components/formRate';
+import Layout from '../components/layout';
 import Head from 'next/head';
 import { getRateService, getInterestRateService } from '../services/rate';
-import { getPageService } from '../services/page';
+import { getPageMutiLangBySlug } from '../services/page';
 import filter from 'lodash/filter';
-import { withTranslation } from '../i18n';
 import Proptypes from 'prop-types';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   page: Proptypes.object,
@@ -33,15 +34,16 @@ function Home({ page, silder, menuMiddle }) {
   };
 
   useEffect(() => {
+    Cookies.set('lang', 'vi');
     getInterestRate();
     getRate();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     document.body.className = '';
     document.body.classList.add('home');
     document.getElementById('img_log').src = '/static/images/svg/logo.svg';
-  });
+  }, [page]);
 
   return (
     <React.Fragment>
@@ -62,13 +64,15 @@ function Home({ page, silder, menuMiddle }) {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <div className="main_content">
-        {page.breadCrumb && <Breadcrumb data={[]} />}
-        <Carousel silder={silder} />
-        <MenuMiddle data={menuMiddle} />
-        <BlockRender data={page.pageBlocks} pageId={page.id} />
-        <FormRate data={listRate} interestRate={listInterestRate} />
-      </div>
+      <Layout lang="vi">
+        <div className="main_content">
+          {page.breadCrumb && <Breadcrumb data={[]} />}
+          <Carousel silder={silder} />
+          <MenuMiddle data={menuMiddle} />
+          <BlockRender data={page.pageBlocks} pageId={page.id} />
+          <FormRate data={listRate} interestRate={listInterestRate} />
+        </div>
+      </Layout>
     </React.Fragment>
   );
 }
@@ -77,7 +81,7 @@ Home.getInitialProps = async () => {
   let page = {};
   let silder = [];
   let menuMiddle = {};
-  const pageResponse = await getPageService('homepage');
+  const pageResponse = await getPageMutiLangBySlug('vi', 'homepage');
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
     menuMiddle = pageResponse.data.menuMiddle;
@@ -97,4 +101,4 @@ Home.getInitialProps = async () => {
 
 Home.propTypes = propTypes;
 
-export default withTranslation('common')(Home);
+export default Home;

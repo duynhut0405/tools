@@ -1,8 +1,8 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
 import currency from './dataCurrent.json';
 import ExchangeRate from './exchangeRate';
 import RateSelect from './RateSelect';
@@ -21,7 +21,9 @@ function FormRate({ data, interestRate }) {
     ? [...data.exchangeRateDetail, { currency: 'VND' }]
     : [{}];
   const [arrTo, setArrTo] = useState(arrCurrency ? arrCurrency : []);
-  const { t } = useTranslation();
+
+  const lang = getLang();
+
   const getCurrentTo = name => {
     if (name === 'VND') {
       setArrTo(data.exchangeRateDetail);
@@ -144,6 +146,7 @@ function FormRate({ data, interestRate }) {
                   <input className="input" placeholder={t('amount')} name="to" value={to} />
                 </div>
                 <p>{`${t('updated_at')} ${moment(data.date_update).format('HH:mm')} ${t(
+                  lang,
                   'date'
                 )} ${moment(data.date_update).format('DD/MM/YYYY')}`}</p>
               </div>
@@ -157,4 +160,4 @@ function FormRate({ data, interestRate }) {
 
 FormRate.propTypes = propTypes;
 
-export default withTranslation('common')(FormRate);
+export default FormRate;

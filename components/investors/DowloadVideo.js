@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { DowloadVideo } from '../common/download';
 import { getRegulationListYear } from '../../services/regulation';
 import moment from 'moment';
+import t from '../../translation';
+import { getLang } from '../../utils/cookie';
+import { LinkPage } from '../common/link';
 import Proptypes from 'prop-types';
 
 const propTypes = {
@@ -23,7 +26,7 @@ function DowloadVideos({ padding }) {
   const [datatype] = useState(2);
   const [page] = useState(1);
   const [year] = useState(moment(date).format('YYYY'));
-
+  const lang = getLang();
   useEffect(() => {
     seachRegulation(datatype, page, year, setListRegulation);
   }, [seachRegulation]);
@@ -31,10 +34,12 @@ function DowloadVideos({ padding }) {
     <section className={`${padding} investors sec-tb`}>
       <div className="container">
         <div className="entry-head">
-          <h2 className="ht efch-1 ef-img-l">Họp cổ đông</h2>
-          <a className="viewall" href="/page/nha-dau-tu/dai-hoi-co-dong">
-            Xem tất cả <i className="icon-arrow-1"></i>
-          </a>
+          <h2 className="ht efch-1 ef-img-l">{t('shareholders_meeting')}</h2>
+          <LinkPage lang={lang} name="/page/nha-dau-tu/dai-hoi-co-dong">
+            <a className="viewall">
+              {t('view')} <i className="icon-arrow-1"></i>
+            </a>
+          </LinkPage>
         </div>
         <div>
           {listRegulation.investors && listRegulation.investors.length > 0 && (

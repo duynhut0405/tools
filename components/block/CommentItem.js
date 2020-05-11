@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import useCollapse from 'react-collapsed';
+import t from '../../translation';
 
 const propTypes = {
   data: PropTypes.any
@@ -28,7 +29,7 @@ function CommentItem({ data }) {
       {height >= 130 && (
         <span className="showmore">
           <span className="text" style={{ color: 'blue' }} {...getToggleProps()}>
-            {isOpen ? '- Thu gọn' : '+ Xem thêm'}
+            {isOpen ? `- ${t('collapse')}` : `+ ${t('view_more')}`}
           </span>
           <i className=""></i>
         </span>

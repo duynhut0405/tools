@@ -1,5 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import t from '../../../translation';
 
 const propTypes = {
   data: Proptypes.object,
@@ -8,7 +9,7 @@ const propTypes = {
   id: Proptypes.number
 };
 
-function BlockSMEIntro({ data, optionWidth, id }) {
+function BlockSMEIntro({ optionWidth, id }) {
   let padding = '';
   if (Number(optionWidth) === 2) {
     padding = 'sec-tb';
@@ -37,7 +38,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Capital</h3>
-                  <p className="cl3 fs16 b mb-10">Tài chính</p>
+                  <p className="cl3 fs16 b mb-10">{t('finance')}</p>
                 </div>
               </div>
             </a>
@@ -50,7 +51,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Advertising</h3>
-                  <p className="cl3 fs16 b mb-10">Truyền thông</p>
+                  <p className="cl3 fs16 b mb-10">{t('the_media')}</p>
                 </div>
               </div>
             </a>
@@ -63,7 +64,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Relation</h3>
-                  <p className="cl3 fs16 b mb-10">Cộng đồng</p>
+                  <p className="cl3 fs16 b mb-10">{t('community')}</p>
                 </div>
               </div>
             </a>
@@ -76,7 +77,7 @@ function BlockSMEIntro({ data, optionWidth, id }) {
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Education</h3>
-                  <p className="cl3 fs16 b mb-10">Đào tạo</p>
+                  <p className="cl3 fs16 b mb-10">{t('educate')}</p>
                 </div>
               </div>
             </a>

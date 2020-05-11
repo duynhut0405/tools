@@ -4,6 +4,8 @@ import Carousel from 'react-multi-carousel';
 import { map } from 'lodash';
 import useCollapse from 'react-collapsed';
 import PropTypes from 'prop-types';
+import { LinkPage } from '../common/link';
+import { getLang } from '../../utils/cookie';
 
 const propTypes = {
   data: PropTypes.object,
@@ -15,6 +17,7 @@ function MenuMiddle({ data, query }) {
 
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
+  const lang = getLang();
 
   useEffect(() => {
     if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
@@ -86,7 +89,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+                            <LinkPage lang={lang} name={item.slugPages}>
                               <a className="link">
                                 <div className="img">
                                   <img
@@ -97,7 +100,7 @@ function MenuMiddle({ data, query }) {
                                 </div>
                                 <div className="title">{item.name}</div>
                               </a>
-                            </Link>
+                            </LinkPage>
                           </div>
                         );
                       }
@@ -134,7 +137,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+                            <LinkPage lang={lang} name={item.slugPages}>
                               <a className="link">
                                 <div className="img">
                                   <img
@@ -145,7 +148,7 @@ function MenuMiddle({ data, query }) {
                                 </div>
                                 <div className="title">{item.name}</div>
                               </a>
-                            </Link>
+                            </LinkPage>
                           </div>
                         );
                       }
@@ -161,7 +164,7 @@ function MenuMiddle({ data, query }) {
                       return (
                         <div className="col-4" key={key}>
                           <div className={query === item.slugPages ? 'item active' : 'item'}>
-                            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+                            <LinkPage lang={lang} name={item.slugPages}>
                               <a className="link">
                                 <div className="img">
                                   <img
@@ -172,7 +175,7 @@ function MenuMiddle({ data, query }) {
                                 </div>
                                 <div className="title">{item.name}</div>
                               </a>
-                            </Link>
+                            </LinkPage>
                           </div>
                         </div>
                       );

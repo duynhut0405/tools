@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FieldInput from './FieldInput';
 import Table from './Table';
 import Result from './Result';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 import { rate } from '../../../utils/currency';
 
 import Proptypes from 'prop-types';
@@ -17,7 +17,7 @@ const propTypes = {
   type: Proptypes.string
 };
 
-function Tool5({ t, minValue, maxValue, interest_rate, padding, id, type }) {
+function Tool5({ minValue, maxValue, interest_rate, padding, id, type }) {
   const [salary, setSalary] = useState('0');
   const [amount, setAmount] = useState('0');
   const [month, setMonth] = useState('1');
@@ -195,4 +195,4 @@ function Tool5({ t, minValue, maxValue, interest_rate, padding, id, type }) {
 
 Tool5.propTypes = propTypes;
 
-export default withTranslation('common')(Tool5);
+export default Tool5;

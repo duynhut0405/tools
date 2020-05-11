@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import classnames from 'classnames';
 import SubMenu from './submenu';
-import Link from 'next/link';
-import { withTranslation } from '../../../i18n';
+import { LinkPage } from '../../common/link';
+import t from '../../../translation';
+import { getLang } from '../../../utils/cookie';
 
 const propTypes = {
   menu: PropTypes.array,
@@ -13,9 +14,10 @@ const propTypes = {
   onSearch: PropTypes.func
 };
 
-function ModalDrawer({ t, menu, menuHeader, onSearch }) {
+function ModalDrawer({ menu, menuHeader, onSearch }) {
   const [activeTab, setActiveTab] = useState(false);
   const [indexMenu, setIndexMenu] = useState(null);
+  const lang = getLang();
 
   const nestChild = items => {
     return map(items, item => {
@@ -67,11 +69,11 @@ function ModalDrawer({ t, menu, menuHeader, onSearch }) {
               }}
             ></span>
           )}
-          <Link href="/page/[...slug]" as={`/page/${item.slugPages}`}>
+          <LinkPage lang={lang} name={item.slugPages}>
             <a>
               <span>{item.name}</span>
             </a>
-          </Link>
+          </LinkPage>
 
           {item.children.length > 0 && (
             <ul style={{ display: activeTab && indexMenu === item.id ? 'block' : 'none' }}>
@@ -108,4 +110,4 @@ function ModalDrawer({ t, menu, menuHeader, onSearch }) {
 }
 ModalDrawer.propTypes = propTypes;
 
-export default withTranslation('common')(ModalDrawer);
+export default ModalDrawer;

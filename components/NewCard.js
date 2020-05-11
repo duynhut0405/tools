@@ -1,7 +1,6 @@
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withTranslation } from '../i18n';
 import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
@@ -55,4 +54,4 @@ function NewCard({ data, id }) {
 
 NewCard.propTypes = propTypes;
 
-export default withTranslation('common')(NewCard);
+export default NewCard;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
 import map from 'lodash/map';
 import Link from 'next/link';
 
@@ -9,7 +9,7 @@ const propTypes = {
   t: Proptypes.func
 };
 
-function Breadcrumb({ t, data }) {
+function Breadcrumb({ data }) {
   return (
     <div className="entry-breadcrumb">
       <div className="container">
@@ -45,4 +45,4 @@ function Breadcrumb({ t, data }) {
 
 Breadcrumb.propTypes = propTypes;
 
-export default withTranslation('common')(Breadcrumb);
+export default Breadcrumb;

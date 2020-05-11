@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getFormbuilderByIdService } from '../../../services/form';
 import ReactHtmlParser from 'react-html-parser';
 import map from 'lodash/map';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 import Proptypes from 'prop-types';
 
 const propTypes = {
@@ -21,7 +21,7 @@ const getFormByID = async (id, setData) => {
   }
 };
 
-function FormItems({ t, data, step, totalStep, formActive, onNext }) {
+function FormItems({ data, step, totalStep, formActive, onNext }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
 
@@ -152,15 +152,15 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
 
               <div className="col-12">
                 <div className="text-center">
-                  <p className="desc mg-0">{t('form_step.success')}</p>
-                  <p className="desc mg-0">{t('form_step.title')}</p>
+                  <p className="desc mg-0">{t('form_step_success')}</p>
+                  <p className="desc mg-0">{t('form_step_title')}</p>
                 </div>
               </div>
 
               <div className="col-12 ">
                 <div className="text-center">
                   <a className="btn" href="/">
-                    {t('form_step.go_home')}
+                    {t('form_step_go_home')}
                   </a>
                 </div>
               </div>
@@ -169,7 +169,7 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
           {data.type !== 'result' && (
             <div className="col-12 text-center">
               <a className="btn" onClick={() => onNext(step + 1, formState)}>
-                {t('form_step.continue')}
+                {t('form_step_continue')}
               </a>
             </div>
           )}
@@ -181,4 +181,4 @@ function FormItems({ t, data, step, totalStep, formActive, onNext }) {
 
 FormItems.propTypes = propTypes;
 
-export default withTranslation('common')(FormItems);
+export default FormItems;

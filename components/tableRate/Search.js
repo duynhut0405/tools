@@ -1,34 +1,38 @@
-import React from 'react';
-import { withTranslation } from '../../i18n';
+import React, { useState, useEffect } from 'react';
+import t from '../../translation';
 import Proptypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
+import { getRateService } from '../../services/rate';
 
 const propTypes = {
   changeDate: Proptypes.func,
   onSubmit: Proptypes.func,
-  t: Proptypes.func
+  t: Proptypes.func,
+  date: Proptypes.any
 };
 
-const fetchListRate = async () => {
-  const interestRateRes = await getInterestRateService();
-  if (interestRateRes && interestRateRes !== undefined && interestRateRes.status === 200) {
-    setListInterestRate(interestRateRes.data);
+const fetchListRate = async setlistRate => {
+  const rateResponse = await getRateService();
+  if (rateResponse && rateResponse !== undefined && rateResponse.status === 200) {
+    setlistRate(rateResponse.data);
   }
 };
-function Search({ t, changeDate, onSubmit, date }) {//
+function Search({ changeDate, onSubmit, date }) {
+  //
   const [listRate, setlistRate] = useState([]);
 
   useEffect(() => {
     fetchListRate(setlistRate);
-  },[]);
-  
+  }, []);
+  const dateDefault = new Date(listRate.created_at);
+
   return (
     <div className="search tigia mb-30 max950">
-      <h3 className="ctext mg-0">{t('table_rate.search')}</h3>
+      <h3 className="ctext mg-0">{t('table_rate_search')}</h3>
       <DatePicker selected={date} onChange={changeDate}></DatePicker>
       <button className="btn lg" onClick={onSubmit}>
-        {t('table_rate.submit')}
+        {t('table_rate_submit')}
       </button>
     </div>
   );
@@ -36,4 +40,6 @@ function Search({ t, changeDate, onSubmit, date }) {//
 
 Search.propTypes = propTypes;
 
-export default withTranslation('common')(Search);
+export default Search;
+
+//date === null ? new Date(listRate.created_at) :

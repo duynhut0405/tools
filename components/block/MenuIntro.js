@@ -70,6 +70,13 @@ function MenuIntro({ data, pageId, optionWidth }) {
     return result;
   };
 
+  function onScroll(id) {
+    const elmnt = document.getElementById(id);
+    if (elmnt !== null) {
+      elmnt.scrollIntoView();
+    }
+  }
+
   const onSend = async event => {
     event.preventDefault();
     setIsLoading(true);
@@ -99,11 +106,16 @@ function MenuIntro({ data, pageId, optionWidth }) {
         <div className="container">
           <ul>
             <li className="active">
-              <a href="#">{data.title}</a>
+              <a>{data.title}</a>
             </li>
             {map(data.listBlock, (values, index) => (
-              <li key={index}>
-                <a href={`#${values.id}`}>{values.title}</a>
+              <li
+                key={index}
+                onClick={() => {
+                  onScroll(values.id);
+                }}
+              >
+                <a>{values.title}</a>
               </li>
             ))}
           </ul>

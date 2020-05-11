@@ -7,9 +7,10 @@ import { getSocialLink } from '../../utils/fetch';
 import moment from 'moment';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
-import { withTranslation } from '../../i18n';
-import { useTranslation } from 'react-i18next';
+import t from '../../translation';
+import Layout from '../../components/layout';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   socialLink: PropTypes.object,
@@ -21,6 +22,7 @@ const propTypes = {
 
 function New({ news, category_name, category_url, socialLink }) {
   useEffect(() => {
+    Cookies.set('lang', 'vi');
     document.body.className = '';
     document.body.classList.add('page');
     if (news && news.news.layoutInvestors) {
@@ -39,7 +41,7 @@ function New({ news, category_name, category_url, socialLink }) {
       }
     }
   }, [news]);
-  const { t } = useTranslation();
+
   return (
     <React.Fragment>
       {news && news.news && (
@@ -67,102 +69,103 @@ function New({ news, category_name, category_url, socialLink }) {
           <meta property="og:image:height" content="354" />
         </Head>
       )}
+      <Layout lang="vi">
+        {news && news.news !== null && (
+          <>
+            <div className="entry-breadcrumb">
+              <div className="container">
+                <div className="breadcrumbs">
+                  <Link href="/">
+                    <a className="item">{t('home')}</a>
+                  </Link>
+                  <Link href="/news/category/[...name]" as={`/news/category/${category_url}`}>
+                    <a className="item">{category_name}</a>
+                  </Link>
+                  {/* <span className="item">{news.news === null ? '' : news.news.title}</span> */}
+                </div>
+              </div>
+            </div>
+            <section className="banner-heading-3 next-shadow">
+              <div className="container">
+                <div className="divtext">
+                  <div className="max750">
+                    <h1 className=" ">{news.news === null ? '' : news.news.title}</h1>
+                  </div>
+                </div>
+              </div>
+              <img
+                className="img img-pc br loaded loaded lazyload"
+                data-src="/static/images/heading-10-pc.svg"
+                alt="images"
+              />
+              <img
+                className="img img-mb br loaded loaded lazyload"
+                data-src="/static/images/heading-10-mb.svg"
+                alt="images"
+              />
+            </section>
+            <main id="main" className="sec-b page-news-detail">
+              <div className="container">
+                <div className=" max750">
+                  <div className="top-heading">
+                    <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div>
+                    {socialLink && <Social data={socialLink.socialLink} />}
+                    {/* {console.log(socialLink)} */}
+                  </div>
 
-      {news && news.news !== null && (
-        <>
-          <div className="entry-breadcrumb">
-            <div className="container">
-              <div className="breadcrumbs">
-                <Link href="/">
-                  <a className="item">{t('home')}</a>
-                </Link>
-                <Link href="/news/category/[...name]" as={`/news/category/${category_url}`}>
-                  <a className="item">{category_name}</a>
-                </Link>
-                {/* <span className="item">{news.news === null ? '' : news.news.title}</span> */}
-              </div>
-            </div>
-          </div>
-          <section className="banner-heading-3 next-shadow">
-            <div className="container">
-              <div className="divtext">
-                <div className="max750">
-                  <h1 className=" ">{news.news === null ? '' : news.news.title}</h1>
-                </div>
-              </div>
-            </div>
-            <img
-              className="img img-pc br loaded loaded lazyload"
-              data-src="/static/images/heading-10-pc.svg"
-              alt="images"
-            />
-            <img
-              className="img img-mb br loaded loaded lazyload"
-              data-src="/static/images/heading-10-mb.svg"
-              alt="images"
-            />
-          </section>
-          <main id="main" className="sec-b page-news-detail">
-            <div className="container">
-              <div className=" max750">
-                <div className="top-heading">
-                  <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div>
-                  {socialLink && <Social data={socialLink.socialLink} />}
-                  {/* {console.log(socialLink)} */}
-                </div>
-
-                <div className="entry-content">{ReactHtmlParser(news.news.description)}</div>
-                <br />
-                <div className="tags">
-                  <h2>{t('related_content')}</h2>
-                  {map(news.news.categories, item => (
-                    <Link
-                      href="/news/category/[...name]"
-                      as={`/news/category/${item.slug}`}
-                      key={item.id}
-                    >
-                      <a className="tag">{item.name}</a>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </main>
-          <section className="sec-tb">
-            <div className="container">
-              <div className="entry-head">
-                <h2 className="ht efch-1 ef-img-t">{t('related_news')}</h2>
-              </div>
-              <div className="list-7  list-item row">
-                {map(news.newsRelated, (item, index) => {
-                  return (
-                    <div className="col-md-6" key={index}>
-                      <Link href="/news/[...slug]" as={`/news/${item.url}`}>
-                        <a className="item item-inline-table">
-                          <div className="img">
-                            <img
-                              className="lazyload"
-                              data-src={`${process.env.DOMAIN}${item.baseImage}`}
-                              alt="images"
-                            />
-                          </div>
-                          <div className="divtext">
-                            <div className="date">
-                              {moment(item.created_at).format('DD/MM/YYYY')}
-                            </div>
-                            <h4 className="title line2">{item.title}</h4>
-                            <div className="desc line3">{item.shortDescription}</div>
-                          </div>
-                        </a>
+                  <div className="entry-content">{ReactHtmlParser(news.news.description)}</div>
+                  <br />
+                  <div className="tags">
+                    <h2>{t('related_content')}</h2>
+                    {map(news.news.categories, item => (
+                      <Link
+                        href="/news/category/[...name]"
+                        as={`/news/category/${item.slug}`}
+                        key={item.id}
+                      >
+                        <a className="tag">{item.name}</a>
                       </Link>
-                    </div>
-                  );
-                })}
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </section>
-        </>
-      )}
+            </main>
+            <section className="sec-tb">
+              <div className="container">
+                <div className="entry-head">
+                  <h2 className="ht efch-1 ef-img-t">{t('related_news')}</h2>
+                </div>
+                <div className="list-7  list-item row">
+                  {map(news.newsRelated, (item, index) => {
+                    return (
+                      <div className="col-md-6" key={index}>
+                        <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                          <a className="item item-inline-table">
+                            <div className="img">
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${item.baseImage}`}
+                                alt="images"
+                              />
+                            </div>
+                            <div className="divtext">
+                              <div className="date">
+                                {moment(item.created_at).format('DD/MM/YYYY')}
+                              </div>
+                              <h4 className="title line2">{item.title}</h4>
+                              <div className="desc line3">{item.shortDescription}</div>
+                            </div>
+                          </a>
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+          </>
+        )}
+      </Layout>
     </React.Fragment>
   );
 }
@@ -179,7 +182,8 @@ New.getInitialProps = async ctx => {
   // let layoutInvestors = null;
   map(query, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
-  const newResponse = await getNewByUri(routerURL);
+  const socialLink = await getSocialLink('vi');
+  const newResponse = await getNewByUri('vi', routerURL);
   if (
     newResponse &&
     newResponse !== undefined &&
@@ -198,7 +202,6 @@ New.getInitialProps = async ctx => {
     }
   }
 
-  const socialLink = await getSocialLink();
   return {
     news,
     category_name,
@@ -207,4 +210,4 @@ New.getInitialProps = async ctx => {
   };
 };
 
-export default withTranslation('common')(New);
+export default New;

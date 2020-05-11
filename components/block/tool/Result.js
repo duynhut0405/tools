@@ -1,7 +1,7 @@
 import React from 'react';
 import { rate } from '../../../utils/currency';
 import Proptypes from 'prop-types';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 
 const propTypes = {
   title: Proptypes.string,
@@ -25,8 +25,7 @@ function Result({
   monthlyInterest,
   monthlypayment,
   totalAmount,
-  interest_rate,
-  t
+  interest_rate
 }) {
   return (
     <div className="result th-result-js">
@@ -43,7 +42,7 @@ function Result({
       {equity_capital && (
         <div className="row">
           <div className="col-md-6">
-            <h5 className="title">{t('tool_result.equity_capital')}</h5>
+            <h5 className="title">{t('tool_result_equity_capital')}</h5>
           </div>
           <div className="col-md-6">
             <span className="t4">{rate(equity_capital)}</span>
@@ -53,7 +52,7 @@ function Result({
       )}
       <div className="row">
         <div className="col-md-6">
-          <h5 className="title">{t('tool_result.loan_term')}</h5>
+          <h5 className="title">{t('tool_result_loan_term')}</h5>
         </div>
         <div className="col-md-6">
           <span className="t5">
@@ -64,7 +63,7 @@ function Result({
       {monthlyInterest && (
         <div className="row">
           <div className="col-md-6">
-            <h5 className="title">{t('tool_result.monthly_interest')}</h5>
+            <h5 className="title">{t('tool_result_monthly_interest')}</h5>
           </div>
           <div className="col-md-6">
             <span className="t4">{rate(monthlyInterest)}</span>
@@ -75,7 +74,7 @@ function Result({
 
       <div className="row">
         <div className="col-md-6">
-          <h5 className="title">{t('tool_result.principal_monthly')}</h5>
+          <h5 className="title">{t('tool_result_principal_monthly')}</h5>
         </div>
         <div className="col-md-6">
           <span className="t4">{rate(monthlypayment)}</span>
@@ -92,7 +91,7 @@ function Result({
       </div>
       <div className="total row">
         <div className="col-md-6">
-          <h5 className="title">{t('tool_result.total_payment')}</h5>
+          <h5 className="title">{t('tool_result_total_payment')}</h5>
         </div>
         <div className="col-md-6">
           <span className="t2">{rate(totalAmount)}</span>
@@ -105,4 +104,4 @@ function Result({
 
 Result.propTypes = propTypes;
 
-export default withTranslation('common')(Result);
+export default Result;

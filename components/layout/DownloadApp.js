@@ -1,6 +1,5 @@
 import React from 'react';
-import { withTranslation } from '../../i18n';
-
+import t from '../../translation';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -9,7 +8,7 @@ const propTypes = {
   linkApp: PropTypes.object
 };
 
-const DownloadApp = ({ t, mobile, linkApp }) => {
+const DownloadApp = ({ mobile, linkApp }) => {
   return (
     <div className={mobile ? 'wdownload' : 'wapp'}>
       {!mobile && (
@@ -47,4 +46,4 @@ const DownloadApp = ({ t, mobile, linkApp }) => {
 
 DownloadApp.propTypes = propTypes;
 
-export default withTranslation('common')(DownloadApp);
+export default DownloadApp;

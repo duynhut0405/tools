@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../../components/common';
+import Layout from '../../components/layout';
 import Head from 'next/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
-import { getPageService, getListPageBySlug } from '../../services/page';
+import { getPageMutiLangBySlug, getListPageBySlug } from '../../services/page';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
-import { withTranslation } from '../../i18n';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   page: PropTypes.object,
@@ -25,6 +26,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
   const noIndex = page.noIndex ? page.noIndex : '';
 
   useEffect(() => {
+    Cookies.set('lang', 'vi');
     document.body.className = '';
     document.body.classList.add('page');
     if (slugClass) {
@@ -73,12 +75,14 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <div className="main_content">
-        {page.breadCrumb && <Breadcrumb data={listSlug} />}
-        <Carousel silder={silder} />
-        <MenuMiddle data={menuMiddle} query={routerURL} />
-        <BlockRender data={page.pageBlocks} pageId={page.id} />
-      </div>
+      <Layout lang="vi">
+        <div className="main_content">
+          {page.breadCrumb && <Breadcrumb data={listSlug} />}
+          <Carousel silder={silder} />
+          <MenuMiddle data={menuMiddle} query={routerURL} />
+          <BlockRender data={page.pageBlocks} pageId={page.id} />
+        </div>
+      </Layout>
     </React.Fragment>
   );
 }
@@ -99,7 +103,7 @@ Page.getInitialProps = async ctx => {
   let menuMiddle = {};
   let listSlug = [];
   let hasSideber = 0;
-  const pageResponse = await getPageService(routerURL);
+  const pageResponse = await getPageMutiLangBySlug('vi', routerURL);
   const listPageBySlug = await getListPageBySlug(query.name);
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
@@ -128,4 +132,4 @@ Page.getInitialProps = async ctx => {
 
 Page.propTypes = propTypes;
 
-export default withTranslation('common')(Page);
+export default Page;

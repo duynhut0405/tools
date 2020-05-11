@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { map } from 'lodash';
 import { getAllYear } from '../../../services/regulation';
 import PropTypes from 'prop-types';
-import { withTranslation } from '../../../i18n';
+import t from '../../../translation';
 
 const propTypes = {
   type: PropTypes.array,
@@ -20,7 +20,8 @@ const getYear = async setData => {
   }
 };
 
-function Filler({ t, type, setDate, setType, center, year }) {//
+function Filler({ type, setDate, setType, center, year }) {
+  //
   const [listYear, setListYear] = useState([]);
   useEffect(() => {
     getYear(setListYear);
@@ -52,4 +53,4 @@ function Filler({ t, type, setDate, setType, center, year }) {//
 
 Filler.propTypes = propTypes;
 
-export default withTranslation('common')(Filler);
+export default Filler;

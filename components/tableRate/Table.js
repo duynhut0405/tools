@@ -1,7 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import map from 'lodash/map';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
 import { rate } from '../../utils/currency';
 
 const propTypes = {
@@ -9,17 +9,17 @@ const propTypes = {
   t: Proptypes.func
 };
 
-function Table({ t, data }) {
+function Table({ data }) {
   return (
     <div className="table-responsive">
       <table className="table table-full table-ti-gia">
         <tbody>
           <tr>
-            <th>{t('table_rate.key')}</th>
+            <th>{t('table_rate_key')}</th>
             {/* <th>{t('table_rate.name')}</th> */}
-            <th>{t('table_rate.buy')}</th>
-            <th>{t('table_rate.buy_transfer')}</th>
-            <th>{t('table_rate.sell')}</th>
+            <th>{t('table_rate_buy')}</th>
+            <th>{t('table_rate_buy_transfer')}</th>
+            <th>{t('table_rate_sell')}</th>
           </tr>
           {map(data, rateItmes => (
             <tr key={rateItmes.id}>
@@ -40,4 +40,4 @@ function Table({ t, data }) {
 
 Table.propTypes = propTypes;
 
-export default withTranslation('common')(Table);
+export default Table;

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
+import Layout from '../../../components/layout';
 import map from 'lodash/map';
 import { getNewsByCategorySlug } from '../../../services/news';
 import { Pagination } from '../../../components/common';
 import PropTypes from 'prop-types';
 import AboutCategory from '../../../components/about/AboutCategory';
+import Cookies from 'js-cookie';
 
 const propTypes = {
   category: PropTypes.object,
@@ -23,6 +25,7 @@ function CategoryDetail({ routerURL, category }) {
   };
 
   useEffect(() => {
+    Cookies.set('lang', 'vi');
     setData(category);
     document.body.className = '';
     document.body.classList.add('page');
@@ -55,26 +58,28 @@ function CategoryDetail({ routerURL, category }) {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      {data !== null && (
-        <div className="main_content">
-          <section className="banner-heading-3 next-shadow">
-            <div className="container">
-              <div className="divtext">
-                <div className="max750">
-                  <h1>{data.name}</h1>
+      <Layout lang="vi">
+        {data !== null && (
+          <div className="main_content">
+            <section className="banner-heading-3 next-shadow">
+              <div className="container">
+                <div className="divtext">
+                  <div className="max750">
+                    <h1>{data.name}</h1>
+                  </div>
                 </div>
               </div>
-            </div>
-            <img
-              className="img br loaded loaded lazyload"
-              data-src="/static/images/heading-10.svg"
-              alt="images"
-            />
-          </section>
-          <AboutCategory data={data} categories={data.categoryNews} />
-          <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
-        </div>
-      )}
+              <img
+                className="img br loaded loaded lazyload"
+                data-src="/static/images/heading-10.svg"
+                alt="images"
+              />
+            </section>
+            <AboutCategory data={data} categories={data.categoryNews} />
+            <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
+          </div>
+        )}
+      </Layout>
     </React.Fragment>
   );
 }

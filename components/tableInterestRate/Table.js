@@ -1,22 +1,22 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import map from 'lodash/map';
-import { withTranslation } from '../../i18n';
+import t from '../../translation';
 
 const propTypes = {
   data: Proptypes.array,
   t: Proptypes.func
 };
 
-function Table({ t, data }) {
+function Table({ data }) {
   return (
     <div className="table-responsive">
       <table className="table table-full table-ti-gia">
         <tbody>
           <tr>
             <th>{t('period')}</th>
-            <th className="col">{t('USD')}</th>
-            <th className="col">{t('VND')}</th>
+            <th className="col">USD</th>
+            <th className="col">VND</th>
           </tr>
           {map(data, rate => (
             <tr key={rate.id}>
@@ -33,4 +33,4 @@ function Table({ t, data }) {
 
 Table.propTypes = propTypes;
 
-export default withTranslation('common')(Table);
+export default Table;
