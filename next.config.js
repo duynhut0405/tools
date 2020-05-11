@@ -41,6 +41,7 @@ module.exports = withPWA(
           ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe'
         },
         exportTrailingSlash: true,
+        experimental: { granularChunks: true },
         // pwa: {
         //   dest: 'public'
         // },
