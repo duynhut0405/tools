@@ -25,11 +25,11 @@ function Questions({ data, id }) {
   }, [page]);
 
   const show = () => {
-    setActive(false);
-    setPage(page + 4);
-    if (active) {
-      setPage(4);
-    }
+    setActive(!active);
+    // setPage(page + 4);
+    // if (active) {
+    //   setPage(4);
+    // }
   };
 
   const getNewsByCategories = async (value, page, number) => {
@@ -74,15 +74,17 @@ function Questions({ data, id }) {
                     index={index}
                     answer={item.answer}
                     question={item.question}
+                    allactive={active}
                   />
                 ))}
               {Number(data.optionChoose) === 2 &&
                 map(newsAnswer.news, (item, index) => (
                   <Question
                     key={index}
-                    index={index}
+                    index={`1-${index}`}
                     answer={item.description}
                     question={item.title}
+                    allactive={active}
                   />
                 ))}
             </div>
