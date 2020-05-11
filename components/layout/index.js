@@ -108,11 +108,11 @@ function Layout({ children, lang }) {
         }
         return (
           <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
-            <Link href="/page/[...name]" as={`/page/${item.slugPages}`}>
+            <LinkPage lang={lang} name={item.slugPages}>
               <a>
                 <span>{item.name}</span>
               </a>
-            </Link>
+            </LinkPage>
             <div className="wrapul">
               {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
             </div>
