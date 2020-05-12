@@ -14,11 +14,12 @@ function QuestionItems({ question, answer, index, allactive }) {
   useEffect(() => {
     if (active !== allactive) {
       setAcive(allactive);
+    } else if (index === 0) {
+      setAcive(true);
     } else {
       setAcive(active);
     }
   }, [allactive]);
-  console.log('active:', active);
 
   return (
     <div className="accodion-tab accodion-1-1 ">
