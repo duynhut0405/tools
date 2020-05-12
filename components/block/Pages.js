@@ -64,7 +64,7 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <div className={`${padding} block-page category-${type}`} id={id}>
         <div className="container">
-          <div className="entry-head text-center">
+          <div className="entry-head text-center title-padding">
             {data.title && <h2 className="ht">{data.title}</h2>}
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
@@ -105,12 +105,14 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <div className="container" id={id}>
         <section className={`${padding} block-page block-type-2 category-${type}`}>
-          <h2 className="ht styleht">{data.title}</h2>
-          {data.linkurl !== undefined && data.linkurl !== '' && (
-            <a className="viewall" href={data.linkurl}>
-              {t('view')} <i className="icon-arrow-1"></i>
-            </a>
-          )}
+          <div className="entry-head text-center title-padding">
+            <h2 className="ht styleht">{data.title}</h2>
+            {data.linkurl !== undefined && data.linkurl !== '' && (
+              <a className="viewall" href={data.linkurl}>
+                {t('view')} <i className="icon-arrow-1"></i>
+              </a>
+            )}
+          </div>
           <div className="list-7 list-item row">
             {map(listPage, item => (
               <div className="col-md-6" key={item.newsId}>
@@ -145,12 +147,14 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <section className={`${padding} bg-gray category-${type}`} id={id}>
         <div className="container">
-          <h2 className="ht">{data.title}</h2>
-          {data.linkurl !== undefined && data.linkurl !== '' && (
-            <a className="viewall" href={data.linkurl}>
-              {t('view')} <i className="icon-arrow-1"></i>
-            </a>
-          )}
+          <div className="entry-head text-center title-padding">
+            <h2 className="ht">{data.title}</h2>
+            {data.linkurl !== undefined && data.linkurl !== '' && (
+              <a className="viewall" href={data.linkurl}>
+                {t('view')} <i className="icon-arrow-1"></i>
+              </a>
+            )}
+          </div>
           <div className="list-7 list-item row">
             {map(listPage, (values, index) => (
               <div key={index} className="col-md-6">
@@ -192,12 +196,14 @@ function Pages({ data, type, id, optionWidth }) {
       <section className={`${padding} bg-gray category-${type}`} id={id}>
         <div className="container">
           <div className="max750"></div>
-          <h2 className="ht text-center">{data.title}</h2>
-          {data.linkurl !== undefined && data.linkurl !== '' && (
-            <a className="viewall" href={data.linkurl}>
-              {t('view')} <i className="icon-arrow-1"></i>
-            </a>
-          )}
+          <div className="entry-head text-center title-padding">
+            <h2 className="ht text-center">{data.title}</h2>
+            {data.linkurl !== undefined && data.linkurl !== '' && (
+              <a className="viewall" href={data.linkurl}>
+                {t('view')} <i className="icon-arrow-1"></i>
+              </a>
+            )}
+          </div>
           <ul className="cols-2 link2">
             {map(listPage, (values, index) => (
               <li key={index}>
@@ -222,7 +228,7 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <section className={` ${padding} sec-cauhoi category-${type} `} id={id}>
         <div className="container">
-          <div className="entry-head">
+          <div className="entry-head title-padding">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
@@ -295,7 +301,7 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <section className={`${padding} category-${type}`} id={id}>
         <div className="container">
-          <div className="entry-head">
+          <div className="entry-head title-padding">
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>

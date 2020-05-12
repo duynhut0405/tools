@@ -30,7 +30,7 @@ function MBNotifi({ data, padding }) {
   return (
     <section className={`${padding} sec-h-4__ sec-tb investors`}>
       <div className="container">
-        <div className="entry-head">
+        <div className="entry-head title-padding">
           <h2 className="">{data.label}</h2>
           <LinkCategory lang={lang} name={data.slug}>
             <a className="viewall">

@@ -28,7 +28,7 @@ function Financial({ padding }) {
   return (
     <section className={`${padding} investors`}>
       <div className="container">
-        <div className="entry-head">
+        <div className="entry-head title-padding">
           <h2 className="ht efch-1 ef-img-l">{t('financial_report')}</h2>
           <LinkPage lang={lang} name="/page/nha-dau-tu/bao-cao-tai-chinh">
             <a className="viewall">
