@@ -130,7 +130,7 @@ function News({ data, type, id, optionWidth }) {
       <section className={`${padding} sec-h-4 news-${type}`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
-            <div className="entry-head">
+            <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
               <LinkCategory lang={lang} name={slugCategory}>
@@ -213,7 +213,7 @@ function News({ data, type, id, optionWidth }) {
       <section className={`${padding} sec-h-3 news-${type} `} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
-            <div className="entry-head">
+            <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
               <LinkCategory lang={lang} name={slugCategory}>
@@ -307,7 +307,7 @@ function News({ data, type, id, optionWidth }) {
       <section className={`${padding} news-${type}`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
-            <div className="entry-head home">
+            <div className="entry-head home title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
               <LinkCategory lang={lang} name={slugCategory}>
@@ -365,7 +365,7 @@ function News({ data, type, id, optionWidth }) {
       <section className={`${padding} sec-blog-2 news-${type} `} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
-            <div className="entry-head">
+            <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
               <LinkCategory lang={lang} name={slugCategory}>
@@ -463,7 +463,7 @@ function News({ data, type, id, optionWidth }) {
       <section className={`${padding} news-${type}`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
-            <div className="entry-head">
+            <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
               <LinkCategory lang={lang} name={slugCategory}>
@@ -516,7 +516,7 @@ function News({ data, type, id, optionWidth }) {
       <section className={`${padding} news-${type} sec-h-4__`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
-            <div className="entry-head">
+            <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
               <LinkCategory lang={lang} name={slugCategory}>
@@ -561,7 +561,7 @@ function News({ data, type, id, optionWidth }) {
       <section className={`${padding} news-${type} sec-b sec-h-4`} id={id}>
         <div className="container">
           {(data.title || data.title !== '') && (
-            <div className="entry-head">
+            <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
               <LinkCategory lang={lang} name={slugCategory}>

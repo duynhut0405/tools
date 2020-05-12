@@ -26,7 +26,7 @@ function OtherNews({ data, id }) {
   return (
     <div className={`${padding} otherNews`} id={id}>
       <div className="container">
-        <div className="entry-head">
+        <div className="entry-head title-padding">
           <h2 className="ht efch-1 ef-img-l">{data.titleBlock}</h2>
           <p className="cl5"></p>
           <LinkCategory

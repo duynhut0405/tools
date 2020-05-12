@@ -33,7 +33,7 @@ function DowloadVideos({ padding }) {
   return (
     <section className={`${padding} investors sec-tb`}>
       <div className="container">
-        <div className="entry-head">
+        <div className="entry-head title-padding">
           <h2 className="ht efch-1 ef-img-l">{t('shareholders_meeting')}</h2>
           <LinkPage lang={lang} name="/page/nha-dau-tu/dai-hoi-co-dong">
             <a className="viewall">
