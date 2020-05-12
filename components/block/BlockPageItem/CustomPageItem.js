@@ -6,6 +6,7 @@ import { getLang } from '../../../utils/cookie';
 import { LinkPage } from '../../common/link';
 import Link from 'next/link';
 import { getPagesByIdService } from '../../../services/page';
+import UseWindowResize from '../../common/Resize';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -23,6 +24,8 @@ function CustomPageItem({ data, indexTab }) {
       setListPage(res.data);
     }
   };
+
+  const size = UseWindowResize();
 
   useEffect(() => {
     if (data.pages) {
@@ -56,20 +59,63 @@ function CustomPageItem({ data, indexTab }) {
           </span>
         </label>
         <div className="accodion-content">
-          <div className="wrap-carousel">
-            <Carousel
-              responsive={responsiveTwo}
-              draggable
-              minimumTouchDrag={80}
-              ssr={true} // means to render carousel on server-side.
-              infinite={true}
-              keyBoardControl={true}
-              className="list-5"
-              arrows={false}
-              ref={ref => {
-                setRefCarouselTwo(ref);
-              }}
-            >
+          {size.width >= 768 && (
+            <div className="wrap-carousel">
+              <Carousel
+                responsive={responsiveTwo}
+                draggable
+                minimumTouchDrag={80}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                keyBoardControl={true}
+                className="list-5"
+                arrows={false}
+                ref={ref => {
+                  setRefCarouselTwo(ref);
+                }}
+              >
+                {map(listPage, (items, index) => (
+                  <div className="item ef-img-t item_carousel" key={index}>
+                    <LinkPage lang={lang} name={items.slug}>
+                      <a className="link">
+                        <div className="img tRes_70">
+                          <img
+                            className="lazyload"
+                            data-src={`${process.env.DOMAIN}${items.baseImage}`}
+                            alt="images"
+                          />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title line2">{items.name}</h4>
+                          <div className="desc line2 cl3">{items.meta_description}</div>
+                        </div>
+                      </a>
+                    </LinkPage>
+                  </div>
+                ))}
+              </Carousel>
+              <div className="carousel-nav center">
+                <div
+                  className="carousel-prev "
+                  onClick={() => {
+                    refCarouselTwo.previous();
+                  }}
+                >
+                  <i className="icon-arrow-1 ix"></i>
+                </div>
+                <div
+                  className="carousel-next"
+                  onClick={() => {
+                    refCarouselTwo.next();
+                  }}
+                >
+                  <i className="icon-arrow-1"></i>
+                </div>
+              </div>
+            </div>
+          )}
+          {size.width < 768 && (
+            <span>
               {map(listPage, (items, index) => (
                 <div className="item ef-img-t item_carousel" key={index}>
                   <LinkPage lang={lang} name={items.slug}>
@@ -89,26 +135,8 @@ function CustomPageItem({ data, indexTab }) {
                   </LinkPage>
                 </div>
               ))}
-            </Carousel>
-            <div className="carousel-nav center">
-              <div
-                className="carousel-prev "
-                onClick={() => {
-                  refCarouselTwo.previous();
-                }}
-              >
-                <i className="icon-arrow-1 ix"></i>
-              </div>
-              <div
-                className="carousel-next"
-                onClick={() => {
-                  refCarouselTwo.next();
-                }}
-              >
-                <i className="icon-arrow-1"></i>
-              </div>
-            </div>
-          </div>
+            </span>
+          )}
         </div>
       </div>
     </React.Fragment>

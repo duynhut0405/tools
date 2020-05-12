@@ -76,7 +76,7 @@ function ListDowloadFIle({
     <div className={`${padding} accodion accodion-2 downloadfile`} id={id}>
       <div className="container">
         {data && (
-          <div className="entry-head">
+          <div className="entry-head title-padding">
             <h2 className="ht efch-1 ef-img-l">{title}</h2>
             <a className="viewall" href={data === undefined || data.url === '' ? '#' : data.url}>
               {t('view')} <i className="icon-arrow-1"></i>

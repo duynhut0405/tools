@@ -70,7 +70,7 @@ function Post({ data, type }) {
     return (
       <section className="sec-tb sec-h-4">
         <div className="container">
-          <div className="entry-head">
+          <div className="entry-head title-padding">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href="#">
               {t('view')} <i className="icon-arrow-1"></i>
@@ -121,7 +121,7 @@ function Post({ data, type }) {
     return (
       <section className="sec-tb sec-h-3 ">
         <div className="container">
-          <div className="entry-head">
+          <div className="entry-head title-padding">
             <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
             <a className="viewall" href="#">
               {t('view')}
