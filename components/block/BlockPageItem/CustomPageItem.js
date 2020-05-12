@@ -13,6 +13,7 @@ const propTypes = {
   indexTab: Proptypes.number.isRequired
 };
 function CustomPageItem({ data, indexTab }) {
+  //
   const [refCarouselTwo, setRefCarouselTwo] = useState(null);
   const [active, setActive] = useState(false);
   const [listPage, setListPage] = useState([]);
@@ -115,27 +116,29 @@ function CustomPageItem({ data, indexTab }) {
             </div>
           )}
           {size.width < 768 && (
-            <span>
-              {map(listPage, (items, index) => (
-                <div className="item ef-img-t item_carousel" key={index}>
-                  <LinkPage lang={lang} name={items.slug}>
-                    <a className="link">
-                      <div className="img tRes_70">
-                        <img
-                          className="lazyload"
-                          data-src={`${process.env.DOMAIN}${items.baseImage}`}
-                          alt="images"
-                        />
-                      </div>
-                      <div className="divtext">
-                        <h4 className="title line2">{items.name}</h4>
-                        <div className="desc line2 cl3">{items.meta_description}</div>
-                      </div>
-                    </a>
-                  </LinkPage>
-                </div>
-              ))}
-            </span>
+            <div className="container">
+              <div className="list-5 row list-item">
+                {map(listPage, (items, index) => (
+                  <div className="col-md-4" key={index}>
+                    <LinkPage lang={lang} name={items.slug}>
+                      <a className="link">
+                        <div className="img tRes_70">
+                          <img
+                            className="lazyload"
+                            data-src={`${process.env.DOMAIN}${items.baseImage}`}
+                            alt="images"
+                          />
+                        </div>
+                        <div className="divtext">
+                          <h4 className="title line2">{items.name}</h4>
+                          <div className="desc line2 cl3">{items.meta_description}</div>
+                        </div>
+                      </a>
+                    </LinkPage>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </div>

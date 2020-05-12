@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { map } from 'lodash';
 import Proptypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
+import UseWindowResize from '../common/Resize';
 
 const propTypes = {
   data: Proptypes.array,
@@ -10,6 +11,7 @@ const propTypes = {
 
 function Icon({ data, id }) {
   const [refCarousel, setRefCarousel] = useState(null);
+  const size = UseWindowResize();
 
   const responsive = {
     desktop: {
@@ -77,20 +79,58 @@ function Icon({ data, id }) {
                 <div className="entry-head text-center">
                   <h2 className="ht">{data === null ? '' : data[0].title}</h2>
                 </div>
-                <div className="sec-b wrap-carousel">
-                  <Carousel
-                    responsive={responsive}
-                    draggable
-                    minimumTouchDrag={80}
-                    ssr={true} // means to render carousel on server-side.
-                    infinite={true}
-                    keyBoardControl={true}
-                    className="menuicon"
-                    arrows={false}
-                    ref={ref => {
-                      setRefCarousel(ref);
-                    }}
-                  >
+                {size.width >= 768 && (
+                  <div className="sec-b wrap-carousel">
+                    <Carousel
+                      responsive={responsive}
+                      draggable
+                      minimumTouchDrag={80}
+                      ssr={true} // means to render carousel on server-side.
+                      infinite={true}
+                      keyBoardControl={true}
+                      className="menuicon"
+                      arrows={false}
+                      ref={ref => {
+                        setRefCarousel(ref);
+                      }}
+                    >
+                      {map(data, (items, index) => (
+                        <div className="item ef-img-t item_carousel" key={index}>
+                          <a href={items.url} className="link">
+                            <div className="img">
+                              <img
+                                className="lazyload"
+                                alt="icon"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              />
+                            </div>
+                            <div className="title">{items.note_1}</div>
+                          </a>
+                        </div>
+                      ))}
+                    </Carousel>
+                    <div className="carousel-nav center">
+                      <div
+                        className="carousel-prev "
+                        onClick={() => {
+                          refCarousel.previous();
+                        }}
+                      >
+                        <i className="icon-arrow-1 ix"></i>
+                      </div>
+                      <div
+                        className="carousel-next"
+                        onClick={() => {
+                          refCarousel.next();
+                        }}
+                      >
+                        <i className="icon-arrow-1"></i>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {size.width < 768 && (
+                  <div>
                     {map(data, (items, index) => (
                       <div className="item ef-img-t item_carousel" key={index}>
                         <a href={items.url} className="link">
@@ -105,26 +145,8 @@ function Icon({ data, id }) {
                         </a>
                       </div>
                     ))}
-                  </Carousel>
-                  <div className="carousel-nav center">
-                    <div
-                      className="carousel-prev "
-                      onClick={() => {
-                        refCarousel.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="carousel-next"
-                      onClick={() => {
-                        refCarousel.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
-                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </section>
           )}
@@ -199,21 +221,60 @@ function Icon({ data, id }) {
               <div className="entry-head">
                 <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
               </div>
-              <div className="sec-b wrap-carousel">
-                <Carousel
-                  responsive={responsive1}
-                  draggable
-                  minimumTouchDrag={80}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  keyBoardControl={true}
-                  className="list-9"
-                  arrows={false}
-                  renderButtonGroupOutside={true}
-                  ref={ref => {
-                    setRefCarousel(ref);
-                  }}
-                >
+              {size.width >= 768 && (
+                <div className="sec-b wrap-carousel">
+                  <Carousel
+                    responsive={responsive1}
+                    draggable
+                    minimumTouchDrag={80}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    className="list-9"
+                    arrows={false}
+                    renderButtonGroupOutside={true}
+                    ref={ref => {
+                      setRefCarousel(ref);
+                    }}
+                  >
+                    {map(data, (item, index) => (
+                      <div className={`item efch-${index + 2} ef-img-l `} key={index}>
+                        <a href={item.url}>
+                          <div className="img">
+                            <img
+                              className="lazyload"
+                              alt="images"
+                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                              style={{ width: '160px', height: '52px' }}
+                            />
+                          </div>
+                          <div className="des">{item.note_1}</div>
+                        </a>
+                      </div>
+                    ))}
+                  </Carousel>
+                  <div className="carousel-nav center">
+                    <div
+                      className="carousel-prev "
+                      onClick={() => {
+                        refCarousel.previous();
+                      }}
+                    >
+                      <i className="icon-arrow-1 ix"></i>
+                    </div>
+                    <div
+                      className="carousel-next"
+                      onClick={() => {
+                        refCarousel.next();
+                      }}
+                    >
+                      <i className="icon-arrow-1"></i>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {size.width < 768 && (
+                <div>
                   {map(data, (item, index) => (
                     <div className={`item efch-${index + 2} ef-img-l `} key={index}>
                       <a href={item.url}>
@@ -229,26 +290,8 @@ function Icon({ data, id }) {
                       </a>
                     </div>
                   ))}
-                </Carousel>
-                <div className="carousel-nav center">
-                  <div
-                    className="carousel-prev "
-                    onClick={() => {
-                      refCarousel.previous();
-                    }}
-                  >
-                    <i className="icon-arrow-1 ix"></i>
-                  </div>
-                  <div
-                    className="carousel-next"
-                    onClick={() => {
-                      refCarousel.next();
-                    }}
-                  >
-                    <i className="icon-arrow-1"></i>
-                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </section>
         </React.Fragment>
@@ -328,20 +371,64 @@ function Icon({ data, id }) {
               <div className="entry-head text-left">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>
               </div>
-              <div className="sec-b wrap-carousel">
-                <Carousel
-                  responsive={responsive2}
-                  draggable
-                  minimumTouchDrag={80}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  keyBoardControl={true}
-                  arrows={false}
-                  className="menuicon"
-                  ref={ref => {
-                    setRefCarousel(ref);
-                  }}
-                >
+              {size.width >= 768 && (
+                <div className="sec-b wrap-carousel">
+                  <Carousel
+                    responsive={responsive2}
+                    draggable
+                    minimumTouchDrag={80}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    arrows={false}
+                    className="menuicon"
+                    ref={ref => {
+                      setRefCarousel(ref);
+                    }}
+                  >
+                    {map(data, (items, index) => (
+                      <div className="item ef-img-t item_carousel" key={index}>
+                        <a
+                          href={items.url}
+                          className="link"
+                          style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
+                        >
+                          <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
+                            <img
+                              data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              className="lazyload"
+                              alt="images"
+                            />
+                          </div>
+                          <div className="divtext" style={{ paddingLeft: '20px' }}>
+                            <h3 className="title">{items.note_2}</h3>
+                          </div>
+                        </a>
+                      </div>
+                    ))}
+                  </Carousel>
+                  <div className="carousel-nav center">
+                    <div
+                      className="carousel-prev "
+                      onClick={() => {
+                        refCarousel.previous();
+                      }}
+                    >
+                      <i className="icon-arrow-1 ix"></i>
+                    </div>
+                    <div
+                      className="carousel-next"
+                      onClick={() => {
+                        refCarousel.next();
+                      }}
+                    >
+                      <i className="icon-arrow-1"></i>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {size.width < 768 && (
+                <div>
                   {map(data, (items, index) => (
                     <div className="item ef-img-t item_carousel" key={index}>
                       <a
@@ -362,26 +449,8 @@ function Icon({ data, id }) {
                       </a>
                     </div>
                   ))}
-                </Carousel>
-                <div className="carousel-nav center">
-                  <div
-                    className="carousel-prev "
-                    onClick={() => {
-                      refCarousel.previous();
-                    }}
-                  >
-                    <i className="icon-arrow-1 ix"></i>
-                  </div>
-                  <div
-                    className="carousel-next"
-                    onClick={() => {
-                      refCarousel.next();
-                    }}
-                  >
-                    <i className="icon-arrow-1"></i>
-                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </section>
         </React.Fragment>
