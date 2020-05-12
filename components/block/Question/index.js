@@ -18,18 +18,8 @@ function Questions({ data, id }) {
 
   const list = data.listBlock;
 
-  useEffect(() => {
-    if (list.length === data.listBlock.length) {
-      setActive(true);
-    }
-  }, [page]);
-
   const show = () => {
     setActive(!active);
-    // setPage(page + 4);
-    // if (active) {
-    //   setPage(4);
-    // }
   };
 
   const getNewsByCategories = async (value, page, number) => {

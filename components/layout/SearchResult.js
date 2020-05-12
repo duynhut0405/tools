@@ -134,10 +134,7 @@ function SearchResult({ query }) {
                 <div className="total-search">
                   <p>
                     {t('find')}
-                    <span className="total">
-                      {' '}
-                      {data.size === 0 ? data.searchCommons.length : 20 * data.size}{' '}
-                    </span>
+                    <span className="total"> {data.count} </span>
                     {t('result')}
                   </p>
                 </div>
