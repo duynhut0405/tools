@@ -143,7 +143,7 @@ function Pages({ data, type, id, optionWidth }) {
 
   if (type && type === '3') {
     return (
-      <section className={`${padding} bg-gray category-${type}`} id={id}>
+      <section className={`${padding} sec-related bg-gray category-${type}`} id={id}>
         <div className="container">
           <h2 className="ht">{data.title}</h2>
           {data.linkurl !== undefined && data.linkurl !== '' && (
