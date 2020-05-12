@@ -191,7 +191,7 @@ function Layout({ children, lang }) {
   const changeLang = _lang => {
     const regex = new RegExp(`^/(${['vi', 'en'].join('|')})`);
     const path = router.asPath.replace(regex, `/${_lang}`);
-    if (_lang === 'vi') {
+    if (_lang === 'vi' && lang !== 'vi') {
       if (path === '/vi') {
         router.push('/');
       } else {
