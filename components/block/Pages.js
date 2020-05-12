@@ -58,7 +58,7 @@ function Pages({ data, type, id, optionWidth }) {
     if (data.pages) {
       getPageBlock();
     }
-  }, [data.pages]);
+  }, []);
 
   if (type && type === '1') {
     return (
@@ -145,7 +145,7 @@ function Pages({ data, type, id, optionWidth }) {
 
   if (type && type === '3') {
     return (
-      <section className={`${padding} bg-gray category-${type}`} id={id}>
+      <section className={`${padding} sec-related bg-gray category-${type}`} id={id}>
         <div className="container">
           <div className="entry-head text-center title-padding">
             <h2 className="ht">{data.title}</h2>
