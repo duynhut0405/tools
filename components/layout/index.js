@@ -52,6 +52,7 @@ function Layout({ children, lang, isPrioty }) {
   const [query, setQuery] = useState(null);
   const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
   const router = useRouter();
+  const [menuMobile, setMenuMobile] = useState([]);
 
   const fetchMenu = async () => {
     const _menuHeader = await getMemnu(lang, 'top_top');
@@ -62,6 +63,7 @@ function Layout({ children, lang, isPrioty }) {
     const _menuSearch = await getMemnu(lang, 'menu search');
     const _setting = await getSetting(lang);
     const _socialLink = await getSocialLink(lang);
+    const _menuMobile = await getMemnu(lang, 'menu-mobile');
 
     setMenuHeader(_menuHeader);
     setMenuNav(_menuNav);
@@ -71,6 +73,7 @@ function Layout({ children, lang, isPrioty }) {
     setMenuFooterMain(_menuFooterMain);
     setSettingFooter(_setting.general);
     setSocialLink(_socialLink.socialLink);
+    setMenuMobile(_menuMobile);
   };
 
   useEffect(() => {
@@ -89,6 +92,7 @@ function Layout({ children, lang, isPrioty }) {
       body.classList.remove('showMenu');
     }
   }, [activeDrawer]);
+  console.log('menuMobile:', menuMobile);
 
   const nestChild = items => {
     return map(
@@ -661,7 +665,7 @@ function Layout({ children, lang, isPrioty }) {
                   </label>
                   <div className="accodion-content">
                     <div className="inner">
-                      <div className="row grid-space-10">{renderFooterMobile(menuFooterMain)}</div>
+                      <div className="row grid-space-10">{renderFooterMobile(menuMobile)}</div>
                     </div>
                   </div>
                 </div>
@@ -669,62 +673,20 @@ function Layout({ children, lang, isPrioty }) {
             </div>
             <div className="menu-footer-mb">
               <div className="row">
-                <div className="col-3">
-                  <a href="#" className="item ">
-                    <span className="img">
-                      <img
-                        className="lazyload"
-                        data-src="/static/images/svg/home.svg"
-                        alt="images"
-                      />
-                    </span>
-                    <span className="name">{t('home')}</span>
-                  </a>
-                </div>
-                <div className="col-3">
-                  <a href="#" className="item">
-                    <span className="img">
-                      <img
-                        className="lazyload"
-                        data-src="/static/images/svg/folder.svg"
-                        alt="images"
-                      />
-                    </span>
-                    <span className="name">{t('product')}</span>
-                  </a>
-                </div>
-                <div className="col-3">
-                  <a href="#" className="item ">
-                    <span className="img">
-                      <img className="lazyload" data-src="/static/images/svg/MB.svg" alt="images" />
-                    </span>
-                    <span className="name">MB++</span>
-                  </a>
-                </div>
-                <div className="col-3">
-                  <a href="#" className="item ">
-                    <span className="img">
-                      <img
-                        className="lazyload"
-                        data-src="/static/images/svg/giadinh.svg"
-                        alt="images"
-                      />
-                    </span>
-                    <span className="name">{t('family')}</span>
-                  </a>
-                </div>
-                <div className="col-3">
-                  <a href="#" className="item ">
-                    <span className="img">
-                      <img
-                        className="lazyload"
-                        data-src="/static/images/svg/tienich.svg"
-                        alt="images"
-                      />
-                    </span>
-                    <span className="name">{t('utilities')}</span>
-                  </a>
-                </div>
+                {map(menuMobile, (item, index) => (
+                  <div className="col-3" key={index}>
+                    <a href={item.url} className="item ">
+                      <span className="img">
+                        <img
+                          className="lazyload"
+                          data-src={`${process.env.BASE_URL}/${item.icon}`}
+                          alt="images"
+                        />
+                      </span>
+                      <span className="name">{item.name}</span>
+                    </a>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
