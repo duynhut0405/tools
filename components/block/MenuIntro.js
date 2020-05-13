@@ -89,7 +89,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
     };
 
     //sendMailService(dataSend);
-    setModal(!modal);
+    //setModal(!modal);
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
