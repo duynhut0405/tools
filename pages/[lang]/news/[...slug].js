@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Social } from '../../../components/common';
@@ -21,6 +21,7 @@ const propTypes = {
 };
 
 function New({ news, category_name, category_url, socialLink }) {
+  const [isPrioty, setIsPrioty] = useState(false);
   useEffect(() => {
     Cookies.set('lang', 'en');
     document.body.className = '';
@@ -29,10 +30,12 @@ function New({ news, category_name, category_url, socialLink }) {
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       if (body && logo) {
+        setIsPrioty(true);
         body.classList.add('mb-priority');
         logo.src = '/static/images/svg/logo-priority.svg';
       }
     } else {
+      setIsPrioty(false);
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       if (body && logo) {
@@ -68,7 +71,7 @@ function New({ news, category_name, category_url, socialLink }) {
           <meta property="og:image:height" content="354" />
         </Head>
       )}
-      <Layout lang="en">
+      <Layout lang="en" isPrioty={isPrioty}>
         {news && news.news !== null && (
           <>
             <div className="entry-breadcrumb">

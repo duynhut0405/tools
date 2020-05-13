@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../../../components/common';
 import Layout from '../../../components/layout';
 import Head from 'next/head';
@@ -24,7 +24,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
     ? page.meta_keyword
     : `<link rel="canonical" href="${process.env.LINK_DOMAIN}/page/${page.slug}">`;
   const noIndex = page.noIndex ? page.noIndex : '';
-
+  const [isPrioty, setIsPrioty] = useState(false);
   useEffect(() => {
     Cookies.set('lang', 'en');
     document.body.className = '';
@@ -36,6 +36,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
       document.body.classList.add(`title-24`);
     }
     if (hasSideber === 1) {
+      setIsPrioty(true);
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       if (body && logo) {
@@ -44,6 +45,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
       }
     }
     if (hasSideber === 0) {
+      setIsPrioty(false);
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       if (body && logo) {
@@ -75,7 +77,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout lang="en">
+      <Layout lang="en" isPrioty={isPrioty}>
         <div className="main_content">
           {page.breadCrumb && <Breadcrumb data={listSlug} />}
           <Carousel silder={silder} />
