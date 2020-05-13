@@ -4,7 +4,6 @@ import { map } from 'lodash';
 import Carousel from 'react-multi-carousel';
 import { getLang } from '../../../utils/cookie';
 import { LinkPage } from '../../common/link';
-import Link from 'next/link';
 import { getPagesByIdService } from '../../../services/page';
 import UseWindowResize from '../../common/Resize';
 

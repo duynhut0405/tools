@@ -11,7 +11,7 @@ const propTypes = {
   data: PropTypes.object,
   getPageBlock: PropTypes.func,
   type: PropTypes.string,
-  pageId: PropTypes.func,
+  pageId: PropTypes.number,
   optionWidth: PropTypes.string
 };
 

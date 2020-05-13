@@ -3,7 +3,6 @@ import { rate } from '../../../utils/currency';
 import Proptypes from 'prop-types';
 import ReactNumeric from 'react-numeric';
 import t from '../../../translation';
-// import CurrencyFormat  from 'react-currency-format';
 
 const propTypes = {
   label: Proptypes.string,

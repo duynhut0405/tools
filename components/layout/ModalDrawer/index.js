@@ -40,9 +40,13 @@ function ModalDrawer({ menu, menuHeader, onSearch }) {
               ></span>
             )}
 
-            <a href={item.url} target="_blank" rel="noopener noreferrer">
-              {item.name}
-            </a>
+            {item.target === '2' ? (
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                {item.name}
+              </a>
+            ) : (
+              <a href={item.url}>{item.name}</a>
+            )}
 
             {item.children.length > 0 && (
               <ul style={{ display: activeTab && indexMenu === item.id ? 'block' : 'none' }}>

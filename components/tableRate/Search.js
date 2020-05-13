@@ -35,19 +35,17 @@ function Search({ changeDate, onSubmit, date }) {
           <h3 className="ctext mg-0">{t('table_rate_search')}</h3>
         </div>
         <div className="col-sm-7 col-md-5 col-lg-6">
-          <DatePicker selected={date === null ? dateDefault : date} onChange={changeDate}></DatePicker>
+          <DatePicker
+            selected={date === null ? dateDefault : date}
+            onChange={changeDate}
+          ></DatePicker>
         </div>
         <div className="col-sm-5 col-md-3 ">
           <button className="btn lg" onClick={onSubmit}>
-          {t('table_rate_submit')}
-          </button>          
+            {t('table_rate_submit')}
+          </button>
         </div>
-
       </div>
-
-      
-      
-
     </div>
   );
 }

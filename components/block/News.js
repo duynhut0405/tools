@@ -73,7 +73,7 @@ function News({ data, type, id, optionWidth }) {
   useEffect(() => {
     getCategoryPage();
     getCategoryById();
-  }, []);
+  }, [data]);
 
   const showPage = () => {
     setActive(false);
@@ -83,6 +83,7 @@ function News({ data, type, id, optionWidth }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
   if (type === '1') {
     return (
       <div className="post_block mb-5 pt-4 mt-5" id={id}>
@@ -652,26 +653,24 @@ function News({ data, type, id, optionWidth }) {
                       <React.Fragment>
                         <LinkNew lang={lang} name={item.url}>
                           <a className="item item-inline-table">
-                            <React.Fragment>
-                              <div className="img tRes_56 video cl">
-                                <img
-                                  className="lazyload"
-                                  data-src={
-                                    item.base_image === null
-                                      ? `/images/imgdefault.jpg`
-                                      : `${process.env.DOMAIN}${item.base_image}`
-                                  }
-                                  alt="images"
-                                />
+                            <div className="img tRes_56 video cl">
+                              <img
+                                className="lazyload"
+                                data-src={
+                                  item.base_image === null
+                                    ? `/images/imgdefault.jpg`
+                                    : `${process.env.DOMAIN}${item.base_image}`
+                                }
+                                alt="images"
+                              />
+                            </div>
+                            <div className="divtext">
+                              <div className="date">
+                                {moment(item.created_at).format('DD-MM-YYYY')}
                               </div>
-                              <div className="divtext">
-                                <div className="date">
-                                  {moment(item.created_at).format('DD-MM-YYYY')}
-                                </div>
-                                <h4 className="title line2">{item.title}</h4>
-                                <div className="desc line3">{item.shortDescription}</div>
-                              </div>
-                            </React.Fragment>
+                              <h4 className="title line2">{item.title}</h4>
+                              <div className="desc line3">{item.shortDescription}</div>
+                            </div>
                           </a>
                         </LinkNew>
                       </React.Fragment>

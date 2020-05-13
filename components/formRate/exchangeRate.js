@@ -40,7 +40,7 @@ function ExchangeRate({ data1, data2 }) {
 ExchangeRate.propTypes = {
   tab1: PropTypes.string,
   tab2: PropTypes.string,
-  data1: PropTypes.object,
+  data1: PropTypes.any,
   data2: PropTypes.any
 };
 

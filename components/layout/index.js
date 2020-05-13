@@ -97,9 +97,15 @@ function Layout({ children, lang }) {
         if (item.type === '4') {
           return (
             <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
-              <a href={item.url} target="_blank" rel="noopener noreferrer">
-                <span>{item.name}</span>
-              </a>
+              {item.target === '2' ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  <span>{item.name}</span>
+                </a>
+              ) : (
+                <a href={item.url}>
+                  <span>{item.name}</span>
+                </a>
+              )}
               <div className="wrapul">
                 {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
               </div>
@@ -135,14 +141,20 @@ function Layout({ children, lang }) {
       if (item.type === '4') {
         return (
           <li key={index}>
-            <a
-              href={item.url}
-              className={item.children.length > 0 ? 'title' : ''}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {item.name}
-            </a>
+            {item.target === '2' ? (
+              <a
+                href={item.url}
+                className={item.children.length > 0 ? 'title' : ''}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.name}
+              </a>
+            ) : (
+              <a href={item.url} className={item.children.length > 0 ? 'title' : ''}>
+                {item.name}
+              </a>
+            )}
           </li>
         );
       }
@@ -274,9 +286,13 @@ function Layout({ children, lang }) {
                     if (values.type === '4') {
                       return (
                         <li key={key}>
-                          <a href={values.url} target="_blank" rel="noopener noreferrer">
-                            {values.name}
-                          </a>
+                          {values.target === '2' ? (
+                            <a href={values.url} target="_blank" rel="noopener noreferrer">
+                              {values.name}
+                            </a>
+                          ) : (
+                            <a href={values.url}>{values.name}</a>
+                          )}
                         </li>
                       );
                     }
@@ -464,19 +480,40 @@ function Layout({ children, lang }) {
                     if (values.type === '4') {
                       return (
                         <div className="col-4" key={values.id}>
-                          <a href={values.url} className="item">
-                            <span className="img">
-                              <img
-                                className="lazyload"
-                                data-src={`${process.env.DOMAIN}${values.icon}`}
-                                alt="images"
-                              />
-                            </span>
-                            <div className="divtext">
-                              <h4 className="title">{values.name}</h4>
-                              <div className="desc">{values.description}</div>
-                            </div>
-                          </a>
+                          {values.target === '2' ? (
+                            <a
+                              href={values.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="item"
+                            >
+                              <span className="img">
+                                <img
+                                  className="lazyload"
+                                  data-src={`${process.env.DOMAIN}${values.icon}`}
+                                  alt="images"
+                                />
+                              </span>
+                              <div className="divtext">
+                                <h4 className="title">{values.name}</h4>
+                                <div className="desc">{values.description}</div>
+                              </div>
+                            </a>
+                          ) : (
+                            <a href={values.url} className="item">
+                              <span className="img">
+                                <img
+                                  className="lazyload"
+                                  data-src={`${process.env.DOMAIN}${values.icon}`}
+                                  alt="images"
+                                />
+                              </span>
+                              <div className="divtext">
+                                <h4 className="title">{values.name}</h4>
+                                <div className="desc">{values.description}</div>
+                              </div>
+                            </a>
+                          )}
                         </div>
                       );
                     }
@@ -555,9 +592,13 @@ function Layout({ children, lang }) {
                         if (values.type === '4') {
                           return (
                             <li key={key}>
-                              <a href={values.url} target="_blank" rel="noopener noreferrer">
-                                {values.name}
-                              </a>
+                              {values.target === '2' ? (
+                                <a href={values.url} target="_blank" rel="noopener noreferrer">
+                                  {values.name}
+                                </a>
+                              ) : (
+                                <a href={values.url}>{values.name}</a>
+                              )}
                             </li>
                           );
                         }

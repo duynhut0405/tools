@@ -32,7 +32,7 @@ const getDistrict = async (id, setData) => {
 };
 
 function Transaction({ data, id }) {
-  const [location, setLocation] = useState({ lat: 0, lng: 0 });
+  const [location, setLocation] = useState({ lat: 21.32284, lng: 105.399727 });
   const [locationId, setID] = useState(null);
   const [zoom, setZoom] = useState(8);
   const [district, setDistrict] = useState('');
@@ -45,8 +45,8 @@ function Transaction({ data, id }) {
 
   const showPosition = position => {
     setLocation(() => ({
-      lat: position.coords.latitude === 0 ? 21.32284 : position.coords.latitude,
-      lng: position.coords.longitude === 0 ? 105.399727 : position.coords.longitude
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
     }));
   };
 
@@ -81,6 +81,7 @@ function Transaction({ data, id }) {
 
   const handleProvince = provinceItem => {
     setProvince(provinceItem.value);
+    setDistrict('');
     getDistrict(provinceItem.value, setListDistrict);
   };
 

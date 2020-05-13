@@ -7,7 +7,7 @@ import ExchangeRate from './exchangeRate';
 import RateSelect from './RateSelect';
 
 const propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.any,
   interestRate: PropTypes.array
 };
 

@@ -180,7 +180,7 @@ New.getInitialProps = async ctx => {
   let category_url = null;
   // let layoutInvestors = null;
   map(query, url => (params = `${params}/${url}`));
-  routerURL = params.slice(1, params.length);
+  routerURL = params.slice(4, params.length);
   const socialLink = await getSocialLink('en');
   const newResponse = await getNewByUri('en', routerURL);
   if (

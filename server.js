@@ -1,8 +1,5 @@
 const express = require('express');
 const next = require('next');
-// const nextI18NextMiddleware = require('next-i18next/middleware').default;
-
-// const nextI18next = require('./i18n');
 const fs = require('fs');
 const { getStoreFont } = require('./services/storefont');
 
@@ -13,9 +10,6 @@ const handle = app.getRequestHandler();
 (async () => {
   await app.prepare();
   const server = express();
-  // await nextI18next.initPromise;
-  // server.use(nextI18NextMiddleware(nextI18next));
-
   let file = '';
   const resRobots = await getStoreFont('robots');
   if (resRobots && resRobots !== undefined && resRobots.status === 200) {
