@@ -39,7 +39,7 @@ const getData = async setData => {
   }
 };
 
-function Layout({ children, lang }) {
+function Layout({ children, lang, isPrioty }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [menuHeader, setMenuHeader] = useState([]);
   const [menuNav, setMenuNav] = useState([]);
@@ -355,7 +355,7 @@ function Layout({ children, lang }) {
                 <header id="header" role="banner">
                   <div className="container">
                     {lang === 'en' && (
-                      <Link href="/en">
+                      <Link href={isPrioty ? '/en/page/mb-priority' : '/en'}>
                         <a id="logo">
                           <img
                             id="img_log"
@@ -367,7 +367,7 @@ function Layout({ children, lang }) {
                       </Link>
                     )}
                     {lang === 'vi' && (
-                      <Link href="/">
+                      <Link href={isPrioty ? '/page/mb-priority' : '/'}>
                         <a id="logo">
                           <img
                             id="img_log"
