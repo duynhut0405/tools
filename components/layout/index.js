@@ -92,7 +92,6 @@ function Layout({ children, lang, isPrioty }) {
       body.classList.remove('showMenu');
     }
   }, [activeDrawer]);
-  console.log('menuMobile:', menuMobile);
 
   const nestChild = items => {
     return map(
