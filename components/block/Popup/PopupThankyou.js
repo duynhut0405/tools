@@ -40,6 +40,9 @@ function PopupItems({ modal, setModal }) {
             <div className="desc ">
               <p>{t('thankyou')}</p>
             </div>
+            <div className="d-flex" style={{ textAlign: 'center' }}>
+              <button onClick={setModal}>OK</button>
+            </div>
           </div>
         </div>
       </div>
