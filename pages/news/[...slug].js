@@ -21,7 +21,7 @@ const propTypes = {
 };
 
 function New({ news, category_name, category_url, socialLink }) {
-  const [isPrioty, setIsPrioty] = useState(false);
+  const [isPrioty, setIsPrioty] = useState(null);
   useEffect(() => {
     Cookies.set('lang', 'vi');
     document.body.className = '';

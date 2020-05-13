@@ -24,7 +24,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
     ? page.meta_keyword
     : `<link rel="canonical" href="${process.env.LINK_DOMAIN}/page/${page.slug}">`;
   const noIndex = page.noIndex ? page.noIndex : '';
-  const [isPrioty, setIsPrioty] = useState(false);
+  const [isPrioty, setIsPrioty] = useState(null);
   useEffect(() => {
     Cookies.set('lang', 'en');
     document.body.className = '';

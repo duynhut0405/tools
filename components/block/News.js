@@ -73,7 +73,7 @@ function News({ data, type, id, optionWidth }) {
   useEffect(() => {
     getCategoryPage();
     getCategoryById();
-  }, [data]);
+  }, []);
 
   const showPage = () => {
     setActive(false);
