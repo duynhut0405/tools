@@ -4,6 +4,7 @@ import t from '../../translation';
 import map from 'lodash/map';
 import { getLang } from '../../utils/cookie';
 import { LinkPage } from '../common/link';
+import Link from 'next/link';
 
 const propTypes = {
   data: Proptypes.array,
@@ -17,9 +18,9 @@ function Breadcrumb({ data }) {
       <div className="container">
         <div className="breadcrumbs">
           {data.length > 0 ? (
-            <LinkPage lang={lang} name={lang === 'vi' ? '/' : '/en'}>
+            <Link href={lang === 'vi' ? '/' : '/en'}>
               <a className="item">{t('home')}</a>
-            </LinkPage>
+            </Link>
           ) : (
             <span className="item">{t('home')}</span>
           )}
