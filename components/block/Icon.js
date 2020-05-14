@@ -274,21 +274,20 @@ function Icon({ data, id }) {
                 </div>
               )}
               {size.width < 768 && (
-                <div>
+                <div className="list-9 list-item">
                   {map(data, (item, index) => (
-                    <div className={`item efch-${index + 2} ef-img-l `} key={index}>
-                      <a href={item.url}>
+
+                      <a href={item.url} className={`item efch-${index + 2} ef-img-l `} key={index}>
                         <div className="img">
                           <img
                             className="lazyload"
                             alt="images"
                             data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                            style={{ width: '160px', height: '52px' }}
                           />
                         </div>
                         <div className="des">{item.note_1}</div>
                       </a>
-                    </div>
+
                   ))}
                 </div>
               )}
@@ -428,7 +427,7 @@ function Icon({ data, id }) {
                 </div>
               )}
               {size.width < 768 && (
-                <div>
+                <div className="list-item">
                   {map(data, (items, index) => (
                     <div className="item ef-img-t item_carousel" key={index}>
                       <a
@@ -436,7 +435,7 @@ function Icon({ data, id }) {
                         className="link"
                         style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                       >
-                        <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
+                        <div className="img" >
                           <img
                             data-src={`${process.env.DOMAIN}${items.urlImage}`}
                             className="lazyload"

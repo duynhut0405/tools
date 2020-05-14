@@ -317,9 +317,9 @@ function News({ data, type, id, optionWidth }) {
             </div>
           )}
           {size.width < 768 && (
-            <div>
+            <div className="list-5 list-item">
               {map(listCategory, (item, index) => (
-                <div className="slide-item" key={index}>
+
                   <LinkNew lang={lang} name={item.url}>
                     <a
                       className={`item efch-${index} ef-img-l `}
@@ -348,7 +348,7 @@ function News({ data, type, id, optionWidth }) {
                       </div>
                     </a>
                   </LinkNew>
-                </div>
+
               ))}
             </div>
           )}
@@ -489,7 +489,7 @@ function News({ data, type, id, optionWidth }) {
                             alt="images"
                           />
                           <div className="divtext">
-                            <h4 className="title line2">{item.title}</h4>
+                            <h4 className="title ">{item.title}</h4>
                           </div>
                         </a>
                       </LinkNew>

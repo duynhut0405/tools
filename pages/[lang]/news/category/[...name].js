@@ -38,7 +38,6 @@ function CategoryDetail({ routerURL, category }) {
   useEffect(() => {
     fecthNews();
   }, [page]);
-
   return (
     <React.Fragment>
       {data && (
