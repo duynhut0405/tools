@@ -9,14 +9,13 @@ import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Cookies from 'js-cookie';
 import { LinkPage } from '../common/link';
-import { getMemnu, getSetting, getSocialLink, getCommon } from '../../utils/fetch';
+import { getMemnu, getCommon } from '../../utils/fetch';
 import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
 import debounce from 'lodash/debounce';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { getStoreFont } from '../../services/storefont';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -29,7 +28,8 @@ const propTypes = {
   menuFooterBottom: PropTypes.array,
   menuFooterMain: PropTypes.array,
   menuSearch: PropTypes.array,
-  lang: PropTypes.string
+  lang: PropTypes.string,
+  isPrioty: PropTypes.any
 };
 
 function Layout({ children, lang, isPrioty }) {
@@ -48,6 +48,7 @@ function Layout({ children, lang, isPrioty }) {
   const [menuMobile, setMenuMobile] = useState([]);
   const [allData, setAllData] = useState([]);
   const [common, setCommon] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
 
   const fetchAllData = async () => {
     const result = await getMemnu(lang);
@@ -284,6 +285,7 @@ function Layout({ children, lang, isPrioty }) {
     const result = document.getElementById('search-result');
     body.classList.add('fixed-screen');
     result.style = `display: block`;
+    setIsSearch(true);
   };
 
   const onChangeSuggest = url => {
@@ -514,7 +516,7 @@ function Layout({ children, lang, isPrioty }) {
               </div>
             )}
           </Sticky>
-          <SearchResult query={query} />
+          <SearchResult query={query} isSearch={isSearch} />
           <div>{children}</div>
           {/* contact */}
           <section className="sec-cta">
