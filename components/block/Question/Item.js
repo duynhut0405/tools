@@ -5,21 +5,17 @@ import Proptypes from 'prop-types';
 const propTypes = {
   question: Proptypes.string,
   answer: Proptypes.string,
-  index: Proptypes.number,
-  allactive: Proptypes.bool
+  index: Proptypes.number
 };
 
-function QuestionItems({ question, answer, index, allactive }) {
+function QuestionItems({ question, answer, index }) {
   const [active, setAcive] = useState(false);
+
   useEffect(() => {
-    if (active !== allactive) {
-      setAcive(allactive);
-    } else if (index === 0) {
+    if (index === 0) {
       setAcive(true);
-    } else {
-      setAcive(active);
     }
-  }, [allactive]);
+  }, []);
 
   return (
     <div className="accodion-tab accodion-1-1 ">

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { map, isEmpty } from 'lodash';
+import { map, isEmpty, slice } from 'lodash';
 import Question from './Item';
 import Proptypes from 'prop-types';
 import t from '../../../translation';
 import { findAllNewsByCategory } from '../../../services/news';
 import Pagination from '../../common/Pagination';
+import ReactPaginate from 'react-paginate';
 
 const propTypes = {
   data: Proptypes.object,
@@ -13,14 +14,11 @@ const propTypes = {
 
 function Questions({ data, id }) {
   const [page, setPage] = useState(1);
-  const [active, setActive] = useState(false);
   const [newsAnswer, setNewsAnswer] = useState({});
 
-  const list = data.listBlock;
-
-  const show = () => {
-    setActive(!active);
-  };
+  //const list = data.listBlock;
+  const [list, setList] = useState(data.listBlock);
+  const [listPagination, setlistPagination] = useState(data.listBlock);
 
   const getNewsByCategories = async (value, page, number) => {
     const res = await findAllNewsByCategory(value, page, number);
@@ -46,6 +44,12 @@ function Questions({ data, id }) {
     }
   }, [page]);
 
+  useEffect(() => {
+    setlistPagination(slice(list, (page - 1) * 5, (page - 1) * 5 + 5));
+  }, [page]);
+
+  const sizeList = Math.ceil(list && list.length / 5);
+
   if (data.listBlock && data.listBlock.length > 0) {
     return (
       <React.Fragment>
@@ -58,13 +62,15 @@ function Questions({ data, id }) {
             </div>
             <div className="accodion accodion-1 accodion-1-2">
               {Number(data.optionChoose) === 1 &&
-                map(list, (item, index) => (
+                map(listPagination, (
+                  item,
+                  index //
+                ) => (
                   <Question
                     key={index}
                     index={index}
                     answer={item.answer}
                     question={item.question}
-                    allactive={active}
                   />
                 ))}
               {Number(data.optionChoose) === 2 &&
@@ -74,20 +80,31 @@ function Questions({ data, id }) {
                     index={`1-${index}`}
                     answer={item.description}
                     question={item.title}
-                    allactive={active}
                   />
                 ))}
             </div>
-            {data.listBlock.length > 4 && (
-              <div className="text-center">
-                <button className="btn lg" onClick={() => show()}>
-                  {active === false ? t('view_more') : t('collapse')}
-                </button>
-              </div>
-            )}
           </div>
         </section>
-        {!isEmpty(newsAnswer) && (
+        {!isEmpty(list) && Number(data.optionChoose) === 1 && (
+          <div className="page pb-3 sec-b">
+            <ReactPaginate
+              previousLabel={<i className="icon-arrow-2 ix"></i>}
+              nextLabel={<i className="icon-arrow-2"></i>}
+              breakLabel={'...'}
+              breakLinkClassName="page-numbers"
+              pageCount={sizeList || 1}
+              containerClassName="page-numbers"
+              previousLinkClassName="prev page-numbers"
+              nextLinkClassName="next page-numbers"
+              pageLinkClassName="page-numbers"
+              marginPagesDisplayed={4}
+              pageRangeDisplayed={4}
+              onPageChange={value => setPage(value.selected + 1)}
+              activeLinkClassName="page-numbers current"
+            />
+          </div>
+        )}
+        {!isEmpty(newsAnswer) && Number(data.optionChoose) === 2 && (
           <Pagination setPage={setPage} page={page} size={newsAnswer.size} />
         )}
       </React.Fragment>
