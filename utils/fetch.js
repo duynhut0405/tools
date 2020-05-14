@@ -1,7 +1,8 @@
 import {
   getMenuItemByPosition,
   getSettingFooterService,
-  getSocialLinkService
+  getSocialLinkService,
+  getCommonService
 } from '../services/menu';
 // import { getPageBySlug } from '../services/page.services';
 // import { getRateService } from '../services/rate.services';
@@ -41,6 +42,15 @@ export const getSetting = async lang => {
 export const getSocialLink = async lang => {
   let data = {};
   const res = await getSocialLinkService(lang);
+  if (res && res !== undefined && res.status === 200) {
+    data = res.data;
+  }
+  return data;
+};
+
+export const getCommon = async lang => {
+  let data = {};
+  const res = await getCommonService(lang);
   if (res && res !== undefined && res.status === 200) {
     data = res.data;
   }

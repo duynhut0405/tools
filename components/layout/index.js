@@ -9,7 +9,7 @@ import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Cookies from 'js-cookie';
 import { LinkPage } from '../common/link';
-import { getMemnu, getSetting, getSocialLink } from '../../utils/fetch';
+import { getMemnu, getSetting, getSocialLink, getCommon } from '../../utils/fetch';
 import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
@@ -32,13 +32,6 @@ const propTypes = {
   lang: PropTypes.string
 };
 
-const getData = async setData => {
-  const res = await getStoreFont('linkApp');
-  if (res && res !== undefined && res.status === 200) {
-    setData(res.data.linkApp);
-  }
-};
-
 function Layout({ children, lang, isPrioty }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [menuHeader, setMenuHeader] = useState([]);
@@ -54,10 +47,13 @@ function Layout({ children, lang, isPrioty }) {
   const router = useRouter();
   const [menuMobile, setMenuMobile] = useState([]);
   const [allData, setAllData] = useState([]);
+  const [common, setCommon] = useState([]);
 
   const fetchAllData = async () => {
     const result = await getMemnu(lang);
+    const commonRs = await getCommon(lang);
     setAllData(result);
+    setCommon(commonRs);
   };
 
   const nested = (data, id = null, link = 'parentId') => {
@@ -89,8 +85,6 @@ function Layout({ children, lang, isPrioty }) {
     const _menuFooterMain = findMenu('Menu footer main');
     const _menuFooterBottom = findMenu('menu footer bottom');
     const _menuSearch = findMenu('menu search');
-    const _setting = await getSetting(lang);
-    const _socialLink = await getSocialLink(lang);
     const _menuMobile = findMenu('menu-mobile');
 
     if (_menuHeader) {
@@ -114,18 +108,23 @@ function Layout({ children, lang, isPrioty }) {
     if (_menuMobile) {
       setMenuMobile(_menuMobile);
     }
-    setSettingFooter(_setting.general);
-    setSocialLink(_socialLink.socialLink);
+    setSocialLink(common.socialLink);
+
+    if (common.linkApp) {
+      setLinkApp(common.linkApp);
+    }
+    if (common.general) {
+      setSettingFooter(common.general);
+    }
   };
 
   useEffect(() => {
     fetchAllData();
-    getData(setLinkApp);
   }, []);
 
   useEffect(() => {
     fetchMenu();
-  }, [allData, lang]);
+  }, [allData, common]);
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];

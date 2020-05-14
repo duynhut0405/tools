@@ -66,10 +66,24 @@ const getMenuItemByPosition = lang => {
     });
 };
 
+const getCommonService = lang => {
+  return requestLang({
+    url: `${lang}/api/fe/common`,
+    method: 'GET'
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
 export {
   getAllMenu,
   getMenuItemById,
   getSettingFooterService,
   getSocialLinkService,
-  getMenuItemByPosition
+  getMenuItemByPosition,
+  getCommonService
 };
