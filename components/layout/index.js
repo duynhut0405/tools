@@ -53,36 +53,79 @@ function Layout({ children, lang, isPrioty }) {
   const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
   const router = useRouter();
   const [menuMobile, setMenuMobile] = useState([]);
+  const [allData, setAllData] = useState([]);
+
+  const fetchAllData = async () => {
+    const result = await getMemnu(lang);
+    setAllData(result);
+  };
+
+  const nested = (data, id = null, link = 'parentId') => {
+    return data
+      .filter(item => item[link] === id)
+      .map(item => ({
+        ...item,
+        title: `${item.name}`,
+        children: nested(
+          data.sort((a, b) => a.position - b.position),
+          item.id
+        )
+      }));
+  };
+
+  const findMenu = pos => {
+    if (allData) {
+      const rs = allData.find(item => item.position === pos);
+      if (rs) {
+        return nested(rs.menuItems);
+      }
+    }
+  };
 
   const fetchMenu = async () => {
-    const _menuHeader = await getMemnu(lang, 'top_top');
-    const _menuNav = await getMemnu(lang, 'top2');
-    const _menuFooterTop = await getMemnu(lang, 'Menu footer top');
-    const _menuFooterMain = await getMemnu(lang, 'Menu footer main');
-    const _menuFooterBottom = await getMemnu(lang, 'menu footer bottom');
-    const _menuSearch = await getMemnu(lang, 'menu search');
+    const _menuHeader = findMenu('top_top');
+    const _menuNav = findMenu('top2');
+    const _menuFooterTop = findMenu('Menu footer top');
+    const _menuFooterMain = findMenu('Menu footer main');
+    const _menuFooterBottom = findMenu('menu footer bottom');
+    const _menuSearch = findMenu('menu search');
     const _setting = await getSetting(lang);
     const _socialLink = await getSocialLink(lang);
-    const _menuMobile = await getMemnu(lang, 'menu-mobile');
+    const _menuMobile = findMenu('menu-mobile');
 
-    setMenuHeader(_menuHeader);
-    setMenuNav(_menuNav);
-    setMenuSearch(_menuSearch);
-    setMenuFooterTop(_menuFooterTop);
-    setMenuFooterBottom(_menuFooterBottom);
-    setMenuFooterMain(_menuFooterMain);
+    if (_menuHeader) {
+      setMenuHeader(_menuHeader);
+    }
+    if (_menuNav) {
+      setMenuNav(_menuNav);
+    }
+    if (_menuSearch) {
+      setMenuSearch(_menuSearch);
+    }
+    if (_menuFooterTop) {
+      setMenuFooterTop(_menuFooterTop);
+    }
+    if (_menuFooterBottom) {
+      setMenuFooterBottom(_menuFooterBottom);
+    }
+    if (_menuFooterMain) {
+      setMenuFooterMain(_menuFooterMain);
+    }
+    if (_menuMobile) {
+      setMenuMobile(_menuMobile);
+    }
     setSettingFooter(_setting.general);
     setSocialLink(_socialLink.socialLink);
-    setMenuMobile(_menuMobile);
   };
 
   useEffect(() => {
-    fetchMenu();
-  }, [lang]);
-
-  useEffect(() => {
+    fetchAllData();
     getData(setLinkApp);
   }, []);
+
+  useEffect(() => {
+    fetchMenu();
+  }, [allData, lang]);
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
@@ -267,6 +310,7 @@ function Layout({ children, lang, isPrioty }) {
           <div id="panel">
             <div className="container">
               <ul className="menu line text-right">
+                {console.log(allData)}
                 <li>
                   <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
                     <button className="search-sg" type="submit">

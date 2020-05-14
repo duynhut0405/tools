@@ -20,11 +20,11 @@ const nested = (data, id = null, link = 'parentId') => {
     }));
 };
 
-export const getMemnu = async (lang, postion) => {
+export const getMemnu = async lang => {
   let data = [];
-  const res = await getMenuItemByPosition(lang, postion);
+  const res = await getMenuItemByPosition(lang);
   if (res && res !== undefined && res.status === 200) {
-    data = nested(res.data.menuItems);
+    data = res.data;
   }
   return data;
 };

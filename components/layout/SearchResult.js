@@ -15,6 +15,7 @@ const propTypes = {
 };
 
 const fetch = async (query, setData) => {
+  //
   const res = await searchService(query);
   if (res && res !== undefined && res.status === 200) {
     setData(res.data);
@@ -37,7 +38,9 @@ function SearchResult({ query }) {
   }, [query]);
 
   useEffect(() => {
+    //if (search !== null) {
     fetch({ search: search, page: page, number: 20, type: type }, setData);
+    //}
   }, [page, type, search]);
 
   const onClose = () => {
