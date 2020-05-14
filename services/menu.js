@@ -53,9 +53,9 @@ const getSocialLinkService = lang => {
     });
 };
 
-const getMenuItemByPosition = (lang, data) => {
+const getMenuItemByPosition = lang => {
   return requestLang({
-    url: `${lang}/api/fe/menu/position/${data}`,
+    url: `${lang}/api/fe/menu/findAllByListPosition`,
     method: 'GET'
   })
     .then(res => {

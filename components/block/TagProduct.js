@@ -23,7 +23,13 @@ function TagProduct({ data, id }) {
   return (
     <section className={`${padding} sec-h-2 bg-gray group-ef loaded hot-products`} id={id}>
       <div className="container">
-        <div className="entry-head text-center title-padding">
+        <div
+          className={
+            data[0].linkurl !== undefined && data[0].linkurl !== ''
+              ? 'entry-head text-center title-padding'
+              : 'entry-head text-center'
+          }
+        >
           <h2 className="ht efch-1 ef-img-t">{data[0].title || ''}</h2>
           {data[0].linkurl !== undefined && data[0].linkurl !== '' && (
             <a className="viewall" href={data[0].linkurl === '' ? '!#' : data[0].linkurl}>

@@ -58,13 +58,19 @@ function Pages({ data, type, id, optionWidth }) {
     if (data.pages) {
       getPageBlock();
     }
-  }, []);
+  }, [data.pages]);
 
   if (type && type === '1') {
     return (
       <div className={`${padding} block-page category-${type}`} id={id}>
         <div className="container">
-          <div className="entry-head text-center title-padding">
+          <div
+            className={
+              data.linkurl && data.linkurl !== ''
+                ? 'entry-head text-center title-padding'
+                : 'entry-head text-center'
+            }
+          >
             {data.title && <h2 className="ht">{data.title}</h2>}
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
@@ -105,7 +111,13 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <div className="container" id={id}>
         <section className={`${padding} block-page block-type-2 category-${type}`}>
-          <div className="entry-head text-center title-padding">
+          <div
+            className={
+              data.linkurl && data.linkurl !== ''
+                ? 'entry-head text-center title-padding'
+                : 'entry-head text-center'
+            }
+          >
             <h2 className="ht styleht">{data.title}</h2>
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
@@ -147,7 +159,13 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <section className={`${padding} sec-related bg-gray category-${type}`} id={id}>
         <div className="container">
-          <div className="entry-head text-center title-padding">
+          <div
+            className={
+              data.linkurl && data.linkurl !== ''
+                ? 'entry-head text-center title-padding'
+                : 'entry-head text-center'
+            }
+          >
             <h2 className="ht">{data.title}</h2>
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
@@ -196,7 +214,13 @@ function Pages({ data, type, id, optionWidth }) {
       <section className={`${padding} bg-gray category-${type}`} id={id}>
         <div className="container">
           <div className="max750"></div>
-          <div className="entry-head text-center title-padding">
+          <div
+            className={
+              data.linkurl && data.linkurl !== ''
+                ? 'entry-head text-center title-padding'
+                : 'entry-head text-center'
+            }
+          >
             <h2 className="ht text-center">{data.title}</h2>
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
@@ -228,7 +252,11 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <section className={` ${padding} sec-cauhoi category-${type} `} id={id}>
         <div className="container">
-          <div className="entry-head title-padding">
+          <div
+            className={
+              data.linkurl && data.linkurl !== '' ? 'entry-head title-padding' : 'entry-head'
+            }
+          >
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
@@ -301,7 +329,11 @@ function Pages({ data, type, id, optionWidth }) {
     return (
       <section className={`${padding} category-${type}`} id={id}>
         <div className="container">
-          <div className="entry-head title-padding">
+          <div
+            className={
+              data.linkurl && data.linkurl !== '' ? 'entry-head title-padding' : 'entry-head'
+            }
+          >
             <h2 className="ht ">{data === null ? '' : data.title}</h2>
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>

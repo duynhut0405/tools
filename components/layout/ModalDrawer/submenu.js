@@ -70,9 +70,7 @@ function SubMenu({ menu }) {
           )}
 
           <LinkPage lang={lang} name={item.slugPages}>
-            <a>
-              <span>{item.name}</span>
-            </a>
+            <span>{item.name}</span>
           </LinkPage>
 
           {item.children.length > 0 && (
