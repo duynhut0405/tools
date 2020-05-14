@@ -449,7 +449,7 @@ function News({ data, type, id, optionWidth }) {
                             alt="images"
                           />
                           <div className="divtext">
-                            <h4 className="title line2">{item.title}</h4>
+                            <h4 className="title ">{item.title}</h4>
                           </div>
                         </a>
                       </LinkNew>

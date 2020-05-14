@@ -64,7 +64,7 @@ function Carousels({ silder }) {
                 >
                   {map(silder, (_item, _index) => {
                     return (
-                      <div className={`container  option-${_item.options}`} key={_index}>
+                      <div className={`container  option-2`} key={_index}>
                         <div className="divtext text-left-mg ">
                           <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(_item.note_1)}</h1>
                           <div className="cl1">{ReactHtmlParser(_item.note_2)}</div>
@@ -93,16 +93,12 @@ function Carousels({ silder }) {
                         </div>
                         <div className="wimg">
                           <img
-                            className={
-                              _item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'
-                            }
+                            className="img-center img-pc"
                             src={`${process.env.DOMAIN}${_item.urlImage}`}
                             alt="icon"
                           />
                           <img
-                            className={
-                              _item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'
-                            }
+                            className="img-center img-mb"
                             src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
                             alt="icon"
                           />

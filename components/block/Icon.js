@@ -427,7 +427,7 @@ function Icon({ data, id }) {
                 </div>
               )}
               {size.width < 768 && (
-                <div>
+                <div className="list-item">
                   {map(data, (items, index) => (
                     <div className="item ef-img-t item_carousel" key={index}>
                       <a
@@ -435,7 +435,7 @@ function Icon({ data, id }) {
                         className="link"
                         style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                       >
-                        <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
+                        <div className="img" >
                           <img
                             data-src={`${process.env.DOMAIN}${items.urlImage}`}
                             className="lazyload"
