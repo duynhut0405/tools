@@ -200,7 +200,7 @@ function Pages({ data, type, id, optionWidth }) {
           </div>
           <div className="tags">
             {map(data.listTag, (values, index) => (
-              <LinkPage key={index} lang={lang} name={values.slug}>
+              <LinkPage key={index} lang={lang} name={values.url}>
                 <a className="tag">{values.name}</a>
               </LinkPage>
             ))}
