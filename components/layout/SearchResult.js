@@ -68,20 +68,20 @@ function SearchResult({ query, isSearch }) {
       <section id="top-search-result">
         <div className="container">
           {lang === 'en' && (
-            <Link href="/en">
+            <span onClick={onClose}>
               <a id="logo">
                 <a id="logo">
                   <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
                 </a>
               </a>
-            </Link>
+            </span>
           )}
           {lang === 'vi' && (
-            <Link href="/">
+            <span onClick={onClose}>
               <a id="logo">
                 <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
               </a>
-            </Link>
+            </span>
           )}
           <span className="icon-close close-sg" onClick={onClose}></span>
           <form name="search" className="search-field" autoComplete="off" onSubmit={onSubmit}>

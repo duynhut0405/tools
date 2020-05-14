@@ -6,7 +6,7 @@ import { getNewByIdService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
 import { getLang } from '../../utils/cookie';
 import t from '../../translation';
-import { LinkNew, LinkCategory } from '../common/link';
+import { LinkNew, LinkCategory, LinkInput } from '../common/link';
 import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
 import UseWindowResize from '../common/Resize';
@@ -136,12 +136,22 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <LinkCategory lang={lang} name={slugCategory}>
-                <a className="viewall">
-                  {t('view')}
-                  <i className="icon-arrow-1"></i>
-                </a>
-              </LinkCategory>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
             </div>
           )}
           {/* 2tabs main */}
@@ -219,12 +229,22 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <LinkCategory lang={lang} name={slugCategory}>
-                <a className="viewall">
-                  {t('view')}
-                  <i className="icon-arrow-1"></i>
-                </a>
-              </LinkCategory>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
             </div>
           )}
           {size.width >= 768 && (
@@ -352,12 +372,22 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head home title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <LinkCategory lang={lang} name={slugCategory}>
-                <a className="viewall">
-                  {t('view')}
-                  <i className="icon-arrow-1"></i>
-                </a>
-              </LinkCategory>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
             </div>
           )}
           <div className="list-5 row list-item">
@@ -410,12 +440,22 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <LinkCategory lang={lang} name={slugCategory}>
-                <a className="viewall">
-                  {t('view')}
-                  <i className="icon-arrow-1"></i>
-                </a>
-              </LinkCategory>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
             </div>
           )}
           <div className="row list-item">
@@ -508,12 +548,22 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <LinkCategory lang={lang} name={slugCategory}>
-                <a className="viewall">
-                  {t('view')}
-                  <i className="icon-arrow-1"></i>
-                </a>
-              </LinkCategory>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
             </div>
           )}
           <div className="list-5 row list-item">
@@ -561,12 +611,22 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <LinkCategory lang={lang} name={slugCategory}>
-                <a className="viewall">
-                  {t('view')}
-                  <i className="icon-arrow-1"></i>
-                </a>
-              </LinkCategory>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
             </div>
           )}
           <div className="list-5 list-5-1 row list-item">
@@ -606,12 +666,22 @@ function News({ data, type, id, optionWidth }) {
             <div className="entry-head title-padding">
               <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              <LinkCategory lang={lang} name={slugCategory}>
-                <a className="viewall">
-                  {t('view')}
-                  <i className="icon-arrow-1"></i>
-                </a>
-              </LinkCategory>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
             </div>
           )}
           <div className="row list-item">
