@@ -13,7 +13,7 @@ function Share({ url, padding }) {
           <h2 className="ht efch-1 ef-img-t">Thông tin thị trường</h2>
         </div>
         <div>
-          <iframe data-src={url} style={{ width: '100%', minHeight: '500px' }}></iframe>
+          <iframe src={url} style={{ width: '100%', minHeight: '500px' }}></iframe>
         </div>
       </div>
     </section>

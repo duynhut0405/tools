@@ -87,7 +87,7 @@ function Carousels({ silder }) {
                           )}
                           {_item.video_url !== undefined && _item.video_url !== '' && (
                             <div>
-                              <iframe data-src={_item.video_url} />
+                              <iframe src={_item.video_url} />
                             </div>
                           )}
                         </div>
