@@ -53,69 +53,66 @@ function Carousels({ silder }) {
                 </section>
               );
             }
-            if (item.options === '1' || item.options === '2') {
-              return (
-                <section className="silder banner-heading-1 home next-shadow" key={index}>
-                  <Carousel
-                    showThumbs={false}
-                    showStatus={false}
-                    infiniteLoop={true}
-                    emulateTouch
-                    showIndicators={false}
-                  >
-                    {map(silder, (_item, _index) => {
-                      return (
-                        <div className={`container  option-${_item.options}`} key={_index}>
-                          <div className="divtext text-left-mg ">
-                            <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(_item.note_1)}</h1>
-                            <div className="cl1">{ReactHtmlParser(_item.note_2)}</div>
-                            <div className="text_content3">{_item.note_3}</div>
-                            {_item.text_action === null ||
-                            _item.text_action === undefined ||
-                            _item.text_action === '' ? (
-                              ''
-                            ) : (
-                              <a
-                                className="btn"
-                                href={
-                                  _item.url === null || _item.url === undefined || _item.url === ''
-                                    ? '#'
-                                    : _item.url
-                                }
-                              >
-                                {_item.text_action}
-                              </a>
-                            )}
-                            {_item.video_url !== undefined && _item.video_url !== '' && (
-                              <div>
-                                <iframe data-src={_item.video_url} />
-                              </div>
-                            )}
-                          </div>
-                          <div className="wimg">
-                            <img
-                              className={
-                                _item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'
+            return (
+              <section className="silder banner-heading-1 home next-shadow" key={index}>
+                <Carousel
+                  showThumbs={false}
+                  showStatus={false}
+                  infiniteLoop={true}
+                  emulateTouch
+                  showIndicators={false}
+                >
+                  {map(silder, (_item, _index) => {
+                    return (
+                      <div className={`container  option-${_item.options}`} key={_index}>
+                        <div className="divtext text-left-mg ">
+                          <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(_item.note_1)}</h1>
+                          <div className="cl1">{ReactHtmlParser(_item.note_2)}</div>
+                          <div className="text_content3">{_item.note_3}</div>
+                          {_item.text_action === null ||
+                          _item.text_action === undefined ||
+                          _item.text_action === '' ? (
+                            ''
+                          ) : (
+                            <a
+                              className="btn"
+                              href={
+                                _item.url === null || _item.url === undefined || _item.url === ''
+                                  ? '#'
+                                  : _item.url
                               }
-                              src={`${process.env.DOMAIN}${_item.urlImage}`}
-                              alt="icon"
-                            />
-                            <img
-                              className={
-                                _item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'
-                              }
-                              src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
-                              alt="icon"
-                            />
-                          </div>
+                            >
+                              {_item.text_action}
+                            </a>
+                          )}
+                          {_item.video_url !== undefined && _item.video_url !== '' && (
+                            <div>
+                              <iframe data-src={_item.video_url} />
+                            </div>
+                          )}
                         </div>
-                      );
-                    })}
-                  </Carousel>
-                </section>
-              );
-            }
-            return null;
+                        <div className="wimg">
+                          <img
+                            className={
+                              _item.options === '2' ? 'img-center img-pc' : 'img-right img-pc'
+                            }
+                            src={`${process.env.DOMAIN}${_item.urlImage}`}
+                            alt="icon"
+                          />
+                          <img
+                            className={
+                              _item.options === '2' ? 'img-center img-mb' : 'img-right img-mb'
+                            }
+                            src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
+                            alt="icon"
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </Carousel>
+              </section>
+            );
           })}
         </div>
       )}
