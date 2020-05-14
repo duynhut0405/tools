@@ -40,7 +40,6 @@ function News({ data, type, id, optionWidth }) {
   } else {
     padding = 'sec-';
   }
-  console.log('dataaa:', data);
 
   const responsive = {
     desktop: {
