@@ -75,6 +75,7 @@ function Layout({ children, lang, isPrioty }) {
       if (rs) {
         return nested(rs.menuItems);
       }
+      return null;
     }
   };
 
@@ -309,7 +310,6 @@ function Layout({ children, lang, isPrioty }) {
           <div id="panel">
             <div className="container">
               <ul className="menu line text-right">
-                {console.log(allData)}
                 <li>
                   <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
                     <button className="search-sg" type="submit">
