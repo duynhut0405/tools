@@ -9,14 +9,13 @@ import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Cookies from 'js-cookie';
 import { LinkPage } from '../common/link';
-import { getMemnu, getSetting, getSocialLink, getCommon } from '../../utils/fetch';
+import { getMemnu, getCommon } from '../../utils/fetch';
 import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
 import debounce from 'lodash/debounce';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { getStoreFont } from '../../services/storefont';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -29,7 +28,8 @@ const propTypes = {
   menuFooterBottom: PropTypes.array,
   menuFooterMain: PropTypes.array,
   menuSearch: PropTypes.array,
-  lang: PropTypes.string
+  lang: PropTypes.string,
+  isPrioty: PropTypes.any
 };
 
 function Layout({ children, lang, isPrioty }) {
