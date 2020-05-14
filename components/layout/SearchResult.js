@@ -22,7 +22,7 @@ const fetch = async (query, setData) => {
   }
 };
 
-function SearchResult({ query }) {
+function SearchResult({ query, isSearch }) {
   const [tabActive, setTabActive] = useState(1);
   const [data, setData] = useState({});
   const [page, setPage] = useState(1);
@@ -38,10 +38,10 @@ function SearchResult({ query }) {
   }, [query]);
 
   useEffect(() => {
-    //if (search !== null) {
-    fetch({ search: search, page: page, number: 20, type: type }, setData);
-    //}
-  }, [page, type, search]);
+    if (isSearch) {
+      fetch({ search: search, page: page, number: 20, type: type }, setData);
+    }
+  }, [page, type, search, isSearch]);
 
   const onClose = () => {
     const body = document.getElementsByTagName('body')[0];

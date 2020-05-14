@@ -48,6 +48,7 @@ function Layout({ children, lang, isPrioty }) {
   const [menuMobile, setMenuMobile] = useState([]);
   const [allData, setAllData] = useState([]);
   const [common, setCommon] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
 
   const fetchAllData = async () => {
     const result = await getMemnu(lang);
@@ -284,6 +285,7 @@ function Layout({ children, lang, isPrioty }) {
     const result = document.getElementById('search-result');
     body.classList.add('fixed-screen');
     result.style = `display: block`;
+    setIsSearch(true);
   };
 
   const onChangeSuggest = url => {
@@ -514,7 +516,7 @@ function Layout({ children, lang, isPrioty }) {
               </div>
             )}
           </Sticky>
-          <SearchResult query={query} />
+          <SearchResult query={query} isSearch={isSearch} />
           <div>{children}</div>
           {/* contact */}
           <section className="sec-cta">
