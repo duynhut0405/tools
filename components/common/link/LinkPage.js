@@ -9,15 +9,15 @@ const propTypes = {
   children: PropTypes.node
 };
 
-function LinkPage({ lang, name, children, ...rest }) {
+function LinkPage({ lang, name, children }) {
   return (
     <>
       {lang === 'en' ? (
-        <Link href="/en/page/[...name]" as={`/${lang}/page/${name}`} {...rest}>
+        <Link href="/en/page/[...name]" as={`/${lang}/page/${name}`}>
           {children}
         </Link>
       ) : (
-        <Link href="/page/[...name]" as={`/page/${name}`} {...rest}>
+        <Link href="/page/[...name]" as={`/page/${name}`}>
           {children}
         </Link>
       )}
