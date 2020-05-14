@@ -274,21 +274,20 @@ function Icon({ data, id }) {
                 </div>
               )}
               {size.width < 768 && (
-                <div>
+                <div className="list-9 list-item">
                   {map(data, (item, index) => (
-                    <div className={`item efch-${index + 2} ef-img-l `} key={index}>
-                      <a href={item.url}>
+
+                      <a href={item.url} className={`item efch-${index + 2} ef-img-l `} key={index}>
                         <div className="img">
                           <img
                             className="lazyload"
                             alt="images"
                             data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                            style={{ width: '160px', height: '52px' }}
                           />
                         </div>
                         <div className="des">{item.note_1}</div>
                       </a>
-                    </div>
+
                   ))}
                 </div>
               )}
