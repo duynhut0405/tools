@@ -118,9 +118,9 @@ function CustomPageItem({ data, indexTab }) {
             <div className="container">
               <div className="list-5 row list-item">
                 {map(listPage, (items, index) => (
-                  <div className="col-md-4" key={index}>
+                  <div className="col-sm-6" key={index}>
                     <LinkPage lang={lang} name={items.slug}>
-                      <a className="link">
+                      <a className="item">
                         <div className="img tRes_70">
                           <img
                             className="lazyload"
