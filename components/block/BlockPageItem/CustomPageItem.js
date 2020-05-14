@@ -32,6 +32,11 @@ function CustomPageItem({ data, indexTab }) {
       getPageBlock();
     }
   }, [data]);
+  useEffect(() => {
+    if (indexTab === 0) {
+      setActive(true);
+    }
+  }, []);
 
   const responsiveTwo = {
     desktop: {
