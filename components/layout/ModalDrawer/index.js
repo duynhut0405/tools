@@ -74,7 +74,9 @@ function ModalDrawer({ menu, menuHeader, onSearch }) {
             ></span>
           )}
           <LinkPage lang={lang} name={item.slugPages}>
-            <span>{item.name}</span>
+            <a>
+              <span>{item.name}</span>
+            </a>
           </LinkPage>
 
           {item.children.length > 0 && (
