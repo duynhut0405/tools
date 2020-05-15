@@ -7,10 +7,11 @@ const propTypes = {
   data: Proptypes.array,
   formActive: Proptypes.number,
   setFormActive: Proptypes.func,
-  padding: Proptypes.string
+  padding: Proptypes.string,
+  onGoBack: Proptypes.func
 };
 
-function FormWapper({ data, formActive, setFormActive, padding }) {
+function FormWapper({ data, formActive, setFormActive, padding, onGoBack }) {
   return (
     <section className={padding}>
       <div className="container">
@@ -24,6 +25,7 @@ function FormWapper({ data, formActive, setFormActive, padding }) {
                 key={index}
                 formActive={formActive}
                 onNext={(value, formdata) => setFormActive(value, formdata)}
+                onGoBack={() => onGoBack(data.length)}
               />
             );
           })}

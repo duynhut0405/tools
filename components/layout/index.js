@@ -709,7 +709,7 @@ function Layout({ children, lang, isPrioty }) {
                   </label>
                   <div className="accodion-content">
                     <div className="inner">
-                      <div className="row grid-space-10">{renderFooterMobile(menuMobile)}</div>
+                      <div className="row grid-space-10">{renderFooter(menuFooterMain)}</div>
                     </div>
                   </div>
                 </div>

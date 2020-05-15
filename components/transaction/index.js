@@ -36,7 +36,7 @@ function Transaction({ data, id }) {
   const [locationId, setID] = useState(null);
   const [zoom, setZoom] = useState(8);
   const [district, setDistrict] = useState('');
-  const [branches_type, setBranchesType] = useState('branch');
+  const [branches_type, setBranchesType] = useState('all');
   const [province, setProvince] = useState('');
   const [query, setQuery] = useState('');
   const [listBranches, setListBranches] = useState([]);
@@ -51,20 +51,11 @@ function Transaction({ data, id }) {
   };
 
   useEffect(() => {
-    searchBranches(
-      {
-        districtCity: district,
-        networkCategory: branches_type,
-        provinceCity: province,
-        search: query
-      },
-      setListBranches
-    );
     getProvince(setListProvince);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     }
-  }, [searchBranches, getProvince]);
+  }, []);
 
   useEffect(() => {
     searchBranches(
@@ -77,7 +68,7 @@ function Transaction({ data, id }) {
       setListBranches
     );
     setZoom(8);
-  }, [district, branches_type, province, query]);
+  }, [district, branches_type, province]);
 
   const handleProvince = provinceItem => {
     setProvince(provinceItem.value);
@@ -92,6 +83,19 @@ function Transaction({ data, id }) {
     }));
     setID(branches.id);
     setZoom(14);
+  };
+
+  const onSearch = event => {
+    event.preventDefault();
+    searchBranches(
+      {
+        districtCity: district,
+        networkCategory: branches_type,
+        provinceCity: province,
+        search: query
+      },
+      setListBranches
+    );
   };
 
   let padding = '';
@@ -116,6 +120,7 @@ function Transaction({ data, id }) {
             branches_type={branches_type}
             handleProvince={handleProvince}
             setQuery={setQuery}
+            onSearch={onSearch}
             setBranchesType={setBranchesType}
             setDistrict={setDistrict}
             getDetail={getDetail}

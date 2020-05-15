@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { map, debounce } from 'lodash';
+import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import t from '../../translation';
 
@@ -14,7 +14,8 @@ const propTypes = {
   setBranchesType: PropTypes.func,
   handleProvince: PropTypes.func,
   t: PropTypes.func,
-  getDetail: PropTypes.func
+  getDetail: PropTypes.func,
+  onSearch: PropTypes.func
 };
 
 function BoxSearch({
@@ -26,19 +27,17 @@ function BoxSearch({
   setBranchesType,
   setQuery,
   setDistrict,
-  getDetail
+  getDetail,
+  onSearch
 }) {
-  const onSearch = debounce(value => {
-    setQuery(value);
-  }, 2000);
   return (
     <div className="ajax-content-map">
       <ul className="menu row grid-space-0">
         <li
-          className={branches_type === 'branch' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('branch')}
+          className={branches_type === 'all' ? 'col-4 active' : 'col-4'}
+          onClick={() => setBranchesType('all')}
         >
-          <span className="item">{t('branch')}</span>
+          <span className="item">{t('all')}</span>
         </li>
         <li
           className={branches_type === 'transaction' ? 'col-4 active' : 'col-4'}
@@ -55,14 +54,16 @@ function BoxSearch({
       </ul>
 
       <div className="form-search-focus mb-20">
-        <input
-          type="text"
-          placeholder={t('place')}
-          onChange={event => onSearch(event.target.value)}
-        />
-        <button>
-          <i className="icon-search-2"></i>
-        </button>
+        <form onSubmit={onSearch}>
+          <input
+            type="text"
+            placeholder={t('place')}
+            onChange={event => setQuery(event.target.value)}
+          />
+          <button type="submit">
+            <i className="icon-search-2"></i>
+          </button>
+        </form>
       </div>
       <div className="mb-20">
         <div>{t('province')}</div>
@@ -92,9 +93,10 @@ function BoxSearch({
         {map(listBranches, (branches, index) => (
           <div
             className={
-              (index + 1) % 2 === 0
+              branches.network_category === 'atm'
                 ? 'item color-2'
-                : (index + 1) % 3 === 0
+                : branches.network_category === 'transaction' ||
+                  branches.network_category === 'transaction_online'
                 ? 'item color-3'
                 : 'item color-1'
             }
