@@ -127,7 +127,6 @@ function Layout({ children, lang, isPrioty }) {
   useEffect(() => {
     fetchMenu();
   }, [allData, common]);
-  console.log('menumobile:', menuMobile);
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
