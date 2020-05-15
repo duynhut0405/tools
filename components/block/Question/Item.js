@@ -5,14 +5,15 @@ import Proptypes from 'prop-types';
 const propTypes = {
   question: Proptypes.string,
   answer: Proptypes.string,
-  index: Proptypes.number
+  index: Proptypes.number,
+  id: Proptypes.number
 };
 
-function QuestionItems({ question, answer, index }) {
+function QuestionItems({ question, answer, index, id }) {
   const [active, setAcive] = useState(false);
 
   useEffect(() => {
-    if (index === 0) {
+    if (id === 0) {
       setAcive(true);
     }
   }, []);

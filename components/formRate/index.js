@@ -124,7 +124,13 @@ function FormRate({ data, interestRate }) {
                     name="from"
                     value={From}
                     onChange={e => {
-                      setFrom(e.target.value);
+                      console.log(
+                        'show:',
+                        e.target.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                      );
+                      console.log(typeof e.target.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+
+                      setFrom(e.target.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
                     }}
                   />
                 </div>
