@@ -3,7 +3,7 @@ import { ListDowloadQA } from '../../common/download';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  text: PropTypes.object
+  text: PropTypes.string
 };
 
 function TabQuestion({ text }) {

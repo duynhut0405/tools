@@ -39,7 +39,6 @@ ul.menu.line > li button.search-sg i {
   top: 0;
   left: 0;
   z-index: 1001 !important;
-  display: none;
   background-color: #fff;
 }
 

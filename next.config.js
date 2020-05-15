@@ -130,7 +130,9 @@ module.exports = withPWA(
 
           let pageRouter = Object.assign({}, router, {
             '/': { page: '/' },
-            '/en': { page: '/en' }
+            '/search': { page: '/search' },
+            '/en': { page: '/en' },
+            '/en/search': { page: '/en/search' }
           });
 
           pageRouter = Object.assign(
