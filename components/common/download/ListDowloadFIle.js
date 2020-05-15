@@ -40,26 +40,16 @@ function ListDowloadFIle({
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(moment(date).format('YYYY'));
-  const [title] = useState(convertTitle(type));
-
+  const title = convertTitle(data ? parseInt(data.type) : null);
   useEffect(() => {
     getTypeRegulation(type);
-    const width = window.innerWidth;
-    if (width < 768) {
-      seachRegulation(type, 0, 5, 0, year);
-    } else {
-      seachRegulation(type, 0, 10, 0, year);
-    }
-  }, [getTypeRegulation]);
-
-  useEffect(() => {
     const width = window.innerWidth;
     if (width < 768) {
       seachRegulation(type, datatype, 5, page, year);
     } else {
       seachRegulation(type, datatype, 10, page, year);
     }
-  }, [page, year, datatype]);
+  }, [page, year, datatype, data]);
 
   let padding = '';
   if (Number(optionWidth) === 2) {
@@ -71,7 +61,6 @@ function ListDowloadFIle({
   } else {
     padding = 'sec-';
   }
-
   return (
     <div className={`${padding} accodion accodion-2 downloadfile`} id={id}>
       <div className="container">

@@ -3,7 +3,7 @@ import { getFormbuilderByIdService } from '../../../services/form';
 import ReactHtmlParser from 'react-html-parser';
 import map from 'lodash/map';
 import t from '../../../translation';
-import { LinkPage } from '../../common/link';
+import Link from 'next/link';
 import { getLang } from '../../../utils/cookie';
 import Proptypes from 'prop-types';
 
@@ -13,6 +13,7 @@ const propTypes = {
   totalStep: Proptypes.number,
   formActive: Proptypes.number,
   onNext: Proptypes.func,
+  onGoBack: Proptypes.func,
   t: Proptypes.func
 };
 
@@ -23,7 +24,7 @@ const getFormByID = async (id, setData) => {
   }
 };
 
-function FormItems({ data, step, totalStep, formActive, onNext }) {
+function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
   const lang = getLang();
@@ -42,6 +43,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
 
   const onSend = event => {
     event.preventDefault();
+    onNext(step + 1, formState);
   };
 
   return (
@@ -86,7 +88,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
                         type="radio"
                         name={item.name}
                         required={item.required}
-                        value={items.value}
+                        value={formState[items.name]}
                         onChange={e => handleChange(e)}
                       />
                       <span></span>
@@ -106,6 +108,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
                       name={item.name}
                       required={item.required}
                       type={item.subtype}
+                      value={formState[item.name]}
                       placeholder={item.placeholder}
                       onChange={e => handleChange(e)}
                     />
@@ -125,6 +128,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
                       name={item.name}
                       required={item.required}
                       rows={item.rows}
+                      value={formState[item.name]}
                       placeholder={item.placeholder}
                       onChange={e => handleChange(e)}
                     />
@@ -149,7 +153,7 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
             <React.Fragment>
               <div className="col-12">
                 <div className="text-center">
-                  <img data-src="/static/images/ico-dangky.svg" alt="images" />
+                  <img className="lazyload" data-src="/static/images/ico-dangky.svg" alt="images" />
                 </div>
               </div>
 
@@ -163,25 +167,34 @@ function FormItems({ data, step, totalStep, formActive, onNext }) {
               <div className="col-12 ">
                 <div className="text-center">
                   {lang === 'vi' && (
-                    <LinkPage lang={lang} name="/">
+                    <Link href="/">
                       <a className="btn">{t('form_step_go_home')}</a>
-                    </LinkPage>
+                    </Link>
                   )}
                   {lang === 'en' && (
-                    <LinkPage lang={lang} name="/en">
+                    <Link href="/en">
                       <a className="btn">{t('form_step_go_home')}</a>
-                    </LinkPage>
+                    </Link>
                   )}
                 </div>
               </div>
             </React.Fragment>
           )}
           {data.type !== 'result' && (
-            <div className="col-12 text-center">
-              <a className="btn" onClick={() => onNext(step + 1, formState)}>
-                {t('form_step_continue')}
-              </a>
-            </div>
+            <React.Fragment>
+              {step > 1 && (
+                <div className="col-6">
+                  <button className="btn" onClick={onGoBack} type="button">
+                    {t('form_step_back')}
+                  </button>
+                </div>
+              )}
+              <div className={step === 1 ? 'col-12 text-center' : 'col-6 text-right'}>
+                <button className="btn" type="submit">
+                  {t('form_step_continue')}
+                </button>
+              </div>
+            </React.Fragment>
           )}
         </form>
       )}
