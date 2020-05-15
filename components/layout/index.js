@@ -127,6 +127,7 @@ function Layout({ children, lang, isPrioty }) {
   useEffect(() => {
     fetchMenu();
   }, [allData, common]);
+  console.log('menumobile:', menuMobile);
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
@@ -719,7 +720,11 @@ function Layout({ children, lang, isPrioty }) {
               <div className="row">
                 {map(menuMobile, (item, index) => (
                   <div className="col-3" key={index}>
-                    <a href={item.url} className="item ">
+                    <a
+                      href={item.url}
+                      target={item.target === null || item.target === 1 ? '_top' : '_blank'}
+                      className="item "
+                    >
                       <span className="img">
                         <img
                           className="lazyload"
