@@ -40,8 +40,7 @@ function ListDowloadFIle({
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(moment(date).format('YYYY'));
-  const title = convertTitle(parseInt(data.type));
-  // console.log(data.type);
+  const title = convertTitle(data ? parseInt(data.type) : null);
   useEffect(() => {
     getTypeRegulation(type);
     const width = window.innerWidth;
