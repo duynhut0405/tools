@@ -40,19 +40,10 @@ function ListDowloadFIle({
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(moment(date).format('YYYY'));
-  const title = convertTitle(type);
-
+  const title = convertTitle(parseInt(data.type));
+  // console.log(data.type);
   useEffect(() => {
     getTypeRegulation(type);
-    const width = window.innerWidth;
-    if (width < 768) {
-      seachRegulation(type, 0, 5, 0, year);
-    } else {
-      seachRegulation(type, 0, 10, 0, year);
-    }
-  }, [getTypeRegulation, data]);
-
-  useEffect(() => {
     const width = window.innerWidth;
     if (width < 768) {
       seachRegulation(type, datatype, 5, page, year);
