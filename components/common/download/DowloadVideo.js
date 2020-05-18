@@ -17,10 +17,6 @@ function DowloadVideo({ year, data, fileIcon, showYear }) {
     getUrlVideoService(year).then(res => {
       //
       if (res !== null && res !== undefined && res.status === 200) {
-        console.log('res:', res.data);
-
-        console.log('res.data.urlVideo:', res.data.urlVideo);
-
         setURlVideo(res.data.urlVideo);
       }
     });
