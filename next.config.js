@@ -68,7 +68,7 @@ module.exports = withPWA(
             routerEN = resEN.data.reduce(
               (pages, data) =>
                 Object.assign({}, pages, {
-                  [`/en/page/${data.slug}`]: { page: '/[lang]/page/[...name]' }
+                  [`/en/page/${data.slug}`]: { page: '/en/page/[...name]' }
                 }),
               {}
             );
@@ -90,7 +90,7 @@ module.exports = withPWA(
             newRouterEN = newResponseEN.data.reduce(
               (pages, data) =>
                 Object.assign({}, pages, {
-                  [`/en/news/${data.url}`]: { page: '/[lang]/news/[...slug]' }
+                  [`/en/news/${data.url}`]: { page: '/en/news/[...slug]' }
                 }),
               {}
             );
@@ -121,7 +121,7 @@ module.exports = withPWA(
               (pages, category) =>
                 Object.assign({}, pages, {
                   [`/en/news/category/${category.slug}`]: {
-                    page: '/[lang]/news/category/[...name]'
+                    page: '/en/news/category/[...name]'
                   }
                 }),
               {}
@@ -130,7 +130,9 @@ module.exports = withPWA(
 
           let pageRouter = Object.assign({}, router, {
             '/': { page: '/' },
-            '/en': { page: '/[lang]' }
+            '/search': { page: '/search' },
+            '/en': { page: '/en' },
+            '/en/search': { page: '/en/search' }
           });
 
           pageRouter = Object.assign(

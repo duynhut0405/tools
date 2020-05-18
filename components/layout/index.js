@@ -5,7 +5,6 @@ import { Social } from '../common';
 import ModalDrawer from './ModalDrawer';
 import DownloadApp from './DownloadApp';
 import Suggest from './Suggest';
-import SearchResult from './SearchResult';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Cookies from 'js-cookie';
 import { LinkPage } from '../common/link';
@@ -13,7 +12,6 @@ import { getMemnu, getCommon } from '../../utils/fetch';
 import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
-import debounce from 'lodash/debounce';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
@@ -48,7 +46,6 @@ function Layout({ children, lang, isPrioty }) {
   const [menuMobile, setMenuMobile] = useState([]);
   const [allData, setAllData] = useState([]);
   const [common, setCommon] = useState([]);
-  const [isSearch, setIsSearch] = useState(false);
 
   const fetchAllData = async () => {
     const result = await getMemnu(lang);
@@ -234,30 +231,36 @@ function Layout({ children, lang, isPrioty }) {
     });
   };
 
-  const renderFooterMobile = items => {
-    return map(items, (values, key) => {
-      return (
-        <div className="col-md-3 col-6  efch-2 ef-img-t" key={key}>
-          <div className="widget">
-            <h4 className="widget-title">{values.name}</h4>
-            <ul className="menu">{footerItem(values.children)}</ul>
-          </div>
-        </div>
-      );
-    });
-  };
+  // const renderFooterMobile = items => {
+  //   return map(items, (values, key) => {
+  //     return (
+  //       <div className="col-md-3 col-6  efch-2 ef-img-t" key={key}>
+  //         <div className="widget">
+  //           <h4 className="widget-title">{values.name}</h4>
+  //           <ul className="menu">{footerItem(values.children)}</ul>
+  //         </div>
+  //       </div>
+  //     );
+  //   });
+  // };
 
   const changeLang = _lang => {
     const regex = new RegExp(`^/(${['vi', 'en'].join('|')})`);
     const path = router.asPath.replace(regex, `/${_lang}`);
-    if (_lang === 'vi' && lang !== 'vi') {
+
+    if (router.pathname === '/search' && _lang === 'vi' && lang !== 'vi') {
+      router.push(`${router.pathname}`);
+    } else if (router.pathname === '/search' && _lang === 'en' && lang !== 'en') {
+      router.push(`/en${router.pathname}`);
+    }
+    if (router.pathname !== '/search' && _lang === 'vi' && lang !== 'vi') {
       if (path === '/vi') {
         router.push('/');
       } else {
         router.push(path.slice(3, path.length));
       }
       Cookies.set('lang', 'vi');
-    } else if (_lang === 'en' && lang !== 'en') {
+    } else if (router.pathname !== '/search' && _lang === 'en' && lang !== 'en') {
       Cookies.set('lang', 'en');
       router.push(`/en${path}`);
     }
@@ -282,10 +285,13 @@ function Layout({ children, lang, isPrioty }) {
   const onSearch = event => {
     event.preventDefault();
     const body = document.getElementsByTagName('body')[0];
-    const result = document.getElementById('search-result');
+    // const result = document.getElementById('search-result');
     body.classList.add('fixed-screen');
-    result.style = `display: block`;
-    setIsSearch(true);
+    // result.style = `display: block`;
+    router.push({
+      pathname: lang === 'vi' ? '/search' : '/en/search',
+      query: { q: query, page: 1 }
+    });
   };
 
   const onChangeSuggest = url => {
@@ -299,11 +305,15 @@ function Layout({ children, lang, isPrioty }) {
     element.style = 'width: 70px';
     box.style = 'display: none';
     element.placeholder = t('search');
+    router.push({
+      pathname: lang === 'vi' ? '/search' : '/en/search',
+      query: { q: search, page: 1 }
+    });
   };
 
-  const onChangeSearch = debounce(value => {
-    setQuery(value);
-  }, 3000);
+  // const onChangeSearch = debounce(value => {
+  //   setQuery(value);
+  // }, 3000);
 
   return (
     <>
@@ -323,7 +333,7 @@ function Layout({ children, lang, isPrioty }) {
                       placeholder={lang === 'vi' ? 'Tìm kiếm' : 'Search'}
                       onFocus={onFocus}
                       // onBlur={onBlur}
-                      onChange={event => onChangeSearch(event.target.value)}
+                      onChange={event => setQuery(event.target.value)}
                       style={{ width: '70px' }}
                     />
                   </form>
@@ -516,7 +526,6 @@ function Layout({ children, lang, isPrioty }) {
               </div>
             )}
           </Sticky>
-          <SearchResult query={query} isSearch={isSearch} />
           <div>{children}</div>
           {/* contact */}
           <section className="sec-cta">
@@ -709,7 +718,7 @@ function Layout({ children, lang, isPrioty }) {
                   </label>
                   <div className="accodion-content">
                     <div className="inner">
-                      <div className="row grid-space-10">{renderFooterMobile(menuMobile)}</div>
+                      <div className="row grid-space-10">{renderFooter(menuFooterMain)}</div>
                     </div>
                   </div>
                 </div>
@@ -719,7 +728,11 @@ function Layout({ children, lang, isPrioty }) {
               <div className="row">
                 {map(menuMobile, (item, index) => (
                   <div className="col-3" key={index}>
-                    <a href={item.url} className="item ">
+                    <a
+                      href={item.url}
+                      target={item.target === null || item.target === 1 ? '_top' : '_blank'}
+                      className="item "
+                    >
                       <span className="img">
                         <img
                           className="lazyload"
@@ -739,6 +752,7 @@ function Layout({ children, lang, isPrioty }) {
       <ModalDrawer
         menu={menuNav}
         menuHeader={menuHeader}
+        onChangeSearch={event => setQuery(event.target.value)}
         onSearch={event => {
           onSearch(event);
           setActiveDrawwe(false);

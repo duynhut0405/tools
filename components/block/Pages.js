@@ -20,8 +20,8 @@ function Pages({ data, type, id, optionWidth }) {
   const [refCarouselThree, setRefCarouselThree] = useState(null);
   const lang = getLang();
 
-  const getPageBlock = async () => {
-    const ids = map(data.pages, values => values.value);
+  const getPageBlock = async pages => {
+    const ids = map(pages, values => values.value);
     const res = await getPagesByIdService(ids);
     if (res && res.status === 200) {
       setListPage(res.data);
@@ -56,9 +56,9 @@ function Pages({ data, type, id, optionWidth }) {
 
   useEffect(() => {
     if (data.pages) {
-      getPageBlock();
+      getPageBlock(data.pages);
     }
-  }, [data.pages]);
+  }, [data.pages && id]);
 
   if (type && type === '1') {
     return (

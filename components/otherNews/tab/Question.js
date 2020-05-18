@@ -3,7 +3,7 @@ import { ListDowloadQA } from '../../common/download';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  text: PropTypes.object
+  text: PropTypes.string
 };
 
 function TabQuestion({ text }) {
@@ -14,12 +14,7 @@ function TabQuestion({ text }) {
           <h3 className="ctext">{text}</h3>
           <div className="c100">
             <form role="search" className="searchform input h50">
-              <input
-                type="text"
-                placeholder="Hãy cho chúng tôi biết khó khăn của bạn"
-                name="s"
-                className="textinput"
-              />
+              <input type="text" name="s" className="textinput" />
               <button type="submit" className="searchbutton">
                 <i className="icon-search-2"> </i>
               </button>

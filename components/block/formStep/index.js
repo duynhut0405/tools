@@ -42,6 +42,20 @@ function FormStep({ data, pageId, id }) {
       sendMailService(body);
     }
   }, [formActive]);
+
+  const onScrollTop = () => {
+    const elemet = document.getElementById('form_step_top');
+    if (elemet !== null) {
+      elemet.scrollIntoView();
+    }
+  };
+
+  const onGoBack = () => {
+    if (formActive > 1) {
+      setFormActive(formActive - 1);
+    }
+  };
+
   let padding = '';
   if (data.optionWidth === '2') {
     padding = 'sec-tb';
@@ -52,10 +66,11 @@ function FormStep({ data, pageId, id }) {
   } else {
     padding = 'sec-';
   }
+
   return (
     <section className={`form-step-wapper ${padding} formStep`} id={id}>
       <div className="container">
-        <div className="text-center">
+        <div className="text-center" id="form_step_top">
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
         </div>
@@ -76,7 +91,9 @@ function FormStep({ data, pageId, id }) {
               { type: 'result', label: 'Hoàn tất đăng ký trực tuyến', value: null }
             ]}
             formActive={formActive}
+            onGoBack={onGoBack}
             setFormActive={(value, formdata) => {
+              onScrollTop();
               setFormActive(value);
               setFormState(() => ({
                 ...formSate,

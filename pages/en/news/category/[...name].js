@@ -71,8 +71,13 @@ function CategoryDetail({ routerURL, category }) {
                 </div>
               </div>
               <img
-                className="img br loaded loaded lazyload"
-                data-src="/static/images/heading-10.svg"
+                className="img img-pc br loaded loaded lazyload"
+                data-src="/static/images/heading-10-pc.svg"
+                alt="images"
+              />
+              <img
+                className="img img-mb br loaded loaded lazyload"
+                data-src="/static/images/heading-10-mb.svg"
                 alt="images"
               />
             </section>

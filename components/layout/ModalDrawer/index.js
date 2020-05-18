@@ -11,10 +11,11 @@ const propTypes = {
   menu: PropTypes.array,
   menuHeader: PropTypes.array,
   t: PropTypes.func,
-  onSearch: PropTypes.func
+  onSearch: PropTypes.func,
+  onChangeSearch: PropTypes.func
 };
 
-function ModalDrawer({ menu, menuHeader, onSearch }) {
+function ModalDrawer({ menu, menuHeader, onSearch, onChangeSearch }) {
   const [activeTab, setActiveTab] = useState(false);
   const [indexMenu, setIndexMenu] = useState(null);
   const lang = getLang();
@@ -100,7 +101,12 @@ function ModalDrawer({ menu, menuHeader, onSearch }) {
                   <button className="search-sg" type="submit">
                     <i className="icon-search-2"></i>
                   </button>
-                  <input id="search1" type="text" placeholder={t('search')} />
+                  <input
+                    id="search1"
+                    type="text"
+                    placeholder={t('search')}
+                    onChange={onChangeSearch}
+                  />
                 </div>
               </form>
             </li>

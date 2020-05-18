@@ -14,11 +14,11 @@ function LinkInput({ lang, name, children }) {
   return (
     <>
       {lang === 'en' ? (
-        <Link href="/en/[...name]" as={`/${lang}/${name}`}>
+        <Link href="/en/[...name]" as={`/${lang}${name}`}>
           {children}
         </Link>
       ) : (
-        <Link href="/[...name]" as={`/${name}`}>
+        <Link href="/[...name]" as={`${name}`}>
           {children}
         </Link>
       )}

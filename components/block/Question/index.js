@@ -13,6 +13,7 @@ const propTypes = {
 };
 
 function Questions({ data, id }) {
+  //
   const [page, setPage] = useState(1);
   const [newsAnswer, setNewsAnswer] = useState({});
 
@@ -68,7 +69,8 @@ function Questions({ data, id }) {
                 ) => (
                   <Question
                     key={index}
-                    index={index}
+                    index={`1-${index}`}
+                    id={index}
                     answer={item.answer}
                     question={item.question}
                   />
@@ -77,7 +79,8 @@ function Questions({ data, id }) {
                 map(newsAnswer.news, (item, index) => (
                   <Question
                     key={index}
-                    index={`1-${index}`}
+                    index={`2-${index}`}
+                    id={index}
                     answer={item.description}
                     question={item.title}
                   />
