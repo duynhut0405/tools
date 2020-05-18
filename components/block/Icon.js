@@ -380,7 +380,7 @@ function Icon({ data, id }) {
                     infinite={true}
                     keyBoardControl={true}
                     arrows={false}
-                    className="menuicon"
+                    className=""
                     ref={ref => {
                       setRefCarousel(ref);
                     }}
@@ -392,15 +392,15 @@ function Icon({ data, id }) {
                           className="link"
                           style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                         >
-                          <div className="img" style={{ textAlign: 'left', paddingLeft: '20px' }}>
+                          <div className="img" >
                             <img
                               data-src={`${process.env.DOMAIN}${items.urlImage}`}
                               className="lazyload"
                               alt="images"
                             />
                           </div>
-                          <div className="divtext" style={{ paddingLeft: '20px' }}>
-                            <h3 className="title">{items.note_2}</h3>
+                          <div className="divtext" >
+                            <h4 className="title">{items.note_2}</h4>
                           </div>
                         </a>
                       </div>

@@ -14,7 +14,7 @@ function ImageRight({ items, padding, id, type }) {
   return (
     <section className={`${padding} sec-img-text group-ef loaded block-images-${type}`} id={id}>
       <div className="container">
-        <div className="row center end">
+        <div className="row center end list-item">
           <div className="col-lg-6">
             {!active && (
               <div

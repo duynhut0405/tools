@@ -80,7 +80,7 @@ function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
             }
             if (item.type === 'radio-group') {
               return (
-                <div className={`col-12 mb-30 text-center ${item.className}`} key={index}>
+                <div className={`col-12 mb-30  ${item.className}`} key={index}>
                   {map(item.values, (items, key) => (
                     <label className="radio" key={key}>
                       {items.label || ''}

@@ -319,36 +319,34 @@ function News({ data, type, id, optionWidth }) {
           {size.width < 768 && (
             <div className="list-5 list-item">
               {map(listCategory, (item, index) => (
-
-                  <LinkNew lang={lang} name={item.url}>
-                    <a
-                      className={`item efch-${index} ef-img-l `}
-                      key={index}
-                      //style={{ height: '300px', width: '262px' }}
-                    >
-                      <div className="img tRes_71">
-                        <img
-                          className="lazyload"
-                          data-src={
-                            item.base_image === null
-                              ? `/images/imgdefault.jpg`
-                              : `${process.env.DOMAIN}${item.base_image}`
-                          }
-                          style={{ height: '187px' }}
-                          alt="images"
-                        />
-                      </div>
-                      <div className="divtext">
-                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                        <h4 className="title">
-                          <ShowMoreText lines={1} more="" expanded={false} width={370}>
-                            {item.title}
-                          </ShowMoreText>
-                        </h4>
-                      </div>
-                    </a>
-                  </LinkNew>
-
+                <LinkNew lang={lang} name={item.url}>
+                  <a
+                    className={`item efch-${index} ef-img-l `}
+                    key={index}
+                    //style={{ height: '300px', width: '262px' }}
+                  >
+                    <div className="img tRes_71">
+                      <img
+                        className="lazyload"
+                        data-src={
+                          item.base_image === null
+                            ? `/images/imgdefault.jpg`
+                            : `${process.env.DOMAIN}${item.base_image}`
+                        }
+                        style={{ height: '187px' }}
+                        alt="images"
+                      />
+                    </div>
+                    <div className="divtext">
+                      <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                      <h4 className="title">
+                        <ShowMoreText lines={1} more="" expanded={false} width={370}>
+                          {item.title}
+                        </ShowMoreText>
+                      </h4>
+                    </div>
+                  </a>
+                </LinkNew>
               ))}
             </div>
           )}

@@ -27,7 +27,7 @@ function PopupItems({ item, modal, setModal }) {
             document.body.classList.remove('showModal');
           }}
         ></span>
-        <div className="container max950 middle">
+        <div className="container max950 ">
           <div className="contentModal">
             <span
               className="btnModal btn-close"
