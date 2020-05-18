@@ -138,6 +138,33 @@ body {
   display: none;
 }
 
+.tooltip {
+  position: relative;
+  //display: inline-block;
+  //width: 100%;
+  //border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: #4c4e52;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  top: -18%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  font-size: 90%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 @media only screen and (max-width: 768px) {
   .banner-heading-3 .img-pc {
     display: none;

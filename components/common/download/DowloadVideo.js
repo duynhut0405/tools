@@ -15,7 +15,12 @@ function DowloadVideo({ year, data, fileIcon, showYear }) {
   const [urlVideo, setURlVideo] = useState(null);
   useEffect(() => {
     getUrlVideoService(year).then(res => {
+      //
       if (res !== null && res !== undefined && res.status === 200) {
+        console.log('res:', res.data);
+
+        console.log('res.data.urlVideo:', res.data.urlVideo);
+
         setURlVideo(res.data.urlVideo);
       }
     });
