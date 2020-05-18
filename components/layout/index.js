@@ -284,10 +284,6 @@ function Layout({ children, lang, isPrioty }) {
 
   const onSearch = event => {
     event.preventDefault();
-    const body = document.getElementsByTagName('body')[0];
-    // const result = document.getElementById('search-result');
-    body.classList.add('fixed-screen');
-    // result.style = `display: block`;
     router.push({
       pathname: lang === 'vi' ? '/search' : '/en/search',
       query: { q: query, page: 1 }
@@ -296,9 +292,7 @@ function Layout({ children, lang, isPrioty }) {
 
   const onChangeSuggest = url => {
     setQuery(url);
-    const body = document.getElementsByTagName('body')[0];
     const result = document.getElementById('search-result');
-    body.classList.add('fixed-screen');
     result.style = `display: block`;
     const element = document.getElementById('search');
     const box = document.getElementById('search-sg');

@@ -44,9 +44,7 @@ function SearchResult({ query, isSearch }) {
   }, [page, type, search, isSearch]);
 
   const onClose = () => {
-    const body = document.getElementsByTagName('body')[0];
     const result = document.getElementById('search-result');
-    body.classList.remove('fixed-screen');
     result.style = `display: none`;
     const element = document.getElementById('search');
     const box = document.getElementById('search-sg');

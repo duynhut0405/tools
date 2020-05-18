@@ -60,104 +60,98 @@ function Search() {
         <meta property="og:image:height" content="354" />
       </Head>
       <Layout lang="en">
-        <div id="search-result">
-          <section id="top-search-result">
-            <div className="container">
-              <form name="search" className="search-field" autoComplete="off" onSubmit={onSubmit}>
-                <button type="submit" name="search-submit" className="icon-search-2"></button>
-                <button
-                  type="reset"
-                  title="Xóa text"
-                  className="btn-clear-text icon-close"
-                ></button>
-                <input
-                  type="text"
-                  onChange={event => setSearch(event.target.value)}
-                  placeholder={t('search')}
-                  className="search-input-transparent"
-                />
-              </form>
-            </div>
-          </section>
-          <section className="sec-tb search-result">
-            <div className="container">
-              <div className="cttab-v3">
-                <div className="tab-menu">
-                  <div
-                    className={tabActive === 1 ? 'active' : ''}
-                    onClick={() => {
-                      onTab(1, null);
-                    }}
-                  >
-                    <span>{t('all')}</span>
-                  </div>
-                  <div
-                    className={tabActive === 2 ? 'active' : ''}
-                    onClick={() => {
-                      onTab(2, 'news');
-                    }}
-                  >
-                    <span>{t('news')}</span>
-                  </div>
-                  <div
-                    className={tabActive === 3 ? 'active' : ''}
-                    onClick={() => {
-                      onTab(3, 'page');
-                    }}
-                  >
-                    <span>{t('product')}</span>
-                  </div>
+        <section id="top-search-result">
+          <div className="container">
+            <form name="search" className="search-field" autoComplete="off" onSubmit={onSubmit}>
+              <button type="submit" name="search-submit" className="icon-search-2"></button>
+              <button type="reset" title="Xóa text" className="btn-clear-text icon-close"></button>
+              <input
+                type="text"
+                onChange={event => setSearch(event.target.value)}
+                placeholder={t('search')}
+                className="search-input-transparent"
+              />
+            </form>
+          </div>
+        </section>
+        <section className="sec-tb search-result">
+          <div className="container">
+            <div className="cttab-v3">
+              <div className="tab-menu">
+                <div
+                  className={tabActive === 1 ? 'active' : ''}
+                  onClick={() => {
+                    onTab(1, null);
+                  }}
+                >
+                  <span>{t('all')}</span>
                 </div>
-                <div className="tab-content">
-                  <div className="active">
-                    <div className="total-search">
-                      <p>
-                        {t('find')}
-                        <span className="total"> {list.count} </span>
-                        {t('result')}
-                      </p>
-                    </div>
-                    <div className="tab-inner">
-                      <section className="sec-b sec-search-list">
-                        {map(list.searchCommons, (news, index) => {
-                          return (
-                            <div className="search-item" key={index}>
-                              {news.type === 'news' ? (
-                                <LinkNew lang={lang} name={news.object.url}>
-                                  <a>
-                                    <h3 className="ctext">{news.object.title}</h3>
-                                  </a>
-                                </LinkNew>
-                              ) : (
-                                <LinkPage lang={lang} name={news.object.slug}>
-                                  <a>
-                                    <h3 className="ctext">{news.object.name}</h3>
-                                  </a>
-                                </LinkPage>
-                              )}
-                              {news.type === 'news' && <p>{news.object.shortDescription}</p>}
-                            </div>
-                          );
-                        })}
-                      </section>
-                      <Pagination
-                        size={list.size}
-                        page={page}
-                        setPage={pageNumber => {
-                          setPage(pageNumber);
-                          router.push({
-                            pathname: '/en/search',
-                            query: { page: pageNumber }
-                          });
-                        }}
-                      />
-                    </div>
+                <div
+                  className={tabActive === 2 ? 'active' : ''}
+                  onClick={() => {
+                    onTab(2, 'news');
+                  }}
+                >
+                  <span>{t('news')}</span>
+                </div>
+                <div
+                  className={tabActive === 3 ? 'active' : ''}
+                  onClick={() => {
+                    onTab(3, 'page');
+                  }}
+                >
+                  <span>{t('product')}</span>
+                </div>
+              </div>
+              <div className="tab-content">
+                <div className="active">
+                  <div className="total-search">
+                    <p>
+                      {t('find')}
+                      <span className="total"> {list.count} </span>
+                      {t('result')}
+                    </p>
+                  </div>
+                  <div className="tab-inner">
+                    <section className="sec-b sec-search-list">
+                      {map(list.searchCommons, (news, index) => {
+                        return (
+                          <div className="search-item" key={index}>
+                            {news.type === 'news' ? (
+                              <LinkNew lang={lang} name={news.object.url}>
+                                <a>
+                                  <h3 className="ctext">{news.object.title}</h3>
+                                </a>
+                              </LinkNew>
+                            ) : (
+                              <LinkPage lang={lang} name={news.object.slug}>
+                                <a>
+                                  <h3 className="ctext">{news.object.name}</h3>
+                                </a>
+                              </LinkPage>
+                            )}
+                            {news.type === 'news' && <p>{news.object.shortDescription}</p>}
+                          </div>
+                        );
+                      })}
+                    </section>
+                    <Pagination
+                      size={list.size}
+                      page={page}
+                      setPage={pageNumber => {
+                        setPage(pageNumber);
+                        router.push({
+                          pathname: '/en/search',
+                          query: { page: pageNumber }
+                        });
+                      }}
+                    />
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </Layout>
     </React.Fragment>
   );
