@@ -40,11 +40,10 @@ const searchRate = query => {
     });
 };
 
-const getRate = query => {
+const getRate = () => {
   return request({
-    url: '/interest_rate/pagination',
-    method: 'GET',
-    params: query
+    url: '/interest_rate',
+    method: 'GET'
   })
     .then(res => {
       return res;

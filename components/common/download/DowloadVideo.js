@@ -13,10 +13,14 @@ const propTypes = {
 
 function DowloadVideo({ year, data, fileIcon, showYear }) {
   const [urlVideo, setURlVideo] = useState(null);
+  const [urlImage, setUrlImage] = useState(null);
+  const [active, setActive] = useState(false);
   useEffect(() => {
     getUrlVideoService(year).then(res => {
+      //
       if (res !== null && res !== undefined && res.status === 200) {
         setURlVideo(res.data.urlVideo);
+        setUrlImage(res.data.imageVideo);
       }
     });
   }, [year]);
@@ -25,13 +29,45 @@ function DowloadVideo({ year, data, fileIcon, showYear }) {
       <h2 className="widget-title">{year}</h2>
       <div className="row grid-space-60">
         <div className="col-lg-6">
-          <div
-            className="single_video  tRes_16_9"
-            data-id="2UrWPUAr68A"
-            data-video="autoplay=1&amp;controls=1&amp;mute=0"
-          >
-            <iframe src={urlVideo}></iframe>
-          </div>
+          {!active && (
+            <div
+              className={urlVideo !== null ? 'single_video  tRes_16_9 max750' : ''}
+              data-id="2UrWPUAr68A"
+              data-video="autoplay=1&amp;controls=1&amp;mute=0"
+            >
+              <img
+                className="lazyload"
+                data-lazy-data-src={`${process.env.DOMAIN}${urlImage}`}
+                data-src={`${process.env.DOMAIN}${urlImage}`}
+                src={`${process.env.DOMAIN}${urlImage}`}
+                alt="images"
+              />
+              {urlVideo !== null && (
+                <span
+                  className="btnvideo"
+                  onClick={() => {
+                    setActive(!active);
+                  }}
+                >
+                  {urlVideo !== null || urlVideo !== '' ? <i className="icon-play"></i> : ''}
+                </span>
+              )}
+            </div>
+          )}
+          {active && (
+            <div
+              className="single_video  tRes_16_9 max750"
+              data-id="2UrWPUAr68A"
+              data-video="autoplay=1&amp;controls=1&amp;mute=0"
+            >
+              <iframe
+                frameBorder="0"
+                allowFullScreen="1"
+                allow="autoplay; encrypted-media;"
+                src={`${urlVideo}?rel=0&autoplay=1`}
+              ></iframe>
+            </div>
+          )}
         </div>
         <div className="col-lg-6">
           <ul className="list-download ">
@@ -69,3 +105,11 @@ function DowloadVideo({ year, data, fileIcon, showYear }) {
 DowloadVideo.propTypes = propTypes;
 
 export default DowloadVideo;
+
+// <div
+//             className="single_video  tRes_16_9"
+//             data-id="2UrWPUAr68A"
+//             data-video="autoplay=1&amp;controls=1&amp;mute=0"
+//           >
+//             <iframe src={urlVideo}></iframe>
+//           </div>

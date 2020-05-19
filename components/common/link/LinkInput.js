@@ -10,17 +10,12 @@ const propTypes = {
 };
 
 function LinkInput({ lang, name, children }) {
-  //
   return (
     <>
       {lang === 'en' ? (
-        <Link href="/en/[...name]" as={`/${lang}${name}`}>
-          {children}
-        </Link>
+        <Link href={`/${lang}${name}`}>{children}</Link>
       ) : (
-        <Link href="/[...name]" as={`${name}`}>
-          {children}
-        </Link>
+        <Link href={`${name}`}>{children}</Link>
       )}
     </>
   );

@@ -10,8 +10,8 @@ const propTypes = {
   search: Proptypes.bool
 };
 
-const getData = async (query, setData) => {
-  const res = await getRate(query);
+const getData = async setData => {
+  const res = await getRate();
   if (res && res !== undefined && res.status === 200) {
     setData(res.data);
   }
@@ -22,13 +22,13 @@ function TableRate({ data, id }) {
   const [options] = useState(getPadding(data ? data.optionWidth : ''));
 
   useEffect(() => {
-    getData({ number: 13 }, setList);
+    getData(setList);
   }, [getData]);
 
   return (
     <section className={`${options} tableRate`} id={id}>
       <div className="container">
-        <Table data={list.interestRates} />
+        <Table data={list} />
       </div>
     </section>
   );

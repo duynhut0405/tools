@@ -16,13 +16,23 @@ function FormRate({ data, interestRate }) {
   const [to, setTo] = useState(0);
   const [currencyFrom, setcurrencyFrom] = useState('USD');
   const [currencyTo, setcurrencyTo] = useState('VND');
+
+  const arrNotUSD = data.exchangeRateDetail
+    ? data.exchangeRateDetail.filter(item => item.currency.split(' ')[0] !== 'USD')
+    : [];
+  const objUSD = data.exchangeRateDetail
+    ? data.exchangeRateDetail.find(
+        item => (item.currency.split(' ')[0] === 'USD' && item.currency.sell) !== null
+      )
+    : {};
+
   const arrCurrency = data.exchangeRateDetail
-    ? [...data.exchangeRateDetail, { currency: 'VND' }]
+    ? [{ ...objUSD, currency: 'USD' }, ...arrNotUSD, { currency: 'VND' }]
     : [{}];
   const [arrTo, setArrTo] = useState(arrCurrency ? arrCurrency : []);
 
   const getSellBycurrency = _currency => {
-    const obj = data.exchangeRateDetail.find(item => item.currency === _currency);
+    const obj = arrCurrency.find(item => item.currency.trim() === _currency.trim());
     if (obj) {
       const result = obj.sell !== null ? obj.sell : 0;
       return result;
@@ -31,7 +41,7 @@ function FormRate({ data, interestRate }) {
   };
 
   const getBuyTransferBycurrency = _currency => {
-    const obj = data.exchangeRateDetail.find(item => item.currency === _currency);
+    const obj = arrCurrency.find(item => item.currency.trim() === _currency.trim());
     if (obj) {
       const result = obj.buy_transfer !== null ? obj.buy_transfer : 0;
       return result;
@@ -40,6 +50,9 @@ function FormRate({ data, interestRate }) {
   };
 
   const Calculator = () => {
+    console.log('currencyFrom:', currencyFrom);
+    console.log('currencyTo:', currencyTo);
+
     if (currencyTo === 'VND') {
       const rs = Number(From) * getSellBycurrency(currencyFrom);
       setTo(rs - Math.floor(rs) === 0 ? rs : rs.toFixed(4));
@@ -61,12 +74,15 @@ function FormRate({ data, interestRate }) {
 
   const getCurrentTo = name => {
     if (name === 'VND') {
-      setArrTo(data.exchangeRateDetail);
+      const arr = arrCurrency.filter(item => item.currency !== 'VND');
+      setArrTo(arr);
+      setcurrencyTo(arr[0].currency);
     } else {
       const obj = currency.content.find(item => item.currency === name);
       if (obj) {
         setArrTo(obj.children);
         setcurrencyTo(obj.children[0].currency);
+        setcurrencyTo('VND');
         if (obj.children[0].currency === 'VND') {
           Calculator();
         }
@@ -124,13 +140,7 @@ function FormRate({ data, interestRate }) {
                     name="from"
                     value={From}
                     onChange={e => {
-                      console.log(
-                        'show:',
-                        e.target.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                      );
-                      console.log(typeof e.target.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
-
-                      setFrom(e.target.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                      setFrom(e.target.value);
                     }}
                   />
                 </div>

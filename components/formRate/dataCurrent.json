@@ -6,11 +6,11 @@
       "children": [
         {
           "id": 11,
-          "currency": "USD"
+          "currency": "VND"
         },
         {
           "id": 12,
-          "currency": "VND"
+          "currency": "USD"
         }
       ]
     },
@@ -20,11 +20,11 @@
       "children": [
         {
           "id": 21,
-          "currency": "USD"
+          "currency": "VND"
         },
         {
           "id": 22,
-          "currency": "VND"
+          "currency": "USD"
         }
       ]
     },
@@ -80,11 +80,11 @@
       "children": [
         {
           "id": 41,
-          "currency": "USD"
+          "currency": "VND"
         },
         {
           "id": 42,
-          "currency": "VND"
+          "currency": "USD"
         }
       ]
     },
@@ -94,11 +94,11 @@
       "children": [
         {
           "id": 51,
-          "currency": "USD"
+          "currency": "VND"
         },
         {
           "id": 52,
-          "currency": "VND"
+          "currency": "USD"
         }
       ]
     }
