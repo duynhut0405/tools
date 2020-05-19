@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { map, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
@@ -14,7 +14,7 @@ function Carousels({ silder }) {
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
-        <div>
+        <Fragment>
           {map(silder, (item, index) => {
             if (item.options === '3') {
               return (
@@ -110,7 +110,7 @@ function Carousels({ silder }) {
               </section>
             );
           })}
-        </div>
+        </Fragment>
       )}
     </React.Fragment>
   );
