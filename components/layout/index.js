@@ -723,7 +723,7 @@ function Layout({ children, lang, isPrioty }) {
                 {map(menuMobile, (item, index) => (
                   <div className="col-3" key={index}>
                     <a
-                      href={item.url}
+                      href={item.type === '1' ? `page/${item.slugPages}` : item.url}
                       target={item.target === null || item.target === 1 ? '_top' : '_blank'}
                       className="item "
                     >
