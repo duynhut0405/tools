@@ -50,6 +50,9 @@ function FormRate({ data, interestRate }) {
   };
 
   const Calculator = () => {
+    console.log('currencyFrom:', currencyFrom);
+    console.log('currencyTo:', currencyTo);
+
     if (currencyTo === 'VND') {
       const rs = Number(From) * getSellBycurrency(currencyFrom);
       setTo(rs - Math.floor(rs) === 0 ? rs : rs.toFixed(4));
@@ -135,9 +138,7 @@ function FormRate({ data, interestRate }) {
                     className="input"
                     placeholder={t('amount')}
                     name="from"
-                    value={From.toString()
-                      .replace(/\D/g, '')
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    value={From}
                     onChange={e => {
                       setFrom(e.target.value);
                     }}
