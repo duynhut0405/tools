@@ -135,7 +135,9 @@ function FormRate({ data, interestRate }) {
                     className="input"
                     placeholder={t('amount')}
                     name="from"
-                    value={From}
+                    value={From.toString()
+                      .replace(/\D/g, '')
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     onChange={e => {
                       setFrom(e.target.value);
                     }}
