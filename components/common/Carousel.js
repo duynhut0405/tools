@@ -14,7 +14,7 @@ function Carousels({ silder }) {
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
-        <Fragment>
+        <React.Fragment>
           {map(silder, (item, index) => {
             if (item.options === '3') {
               return (
@@ -110,7 +110,7 @@ function Carousels({ silder }) {
               </section>
             );
           })}
-        </Fragment>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
