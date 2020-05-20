@@ -375,4 +375,7 @@ div#lanhdaoModal {
   margin-left: 5px;
 }
 
+.react-datepicker__navigation {
+  z-index: 2 !important;
+}
 /* End edit*/
