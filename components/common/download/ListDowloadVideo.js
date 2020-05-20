@@ -32,7 +32,7 @@ function ListDowloadFIle({
   const date = new Date();
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
-  const [year, setYear] = useState(moment(date).format('YYYY'));
+  const [year, setYear] = useState(new Date().getFullYear() - 1);
   const [title] = useState(convertTitle(type));
 
   useEffect(() => {
@@ -53,6 +53,15 @@ function ListDowloadFIle({
       seachRegulation(type, datatype, 10, page, year);
     }
   }, [page, year, datatype]);
+
+  // useEffect(() => {
+  //   const width = window.innerWidth;
+  //   if (width < 768) {
+  //     seachRegulation(type, datatype, 5, page, new Date().getFullYear() - 1);
+  //   } else {
+  //     seachRegulation(type, datatype, 10, page, new Date().getFullYear() - 1);
+  //   }
+  // }, []);
 
   let padding = '';
   if (Number(optionWidth) === 2) {
