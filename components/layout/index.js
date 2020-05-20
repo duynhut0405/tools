@@ -14,6 +14,7 @@ import Link from 'next/link';
 import map from 'lodash/map';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import LinkInput from '../../components/common/link/LinkInput';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -308,6 +309,7 @@ function Layout({ children, lang, isPrioty }) {
   // const onChangeSearch = debounce(value => {
   //   setQuery(value);
   // }, 3000);
+  console.log(';menu mobie:', menuMobile);
 
   return (
     <>
@@ -720,24 +722,33 @@ function Layout({ children, lang, isPrioty }) {
             </div>
             <div className="menu-footer-mb">
               <div className="row">
-                {map(menuMobile, (item, index) => (
-                  <div className="col-3" key={index}>
-                    <a
-                      href={item.type === '1' ? `page/${item.slugPages}` : item.url}
-                      target={item.target === null || item.target === 1 ? '_top' : '_blank'}
-                      className="item "
-                    >
-                      <span className="img">
-                        <img
-                          className="lazyload"
-                          data-src={`${process.env.BASE_URL}/${item.icon}`}
-                          alt="images"
-                        />
-                      </span>
-                      <span className="name">{item.name}</span>
-                    </a>
-                  </div>
-                ))}
+                {map(menuMobile, (item, index) => {
+                  let slug = '';
+                  if (item.type === '1') {
+                    slug = item.slugPages === 'homepage' ? '/' : `/page/${item.slugPages}`;
+                  } else {
+                    slug = item.url;
+                  }
+                  return (
+                    <div className="col-3" key={index}>
+                      <LinkInput lang={lang} name={slug}>
+                        <a
+                          target={item.target === null || item.target === 1 ? '_top' : '_blank'}
+                          className="item "
+                        >
+                          <span className="img">
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.BASE_URL}/${item.icon}`}
+                              alt="images"
+                            />
+                          </span>
+                          <span className="name">{item.name}</span>
+                        </a>
+                      </LinkInput>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
