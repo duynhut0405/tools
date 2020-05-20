@@ -309,7 +309,6 @@ function Layout({ children, lang, isPrioty }) {
   // const onChangeSearch = debounce(value => {
   //   setQuery(value);
   // }, 3000);
-  console.log(';menu mobie:', menuMobile);
 
   return (
     <>
