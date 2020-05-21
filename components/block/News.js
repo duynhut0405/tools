@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { map, slice } from 'lodash';
+import { map, slice, uniqBy } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
-import { getNewByIdService } from '../../services/news';
+import { getNewByIdService, getListNewsTagPageService } from '../../services/news';
 import { getCategoryByIdService } from '../../services/category';
 import { getLang } from '../../utils/cookie';
 import t from '../../translation';
@@ -16,16 +16,18 @@ const propTypes = {
   getCategoryPage: Proptypes.func,
   type: Proptypes.string,
   id: Proptypes.number,
-  optionWidth: Proptypes.string
+  optionWidth: Proptypes.string,
+  pageId: Proptypes.number,
+  dataBlock: Proptypes.object
 };
 
-function News({ data, type, id, optionWidth }) {
+function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   const [page, setPage] = useState(3);
   const [active, setActive] = useState(false);
   const [listCategory, setListCategory] = useState([]);
   const [slugCategory, setSlugCategory] = useState('');
-  const listNews = slice(listCategory, 0, 2);
-  const listNewsTabs = slice(listCategory, 2, 5);
+  const listNews = slice(uniqBy(listCategory, 'newsId'), 0, 2);
+  const listNewsTabs = slice(uniqBy(listCategory, 'newsId'), 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
   const lang = getLang();
   const size = UseWindowResize();
@@ -63,10 +65,18 @@ function News({ data, type, id, optionWidth }) {
   };
 
   const getCategoryPage = async () => {
+    const dataSend = {
+      idPage: { id: pageId },
+      nameBlock: dataBlock.title
+    };
+    const res1 = await getListNewsTagPageService(dataSend);
+    if (res1 && res1.status === 200) {
+      setListCategory(res1.data);
+    }
     const idItems = map(data.news, item => item.newsId);
     const res = await getNewByIdService(idItems, data.category.value, Number(data.limit));
     if (res && res.status === 200) {
-      setListCategory(res.data);
+      setListCategory(formState => [...formState, ...res.data]);
     }
   };
 
@@ -263,7 +273,7 @@ function News({ data, type, id, optionWidth }) {
                   setRefCarousel(ref);
                 }}
               >
-                {map(listCategory, (item, index) => (
+                {map(uniqBy(listCategory, 'newsId'), (item, index) => (
                   <div className="slide-item" key={index}>
                     <LinkNew lang={lang} name={item.url}>
                       <a
@@ -318,7 +328,7 @@ function News({ data, type, id, optionWidth }) {
           )}
           {size.width < 768 && (
             <div className="list-5 list-item">
-              {map(listCategory, (item, index) => (
+              {map(uniqBy(listCategory, 'newsId'), (item, index) => (
                 <LinkNew lang={lang} name={item.url}>
                   <a
                     className={`item efch-${index} ef-img-l `}
@@ -389,7 +399,7 @@ function News({ data, type, id, optionWidth }) {
             </div>
           )}
           <div className="list-5 row list-item">
-            {map(listCategory, (item, index) => {
+            {map(uniqBy(listCategory, 'newsId'), (item, index) => {
               return (
                 <div
                   className={data.column === undefined ? `col-md-4` : `col-md-${data.column}`}
@@ -472,7 +482,7 @@ function News({ data, type, id, optionWidth }) {
             </div>
             <div className="col-lg-8">
               <div className="list-1-1  mb-30 ">
-                {map(listCategory, (item, index) => {
+                {map(uniqBy(listCategory, 'newsId'), (item, index) => {
                   if (index === 0) {
                     return (
                       <LinkNew lang={lang} name={item.url}>
@@ -497,7 +507,7 @@ function News({ data, type, id, optionWidth }) {
                 })}
               </div>
               <div className="list-5 row list-item">
-                {map(listCategory, (item, index) => {
+                {map(uniqBy(listCategory, 'newsId'), (item, index) => {
                   if (index > 0 && index < 3) {
                     return (
                       <div className="col-md-6">
@@ -565,7 +575,7 @@ function News({ data, type, id, optionWidth }) {
             </div>
           )}
           <div className="list-5 row list-item">
-            {map(listCategory, (item, index) => (
+            {map(uniqBy(listCategory, 'newsId'), (item, index) => (
               <div className="col-md-4" key={index}>
                 <LinkNew lang={lang} name={item.url}>
                   <a className={`item efch-${index} ef-img-l`}>
@@ -628,7 +638,7 @@ function News({ data, type, id, optionWidth }) {
             </div>
           )}
           <div className="list-5 list-5-1 row list-item">
-            {map(listCategory, (item, index) => (
+            {map(uniqBy(listCategory, 'newsId'), (item, index) => (
               <div className="col-md-4" key={index}>
                 <LinkNew lang={lang} name={item.url}>
                   <a className={`item efch-${index} ef-img-l equal`}>
@@ -684,7 +694,7 @@ function News({ data, type, id, optionWidth }) {
           )}
           <div className="row list-item">
             <div className="col-lg-6 list-1">
-              {map(listCategory, (item, index) => {
+              {map(uniqBy(listCategory, 'newsId'), (item, index) => {
                 if (index === 0) {
                   return (
                     <React.Fragment key={index}>
@@ -715,7 +725,7 @@ function News({ data, type, id, optionWidth }) {
             </div>
             <div className="col-lg-6">
               <div className="list-6-1">
-                {map(listCategory, (item, index) => {
+                {map(uniqBy(listCategory, 'newsId'), (item, index) => {
                   if (index > 0 && index < 3) {
                     return (
                       <React.Fragment>

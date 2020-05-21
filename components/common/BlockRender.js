@@ -62,8 +62,10 @@ function BlockRender({ data, pageId }) {
                         type={JSON.parse(values.content).type}
                         optionWidth={JSON.parse(values.content).optionWidth}
                         data={JSON.parse(values.content)}
+                        dataBlock={values}
                         key={index}
                         id={values.id}
+                        pageId={pageId}
                       />
                     );
                   case 'NewCard':
