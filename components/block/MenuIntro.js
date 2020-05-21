@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
 import ReactLoading from 'react-loading';
 import PopupThankyou from './Popup/PopupThankyou';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const propTypes = {
   data: PropTypes.object,
@@ -27,6 +28,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
+  const recaptchaRef = React.createRef();
 
   let padding = '';
   if (optionWidth === '2') {
@@ -90,6 +92,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
     //sendMailService(dataSend);
     //setModal(!modal);
+    recaptchaRef.current.execute();
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
@@ -223,6 +226,11 @@ function MenuIntro({ data, pageId, optionWidth }) {
                       return (
                         <React.Fragment key={index}>
                           <div className="col-12 text-center">
+                            <ReCAPTCHA
+                              ref={recaptchaRef}
+                              size="invisible"
+                              sitekey="6LddVvoUAAAAANqcKPdkTfIL8pOCIoAuPJj3jKcT"
+                            />
                             <button className="btn" type={item.subtype}>
                               {item.label}
                             </button>

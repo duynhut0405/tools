@@ -50,9 +50,6 @@ function FormRate({ data, interestRate }) {
   };
 
   const Calculator = () => {
-    console.log('currencyFrom:', currencyFrom);
-    console.log('currencyTo:', currencyTo);
-
     if (currencyTo === 'VND') {
       const rs = Number(From) * getSellBycurrency(currencyFrom);
       setTo(rs - Math.floor(rs) === 0 ? rs : rs.toFixed(4));
@@ -163,9 +160,9 @@ function FormRate({ data, interestRate }) {
                     value={to.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
                   />
                 </div>
-                <p>{`${t('updated_at')} ${moment(data.date_update).format('HH:mm')} ${t(
+                <p>{`${t('updated_at')} ${moment(data.created_at).format('HH:mm')} ${t(
                   'date'
-                )} ${moment(data.date_update).format('DD/MM/YYYY')}`}</p>
+                )} ${moment(data.created_at).format('DD/MM/YYYY')}`}</p>
               </div>
             </div>
           </div>
