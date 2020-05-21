@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Social } from '../../components/common';
@@ -22,6 +22,7 @@ const propTypes = {
 
 function New({ news, category_name, category_url, socialLink }) {
   const [isPrioty, setIsPrioty] = useState(null);
+  const [active, setActive] = useState(false);
   useEffect(() => {
     Cookies.set('lang', 'vi');
     document.body.className = '';
@@ -115,8 +116,58 @@ function New({ news, category_name, category_url, socialLink }) {
                     {socialLink && <Social data={socialLink.socialLink} />}
                     {/* {console.log(socialLink)} */}
                   </div>
-
-                  <div className="entry-content">{ReactHtmlParser(news.news.description)}</div>
+                  {news.news.author_name !== null && (
+                    <Fragment>
+                      {!active && (
+                        <div
+                          className={
+                            news.news.author_name !== null ? 'single_video  tRes_16_9 max750' : ''
+                          }
+                          data-id="2UrWPUAr68A"
+                          data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                        >
+                          <img
+                            className="lazyload"
+                            data-lazy-data-src={`${process.env.DOMAIN}${news.news.base_image}`}
+                            data-src={`${process.env.DOMAIN}${news.news.base_image}`}
+                            src={`${process.env.DOMAIN}${news.news.base_image}`}
+                            alt="images"
+                          />
+                          {news.news.author_name !== null && (
+                            <span
+                              className="btnvideo"
+                              onClick={() => {
+                                setActive(!active);
+                              }}
+                            >
+                              {news.news.author_name !== null || news.news.author_name !== '' ? (
+                                <i className="icon-play"></i>
+                              ) : (
+                                ''
+                              )}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      {active && (
+                        <div
+                          className="single_video  tRes_16_9 max750"
+                          data-id="2UrWPUAr68A"
+                          data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                        >
+                          <iframe
+                            frameBorder="0"
+                            allowFullScreen="1"
+                            allow="autoplay; encrypted-media;"
+                            src={`${news.news.author_name}?rel=0&autoplay=1`}
+                          ></iframe>
+                        </div>
+                      )}
+                    </Fragment>
+                  )}
+                  <div className="entry-content" style={{ marginTop: 20 }}>
+                    {ReactHtmlParser(news.news.description)}
+                  </div>
                   <br />
                   <div className="tags">
                     <h2>{t('related_content')}</h2>
