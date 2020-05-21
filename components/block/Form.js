@@ -6,6 +6,7 @@ import ReactHtmlParser from 'react-html-parser';
 import { sendMailService } from '../../services/form';
 import ReactLoading from 'react-loading';
 import PopupThankyou from './Popup/PopupThankyou';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -19,7 +20,7 @@ function Form({ data, pageId, id }) {
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
-
+  const recaptchaRef = React.createRef();
   const getFormByID = async () => {
     const res = await getFormbuilderByIdService(data.formdata);
     if (res && res.status === 200) {
@@ -67,7 +68,7 @@ function Form({ data, pageId, id }) {
       idForm: data.formdata,
       idPage: pageId
     };
-
+    recaptchaRef.current.execute();
     const send = await sendMailService(dataSend);
     if (send && send !== undefined && send.status === 200) {
       setIsLoading(false);
@@ -190,6 +191,11 @@ function Form({ data, pageId, id }) {
             if (item.type === 'button') {
               return (
                 <React.Fragment>
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    size="invisible"
+                    sitekey="6LddVvoUAAAAANqcKPdkTfIL8pOCIoAuPJj3jKcT"
+                  />
                   <div className={`d-flex col-12 text-center__ `}>
                     <button className={`btn`} type={item.subtype}>
                       {item.label}
