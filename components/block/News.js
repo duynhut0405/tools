@@ -42,7 +42,6 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   } else {
     padding = 'sec-';
   }
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
