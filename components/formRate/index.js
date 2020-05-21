@@ -104,6 +104,7 @@ function FormRate({ data, interestRate }) {
       Calculator();
     }
   }, [From, currencyFrom, currencyTo]);
+  console.log('data:', data);
 
   return (
     <section className="sec-b sec-tigia sec-h-2">
@@ -163,9 +164,9 @@ function FormRate({ data, interestRate }) {
                     value={to.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
                   />
                 </div>
-                <p>{`${t('updated_at')} ${moment(data.date_update).format('HH:mm')} ${t(
+                <p>{`${t('updated_at')} ${moment(data.created_at).format('HH:mm')} ${t(
                   'date'
-                )} ${moment(data.date_update).format('DD/MM/YYYY')}`}</p>
+                )} ${moment(data.created_at).format('DD/MM/YYYY')}`}</p>
               </div>
             </div>
           </div>
