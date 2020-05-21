@@ -7,6 +7,7 @@ import { convertTitle } from '../../../utils/convertPadding';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import t from '../../../translation';
+import { getRegulationListYear } from '../../../services/regulation';
 
 const propTypes = {
   type: PropTypes.number,
@@ -19,49 +20,38 @@ const propTypes = {
   data: PropTypes.object
 };
 
-function ListDowloadFIle({
-  type,
-  data,
-  optionWidth,
-  listType,
-  id,
-  listRegulation,
-  getTypeRegulation,
-  seachRegulation
-}) {
+const seachRegulation = async (type, detailTypeId, number, page, year, setData) => {
+  const res = await getRegulationListYear(type, detailTypeId, number, page, year);
+  if (res !== undefined && res.status === 200) {
+    setData(res.data);
+  }
+};
+function ListDowloadFIle({ type, data, optionWidth, listType, id, getTypeRegulation }) {
   const date = new Date();
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(new Date().getFullYear() - 1);
   const [title] = useState(convertTitle(type));
+  const [listRegulation, setlistRegulation] = useState([]);
 
   useEffect(() => {
     getTypeRegulation(type);
     const width = window.innerWidth;
     if (width < 768) {
-      seachRegulation(type, 0, 5, 0, year);
+      seachRegulation(type, 0, 5, 0, year, setlistRegulation);
     } else {
-      seachRegulation(type, 0, 10, 0, year);
+      seachRegulation(type, 0, 10, 0, year, setlistRegulation);
     }
   }, [getTypeRegulation]);
 
   useEffect(() => {
     const width = window.innerWidth;
     if (width < 768) {
-      seachRegulation(type, datatype, 5, page, year);
+      seachRegulation(type, datatype, 5, page, year, setlistRegulation);
     } else {
-      seachRegulation(type, datatype, 10, page, year);
+      seachRegulation(type, datatype, 10, page, year, setlistRegulation);
     }
   }, [page, year, datatype]);
-
-  // useEffect(() => {
-  //   const width = window.innerWidth;
-  //   if (width < 768) {
-  //     seachRegulation(type, datatype, 5, page, new Date().getFullYear() - 1);
-  //   } else {
-  //     seachRegulation(type, datatype, 10, page, new Date().getFullYear() - 1);
-  //   }
-  // }, []);
 
   let padding = '';
   if (Number(optionWidth) === 2) {
@@ -118,13 +108,13 @@ function ListDowloadFIle({
 
 const mapStateToProp = state => {
   return {
-    listRegulation: state.regulationReducer.listDataByYear,
+    //listRegulation: state.regulationReducer.listDataByYear,
     listType: state.regulationReducer.listTypeByID
   };
 };
 
 const mapDispatchToProps = {
-  seachRegulation: RegulationActions.getRegulationByYear,
+  //seachRegulation: RegulationActions.getRegulationByYear,
   getTypeRegulation: RegulationActions.getTypeRegulationByIDAction
 };
 

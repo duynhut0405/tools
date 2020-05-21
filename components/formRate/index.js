@@ -50,9 +50,6 @@ function FormRate({ data, interestRate }) {
   };
 
   const Calculator = () => {
-    console.log('currencyFrom:', currencyFrom);
-    console.log('currencyTo:', currencyTo);
-
     if (currencyTo === 'VND') {
       const rs = Number(From) * getSellBycurrency(currencyFrom);
       setTo(rs - Math.floor(rs) === 0 ? rs : rs.toFixed(4));
@@ -104,7 +101,6 @@ function FormRate({ data, interestRate }) {
       Calculator();
     }
   }, [From, currencyFrom, currencyTo]);
-  console.log('data:', data);
 
   return (
     <section className="sec-b sec-tigia sec-h-2">
