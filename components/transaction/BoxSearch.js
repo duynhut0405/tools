@@ -15,7 +15,9 @@ const propTypes = {
   handleProvince: PropTypes.func,
   t: PropTypes.func,
   getDetail: PropTypes.func,
-  onSearch: PropTypes.func
+  onSearch: PropTypes.func,
+  query: PropTypes.string,
+  districtValue: PropTypes.any
 };
 
 function BoxSearch({
@@ -28,7 +30,9 @@ function BoxSearch({
   setQuery,
   setDistrict,
   getDetail,
-  onSearch
+  onSearch,
+  query,
+  districtValue
 }) {
   return (
     <div className="ajax-content-map">
@@ -57,6 +61,7 @@ function BoxSearch({
         <form onSubmit={onSearch}>
           <input
             type="text"
+            defaultValue={query}
             placeholder={t('place')}
             onChange={event => setQuery(event.target.value)}
           />
@@ -70,7 +75,7 @@ function BoxSearch({
         <Select
           className="fix-select"
           placeholder={t('province')}
-          options={map([{ id: '', name: 'Tất cả' }, ...listProvince], province => ({
+          options={map([{ id: null, name: 'Tất cả' }, ...listProvince], province => ({
             value: province.id,
             label: province.name
           }))}
@@ -82,7 +87,8 @@ function BoxSearch({
         <Select
           className="fix-select1"
           placeholder={t('district')}
-          options={map([{ id: '', name: 'Tất cả' }, ...listDistrict], district => ({
+          value={districtValue}
+          options={map([{ id: null, name: 'Tất cả' }, ...listDistrict], district => ({
             value: district.id,
             label: district.name
           }))}

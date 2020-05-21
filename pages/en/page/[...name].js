@@ -77,7 +77,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout lang="en" isPrioty={isPrioty}>
+      <Layout lang="en" isPrioty={isPrioty} idPage={page.id}>
         <div className="main_content">
           {page.breadCrumb && <Breadcrumb data={listSlug} />}
           <Carousel silder={silder} />
