@@ -107,6 +107,19 @@ const getListYearNewsService = () => {
     });
 };
 
+const getListNewsTagPageService = data => {
+  return request({
+    url: '/pages/findallnews',
+    method: 'POST',
+    data
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
 export {
   getNewService,
   getNewByUri,
@@ -115,5 +128,6 @@ export {
   findAllByCategory,
   getNewsByCategorySlug,
   findAllNewsByCategory,
-  getListYearNewsService
+  getListYearNewsService,
+  getListNewsTagPageService
 };

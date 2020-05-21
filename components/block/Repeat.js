@@ -66,9 +66,9 @@ function Repeat({ data, type, id, optionWidth }) {
                         data-less="- Thu gọn"
                         data-i=""
                       >
-                        <div className="wtgh">
+
                           <TableItem data={item.description} maxheight={Number(data.height)} />
-                        </div>
+
                       </div>
                     </div>
                   </div>
