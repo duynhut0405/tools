@@ -15,6 +15,7 @@ import map from 'lodash/map';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import LinkInput from '../../components/common/link/LinkInput';
+import FormPopup from '../block/Popup/FormPopup';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -28,10 +29,11 @@ const propTypes = {
   menuFooterMain: PropTypes.array,
   menuSearch: PropTypes.array,
   lang: PropTypes.string,
-  isPrioty: PropTypes.any
+  isPrioty: PropTypes.any,
+  idPage: PropTypes.number
 };
 
-function Layout({ children, lang, isPrioty }) {
+function Layout({ children, lang, isPrioty, idPage }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [menuHeader, setMenuHeader] = useState([]);
   const [menuNav, setMenuNav] = useState([]);
@@ -47,6 +49,8 @@ function Layout({ children, lang, isPrioty }) {
   const [menuMobile, setMenuMobile] = useState([]);
   const [allData, setAllData] = useState([]);
   const [common, setCommon] = useState([]);
+  const [activeForm, setActiveForm] = useState(false);
+  const [register, setRegister] = useState('');
 
   const fetchAllData = async () => {
     const result = await getMemnu(lang);
@@ -76,6 +80,7 @@ function Layout({ children, lang, isPrioty }) {
       }
       return null;
     }
+    return null;
   };
 
   const fetchMenu = async () => {
@@ -287,14 +292,12 @@ function Layout({ children, lang, isPrioty }) {
     event.preventDefault();
     router.push({
       pathname: lang === 'vi' ? '/search' : '/en/search',
-      query: { q: query, page: 1 }
+      query: { q: query }
     });
   };
 
   const onChangeSuggest = url => {
     setQuery(url);
-    const result = document.getElementById('search-result');
-    result.style = `display: block`;
     const element = document.getElementById('search');
     const box = document.getElementById('search-sg');
     element.style = 'width: 70px';
@@ -302,8 +305,13 @@ function Layout({ children, lang, isPrioty }) {
     element.placeholder = t('search');
     router.push({
       pathname: lang === 'vi' ? '/search' : '/en/search',
-      query: { q: search, page: 1 }
+      query: { q: url }
     });
+  };
+
+  const onRegister = event => {
+    event.preventDefault();
+    setActiveForm(true);
   };
 
   // const onChangeSearch = debounce(value => {
@@ -599,7 +607,7 @@ function Layout({ children, lang, isPrioty }) {
               <div className="row">
                 <div className="col-md-6   efch-2 ef-img-r">
                   <p className="stitle">{t('sign_up_promotional')}</p>
-                  <form role="search" method="get" className="" action="">
+                  <form onSubmit={onRegister}>
                     <div>
                       <input
                         type="text"
@@ -608,11 +616,12 @@ function Layout({ children, lang, isPrioty }) {
                             ? 'Nhập email để nhận thông tin!'
                             : 'Enter email to receive information'
                         }
-                        name="s"
+                        onChange={event => setRegister(event.target.value)}
+                        name="email"
                         className="input"
                       />
                     </div>
-                    <button type="submit" className="btn btn-2">
+                    <button type="submit" className="btn btn-2" onClick={() => setActiveForm(true)}>
                       {t('registration')}
                     </button>
                   </form>
@@ -674,7 +683,7 @@ function Layout({ children, lang, isPrioty }) {
           <section className="sec-download-mb">
             <div className="wform">
               <p className="stitle">{t('sign_up_promotional')}</p>
-              <form role="search" method="get" className="" action="">
+              <form onSubmit={onRegister}>
                 <div className="aaa">
                   <input
                     type="text"
@@ -683,7 +692,8 @@ function Layout({ children, lang, isPrioty }) {
                         ? 'Nhập email để nhận thông tin!'
                         : 'Enter email to receive information'
                     }
-                    name="s"
+                    name="email"
+                    onChange={event => setRegister(event.target.value)}
                     className="input"
                   />
                 </div>
@@ -761,6 +771,12 @@ function Layout({ children, lang, isPrioty }) {
           onSearch(event);
           setActiveDrawwe(false);
         }}
+      />
+      <FormPopup
+        modal={activeForm}
+        setModal={() => setActiveForm(!activeForm)}
+        idPage={idPage}
+        mail={register}
       />
     </>
   );

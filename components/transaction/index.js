@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import BoxSearch from './BoxSearch';
 import Map from '../common/Map';
+import debounce from 'lodash/debounce';
 import ProppTypes from 'prop-types';
+import { getAddressServices } from '../../services/google.api';
 import { searchBranchesService, getProvinceService, getDistrictService } from '../../services/map';
 
 const propTypes = {
@@ -31,30 +33,39 @@ const getDistrict = async (id, setData) => {
   }
 };
 
+const getAddress = async (lat, long, setData) => {
+  const res = await getAddressServices(lat, long);
+  if (res && res.status === 200) {
+    setData(res.data.results[0].address_components[3].short_name);
+  }
+};
+
 function Transaction({ data, id }) {
-  const [location, setLocation] = useState({ lat: 21.32284, lng: 105.399727 });
+  const [location, setLocation] = useState({ lat: 21.027763, lng: 105.83416 });
   const [locationId, setID] = useState(null);
   const [zoom, setZoom] = useState(8);
-  const [district, setDistrict] = useState('');
+  const [district, setDistrict] = useState(null);
   const [branches_type, setBranchesType] = useState('all');
-  const [province, setProvince] = useState('');
-  const [query, setQuery] = useState('');
+  const [province, setProvince] = useState(null);
+  const [query, setQuery] = useState(null);
   const [listBranches, setListBranches] = useState([]);
   const [listProvince, setListProvince] = useState([]);
   const [listDistrict, setListDistrict] = useState([]);
+  const [districtValue, setDistrictValue] = useState(null);
 
   const showPosition = position => {
     setLocation(() => ({
       lat: position.coords.latitude,
       lng: position.coords.longitude
     }));
+    getAddress(position.coords.latitude, position.coords.longitude, setQuery);
   };
 
   useEffect(() => {
-    getProvince(setListProvince);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     }
+    getProvince(setListProvince);
   }, []);
 
   useEffect(() => {
@@ -68,11 +79,13 @@ function Transaction({ data, id }) {
       setListBranches
     );
     setZoom(8);
-  }, [district, branches_type, province]);
+  }, [district, branches_type, province, query]);
 
   const handleProvince = provinceItem => {
     setProvince(provinceItem.value);
     setDistrict('');
+    setQuery(null);
+    setDistrictValue(null);
     getDistrict(provinceItem.value, setListDistrict);
   };
 
@@ -84,6 +97,10 @@ function Transaction({ data, id }) {
     setID(branches.id);
     setZoom(14);
   };
+
+  const onChange = debounce(value => {
+    setQuery(value);
+  }, 2000);
 
   const onSearch = event => {
     event.preventDefault();
@@ -119,10 +136,18 @@ function Transaction({ data, id }) {
             listProvince={listProvince}
             branches_type={branches_type}
             handleProvince={handleProvince}
-            setQuery={setQuery}
+            setQuery={onChange}
+            query={query}
             onSearch={onSearch}
-            setBranchesType={setBranchesType}
-            setDistrict={setDistrict}
+            districtValue={districtValue}
+            setBranchesType={type => {
+              setQuery(null);
+              setBranchesType(type);
+            }}
+            setDistrict={city => {
+              setQuery(null);
+              setDistrict(city);
+            }}
             getDetail={getDetail}
           />
         </div>

@@ -213,6 +213,27 @@ ul.menu.line > li button.search-sg i {
   display: block;
 }
 
+#search-sg .suggest .key span:not(:last-child) {
+  border-right: 1px solid #bababa;
+}
+
+#search-sg .suggest .key span:hover {
+  color: #141ed2;
+}
+
+#search-sg .suggest .key span {
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#search-sg .suggest .key span {
+  padding: 0 5px;
+}
+
+#search-sg .suggest .sg span {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 1200px) {
   #search-sg #logo {
     height: 80px;
@@ -377,5 +398,17 @@ div#lanhdaoModal {
 
 .react-datepicker__navigation {
   z-index: 2 !important;
+}
+
+.formModal form {
+  margin: 0 25px;
+}
+
+.formModal form input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.no-err {
+  color: #fff;
 }
 /* End edit*/
