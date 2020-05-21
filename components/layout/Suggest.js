@@ -12,14 +12,13 @@ function Suggest({ data, onChangeSuggest, onClose }) {
   const renderMenuItems = (menuItems, index) => {
     return map(menuItems, (menu, i) => {
       return (
-        <a
-          href="#"
+        <span
           className={index === 2 ? 'tag' : 'key'}
           key={i}
           onClick={() => onChangeSuggest(menu.url)}
         >
           {menu.url}
-        </a>
+        </span>
       );
     });
   };
@@ -40,7 +39,7 @@ function Suggest({ data, onChangeSuggest, onClose }) {
   return (
     <div id="search-sg" style={{ display: 'none' }}>
       <div className="container">
-        <a href="#" id="logo">
+        <a href="/" id="logo">
           <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
         </a>
         <div className="suggest">{renderMenu(data)}</div>

@@ -58,7 +58,7 @@ function CategoryDetail({ routerURL, category }) {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout lang="vi">
+      <Layout lang="vi" idPage={1}>
         {data !== null && (
           <div className="main_content">
             <section className="banner-heading-3 next-shadow">

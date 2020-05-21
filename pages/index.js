@@ -64,7 +64,7 @@ function Home({ page, silder, menuMiddle }) {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout lang="vi">
+      <Layout lang="vi" idPage={page.id}>
         <div className="main_content">
           {page.breadCrumb && <Breadcrumb data={[]} />}
           <Carousel silder={silder} />

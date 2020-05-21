@@ -20,30 +20,24 @@ function Search() {
   const router = useRouter();
   const [list, setList] = useState([]);
   const [tabActive, setTabActive] = useState(1);
-  const [page, setPage] = useState(router.query.page);
+  const [page, setPage] = useState(1);
   const [search, setSearch] = useState(router.query.q);
   const [type, setType] = useState(null);
   const lang = getLang();
 
   useEffect(() => {
-    fetch({ search: search, page: page, number: 20, type: null }, setList);
+    fetch({ search: router.query.q, page: page, number: 20, type: null }, setList);
   }, [router.query]);
 
   const onTab = (tabID, _type) => {
     setTabActive(tabID);
     setType(_type);
-    router.push({
-      pathname: '/search',
-      query: { q: search, page: 1, type: _type }
-    });
+    fetch({ search: search, page: page, number: 20, type: _type }, setList);
   };
 
   const onSubmit = event => {
     event.preventDefault();
-    router.push({
-      pathname: '/search',
-      query: type ? { q: search, page: 1, type: type } : { q: search, page: 1 }
-    });
+    fetch({ search: search, page: page, number: 20, type: type }, setList);
   };
 
   return (
@@ -59,7 +53,7 @@ function Search() {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout lang="vi">
+      <Layout lang="vi" idPage={1}>
         <section id="top-search-result">
           <div className="container">
             <form name="search" className="search-field" autoComplete="off" onSubmit={onSubmit}>
@@ -140,10 +134,6 @@ function Search() {
                       page={page}
                       setPage={pageNumber => {
                         setPage(pageNumber);
-                        router.push({
-                          pathname: '/search',
-                          query: { page: pageNumber }
-                        });
                       }}
                     />
                   </div>

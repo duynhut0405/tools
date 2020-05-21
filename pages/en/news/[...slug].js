@@ -71,7 +71,7 @@ function New({ news, category_name, category_url, socialLink }) {
           <meta property="og:image:height" content="354" />
         </Head>
       )}
-      <Layout lang="en" isPrioty={isPrioty}>
+      <Layout lang="en" isPrioty={isPrioty} idPage={1}>
         {news && news.news !== null && (
           <>
             <div className="entry-breadcrumb">
