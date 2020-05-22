@@ -73,7 +73,8 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
       setListCategory(res1.data);
     }
     const idItems = map(data.news, item => item.newsId);
-    const res = await getNewByIdService(idItems, data.category.value, Number(data.limit));
+    const limit = data.limit === '' || data.limit === null ? 4 : Number(data.limit);
+    const res = await getNewByIdService(idItems, data.category.value, limit);
     if (res && res.status === 200) {
       setListCategory(formState => [...formState, ...res.data]);
     }
