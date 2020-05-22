@@ -15,6 +15,7 @@ module.exports = withPWA(
   withFonts(
     withCSS(
       withSass({
+        // eslint-disable-next-line no-unused-vars
         webpack(config, options) {
           config.module.rules.push({
             test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -41,9 +42,9 @@ module.exports = withPWA(
           ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe'
         },
         exportTrailingSlash: true,
-        // pwa: {
-        //   dest: 'public'
-        // },
+        pwa: {
+          dest: 'public'
+        },
         exportPathMap: async function() {
           let router = [];
           let newRouter = [];

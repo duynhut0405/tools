@@ -5,6 +5,7 @@ import Head from 'next/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import { getPageMutiLangBySlug, getListPageBySlug } from '../../services/page';
+import { getMemnu, getCommon } from '../../utils/fetch';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
@@ -16,10 +17,38 @@ const propTypes = {
   routerURL: PropTypes.string,
   listSlug: PropTypes.array,
   slugClass: PropTypes.string,
-  hasSideber: PropTypes.number
+  hasSideber: PropTypes.number,
+  menuHeader: PropTypes.array,
+  menuNav: PropTypes.array,
+  menuFooterTop: PropTypes.array,
+  menuFooterBottom: PropTypes.array,
+  menuFooterMain: PropTypes.array,
+  menuSearch: PropTypes.array,
+  menuMobile: PropTypes.array,
+  linkApp: PropTypes.object,
+  general: PropTypes.object,
+  socialLink: PropTypes.object
 };
 
-function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSideber }) {
+function Page({
+  routerURL,
+  page,
+  silder,
+  menuMiddle,
+  listSlug,
+  slugClass,
+  hasSideber,
+  menuHeader,
+  menuNav,
+  menuFooterTop,
+  menuFooterMain,
+  menuFooterBottom,
+  menuSearch,
+  menuMobile,
+  general,
+  socialLink,
+  linkApp
+}) {
   const link_canonical = page.meta_keyword
     ? page.meta_keyword
     : `<link rel="canonical" href="${process.env.LINK_DOMAIN}/page/${page.slug}">`;
@@ -50,7 +79,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       if (body && logo) {
-        body.classList.remove('mb-priority');
+        // body.classList.remove('mb-priority');
         logo.src = '/static/images/svg/logo.svg';
       }
     }
@@ -78,7 +107,21 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout lang="vi" isPrioty={isPrioty} idPage={page.id}>
+      <Layout
+        lang="vi"
+        isPrioty={isPrioty}
+        idPage={page.id}
+        menuFooterBottom={menuFooterBottom}
+        menuFooterMain={menuFooterMain}
+        menuFooterTop={menuFooterTop}
+        menuMobile={menuMobile}
+        menuNav={menuNav}
+        menuSearch={menuSearch}
+        menuHeader={menuHeader}
+        settingFooter={general}
+        socialLink={socialLink}
+        linkApp={linkApp}
+      >
         <div className="main_content">
           {page.breadCrumb && <Breadcrumb data={listSlug} />}
           <Carousel silder={silder} />
@@ -106,6 +149,18 @@ Page.getInitialProps = async ctx => {
   let menuMiddle = {};
   let listSlug = [];
   let hasSideber = 0;
+  const menu = await getMemnu('vi');
+  const {
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile
+  } = menu;
+  const common = await getCommon('vi');
+  const { general, socialLink, linkApp } = common;
   const pageResponse = await getPageMutiLangBySlug('vi', routerURL);
   const listPageBySlug = await getListPageBySlug(query.name);
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
@@ -129,7 +184,17 @@ Page.getInitialProps = async ctx => {
     menuMiddle,
     listSlug,
     slugClass,
-    hasSideber
+    hasSideber,
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile,
+    general,
+    socialLink,
+    linkApp
   };
 };
 

@@ -7,7 +7,22 @@ import { LinkNew, LinkPage } from '../../components/common/link';
 import { searchService } from '../../services/common';
 import { useRouter } from 'next/router';
 import t from '../../translation';
+import { getCommon, getMemnu } from '../../utils/fetch';
+import Proptypes from 'prop-types';
 import map from 'lodash/map';
+
+const propTypes = {
+  menuHeader: Proptypes.array,
+  menuNav: Proptypes.array,
+  menuFooterTop: Proptypes.array,
+  menuFooterBottom: Proptypes.array,
+  menuFooterMain: Proptypes.array,
+  menuSearch: Proptypes.array,
+  menuMobile: Proptypes.array,
+  linkApp: Proptypes.object,
+  general: Proptypes.object,
+  socialLink: Proptypes.object
+};
 
 const fetch = async (query, setData) => {
   const res = await searchService(query);
@@ -16,7 +31,18 @@ const fetch = async (query, setData) => {
   }
 };
 
-function Search() {
+function Search({
+  menuHeader,
+  menuNav,
+  menuFooterTop,
+  menuFooterMain,
+  menuFooterBottom,
+  menuSearch,
+  menuMobile,
+  general,
+  socialLink,
+  linkApp
+}) {
   const router = useRouter();
   const [list, setList] = useState([]);
   const [tabActive, setTabActive] = useState(1);
@@ -53,7 +79,20 @@ function Search() {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout lang="vi" idPage={1}>
+      <Layout
+        lang="vi"
+        idPage={1}
+        menuFooterBottom={menuFooterBottom}
+        menuFooterMain={menuFooterMain}
+        menuFooterTop={menuFooterTop}
+        menuMobile={menuMobile}
+        menuNav={menuNav}
+        menuSearch={menuSearch}
+        menuHeader={menuHeader}
+        settingFooter={general}
+        socialLink={socialLink}
+        linkApp={linkApp}
+      >
         <section id="top-search-result">
           <div className="container">
             <form name="search" className="search-field" autoComplete="off" onSubmit={onSubmit}>
@@ -146,5 +185,34 @@ function Search() {
     </React.Fragment>
   );
 }
+
+Search.getInitialProps = async () => {
+  const menu = await getMemnu('vi');
+  const {
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile
+  } = menu;
+  const common = await getCommon('vi');
+  const { general, socialLink, linkApp } = common;
+  return {
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile,
+    general,
+    socialLink,
+    linkApp
+  };
+};
+
+Search.propTypes = propTypes;
 
 export default Search;
