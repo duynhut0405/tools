@@ -194,7 +194,7 @@ function Form({ data, pageId, id }) {
                   <ReCAPTCHA
                     ref={recaptchaRef}
                     size="invisible"
-                    sitekey="6LddVvoUAAAAANqcKPdkTfIL8pOCIoAuPJj3jKcT"
+                    sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
                   />
                   <div className={`d-flex col-12 text-center__ `}>
                     <button className={`btn`} type={item.subtype}>
