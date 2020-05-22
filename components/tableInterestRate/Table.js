@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Proptypes from 'prop-types';
 import map from 'lodash/map';
 import t from '../../translation';
-import { UncontrolledTooltip } from 'reactstrap';
 
 const propTypes = {
   data: Proptypes.array,

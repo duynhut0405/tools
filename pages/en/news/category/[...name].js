@@ -59,7 +59,7 @@ function CategoryDetail({ routerURL, category }) {
           <meta property="og:image:height" content="354" />
         </Head>
       )}
-      <Layout lang="en">
+      <Layout lang="en" idPage={1}>
         {data !== null && (
           <div className="main_content">
             <section className="banner-heading-3 next-shadow">
