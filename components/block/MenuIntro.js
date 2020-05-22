@@ -45,15 +45,6 @@ function MenuIntro({ data, pageId, optionWidth }) {
     getFormByID(data, setFormData);
   }, [getFormByID]);
 
-  // useEffect(() => {
-  //   const listModal = document.getElementsByClassName('myModal');
-  //   const wrapper = document.getElementById('wrapper');
-  //   console.log(listModal);
-  //   if (listModal && wrapper) {
-  //     map(listModal, modalItems => wrapper.appendChild(modalItems));
-  //   }
-  // }, []);
-
   const handleChange = event => {
     event.persist();
     setFormState(() => ({

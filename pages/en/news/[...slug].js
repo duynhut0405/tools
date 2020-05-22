@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Social } from '../../../components/common';
 import { getNewByUri } from '../../../services/news';
-import { getSocialLink } from '../../../utils/fetch';
+import { getCommon, getMemnu } from '../../../utils/fetch';
 import moment from 'moment';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
@@ -17,10 +17,33 @@ const propTypes = {
   news: PropTypes.object,
   category_name: PropTypes.string,
   category_url: PropTypes.string,
-  relatedPost: PropTypes.array
+  relatedPost: PropTypes.array,
+  menuHeader: PropTypes.array,
+  menuNav: PropTypes.array,
+  menuFooterTop: PropTypes.array,
+  menuFooterBottom: PropTypes.array,
+  menuFooterMain: PropTypes.array,
+  menuSearch: PropTypes.array,
+  menuMobile: PropTypes.array,
+  linkApp: PropTypes.object,
+  general: PropTypes.object
 };
 
-function New({ news, category_name, category_url, socialLink }) {
+function New({
+  news,
+  category_name,
+  category_url,
+  menuHeader,
+  menuNav,
+  menuFooterTop,
+  menuFooterMain,
+  menuFooterBottom,
+  menuSearch,
+  menuMobile,
+  general,
+  socialLink,
+  linkApp
+}) {
   const [isPrioty, setIsPrioty] = useState(null);
   const [active, setActive] = useState(false);
   useEffect(() => {
@@ -40,7 +63,7 @@ function New({ news, category_name, category_url, socialLink }) {
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       if (body && logo) {
-        body.classList.remove('mb-priority');
+        // body.classList.remove('mb-priority');
         logo.src = '/static/images/svg/logo.svg';
       }
     }
@@ -72,7 +95,21 @@ function New({ news, category_name, category_url, socialLink }) {
           <meta property="og:image:height" content="354" />
         </Head>
       )}
-      <Layout lang="en" isPrioty={isPrioty} idPage={1}>
+      <Layout
+        lang="en"
+        isPrioty={isPrioty}
+        idPage={1}
+        menuFooterBottom={menuFooterBottom}
+        menuFooterMain={menuFooterMain}
+        menuFooterTop={menuFooterTop}
+        menuMobile={menuMobile}
+        menuNav={menuNav}
+        menuSearch={menuSearch}
+        menuHeader={menuHeader}
+        settingFooter={general}
+        socialLink={socialLink}
+        linkApp={linkApp}
+      >
         {news && news.news !== null && (
           <>
             <div className="entry-breadcrumb">
@@ -112,11 +149,11 @@ function New({ news, category_name, category_url, socialLink }) {
                 <div className=" max750">
                   <div className="top-heading">
                     <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div>
-                    {socialLink && <Social data={socialLink.socialLink} />}
+                    {socialLink && <Social data={socialLink} />}
                     {/* {console.log(socialLink)} */}
                   </div>
                   {news.news.author_name !== null && (
-                    <Fragment>
+                    <React.Fragment>
                       {!active && (
                         <div
                           className={
@@ -162,7 +199,7 @@ function New({ news, category_name, category_url, socialLink }) {
                           ></iframe>
                         </div>
                       )}
-                    </Fragment>
+                    </React.Fragment>
                   )}
                   <div className="entry-content">{ReactHtmlParser(news.news.description)}</div>
                   <br />
@@ -232,8 +269,20 @@ New.getInitialProps = async ctx => {
   let category_url = null;
   // let layoutInvestors = null;
   map(query, url => (params = `${params}/${url}`));
-  routerURL = params.slice(4, params.length);
-  const socialLink = await getSocialLink('en');
+  routerURL = params.slice(1, params.length);
+  const menu = await getMemnu('en');
+  const {
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile
+  } = menu;
+  const common = await getCommon('en');
+  const { general, socialLink, linkApp } = common;
+  // const socialLink = await getSocialLink('en');
   const newResponse = await getNewByUri('en', routerURL);
   if (
     newResponse &&
@@ -257,7 +306,16 @@ New.getInitialProps = async ctx => {
     news,
     category_name,
     category_url,
-    socialLink
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile,
+    general,
+    socialLink,
+    linkApp
   };
 };
 

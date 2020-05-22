@@ -4,16 +4,40 @@ import Layout from '../../../../components/layout';
 import map from 'lodash/map';
 import { getNewsByCategorySlug } from '../../../../services/news';
 import { Pagination } from '../../../../components/common';
+import { getMemnu, getCommon } from '../../../../utils/fetch';
 import PropTypes from 'prop-types';
 import AboutCategory from '../../../../components/about/AboutCategory';
 import Cookies from 'js-cookie';
 
 const propTypes = {
   category: PropTypes.object,
-  routerURL: PropTypes.string
+  routerURL: PropTypes.string,
+  menuHeader: PropTypes.array,
+  menuNav: PropTypes.array,
+  menuFooterTop: PropTypes.array,
+  menuFooterBottom: PropTypes.array,
+  menuFooterMain: PropTypes.array,
+  menuSearch: PropTypes.array,
+  menuMobile: PropTypes.array,
+  linkApp: PropTypes.object,
+  general: PropTypes.object,
+  socialLink: PropTypes.object
 };
 
-function CategoryDetail({ routerURL, category }) {
+function CategoryDetail({
+  routerURL,
+  category,
+  menuHeader,
+  menuNav,
+  menuFooterTop,
+  menuFooterMain,
+  menuFooterBottom,
+  menuSearch,
+  menuMobile,
+  general,
+  socialLink,
+  linkApp
+}) {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
 
@@ -29,9 +53,9 @@ function CategoryDetail({ routerURL, category }) {
     setData(category);
     document.body.className = '';
     document.body.classList.add('page');
-    const body = document.getElementsByTagName('body')[0];
+    // const body = document.getElementsByTagName('body')[0];
     const logo = document.getElementById('img_log');
-    body.classList.remove('mb-priority');
+    // body.classList.remove('mb-priority');
     logo.src = '/static/images/svg/logo.svg';
   }, [category]);
 
@@ -40,18 +64,18 @@ function CategoryDetail({ routerURL, category }) {
   }, [page]);
   return (
     <React.Fragment>
-      {data && (
+      {category && (
         <Head>
-          <title>{data.meta_title || data.name}</title>
-          <meta name="title" content={data.meta_title || data.name} />
-          <meta name="description" content={data.meta_description || ''} />
-          <meta name="keywords" content={data.meta_keyword || ''} />
+          <title>{category.meta_title || category.name}</title>
+          <meta name="title" content={category.meta_title || category.name} />
+          <meta name="description" content={category.meta_description || ''} />
+          <meta name="keywords" content={category.meta_keyword || ''} />
           <meta
             property="og:image"
             itemProp="thumbnaiUrl"
             content={
-              data.miniImage
-                ? `${process.env.DOMAIN}${data.miniImage}`
+              category.miniImage
+                ? `${process.env.DOMAIN}${category.miniImage}`
                 : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
             }
           />
@@ -59,7 +83,20 @@ function CategoryDetail({ routerURL, category }) {
           <meta property="og:image:height" content="354" />
         </Head>
       )}
-      <Layout lang="en" idPage={1}>
+      <Layout
+        lang="en"
+        idPage={1}
+        menuFooterBottom={menuFooterBottom}
+        menuFooterMain={menuFooterMain}
+        menuFooterTop={menuFooterTop}
+        menuMobile={menuMobile}
+        menuNav={menuNav}
+        menuSearch={menuSearch}
+        menuHeader={menuHeader}
+        settingFooter={general}
+        socialLink={socialLink}
+        linkApp={linkApp}
+      >
         {data !== null && (
           <div className="main_content">
             <section className="banner-heading-3 next-shadow">
@@ -96,13 +133,37 @@ CategoryDetail.getInitialProps = async ctx => {
   let params = '';
   let category = null;
   map(query, url => (params = `${params}/${url}`));
-  routerURL = params.slice(4, params.length);
-
+  routerURL = params.slice(1, params.length);
+  const menu = await getMemnu('en');
+  const {
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile
+  } = menu;
+  const common = await getCommon('en');
+  const { general, socialLink, linkApp } = common;
   const res = await getNewsByCategorySlug(routerURL, { number: 10, page: 0 });
   if (res && res !== undefined && res.status === 200) {
     category = res.data;
   }
-  return { routerURL, category };
+  return {
+    routerURL,
+    category,
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile,
+    general,
+    socialLink,
+    linkApp
+  };
 };
 
 CategoryDetail.propTypes = propTypes;

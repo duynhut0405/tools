@@ -8,7 +8,7 @@ import Suggest from './Suggest';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Cookies from 'js-cookie';
 import { LinkPage } from '../common/link';
-import { getMemnu, getCommon } from '../../utils/fetch';
+// import { getMemnu, getCommon } from '../../utils/fetch';
 import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
@@ -30,106 +30,123 @@ const propTypes = {
   menuSearch: PropTypes.array,
   lang: PropTypes.string,
   isPrioty: PropTypes.any,
-  idPage: PropTypes.number
+  idPage: PropTypes.number,
+  menuMobile: PropTypes.array,
+  linkApp: PropTypes.object
 };
 
-function Layout({ children, lang, isPrioty, idPage }) {
+function Layout({
+  children,
+  lang,
+  isPrioty,
+  idPage,
+  menuHeader,
+  menuNav,
+  menuSearch,
+  menuFooterTop,
+  menuFooterBottom,
+  menuFooterMain,
+  settingFooter,
+  socialLink,
+  menuMobile,
+  linkApp
+}) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
-  const [menuHeader, setMenuHeader] = useState([]);
-  const [menuNav, setMenuNav] = useState([]);
-  const [menuSearch, setMenuSearch] = useState([]);
-  const [menuFooterTop, setMenuFooterTop] = useState([]);
-  const [menuFooterBottom, setMenuFooterBottom] = useState([]);
-  const [menuFooterMain, setMenuFooterMain] = useState([]);
-  const [settingFooter, setSettingFooter] = useState({});
-  const [socialLink, setSocialLink] = useState({});
+  // const [menuHeader, setMenuHeader] = useState([]);
+  // const [menuNav, setMenuNav] = useState([]);
+  // const [menuSearch, setMenuSearch] = useState([]);
+  // const [menuFooterTop, setMenuFooterTop] = useState([]);
+  // const [menuFooterBottom, setMenuFooterBottom] = useState([]);
+  // const [menuFooterMain, setMenuFooterMain] = useState([]);
+  // const [settingFooter, setSettingFooter] = useState({});
+  // const [socialLink, setSocialLink] = useState({});
   const [query, setQuery] = useState(null);
-  const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
+  // const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
   const router = useRouter();
-  const [menuMobile, setMenuMobile] = useState([]);
-  const [allData, setAllData] = useState([]);
-  const [common, setCommon] = useState([]);
+  // const [menuMobile, setMenuMobile] = useState([]);
+  // const [allData, setAllData] = useState([]);
+  // const [common, setCommon] = useState([]);
   const [activeForm, setActiveForm] = useState(false);
   const [register, setRegister] = useState('');
 
-  const fetchAllData = async () => {
-    const result = await getMemnu(lang);
-    const commonRs = await getCommon(lang);
-    setAllData(result);
-    setCommon(commonRs);
-  };
+  // const fetchAllData = async () => {
+  //   const result = await getMemnu(lang);
+  //   const commonRs = await getCommon(lang);
+  //   setAllData(result);
+  //   setCommon(commonRs);
+  // };
 
-  const nested = (data, id = null, link = 'parentId') => {
-    return data
-      .filter(item => item[link] === id)
-      .map(item => ({
-        ...item,
-        title: `${item.name}`,
-        children: nested(
-          data.sort((a, b) => a.position - b.position),
-          item.id
-        )
-      }));
-  };
+  // const nested = (data, id = null, link = 'parentId') => {
+  //   return data
+  //     .filter(item => item[link] === id)
+  //     .map(item => ({
+  //       ...item,
+  //       title: `${item.name}`,
+  //       children: nested(
+  //         data.sort((a, b) => a.position - b.position),
+  //         item.id
+  //       )
+  //     }));
+  // };
 
-  const findMenu = pos => {
-    if (allData) {
-      const rs = allData.find(item => item.position === pos);
-      if (rs) {
-        return nested(rs.menuItems);
-      }
-      return null;
-    }
-    return null;
-  };
+  // const findMenu = pos => {
+  //   if (allData) {
+  //     const rs = allData.find(item => item.position === pos);
+  //     if (rs) {
+  //       return nested(rs.menuItems);
+  //     }
+  //     return null;
+  //   }
+  //   return null;
+  // };
 
-  const fetchMenu = async () => {
-    const _menuHeader = findMenu('top_top');
-    const _menuNav = findMenu('top2');
-    const _menuFooterTop = findMenu('Menu footer top');
-    const _menuFooterMain = findMenu('Menu footer main');
-    const _menuFooterBottom = findMenu('menu footer bottom');
-    const _menuSearch = findMenu('menu search');
-    const _menuMobile = findMenu('menu-mobile');
+  // const fetchMenu = async () => {
+  //   const _menuHeader = findMenu('top_top');
+  //   const _menuNav = findMenu('top2');
+  //   const _menuFooterTop = findMenu('Menu footer top');
+  //   const _menuFooterMain = findMenu('Menu footer main');
+  //   const _menuFooterBottom = findMenu('menu footer bottom');
+  //   const _menuSearch = findMenu('menu search');
+  //   const _menuMobile = findMenu('menu-mobile');
 
-    if (_menuHeader) {
-      setMenuHeader(_menuHeader);
-    }
-    if (_menuNav) {
-      setMenuNav(_menuNav);
-    }
-    if (_menuSearch) {
-      setMenuSearch(_menuSearch);
-    }
-    if (_menuFooterTop) {
-      setMenuFooterTop(_menuFooterTop);
-    }
-    if (_menuFooterBottom) {
-      setMenuFooterBottom(_menuFooterBottom);
-    }
-    if (_menuFooterMain) {
-      setMenuFooterMain(_menuFooterMain);
-    }
-    if (_menuMobile) {
-      setMenuMobile(_menuMobile);
-    }
-    setSocialLink(common.socialLink);
+  //   if (_menuHeader) {
+  //     setMenuHeader(_menuHeader);
+  //   }
+  //   if (_menuNav) {
+  //     setMenuNav(_menuNav);
+  //   }
+  //   if (_menuSearch) {
+  //     setMenuSearch(_menuSearch);
+  //   }
+  //   if (_menuFooterTop) {
+  //     setMenuFooterTop(_menuFooterTop);
+  //   }
+  //   if (_menuFooterBottom) {
+  //     setMenuFooterBottom(_menuFooterBottom);
+  //   }
+  //   if (_menuFooterMain) {
+  //     setMenuFooterMain(_menuFooterMain);
+  //   }
+  //   if (_menuMobile) {
+  //     setMenuMobile(_menuMobile);
+  //   }
+  //   setSocialLink(common.socialLink);
 
-    if (common.linkApp) {
-      setLinkApp(common.linkApp);
-    }
-    if (common.general) {
-      setSettingFooter(common.general);
-    }
-  };
+  //   if (common.linkApp) {
+  //     setLinkApp(common.linkApp);
+  //   }
+  //   if (common.general) {
+  //     setSettingFooter(common.general);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchAllData();
-  }, []);
+  // useEffect(() => {
+  //   fetchAllData();
+  // }, []);
 
-  useEffect(() => {
-    fetchMenu();
-  }, [allData, common]);
+  // useEffect(() => {
+  //   fetchMenu();
+  // }, [allData, common]);
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
@@ -762,6 +779,12 @@ function Layout({ children, lang, isPrioty, idPage }) {
             </div>
           </div>
         </div>
+        <FormPopup
+          modal={activeForm}
+          setModal={() => setActiveForm(!activeForm)}
+          idPage={idPage}
+          mail={register}
+        />
       </StickyContainer>
       <ModalDrawer
         menu={menuNav}
@@ -771,12 +794,6 @@ function Layout({ children, lang, isPrioty, idPage }) {
           onSearch(event);
           setActiveDrawwe(false);
         }}
-      />
-      <FormPopup
-        modal={activeForm}
-        setModal={() => setActiveForm(!activeForm)}
-        idPage={idPage}
-        mail={register}
       />
     </>
   );
