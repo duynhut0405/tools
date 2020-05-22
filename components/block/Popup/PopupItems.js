@@ -10,32 +10,20 @@ const propTypes = {
   setModal: Proptypes.func
 };
 function PopupItems({ item, modal, setModal }) {
-  const toggle = () => setModal(!modal);
   const lang = getLang();
+
+  const onClose = () => {
+    setModal(!modal);
+    document.body.classList.remove('showModal');
+  };
 
   return (
     <React.Fragment>
-      <div
-        id="lanhdaoModal"
-        className={`myModal lanhdaoModal ${modal ? `active` : null}`}
-        toggle={toggle}
-      >
-        <span
-          className="btnModal overlay"
-          onClick={() => {
-            setModal(!modal);
-            document.body.classList.remove('showModal');
-          }}
-        ></span>
+      <div id="lanhdaoModal" className={`myModal lanhdaoModal ${modal ? `active` : null}`}>
+        <span className="btnModal overlay" onClick={onClose}></span>
         <div className="container max950 ">
           <div className="contentModal">
-            <span
-              className="btnModal btn-close"
-              onClick={() => {
-                setModal(!modal);
-                document.body.classList.remove('showModal');
-              }}
-            >
+            <span className="btnModal btn-close" onClick={onClose}>
               <i className="icon-close"> </i>
             </span>
             <div className="logo">

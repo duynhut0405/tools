@@ -779,6 +779,12 @@ function Layout({
             </div>
           </div>
         </div>
+        <FormPopup
+          modal={activeForm}
+          setModal={() => setActiveForm(!activeForm)}
+          idPage={idPage}
+          mail={register}
+        />
       </StickyContainer>
       <ModalDrawer
         menu={menuNav}
@@ -788,12 +794,6 @@ function Layout({
           onSearch(event);
           setActiveDrawwe(false);
         }}
-      />
-      <FormPopup
-        modal={activeForm}
-        setModal={() => setActiveForm(!activeForm)}
-        idPage={idPage}
-        mail={register}
       />
     </>
   );

@@ -67,7 +67,7 @@ function Home({
   useEffect(() => {
     document.body.className = '';
     document.body.classList.add('home');
-    document.getElementById('img_log').src = '/static/images/svg/logo.svg';
+    // document.getElementById('img_log').src = '/static/images/svg/logo.svg';
   }, [page]);
 
   return (

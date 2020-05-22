@@ -20,11 +20,11 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 class NextApp extends App {
-  componentDidMount() {
-    Router.beforePopState(({ as }) => {
-      location.href = as;
-    });
-  }
+  // componentDidMount() {
+  //   Router.beforePopState(({ as }) => {
+  //     location.href = as;
+  //   });
+  // }
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
     if (Component.getInitialProps) {

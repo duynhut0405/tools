@@ -13,28 +13,28 @@ const propTypes = {
   mail: Proptypes.string
 };
 
+const getFormByID = async setFormData => {
+  const res = await getFormbuilderByIdService(233752);
+  if (res && res.status === 200) {
+    setFormData(JSON.parse(res.data.list));
+  }
+};
+
 function FormPopup({ modal, setModal, idPage, mail }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const getFormByID = async () => {
-    const res = await getFormbuilderByIdService(233752);
-    if (res && res.status === 200) {
-      setFormData(JSON.parse(res.data.list));
-    }
-  };
-
   useEffect(() => {
-    getFormByID();
-  }, [modal]);
+    getFormByID(setFormData);
+  }, []);
 
   useEffect(() => {
     setFormState(() => ({
       ...formState,
       email: mail
     }));
-  }, [mail]);
+  }, []);
 
   const handleChange = event => {
     event.persist();
@@ -84,25 +84,18 @@ function FormPopup({ modal, setModal, idPage, mail }) {
     }
   };
 
+  const onClose = () => {
+    setModal(!modal);
+    document.body.classList.remove('showModal');
+  };
+
   return (
     <React.Fragment>
       <div id="formModal" className={`myModal formModal ${modal ? `active` : null}`}>
-        <span
-          className="btnModal overlay"
-          onClick={() => {
-            setModal(!modal);
-            document.body.classList.remove('showModal');
-          }}
-        ></span>
+        <span className="btnModal overlay" onClick={onClose}></span>
         <div className="container  max750 middle">
           <div className="contentModal">
-            <span
-              className="btnModal btn-close"
-              onClick={() => {
-                setModal(!modal);
-                document.body.classList.remove('showModal');
-              }}
-            >
+            <span className="btnModal btn-close" onClick={onClose}>
               <i className="icon-close"> </i>
             </span>
 

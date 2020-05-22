@@ -169,7 +169,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               <div className="list-5 row ">
                 {map(listNews, (item, index) => (
                   <div className="col-md-6" key={index}>
-                    <LinkNew lang={lang} name={item.url} A>
+                    <LinkNew lang={lang} name={item.url}>
                       <a className={`item efch-${index} ef-img-l equal`}>
                         <div className="img tRes_71">
                           <img
@@ -328,12 +328,8 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
           {size.width < 768 && (
             <div className="list-5 list-item">
               {map(uniqBy(listCategory, 'newsId'), (item, index) => (
-                <LinkNew lang={lang} name={item.url}>
-                  <a
-                    className={`item efch-${index} ef-img-l `}
-                    key={index}
-                    //style={{ height: '300px', width: '262px' }}
-                  >
+                <LinkNew lang={lang} name={item.url} key={index}>
+                  <a className={`item efch-${index} ef-img-l `}>
                     <div className="img tRes_71">
                       <img
                         className="lazyload"
@@ -484,7 +480,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                 {map(uniqBy(listCategory, 'newsId'), (item, index) => {
                   if (index === 0) {
                     return (
-                      <LinkNew lang={lang} name={item.url}>
+                      <LinkNew lang={lang} name={item.url} key={index}>
                         <a className="item  tRes_39">
                           <img
                             className="lazyload"
@@ -509,7 +505,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                 {map(uniqBy(listCategory, 'newsId'), (item, index) => {
                   if (index > 0 && index < 3) {
                     return (
-                      <div className="col-md-6">
+                      <div className="col-md-6" key={index}>
                         <LinkNew lang={lang} name={item.url}>
                           <a className={`item efch-${index} ef-img-l `}>
                             <div className="img tRes_51">
@@ -727,7 +723,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                 {map(uniqBy(listCategory, 'newsId'), (item, index) => {
                   if (index > 0 && index < 3) {
                     return (
-                      <React.Fragment>
+                      <React.Fragment key={index}>
                         <LinkNew lang={lang} name={item.url}>
                           <a className="item item-inline-table">
                             <div className="img tRes_56 video cl">
