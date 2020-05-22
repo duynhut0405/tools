@@ -32,12 +32,6 @@ function Form({ data, pageId, id }) {
     getFormByID();
   }, [data]);
 
-  useEffect(() => {
-    const listModal = document.getElementsByClassName('myModal');
-    const wrapper = document.getElementById('wrapper');
-    map(listModal, modalItems => wrapper.appendChild(modalItems));
-  }, []);
-
   const handleChange = event => {
     event.persist();
     setFormState(() => ({
