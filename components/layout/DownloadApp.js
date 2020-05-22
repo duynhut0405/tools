@@ -15,7 +15,12 @@ const DownloadApp = ({ mobile, linkApp }) => {
       {!mobile && (
         <>
           <span className="code">
-            <img className="lazyload" data-src={ImgCode} alt="images" />
+            <img
+              className="lazyload"
+              style={{ width: 100 }}
+              data-src="/static/images/svg/qr.svg"
+              alt="images"
+            />
           </span>
           <div className="app">
             <p className="stitle">{t('donwload_app_today')}</p>
@@ -32,11 +37,11 @@ const DownloadApp = ({ mobile, linkApp }) => {
       {mobile && (
         <>
           <span className="stitle">{t('donwload_app_today')}</span>
-          <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
+          <a href={linkApp.ios} target="_blank" rel="noopener noreferrer">
             <img className="lazyload" data-src="/static/images/btt-chplay-mb.svg" alt="images" />
           </a>
           &nbsp;
-          <a href={linkApp.ios} target="_blank" rel="noopener noreferrer">
+          <a href={linkApp.android} target="_blank" rel="noopener noreferrer">
             <img className="lazyload" data-src="/static/images/btt-google-mb.svg" alt="images" />
           </a>
         </>
