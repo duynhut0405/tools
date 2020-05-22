@@ -21,13 +21,73 @@ const nested = (data, id = null, link = 'parentId') => {
     }));
 };
 
+const findMenu = (data, name) => {
+  if (data) {
+    const menu = data.find(item => item.position === name);
+    if (menu) {
+      return nested(menu.menuItems);
+    }
+    return null;
+  }
+  return null;
+};
+
+const fetchMenu = data => {
+  const _menuHeader = findMenu(data, 'top_top');
+  const _menuNav = findMenu(data, 'top2');
+  const _menuFooterTop = findMenu(data, 'Menu footer top');
+  const _menuFooterMain = findMenu(data, 'Menu footer main');
+  const _menuFooterBottom = findMenu(data, 'menu footer bottom');
+  const _menuSearch = findMenu(data, 'menu search');
+  const _menuMobile = findMenu(data, 'menu-mobile');
+
+  let menuHeader = [];
+  let menuNav = [];
+  let menuFooterTop = [];
+  let menuFooterMain = [];
+  let menuFooterBottom = [];
+  let menuSearch = [];
+  let menuMobile = [];
+
+  if (_menuHeader) {
+    menuHeader = _menuHeader;
+  }
+  if (_menuNav) {
+    menuNav = _menuNav;
+  }
+  if (_menuSearch) {
+    menuSearch = _menuSearch;
+  }
+  if (_menuFooterTop) {
+    menuFooterTop = _menuFooterTop;
+  }
+  if (_menuFooterBottom) {
+    menuFooterBottom = _menuFooterBottom;
+  }
+  if (_menuFooterMain) {
+    menuFooterMain = _menuFooterMain;
+  }
+  if (_menuMobile) {
+    menuMobile = _menuMobile;
+  }
+  return {
+    menuHeader,
+    menuNav,
+    menuFooterTop,
+    menuFooterMain,
+    menuFooterBottom,
+    menuSearch,
+    menuMobile
+  };
+};
+
 export const getMemnu = async lang => {
   let data = [];
   const res = await getMenuItemByPosition(lang);
   if (res && res !== undefined && res.status === 200) {
     data = res.data;
   }
-  return data;
+  return fetchMenu(data);
 };
 
 export const getSetting = async lang => {
