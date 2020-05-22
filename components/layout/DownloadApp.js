@@ -15,7 +15,7 @@ const DownloadApp = ({ mobile, linkApp }) => {
       {!mobile && (
         <>
           <span className="code">
-            <img className="lazyload" data-src={ImgCode} alt="images" />
+            <img className="lazyload" data-src="/static/images/svg/qr.svg" alt="images" />
           </span>
           <div className="app">
             <p className="stitle">{t('donwload_app_today')}</p>
