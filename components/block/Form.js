@@ -68,7 +68,7 @@ function Form({ data, pageId, id }) {
         idForm: data.formdata,
         idPage: pageId
       };
-      recaptchaRef.current.execute();
+      //recaptchaRef.current.execute();
       const send = await sendMailService(dataSend);
       if (send && send !== undefined && send.status === 200) {
         setIsLoading(false);

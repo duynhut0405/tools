@@ -29,6 +29,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [capcha, setCapcha] = useState(false);
+  const recaptchaRef = React.createRef();
 
   let padding = '';
   if (optionWidth === '2') {
@@ -90,7 +91,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
       //sendMailService(dataSend);
       //setModal(!modal);
-      recaptchaRef.current.execute();
+
       const send = await sendMailService(dataSend);
       if (send && send !== undefined && send.status === 200) {
         setIsLoading(false);
