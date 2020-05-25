@@ -102,6 +102,15 @@ function FormRate({ data, interestRate }) {
     }
   }, [From, currencyFrom, currencyTo]);
 
+  const FormatNumber = number => {
+    const n = new Intl.NumberFormat().format(number);
+    // const res = n
+    //   .slice(0, 9)
+    //   .concat('.')
+    //   .concat(n.slice(10, 12));
+    //console.log(res);
+    return n;
+  };
   return (
     <section className="sec-b sec-tigia sec-h-2">
       {data !== undefined && (
@@ -135,9 +144,9 @@ function FormRate({ data, interestRate }) {
                     className="input"
                     placeholder={t('amount')}
                     name="from"
-                    value={From}
+                    value={FormatNumber(From)}
                     onChange={e => {
-                      setFrom(e.target.value);
+                      setFrom(Number(e.target.value.replace(/[^0-9.-]+/g, '')));
                     }}
                   />
                 </div>
