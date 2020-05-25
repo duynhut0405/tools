@@ -12,6 +12,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'react-multi-carousel/lib/styles.css';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+import 'react-datepicker/dist/react-datepicker.css';
 
 Router.events.on('routeChangeStart', () => {
   NProgress.start();

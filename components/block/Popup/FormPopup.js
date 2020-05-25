@@ -4,6 +4,7 @@ import { getFormbuilderByIdService, sendMailService } from '../../../services/fo
 import ReactLoading from 'react-loading';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const propTypes = {
   item: Proptypes.object,
@@ -24,6 +25,8 @@ function FormPopup({ modal, setModal, idPage, mail }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [capcha, setCapcha] = useState(false);
+  const recaptchaRef = React.createRef();
 
   useEffect(() => {
     getFormByID(setFormData);
@@ -34,7 +37,7 @@ function FormPopup({ modal, setModal, idPage, mail }) {
       ...formState,
       email: mail
     }));
-  }, []);
+  }, [modal]);
 
   const handleChange = event => {
     event.persist();
@@ -54,26 +57,34 @@ function FormPopup({ modal, setModal, idPage, mail }) {
     return result;
   };
 
+  const handleChangeCapcha = value => {
+    if (value) {
+      setCapcha(true);
+    }
+  };
+
   const onSend = async event => {
     event.preventDefault();
-    setIsLoading(true);
-    const dataSend = {
-      content: JSON.stringify(formState),
-      contentMail: convertContent(formState),
-      email: formState.email,
-      idForm: 233752,
-      idPage: 1
-      //   idPage: idPage
-    };
+    if (capcha) {
+      setIsLoading(true);
+      const dataSend = {
+        content: JSON.stringify(formState),
+        contentMail: convertContent(formState),
+        email: formState.email,
+        idForm: 233752,
+        idPage: 1
+        //   idPage: idPage
+      };
 
-    const send = await sendMailService(dataSend);
-    if (send && send !== undefined && send.status === 200) {
-      setIsLoading(false);
-      setModal(!modal);
-      setFormState({});
-      setFormData([]);
-    } else {
-      setIsLoading(false);
+      const send = await sendMailService(dataSend);
+      if (send && send !== undefined && send.status === 200) {
+        setIsLoading(false);
+        setModal(!modal);
+        setFormState({});
+        setFormData([]);
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -128,6 +139,8 @@ function FormPopup({ modal, setModal, idPage, mail }) {
                           <input
                             type="radio"
                             name={item.name}
+                            value={items.value}
+                            checked={items.value === formState[item.name] ? true : false}
                             required={item.required}
                             onChange={e => handleChange(e)}
                           />
@@ -190,6 +203,15 @@ function FormPopup({ modal, setModal, idPage, mail }) {
                 if (item.type === 'button') {
                   return (
                     <React.Fragment key={index}>
+                      <div className="col-12 text-center">
+                        <ReCAPTCHA
+                          style={{ display: 'inline-block' }}
+                          ref={recaptchaRef}
+                          onChange={handleChangeCapcha}
+                          sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
+                          // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                        />
+                      </div>
                       <div className="d-flex col-12 text-center">
                         <button className={`btn`} type={item.subtype}>
                           {item.label}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import t from '../../translation';
 import Proptypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { getRateService } from '../../services/rate';
 
 const propTypes = {
