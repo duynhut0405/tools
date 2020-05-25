@@ -26,7 +26,6 @@ function FormPopup({ modal, setModal, idPage, mail }) {
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [capcha, setCapcha] = useState(false);
-  const recaptchaRef = React.createRef();
 
   useEffect(() => {
     getFormByID(setFormData);

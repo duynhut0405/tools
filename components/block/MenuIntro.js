@@ -28,7 +28,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
-  const recaptchaRef = React.createRef();
+  const [capcha, setCapcha] = useState(false);
 
   let padding = '';
   if (optionWidth === '2') {
@@ -63,6 +63,12 @@ function MenuIntro({ data, pageId, optionWidth }) {
     return result;
   };
 
+  const handleChangeCapcha = value => {
+    if (value) {
+      setCapcha(true);
+    }
+  };
+
   function onScroll(id) {
     const elmnt = document.getElementById(id);
     if (elmnt !== null) {
@@ -72,25 +78,27 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
   const onSend = async event => {
     event.preventDefault();
-    setIsLoading(true);
-    const dataSend = {
-      content: JSON.stringify(formState),
-      contentMail: convertContent(formState),
-      email: formState.email,
-      idForm: data.formdata,
-      idPage: pageId
-    };
+    if (capcha) {
+      setIsLoading(true);
+      const dataSend = {
+        content: JSON.stringify(formState),
+        contentMail: convertContent(formState),
+        email: formState.email,
+        idForm: data.formdata,
+        idPage: pageId
+      };
 
-    //sendMailService(dataSend);
-    //setModal(!modal);
-    recaptchaRef.current.execute();
-    const send = await sendMailService(dataSend);
-    if (send && send !== undefined && send.status === 200) {
-      setIsLoading(false);
-      setModal(!modal);
-      setFormState({});
-    } else {
-      setIsLoading(false);
+      //sendMailService(dataSend);
+      //setModal(!modal);
+      recaptchaRef.current.execute();
+      const send = await sendMailService(dataSend);
+      if (send && send !== undefined && send.status === 200) {
+        setIsLoading(false);
+        setModal(!modal);
+        setFormState({});
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -218,9 +226,11 @@ function MenuIntro({ data, pageId, optionWidth }) {
                         <React.Fragment key={index}>
                           <div className="col-12 text-center">
                             <ReCAPTCHA
+                              style={{ display: 'inline-block' }}
                               ref={recaptchaRef}
-                              size="invisible"
-                              sitekey="6LddVvoUAAAAANqcKPdkTfIL8pOCIoAuPJj3jKcT"
+                              onChange={handleChangeCapcha}
+                              sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
+                              // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                             />
                             <button className="btn" type={item.subtype}>
                               {item.label}
