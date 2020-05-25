@@ -411,4 +411,8 @@ div#lanhdaoModal {
 .no-err {
   color: #fff;
 }
+
+.form-contact .react-datepicker-wrapper input {
+  height: 40px;
+}
 /* End edit*/

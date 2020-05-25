@@ -4,7 +4,9 @@ import ReactHtmlParser from 'react-html-parser';
 import map from 'lodash/map';
 import t from '../../../translation';
 import Link from 'next/link';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { getLang } from '../../../utils/cookie';
+import DatePicker from 'react-datepicker';
 import Proptypes from 'prop-types';
 
 const propTypes = {
@@ -27,6 +29,8 @@ const getFormByID = async (id, setData) => {
 function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
   const [formdata, setFormData] = useState([]);
   const [formState, setFormState] = useState({});
+  const [capcha, setCapcha] = useState(false);
+  const recaptchaRef = React.createRef();
   const lang = getLang();
 
   useEffect(() => {
@@ -41,9 +45,36 @@ function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
     }));
   };
 
+  const handleChangeDate = (date, name) => {
+    setFormState(() => ({
+      ...formState,
+      [name]: date
+    }));
+  };
+
+  const onKeyPress = e => {
+    const reg = /^[0-8]/;
+    if (!reg.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const handleChangeCapcha = value => {
+    if (value) {
+      setCapcha(true);
+    }
+  };
+
   const onSend = event => {
     event.preventDefault();
-    onNext(step + 1, formState);
+    if (step === totalStep - 1) {
+      if (capcha) {
+        onNext(step + 1, formState);
+        setCapcha(false);
+      }
+    } else {
+      onNext(step + 1, formState);
+    }
   };
 
   return (
@@ -81,19 +112,22 @@ function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
             if (item.type === 'radio-group') {
               return (
                 <div className={`col-12 mb-30  ${item.className}`} key={index}>
-                  {map(item.values, (items, key) => (
-                    <label className="radio" key={key}>
-                      {items.label || ''}
-                      <input
-                        type="radio"
-                        name={item.name}
-                        required={item.required}
-                        value={formState[items.name]}
-                        onChange={e => handleChange(e)}
-                      />
-                      <span></span>
-                    </label>
-                  ))}
+                  {map(item.values, (items, key) => {
+                    return (
+                      <label className="radio" key={key}>
+                        {items.label || ''}
+                        <input
+                          type="radio"
+                          name={item.name}
+                          required={item.required}
+                          value={items.value}
+                          checked={items.value === formState[item.name] ? true : false}
+                          onChange={e => handleChange(e)}
+                        />
+                        <span></span>
+                      </label>
+                    );
+                  })}
                 </div>
               );
             }
@@ -102,16 +136,47 @@ function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
                 <React.Fragment key={index}>
                   <div className={`col-12 ${item.className}`}>
                     {item.label && <label>{item.label}</label>}
-                    <input
-                      style={{ width: '100%' }}
-                      className="input"
-                      name={item.name}
+                    {item.subtype !== 'tel' && (
+                      <input
+                        style={{ width: '100%' }}
+                        className="input"
+                        name={item.name}
+                        type={item.subtype}
+                        value={formState[item.name]}
+                        required={item.required}
+                        placeholder={item.placeholder}
+                        onChange={e => handleChange(e)}
+                      />
+                    )}
+                    {item.subtype === 'tel' && (
+                      <input
+                        style={{ width: '100%' }}
+                        className="input"
+                        name={item.name}
+                        type={item.subtype}
+                        value={formState[item.name]}
+                        required={item.required}
+                        placeholder={item.placeholder}
+                        onKeyPress={onKeyPress}
+                        onChange={e => handleChange(e)}
+                      />
+                    )}
+                  </div>
+                </React.Fragment>
+              );
+            }
+            if (item.type === 'date') {
+              return (
+                <React.Fragment key={index}>
+                  <div className={`col-12 ${item.className}`}>
+                    {item.label && <label>{item.label}</label>}
+                    <DatePicker
+                      autoComplete="off"
                       required={item.required}
-                      type={item.subtype}
-                      value={formState[item.name]}
-                      placeholder={item.placeholder}
-                      onChange={e => handleChange(e)}
-                    />
+                      selected={formState[item.name]}
+                      name={item.name}
+                      onChange={e => handleChangeDate(e, item.name)}
+                    ></DatePicker>
                   </div>
                 </React.Fragment>
               );
@@ -179,6 +244,17 @@ function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
                 </div>
               </div>
             </React.Fragment>
+          )}
+          {step === totalStep - 1 && (
+            <div className="col-12 text-center">
+              <ReCAPTCHA
+                style={{ display: 'inline-block' }}
+                ref={recaptchaRef}
+                onChange={handleChangeCapcha}
+                sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
+                // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+              />
+            </div>
           )}
           {data.type !== 'result' && (
             <React.Fragment>
