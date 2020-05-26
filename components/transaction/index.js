@@ -82,6 +82,13 @@ function Transaction({ data, id }) {
   }, [district, branches_type, province, query]);
 
   const handleProvince = provinceItem => {
+    if (provinceItem.latitude !== null && provinceItem.longitude !== null) {
+      setLocation(() => ({
+        lat: Number(provinceItem.latitude),
+        lng: Number(provinceItem.longitude)
+      }));
+      setZoom(8);
+    }
     setProvince(provinceItem.value);
     setDistrict('');
     setQuery(null);
@@ -144,8 +151,9 @@ function Transaction({ data, id }) {
               setQuery(null);
               setBranchesType(type);
             }}
-            setDistrict={city => {
+            setDistrict={(city, name) => {
               setQuery(null);
+              setDistrictValue({ value: city, label: name });
               setDistrict(city);
             }}
             getDetail={getDetail}

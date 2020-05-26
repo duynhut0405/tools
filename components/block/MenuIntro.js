@@ -70,6 +70,13 @@ function MenuIntro({ data, pageId, optionWidth }) {
     }
   };
 
+  const onKeyPress = e => {
+    const reg = /^[0-8]/;
+    if (!reg.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   function onScroll(id) {
     const elmnt = document.getElementById(id);
     if (elmnt !== null) {
@@ -192,14 +199,27 @@ function MenuIntro({ data, pageId, optionWidth }) {
                         <React.Fragment key={index}>
                           <div className="col-12">
                             {item.label && <label>{item.label}</label>}
-                            <input
-                              className="input"
-                              name={item.name}
-                              type={item.subtype}
-                              required={item.required}
-                              placeholder={item.placeholder}
-                              onBlur={e => handleChange(e)}
-                            />
+                            {item.subtype !== 'tel' && (
+                              <input
+                                className="input"
+                                name={item.name}
+                                type={item.subtype}
+                                required={item.required}
+                                placeholder={item.placeholder}
+                                onChange={e => handleChange(e)}
+                              />
+                            )}
+                            {item.subtype === 'tel' && (
+                              <input
+                                className="input"
+                                name={item.name}
+                                type={item.subtype}
+                                required={item.required}
+                                placeholder={item.placeholder}
+                                onKeyPress={onKeyPress}
+                                onChange={e => handleChange(e)}
+                              />
+                            )}
                           </div>
                         </React.Fragment>
                       );
