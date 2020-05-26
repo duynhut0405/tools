@@ -202,25 +202,27 @@ function Form({ data, pageId, id }) {
                     />
                   </div>
                   <div className={`d-flex col-12 text-center__ `}>
-                    <button className={`btn`} type={item.subtype}>
-                      {item.label}
-                    </button>
-                    {isLoading && (
-                      <ReactLoading
-                        style={{
-                          width: '20px',
-                          height: '20px',
-                          position: 'absolute',
-                          left: '65%',
-                          transform: 'translateY(-50%)',
-                          top: '50%'
-                        }}
-                        type={'spin'}
-                        color={'primary'}
-                        height={'15px'}
-                        width={'15px'}
-                      />
-                    )}
+                    <div style={{ position: 'relative', display: 'inline-block' }}>
+                      <button className={`btn`} type={item.subtype}>
+                        {item.label}
+                      </button>
+                      {isLoading && (
+                        <ReactLoading
+                          style={{
+                            width: '20px',
+                            height: '20px',
+                            position: 'absolute',
+                            left: '105%',
+                            transform: 'translateY(-50%)',
+                            top: '50%'
+                          }}
+                          type={'spin'}
+                          color={'primary'}
+                          height={'15px'}
+                          width={'15px'}
+                        />
+                      )}
+                    </div>
                   </div>
                 </React.Fragment>
               );
