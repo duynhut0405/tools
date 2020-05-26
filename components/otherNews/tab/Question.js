@@ -10,10 +10,12 @@ const propTypes = {
   searchRegulationByType: PropTypes.func
 };
 function TabQuestion({ text, searchRegulationByType }) {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(null);
 
   useEffect(() => {
-    searchRegulationByType({ idSearch: 9, search });
+    if (search !== null) {
+      searchRegulationByType({ idSearch: 9, search }, { number: 10, page: 0 });
+    }
   }, [search]);
 
   const handleChangeInput = useCallback(

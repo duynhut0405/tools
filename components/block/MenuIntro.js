@@ -96,9 +96,6 @@ function MenuIntro({ data, pageId, optionWidth }) {
         idPage: pageId
       };
 
-      //sendMailService(dataSend);
-      //setModal(!modal);
-
       const send = await sendMailService(dataSend);
       if (send && send !== undefined && send.status === 200) {
         setIsLoading(false);
@@ -253,25 +250,27 @@ function MenuIntro({ data, pageId, optionWidth }) {
                               sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
                               // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                             />
-                            <button className="btn" type={item.subtype}>
-                              {item.label}
-                            </button>
-                            {isLoading && (
-                              <ReactLoading
-                                style={{
-                                  width: '20px',
-                                  height: '20px',
-                                  position: 'absolute',
-                                  left: '82%',
-                                  transform: 'translateY(-50%)',
-                                  top: '50%'
-                                }}
-                                type={'spin'}
-                                color={'primary'}
-                                height={'15px'}
-                                width={'15px'}
-                              />
-                            )}
+                            <div style={{ position: 'relative' }}>
+                              <button className="btn" type={item.subtype}>
+                                {item.label}
+                              </button>
+                              {isLoading && (
+                                <ReactLoading
+                                  style={{
+                                    width: '20px',
+                                    height: '20px',
+                                    position: 'absolute',
+                                    left: '82%',
+                                    transform: 'translateY(-50%)',
+                                    top: '50%'
+                                  }}
+                                  type={'spin'}
+                                  color={'primary'}
+                                  height={'15px'}
+                                  width={'15px'}
+                                />
+                              )}
+                            </div>
                           </div>
                         </React.Fragment>
                       );
