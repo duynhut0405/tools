@@ -91,11 +91,12 @@ const getAllYear = () => {
     });
 };
 
-const searchRegulationByType = data => {
+const searchRegulationByType = (data, pagination) => {
   return request({
     url: `/regulation/searchbytype`,
     method: 'POST',
-    data: data
+    data: data,
+    params: pagination
   })
     .then(res => {
       return res;

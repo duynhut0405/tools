@@ -107,9 +107,9 @@ function* getRegulationByYearSaga() {
 
 function* searchRegulationByTypeSaga() {
   yield takeLatest(actions.SEARCH_REGULATION_BY_TYPE_REQUEST, function*(params) {
-    const { data } = params;
+    const { data, pagination } = params;
     try {
-      const res = yield searchRegulationByType(data);
+      const res = yield searchRegulationByType(data, pagination);
       if (res.status === 200) {
         yield put({ type: actions.SEARCH_REGULATION_BY_TYPE_RESPONSE, data: res.data });
       } else {
