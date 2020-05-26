@@ -42,6 +42,14 @@ const regulationReducer = (state = initialState, action) => {
         listTypeByID: action.data
       };
     }
+    case Action.SEARCH_REGULATION_BY_TYPE_RESPONSE: {
+      console.log('action.data:', action.data);
+
+      return {
+        ...state,
+        listData: action.data
+      };
+    }
     default:
       return state;
   }

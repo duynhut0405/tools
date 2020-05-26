@@ -13,7 +13,7 @@ const propTypes = {
   search: PropTypes.bool,
   loading: PropTypes.bool,
   listType: PropTypes.array,
-  listRegulation: PropTypes.array,
+  listRegulation: PropTypes.object,
   getTypeRegulation: PropTypes.func,
   seachRegulation: PropTypes.func
 };
