@@ -75,9 +75,11 @@ function BoxSearch({
         <Select
           className="fix-select"
           placeholder={t('province')}
-          options={map([{ id: null, name: 'Tất cả' }, ...listProvince], province => ({
+          options={map(listProvince, province => ({
             value: province.id,
-            label: province.name
+            label: province.name,
+            latitude: province.latitude,
+            longitude: province.longitude
           }))}
           onChange={handleProvince}
         />
@@ -88,11 +90,13 @@ function BoxSearch({
           className="fix-select1"
           placeholder={t('district')}
           value={districtValue}
-          options={map([{ id: null, name: 'Tất cả' }, ...listDistrict], district => ({
+          options={map(listDistrict, district => ({
             value: district.id,
-            label: district.name
+            label: district.name,
+            latitude: district.latitude,
+            longitude: district.longitude
           }))}
-          onChange={provinceItem => setDistrict(provinceItem.value)}
+          onChange={provinceItem => setDistrict(provinceItem.value, provinceItem.label)}
         />
       </div>
       <div className="map-list-store">
