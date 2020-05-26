@@ -20,6 +20,8 @@ function Form({ data, pageId, id }) {
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
+
+  const [capcha, setCapcha] = useState(false);
   const recaptchaRef = React.createRef();
   const getFormByID = async () => {
     const res = await getFormbuilderByIdService(data.formdata);
@@ -49,27 +51,32 @@ function Form({ data, pageId, id }) {
     }
     return result;
   };
-
+  const handleChangeCapcha = value => {
+    if (value) {
+      setCapcha(true);
+    }
+  };
   const onSend = async event => {
     event.preventDefault();
+    if (capcha) {
+      setIsLoading(true);
 
-    setIsLoading(true);
-
-    const dataSend = {
-      content: JSON.stringify(formState),
-      contentMail: convertContent(formState),
-      email: formState.email,
-      idForm: data.formdata,
-      idPage: pageId
-    };
-    recaptchaRef.current.execute();
-    const send = await sendMailService(dataSend);
-    if (send && send !== undefined && send.status === 200) {
-      setIsLoading(false);
-      setModal(!modal);
-      setFormState({});
-    } else {
-      setIsLoading(false);
+      const dataSend = {
+        content: JSON.stringify(formState),
+        contentMail: convertContent(formState),
+        email: formState.email,
+        idForm: data.formdata,
+        idPage: pageId
+      };
+      //recaptchaRef.current.execute();
+      const send = await sendMailService(dataSend);
+      if (send && send !== undefined && send.status === 200) {
+        setIsLoading(false);
+        setModal(!modal);
+        setFormState({});
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -185,11 +192,15 @@ function Form({ data, pageId, id }) {
             if (item.type === 'button') {
               return (
                 <React.Fragment>
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    size="invisible"
-                    sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
-                  />
+                  <div className="col-12 text-center">
+                    <ReCAPTCHA
+                      style={{ display: 'inline-block' }}
+                      ref={recaptchaRef}
+                      onChange={handleChangeCapcha}
+                      sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
+                      // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                    />
+                  </div>
                   <div className={`d-flex col-12 text-center__ `}>
                     <button className={`btn`} type={item.subtype}>
                       {item.label}

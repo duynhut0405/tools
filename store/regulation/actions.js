@@ -51,6 +51,14 @@ const Actions = {
   getTypeRegulationByIDAction: id => ({
     type: Actions.GET_TYPE_REGULATION_BY_ID_REQUEST,
     id
+  }),
+
+  SEARCH_REGULATION_BY_TYPE_REQUEST: 'SEARCH_REGULATION_BY_TYPE_REQUEST',
+  SEARCH_REGULATION_BY_TYPE_RESPONSE: 'SEARCH_REGULATION_BY_TYPE_RESPONSE',
+
+  searchRegulationByTypeAction: data => ({
+    type: Actions.SEARCH_REGULATION_BY_TYPE_REQUEST,
+    data
   })
 };
 

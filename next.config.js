@@ -15,6 +15,7 @@ module.exports = withPWA(
   withFonts(
     withCSS(
       withSass({
+        // eslint-disable-next-line no-unused-vars
         webpack(config, options) {
           config.module.rules.push({
             test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
