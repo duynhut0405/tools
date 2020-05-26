@@ -56,9 +56,10 @@ const Actions = {
   SEARCH_REGULATION_BY_TYPE_REQUEST: 'SEARCH_REGULATION_BY_TYPE_REQUEST',
   SEARCH_REGULATION_BY_TYPE_RESPONSE: 'SEARCH_REGULATION_BY_TYPE_RESPONSE',
 
-  searchRegulationByTypeAction: data => ({
+  searchRegulationByTypeAction: (data, pagination) => ({
     type: Actions.SEARCH_REGULATION_BY_TYPE_REQUEST,
-    data
+    data,
+    pagination
   })
 };
 
