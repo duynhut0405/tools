@@ -71,7 +71,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   };
 
   const onKeyPress = e => {
-    const reg = /^[0-8]/;
+    const reg = /^[0-9]/;
     if (!reg.test(e.key)) {
       e.preventDefault();
     }
