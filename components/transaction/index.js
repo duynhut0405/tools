@@ -56,7 +56,7 @@ function Transaction({ data, id }) {
   const [district, setDistrict] = useState(null);
   const [branches_type, setBranchesType] = useState('all');
   const [province, setProvince] = useState(null);
-  const [query, setQuery] = useState(null);
+  const [query, setQuery] = useState('');
   const [listBranches, setListBranches] = useState([]);
   const [listProvince, setListProvince] = useState([]);
   const [listDistrict, setListDistrict] = useState([]);
@@ -84,7 +84,10 @@ function Transaction({ data, id }) {
         lng: Number(provinceItem.longitude)
       }));
     }
-    setZoom(8);
+    setProvince(provinceItem.value);
+    setDistrict(null);
+    setQuery('');
+    setDistrictValue(null);
     searchBranches(
       {
         districtCity: district,
@@ -94,14 +97,13 @@ function Transaction({ data, id }) {
       },
       setListBranches
     );
-    setProvince(provinceItem.value);
-    setDistrict(null);
-    setQuery(null);
-    setDistrictValue(null);
+    setZoom(8);
     getDistrict(provinceItem.value, setListDistrict);
   };
 
   const handleDistrict = (city, name) => {
+    setDistrictValue({ value: city, label: name });
+    setDistrict(city);
     searchBranches(
       {
         districtCity: city,
@@ -112,9 +114,6 @@ function Transaction({ data, id }) {
       setListBranches
     );
     setZoom(14);
-    setQuery(null);
-    setDistrictValue({ value: city, label: name });
-    setDistrict(city);
   };
 
   const handleBranchesType = type => {
@@ -128,7 +127,6 @@ function Transaction({ data, id }) {
       setListBranches
     );
     setZoom(8);
-    setQuery(null);
     setBranchesType(type);
   };
 
@@ -141,9 +139,13 @@ function Transaction({ data, id }) {
     setZoom(14);
   };
 
-  const onChange = debounce(value => {
+  // const onChange = debounce(value => {
+  //   setQuery(value);
+  // }, 500);
+
+  const onChange = value => {
     setQuery(value);
-  }, 500);
+  };
 
   const onSearch = event => {
     event.preventDefault();
