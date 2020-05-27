@@ -5,7 +5,7 @@ const url = process.env.MAP_URL;
 
 const getProvinceService = () => {
   return axios({
-    url: `${url}/province`,
+    url: `${url}/fe/province`,
     method: 'GET'
   })
     .then(res => {
@@ -18,7 +18,7 @@ const getProvinceService = () => {
 
 const getDistrictService = id => {
   return axios({
-    url: `${url}/district/${id}`,
+    url: `${url}/fe/district/${id}`,
     method: 'GET'
   })
     .then(res => {

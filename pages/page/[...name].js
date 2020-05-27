@@ -154,7 +154,7 @@ Page.getInitialProps = async ctx => {
   const common = await getCommon('vi');
   const { general, socialLink, linkApp } = common;
   const pageResponse = await getPageMutiLangBySlug('vi', routerURL);
-  const listPageBySlug = await getListPageBySlug(query.name);
+  const listPageBySlug = await getListPageBySlug([routerURL]);
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
     hasSideber = pageResponse.data.has_sidebar;
