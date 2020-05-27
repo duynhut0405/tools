@@ -143,7 +143,7 @@ function Transaction({ data, id }) {
 
   const onChange = debounce(value => {
     setQuery(value);
-  }, 2000);
+  }, 500);
 
   const onSearch = event => {
     event.preventDefault();
