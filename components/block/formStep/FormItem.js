@@ -53,7 +53,7 @@ function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
   };
 
   const onKeyPress = e => {
-    const reg = /^[0-8]/;
+    const reg = /^[0-9]/;
     if (!reg.test(e.key)) {
       e.preventDefault();
     }

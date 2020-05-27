@@ -61,7 +61,7 @@ function BoxSearch({
         <form onSubmit={onSearch}>
           <input
             type="text"
-            defaultValue={query}
+            value={query}
             placeholder={t('place')}
             onChange={event => setQuery(event.target.value)}
           />

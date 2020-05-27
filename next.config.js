@@ -38,7 +38,7 @@ module.exports = withPWA(
           LINK_DOMAIN: 'mbbank.com.vn',
           BASE_URL: 'https://mbbank3.mangoads.com.vn:8443',
           MB_URL: 'https://api2.vietstock.vn/data/stocktradinginfo',
-          MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api',
+          MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api/fe',
           ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe'
         },
         exportTrailingSlash: true,
