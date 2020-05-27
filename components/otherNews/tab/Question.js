@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ListDowloadQA } from '../../common/download';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
+import { RegulationActions } from '../../../store/actions';
+import { connect } from 'react-redux';
 
 const propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
+  searchRegulationByType: PropTypes.func
 };
+function TabQuestion({ text, searchRegulationByType }) {
+  const [search, setSearch] = useState(null);
 
-function TabQuestion({ text }) {
+  useEffect(() => {
+    if (search !== null) {
+      searchRegulationByType({ idSearch: 9, search }, { number: 10, page: 0 });
+    }
+  }, [search]);
+
+  const handleChangeInput = useCallback(
+    debounce(value => {
+      setSearch(value);
+    }, 300),
+    []
+  );
+  // const handleChangeInput = value => {
+  //   setSearch(value);
+  // };
+
   return (
     <div className="tab-inner">
       <div className="max750 mb-40">
@@ -14,7 +35,14 @@ function TabQuestion({ text }) {
           <h3 className="ctext">{text}</h3>
           <div className="c100">
             <form role="search" className="searchform input h50">
-              <input type="text" name="s" className="textinput" />
+              <input
+                type="text"
+                onChange={event => {
+                  handleChangeInput(event.target.value);
+                }}
+                name="search"
+                className="textinput"
+              />
               <button type="submit" className="searchbutton">
                 <i className="icon-search-2"> </i>
               </button>
@@ -31,6 +59,8 @@ function TabQuestion({ text }) {
   );
 }
 
+const mapDispatchToProps = {
+  searchRegulationByType: RegulationActions.searchRegulationByTypeAction
+};
 TabQuestion.propTypes = propTypes;
-
-export default TabQuestion;
+export default connect(null, mapDispatchToProps)(TabQuestion);

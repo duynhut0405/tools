@@ -6,7 +6,8 @@ import {
   getUrlVideoService,
   getRegulationPagation,
   getRegulationListYear,
-  getTypeRegulationByIDServices
+  getTypeRegulationByIDServices,
+  searchRegulationByType
 } from '../../services/regulation';
 
 function* getRegulationSaga() {
@@ -104,6 +105,22 @@ function* getRegulationByYearSaga() {
   });
 }
 
+function* searchRegulationByTypeSaga() {
+  yield takeLatest(actions.SEARCH_REGULATION_BY_TYPE_REQUEST, function*(params) {
+    const { data, pagination } = params;
+    try {
+      const res = yield searchRegulationByType(data, pagination);
+      if (res.status === 200) {
+        yield put({ type: actions.SEARCH_REGULATION_BY_TYPE_RESPONSE, data: res.data });
+      } else {
+        // console.log(res);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+}
+
 export default function* rootSaga() {
   yield all([
     fork(searchRegulationSaga),
@@ -111,6 +128,7 @@ export default function* rootSaga() {
     fork(getUrlVideoSaga),
     fork(getRegulationSaga),
     fork(getRegulationByYearSaga),
-    fork(getTypeRegulationByIDSaga)
+    fork(getTypeRegulationByIDSaga),
+    fork(searchRegulationByTypeSaga)
   ]);
 }

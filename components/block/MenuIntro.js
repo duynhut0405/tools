@@ -28,6 +28,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   const [formState, setFormState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
+  const [capcha, setCapcha] = useState(false);
   const recaptchaRef = React.createRef();
 
   let padding = '';
@@ -63,6 +64,19 @@ function MenuIntro({ data, pageId, optionWidth }) {
     return result;
   };
 
+  const handleChangeCapcha = value => {
+    if (value) {
+      setCapcha(true);
+    }
+  };
+
+  const onKeyPress = e => {
+    const reg = /^[0-8]/;
+    if (!reg.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   function onScroll(id) {
     const elmnt = document.getElementById(id);
     if (elmnt !== null) {
@@ -72,25 +86,24 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
   const onSend = async event => {
     event.preventDefault();
-    setIsLoading(true);
-    const dataSend = {
-      content: JSON.stringify(formState),
-      contentMail: convertContent(formState),
-      email: formState.email,
-      idForm: data.formdata,
-      idPage: pageId
-    };
+    if (capcha) {
+      setIsLoading(true);
+      const dataSend = {
+        content: JSON.stringify(formState),
+        contentMail: convertContent(formState),
+        email: formState.email,
+        idForm: data.formdata,
+        idPage: pageId
+      };
 
-    //sendMailService(dataSend);
-    //setModal(!modal);
-    recaptchaRef.current.execute();
-    const send = await sendMailService(dataSend);
-    if (send && send !== undefined && send.status === 200) {
-      setIsLoading(false);
-      setModal(!modal);
-      setFormState({});
-    } else {
-      setIsLoading(false);
+      const send = await sendMailService(dataSend);
+      if (send && send !== undefined && send.status === 200) {
+        setIsLoading(false);
+        setModal(!modal);
+        setFormState({});
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -183,14 +196,27 @@ function MenuIntro({ data, pageId, optionWidth }) {
                         <React.Fragment key={index}>
                           <div className="col-12">
                             {item.label && <label>{item.label}</label>}
-                            <input
-                              className="input"
-                              name={item.name}
-                              type={item.subtype}
-                              required={item.required}
-                              placeholder={item.placeholder}
-                              onBlur={e => handleChange(e)}
-                            />
+                            {item.subtype !== 'tel' && (
+                              <input
+                                className="input"
+                                name={item.name}
+                                type={item.subtype}
+                                required={item.required}
+                                placeholder={item.placeholder}
+                                onChange={e => handleChange(e)}
+                              />
+                            )}
+                            {item.subtype === 'tel' && (
+                              <input
+                                className="input"
+                                name={item.name}
+                                type={item.subtype}
+                                required={item.required}
+                                placeholder={item.placeholder}
+                                onKeyPress={onKeyPress}
+                                onChange={e => handleChange(e)}
+                              />
+                            )}
                           </div>
                         </React.Fragment>
                       );
@@ -218,29 +244,33 @@ function MenuIntro({ data, pageId, optionWidth }) {
                         <React.Fragment key={index}>
                           <div className="col-12 text-center">
                             <ReCAPTCHA
+                              style={{ display: 'inline-block' }}
                               ref={recaptchaRef}
-                              size="invisible"
-                              sitekey="6LddVvoUAAAAANqcKPdkTfIL8pOCIoAuPJj3jKcT"
+                              onChange={handleChangeCapcha}
+                              sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
+                              // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                             />
-                            <button className="btn" type={item.subtype}>
-                              {item.label}
-                            </button>
-                            {isLoading && (
-                              <ReactLoading
-                                style={{
-                                  width: '20px',
-                                  height: '20px',
-                                  position: 'absolute',
-                                  left: '82%',
-                                  transform: 'translateY(-50%)',
-                                  top: '50%'
-                                }}
-                                type={'spin'}
-                                color={'primary'}
-                                height={'15px'}
-                                width={'15px'}
-                              />
-                            )}
+                            <div style={{ position: 'relative' }}>
+                              <button className="btn" type={item.subtype}>
+                                {item.label}
+                              </button>
+                              {isLoading && (
+                                <ReactLoading
+                                  style={{
+                                    width: '20px',
+                                    height: '20px',
+                                    position: 'absolute',
+                                    left: '82%',
+                                    transform: 'translateY(-50%)',
+                                    top: '50%'
+                                  }}
+                                  type={'spin'}
+                                  color={'primary'}
+                                  height={'15px'}
+                                  width={'15px'}
+                                />
+                              )}
+                            </div>
                           </div>
                         </React.Fragment>
                       );

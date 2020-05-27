@@ -33,10 +33,19 @@ const getDistrict = async (id, setData) => {
   }
 };
 
-const getAddress = async (lat, long, setData) => {
+const getAddress = async (lat, long, setData, setListBranches) => {
   const res = await getAddressServices(lat, long);
   if (res && res.status === 200) {
     setData(res.data.results[0].address_components[3].short_name);
+    searchBranches(
+      {
+        districtCity: null,
+        networkCategory: 'all',
+        provinceCity: null,
+        search: res.data.results[0].address_components[3].short_name
+      },
+      setListBranches
+    );
   }
 };
 
@@ -58,7 +67,7 @@ function Transaction({ data, id }) {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     }));
-    getAddress(position.coords.latitude, position.coords.longitude, setQuery);
+    getAddress(position.coords.latitude, position.coords.longitude, setQuery, setListBranches);
   };
 
   useEffect(() => {
@@ -68,25 +77,59 @@ function Transaction({ data, id }) {
     getProvince(setListProvince);
   }, []);
 
-  useEffect(() => {
+  const handleProvince = provinceItem => {
+    if (provinceItem.latitude !== null && provinceItem.longitude !== null) {
+      setLocation(() => ({
+        lat: Number(provinceItem.latitude),
+        lng: Number(provinceItem.longitude)
+      }));
+    }
+    setZoom(8);
     searchBranches(
       {
         districtCity: district,
+        networkCategory: branches_type,
+        provinceCity: provinceItem.value,
+        search: null
+      },
+      setListBranches
+    );
+    setProvince(provinceItem.value);
+    setDistrict(null);
+    setQuery(null);
+    setDistrictValue(null);
+    getDistrict(provinceItem.value, setListDistrict);
+  };
+
+  const handleDistrict = (city, name) => {
+    searchBranches(
+      {
+        districtCity: city,
         networkCategory: branches_type,
         provinceCity: province,
         search: query
       },
       setListBranches
     );
-    setZoom(8);
-  }, [district, branches_type, province, query]);
-
-  const handleProvince = provinceItem => {
-    setProvince(provinceItem.value);
-    setDistrict('');
+    setZoom(14);
     setQuery(null);
-    setDistrictValue(null);
-    getDistrict(provinceItem.value, setListDistrict);
+    setDistrictValue({ value: city, label: name });
+    setDistrict(city);
+  };
+
+  const handleBranchesType = type => {
+    searchBranches(
+      {
+        districtCity: district,
+        networkCategory: type,
+        provinceCity: province,
+        search: query
+      },
+      setListBranches
+    );
+    setZoom(8);
+    setQuery(null);
+    setBranchesType(type);
   };
 
   const getDetail = branches => {
@@ -140,14 +183,8 @@ function Transaction({ data, id }) {
             query={query}
             onSearch={onSearch}
             districtValue={districtValue}
-            setBranchesType={type => {
-              setQuery(null);
-              setBranchesType(type);
-            }}
-            setDistrict={city => {
-              setQuery(null);
-              setDistrict(city);
-            }}
+            setBranchesType={handleBranchesType}
+            setDistrict={handleDistrict}
             getDetail={getDetail}
           />
         </div>

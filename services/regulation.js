@@ -91,6 +91,21 @@ const getAllYear = () => {
     });
 };
 
+const searchRegulationByType = (data, pagination) => {
+  return request({
+    url: `/regulation/searchbytype`,
+    method: 'POST',
+    data: data,
+    params: pagination
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
 export {
   fillRegulationServices,
   getTypeRegulationServices,
@@ -98,5 +113,6 @@ export {
   getRegulationPagation,
   getRegulationListYear,
   getTypeRegulationByIDServices,
-  getAllYear
+  getAllYear,
+  searchRegulationByType
 };
