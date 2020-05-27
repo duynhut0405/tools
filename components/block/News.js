@@ -72,6 +72,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
     if (res1 && res1.status === 200) {
       setListCategory(res1.data);
     }
+
     const idItems = map(data.news, item => item.newsId);
     const limit = data.limit === '' || data.limit === null ? 4 : Number(data.limit);
     const res = await getNewByIdService(idItems, data.category.value, limit);
