@@ -65,23 +65,25 @@ function CategoryDetail({
 
   return (
     <React.Fragment>
-      <Head>
-        <title>{category.meta_title || category.name}</title>
-        <meta name="title" content={category.meta_title || data.name} />
-        <meta name="description" content={category.meta_description || ''} />
-        <meta name="keywords" content={category.meta_keyword || ''} />
-        <meta
-          property="og:image"
-          itemProp="thumbnaiUrl"
-          content={
-            category.miniImage
-              ? `${process.env.DOMAIN}${category.miniImage}`
-              : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
-          }
-        />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="354" />
-      </Head>
+      {category && (
+        <Head>
+          <title>{category.meta_title || category.name}</title>
+          <meta name="title" content={category.meta_title || data.name} />
+          <meta name="description" content={category.meta_description || ''} />
+          <meta name="keywords" content={category.meta_keyword || ''} />
+          <meta
+            property="og:image"
+            itemProp="thumbnaiUrl"
+            content={
+              category.miniImage
+                ? `${process.env.DOMAIN}${category.miniImage}`
+                : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
+            }
+          />
+          <meta property="og:image:width" content="800" />
+          <meta property="og:image:height" content="354" />
+        </Head>
+      )}
       <Layout
         lang="vi"
         idPage={1}
