@@ -1,11 +1,11 @@
-import axios from 'axios';
+// import axios from 'axios';
 import request from '../utils/request';
 
 const url = process.env.MAP_URL;
 
 const getProvinceService = () => {
-  return axios({
-    url: `${url}/fe/province`,
+  return request({
+    url: `${url}/province`,
     method: 'GET'
   })
     .then(res => {
@@ -17,8 +17,8 @@ const getProvinceService = () => {
 };
 
 const getDistrictService = id => {
-  return axios({
-    url: `${url}/fe/district/${id}`,
+  return request({
+    url: `${url}/district/${id}`,
     method: 'GET'
   })
     .then(res => {
