@@ -667,74 +667,93 @@ function Layout({
               </div>
               <div className="menu-footer-mb">
                 <div className="row">
-                  {map(menuMobile, (item, index) => {
-                    let slug = '';
-                    if (item.type === '1') {
-                      slug = item.slugPages === 'homepage' ? '/' : `${item.slugPages}`;
-                    } else {
-                      slug = item.url;
+                  {map(
+                    menuMobile.sort((a, b) => a.position - b.position),
+                    (item, index) => {
+                      let slug = '';
+                      if (item.type === '1') {
+                        slug = item.slugPages === 'homepage' ? '/' : `${item.slugPages}`;
+                      } else {
+                        slug = item.url;
+                      }
+                      if (slug === '/search') {
+                        return (
+                          <Link href="/search" as={lang === 'vi' ? '/search' : `/en/search`}>
+                            <a className="item">
+                              <span className="img">
+                                <img
+                                  className="lazyload"
+                                  data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                  alt="images"
+                                />
+                              </span>
+                              <span className="name">{item.name}</span>
+                            </a>
+                          </Link>
+                        );
+                      }
+                      return (
+                        <div className="col-3" key={index}>
+                          {lang === 'vi' && slug !== '/' && (
+                            <Link href="/page/[...name]" as={slug === '/' ? '/' : `/page/${slug}`}>
+                              <a className="item">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          )}
+                          {lang === 'vi' && slug === '/' && (
+                            <Link href="/" as="/">
+                              <a className="item">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          )}
+                          {lang === 'en' && slug !== '/' && (
+                            <Link href="/en/page/[...name]" as={`/en/page/${slug}`}>
+                              <a className="item ">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          )}
+                          {lang === 'en' && slug === '/' && (
+                            <Link href="/en" as="/en">
+                              <a className="item">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          )}
+                        </div>
+                      );
                     }
-                    return (
-                      <div className="col-3" key={index}>
-                        {lang === 'vi' && slug !== '/' && (
-                          <Link href="/page/[...name]" as={slug === '/' ? '/' : `/page/${slug}`}>
-                            <a className="item">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <span className="name">{item.name}</span>
-                            </a>
-                          </Link>
-                        )}
-                        {lang === 'vi' && slug === '/' && (
-                          <Link href="/" as="/">
-                            <a className="item">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <span className="name">{item.name}</span>
-                            </a>
-                          </Link>
-                        )}
-                        {lang === 'en' && slug !== '/' && (
-                          <Link href="/en/page/[...name]" as={`/en/page/${slug}`}>
-                            <a className="item ">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <span className="name">{item.name}</span>
-                            </a>
-                          </Link>
-                        )}
-                        {lang === 'en' && slug === '/' && (
-                          <Link href="/en" as="/en">
-                            <a className="item">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <span className="name">{item.name}</span>
-                            </a>
-                          </Link>
-                        )}
-                      </div>
-                    );
-                  })}
+                  )}
                 </div>
               </div>
             </div>
