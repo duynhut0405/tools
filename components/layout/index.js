@@ -8,13 +8,11 @@ import Suggest from './Suggest';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Cookies from 'js-cookie';
 import { LinkPage } from '../common/link';
-// import { getMemnu, getCommon } from '../../utils/fetch';
 import t from '../../translation';
 import Link from 'next/link';
 import map from 'lodash/map';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import LinkInput from '../../components/common/link/LinkInput';
 import FormPopup from '../block/Popup/FormPopup';
 
 const propTypes = {
@@ -52,101 +50,10 @@ function Layout({
   linkApp
 }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
-  // const [menuHeader, setMenuHeader] = useState([]);
-  // const [menuNav, setMenuNav] = useState([]);
-  // const [menuSearch, setMenuSearch] = useState([]);
-  // const [menuFooterTop, setMenuFooterTop] = useState([]);
-  // const [menuFooterBottom, setMenuFooterBottom] = useState([]);
-  // const [menuFooterMain, setMenuFooterMain] = useState([]);
-  // const [settingFooter, setSettingFooter] = useState({});
-  // const [socialLink, setSocialLink] = useState({});
   const [query, setQuery] = useState(null);
-  // const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
   const router = useRouter();
-  // const [menuMobile, setMenuMobile] = useState([]);
-  // const [allData, setAllData] = useState([]);
-  // const [common, setCommon] = useState([]);
   const [activeForm, setActiveForm] = useState(false);
   const [register, setRegister] = useState('');
-
-  // const fetchAllData = async () => {
-  //   const result = await getMemnu(lang);
-  //   const commonRs = await getCommon(lang);
-  //   setAllData(result);
-  //   setCommon(commonRs);
-  // };
-
-  // const nested = (data, id = null, link = 'parentId') => {
-  //   return data
-  //     .filter(item => item[link] === id)
-  //     .map(item => ({
-  //       ...item,
-  //       title: `${item.name}`,
-  //       children: nested(
-  //         data.sort((a, b) => a.position - b.position),
-  //         item.id
-  //       )
-  //     }));
-  // };
-
-  // const findMenu = pos => {
-  //   if (allData) {
-  //     const rs = allData.find(item => item.position === pos);
-  //     if (rs) {
-  //       return nested(rs.menuItems);
-  //     }
-  //     return null;
-  //   }
-  //   return null;
-  // };
-
-  // const fetchMenu = async () => {
-  //   const _menuHeader = findMenu('top_top');
-  //   const _menuNav = findMenu('top2');
-  //   const _menuFooterTop = findMenu('Menu footer top');
-  //   const _menuFooterMain = findMenu('Menu footer main');
-  //   const _menuFooterBottom = findMenu('menu footer bottom');
-  //   const _menuSearch = findMenu('menu search');
-  //   const _menuMobile = findMenu('menu-mobile');
-
-  //   if (_menuHeader) {
-  //     setMenuHeader(_menuHeader);
-  //   }
-  //   if (_menuNav) {
-  //     setMenuNav(_menuNav);
-  //   }
-  //   if (_menuSearch) {
-  //     setMenuSearch(_menuSearch);
-  //   }
-  //   if (_menuFooterTop) {
-  //     setMenuFooterTop(_menuFooterTop);
-  //   }
-  //   if (_menuFooterBottom) {
-  //     setMenuFooterBottom(_menuFooterBottom);
-  //   }
-  //   if (_menuFooterMain) {
-  //     setMenuFooterMain(_menuFooterMain);
-  //   }
-  //   if (_menuMobile) {
-  //     setMenuMobile(_menuMobile);
-  //   }
-  //   setSocialLink(common.socialLink);
-
-  //   if (common.linkApp) {
-  //     setLinkApp(common.linkApp);
-  //   }
-  //   if (common.general) {
-  //     setSettingFooter(common.general);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchAllData();
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchMenu();
-  // }, [allData, common]);
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
@@ -760,33 +667,93 @@ function Layout({
               </div>
               <div className="menu-footer-mb">
                 <div className="row">
-                  {map(menuMobile, (item, index) => {
-                    let slug = '';
-                    if (item.type === '1') {
-                      slug = item.slugPages === 'homepage' ? '/' : `/page/${item.slugPages}`;
-                    } else {
-                      slug = item.url;
+                  {map(
+                    menuMobile.sort((a, b) => a.position - b.position),
+                    (item, index) => {
+                      let slug = '';
+                      if (item.type === '1') {
+                        slug = item.slugPages === 'homepage' ? '/' : `${item.slugPages}`;
+                      } else {
+                        slug = item.url;
+                      }
+                      if (slug === '/search') {
+                        return (
+                          <Link href="/search" as={lang === 'vi' ? '/search' : `/en/search`}>
+                            <a className="item">
+                              <span className="img">
+                                <img
+                                  className="lazyload"
+                                  data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                  alt="images"
+                                />
+                              </span>
+                              <span className="name">{item.name}</span>
+                            </a>
+                          </Link>
+                        );
+                      }
+                      return (
+                        <div className="col-3" key={index}>
+                          {lang === 'vi' && slug !== '/' && (
+                            <Link href="/page/[...name]" as={slug === '/' ? '/' : `/page/${slug}`}>
+                              <a className="item">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          )}
+                          {lang === 'vi' && slug === '/' && (
+                            <Link href="/" as="/">
+                              <a className="item">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          )}
+                          {lang === 'en' && slug !== '/' && (
+                            <Link href="/en/page/[...name]" as={`/en/page/${slug}`}>
+                              <a className="item ">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          )}
+                          {lang === 'en' && slug === '/' && (
+                            <Link href="/en" as="/en">
+                              <a className="item">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          )}
+                        </div>
+                      );
                     }
-                    return (
-                      <div className="col-3" key={index}>
-                        <LinkInput lang={lang} name={slug}>
-                          <a
-                            target={item.target === null || item.target === 1 ? '_top' : '_blank'}
-                            className="item "
-                          >
-                            <span className="img">
-                              <img
-                                className="lazyload"
-                                data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                alt="images"
-                              />
-                            </span>
-                            <span className="name">{item.name}</span>
-                          </a>
-                        </LinkInput>
-                      </div>
-                    );
-                  })}
+                  )}
                 </div>
               </div>
             </div>
