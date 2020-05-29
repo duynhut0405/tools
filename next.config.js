@@ -44,7 +44,7 @@ module.exports = withPWA(
         exportTrailingSlash: true,
         pwa: {
           dest: 'public'
-        }
+        },
         exportPathMap: async function() {
           let router = [];
           let newRouter = [];
