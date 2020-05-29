@@ -24,7 +24,6 @@ const searchGuaranteeFunc = async (data, setData) => {
   const res = await searchGuarantee(data);
   if (res !== undefined && res.status === 200) {
     setData(res.data);
-    console.log('res,data:', res.data);
   }
 };
 
