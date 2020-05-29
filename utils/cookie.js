@@ -26,4 +26,12 @@ const setLang = (lang, flag) => {
   return null;
 };
 
-module.exports = { getLang, getFlag, setLang };
+const getPriority = () => {
+  const priority = Cookies.get('priority');
+  if (priority) {
+    return priority;
+  }
+  return '/';
+};
+
+module.exports = { getLang, getFlag, setLang, getPriority };

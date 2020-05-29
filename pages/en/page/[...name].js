@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../../../components/common';
-import Layout from '../../../components/layout';
 import Head from 'next/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
-import { getCommon, getMemnu } from '../../../utils/fetch';
 import { getPageMutiLangBySlug, getListPageBySlug } from '../../../services/page';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
@@ -30,30 +28,12 @@ const propTypes = {
   socialLink: PropTypes.object
 };
 
-function Page({
-  routerURL,
-  page,
-  silder,
-  menuMiddle,
-  listSlug,
-  slugClass,
-  hasSideber,
-  menuHeader,
-  menuNav,
-  menuFooterTop,
-  menuFooterMain,
-  menuFooterBottom,
-  menuSearch,
-  menuMobile,
-  general,
-  socialLink,
-  linkApp
-}) {
+function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSideber }) {
   const link_canonical = page.meta_keyword
     ? page.meta_keyword
     : `<link rel="canonical" href="${process.env.LINK_DOMAIN}/page/${page.slug}">`;
   const noIndex = page.noIndex ? page.noIndex : '';
-  const [isPrioty, setIsPrioty] = useState(null);
+
   useEffect(() => {
     Cookies.set('lang', 'en');
     document.body.className = '';
@@ -65,14 +45,20 @@ function Page({
       document.body.classList.add(`title-24`);
     }
     if (hasSideber === 1) {
-      setIsPrioty(true);
       const body = document.getElementsByTagName('body')[0];
-      if (body) {
+      const logo = document.getElementById('img_log');
+      if (body && logo) {
+        logo.src = '/static/images/svg/logo-priority.svg';
         body.classList.add('mb-priority');
+        Cookies.set('priority', '/en/page/mb-priority');
       }
     }
     if (hasSideber === 0) {
-      setIsPrioty(false);
+      const logo = document.getElementById('img_log');
+      if (logo) {
+        logo.src = '/static/images/svg/logo.svg';
+        Cookies.set('priority', '/en');
+      }
     }
   }, [page, hasSideber]);
 
@@ -95,31 +81,17 @@ function Page({
               : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
           }
         />
+        <meta property="og:title" content={page.meta_title || ''} />
+        <meta property="og:description" content={page.meta_description || ''} />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout
-        lang="en"
-        isPrioty={isPrioty}
-        idPage={page.id}
-        menuFooterBottom={menuFooterBottom}
-        menuFooterMain={menuFooterMain}
-        menuFooterTop={menuFooterTop}
-        menuMobile={menuMobile}
-        menuNav={menuNav}
-        menuSearch={menuSearch}
-        menuHeader={menuHeader}
-        settingFooter={general}
-        socialLink={socialLink}
-        linkApp={linkApp}
-      >
-        <div className="main_content">
-          {page.breadCrumb && <Breadcrumb data={listSlug} />}
-          <Carousel silder={silder} />
-          <MenuMiddle data={menuMiddle} query={routerURL} />
-          <BlockRender data={page.pageBlocks} pageId={page.id} />
-        </div>
-      </Layout>
+      <div className="main_content">
+        {page.breadCrumb && <Breadcrumb data={listSlug} />}
+        <Carousel silder={silder} />
+        <MenuMiddle data={menuMiddle} query={routerURL} />
+        <BlockRender data={page.pageBlocks} pageId={page.id} />
+      </div>
     </React.Fragment>
   );
 }
@@ -140,18 +112,6 @@ Page.getInitialProps = async ctx => {
   let menuMiddle = {};
   let listSlug = [];
   let hasSideber = 0;
-  const menu = await getMemnu('en');
-  const {
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile
-  } = menu;
-  const common = await getCommon('en');
-  const { general, socialLink, linkApp } = common;
   const pageResponse = await getPageMutiLangBySlug('en', routerURL);
   const listPageBySlug = await getListPageBySlug([routerURL]);
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
@@ -175,17 +135,7 @@ Page.getInitialProps = async ctx => {
     menuMiddle,
     listSlug,
     slugClass,
-    hasSideber,
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile,
-    general,
-    socialLink,
-    linkApp
+    hasSideber
   };
 };
 

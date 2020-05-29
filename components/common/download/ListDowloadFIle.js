@@ -3,11 +3,10 @@ import { Fillter } from '../download';
 import FileList from './FileList';
 import File from './File';
 import { Pagination } from '../../common';
-import { RegulationActions } from '../../../store/actions';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import { getRegulationListYear, getTypeRegulationByIDServices } from '../../../services/regulation';
 import { convertTitle } from '../../../utils/convertPadding';
-import { connect } from 'react-redux';
 import t from '../../../translation';
 
 const propTypes = {
@@ -24,23 +23,29 @@ const propTypes = {
   seachRegulation: PropTypes.func
 };
 
-function ListDowloadFIle({
-  type,
-  data,
-  optionWidth,
-  listType,
-  listRegulation,
-  search,
-  getTypeRegulation,
-  seachRegulation,
-  noQuestion,
-  id
-}) {
+function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
   const date = new Date();
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(moment(date).format('YYYY'));
   const title = convertTitle(data ? parseInt(data.type) : null);
+  const [listRegulation, setListRegulation] = useState([]);
+  const [listType, setListType] = useState([]);
+
+  const getTypeRegulation = async _type => {
+    const res = await getTypeRegulationByIDServices(_type);
+    if (res && res.status === 200) {
+      setListType(res.data);
+    }
+  };
+
+  const seachRegulation = async (_type, _datatype, _number, _page, _year) => {
+    const res = await getRegulationListYear(_type, _datatype, _number, _page, _year);
+    if (res && res.status === 200) {
+      setListRegulation(res.data);
+    }
+  };
+
   useEffect(() => {
     getTypeRegulation(type);
     const width = window.innerWidth;
@@ -61,6 +66,7 @@ function ListDowloadFIle({
   } else {
     padding = 'sec-';
   }
+
   return (
     <div className={`${padding} accodion accodion-2 downloadfile`} id={id}>
       <div className="container">
@@ -105,18 +111,6 @@ function ListDowloadFIle({
   );
 }
 
-const mapStateToProp = state => {
-  return {
-    listRegulation: state.regulationReducer.listDataByYear,
-    listType: state.regulationReducer.listTypeByID
-  };
-};
-
-const mapDispatchToProps = {
-  seachRegulation: RegulationActions.getRegulationByYear,
-  getTypeRegulation: RegulationActions.getTypeRegulationByIDAction
-};
-
 ListDowloadFIle.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(ListDowloadFIle);
+export default ListDowloadFIle;

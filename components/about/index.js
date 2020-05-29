@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import moment from 'moment';
 import { map } from 'lodash';
 import { getLang } from '../../utils/cookie';
 import { LinkNew } from '../common/link';
 import PropTypes from 'prop-types';
-import { NewsActions } from '../../store/actions';
-import { connect } from 'react-redux';
 import Pagination from '../common/Pagination';
-import { getListYearNewsService } from '../../services/news';
+import { findAllByCategory, getListYearNewsService } from '../../services/news';
 
 const propTypes = {
   listNews: PropTypes.object,
@@ -17,12 +14,20 @@ const propTypes = {
   id: PropTypes.number
 };
 
-function About({ data, listNews, getNews, id }) {
+function About({ data, id }) {
   const date = new Date();
   const [year, setYear] = useState(moment(date).format('YYYY'));
   const [page, setPage] = useState(1);
   const [listYear, setListYear] = useState([]);
+  const [listNews, setListNews] = useState([]);
   const lang = getLang();
+
+  const getNews = async (_id, _page, number, _year) => {
+    const res = await findAllByCategory(_id, _page, number, _year);
+    if (res && res.status === 200) {
+      setListNews(res.data);
+    }
+  };
 
   let padding = '';
   if (data.optionWidth === '2') {
@@ -104,16 +109,6 @@ function About({ data, listNews, getNews, id }) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    listNews: state.newsReducer.listNewsByCategory
-  };
-};
-
-const mapDispatchToProps = {
-  getNews: NewsActions.fillNesByCategoryAction
-};
-
 About.propTypes = propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(About);
+export default About;

@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 import Head from 'next/head';
 import { getRateService, getInterestRateService } from '../services/rate';
 import { getPageMutiLangBySlug } from '../services/page';
-import { getMemnu, getCommon } from '../utils/fetch';
+// import { getMemnu, getCommon } from '../utils/fetch';
 import filter from 'lodash/filter';
 import Proptypes from 'prop-types';
 import Cookies from 'js-cookie';
@@ -26,21 +26,7 @@ const propTypes = {
   socialLink: Proptypes.object
 };
 
-function Home({
-  page,
-  silder,
-  menuMiddle,
-  menuHeader,
-  menuNav,
-  menuFooterTop,
-  menuFooterMain,
-  menuFooterBottom,
-  menuSearch,
-  menuMobile,
-  general,
-  socialLink,
-  linkApp
-}) {
+function Home({ page, silder, menuMiddle }) {
   const [listInterestRate, setListInterestRate] = useState([]);
   const [listRate, setlistRate] = useState([]);
 
@@ -86,31 +72,20 @@ function Home({
               : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
           }
         />
+        <meta property="og:title" content={page.meta_title || ''} />
+        <meta property="og:description" content={page.meta_description || ''} />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout
-        lang="vi"
-        idPage={page.id}
-        menuFooterBottom={menuFooterBottom}
-        menuFooterMain={menuFooterMain}
-        menuFooterTop={menuFooterTop}
-        menuMobile={menuMobile}
-        menuNav={menuNav}
-        menuSearch={menuSearch}
-        menuHeader={menuHeader}
-        settingFooter={general}
-        socialLink={socialLink}
-        linkApp={linkApp}
-      >
-        <div className="main_content">
-          {page.breadCrumb && <Breadcrumb data={[]} />}
-          <Carousel silder={silder} />
-          <MenuMiddle data={menuMiddle} />
-          <BlockRender data={page.pageBlocks} pageId={page.id} />
-          <FormRate data={listRate} interestRate={listInterestRate} />
-        </div>
-      </Layout>
+      {/* <Layout lang="vi" idPage={page.id}> */}
+      <div className="main_content">
+        {page.breadCrumb && <Breadcrumb data={[]} />}
+        <Carousel silder={silder} />
+        <MenuMiddle data={menuMiddle} />
+        <BlockRender data={page.pageBlocks} pageId={page.id} />
+        <FormRate data={listRate} interestRate={listInterestRate} />
+      </div>
+      {/* </Layout> */}
     </React.Fragment>
   );
 }
@@ -119,18 +94,18 @@ Home.getInitialProps = async () => {
   let page = {};
   let silder = [];
   let menuMiddle = {};
-  const menu = await getMemnu('vi');
-  const {
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile
-  } = menu;
-  const common = await getCommon('vi');
-  const { general, socialLink, linkApp } = common;
+  // const menu = await getMemnu('vi');
+  // const {
+  //   menuHeader,
+  //   menuNav,
+  //   menuFooterTop,
+  //   menuFooterMain,
+  //   menuFooterBottom,
+  //   menuSearch,
+  //   menuMobile
+  // } = menu;
+  // const common = await getCommon('vi');
+  // const { general, socialLink, linkApp } = common;
   const pageResponse = await getPageMutiLangBySlug('vi', 'homepage');
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
@@ -145,17 +120,7 @@ Home.getInitialProps = async () => {
   return {
     page,
     silder,
-    menuMiddle,
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile,
-    general,
-    socialLink,
-    linkApp
+    menuMiddle
   };
 };
 

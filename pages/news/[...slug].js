@@ -3,12 +3,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Social } from '../../components/common';
 import { getNewByUri } from '../../services/news';
-import { getMemnu, getCommon } from '../../utils/fetch';
+import { getCommon } from '../../utils/fetch';
 import moment from 'moment';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
 import t from '../../translation';
-import Layout from '../../components/layout';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 
@@ -29,22 +28,7 @@ const propTypes = {
   general: PropTypes.object
 };
 
-function New({
-  news,
-  category_name,
-  category_url,
-  menuHeader,
-  menuNav,
-  menuFooterTop,
-  menuFooterMain,
-  menuFooterBottom,
-  menuSearch,
-  menuMobile,
-  general,
-  socialLink,
-  linkApp
-}) {
-  const [isPrioty, setIsPrioty] = useState(null);
+function New({ news, category_name, category_url, socialLink }) {
   const [active, setActive] = useState(false);
   useEffect(() => {
     Cookies.set('lang', 'vi');
@@ -54,17 +38,16 @@ function New({
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       if (body && logo) {
-        setIsPrioty(true);
         body.classList.add('mb-priority');
         logo.src = '/static/images/svg/logo-priority.svg';
+        Cookies.set('priority', '/page/mb-priority');
       }
     } else {
-      setIsPrioty(false);
       const body = document.getElementsByTagName('body')[0];
       const logo = document.getElementById('img_log');
       if (body && logo) {
-        // body.classList.remove('mb-priority');
         logo.src = '/static/images/svg/logo.svg';
+        Cookies.set('priority', '/');
       }
     }
   }, [news]);
@@ -92,171 +75,164 @@ function New({
                 : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
             }
           />
+          <meta
+            property="og:title"
+            content={news.news.meta_title ? news.news.meta_title : news.news.name}
+          />
+          <meta
+            property="og:description"
+            content={news.news.meta_description ? news.news.meta_description : ''}
+          />
           <meta property="og:image:width" content="800" />
           <meta property="og:image:height" content="354" />
         </Head>
       )}
-      <Layout
-        lang="vi"
-        isPrioty={isPrioty}
-        idPage={1}
-        menuFooterBottom={menuFooterBottom}
-        menuFooterMain={menuFooterMain}
-        menuFooterTop={menuFooterTop}
-        menuMobile={menuMobile}
-        menuNav={menuNav}
-        menuSearch={menuSearch}
-        menuHeader={menuHeader}
-        settingFooter={general}
-        socialLink={socialLink}
-        linkApp={linkApp}
-      >
-        {news && news.news !== null && (
-          <>
-            <div className="entry-breadcrumb">
-              <div className="container">
-                <div className="breadcrumbs">
-                  <Link href="/">
-                    <a className="item">{t('home')}</a>
-                  </Link>
-                  <Link href="/news/category/[...name]" as={`/news/category/${category_url}`}>
-                    <a className="item">{category_name}</a>
-                  </Link>
-                  {/* <span className="item">{news.news === null ? '' : news.news.title}</span> */}
+
+      {news && news.news !== null && (
+        <>
+          <div className="entry-breadcrumb">
+            <div className="container">
+              <div className="breadcrumbs">
+                <Link href="/">
+                  <a className="item">{t('home')}</a>
+                </Link>
+                <Link href="/news/category/[...name]" as={`/news/category/${category_url}`}>
+                  <a className="item">{category_name}</a>
+                </Link>
+                {/* <span className="item">{news.news === null ? '' : news.news.title}</span> */}
+              </div>
+            </div>
+          </div>
+          <section className="banner-heading-3 next-shadow">
+            <div className="container">
+              <div className="divtext">
+                <div className="max750">
+                  <h1 className=" ">{news.news === null ? '' : news.news.title}</h1>
                 </div>
               </div>
             </div>
-            <section className="banner-heading-3 next-shadow">
-              <div className="container">
-                <div className="divtext">
-                  <div className="max750">
-                    <h1 className=" ">{news.news === null ? '' : news.news.title}</h1>
-                  </div>
+            <img
+              className="img img-pc br loaded loaded lazyload"
+              data-src="/static/images/heading-10-pc.svg"
+              alt="images"
+            />
+            <img
+              className="img img-mb br loaded loaded lazyload"
+              data-src="/static/images/heading-10-mb.svg"
+              alt="images"
+            />
+          </section>
+          <main id="main" className="sec-b page-news-detail">
+            <div className="container">
+              <div className=" max750">
+                <div className="top-heading">
+                  <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div>
+                  {socialLink && <Social data={socialLink} />}
+                  {/* {console.log(socialLink)} */}
                 </div>
-              </div>
-              <img
-                className="img img-pc br loaded loaded lazyload"
-                data-src="/static/images/heading-10-pc.svg"
-                alt="images"
-              />
-              <img
-                className="img img-mb br loaded loaded lazyload"
-                data-src="/static/images/heading-10-mb.svg"
-                alt="images"
-              />
-            </section>
-            <main id="main" className="sec-b page-news-detail">
-              <div className="container">
-                <div className=" max750">
-                  <div className="top-heading">
-                    <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div>
-                    {socialLink && <Social data={socialLink} />}
-                    {/* {console.log(socialLink)} */}
-                  </div>
-                  {news.news.author_name !== null && (
-                    <Fragment>
-                      {!active && (
-                        <div
-                          className={
-                            news.news.author_name !== null ? 'single_video  tRes_16_9 max750' : ''
-                          }
-                          data-id="2UrWPUAr68A"
-                          data-video="autoplay=1&amp;controls=1&amp;mute=0"
-                        >
-                          <img
-                            className="lazyload"
-                            data-lazy-data-src={`${process.env.DOMAIN}${news.news.base_image}`}
-                            data-src={`${process.env.DOMAIN}${news.news.base_image}`}
-                            src={`${process.env.DOMAIN}${news.news.base_image}`}
-                            alt="images"
-                          />
-                          {news.news.author_name !== null && (
-                            <span
-                              className="btnvideo"
-                              onClick={() => {
-                                setActive(!active);
-                              }}
-                            >
-                              {news.news.author_name !== null || news.news.author_name !== '' ? (
-                                <i className="icon-play"></i>
-                              ) : (
-                                ''
-                              )}
-                            </span>
-                          )}
-                        </div>
-                      )}
-                      {active && (
-                        <div
-                          className="single_video  tRes_16_9 max750"
-                          data-id="2UrWPUAr68A"
-                          data-video="autoplay=1&amp;controls=1&amp;mute=0"
-                        >
-                          <iframe
-                            frameBorder="0"
-                            allowFullScreen="1"
-                            allow="autoplay; encrypted-media;"
-                            src={`${news.news.author_name}?rel=0&autoplay=1`}
-                          ></iframe>
-                        </div>
-                      )}
-                    </Fragment>
-                  )}
-                  <div className="entry-content" style={{ marginTop: 20 }}>
-                    {ReactHtmlParser(news.news.description)}
-                  </div>
-                  <br />
-                  <div className="tags">
-                    <h2>{t('related_content')}</h2>
-                    {map(news.news.categories, item => (
-                      <Link
-                        href="/news/category/[...name]"
-                        as={`/news/category/${item.slug}`}
-                        key={item.id}
+                {news.news.author_name !== null && (
+                  <Fragment>
+                    {!active && (
+                      <div
+                        className={
+                          news.news.author_name !== null ? 'single_video  tRes_16_9 max750' : ''
+                        }
+                        data-id="2UrWPUAr68A"
+                        data-video="autoplay=1&amp;controls=1&amp;mute=0"
                       >
-                        <a className="tag">{item.name}</a>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </main>
-            <section className="sec-tb">
-              <div className="container">
-                <div className="entry-head">
-                  <h2 className="ht efch-1 ef-img-t">{t('related_news')}</h2>
-                </div>
-                <div className="list-7  list-item row">
-                  {map(news.newsRelated, (item, index) => {
-                    return (
-                      <div className="col-md-6" key={index}>
-                        <Link href="/news/[...slug]" as={`/news/${item.url}`}>
-                          <a className="item item-inline-table">
-                            <div className="img">
-                              <img
-                                className="lazyload"
-                                data-src={`${process.env.DOMAIN}${item.baseImage}`}
-                                alt="images"
-                              />
-                            </div>
-                            <div className="divtext">
-                              <div className="date">
-                                {moment(item.created_at).format('DD/MM/YYYY')}
-                              </div>
-                              <h4 className="title line2">{item.title}</h4>
-                              <div className="desc line3">{item.shortDescription}</div>
-                            </div>
-                          </a>
-                        </Link>
+                        <img
+                          className="lazyload"
+                          data-lazy-data-src={`${process.env.DOMAIN}${news.news.base_image}`}
+                          data-src={`${process.env.DOMAIN}${news.news.base_image}`}
+                          src={`${process.env.DOMAIN}${news.news.base_image}`}
+                          alt="images"
+                        />
+                        {news.news.author_name !== null && (
+                          <span
+                            className="btnvideo"
+                            onClick={() => {
+                              setActive(!active);
+                            }}
+                          >
+                            {news.news.author_name !== null || news.news.author_name !== '' ? (
+                              <i className="icon-play"></i>
+                            ) : (
+                              ''
+                            )}
+                          </span>
+                        )}
                       </div>
-                    );
-                  })}
+                    )}
+                    {active && (
+                      <div
+                        className="single_video  tRes_16_9 max750"
+                        data-id="2UrWPUAr68A"
+                        data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                      >
+                        <iframe
+                          frameBorder="0"
+                          allowFullScreen="1"
+                          allow="autoplay; encrypted-media;"
+                          src={`${news.news.author_name}?rel=0&autoplay=1`}
+                        ></iframe>
+                      </div>
+                    )}
+                  </Fragment>
+                )}
+                <div className="entry-content" style={{ marginTop: 20 }}>
+                  {ReactHtmlParser(news.news.description)}
+                </div>
+                <br />
+                <div className="tags">
+                  <h2>{t('related_content')}</h2>
+                  {map(news.news.categories, item => (
+                    <Link
+                      href="/news/category/[...name]"
+                      as={`/news/category/${item.slug}`}
+                      key={item.id}
+                    >
+                      <a className="tag">{item.name}</a>
+                    </Link>
+                  ))}
                 </div>
               </div>
-            </section>
-          </>
-        )}
-      </Layout>
+            </div>
+          </main>
+          <section className="sec-tb">
+            <div className="container">
+              <div className="entry-head">
+                <h2 className="ht efch-1 ef-img-t">{t('related_news')}</h2>
+              </div>
+              <div className="list-7  list-item row">
+                {map(news.newsRelated, (item, index) => {
+                  return (
+                    <div className="col-md-6" key={index}>
+                      <Link href="/news/[...slug]" as={`/news/${item.url}`}>
+                        <a className="item item-inline-table">
+                          <div className="img">
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${item.baseImage}`}
+                              alt="images"
+                            />
+                          </div>
+                          <div className="divtext">
+                            <div className="date">
+                              {moment(item.created_at).format('DD/MM/YYYY')}
+                            </div>
+                            <h4 className="title line2">{item.title}</h4>
+                            <div className="desc line3">{item.shortDescription}</div>
+                          </div>
+                        </a>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
     </React.Fragment>
   );
 }
@@ -273,19 +249,9 @@ New.getInitialProps = async ctx => {
   // let layoutInvestors = null;
   map(query, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
-  const menu = await getMemnu('vi');
-  const {
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile
-  } = menu;
+
   const common = await getCommon('vi');
-  const { general, socialLink, linkApp } = common;
-  // const socialLink = await getSocialLink('vi');
+  const { socialLink } = common;
   const newResponse = await getNewByUri('vi', routerURL);
   if (
     newResponse &&
@@ -309,16 +275,7 @@ New.getInitialProps = async ctx => {
     news,
     category_name,
     category_url,
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile,
-    general,
-    socialLink,
-    linkApp
+    socialLink
   };
 };
 

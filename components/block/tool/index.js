@@ -8,6 +8,7 @@ import Tool5 from './Tool5';
 import Tool6 from './Tool6';
 import Tool7 from './Tool7';
 import Tool8 from './Tool8';
+import Tool9 from './Tool9';
 
 const propTypes = {
   content: Proptypes.object,
@@ -25,6 +26,8 @@ function Tools({ content, id }) {
   } else {
     padding = 'sec-';
   }
+  console.log('content.type:', content.type);
+
   const renderTools = () => {
     switch (parseInt(content.type)) {
       case 1:
@@ -107,6 +110,17 @@ function Tools({ content, id }) {
       case 8:
         return (
           <Tool8
+            type={content.type}
+            id={id}
+            padding={padding}
+            minValue={parseInt(content.minValue)}
+            maxValue={parseInt(content.maxValue)}
+            interest_rate={parseFloat(content.interest_rate)}
+          />
+        );
+      case 9:
+        return (
+          <Tool9
             type={content.type}
             id={id}
             padding={padding}

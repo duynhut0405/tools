@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { DowloadVideo, Fillter } from '../download';
 import { Pagination } from '../../common';
-import { RegulationActions } from '../../../store/actions';
 import PropTypes from 'prop-types';
 import { convertTitle } from '../../../utils/convertPadding';
-import moment from 'moment';
-import { connect } from 'react-redux';
 import t from '../../../translation';
-import { getRegulationListYear } from '../../../services/regulation';
+import { getRegulationListYear, getTypeRegulationByIDServices } from '../../../services/regulation';
 
 const propTypes = {
   type: PropTypes.number,
@@ -26,13 +23,20 @@ const seachRegulation = async (type, detailTypeId, number, page, year, setData) 
     setData(res.data);
   }
 };
-function ListDowloadFIle({ type, data, optionWidth, listType, id, getTypeRegulation }) {
-  const date = new Date();
+function ListDowloadFIle({ type, data, optionWidth, id }) {
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(new Date().getFullYear() - 1);
   const [title] = useState(convertTitle(type));
   const [listRegulation, setlistRegulation] = useState([]);
+  const [listType, setListType] = useState([]);
+
+  const getTypeRegulation = async _type => {
+    const res = await getTypeRegulationByIDServices(_type);
+    if (res && res.status === 200) {
+      setListType(res.data);
+    }
+  };
 
   useEffect(() => {
     getTypeRegulation(type);
@@ -105,19 +109,6 @@ function ListDowloadFIle({ type, data, optionWidth, listType, id, getTypeRegulat
     </div>
   );
 }
-
-const mapStateToProp = state => {
-  return {
-    //listRegulation: state.regulationReducer.listDataByYear,
-    listType: state.regulationReducer.listTypeByID
-  };
-};
-
-const mapDispatchToProps = {
-  //seachRegulation: RegulationActions.getRegulationByYear,
-  getTypeRegulation: RegulationActions.getTypeRegulationByIDAction
-};
-
 ListDowloadFIle.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(ListDowloadFIle);
+export default ListDowloadFIle;

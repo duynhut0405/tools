@@ -2,9 +2,10 @@ import App from 'next/app';
 import React from 'react';
 import NProgress from 'nprogress';
 import Router from 'next/router';
-import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
-import stores from '../store';
+// import { Provider } from 'react-redux';
+// import withRedux from 'next-redux-wrapper';
+// import stores from '../store';
+import Layout from '../components/layout';
 import '../styles/block.scss';
 import '../styles/styles.css';
 import '../styles/custom.css';
@@ -36,13 +37,14 @@ class NextApp extends App {
     };
   }
   render() {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps } = this.props;
     return (
-      <Provider store={store}>
+      <Layout>
         <Component {...pageProps}></Component>
-      </Provider>
+      </Layout>
+      // </Provider>
     );
   }
 }
 
-export default withRedux(stores)(NextApp);
+export default NextApp;
