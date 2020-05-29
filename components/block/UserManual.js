@@ -82,6 +82,11 @@ function UserManual({ data, id }) {
                 <div className="owl-dots disabled"></div>
               </div>
             </div>
+            {map(data.listDetail, (item, index) => {
+              if (index + 1 === step) {
+                return <div className="text-center">{item.description}</div>;
+              }
+            })}
           </div>
           <div className="col-md-7">
             <div className="sync-3">
