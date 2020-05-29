@@ -9,8 +9,8 @@
 /public/robots.txt*
 /public/sw.js*
 /public/sw.js.map*
-/public/workbox-1a4a986e.js
-/public/workbox-1a4a986e.js.map
+/public/workbox-*.js
+/public/workbox-*.js.map
 /public/robots.txt
 
 # testing
