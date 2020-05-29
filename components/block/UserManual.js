@@ -82,6 +82,11 @@ function UserManual({ data, id }) {
                 <div className="owl-dots disabled"></div>
               </div>
             </div>
+            {map(data.listDetail, (item, index) => {
+              if (index + 1 === step) {
+                return <div className="text-center show-767">{item.description}</div>;
+              }
+            })}
           </div>
           <div className="col-md-7">
             <div className="sync-3">
@@ -91,7 +96,7 @@ function UserManual({ data, id }) {
                   <div className={style} key={index} onClick={() => setStep(index + 1)}>
                     <span className="number click">{index + 1}</span>
                     <h4 className="title click">{item.step}</h4>
-                    <div className="desc ">{item.description}</div>
+                    <div className="desc show-768">{item.description}</div>
                   </div>
                 );
               })}

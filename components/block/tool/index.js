@@ -26,7 +26,6 @@ function Tools({ content, id }) {
   } else {
     padding = 'sec-';
   }
-  console.log('content.type:', content.type);
 
   const renderTools = () => {
     switch (parseInt(content.type)) {
