@@ -165,6 +165,21 @@ body {
   visibility: visible;
 }
 
+.custom-tool {
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #141ed2;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid #ececec;
+  height: 40px;
+  padding: 0 15px;
+}
+
+.custom-tool:focus {
+  border: 1px solid #141ed2;
+}
 @media only screen and (max-width: 768px) {
   .banner-heading-3 .img-pc {
     display: none;
