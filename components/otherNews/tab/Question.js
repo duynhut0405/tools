@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ListDowloadQA } from '../../common/download';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
+import { searchRegulationByType } from '../../../services/regulation';
 import { RegulationActions } from '../../../store/actions';
 import { connect } from 'react-redux';
 
@@ -9,12 +10,20 @@ const propTypes = {
   text: PropTypes.string,
   searchRegulationByType: PropTypes.func
 };
-function TabQuestion({ text, searchRegulationByType }) {
+function TabQuestion({ text }) {
   const [search, setSearch] = useState(null);
+  const [dataSearch, setDataSearch] = useState(null);
+
+  const searchRegulation = async (query, pagin) => {
+    const res = await searchRegulationByType(query, pagin);
+    if (res && res.status === 200) {
+      setDataSearch(res.data);
+    }
+  };
 
   useEffect(() => {
     if (search !== null) {
-      searchRegulationByType({ idSearch: 9, search }, { number: 10, page: 0 });
+      searchRegulation({ idSearch: 9, search }, { number: 10, page: 0 });
     }
   }, [search]);
 
@@ -24,9 +33,6 @@ function TabQuestion({ text, searchRegulationByType }) {
     }, 300),
     []
   );
-  // const handleChangeInput = value => {
-  //   setSearch(value);
-  // };
 
   return (
     <div className="tab-inner">
@@ -52,15 +58,13 @@ function TabQuestion({ text, searchRegulationByType }) {
       </div>
       <section className="sec-b sec-cauhoi">
         <div className="container">
-          <ListDowloadQA type={9} />
+          <ListDowloadQA type={9} dataSearch={dataSearch} />
         </div>
       </section>
     </div>
   );
 }
 
-const mapDispatchToProps = {
-  searchRegulationByType: RegulationActions.searchRegulationByTypeAction
-};
 TabQuestion.propTypes = propTypes;
-export default connect(null, mapDispatchToProps)(TabQuestion);
+
+export default TabQuestion;

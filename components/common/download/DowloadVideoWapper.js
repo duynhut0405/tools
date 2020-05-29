@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Fillter, DowloadVideo } from './index';
 import { map } from 'lodash';
 import { Pagination } from '../index';
-import { RegulationActions } from '../../../store/actions';
+import { getRegulationListYear, getTypeRegulationServices } from '../../../services/regulation';
 import Proptypes from 'prop-types';
-import { connect } from 'react-redux';
 
 const propTypes = {
   listRegulation: Proptypes.array,
@@ -14,10 +13,26 @@ const propTypes = {
   searByYear: Proptypes.func
 };
 
-function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, getTypeRegulation }) {
+function DowloadFileWapper() {
   const [datatype, setDataType] = useState(1);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(0);
+  const [listRegulation, setListRegulation] = useState([]);
+  const [typeRegulation, setTypeRegulation] = useState([]);
+
+  const seachRegulation = async (_datatype, _page, _year) => {
+    const res = await getRegulationListYear(_datatype, _page, _year);
+    if (res && res.status === 200) {
+      setListRegulation(res.data);
+    }
+  };
+
+  const getTypeRegulation = async () => {
+    const res = await getTypeRegulationServices();
+    if (res && res.status === 200) {
+      setTypeRegulation(res.data);
+    }
+  };
 
   useEffect(() => {
     seachRegulation(datatype, page, year);
@@ -56,20 +71,6 @@ function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, ge
   );
 }
 
-const mapStateToProp = state => {
-  return {
-    listRegulation: state.regulationReducer.listDataByYear,
-    typeRegulation: state.regulationReducer.type,
-    urlVideo: state.regulationReducer.urlVideo
-  };
-};
-
-const mapDispatchToProps = {
-  seachRegulation: RegulationActions.getRegulationByYear,
-  getTypeRegulation: RegulationActions.getTypeRegulationAction,
-  getUrlVideo: RegulationActions.getUrlVideo
-};
-
 DowloadFileWapper.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(DowloadFileWapper);
+export default DowloadFileWapper;

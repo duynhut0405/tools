@@ -13,6 +13,8 @@ import Link from 'next/link';
 import map from 'lodash/map';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { getCommon, getMemnu } from '../../utils/fetch';
+import { getLang, getPriority } from '../../utils/cookie';
 import FormPopup from '../block/Popup/FormPopup';
 
 const propTypes = {
@@ -33,27 +35,39 @@ const propTypes = {
   linkApp: PropTypes.object
 };
 
-function Layout({
-  children,
-  lang,
-  isPrioty,
-  idPage,
-  menuHeader,
-  menuNav,
-  menuSearch,
-  menuFooterTop,
-  menuFooterBottom,
-  menuFooterMain,
-  settingFooter,
-  socialLink,
-  menuMobile,
-  linkApp
-}) {
+function Layout({ children, isPrioty, idPage }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [query, setQuery] = useState(null);
   const router = useRouter();
   const [activeForm, setActiveForm] = useState(false);
   const [register, setRegister] = useState('');
+  const [menuHeader, setMenuHeader] = useState([]);
+  const [menuNav, setMenuNav] = useState([]);
+  const [menuSearch, setMenuSearch] = useState([]);
+  const [menuFooterTop, setMenuFooterTop] = useState([]);
+  const [menuFooterBottom, setMenuFooterBottom] = useState([]);
+  const [menuFooterMain, setMenuFooterMain] = useState([]);
+  const [menuMobile, setMenuMobile] = useState([]);
+  const [settingFooter, setSettingFooter] = useState({});
+  const [socialLink, setSocialLink] = useState({});
+  const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
+  const [lang, setLang] = useState('vi');
+  const [priority, setPriority] = useState('/');
+
+  const getLayout = async () => {
+    const menuData = await getMemnu(getLang());
+    const settingData = await getCommon(getLang());
+    setMenuHeader(menuData.menuHeader);
+    setMenuSearch(menuData.menuSearch);
+    setMenuNav(menuData.menuNav);
+    setMenuFooterTop(menuData.menuFooterTop);
+    setMenuFooterBottom(menuData.menuFooterBottom);
+    setMenuFooterMain(menuData.menuFooterMain);
+    setMenuMobile(menuData.menuMobile);
+    setSettingFooter(settingData.general);
+    setSocialLink(settingData.socialLink);
+    setLinkApp(settingData.linkApp);
+  };
 
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
@@ -63,6 +77,15 @@ function Layout({
       body.classList.remove('showMenu');
     }
   }, [activeDrawer]);
+
+  useEffect(() => {
+    setLang(getLang());
+    setPriority(getPriority());
+  });
+
+  useEffect(() => {
+    getLayout();
+  }, [idPage, lang]);
 
   const nestChild = items => {
     return map(
@@ -177,7 +200,6 @@ function Layout({
   const changeLang = _lang => {
     const regex = new RegExp(`^/(${['vi', 'en'].join('|')})`);
     const path = router.asPath.replace(regex, `/${_lang}`);
-
     if (router.pathname === '/search' && _lang === 'vi' && lang !== 'vi') {
       router.push(`${router.pathname}`);
     } else if (router.pathname === '/search' && _lang === 'en' && lang !== 'en') {
@@ -191,8 +213,12 @@ function Layout({
       }
       Cookies.set('lang', 'vi');
     } else if (router.pathname !== '/search' && _lang === 'en' && lang !== 'en') {
-      Cookies.set('lang', 'en');
-      router.push(`/en${path}`);
+      if (path === '/') {
+        router.push('/en');
+      } else {
+        Cookies.set('lang', 'en');
+        router.push(`/en${path}`);
+      }
     }
   };
 
@@ -296,7 +322,7 @@ function Layout({
                         <span>
                           <img
                             className="lazyload"
-                            data-src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
+                            src={`/static/flags/${getLang() === 'vi' ? 'vn' : 'gb'}.png`}
                             alt="images"
                           />
                         </span>
@@ -340,23 +366,25 @@ function Layout({
                   <header id="header" role="banner">
                     <div className="container">
                       {lang === 'en' && (
-                        <Link href={isPrioty ? '/en/page/mb-priority' : '/en'}>
-                          <a id="logo">
-                            <img
-                              id="img_log"
-                              className="lazyload"
-                              src={
-                                !isPrioty
-                                  ? '/static/images/svg/logo.svg'
-                                  : '/static/images/svg/logo-priority.svg'
-                              }
-                              alt="logo"
-                            />
-                          </a>
-                        </Link>
+                        <React.Fragment>
+                          <Link href={priority === '/' ? '/en' : priority}>
+                            <a id="logo" className="isPriotyDefaul">
+                              <img
+                                id="img_log"
+                                className="lazyload"
+                                src={
+                                  !isPrioty
+                                    ? '/static/images/svg/logo.svg'
+                                    : '/static/images/svg/logo-priority.svg'
+                                }
+                                alt="logo"
+                              />
+                            </a>
+                          </Link>
+                        </React.Fragment>
                       )}
                       {lang === 'vi' && (
-                        <Link href={isPrioty ? '/page/mb-priority' : '/'}>
+                        <Link href={priority === '/' ? '/' : priority}>
                           <a id="logo">
                             <img
                               id="img_log"
@@ -411,7 +439,7 @@ function Layout({
                               <span>
                                 <img
                                   className="lazyload"
-                                  data-src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
+                                  src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
                                   alt="images"
                                 />
                               </span>
@@ -678,23 +706,25 @@ function Layout({
                       }
                       if (slug === '/search') {
                         return (
-                          <Link href="/search" as={lang === 'vi' ? '/search' : `/en/search`}>
-                            <a className="item">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <span className="name">{item.name}</span>
-                            </a>
-                          </Link>
+                          <div className="col-3" key={index}>
+                            <Link href="/search" as={lang === 'vi' ? '/search' : `/en/search`}>
+                              <a className="item">
+                                <span className="img">
+                                  <img
+                                    className="lazyload"
+                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
+                                    alt="images"
+                                  />
+                                </span>
+                                <span className="name">{item.name}</span>
+                              </a>
+                            </Link>
+                          </div>
                         );
                       }
-                      return (
-                        <div className="col-3" key={index}>
-                          {lang === 'vi' && slug !== '/' && (
+                      if (lang === 'vi' && slug !== '/') {
+                        return (
+                          <div className="col-3" key={index}>
                             <Link href="/page/[...name]" as={slug === '/' ? '/' : `/page/${slug}`}>
                               <a className="item">
                                 <span className="img">
@@ -707,8 +737,12 @@ function Layout({
                                 <span className="name">{item.name}</span>
                               </a>
                             </Link>
-                          )}
-                          {lang === 'vi' && slug === '/' && (
+                          </div>
+                        );
+                      }
+                      if (lang === 'vi' && slug === '/') {
+                        return (
+                          <div className="col-3" key={index}>
                             <Link href="/" as="/">
                               <a className="item">
                                 <span className="img">
@@ -721,8 +755,12 @@ function Layout({
                                 <span className="name">{item.name}</span>
                               </a>
                             </Link>
-                          )}
-                          {lang === 'en' && slug !== '/' && (
+                          </div>
+                        );
+                      }
+                      if (lang === 'en' && slug !== '/') {
+                        return (
+                          <div className="col-3" key={index}>
                             <Link href="/en/page/[...name]" as={`/en/page/${slug}`}>
                               <a className="item ">
                                 <span className="img">
@@ -735,8 +773,12 @@ function Layout({
                                 <span className="name">{item.name}</span>
                               </a>
                             </Link>
-                          )}
-                          {lang === 'en' && slug === '/' && (
+                          </div>
+                        );
+                      }
+                      if (lang === 'en' && slug === '/') {
+                        return (
+                          <div className="col-3" key={index}>
                             <Link href="/en" as="/en">
                               <a className="item">
                                 <span className="img">
@@ -749,9 +791,10 @@ function Layout({
                                 <span className="name">{item.name}</span>
                               </a>
                             </Link>
-                          )}
-                        </div>
-                      );
+                          </div>
+                        );
+                      }
+                      return null;
                     }
                   )}
                 </div>

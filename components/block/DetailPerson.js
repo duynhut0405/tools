@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import { map } from 'lodash';
-import { InvestorsActions } from '../../store/actions';
 import PopupItems from './Popup/PopupItems';
-import { connect } from 'react-redux';
+
 const propTypes = {
   data: Proptypes.object.isRequired,
   id: Proptypes.number,
@@ -12,8 +11,10 @@ const propTypes = {
   getDetailPerson: Proptypes.func
 };
 
-function DetailPerson({ data, detailPerson, getDetailPerson, id }) {
+function DetailPerson({ data, id }) {
   const [modal, setModal] = useState(false);
+  const [detailPerson, setDetailPerson] = useState({});
+
   let padding = '';
   if (data.optionWidth === '2') {
     padding = 'sec-tb';
@@ -43,7 +44,7 @@ function DetailPerson({ data, detailPerson, getDetailPerson, id }) {
                   <a
                     onClick={() => {
                       setModal(!modal);
-                      getDetailPerson(item);
+                      setDetailPerson(item);
                       document.body.classList.add('showModal');
                     }}
                     className={`item efch-${index + 2} ef-img-l equal`}
@@ -73,14 +74,4 @@ function DetailPerson({ data, detailPerson, getDetailPerson, id }) {
 
 DetailPerson.propTypes = propTypes;
 
-const mapStateToProps = state => {
-  return {
-    detailPerson: state.investorsReducer.detailPerson
-  };
-};
-
-const mapDispatchToProps = {
-  getDetailPerson: InvestorsActions.getDetailPerson
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DetailPerson);
+export default DetailPerson;

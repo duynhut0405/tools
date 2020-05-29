@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import Layout from '../../../components/layout';
 import map from 'lodash/map';
 import { getNewsByCategorySlug } from '../../../services/news';
-import { getMemnu, getCommon } from '../../../utils/fetch';
 import { Pagination } from '../../../components/common';
 import PropTypes from 'prop-types';
 import AboutCategory from '../../../components/about/AboutCategory';
@@ -24,20 +22,7 @@ const propTypes = {
   socialLink: PropTypes.object
 };
 
-function CategoryDetail({
-  routerURL,
-  category,
-  menuHeader,
-  menuNav,
-  menuFooterTop,
-  menuFooterMain,
-  menuFooterBottom,
-  menuSearch,
-  menuMobile,
-  general,
-  socialLink,
-  linkApp
-}) {
+function CategoryDetail({ routerURL, category }) {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
 
@@ -53,9 +38,7 @@ function CategoryDetail({
     setData(category);
     document.body.className = '';
     document.body.classList.add('page');
-    // const body = document.getElementsByTagName('body')[0];
     const logo = document.getElementById('img_log');
-    // body.classList.remove('mb-priority');
     logo.src = '/static/images/svg/logo.svg';
   }, [category]);
 
@@ -80,50 +63,37 @@ function CategoryDetail({
                 : `${process.env.DOMAIN}uploads/resources/files/icon/imgDefault.png`
             }
           />
+          <meta property="og:title" content={category.meta_title || data.name} />
+          <meta property="og:description" content={category.meta_description || ''} />
           <meta property="og:image:width" content="800" />
           <meta property="og:image:height" content="354" />
         </Head>
       )}
-      <Layout
-        lang="vi"
-        idPage={1}
-        menuFooterBottom={menuFooterBottom}
-        menuFooterMain={menuFooterMain}
-        menuFooterTop={menuFooterTop}
-        menuMobile={menuMobile}
-        menuNav={menuNav}
-        menuSearch={menuSearch}
-        menuHeader={menuHeader}
-        settingFooter={general}
-        socialLink={socialLink}
-        linkApp={linkApp}
-      >
-        {data !== null && (
-          <div className="main_content">
-            <section className="banner-heading-3 next-shadow">
-              <div className="container">
-                <div className="divtext">
-                  <div className="max750">
-                    <h1>{data.name}</h1>
-                  </div>
+      {data !== null && (
+        <div className="main_content">
+          <section className="banner-heading-3 next-shadow">
+            <div className="container">
+              <div className="divtext">
+                <div className="max750">
+                  <h1>{data.name}</h1>
                 </div>
               </div>
-              <img
-                className="img img-pc br loaded loaded lazyload"
-                data-src="/static/images/heading-10-pc.svg"
-                alt="images"
-              />
-              <img
-                className="img img-mb br loaded loaded lazyload"
-                data-src="/static/images/heading-10-mb.svg"
-                alt="images"
-              />
-            </section>
-            <AboutCategory data={data} categories={data.categoryNews} />
-            <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
-          </div>
-        )}
-      </Layout>
+            </div>
+            <img
+              className="img img-pc br loaded loaded lazyload"
+              data-src="/static/images/heading-10-pc.svg"
+              alt="images"
+            />
+            <img
+              className="img img-mb br loaded loaded lazyload"
+              data-src="/static/images/heading-10-mb.svg"
+              alt="images"
+            />
+          </section>
+          <AboutCategory data={data} categories={data.categoryNews} />
+          <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
+        </div>
+      )}
     </React.Fragment>
   );
 }
@@ -135,35 +105,13 @@ CategoryDetail.getInitialProps = async ctx => {
   let category = null;
   map(query, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
-  const menu = await getMemnu('vi');
-  const {
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile
-  } = menu;
-  const common = await getCommon('vi');
-  const { general, socialLink, linkApp } = common;
   const res = await getNewsByCategorySlug(routerURL, { number: 10, page: 0 });
   if (res && res !== undefined && res.status === 200) {
     category = res.data;
   }
   return {
     routerURL,
-    category,
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile,
-    general,
-    socialLink,
-    linkApp
+    category
   };
 };
 

@@ -12,10 +12,6 @@ class MyDocument extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-title" content={process.env.LINK_DOMAIN} />
-          <meta
-            name="description"
-            content="KHACH HANG CA NHA , KHACH HANG DOANH NGHIEP , CA NHAN CAO CAP , KHACH HANG DINH CHE"
-          />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="msapplication-TileColor" content="#2B5797" />
@@ -29,11 +25,6 @@ class MyDocument extends Document {
           <link rel="manifest" href="/static/manifest.json" />
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="MB NGÂN HÀNG QUÂN ĐỘI | MBBANK" />
-          <meta
-            property="og:description"
-            content="KHACH HANG CA NHA , KHACH HANG DOANH NGHIEP , CA NHAN CAO CAP , KHACH HANG DINH CHE"
-          />
           <meta property="og:site_name" content="MBBANK" />
           <script dangerouslySetInnerHTML={{ __html: 'history.scrollRestoration = "manual";' }} />
           <meta property="og:url" content={process.env.LINK_DOMAIN} />

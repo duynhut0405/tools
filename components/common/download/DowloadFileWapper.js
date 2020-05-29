@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Fillter, DowloadFile } from './index';
 import { Pagination } from '../index';
 import moment from 'moment';
-import { RegulationActions } from '../../../store/actions';
+import { getRegulationPagation, getTypeRegulationServices } from '../../../services/regulation';
 import Proptypes from 'prop-types';
-import { connect } from 'react-redux';
 
 const propTypes = {
   listRegulation: Proptypes.array,
@@ -13,11 +12,27 @@ const propTypes = {
   getTypeRegulation: Proptypes.func
 };
 
-function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, getTypeRegulation }) {
+function DowloadFileWapper() {
   const date = new Date();
   const [year, setYear] = useState(moment(date).format('YYYY'));
   const [datatype, setDataType] = useState(1);
   const [page, setPage] = useState(1);
+  const [listRegulation, setListRegulation] = useState([]);
+  const [typeRegulation, setTypeRegulation] = useState([]);
+
+  const seachRegulation = async (_datatype, _year, _page) => {
+    const res = await getRegulationPagation(_datatype, _year, _page);
+    if (res && res.status === 200) {
+      setListRegulation(res.data);
+    }
+  };
+
+  const getTypeRegulation = async () => {
+    const res = await getTypeRegulationServices();
+    if (res && res.status === 200) {
+      setTypeRegulation(res.data);
+    }
+  };
 
   useEffect(() => {
     seachRegulation(datatype, year, page);
@@ -27,6 +42,7 @@ function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, ge
   useEffect(() => {
     seachRegulation(datatype, year, page);
   }, [year, datatype, page]);
+
   return (
     <div className="accodion accodion-2 sec">
       <div className="container">
@@ -46,20 +62,6 @@ function DowloadFileWapper({ listRegulation, typeRegulation, seachRegulation, ge
   );
 }
 
-const mapStateToProp = state => {
-  return {
-    listRegulation: state.regulationReducer.listData,
-    typeRegulation: state.regulationReducer.type,
-    urlVideo: state.regulationReducer.urlVideo
-  };
-};
-
-const mapDispatchToProps = {
-  seachRegulation: RegulationActions.getRegulation,
-  getTypeRegulation: RegulationActions.getTypeRegulationAction,
-  getUrlVideo: RegulationActions.getUrlVideo
-};
-
 DowloadFileWapper.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(DowloadFileWapper);
+export default DowloadFileWapper;

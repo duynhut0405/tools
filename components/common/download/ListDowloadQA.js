@@ -3,10 +3,9 @@ import { Fillter } from '../download';
 import moment from 'moment';
 import Question from './Question';
 import { Pagination } from '../../common';
-import { RegulationActions } from '../../../store/actions';
+import { getRegulationPagation } from '../../../services/regulation';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 const propTypes = {
   type: PropTypes.number,
@@ -15,21 +14,24 @@ const propTypes = {
   listType: PropTypes.array,
   listRegulation: PropTypes.object,
   getTypeRegulation: PropTypes.func,
-  seachRegulation: PropTypes.func
+  seachRegulation: PropTypes.func,
+  dataSearch: PropTypes.array
 };
 
-function ListDowloadQA({
-  type,
-  listType,
-  listRegulation,
-  search,
-  getTypeRegulation,
-  seachRegulation
-}) {
+function ListDowloadQA({ type, search, dataSearch }) {
   const date = new Date();
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
   const [year, setYear] = useState(moment(date).format('YYYY'));
+  const [listRegulation, setListRegulation] = useState([]);
+  const [listType, setListType] = useState([]);
+
+  const seachRegulation = async (_type, _year, number, _page) => {
+    const res = await getRegulationPagation(_type, _year, number, _page);
+    if (res && res.status === 200) {
+      setListRegulation(res.data);
+    }
+  };
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -48,6 +50,12 @@ function ListDowloadQA({
       seachRegulation(type, year, 10, page);
     }
   }, [page]);
+
+  useEffect(() => {
+    if (dataSearch !== null) {
+      setListRegulation(dataSearch);
+    }
+  }, [dataSearch]);
 
   return (
     <div className="accodion accodion-1">
@@ -81,18 +89,6 @@ function ListDowloadQA({
   );
 }
 
-const mapStateToProp = state => {
-  return {
-    listRegulation: state.regulationReducer.listData,
-    listType: state.regulationReducer.listTypeByID
-  };
-};
-
-const mapDispatchToProps = {
-  seachRegulation: RegulationActions.getRegulation,
-  getTypeRegulation: RegulationActions.getTypeRegulationByIDAction
-};
-
 ListDowloadQA.propTypes = propTypes;
 
-export default connect(mapStateToProp, mapDispatchToProps)(ListDowloadQA);
+export default ListDowloadQA;

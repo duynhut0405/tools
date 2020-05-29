@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../../components/common';
 import FormRate from '../../components/formRate';
-import Layout from '../../components/layout';
+// import Layout from '../../components/layout';
 import Head from 'next/head';
-import { getCommon, getMemnu } from '../../utils/fetch';
+// import { getCommon, getMemnu } from '../../utils/fetch';
 import { getRateService, getInterestRateService } from '../../services/rate';
 import { getPageMutiLangBySlug } from '../../services/page';
 import filter from 'lodash/filter';
@@ -26,21 +26,7 @@ const propTypes = {
   socialLink: Proptypes.object
 };
 
-function Home({
-  page,
-  silder,
-  menuMiddle,
-  menuHeader,
-  menuNav,
-  menuFooterTop,
-  menuFooterMain,
-  menuFooterBottom,
-  menuSearch,
-  menuMobile,
-  general,
-  socialLink,
-  linkApp
-}) {
+function Home({ page, silder, menuMiddle }) {
   const [listInterestRate, setListInterestRate] = useState([]);
   const [listRate, setlistRate] = useState([]);
 
@@ -67,7 +53,7 @@ function Home({
   useEffect(() => {
     document.body.className = '';
     document.body.classList.add('home');
-    document.getElementById('img_log').src = '/static/images/svg/logo.svg';
+    // document.getElementById('img_log').src = '/static/images/svg/logo.svg';
   }, [page]);
 
   return (
@@ -89,28 +75,13 @@ function Home({
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <Layout
-        lang="en"
-        idPage={page.id}
-        menuFooterBottom={menuFooterBottom}
-        menuFooterMain={menuFooterMain}
-        menuFooterTop={menuFooterTop}
-        menuMobile={menuMobile}
-        menuNav={menuNav}
-        menuSearch={menuSearch}
-        menuHeader={menuHeader}
-        settingFooter={general}
-        socialLink={socialLink}
-        linkApp={linkApp}
-      >
-        <div className="main_content">
-          {page.breadCrumb && <Breadcrumb data={[]} />}
-          <Carousel silder={silder} />
-          <MenuMiddle data={menuMiddle} />
-          <BlockRender data={page.pageBlocks} pageId={page.id} />
-          <FormRate data={listRate} interestRate={listInterestRate} />
-        </div>
-      </Layout>
+      <div className="main_content">
+        {page.breadCrumb && <Breadcrumb data={[]} />}
+        <Carousel silder={silder} />
+        <MenuMiddle data={menuMiddle} />
+        <BlockRender data={page.pageBlocks} pageId={page.id} />
+        <FormRate data={listRate} interestRate={listInterestRate} />
+      </div>
     </React.Fragment>
   );
 }
@@ -119,18 +90,6 @@ Home.getInitialProps = async () => {
   let page = {};
   let silder = [];
   let menuMiddle = {};
-  const menu = await getMemnu('en');
-  const {
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile
-  } = menu;
-  const common = await getCommon('en');
-  const { general, socialLink, linkApp } = common;
   const pageResponse = await getPageMutiLangBySlug('en', 'homepage');
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
@@ -145,17 +104,7 @@ Home.getInitialProps = async () => {
   return {
     page,
     silder,
-    menuMiddle,
-    menuHeader,
-    menuNav,
-    menuFooterTop,
-    menuFooterMain,
-    menuFooterBottom,
-    menuSearch,
-    menuMobile,
-    general,
-    socialLink,
-    linkApp
+    menuMiddle
   };
 };
 
