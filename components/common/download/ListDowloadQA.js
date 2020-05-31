@@ -40,7 +40,7 @@ function ListDowloadQA({ type, search, dataSearch }) {
     } else {
       seachRegulation(type, year, 10, page);
     }
-  }, [getTypeRegulation]);
+  }, []);
 
   useEffect(() => {
     const width = window.innerWidth;
