@@ -76,7 +76,11 @@ function Result({ title, result }) {
           <h5 className="title">{t('amount_guaranteed')}</h5>
         </div>
         <div className="col-md-6">
-          <span className="t3">{result.soTien === null ? '' : result.soTien}</span>
+          <span className="t3">
+            {result.soTien === null
+              ? ''
+              : result.soTien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
+          </span>
         </div>
       </div>
       <div className=" row">
