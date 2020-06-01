@@ -23,6 +23,7 @@ function FieldInput2({ label, value, onChange, onBlur, type }) {
     }
     return new Intl.NumberFormat().format(number);
   };
+
   return (
     <div className="row">
       <label className="col-md-7">
@@ -36,7 +37,7 @@ function FieldInput2({ label, value, onChange, onBlur, type }) {
               className="input"
               placeholder={label}
               name="from"
-              value={FormatNumber(value)}
+              value={value === 0 ? FormatNumber(null) : FormatNumber(value)}
               required={true}
               onChange={e => {
                 onChange(Number(e.target.value.replace(/[^0-9.-]+/g, '')));
