@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import FieldInput from './FieldInput2';
-import Table from './Table';
 import Result from './Result2';
 import t from '../../../translation';
-import { rate } from '../../../utils/currency';
 import { searchGuarantee } from '../../../services/tool';
-import { withFormik } from 'formik';
-import * as Yup from 'yup';
 
 import Proptypes from 'prop-types';
 
@@ -49,7 +45,7 @@ function Tool9({ minValue, maxValue, interest_rate, padding, id, type }) {
       {
         dkkd_CMND: dkkd,
         soCamKetBaoLanh: numGuarantee,
-        soTien: Number(amount.replace(/[^0-9.-]+/g, ''))
+        soTien: amount
       },
       setResult
     );
@@ -64,40 +60,42 @@ function Tool9({ minValue, maxValue, interest_rate, padding, id, type }) {
             <div className="active">
               <div className="tab-inner  ">
                 <div className="form-vay-von">
-                  <div className="row ">
-                    <div className="col-md-7 ">
-                      <div className="inner">
-                        <FieldInput
-                          label={t('guarantee_number')}
-                          maxValue={maxValue}
-                          value={numGuarantee}
-                          type="text"
-                          onChange={value => setNumGuarantee(value)}
-                        />
-                        <FieldInput
-                          label={t('guarantee_amount')}
-                          maxValue={36}
-                          value={amount}
-                          type="tel"
-                          onChange={value => setAmount(value)}
-                        />
-                        <FieldInput
-                          label={t('number_DKKD')}
-                          maxValue={36}
-                          type="text"
-                          value={dkkd}
-                          onChange={value => setdkkd(value)}
-                        />
+                  <form onSubmit={calculation}>
+                    <div className="row ">
+                      <div className="col-md-7 ">
+                        <div className="inner">
+                          <FieldInput
+                            label={t('guarantee_number')}
+                            maxValue={maxValue}
+                            value={numGuarantee}
+                            type="text"
+                            onChange={value => setNumGuarantee(value)}
+                          />
+                          <FieldInput
+                            label={t('guarantee_amount')}
+                            maxValue={36}
+                            value={amount}
+                            type="tel"
+                            onChange={value => setAmount(value)}
+                          />
+                          <FieldInput
+                            label={t('number_DKKD')}
+                            maxValue={36}
+                            type="text"
+                            value={dkkd}
+                            onChange={value => setdkkd(value)}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-5">
+                        <Result title={t('results_guarantee')} result={result} />
                       </div>
                     </div>
-                    <div className="col-md-5">
-                      <Result title={t('results_guarantee')} result={result} />
-                    </div>
-                  </div>
-                  <p className="note">{t('tool_note')}</p>
-                  <a className="btn" onClick={calculation}>
-                    {t('search_tool')}
-                  </a>
+                    <p className="note">{t('tool_note')}</p>
+                    <button className="btn" type="submit">
+                      {t('search_tool')}
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
