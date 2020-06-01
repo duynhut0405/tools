@@ -50,6 +50,9 @@ function Tool9({ minValue, maxValue, interest_rate, padding, id, type }) {
       setResult
     );
   };
+  const clickOnSetValue = (setData, value) => {
+    setData(value);
+  };
 
   return (
     <div className={`${padding} tool-${type}`} id={id}>
@@ -69,21 +72,21 @@ function Tool9({ minValue, maxValue, interest_rate, padding, id, type }) {
                             maxValue={maxValue}
                             value={numGuarantee}
                             type="text"
-                            onChange={value => setNumGuarantee(value)}
+                            onChange={value => clickOnSetValue(setNumGuarantee, value)}
                           />
                           <FieldInput
                             label={t('guarantee_amount')}
                             maxValue={36}
                             value={amount}
                             type="tel"
-                            onChange={value => setAmount(value)}
+                            onChange={value => clickOnSetValue(setAmount, value)}
                           />
                           <FieldInput
                             label={t('number_DKKD')}
                             maxValue={36}
                             type="text"
                             value={dkkd}
-                            onChange={value => setdkkd(value)}
+                            onChange={value => clickOnSetValue(setdkkd, value)}
                           />
                         </div>
                       </div>

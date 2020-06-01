@@ -23,15 +23,23 @@ function UserManual({ data, id }) {
 
   const [step, setStep] = useState(1);
   const size = UseWindowResize();
-  // const classMobile = size.width < 768 ? 'mobileOrder' : '';
-  // console.log('classMobile:', classMobile);
+  const styleImg = {
+    backgroundImage: `url(${data.image})`
+  };
+  const styleWidth = {
+    width: '248px'
+  };
+
+  const handleOnClickStep = value => {
+    setStep(value);
+  };
 
   return (
     <section className={`${padding} userManual sec-hoa-don`}>
       <div className="container">
         <div className={`row center`}>
           <div className={`col-md-5 mobileOrder`}>
-            <div className="w-sync-1 loaded" style={{ backgroundImage: `url(${data.image})` }}>
+            <div className="w-sync-1 loaded" style={styleImg}>
               <div className="sync-1 owl-carousel s-loop owl-loaded owl-drag" paramowl="margin=0">
                 <div className="owl-stage-outer">
                   <div
@@ -42,7 +50,7 @@ function UserManual({ data, id }) {
                       width: '2976px'
                     }}
                   >
-                    <div className="owl-item cloned" style={{ width: '248px' }}>
+                    <div className="owl-item cloned" style={styleWidth}>
                       <div className="item">
                         {' '}
                         <img
@@ -52,18 +60,18 @@ function UserManual({ data, id }) {
                         />{' '}
                       </div>
                     </div>
-                    <div className="owl-item cloned" style={{ width: '248px' }}>
+                    <div className="owl-item cloned" style={styleWidth}>
                       <div className="item">
                         <img className="lazyload" src={data.listDetail[0].image} alt="images" />{' '}
                       </div>
                     </div>
-                    <div className="owl-item cloned" style={{ width: '248px' }}>
+                    <div className="owl-item cloned" style={styleWidth}>
                       <div className="item">
                         <img className="lazyload" src={data.listDetail[0].image} alt="images" />
                       </div>
                     </div>
 
-                    <div className="owl-item active" style={{ width: '248px' }}>
+                    <div className="owl-item active" style={styleWidth}>
                       <div className="item">
                         <img
                           className="lazyload"
@@ -92,7 +100,7 @@ function UserManual({ data, id }) {
               {map(data.listDetail, (item, index) => {
                 const style = index + 1 === step ? 'item active' : 'item';
                 return (
-                  <div className={style} key={index} onClick={() => setStep(index + 1)}>
+                  <div className={style} key={index} onClick={() => handleOnClickStep(index + 1)}>
                     <span className="number click">{index + 1}</span>
                     {size.width >= 768 && <h4 className="title click">{item.step}</h4>}
                     <div className="desc show-768">{item.description}</div>
