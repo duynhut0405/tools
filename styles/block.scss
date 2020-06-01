@@ -180,6 +180,19 @@ body {
 .custom-tool:focus {
   border: 1px solid #141ed2;
 }
+
+.mobileOrder {
+  order: unset;
+}
+
+.stepMobile {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-768 {
+  padding: 15px 0;
+}
 @media only screen and (max-width: 768px) {
   .banner-heading-3 .img-pc {
     display: none;
@@ -191,5 +204,18 @@ body {
   html,
   body {
     scroll-padding-top: 0px;
+  }
+
+  .mobileOrder {
+    order: 2;
+  }
+  .stepMobile {
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 !important;
+  }
+
+  .sec-hoa-don .sync-3 .item:before {
+    content: unset !important;
   }
 }
