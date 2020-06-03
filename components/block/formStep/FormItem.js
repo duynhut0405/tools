@@ -171,6 +171,7 @@ function FormItems({ data, step, totalStep, formActive, onNext, onGoBack }) {
                   <div className={`col-12 ${item.className}`}>
                     {item.label && <label>{item.label}</label>}
                     <DatePicker
+                      placeholderText={item.placeholder}
                       autoComplete="off"
                       required={item.required}
                       selected={formState[item.name]}
