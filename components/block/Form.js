@@ -192,7 +192,7 @@ function Form({ data, pageId, id }) {
             if (item.type === 'button') {
               return (
                 <React.Fragment>
-                  <div className="col-12 text-center">
+                  <div className="col-12 wrecaptchar"> 
                     <ReCAPTCHA
                       style={{ display: 'inline-block' }}
                       ref={recaptchaRef}
