@@ -439,7 +439,7 @@ function Layout({ children, isPrioty, idPage }) {
                               <span>
                                 <img
                                   className="lazyload"
-                                  src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
+                                  src={`/static/flags/${getLang() === 'vi' ? 'vn' : 'gb'}.png`}
                                   alt="images"
                                 />
                               </span>

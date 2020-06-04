@@ -1,6 +1,7 @@
 import Proptypes from 'prop-types';
 import React from 'react';
 import t from '../../../translation';
+import moment from 'moment';
 
 const propTypes = {
   title: Proptypes.string,
@@ -43,7 +44,9 @@ function Result({ title, result }) {
           <h5 className="title">{t('effective_date')}</h5>
         </div>
         <div className="col-md-6">
-          <span className="t3">{result.ngayPhatHanh === null ? '' : result.ngayPhatHanh}</span>
+          <span className="t3">
+            {result.ngayPhatHanh === null ? '' : moment(result.ngayPhatHanh).format('MMM Do YYYY')}
+          </span>
         </div>
       </div>
 
@@ -52,7 +55,11 @@ function Result({ title, result }) {
           <h5 className="title">{t('expiry_date')}</h5>
         </div>
         <div className="col-md-6">
-          <span className="t3">{result.ngayHetHieuLuc === null ? '' : result.ngayHetHieuLuc}</span>
+          <span className="t3">
+            {result.ngayHetHieuLuc === null
+              ? ''
+              : moment(result.ngayHetHieuLuc).format('MMM Do YYYY')}
+          </span>
         </div>
       </div>
 
@@ -69,7 +76,11 @@ function Result({ title, result }) {
           <h5 className="title">{t('amount_guaranteed')}</h5>
         </div>
         <div className="col-md-6">
-          <span className="t3">{result.soTien === null ? '' : result.soTien}</span>
+          <span className="t3">
+            {result.soTien === null
+              ? ''
+              : result.soTien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
+          </span>
         </div>
       </div>
       <div className=" row">

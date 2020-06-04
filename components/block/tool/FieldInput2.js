@@ -17,31 +17,40 @@ const propTypes = {
 };
 
 function FieldInput2({ label, value, onChange, onBlur, type }) {
+  const FormatNumber = number => {
+    if (number === null) {
+      return '';
+    }
+    return new Intl.NumberFormat().format(number);
+  };
+
   return (
     <div className="row">
-      <div className="col-md-7">
+      <label className="col-md-7">
         <h5 className="title">{label}</h5>
-      </div>
+      </label>
 
       <div className="col-md-5">
         <div>
           {type === 'tel' && (
-            <ReactNumeric
-              type="tel"
+            <input
               className="input"
-              value={value}
-              minimumValue="0"
-              decimalPlaces={0}
-              onChange={event => onChange(event.target.value)}
-              onBlur={onBlur}
-              // placeholder="Nhập số tiền (*)"
+              placeholder={label}
+              name="from"
+              value={value === 0 ? FormatNumber(null) : FormatNumber(value)}
+              required={true}
+              onChange={e => {
+                onChange(Number(e.target.value.replace(/[^0-9.-]+/g, '')));
+              }}
             />
           )}
           {type === 'text' && (
             <Input
+              placeholder={label}
               className="custom-tool"
               value={value}
               onChange={event => onChange(event.target.value)}
+              required={true}
             />
           )}
         </div>
