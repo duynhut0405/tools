@@ -117,6 +117,7 @@ function Tool6({ minValue, maxValue, interest_rate, padding, id, type }) {
                           label={t('loan_term')}
                           maxValue={84}
                           value={month}
+                          note
                           onChange={value => setMonth(value)}
                         />
                       </div>
