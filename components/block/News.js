@@ -82,9 +82,10 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   };
 
   useEffect(() => {
+    setListCategory([]);
     getCategoryPage();
     getCategoryById();
-  }, [data.news && id]);
+  }, [data.news && pageId]);
 
   const showPage = () => {
     setActive(false);

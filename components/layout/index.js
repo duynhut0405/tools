@@ -322,7 +322,7 @@ function Layout({ children, isPrioty, idPage }) {
                         <span>
                           <img
                             className="lazyload"
-                            src={`/static/flags/${getLang() === 'vi' ? 'vn' : 'gb'}.png`}
+                            src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
                             alt="images"
                           />
                         </span>
@@ -367,7 +367,7 @@ function Layout({ children, isPrioty, idPage }) {
                     <div className="container">
                       {lang === 'en' && (
                         <React.Fragment>
-                          {priority === '/' && (
+                          {priority === '/en' && (
                             <Link href="/en" as="/en">
                               <a id="logo" className="isPriotyDefaul">
                                 <img
@@ -379,8 +379,8 @@ function Layout({ children, isPrioty, idPage }) {
                               </a>
                             </Link>
                           )}
-                          {priority !== '/' && (
-                            <Link href="/en/page/[...name]" as={`/en${priority}`}>
+                          {priority !== '/en' && (
+                            <Link href="/en/page/[...name]" as={`${priority}`}>
                               <a id="logo" className="isPriotyDefaul">
                                 <img
                                   id="img_log"
@@ -461,7 +461,7 @@ function Layout({ children, isPrioty, idPage }) {
                               <span>
                                 <img
                                   className="lazyload"
-                                  src={`/static/flags/${getLang() === 'vi' ? 'vn' : 'gb'}.png`}
+                                  src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
                                   alt="images"
                                 />
                               </span>
