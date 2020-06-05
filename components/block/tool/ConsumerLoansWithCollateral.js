@@ -121,6 +121,7 @@ function ConsumerLoansWithCollateral({ minValue, maxValue, interest_rate, paddin
                           label={t('loan_term')}
                           maxValue={84}
                           value={month}
+                          note
                           onChange={value => setMonth(value)}
                         />
                       </div>
