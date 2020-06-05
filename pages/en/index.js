@@ -46,6 +46,7 @@ function Home({ page, silder, menuMiddle }) {
 
   useEffect(() => {
     Cookies.set('lang', 'en');
+    Cookies.set('priority', '/');
     getInterestRate();
     getRate();
   }, [page]);
