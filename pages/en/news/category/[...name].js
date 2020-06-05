@@ -35,6 +35,7 @@ function CategoryDetail({ routerURL, category }) {
 
   useEffect(() => {
     Cookies.set('lang', 'en');
+    Cookies.set('priority', '/');
     setData(category);
     document.body.className = '';
     document.body.classList.add('page');

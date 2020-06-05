@@ -367,37 +367,59 @@ function Layout({ children, isPrioty, idPage }) {
                     <div className="container">
                       {lang === 'en' && (
                         <React.Fragment>
-                          <Link href={priority === '/' ? '/en' : priority}>
-                            <a id="logo" className="isPriotyDefaul">
-                              <img
-                                id="img_log"
-                                className="lazyload"
-                                src={
-                                  !isPrioty
-                                    ? '/static/images/svg/logo.svg'
-                                    : '/static/images/svg/logo-priority.svg'
-                                }
-                                alt="logo"
-                              />
-                            </a>
-                          </Link>
+                          {priority === '/' && (
+                            <Link href="/en" as="/en">
+                              <a id="logo" className="isPriotyDefaul">
+                                <img
+                                  id="img_log"
+                                  className="lazyload"
+                                  src="/static/images/svg/logo.svg"
+                                  alt="logo"
+                                />
+                              </a>
+                            </Link>
+                          )}
+                          {priority !== '/' && (
+                            <Link href="/en/page/[...name]" as={`/en${priority}`}>
+                              <a id="logo" className="isPriotyDefaul">
+                                <img
+                                  id="img_log"
+                                  className="lazyload"
+                                  src="/static/images/svg/logo-priority.svg"
+                                  alt="logo"
+                                />
+                              </a>
+                            </Link>
+                          )}
                         </React.Fragment>
                       )}
                       {lang === 'vi' && (
-                        <Link href={priority === '/' ? '/' : priority}>
-                          <a id="logo">
-                            <img
-                              id="img_log"
-                              className="lazyload"
-                              src={
-                                !isPrioty
-                                  ? '/static/images/svg/logo.svg'
-                                  : '/static/images/svg/logo-priority.svg'
-                              }
-                              alt="logo"
-                            />
-                          </a>
-                        </Link>
+                        <React.Fragment>
+                          {priority === '/' && (
+                            <Link href="/" as="/">
+                              <a id="logo" className="isPriotyDefaul">
+                                <img
+                                  id="img_log"
+                                  className="lazyload"
+                                  src="/static/images/svg/logo.svg"
+                                  alt="logo"
+                                />
+                              </a>
+                            </Link>
+                          )}
+                          {priority !== '/' && (
+                            <Link href="/page/[...name]" as={`${priority}`}>
+                              <a id="logo" className="isPriotyDefaul">
+                                <img
+                                  id="img_log"
+                                  className="lazyload"
+                                  src="/static/images/svg/logo-priority.svg"
+                                  alt="logo"
+                                />
+                              </a>
+                            </Link>
+                          )}
+                        </React.Fragment>
                       )}
                       <div className="wrap-menu-header">
                         <ul className="menu-top-header" data-style="1">

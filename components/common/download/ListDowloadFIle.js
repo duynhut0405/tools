@@ -54,7 +54,37 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
     } else {
       seachRegulation(type, datatype, 10, page, year);
     }
-  }, [page, year, datatype, data]);
+  }, [id]);
+
+  const onChangeYear = _year => {
+    setYear(_year);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, datatype, 5, page, _year);
+    } else {
+      seachRegulation(type, datatype, 10, page, _year);
+    }
+  };
+
+  const onChangeType = _type => {
+    setDataType(_type);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, _type, 5, page, year);
+    } else {
+      seachRegulation(type, _type, 10, page, year);
+    }
+  };
+
+  const onChangePage = _page => {
+    setPage(_page);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, datatype, 5, _page, year);
+    } else {
+      seachRegulation(type, datatype, 10, _page, year);
+    }
+  };
 
   let padding = '';
   if (Number(optionWidth) === 2) {
@@ -89,8 +119,8 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
             center
             year={year}
             type={listType}
-            setDate={event => setYear(event.target.value)}
-            setType={event => setDataType(event.target.value)}
+            setDate={event => onChangeYear(event.target.value)}
+            setType={event => onChangeType(event.target.value)}
           />
         )}
         <div className="container">
@@ -104,7 +134,7 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
           )}
         </div>
         {listRegulation.size > 1 && (
-          <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
+          <Pagination size={listRegulation.size} setPage={pageNumber => onChangePage(pageNumber)} />
         )}
       </div>
     </div>
