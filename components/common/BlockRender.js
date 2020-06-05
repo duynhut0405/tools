@@ -6,7 +6,7 @@ import {
   Product,
   Question,
   Repeat,
-  SingerPost,
+  // SingerPost,
   Pages,
   MiniTab,
   News,

@@ -46,16 +46,46 @@ function ListDowloadFIle({ type, data, optionWidth, id }) {
     } else {
       seachRegulation(type, 0, 10, 0, year, setlistRegulation);
     }
-  }, [getTypeRegulation]);
+  }, [id]);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const width = window.innerWidth;
+  //   if (width < 768) {
+  //     seachRegulation(type, datatype, 5, page, year, setlistRegulation);
+  //   } else {
+  //     seachRegulation(type, datatype, 10, page, year, setlistRegulation);
+  //   }
+  // }, [page, year, datatype]);
+
+  const onChangeYear = _year => {
+    setYear(_year);
     const width = window.innerWidth;
     if (width < 768) {
-      seachRegulation(type, datatype, 5, page, year, setlistRegulation);
+      seachRegulation(type, datatype, 5, page, _year, setlistRegulation);
     } else {
-      seachRegulation(type, datatype, 10, page, year, setlistRegulation);
+      seachRegulation(type, datatype, 10, page, _year, setlistRegulation);
     }
-  }, [page, year, datatype]);
+  };
+
+  const onChangeType = _type => {
+    setDataType(_type);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, _type, 5, page, year, setlistRegulation);
+    } else {
+      seachRegulation(type, _type, 10, page, year, setlistRegulation);
+    }
+  };
+
+  const onChangePage = _page => {
+    setPage(_page);
+    const width = window.innerWidth;
+    if (width < 768) {
+      seachRegulation(type, datatype, 5, _page, year, setlistRegulation);
+    } else {
+      seachRegulation(type, datatype, 10, _page, year, setlistRegulation);
+    }
+  };
 
   let padding = '';
   if (Number(optionWidth) === 2) {
@@ -92,8 +122,8 @@ function ListDowloadFIle({ type, data, optionWidth, id }) {
           center
           year={year}
           type={listType}
-          setDate={event => setYear(event.target.value)}
-          setType={event => setDataType(event.target.value)}
+          setDate={event => onChangeYear(event.target.value)}
+          setType={event => onChangeType(event.target.value)}
         />
 
         <div className="sec-tb">
@@ -103,7 +133,7 @@ function ListDowloadFIle({ type, data, optionWidth, id }) {
         </div>
 
         {listRegulation.size > 1 && (
-          <Pagination size={listRegulation.size} setPage={pageNumber => setPage(pageNumber)} />
+          <Pagination size={listRegulation.size} setPage={pageNumber => onChangePage(pageNumber)} />
         )}
       </div>
     </div>
