@@ -32,7 +32,7 @@ function Form({ data, pageId, id }) {
 
   useEffect(() => {
     getFormByID();
-  }, [data]);
+  }, [id]);
 
   const handleChange = event => {
     event.persist();
@@ -192,7 +192,7 @@ function Form({ data, pageId, id }) {
             if (item.type === 'button') {
               return (
                 <React.Fragment>
-                  <div className="col-12 wrecaptchar"> 
+                  <div className="col-12 wrecaptchar">
                     <ReCAPTCHA
                       style={{ display: 'inline-block' }}
                       ref={recaptchaRef}
