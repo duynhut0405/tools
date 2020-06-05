@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../components/common';
 import FormRate from '../components/formRate';
-import Layout from '../components/layout';
 import Head from 'next/head';
 import { getRateService, getInterestRateService } from '../services/rate';
 import { getPageMutiLangBySlug } from '../services/page';
-// import { getMemnu, getCommon } from '../utils/fetch';
 import filter from 'lodash/filter';
 import Proptypes from 'prop-types';
 import Cookies from 'js-cookie';
@@ -46,12 +44,12 @@ function Home({ page, silder, menuMiddle }) {
 
   useEffect(() => {
     Cookies.set('lang', 'vi');
-    Cookies.set('priority', '/');
     getInterestRate();
     getRate();
   }, [page]);
 
   useEffect(() => {
+    Cookies.remove('priority');
     document.body.className = '';
     document.body.classList.add('home');
     // document.getElementById('img_log').src = '/static/images/svg/logo.svg';
