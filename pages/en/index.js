@@ -52,6 +52,7 @@ function Home({ page, silder, menuMiddle }) {
 
   useEffect(() => {
     Cookies.remove('priority');
+    Cookies.set('priority', '/en');
     document.body.className = '';
     document.body.classList.add('home');
     // document.getElementById('img_log').src = '/static/images/svg/logo.svg';
