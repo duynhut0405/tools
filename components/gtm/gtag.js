@@ -35,7 +35,7 @@ export const GtagNoscript = () => (
   <>
     <noscript>
       <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=GTM-GTM-WJ5ZZB`}
+        src={`https://www.googletagmanager.com/ns.html?id=GTM-WJ5ZZB`}
         height="0"
         width="0"
         style={style}
