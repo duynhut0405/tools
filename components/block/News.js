@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { map, slice, uniqBy } from 'lodash';
+import { map, slice, uniqBy, uniq } from 'lodash';
 import moment from 'moment';
 import Proptypes from 'prop-types';
 import { getNewByIdService, getListNewsTagPageService } from '../../services/news';
@@ -29,6 +29,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   const listNews = slice(uniqBy(listCategory, 'newsId'), 0, 2);
   const listNewsTabs = slice(uniqBy(listCategory, 'newsId'), 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
+
   const lang = getLang();
   const size = UseWindowResize();
 
@@ -68,14 +69,17 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
       idPage: { id: pageId },
       nameBlock: dataBlock.title
     };
+    let idItemNews = [];
     const res1 = await getListNewsTagPageService(dataSend);
     if (res1 && res1.status === 200) {
-      setListCategory(res1.data);
+      idItemNews = map(res1.data, item => item.newsId);
     }
 
     const idItems = map(data.news, item => item.newsId);
+    const totalIdItems = uniq(idItems).concat(uniq(idItemNews));
+
     const limit = data.limit === '' || data.limit === null ? 4 : Number(data.limit);
-    const res = await getNewByIdService(idItems, data.category.value, limit);
+    const res = await getNewByIdService(uniq(totalIdItems), data.category.value, limit);
     if (res && res.status === 200) {
       setListCategory(formState => [...formState, ...res.data]);
     }
