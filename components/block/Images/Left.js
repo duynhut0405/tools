@@ -24,7 +24,6 @@ function ImageLeft({ items, padding, id, type }) {
               >
                 <img
                   className="lazyload"
-                  data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   alt="images"
                 />
@@ -65,8 +64,8 @@ function ImageLeft({ items, padding, id, type }) {
             <div className="divtext entry-content">
               <h2 className="ht  efch-1 ef-tx-t ">{ReactHtmlParser(items.note_1)}</h2>
               <p className="desc">
-              {ReactHtmlParser(items.note_2)}
-              {ReactHtmlParser(items.note_3)}
+                {ReactHtmlParser(items.note_2)}
+                {ReactHtmlParser(items.note_3)}
               </p>
               {items.text_action === undefined || items.text_action === '' ? (
                 ''
