@@ -19,7 +19,6 @@ function ImageRightMB({ items, padding, id, type }) {
               <div className="img tRes_66 efch-2 ef-img-r ">
                 <img
                   className="lazyload"
-                  data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   data-src={`${process.env.DOMAIN}${items.urlImage}`}
                   alt="images"
                 />
