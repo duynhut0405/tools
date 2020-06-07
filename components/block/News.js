@@ -79,7 +79,11 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
     const totalIdItems = uniq(idItems).concat(uniq(idItemNews));
 
     const limit = data.limit === '' || data.limit === null ? 4 : Number(data.limit);
-    const res = await getNewByIdService(uniq(totalIdItems), data.category.value, limit);
+    const res = await getNewByIdService(
+      uniq(totalIdItems),
+      data.category.value ? data.category.value : -1,
+      limit
+    );
     if (res && res.status === 200) {
       setListCategory(formState => [...formState, ...res.data]);
     }

@@ -276,18 +276,16 @@ function Icon({ data, id }) {
               {size.width < 768 && (
                 <div className="list-9 list-item">
                   {map(data, (item, index) => (
-
-                      <a href={item.url} className={`item efch-${index + 2} ef-img-l `} key={index}>
-                        <div className="img">
-                          <img
-                            className="lazyload"
-                            alt="images"
-                            data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                          />
-                        </div>
-                        <div className="des">{item.note_1}</div>
-                      </a>
-
+                    <a href={item.url} className={`item efch-${index + 2} ef-img-l `} key={index}>
+                      <div className="img">
+                        <img
+                          className="lazyload"
+                          alt="images"
+                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                        />
+                      </div>
+                      <div className="des">{item.note_1}</div>
+                    </a>
                   ))}
                 </div>
               )}
@@ -392,14 +390,14 @@ function Icon({ data, id }) {
                           className="link"
                           style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                         >
-                          <div className="img" >
+                          <div className="img">
                             <img
                               data-src={`${process.env.DOMAIN}${items.urlImage}`}
                               className="lazyload"
                               alt="images"
                             />
                           </div>
-                          <div className="divtext" >
+                          <div className="divtext">
                             <h4 className="title">{items.note_2}</h4>
                           </div>
                         </a>
@@ -435,7 +433,7 @@ function Icon({ data, id }) {
                         className="link"
                         style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                       >
-                        <div className="img" >
+                        <div className="img">
                           <img
                             data-src={`${process.env.DOMAIN}${items.urlImage}`}
                             className="lazyload"
