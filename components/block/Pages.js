@@ -85,7 +85,8 @@ function Pages({ data, type, id, optionWidth }) {
                   <a className="item">
                     <div className="img tRes_71">
                       <img
-                        src={
+                        className="lazyload"
+                        data-src={
                           item.baseImage === null
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.baseImage}`
@@ -131,7 +132,8 @@ function Pages({ data, type, id, optionWidth }) {
                   <a className="item item-inline-table style-colummb">
                     <div className="img">
                       <img
-                        src={
+                        className="lazyload"
+                        data-src={
                           item.baseImage === null
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${item.baseImage}`
@@ -178,7 +180,8 @@ function Pages({ data, type, id, optionWidth }) {
                   <a className="item item-inline-table">
                     <div className="img">
                       <img
-                        src={
+                        className="lazyload"
+                        data-src={
                           values.baseImage === null
                             ? `/images/imgdefault.jpg`
                             : `${process.env.DOMAIN}${values.baseImage}`
@@ -281,7 +284,8 @@ function Pages({ data, type, id, optionWidth }) {
                     <a className="link">
                       <div className="img">
                         <img
-                          src={
+                          className="lazyload"
+                          data-src={
                             items.baseImage === null
                               ? `/images/imgdefault.jpg`
                               : `${process.env.DOMAIN}${items.baseImage}`

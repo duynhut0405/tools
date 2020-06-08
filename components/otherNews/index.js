@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { ListDowloadFIle } from '../common/download';
 import { TabQuestion } from './tab';
 import PropTypes from 'prop-types';
-import { LinkCategory } from '../common/link';
 import t from '../../translation';
-import { getLang } from '../../utils/cookie';
+// import { LinkCategory } from '../common/link';
+// import { getLang } from '../../utils/cookie';
 
 const propTypes = {
   data: PropTypes.object,
@@ -22,14 +22,15 @@ function OtherNews({ data, id }) {
   } else {
     padding = 'sec-';
   }
-  const lang = getLang();
+  // const lang = getLang();
+
   return (
     <div className={`${padding} otherNews`} id={id}>
       <div className="container">
         <div className="entry-head title-padding">
           <h2 className="ht efch-1 ef-img-l">{data.titleBlock}</h2>
           <p className="cl5"></p>
-          <LinkCategory
+          {/* <LinkCategory
             lang={lang}
             name={
               activeTab === 1
@@ -43,7 +44,7 @@ function OtherNews({ data, id }) {
               {t('view')}
               <i className="icon-arrow-1"></i>
             </a>
-          </LinkCategory>
+          </LinkCategory> */}
         </div>
         <div className="cttab-v3 tabs-total-3">
           <div className="wrap-tab-menu">
