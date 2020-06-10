@@ -96,7 +96,7 @@ function Icon({ data, id }) {
                     >
                       {map(data, (items, index) => (
                         <div className="item ef-img-t item_carousel" key={index}>
-                          <a href={items.url} className="link">
+                          <a href={items.url ? items.url : '#'} className="link">
                             <div className="img">
                               <img
                                 className="lazyload"
@@ -133,7 +133,7 @@ function Icon({ data, id }) {
                   <div>
                     {map(data, (items, index) => (
                       <div className="item ef-img-t item_carousel" key={index}>
-                        <a href={items.url} className="link">
+                        <a href={items.url ? items.url : '#'} className="link">
                           <div className="img">
                             <img
                               className="lazyload"
@@ -187,29 +187,59 @@ function Icon({ data, id }) {
               <div className="entry-head text-center">
                 <h2 className="ht">{data === null ? '' : data[0].title}</h2>
               </div>
-              <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${data[0].column}`} key={index}>
-                      <div className="item">
-                        <a href={items.url}>
-                          <div className="img">
-                            <img
-                              className="lazyload"
-                              alt="images"
-                              data-src={`${process.env.DOMAIN}${items.urlImage}`}
-                            />
+
+              {Number(data[0].column) === 6 && (
+                <div className="max750">
+                  <div className="row list-item">
+                    {map(data, (items, index) => {
+                      return (
+                        <div className={`col-sm-6 col-md-${data[0].column}`} key={index}>
+                          <div className="item">
+                            <a href={items.url ? items.url : '#'}>
+                              <div className="img">
+                                <img
+                                  className="lazyload"
+                                  alt="images"
+                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                                />
+                              </div>
+                              <div className="divtext">
+                                <h4 className="title">{items.note_1}</h4>
+                                <div className="desc">{items.note_2}</div>
+                              </div>
+                            </a>
                           </div>
-                          <div className="divtext">
-                            <h4 className="title">{items.note_1}</h4>
-                            <div className="desc">{items.note_2}</div>
-                          </div>
-                        </a>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+              {Number(data[0].column) !== 6 && (
+                <div className="row list-item">
+                  {map(data, (items, index) => {
+                    return (
+                      <div className={`col-sm-6 col-md-${data[0].column}`} key={index}>
+                        <div className="item">
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="img">
+                              <img
+                                className="lazyload"
+                                alt="images"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              />
+                            </div>
+                            <div className="divtext">
+                              <h4 className="title">{items.note_1}</h4>
+                              <div className="desc">{items.note_2}</div>
+                            </div>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </section>
         </React.Fragment>
@@ -307,7 +337,11 @@ function Icon({ data, id }) {
                 {map(data, (items, index) => {
                   return (
                     <div className="col-sm-4 efch-2 ef-img-t" key={index}>
-                      <a className="item" href={items.url} style={{ padding: '40px 10px' }}>
+                      <a
+                        className="item"
+                        href={items.url ? items.url : '#'}
+                        style={{ padding: '40px 10px' }}
+                      >
                         <div className="img ">
                           <img
                             className="lazyload"
@@ -338,7 +372,7 @@ function Icon({ data, id }) {
                 {map(data, (items, index) => {
                   return (
                     <div className="col-sm-4 efch-2 ef-img-t" key={index}>
-                      <a className="item" href={items.url}>
+                      <a className="item" href={items.url ? items.url : '#'}>
                         <div className="img ">
                           <img
                             className="lazyload"
@@ -386,7 +420,7 @@ function Icon({ data, id }) {
                     {map(data, (items, index) => (
                       <div className="item ef-img-t item_carousel" key={index}>
                         <a
-                          href={items.url}
+                          href={items.url ? items.url : '#'}
                           className="link"
                           style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                         >
@@ -429,7 +463,7 @@ function Icon({ data, id }) {
                   {map(data, (items, index) => (
                     <div className="item ef-img-t item_carousel" key={index}>
                       <a
-                        href={items.url}
+                        href={items.url ? items.url : '#'}
                         className="link"
                         style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
                       >
@@ -466,7 +500,7 @@ function Icon({ data, id }) {
                 {map(data, (items, index) => {
                   return (
                     <div className="col-sm-6 col-md-4 efch-2 ef-img-t" key={index}>
-                      <a href={items.url}>
+                      <a href={items.url ? items.url : '#'}>
                         <div className="item">
                           <div className="img ">
                             <img
@@ -507,7 +541,7 @@ function Icon({ data, id }) {
                 {map(data, (items, index) => {
                   return (
                     <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
-                      <a href={items.url}>
+                      <a href={items.url ? items.url : '#'}>
                         <div className="item">
                           <div className="divtext" style={{ paddingTop: '29px' }}>
                             <h4 className="title equal" style={{ textAlign: 'center' }}>
