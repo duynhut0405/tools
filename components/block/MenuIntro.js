@@ -111,6 +111,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
     <React.Fragment>
       <section className=" menuIntro sec-menu">
         <div className="container">
+          <div className="inner">
           <ul>
             <li className="active">
               <a>{data.title}</a>
@@ -126,6 +127,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
               </li>
             ))}
           </ul>
+          </div>
         </div>
       </section>
       <section className={`${padding} menuIntro sec-ab-1`}>
