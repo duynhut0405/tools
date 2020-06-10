@@ -68,7 +68,7 @@ function ImageCenter({ items, padding, id, type }) {
   if (items.background === '2') {
     return (
       <React.Fragment>
-        <section className=" sec-tb sec-cskh-2" id={id}>
+        <section className={` ${padding} sec-cskh-2`} id={id}>
           <div className="container">
             <div
               className="bgvideo loaded"
