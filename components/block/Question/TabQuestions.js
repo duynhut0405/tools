@@ -28,11 +28,11 @@ function TabQuestions({ data, id }) {
     <React.Fragment>
       <main id="main" className={`${padding} tabQuestions`}>
         <div className="container" id={id}>
-          <h1 className="text-center">{data.title}</h1>
+          <h2 className="text-center">{data.title}</h2>
           <div className={`cttab-v3 tabs-total-${data.listTab.length}`}>
             <div className="wrap-tab-menu">
               <div className="tab-menu">
-                {map(data.listTab, (item, index) => (
+                {map(data.listTab, (item, index) => ( 
                   <div
                     className={classnames({ active: activeTab === String(index) })}
                     onClick={() => {
