@@ -108,7 +108,9 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
                 : 'entry-head text-center'
             }
           >
-            <h2 className="ht efch-1 ef-img-l">{title}</h2>
+            {data && data.title && data.title !== '' && (
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+            )}
             {data.url && data.url !== '' && (
               <a className="viewall" href={data.url}>
                 {t('view')} <i className="icon-arrow-1"></i>
