@@ -133,7 +133,7 @@ function ToolHome({ maxValue, interest_rate, padding, id, type }) {
     <div className={`${padding} tool-${type}`} id={id}>
       <div className="container">
         <h2 className="ht">{title}</h2>
-        <div className="cttab-xx  sec-b sec-tb">
+        <div className="cttab-xx  sec-b">
           <div className="w-menu-over">
             <div className="p-tool1__select1 p-tool1__select1-js">
               <label className="option1 radio">

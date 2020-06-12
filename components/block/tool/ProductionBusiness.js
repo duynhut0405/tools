@@ -144,7 +144,7 @@ function ProductionBusiness({ minValue, maxValue, interest_rate, padding, id, ty
     <div className={`${padding} tool-${types}`} id={id}>
       <div className="container">
         <h2 className="ht">{title}</h2>
-        <div className="cttab-xx  sec-b sec-tb">
+        <div className="cttab-xx  sec-b">
           <div className="w-menu-over">
             <div className="p-tool1__select1 p-tool1__select1-js">
               <label className="option1 radio">
