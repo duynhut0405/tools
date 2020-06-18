@@ -473,7 +473,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
             </div>
           )}
           <div className="row list-item">
-            <div className="col-lg-4">
+            <div className="col-lg-4 show-768">
               <a href={data.url} className="item-banner  tRes">
                 <img
                   className="lazyload"
