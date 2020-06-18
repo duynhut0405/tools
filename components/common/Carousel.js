@@ -3,7 +3,7 @@ import { map, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';
-import ImgSliderBlack from '../../public/static/images/bgSliderback.jpg';
+// import ImgSliderBlack from '../../public/static/images/bgSliderback.jpg';
 
 const propType = {
   silder: PropTypes.array.isRequired,
@@ -14,17 +14,16 @@ function Carousels({ silder }) {
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
-        <React.Fragment>
-          {map(silder, (item, index) => {
-            if (item.options === '3') {
+        <>
+          {silder[0] &&
+            silder[0].options === '3' &&
+            map(silder, (item, index) => {
               return (
                 <section
                   key={index}
                   className="  sec-dt-1  loaded"
-                  data-lazy-type="bg"
-                  data-lazy-src={ImgSliderBlack}
                   style={{
-                    backgroundImage: `url("${ImgSliderBlack}")`
+                    backgroundImage: `url("/static/images/bgsliderback.jpg")`
                   }}
                 >
                   <div className={`container  option-${item.options}`} key={index}>
@@ -52,65 +51,64 @@ function Carousels({ silder }) {
                   </div>
                 </section>
               );
-            }
-            return (
-              <section className="silder banner-heading-1 home next-shadow" key={index}>
-                <Carousel
-                  showThumbs={false}
-                  showStatus={false}
-                  infiniteLoop={true}
-                  emulateTouch
-                  showIndicators={false}
-                >
-                  {map(silder, (_item, _index) => {
-                    return (
-                      <div className={`container  option-2`} key={_index}>
-                        <div className="divtext text-left-mg ">
-                          <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(_item.note_1)}</h1>
-                          <div className="cl1">{ReactHtmlParser(_item.note_2)}</div>
-                          <div className="text_content3">{_item.note_3}</div>
-                          {_item.text_action === null ||
-                          _item.text_action === undefined ||
-                          _item.text_action === '' ? (
-                            ''
-                          ) : (
-                            <a
-                              className="btn"
-                              href={
-                                _item.url === null || _item.url === undefined || _item.url === ''
-                                  ? '#'
-                                  : _item.url
-                              }
-                            >
-                              {_item.text_action}
-                            </a>
-                          )}
-                          {_item.video_url !== undefined && _item.video_url !== '' && (
-                            <div>
-                              <iframe src={_item.video_url} />
-                            </div>
-                          )}
-                        </div>
-                        <div className="wimg">
-                          <img
-                            className="img-center img-pc"
-                            src={`${process.env.DOMAIN}${_item.urlImage}`}
-                            alt="icon"
-                          />
-                          <img
-                            className="img-center img-mb"
-                            src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
-                            alt="icon"
-                          />
-                        </div>
+            })}
+          {silder[0].options === '2' && (
+            <section className="silder banner-heading-1 home next-shadow">
+              <Carousel
+                showThumbs={false}
+                showStatus={false}
+                infiniteLoop={true}
+                emulateTouch
+                showIndicators={false}
+              >
+                {map(silder, (_item, _index) => {
+                  return (
+                    <div className={`container  option-2`} key={_index}>
+                      <div className="divtext text-left-mg ">
+                        <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(_item.note_1)}</h1>
+                        <div className="cl1">{ReactHtmlParser(_item.note_2)}</div>
+                        <div className="text_content3">{_item.note_3}</div>
+                        {_item.text_action === null ||
+                        _item.text_action === undefined ||
+                        _item.text_action === '' ? (
+                          ''
+                        ) : (
+                          <a
+                            className="btn"
+                            href={
+                              _item.url === null || _item.url === undefined || _item.url === ''
+                                ? '#'
+                                : _item.url
+                            }
+                          >
+                            {_item.text_action}
+                          </a>
+                        )}
+                        {_item.video_url !== undefined && _item.video_url !== '' && (
+                          <div>
+                            <iframe src={_item.video_url} />
+                          </div>
+                        )}
                       </div>
-                    );
-                  })}
-                </Carousel>
-              </section>
-            );
-          })}
-        </React.Fragment>
+                      <div className="wimg">
+                        <img
+                          className="img-center img-pc"
+                          src={`${process.env.DOMAIN}${_item.urlImage}`}
+                          alt="icon"
+                        />
+                        <img
+                          className="img-center img-mb"
+                          src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
+                          alt="icon"
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </Carousel>
+            </section>
+          )}
+        </>
       )}
     </React.Fragment>
   );
