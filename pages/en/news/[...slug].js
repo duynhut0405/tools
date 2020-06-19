@@ -208,7 +208,11 @@ function New({ news, category_name, category_url, socialLink }) {
                           <div className="img">
                             <img
                               className="lazyload"
-                              data-src={`${process.env.DOMAIN}${item.baseImage}`}
+                              data-src={
+                                item.baseImage
+                                  ? `${process.env.DOMAIN}${item.baseImage}`
+                                  : `/images/imgdefault.jpg`
+                              }
                               alt="images"
                             />
                           </div>
