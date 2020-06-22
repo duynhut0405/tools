@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import { ItemImages, ItemIcon } from './product/index';
 import PropTypes from 'prop-types';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import UseWindowResize from '../common/Resize';
 
 const propTypes = {
@@ -24,7 +24,7 @@ function UserManual({ data, id }) {
   const [step, setStep] = useState(1);
   const size = UseWindowResize();
   const styleImg = {
-    backgroundImage: `url(${data.image})`
+    backgroundImage: `url(${process.env.DOMAIN}${data.urlImage})`
   };
   const styleWidth = {
     width: '248px'
@@ -35,7 +35,7 @@ function UserManual({ data, id }) {
   };
 
   return (
-    <section className={`${padding} userManual sec-hoa-don`}>
+    <section className={`${padding} userManual sec-hoa-don`} id={id}>
       <div className="container">
         <div className={`row center`}>
           <div className={`col-md-5 mobileOrder`}>
@@ -52,22 +52,29 @@ function UserManual({ data, id }) {
                   >
                     <div className="owl-item cloned" style={styleWidth}>
                       <div className="item">
-                        {' '}
                         <img
                           className="lazyload"
-                          src={data.listDetail[0].image}
+                          src={`${process.env.DOMAIN}${data.listDetail[0].urlImage}`}
                           alt="images"
-                        />{' '}
+                        />
                       </div>
                     </div>
                     <div className="owl-item cloned" style={styleWidth}>
                       <div className="item">
-                        <img className="lazyload" src={data.listDetail[0].image} alt="images" />{' '}
+                        <img
+                          className="lazyload"
+                          src={`${process.env.DOMAIN}${data.listDetail[0].urlImage}`}
+                          alt="images"
+                        />
                       </div>
                     </div>
                     <div className="owl-item cloned" style={styleWidth}>
                       <div className="item">
-                        <img className="lazyload" src={data.listDetail[0].image} alt="images" />
+                        <img
+                          className="lazyload"
+                          src={`${process.env.DOMAIN}${data.listDetail[0].urlImage}`}
+                          alt="images"
+                        />
                       </div>
                     </div>
 
@@ -76,9 +83,9 @@ function UserManual({ data, id }) {
                         <img
                           className="lazyload"
                           alt="images"
-                          src={data.listDetail[step - 1].image}
+                          src={`${process.env.DOMAIN}${data.listDetail[step - 1].urlImage}`}
                           style={{ opacity: 1 }}
-                        />{' '}
+                        />
                       </div>
                     </div>
                   </div>
@@ -112,6 +119,7 @@ function UserManual({ data, id }) {
               if (index + 1 === step) {
                 return <div className="text-center show-767">{item.description}</div>;
               }
+              return null;
             })}
           </div>
         </div>
