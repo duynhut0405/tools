@@ -52,7 +52,7 @@ function Carousels({ silder }) {
                 </section>
               );
             })}
-          {silder[0].options === '2' && (
+          {silder[0].options !== '3' && (
             <section className="silder banner-heading-1 home next-shadow">
               <Carousel
                 showThumbs={false}
