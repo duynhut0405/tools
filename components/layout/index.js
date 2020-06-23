@@ -321,38 +321,11 @@ function Layout({ children, isPrioty, idPage }) {
                       <div className="title">
                         <span>
                           <img
-                            className="lazyload"
-                            src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
+                            onClick={() => changeLang(lang === 'vi' ? 'en' : 'vi')}
+                            src={`/static/images/flags/${lang === 'vi' ? 'gb' : 'vn'}.png`}
                             alt="images"
                           />
                         </span>
-                        <i className="icon-arrow-2 ib"></i>
-                      </div>
-                      <div className="content">
-                        <div className="inner">
-                          <ul className="menu">
-                            <li className={lang === 'en' ? 'lang-en active' : 'lang-en'}>
-                              <a onClick={() => changeLang('en')} title="English (en)">
-                                <img
-                                  className="lazyload"
-                                  data-src="/static/flags/gb.png"
-                                  alt="images"
-                                />
-                                <span>English</span>
-                              </a>
-                            </li>
-                            <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}>
-                              <a onClick={() => changeLang('vi')} title="Tiếng Việt (vi)">
-                                <img
-                                  className="lazyload"
-                                  data-src="/static/images/flags/vn.png"
-                                  alt="images"
-                                />
-                                <span>Tiếng Việt</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
                       </div>
                     </div>
                   </li>
@@ -370,12 +343,7 @@ function Layout({ children, isPrioty, idPage }) {
                           {priority === '/en' && (
                             <Link href="/en" as="/en">
                               <a id="logo" className="isPriotyDefaul">
-                                <img
-                                  id="img_log"
-                                  className="lazyload"
-                                  src="/static/images/svg/logo.svg"
-                                  alt="logo"
-                                />
+                                <img id="img_log" src="/static/images/svg/logo.svg" alt="logo" />
                               </a>
                             </Link>
                           )}
@@ -384,7 +352,6 @@ function Layout({ children, isPrioty, idPage }) {
                               <a id="logo" className="isPriotyDefaul">
                                 <img
                                   id="img_log"
-                                  className="lazyload"
                                   src="/static/images/svg/logo-priority.svg"
                                   alt="logo"
                                 />
@@ -398,12 +365,7 @@ function Layout({ children, isPrioty, idPage }) {
                           {priority === '/' && (
                             <Link href="/" as="/">
                               <a id="logo" className="isPriotyDefaul">
-                                <img
-                                  id="img_log"
-                                  className="lazyload"
-                                  src="/static/images/svg/logo.svg"
-                                  alt="logo"
-                                />
+                                <img id="img_log" src="/static/images/svg/logo.svg" alt="logo" />
                               </a>
                             </Link>
                           )}
@@ -412,7 +374,6 @@ function Layout({ children, isPrioty, idPage }) {
                               <a id="logo" className="isPriotyDefaul">
                                 <img
                                   id="img_log"
-                                  className="lazyload"
                                   src="/static/images/svg/logo-priority.svg"
                                   alt="logo"
                                 />
@@ -460,40 +421,11 @@ function Layout({ children, isPrioty, idPage }) {
                             <div className="title">
                               <span>
                                 <img
-                                  className="lazyload"
-                                  src={`/static/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
+                                  onClick={() => changeLang(lang === 'vi' ? 'en' : 'vi')}
+                                  src={`/static/images/flags/${lang === 'vi' ? 'gb' : 'vn'}.png`}
                                   alt="images"
                                 />
                               </span>
-                              <i className="icon-arrow-2 ib"></i>
-                            </div>
-                            <div className="content">
-                              <div className="inner">
-                                <ul className="menu">
-                                  <li className={lang === 'en' ? 'lang-en active' : 'lang-en'}>
-                                    <a title="English (en)" onClick={() => changeLang('en')}>
-                                      <img
-                                        className="lazyload"
-                                        data-src="/static/images/flags/gb.png"
-                                        alt="images"
-                                      />
-                                      <span>English</span>
-                                    </a>
-                                  </li>
-                                  <li className={lang === 'vn' ? 'lang-vi active' : 'lang-vi'}>
-                                    <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}>
-                                      <a title="Tiếng Việt (vi)" onClick={() => changeLang('vi')}>
-                                        <img
-                                          className="lazyload"
-                                          data-src="/static/images/flags/vn.png"
-                                          alt="images"
-                                        />
-                                        <span>Tiếng Việt</span>
-                                      </a>
-                                    </li>
-                                  </li>
-                                </ul>
-                              </div>
                             </div>
                           </div>
                         </div>
