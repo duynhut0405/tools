@@ -112,21 +112,21 @@ function MenuIntro({ data, pageId, optionWidth }) {
       <section className=" menuIntro sec-menu">
         <div className="container">
           <div className="inner">
-          <ul>
-            <li className="active">
-              <a>{data.title}</a>
-            </li>
-            {map(data.listBlock, (values, index) => (
-              <li
-                key={index}
-                onClick={() => {
-                  onScroll(values.id);
-                }}
-              >
-                <a>{values.title}</a>
+            <ul>
+              <li className="active">
+                <a>{data.title}</a>
               </li>
-            ))}
-          </ul>
+              {map(data.listBlock, (values, index) => (
+                <li
+                  key={index}
+                  onClick={() => {
+                    onScroll(values.id);
+                  }}
+                >
+                  <a>{values.title}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -154,7 +154,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 sidebar">
+            <div className="col-lg-4 sidebar" id="#widget-form-tuvan">
               <div className="widget widget-tuvan">
                 <form onSubmit={onSend} autoComplete="on" className="form-tuvan">
                   {map(formdata, (item, index) => {

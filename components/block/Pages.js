@@ -175,31 +175,33 @@ function Pages({ data, type, id, optionWidth }) {
               </a>
             )}
           </div>
-          <div className="list-7 list-item row">
-            {map(listPage, (values, index) => (
-              <div key={index} className="col-md-6">
-                <LinkPage lang={lang} name={values.slug}>
-                  <a className="item item-inline-table">
-                    <div className="img">
-                      <img
-                        className="lazyload"
-                        data-src={
-                          values.baseImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${values.baseImage}`
-                        }
-                        alt="icon"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <h4 className="title line2">{values.name}</h4>
-                      <div className="desc line4">{values.meta_description}</div>
-                      <a className="btn">{t('find_out_now')}</a>
-                    </div>
-                  </a>
-                </LinkPage>
-              </div>
-            ))}
+          <div className="convert-grid-to-scroll">
+            <div className="list-7 list-item row">
+              {map(listPage, (values, index) => (
+                <div key={index} className="col-md-6">
+                  <LinkPage lang={lang} name={values.slug}>
+                    <a className="item item-inline-table">
+                      <div className="img">
+                        <img
+                          className="lazyload"
+                          data-src={
+                            values.baseImage === null
+                              ? `/images/imgdefault.jpg`
+                              : `${process.env.DOMAIN}${values.baseImage}`
+                          }
+                          alt="icon"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <h4 className="title line2">{values.name}</h4>
+                        <div className="desc line4">{values.meta_description}</div>
+                        <a className="btn">{t('find_out_now')}</a>
+                      </div>
+                    </a>
+                  </LinkPage>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="tags">
             {map(data.listTag, (values, index) => (
