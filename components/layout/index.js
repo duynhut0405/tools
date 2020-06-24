@@ -91,14 +91,16 @@ function Layout({ children, isPrioty, idPage }) {
 
   useEffect(() => {
     document.body.onscroll = () => {
-      if (document.body.clientHeight === 4869 || document.body.clientHeight === 4938) {
-        document.body.classList.add('showBtnRegister');
-      }
-      if (document.body.clientHeight === 4814) {
-        document.body.classList.remove('showBtnRegister');
-      }
-      if (document.body.clientHeight === 4883) {
-        document.body.classList.remove('showBtnRegister');
+      const entry = document.getElementsByClassName('entry-breadcrumb')[0];
+      const sec_menu = document.getElementsByClassName('sec-menu')[0];
+      const sec_form_tuvan = document.getElementsByClassName('sec-form-tuvan')[0];
+      if (entry && sec_menu && sec_form_tuvan) {
+        const stv = entry.clientHeight + sec_menu.clientHeight + sec_form_tuvan.clientHeight;
+        if (window.pageYOffset > stv) {
+          document.body.classList.add('showBtnRegister');
+        } else {
+          document.body.classList.remove('showBtnRegister');
+        }
       }
     };
   });

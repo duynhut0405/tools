@@ -130,7 +130,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
           </div>
         </div>
       </section>
-      <section className={`${padding} menuIntro sec-ab-1`}>
+      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`}>
         <div className="container">
           <div className="row list-item ">
             <div className="col-lg-8">
