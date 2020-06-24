@@ -41,6 +41,9 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
     if (slugClass) {
       document.body.classList.add(`${slugClass}`);
     }
+    if (page && page.template === 6) {
+      document.body.classList.add(`page-fom-dang-ky-tu-van`);
+    }
     if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
       document.body.classList.add(`title-24`);
     }

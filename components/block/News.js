@@ -268,75 +268,75 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
             </div>
           )}
 
-            <div className="wrap-carousel">
-              <Carousel
-                responsive={responsive}
-                draggable
-                minimumTouchDrag={80}
-                ssr={true} // means to render carousel on server-side.
-                infinite={true}
-                keyBoardControl={true}
-                arrows={false}
-                renderButtonGroupOutside={true}
-                className="list-5 convert-slide-to-scroll"
-                ref={ref => {
-                  setRefCarousel(ref);
-                }}
-              >
-                {map(uniqBy(listCategory, 'newsId'), (item, index) => (
-                  <div className="slide-item" key={index}>
-                    <LinkNew lang={lang} name={item.url}>
-                      <a
-                        className={`item efch-${index} ef-img-l `}
-                        key={index}
-                        //style={{ height: '300px', width: '262px' }}
-                      >
-                        <div className="img tRes_71">
-                          <img
-                            className="lazyload"
-                            data-src={
-                              item.base_image === null
-                                ? `/images/imgdefault.jpg`
-                                : `${process.env.DOMAIN}${item.base_image}`
-                            }
-                            style={{ height: '187px' }}
-                            alt="images"
-                          />
-                        </div>
-                        <div className="divtext">
-                          <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                          <h4 className="title">
-                            <ShowMoreText lines={1} more="" expanded={false} width={370}>
-                              {item.title}
-                            </ShowMoreText>
-                          </h4>
-                        </div>
-                      </a>
-                    </LinkNew>
-                  </div>
-                ))}
-              </Carousel>
-              {size.width >= 768 && (              
-                <div className="carousel-nav center">
-                  <div
-                    className="carousel-prev "
-                    onClick={() => {
-                      refCarousel.previous();
-                    }}
-                  >
-                    <i className="icon-arrow-1 ix"></i>
-                  </div>
-                  <div
-                    className="carousel-next"
-                    onClick={() => {
-                      refCarousel.next();
-                    }}
-                  >
-                    <i className="icon-arrow-1"></i>
-                  </div>
+          <div className="wrap-carousel">
+            <Carousel
+              responsive={responsive}
+              draggable
+              minimumTouchDrag={80}
+              ssr={true} // means to render carousel on server-side.
+              infinite={true}
+              keyBoardControl={true}
+              arrows={false}
+              renderButtonGroupOutside={true}
+              className="list-5 convert-slide-to-scroll"
+              ref={ref => {
+                setRefCarousel(ref);
+              }}
+            >
+              {map(uniqBy(listCategory, 'newsId'), (item, index) => (
+                <div className="slide-item" key={index}>
+                  <LinkNew lang={lang} name={item.url}>
+                    <a
+                      className={`item efch-${index} ef-img-l `}
+                      key={index}
+                      //style={{ height: '300px', width: '262px' }}
+                    >
+                      <div className="img tRes_71">
+                        <img
+                          className="lazyload"
+                          data-src={
+                            item.base_image === null
+                              ? `/images/imgdefault.jpg`
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
+                          style={{ height: '187px' }}
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title">
+                          <ShowMoreText lines={1} more="" expanded={false} width={370}>
+                            {item.title}
+                          </ShowMoreText>
+                        </h4>
+                      </div>
+                    </a>
+                  </LinkNew>
                 </div>
-              )}              
-            </div>
+              ))}
+            </Carousel>
+            {size.width >= 768 && (
+              <div className="carousel-nav center">
+                <div
+                  className="carousel-prev "
+                  onClick={() => {
+                    refCarousel.previous();
+                  }}
+                >
+                  <i className="icon-arrow-1 ix"></i>
+                </div>
+                <div
+                  className="carousel-next"
+                  onClick={() => {
+                    refCarousel.next();
+                  }}
+                >
+                  <i className="icon-arrow-1"></i>
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* {size.width < 768 && (
             <div className="list-5 list-item">
@@ -582,31 +582,33 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               )}
             </div>
           )}
-          <div className="list-5 row list-item">
-            {map(uniqBy(listCategory, 'newsId'), (item, index) => (
-              <div className="col-md-4" key={index}>
-                <LinkNew lang={lang} name={item.url}>
-                  <a className={`item efch-${index} ef-img-l`}>
-                    <div className="img tRes_71">
-                      <img
-                        className="lazyload"
-                        data-src={
-                          item.base_image === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${item.base_image}`
-                        }
-                        alt="images"
-                      />
-                    </div>
-                    <div className="divtext">
-                      <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
-                      <h4 className="title line2">{item.title}</h4>
-                      <div className="desc line2">{item.shortDescription}</div>
-                    </div>
-                  </a>
-                </LinkNew>
-              </div>
-            ))}
+          <div className="convert-grid-to-scroll">
+            <div className="list-5 row list-item">
+              {map(uniqBy(listCategory, 'newsId'), (item, index) => (
+                <div className="col-md-4" key={index}>
+                  <LinkNew lang={lang} name={item.url}>
+                    <a className={`item efch-${index} ef-img-l`}>
+                      <div className="img tRes_71">
+                        <img
+                          className="lazyload"
+                          data-src={
+                            item.base_image === null
+                              ? `/images/imgdefault.jpg`
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title line2">{item.title}</h4>
+                        <div className="desc line2">{item.shortDescription}</div>
+                      </div>
+                    </a>
+                  </LinkNew>
+                </div>
+              ))}
+            </div>
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
