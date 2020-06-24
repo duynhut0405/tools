@@ -267,7 +267,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               )}
             </div>
           )}
-          {size.width >= 768 && (
+
             <div className="wrap-carousel">
               <Carousel
                 responsive={responsive}
@@ -278,7 +278,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                 keyBoardControl={true}
                 arrows={false}
                 renderButtonGroupOutside={true}
-                className="list-5"
+                className="list-5 convert-slide-to-scroll"
                 ref={ref => {
                   setRefCarousel(ref);
                 }}
@@ -316,27 +316,29 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                   </div>
                 ))}
               </Carousel>
-              <div className="carousel-nav center">
-                <div
-                  className="carousel-prev "
-                  onClick={() => {
-                    refCarousel.previous();
-                  }}
-                >
-                  <i className="icon-arrow-1 ix"></i>
+              {size.width >= 768 && (              
+                <div className="carousel-nav center">
+                  <div
+                    className="carousel-prev "
+                    onClick={() => {
+                      refCarousel.previous();
+                    }}
+                  >
+                    <i className="icon-arrow-1 ix"></i>
+                  </div>
+                  <div
+                    className="carousel-next"
+                    onClick={() => {
+                      refCarousel.next();
+                    }}
+                  >
+                    <i className="icon-arrow-1"></i>
+                  </div>
                 </div>
-                <div
-                  className="carousel-next"
-                  onClick={() => {
-                    refCarousel.next();
-                  }}
-                >
-                  <i className="icon-arrow-1"></i>
-                </div>
-              </div>
+              )}              
             </div>
-          )}
-          {size.width < 768 && (
+
+          {/* {size.width < 768 && (
             <div className="list-5 list-item">
               {map(uniqBy(listCategory, 'newsId'), (item, index) => (
                 <LinkNew lang={lang} name={item.url} key={index}>
@@ -365,7 +367,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                 </LinkNew>
               ))}
             </div>
-          )}
+          )} */}
 
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
