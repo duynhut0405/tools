@@ -38,11 +38,13 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
     Cookies.set('lang', 'en');
     document.body.className = '';
     document.body.classList.add('page');
+    Cookies.set('btn', false);
     if (slugClass) {
       document.body.classList.add(`${slugClass}`);
     }
     if (page && page.template === 6) {
       document.body.classList.add(`page-fom-dang-ky-tu-van`);
+      Cookies.set('btn', true);
     }
     if (page && (page.template === 4 || page.template === 5 || page.template === 6)) {
       document.body.classList.add(`title-24`);

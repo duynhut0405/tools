@@ -14,7 +14,7 @@ import map from 'lodash/map';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { getCommon, getMemnu } from '../../utils/fetch';
-import { getLang, getPriority } from '../../utils/cookie';
+import { getLang, getPriority, getBtn } from '../../utils/cookie';
 import FormPopup from '../block/Popup/FormPopup';
 
 const propTypes = {
@@ -53,6 +53,7 @@ function Layout({ children, isPrioty, idPage }) {
   const [linkApp, setLinkApp] = useState({ android: '#', ios: '#' });
   const [lang, setLang] = useState('vi');
   const [priority, setPriority] = useState('/');
+  const [btnForm, setbtnForm] = useState(false);
 
   const getLayout = async () => {
     const menuData = await getMemnu(getLang());
@@ -81,11 +82,26 @@ function Layout({ children, isPrioty, idPage }) {
   useEffect(() => {
     setLang(getLang());
     setPriority(getPriority());
+    setbtnForm(getBtn());
   });
 
   useEffect(() => {
     getLayout();
   }, [idPage, lang]);
+
+  useEffect(() => {
+    document.body.onscroll = () => {
+      if (document.body.clientHeight === 4869 || document.body.clientHeight === 4938) {
+        document.body.classList.add('showBtnRegister');
+      }
+      if (document.body.clientHeight === 4814) {
+        document.body.classList.remove('showBtnRegister');
+      }
+      if (document.body.clientHeight === 4883) {
+        document.body.classList.remove('showBtnRegister');
+      }
+    };
+  });
 
   const nestChild = items => {
     return map(
@@ -264,6 +280,13 @@ function Layout({ children, isPrioty, idPage }) {
     setActiveForm(true);
   };
 
+  const onScroll = id => {
+    const elmnt = document.getElementById(id);
+    if (elmnt !== null) {
+      elmnt.scrollIntoView();
+    }
+  };
+
   // const onChangeSearch = debounce(value => {
   //   setQuery(value);
   // }, 3000);
@@ -415,6 +438,11 @@ function Layout({ children, isPrioty, idPage }) {
                           </li>
                         </ul>
                       </div>
+                      {btnForm && (
+                        <a className="btnRegister" onClick={() => onScroll('#widget-form-tuvan')}>
+                          {t('register_now')}
+                        </a>
+                      )}
                       <div className="group-header">
                         <div className="item ilang">
                           <div className="dropdown language">
