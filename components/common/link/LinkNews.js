@@ -13,11 +13,11 @@ function LinkNews({ lang, name, children }) {
   return (
     <>
       {lang === 'en' ? (
-        <Link href="/en/news/[...slug]" as={`/${lang}/news/${name}`}>
+        <Link href="/en/news/[...slug]" as={`/${lang}/news/${name}`} prefetch={false}>
           {children}
         </Link>
       ) : (
-        <Link href="/news/[...slug]" as={`/news/${name}`}>
+        <Link href="/news/[...slug]" as={`/news/${name}`} prefetch={false}>
           {children}
         </Link>
       )}
