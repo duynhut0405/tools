@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import Carousel from 'react-multi-carousel';
 import { getLang } from '../../../utils/cookie';
 import { LinkPage } from '../../common/link';
 import { getPagesByIdService } from '../../../services/page';
 import UseWindowResize from '../../common/Resize';
+import t from '../../../translation';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -93,6 +94,7 @@ function CustomPageItem({ data, indexTab }) {
                         <div className="divtext">
                           <h4 className="title line2">{items.name}</h4>
                           <div className="desc line2 cl3">{items.meta_description}</div>
+                          <a className="btn">{t('find_out_now')}</a>
                         </div>
                       </a>
                     </LinkPage>
@@ -136,6 +138,7 @@ function CustomPageItem({ data, indexTab }) {
                         <div className="divtext">
                           <h4 className="title line2">{items.name}</h4>
                           <div className="desc line2 cl3">{items.meta_description}</div>
+                          <a className="btn">{t('find_out_now')}</a>
                         </div>
                       </a>
                     </LinkPage>

@@ -99,7 +99,7 @@ function CategoryDetail({ routerURL, category }) {
 }
 
 CategoryDetail.getInitialProps = async ctx => {
-  const { query } = ctx;
+  const { query } = ctx.ctx;
   let routerURL = null;
   let params = '';
   let category = null;

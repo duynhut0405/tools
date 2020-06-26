@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import t from '../../translation';
 import PropTypes from 'prop-types';
 import { getLang } from '../../utils/cookie';

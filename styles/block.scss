@@ -99,3 +99,124 @@
   }
 }
 
+.list-item {
+  .item {
+    width: 100% !important;
+  }
+}
+
+.subquote {
+  font-weight: bold;
+  &__people {
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  &__pos {
+    font-size: 16px;
+    color: gray;
+  }
+}
+
+blockquote p {
+  margin-bottom: 0;
+}
+
+html,
+body {
+  scroll-padding-top: 80px;
+}
+
+.table-ti-gia .col {
+  width: 35% !important;
+}
+
+.banner-heading-3 .img-pc {
+  display: block;
+}
+
+.banner-heading-3 .img-mb {
+  display: none;
+}
+
+.tooltip {
+  position: relative;
+  //display: inline-block;
+  //width: 100%;
+  //border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: #4c4e52;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  top: -18%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  font-size: 90%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.custom-tool {
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #141ed2;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid #ececec;
+  height: 40px;
+  padding: 0 15px;
+}
+
+.custom-tool:focus {
+  border: 1px solid #141ed2;
+}
+
+.mobileOrder {
+  order: unset;
+}
+
+.stepMobile {
+  display: flex;
+  flex-direction: column;
+}
+
+.react-datepicker__tab-loop .react-datepicker-popper {
+  z-index: 2;
+}
+
+@media only screen and (max-width: 768px) {
+  .banner-heading-3 .img-pc {
+    display: none;
+  }
+
+  .banner-heading-3 .img-mb {
+    display: block;
+  }
+  html,
+  body {
+    scroll-padding-top: 0px;
+  }
+
+  .mobileOrder {
+    order: 2;
+  }
+  .stepMobile {
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 !important;
+  }
+
+  .sec-hoa-don .sync-3 .item:before {
+    content: unset !important;
+  }
+}

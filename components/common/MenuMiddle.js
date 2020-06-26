@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import Carousel from 'react-multi-carousel';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import useCollapse from 'react-collapsed';
 import PropTypes from 'prop-types';
 import { LinkPage } from '../common/link';

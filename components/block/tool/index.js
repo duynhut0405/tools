@@ -1,25 +1,14 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
-const ToolHome = dynamic(() => import('./Home'));
-const ProductionBusiness = dynamic(() => import('./ProductionBusiness'));
-const ConsumerLoansWithCollateral = dynamic(() => import('./ConsumerLoansWithCollateral'));
-const Tool4 = dynamic(() => import('./Tool4'));
-const Tool5 = dynamic(() => import('./Tool5'));
-const Tool6 = dynamic(() => import('./Tool6'));
-const Tool7 = dynamic(() => import('./Tool7'));
-const Tool8 = dynamic(() => import('./Tool8'));
-const Tool9 = dynamic(() => import('./Tool9'));
-// import ToolHome from './Home';
-// import ProductionBusiness from './ProductionBusiness';
-// import ConsumerLoansWithCollateral from './ConsumerLoansWithCollateral';
-// import Tool4 from './Tool4';
-// import Tool5 from './Tool5';
-// import Tool6 from './Tool6';
-// import Tool7 from './Tool7';
-// import Tool8 from './Tool8';
-// import Tool9 from './Tool9';
 import Proptypes from 'prop-types';
-
+import ToolHome from './Home';
+import ProductionBusiness from './ProductionBusiness';
+import ConsumerLoansWithCollateral from './ConsumerLoansWithCollateral';
+import Tool4 from './Tool4';
+import Tool5 from './Tool5';
+import Tool6 from './Tool6';
+import Tool7 from './Tool7';
+import Tool8 from './Tool8';
+import Tool9 from './Tool9';
 
 const propTypes = {
   content: Proptypes.object,

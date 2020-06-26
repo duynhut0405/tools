@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import map from 'lodash/map';
-import isEmpty from 'lodash/isEmpty';
-import slice from 'lodash/slice';
+import { map, isEmpty, slice } from 'lodash';
 import Question from './Item';
 import Proptypes from 'prop-types';
 import t from '../../../translation';
