@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import { getLang } from '../../utils/cookie';
 import { LinkNew } from '../common/link';
 import PropTypes from 'prop-types';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageCenter, ImageLeft, ImageRight, ImageRightMB } from './Images/index';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import Propstype from 'prop-types';
 
 const propTypes = {
