@@ -240,7 +240,7 @@ function New({ news, category_name, category_url, socialLink }) {
 New.propTypes = propTypes;
 
 New.getInitialProps = async ctx => {
-  const { query } = ctx.ctx;
+  const { query } = ctx;
   let routerURL = null;
   let params = '';
   let news = null;

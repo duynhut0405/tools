@@ -103,7 +103,7 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
 }
 
 Page.getInitialProps = async ctx => {
-  const { query } = ctx.ctx;
+  const { query } = ctx;
   let routerURL = null;
   let params = '';
   let slugClass = '';
