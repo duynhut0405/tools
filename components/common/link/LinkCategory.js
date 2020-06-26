@@ -13,11 +13,15 @@ function LinkCategory({ lang, name, children }) {
   return (
     <>
       {lang === 'en' ? (
-        <Link href="/en/news/category/[...name]" as={`/${lang}/news/category/${name}`}>
+        <Link
+          href="/en/news/category/[...name]"
+          as={`/${lang}/news/category/${name}`}
+          prefetch={false}
+        >
           {children}
         </Link>
       ) : (
-        <Link href="/news/category/[...name]" as={`/news/category/${name}`}>
+        <Link href="/news/category/[...name]" as={`/news/category/${name}`} prefetch={false}>
           {children}
         </Link>
       )}

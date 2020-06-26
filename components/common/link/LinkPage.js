@@ -13,11 +13,11 @@ function LinkPage({ lang, name, children }) {
   return (
     <>
       {lang === 'en' ? (
-        <Link href="/en/page/[...name]" as={`/${lang}/page/${name}`}>
+        <Link href="/en/page/[...name]" as={`/${lang}/page/${name}`} prefetch={false}>
           {children}
         </Link>
       ) : (
-        <Link href="/page/[...name]" as={`/page/${name}`}>
+        <Link href="/page/[...name]" as={`/page/${name}`} prefetch={false}>
           {children}
         </Link>
       )}
