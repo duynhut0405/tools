@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import { compose, withProps } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import Marker from './Marker';

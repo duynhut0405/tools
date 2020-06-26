@@ -1,5 +1,6 @@
 import React from 'react';
-import { map, isEmpty } from 'lodash';
+import map from 'lodash/map';
+import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';

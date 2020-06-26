@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import { getFormbuilderByIdService } from '../../services/form';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
 import { sendMailService } from '../../services/form';
 import ReactLoading from 'react-loading';
