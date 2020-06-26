@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
 import Link from 'next/link';

@@ -1,5 +1,5 @@
 import React from 'react';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
 const propTypes = {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import classnames from 'classnames';
 import TabQuestionsItems from './TabQuestionItem';
 

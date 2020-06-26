@@ -4,7 +4,7 @@ import moment from 'moment';
 import Question from './Question';
 import { Pagination } from '../../common';
 import { getRegulationPagation } from '../../../services/regulation';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
 const propTypes = {

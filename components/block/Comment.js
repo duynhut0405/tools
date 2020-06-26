@@ -1,4 +1,4 @@
-import map from 'lodash/map';
+import { map } from 'lodash';
 import Proptypes from 'prop-types';
 import React, { useState } from 'react';
 import Carousel from 'react-multi-carousel';

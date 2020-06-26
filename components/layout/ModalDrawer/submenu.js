@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { LinkPage } from '../../common/link';
 import { getLang } from '../../../utils/cookie';
 import PropTypes from 'prop-types';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import classnames from 'classnames';
 
 const propTypes = {

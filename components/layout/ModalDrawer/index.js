@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import classnames from 'classnames';
 import SubMenu from './submenu';
 import { LinkPage } from '../../common/link';

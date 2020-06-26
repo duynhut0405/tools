@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import Carousel from 'react-multi-carousel';
 import { getLang } from '../../../utils/cookie';
 import { LinkPage } from '../../common/link';

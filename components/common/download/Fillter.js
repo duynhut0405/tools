@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import { getAllYear } from '../../../services/regulation';
 import PropTypes from 'prop-types';
 import t from '../../../translation';

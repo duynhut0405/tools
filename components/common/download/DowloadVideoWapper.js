@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Fillter, DowloadVideo } from './index';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import { Pagination } from '../index';
 import { getRegulationListYear, getTypeRegulationServices } from '../../../services/regulation';
 import Proptypes from 'prop-types';

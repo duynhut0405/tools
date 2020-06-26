@@ -1,5 +1,5 @@
 import actions from './actions';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import { takeLatest, put, all, fork } from 'redux-saga/effects';
 import { getProvinceService, getDistrictService, searchBranchesService } from '../../services/map';
 
