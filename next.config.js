@@ -43,8 +43,7 @@ module.exports = withPWA(
         },
         exportTrailingSlash: true,
         pwa: {
-          dest: 'public',
-          maximumFileSizeToCacheInBytes: 500000
+          dest: 'public'
         },
         exportPathMap: async function() {
           let router = [];
