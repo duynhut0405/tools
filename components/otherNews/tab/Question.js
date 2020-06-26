@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ListDowloadQA } from '../../common/download';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { searchRegulationByType } from '../../../services/regulation';
-import { RegulationActions } from '../../../store/actions';
-import { connect } from 'react-redux';
 
 const propTypes = {
   text: PropTypes.string,

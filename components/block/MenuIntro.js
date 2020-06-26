@@ -1,4 +1,4 @@
-import { map } from 'lodash';
+import map from 'lodash/map';
 import React, { useEffect, useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { sendMailService } from '../../services/form';

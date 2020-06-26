@@ -1,41 +1,76 @@
 import React from 'react';
-import {
-  Icon,
-  Images,
-  // Post,
-  Product,
-  Question,
-  Repeat,
-  // SingerPost,
-  Pages,
-  MiniTab,
-  News,
-  Form,
-  TagProduct,
-  MenuIntro,
-  Download,
-  DetailPerson,
-  Card,
-  Tools,
-  Comment,
-  TablePayment,
-  TabQuestions,
-  CustomTab,
-  SMEIntro,
-  Banner
-} from '../block';
-import About from '../about';
-import Investors from '../investors';
-import OtherNews from '../otherNews';
-import { ListDowloadFIle, ListDowloadVideo } from '../common/download';
-import Transaction from '../transaction';
-import { Contact, DowloadCategory } from '../common';
-import FormStep from '../block/formStep';
-import { map } from 'lodash';
+import dynamic from 'next/dynamic';
+const Icon = dynamic(() => import('../block/Icon'));
+const Images = dynamic(() => import('../block/Images'));
+const Product = dynamic(() => import('../block/Product'));
+const Question = dynamic(() => import('../block/Question'));
+const Repeat = dynamic(() => import('../block/Repeat'));
+const Pages = dynamic(() => import('../block/Pages'));
+const MiniTab = dynamic(() => import('../block/MiniTab'));
+const News = dynamic(() => import('../block/News'));
+const Form = dynamic(() => import('../block/Form'));
+const TagProduct = dynamic(() => import('../block/TagProduct'));
+const MenuIntro = dynamic(() => import('../block/MenuIntro'));
+const Download = dynamic(() => import('../block/Download'));
+const DetailPerson = dynamic(() => import('../block/DetailPerson'));
+const Card = dynamic(() => import('../block/Card'));
+const Tools = dynamic(() => import('../block/tool'));
+const Comment = dynamic(() => import('../block/Comment'));
+const TablePayment = dynamic(() => import('../block/TablePayment'));
+const TabQuestions = dynamic(() => import('../block/Question'));
+const CustomTab = dynamic(() => import('../block/CustomTab'));
+const SMEIntro = dynamic(() => import('../block/SME/SMEIntro'));
+const Banner = dynamic(() => import('../block/SME/Banner'));
+const About = dynamic(() => import('../about'));
+const Investors = dynamic(() => import('../investors'));
+const OtherNews = dynamic(() => import('../otherNews'));
+const ListDowloadFIle = dynamic(() => import('../common/download/ListDowloadFIle'));
+const ListDowloadVideo = dynamic(() => import('../common/download/ListDowloadVideo'));
+const Transaction = dynamic(() => import('../transaction'));
+const Contact = dynamic(() => import('../common/Contact'));
+const DowloadCategory = dynamic(() => import('../common/DowloadCategory'));
+const FormStep = dynamic(() => import('../block/formStep'));
+const NewCard = dynamic(() => import('../NewCard'));
+const TableRate = dynamic(() => import('../tableRate'));
+const UserManual = dynamic(() => import('../block/UserManual'));
+
+// import {
+//   // Icon,
+//   // Images,
+//   // Post,
+//   // Product,
+//   // Question,
+//   // Repeat,
+//   // SingerPost,
+//   // Pages,
+//   // MiniTab,
+//   // News,
+//   // Form,
+//   // TagProduct,
+//   // MenuIntro,
+//   // Download,
+//   // DetailPerson,
+//   // Card,
+//   // Tools,
+//   // Comment,
+//   // TablePayment,
+//   // TabQuestions,
+//   // CustomTab,
+//   // SMEIntro,
+//   Banner
+// } from '../block';
+// import About from '../about';
+// import Investors from '../investors';
+// import OtherNews from '../otherNews';
+// import { ListDowloadFIle, ListDowloadVideo } from '../common/download';
+// import Transaction from '../transaction';
+// import { Contact, DowloadCategory } from '../common';
+// import FormStep from '../block/formStep';
+// import NewCard from '../NewCard';
+// import TableRate from '../tableRate';
+// import UserManual from '../block/UserManual';
+import map from 'lodash/map';
 import PropTypes from 'prop-types';
-import NewCard from '../NewCard';
-import TableRate from '../tableRate';
-import UserManual from '../block/UserManual';
 
 const propTypes = {
   data: PropTypes.array,

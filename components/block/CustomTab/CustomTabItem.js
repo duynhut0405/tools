@@ -1,6 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import Table from '../../tableInterestRate';
 import ReactHtmlParser from 'react-html-parser';
 

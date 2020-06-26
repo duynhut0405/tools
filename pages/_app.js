@@ -6,7 +6,7 @@ import Router from 'next/router';
 // import withRedux from 'next-redux-wrapper';
 // import stores from '../store';
 import Layout from '../components/layout';
-import '../styles/block.scss';
+// import '../styles/block.scss';
 import '../styles/styles.css';
 import '../styles/custom.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -28,15 +28,15 @@ class NextApp extends App {
       location.href = as;
     });
   }
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps({ ctx });
-    }
-    return {
-      pageProps
-    };
-  }
+  // static async getInitialProps({ Component, ctx }) {
+  //   let pageProps = {};
+  //   if (Component.getInitialProps) {
+  //     pageProps = await Component.getInitialProps({ ctx });
+  //   }
+  //   return {
+  //     pageProps
+  //   };
+  // }
   render() {
     const { Component, pageProps } = this.props;
     return (

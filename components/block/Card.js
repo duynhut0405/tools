@@ -1,5 +1,5 @@
 import React from 'react';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 

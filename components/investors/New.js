@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import moment from 'moment';
 import Stock from './Stock';
 import { getNewCategoryIdService } from '../../services/news';
