@@ -97,7 +97,6 @@ function Pages({ data, type, id, optionWidth }) {
                     <div className="divtext">
                       <h4 className="title">{item.name}</h4>
                       <div className="desc line4">{item.meta_description}..</div>
-                      <a className="btn">{t('find_out_now')}</a>
                     </div>
                   </a>
                 </LinkPage>
@@ -145,7 +144,6 @@ function Pages({ data, type, id, optionWidth }) {
                     <div className="divtext">
                       <h4 className="title line2">{item.name}</h4>
                       <div className="desc line4">{item.meta_description}..</div>
-                      <a className="btn">{t('find_out_now')}</a>
                     </div>
                   </a>
                 </LinkPage>
@@ -195,7 +193,6 @@ function Pages({ data, type, id, optionWidth }) {
                       <div className="divtext">
                         <h4 className="title line2">{values.name}</h4>
                         <div className="desc line4">{values.meta_description}</div>
-                        <a className="btn">{t('find_out_now')}</a>
                       </div>
                     </a>
                   </LinkPage>
@@ -301,7 +298,6 @@ function Pages({ data, type, id, optionWidth }) {
                       <div className="divtext">
                         <h4 className="title line2">{items.name}</h4>
                         <div className="desc line2 cl3">{items.meta_description}</div>
-                        <a className="btn">{t('find_out_now')}</a>
                       </div>
                     </a>
                   </LinkPage>
