@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { map, slice, uniqBy, uniq } from 'lodash';
+import map from 'lodash/map';
+import slice from 'lodash/slice';
+import uniqBy from 'lodash/unionBy';
+import uniq from 'lodash/uniq';
 import moment from 'moment';
 import Proptypes from 'prop-types';
 import { getNewByIdService, getListNewsTagPageService } from '../../services/news';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import Proptypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 import UseWindowResize from '../common/Resize';

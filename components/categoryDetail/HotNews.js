@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
