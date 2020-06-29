@@ -465,7 +465,7 @@ function Layout({ children, isPrioty, idPage }) {
                             setActiveDrawwe(!activeDrawer);
                           }}
                         >
-                          <span className="menu-btn x"></span>
+                          <span className="menu-btn x"> <span></span> </span>
                         </div>
                       </div>
                     </div>
