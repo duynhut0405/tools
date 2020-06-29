@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import Proptypes from 'prop-types';
 import classnames from 'classnames';
 import CustomTabItem from './CustomTabItem';

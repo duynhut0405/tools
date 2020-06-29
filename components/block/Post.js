@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { map, slice } from 'lodash';
+import map from 'lodash/map';
+import slice from 'lodash/slice';
 import moment from 'moment';
 import Proptypes from 'prop-types';
 import t from '../../translation';

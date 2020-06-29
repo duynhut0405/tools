@@ -31,7 +31,7 @@ import { ListDowloadFIle, ListDowloadVideo } from '../common/download';
 import Transaction from '../transaction';
 import { Contact, DowloadCategory } from '../common';
 import FormStep from '../block/formStep';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import NewCard from '../NewCard';
 import TableRate from '../tableRate';

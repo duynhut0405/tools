@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import TableItem from './Table/Tableitem';
@@ -66,9 +66,7 @@ function Repeat({ data, type, id, optionWidth }) {
                         data-less="- Thu gọn"
                         data-i=""
                       >
-
-                          <TableItem data={item.description} maxheight={Number(data.height)} />
-
+                        <TableItem data={item.description} maxheight={Number(data.height)} />
                       </div>
                     </div>
                   </div>
