@@ -113,6 +113,38 @@ function ModalDrawer({ menu, menuHeader, onSearch, onChangeSearch }) {
           </ul>
           <ul className="menu">{nestChild(menu)}</ul>
           <ul className="menu">{nestChild(menuHeader)}</ul>
+          <ul className="menu">
+            <li>
+              <span
+                className="showsubmenu icon-arrow-2 ib"
+                onClick={() => {
+                  setActiveTab(!activeTab);
+                  setIndexMenu(-1);
+                }}
+              ></span>
+              <a>Ebanking</a>
+              <ul style={{ display: activeTab && indexMenu === -1 ? 'block' : 'none' }}>
+                <li>
+                  <a
+                    href="https://online.mbbank.com.vn/retail/EstablishSession"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('personal')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://emb.mbbank.com.vn/corp/EstablishSession"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('enterprise')}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
