@@ -1,7 +1,6 @@
 import React from 'react';
 import t from '../../translation';
 import PropTypes from 'prop-types';
-import ImgCode from '../../public/images/codeQR.png';
 
 const propTypes = {
   t: PropTypes.func,

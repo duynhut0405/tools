@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import PopupItems from './Popup/PopupItems';
 
 const propTypes = {

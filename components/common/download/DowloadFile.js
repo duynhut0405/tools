@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 

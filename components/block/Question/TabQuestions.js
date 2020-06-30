@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import classnames from 'classnames';
 import TabQuestionsItems from './TabQuestionItem';
 
@@ -32,7 +32,7 @@ function TabQuestions({ data, id }) {
           <div className={`cttab-v3 tabs-total-${data.listTab.length}`}>
             <div className="wrap-tab-menu">
               <div className="tab-menu">
-                {map(data.listTab, (item, index) => ( 
+                {map(data.listTab, (item, index) => (
                   <div
                     className={classnames({ active: activeTab === String(index) })}
                     onClick={() => {
