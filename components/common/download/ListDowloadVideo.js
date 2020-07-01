@@ -26,7 +26,7 @@ const seachRegulation = async (type, detailTypeId, number, page, year, setData) 
 function ListDowloadFIle({ type, data, optionWidth, id }) {
   const [datatype, setDataType] = useState(0);
   const [page, setPage] = useState(0);
-  const [year, setYear] = useState(new Date().getFullYear() - 1);
+  const [year, setYear] = useState(new Date().getFullYear());
   const [title] = useState(convertTitle(type));
   const [listRegulation, setlistRegulation] = useState([]);
   const [listType, setListType] = useState([]);
