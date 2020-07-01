@@ -46,7 +46,11 @@ function AboutCategory({ data, categories }) {
                       <div className="img tRes_71">
                         <img
                           className="lazyload"
-                          data-src={`${process.env.DOMAIN}${item.base_image}`}
+                          data-src={
+                            item.base_image === null
+                              ? `/images/imgdefault.jpg`
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
                           alt="images"
                         />
                       </div>
