@@ -14,7 +14,7 @@
   "exchange_rate": "Exchange rate",
   "change_foreign_currency": "Change foreign currency",
   "sign_up_promotional": "Sign up to receive promotional information",
-  "donwload_app_today": "Download App today",
+  "donwload_app_today": "Download app today",
   "enter_email": "Enter email to receive information",
   "codeNT": "Code NT",
   "period": "Period",
@@ -147,7 +147,5 @@
   "enterprise": "Enterprise",
   "contacts": "Contacts",
   "customer_service_time": "Customer service time",
-  "dead_office": "MBBank dead office",
-  "find_out_now": "Find out now",
-  "register_now": "Register now"
+  "dead_office": "MBBank dead office"
 }
