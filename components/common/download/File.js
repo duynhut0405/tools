@@ -15,20 +15,20 @@ function File({ data }) {
             if (index % 2 === 0) {
               return (
                 <li key={index}>
-                  <span className="title">
-                    <i className="icon-t14"></i> {item.name}
-                  </span>
-                  <span className="down">
-                    <a
-                      href={`${process.env.DOMAIN.substring(
-                        0,
-                        process.env.DOMAIN.length - 1
-                      )}/uploads${item.urlFile}`}
-                      download
-                    >
+                  <a
+                    href={`${process.env.DOMAIN.substring(
+                      0,
+                      process.env.DOMAIN.length - 1
+                    )}/uploads${item.urlFile}`}
+                    download
+                  >
+                    <span className="title">
+                      <i className="icon-t14"></i> {item.name}
+                    </span>
+                    <span className="down">
                       <i className="icon-arrow-6 ib"></i>
-                    </a>
-                  </span>
+                    </span>
+                  </a>
                 </li>
               );
             }
@@ -42,20 +42,20 @@ function File({ data }) {
             if (index % 2 !== 0) {
               return (
                 <li key={index}>
-                  <span className="title">
-                    <i className="icon-t14"></i> {item.name}
-                  </span>
-                  <span className="down">
-                    <a
-                      href={`${process.env.DOMAIN.substring(
-                        0,
-                        process.env.DOMAIN.length - 1
-                      )}/uploads${item.urlFile}`}
-                      download
-                    >
+                  <a
+                    href={`${process.env.DOMAIN.substring(
+                      0,
+                      process.env.DOMAIN.length - 1
+                    )}/uploads${item.urlFile}`}
+                    download
+                  >
+                    <span className="title">
+                      <i className="icon-t14"></i> {item.name}
+                    </span>
+                    <span className="down">
                       <i className="icon-arrow-6 ib"></i>
-                    </a>
-                  </span>
+                    </span>
+                  </a>
                 </li>
               );
             }
