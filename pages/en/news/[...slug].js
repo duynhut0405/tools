@@ -177,7 +177,14 @@ function New({ news, category_name, category_url, socialLink }) {
                     )}
                   </React.Fragment>
                 )}
-                <div className="entry-content">{ReactHtmlParser(news.news.description)}</div>
+                <div className="entry-content">
+                  {ReactHtmlParser(news.news.description)}
+                  {news.news.filePDF && (
+                    <a href={`${process.env.DOMAIN}${news.news.filePDF}`} download>
+                      {t('download')}
+                    </a>
+                  )}
+                </div>
                 <br />
                 <div className="tags">
                   <h2>{t('related_content')}</h2>

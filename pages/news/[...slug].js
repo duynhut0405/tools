@@ -177,8 +177,13 @@ function New({ news, category_name, category_url, socialLink }) {
                     )}
                   </Fragment>
                 )}
-                <div className="entry-content" style={{ marginTop: 20 }}>
+                <div className="entry-content">
                   {ReactHtmlParser(news.news.description)}
+                  {news.news.filePDF && (
+                    <a href={`${process.env.DOMAIN}${news.news.filePDF}`} download>
+                      {t('download')}
+                    </a>
+                  )}
                 </div>
                 <br />
                 <div className="tags">
