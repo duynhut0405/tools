@@ -24,17 +24,16 @@ function BlockSMEIntro({ optionWidth, id }) {
   return (
     <section className={`${padding} SMEIntro`} id={id}>
       <div className="container">
-        <img
-          data-src="/static/images/smeCare/care-logo.png"
-          alt="images"
-          className="img loaded loaded mb-20 lazyload"
-        />
         <div className="row list-item">
           <div className="col-md-3 col-sm-6">
             <a href="https://smecare.com.vn/">
-              <div className="flex">
+              <div className="flex flex-column">
                 <div className="img_care">
-                  <img className="lazyload" data-src="/static/images/smeCare/C.png" alt="images" />
+                  <img
+                    className="lazyload"
+                    data-src="/static/images/block-SME/SME-thumnail-01.jpg"
+                    alt="images"
+                  />
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Capital</h3>
@@ -45,9 +44,13 @@ function BlockSMEIntro({ optionWidth, id }) {
           </div>{' '}
           <div className="col-md-3 col-sm-6">
             <a href="https://smecare.com.vn/">
-              <div className="flex">
+              <div className="flex flex-column">
                 <div className="img_care">
-                  <img className="lazyload" data-src="/static/images/smeCare/A.png" alt="images" />
+                  <img
+                    className="lazyload"
+                    data-src="/static/images/block-SME/SME-thumnail-02.jpg"
+                    alt="images"
+                  />
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Advertising</h3>
@@ -58,9 +61,13 @@ function BlockSMEIntro({ optionWidth, id }) {
           </div>{' '}
           <div className="col-md-3 col-sm-6">
             <a href="https://smecare.com.vn/">
-              <div className="flex">
+              <div className="flex flex-column">
                 <div className="img_care">
-                  <img className="lazyload" data-src="/static/images/smeCare/R.png" alt="images" />
+                  <img
+                    className="lazyload"
+                    data-src="/static/images/block-SME/SME-thumnail-03.jpg"
+                    alt="images"
+                  />
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Relation</h3>
@@ -71,9 +78,13 @@ function BlockSMEIntro({ optionWidth, id }) {
           </div>{' '}
           <div className="col-md-3 col-sm-6">
             <a href="https://smecare.com.vn/">
-              <div className="flex">
+              <div className="flex flex-column">
                 <div className="img_care">
-                  <img className="lazyload" data-src="/static/images/smeCare/E.png" alt="images" />
+                  <img
+                    className="lazyload"
+                    data-src="/static/images/block-SME/SME-thumnail-04.jpg"
+                    alt="images"
+                  />
                 </div>
                 <div className="content_care">
                   <h3 className="mg-0 cl1 fs22 uppercase b">Education</h3>

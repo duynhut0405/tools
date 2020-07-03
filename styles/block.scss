@@ -194,6 +194,10 @@ body {
   z-index: 2;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 @media only screen and (max-width: 768px) {
   .banner-heading-3 .img-pc {
     display: none;
