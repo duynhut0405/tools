@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { getCommon, getMemnu } from '../../utils/fetch';
 import { getLang, getPriority, getBtn } from '../../utils/cookie';
-import FormPopup from '../block/Popup/FormPopup';
+// import FormPopup from '../block/Popup/FormPopup';
 
 const propTypes = {
   settingFooter: PropTypes.object,
@@ -39,7 +39,7 @@ function Layout({ children, isPrioty, idPage }) {
   const [activeDrawer, setActiveDrawwe] = useState(false);
   const [query, setQuery] = useState(null);
   const router = useRouter();
-  const [activeForm, setActiveForm] = useState(false);
+  // const [activeForm, setActiveForm] = useState(false);
   const [register, setRegister] = useState('');
   const [menuHeader, setMenuHeader] = useState([]);
   const [menuNav, setMenuNav] = useState([]);
@@ -279,7 +279,11 @@ function Layout({ children, isPrioty, idPage }) {
 
   const onRegister = event => {
     event.preventDefault();
-    setActiveForm(true);
+    router.push({
+      pathname: lang === 'vi' ? '/register' : '/en/register',
+      query: { mail: register }
+    });
+    // setActiveForm(true);
   };
 
   const onScroll = id => {
@@ -465,7 +469,9 @@ function Layout({ children, isPrioty, idPage }) {
                             setActiveDrawwe(!activeDrawer);
                           }}
                         >
-                          <span className="menu-btn x"> <span></span> </span>
+                          <span className="menu-btn x">
+                            <span></span>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -568,7 +574,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <button
                         type="submit"
                         className="btn btn-2"
-                        onClick={() => setActiveForm(true)}
+                        // onClick={() => setActiveForm(true)}
                       >
                         {t('registration')}
                       </button>
@@ -785,12 +791,12 @@ function Layout({ children, isPrioty, idPage }) {
               </div>
             </div>
           </div>
-          <FormPopup
+          {/* <FormPopup
             modal={activeForm}
             setModal={() => setActiveForm(!activeForm)}
             idPage={idPage}
             mail={register}
-          />
+          /> */}
         </StickyContainer>
         <ModalDrawer
           menu={menuNav}

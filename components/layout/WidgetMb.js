@@ -18,14 +18,24 @@ function Widget({ data, socialLink }) {
         {lang === 'vi' && (
           <Link href="/">
             <a className="logo">
-              <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+              <img
+                className="lazyload"
+                data-src="/images/logo-blue.svg"
+                importance="low"
+                alt="images"
+              />
             </a>
           </Link>
         )}
         {lang === 'en' && (
           <Link href="/en">
             <a className="logo">
-              <img className="lazyload" data-src="/images/logo-blue.svg" alt="images" />
+              <img
+                className="lazyload"
+                data-src="/images/logo-blue.svg"
+                importance="low"
+                alt="images"
+              />
             </a>
           </Link>
         )}

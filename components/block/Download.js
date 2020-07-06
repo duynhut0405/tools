@@ -1,5 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -24,7 +25,7 @@ function Download({ data, id, type }) {
         <div className="container">
           <h2 className="ht text-center">{data.title}</h2>
           <div className="inner">
-            <div className="desc">{data.description}</div>
+            <div className="desc">{ReactHtmlParser(data.description)}</div>
             <a className="btn lg" href={data.buttonUrl ? data.buttonUrl : data.image}>
               {data.buttonTitle}
             </a>
@@ -40,7 +41,7 @@ function Download({ data, id, type }) {
           <div className=" b-tl-1">
             <div className="inner">
               <h2 className="ht">{data.title}</h2>
-              <div className="desc">{data.description}</div>
+              <div className="desc">{ReactHtmlParser(data.description)}</div>
             </div>
             <a className="btn lg btn-2" href={data.buttonUrl ? data.buttonUrl : data.image}>
               {data.buttonTitle}
@@ -57,7 +58,7 @@ function Download({ data, id, type }) {
           <div className=" b-tl-2">
             <h2 className="ht">{data.title}</h2>
             <div className="divtext">
-              <div className="desc">{data.description}</div>
+              <div className="desc">{ReactHtmlParser(data.description)}</div>
               <a className="btn lg btn-2" href={data.buttonUrl ? data.buttonUrl : data.image}>
                 {data.buttonTitle}
               </a>
@@ -73,7 +74,7 @@ function Download({ data, id, type }) {
         <div className="container">
           <div className="inner">
             <h2 className="ht">{data.title}</h2>
-            <p className="desc">{data.description}</p>
+            <p className="desc">{ReactHtmlParser(data.description)}</p>
             <a className="btn lg btn-2" href={data.buttonUrl ? data.buttonUrl : data.image}>
               {data.buttonTitle}
             </a>

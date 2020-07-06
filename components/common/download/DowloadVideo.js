@@ -78,24 +78,26 @@ function DowloadVideo({ year, data, fileIcon, showYear }) {
             {map(data, item => {
               return (
                 <li key={item.id}>
-                  <span className="title">
-                    <i className={fileIcon ? 'icon-t14' : 'icon-date-2'}></i>
-                    {item.name}
-                  </span>
-                  {showYear && (
-                    <span className="data">{moment(item.createdAt).format('DD-MM-YYYY')}</span>
-                  )}
-                  <span className="down">
-                    <a
-                      href={`${process.env.DOMAIN.substring(
-                        0,
-                        process.env.DOMAIN.length - 1
-                      )}/uploads${item.urlFile}`}
-                      download
-                    >
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`${process.env.DOMAIN.substring(
+                      0,
+                      process.env.DOMAIN.length - 1
+                    )}/uploads${item.urlFile}`}
+                    download
+                  >
+                    <span className="title">
+                      <i className={fileIcon ? 'icon-t14' : 'icon-date-2'}></i>
+                      {item.name}
+                    </span>
+                    {showYear && (
+                      <span className="data">{moment(item.createdAt).format('DD-MM-YYYY')}</span>
+                    )}
+                    <span className="down">
                       <i className="icon-arrow-6 ib"></i>
-                    </a>
-                  </span>
+                    </span>
+                  </a>
                 </li>
               );
             })}
