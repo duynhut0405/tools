@@ -29,6 +29,7 @@ function TableRate({ data, type }) {
                     data-src={`/static/currency/${valueCurrency}.png`}
                     alt="images"
                     width="24"
+                    importance="low"
                   />
                   {value.currency}
                 </td>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { getFormbuilderByIdService, sendMailService } from '../../services/form';
+import { getFormbuilderByIdService, sendMailService } from '../../../services/form';
 import ReactLoading from 'react-loading';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
