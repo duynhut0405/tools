@@ -28,7 +28,6 @@ function MenuMiddle({ data, query }) {
         setHeight(ref.current.clientHeight);
       }
     });
-    console.log('data:', data)
 
     return () => {
       window.addEventListener('resize', () => {
