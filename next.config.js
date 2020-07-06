@@ -34,7 +34,7 @@ module.exports = withPWA(
           };
         },
         env: {
-          DOMAIN: '/',
+          DOMAIN: 'https://mbbank3.mangoads.com.vn:8443/',
           LINK_DOMAIN: 'mbbank.com.vn',
           BASE_URL: 'https://mbbank3.mangoads.com.vn:8443',
           MB_URL: 'https://api2.vietstock.vn/data/stocktradinginfo',
@@ -132,8 +132,10 @@ module.exports = withPWA(
           let pageRouter = Object.assign({}, router, {
             '/': { page: '/' },
             '/search': { page: '/search' },
+            '/register': { page: '/register' },
             '/en': { page: '/en' },
-            '/en/search': { page: '/en/search' }
+            '/en/search': { page: '/en/search' },
+            '/en/register': { page: '/en/register' }
           });
 
           pageRouter = Object.assign(
@@ -149,4 +151,4 @@ module.exports = withPWA(
     )
   )
 );
- 
+
