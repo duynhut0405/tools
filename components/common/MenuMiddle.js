@@ -28,6 +28,7 @@ function MenuMiddle({ data, query }) {
         setHeight(ref.current.clientHeight);
       }
     });
+    console.log('data:', data)
 
     return () => {
       window.addEventListener('resize', () => {
@@ -88,7 +89,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <LinkPage lang={lang} name={item.slugPages}>
+                            <LinkPage lang={lang} name={item.type==='1' ? item.slugPages : item.url}>
                               <a className="link">
                                 <div className="img">
                                   <img
@@ -136,7 +137,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <LinkPage lang={lang} name={item.slugPages}>
+                            <LinkPage lang={lang} name={item.type==='1' ? item.slugPages : item.url}>
                               <a className="link">
                                 <div className="img">
                                   <img
