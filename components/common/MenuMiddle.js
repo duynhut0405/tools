@@ -89,7 +89,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <LinkPage lang={lang} name={item.type==='1' ? item.slugPages : item.url}>
+                            <LinkPage lang={lang} name={item.type==='4' ? item.url : item.slugPages}>
                               <a className="link">
                                 <div className="img">
                                   <img
@@ -137,7 +137,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <LinkPage lang={lang} name={item.type==='1' ? item.slugPages : item.url}>
+                            <LinkPage lang={lang} name={item.type==='4' ? item.url : item.slugPages}>
                               <a className="link">
                                 <div className="img">
                                   <img
