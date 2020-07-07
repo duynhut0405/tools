@@ -3,32 +3,28 @@ import Carousel from 'react-multi-carousel';
 import map from 'lodash/map';
 import useCollapse from 'react-collapsed';
 import PropTypes from 'prop-types';
-import { LinkPage } from '../common/link';
+import { LinkPage, LinkInput } from '../common/link';
 import { getLang } from '../../utils/cookie';
-
+import LinkNews from './link/LinkNews';
+import LinkInput2 from './link/LinkInput2';
 const propTypes = {
   data: PropTypes.object,
   query: PropTypes.string
 };
-
 function MenuMiddle({ data, query }) {
   const [refCarousel, setRefCarousel] = useState(null);
-
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
   const lang = getLang();
-
   useEffect(() => {
     if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
       setHeight(ref.current.clientHeight);
     }
-
     window.addEventListener('resize', () => {
       if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
         setHeight(ref.current.clientHeight);
       }
     });
-
     return () => {
       window.addEventListener('resize', () => {
         if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
@@ -37,11 +33,9 @@ function MenuMiddle({ data, query }) {
       });
     };
   });
-
   const { getCollapseProps, getToggleProps, isOpen } = useCollapse({
     collapsedHeight: 300
   });
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -88,18 +82,35 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <LinkPage lang={lang} name={item.slugPages}>
-                              <a className="link">
-                                <div className="img">
-                                  <img
-                                    className="lazyload"
-                                    alt="images"
-                                    data-src={`${process.env.DOMAIN}${item.icon}`}
-                                  />
-                                </div>
-                                <div className="title">{item.name}</div>
-                              </a>
-                            </LinkPage>
+                            {item.type === '4' && (
+                              <LinkInput2 lang={lang} name={item.url}>
+                                <a className="link">
+                                  <div className="img">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.icon}`}
+                                    />
+                                  </div>
+                                  <div className="title">{item.name}</div>
+                                </a>
+                              </LinkInput2>
+                            )}
+                            {item.type === '1' ||
+                              (item.type === null && (
+                                <LinkPage lang={lang} name={item.slugPages}>
+                                  <a className="link">
+                                    <div className="img">
+                                      <img
+                                        className="lazyload"
+                                        alt="images"
+                                        data-src={`${process.env.DOMAIN}${item.icon}`}
+                                      />
+                                    </div>
+                                    <div className="title">{item.name}</div>
+                                  </a>
+                                </LinkPage>
+                              ))}
                           </div>
                         );
                       }
@@ -136,18 +147,35 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            <LinkPage lang={lang} name={item.slugPages}>
-                              <a className="link">
-                                <div className="img">
-                                  <img
-                                    className="lazyload"
-                                    alt="images"
-                                    data-src={`${process.env.DOMAIN}${item.icon}`}
-                                  />
-                                </div>
-                                <div className="title">{item.name}</div>
-                              </a>
-                            </LinkPage>
+                            {item.type === '4' && (
+                              <LinkInput2 lang={lang} name={item.url}>
+                                <a className="link">
+                                  <div className="img">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.icon}`}
+                                    />
+                                  </div>
+                                  <div className="title">{item.name}</div>
+                                </a>
+                              </LinkInput2>
+                            )}
+                            {item.type === '5' ||
+                              (item.type === null && (
+                                <LinkPage lang={lang} name={item.slugPages}>
+                                  <a className="link">
+                                    <div className="img">
+                                      <img
+                                        className="lazyload"
+                                        alt="images"
+                                        data-src={`${process.env.DOMAIN}${item.icon}`}
+                                      />
+                                    </div>
+                                    <div className="title">{item.name}</div>
+                                  </a>
+                                </LinkPage>
+                              ))}
                           </div>
                         );
                       }
@@ -196,7 +224,5 @@ function MenuMiddle({ data, query }) {
     </>
   );
 }
-
 MenuMiddle.propTypes = propTypes;
-
 export default MenuMiddle;
