@@ -17,7 +17,7 @@ function MenuMiddle({ data, query }) {
   const ref = useRef(null);
   const lang = getLang();
   const typePage = '1';
-  const typeurl = '4';
+  const typeUrl = '4';
   useEffect(() => {
     if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
       setHeight(ref.current.clientHeight);
@@ -84,7 +84,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            {item.type === typeurl && (
+                            {item.type === typeUrl && (
                               <LinkInput2 lang={lang} name={item.url}>
                                 <a className="link">
                                   <div className="img">
@@ -149,7 +149,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            {item.type === typeurl && (
+                            {item.type === typeUrl && (
                               <LinkInput2 lang={lang} name={item.url}>
                                 <a className="link">
                                   <div className="img">
