@@ -16,6 +16,8 @@ function MenuMiddle({ data, query }) {
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
   const lang = getLang();
+  const typePage = '1';
+  const typeUrl = '4';
   useEffect(() => {
     if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
       setHeight(ref.current.clientHeight);
@@ -82,7 +84,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            {item.type === '4' && (
+                            {item.type === typeUrl && (
                               <LinkInput2 lang={lang} name={item.url}>
                                 <a className="link">
                                   <div className="img">
@@ -96,7 +98,7 @@ function MenuMiddle({ data, query }) {
                                 </a>
                               </LinkInput2>
                             )}
-                            {item.type === '1' ||
+                            {item.type === typePage ||
                               (item.type === null && (
                                 <LinkPage lang={lang} name={item.slugPages}>
                                   <a className="link">
@@ -147,7 +149,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            {item.type === '4' && (
+                            {item.type === typeUrl && (
                               <LinkInput2 lang={lang} name={item.url}>
                                 <a className="link">
                                   <div className="img">
@@ -161,7 +163,7 @@ function MenuMiddle({ data, query }) {
                                 </a>
                               </LinkInput2>
                             )}
-                            {item.type === '5' ||
+                            {item.type === typePage ||
                               (item.type === null && (
                                 <LinkPage lang={lang} name={item.slugPages}>
                                   <a className="link">
