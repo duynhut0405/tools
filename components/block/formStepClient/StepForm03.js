@@ -1,16 +1,54 @@
-import React from 'react';
-import Proptypes from 'prop-types';
+import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
+import FirstSuccessModal from './FirstSuccessModal';
+import SecondSuccessModal from './SecondSuccessModal';
 
-const propTypes = {
-  nextForm: Proptypes.func,
-  backFrom: Proptypes.func
-};
-const StepForm03 = ({ nextForm, backFrom }) => {
+const StepForm03 = props => {
+  const { backFrom, formState, setFormState, data, pageId } = props;
+  const form01 = useRef(null);
+  const [active, setActive] = useState(false);
+  const [activeAlertInfo, setActiveAlertInfo] = useState(true);
+  const [checkedProxy, setCheckedProxy] = useState(false);
+  const [modalContinue, setModalContinue] = useState(false);
+  const [payee, setPayee] = useState(true);
+  const [partnerPay, setPartnerPay] = useState(true);
+  const showModal = e => {
+    e.preventDefault();
+    if (checkedProxy) {
+      setActive(!active);
+      setActiveAlertInfo(false);
+    } else {
+      setActiveAlertInfo(true);
+    }
+  };
+  const showModalContinue = e => {
+    e.preventDefault();
+    setModalContinue(true);
+    setActive(false);
+  };
+  const closeModal = () => {
+    setActive(false);
+    setModalContinue(false);
+    setActiveAlertInfo(true);
+  };
+
+  const handleCheckProxy = () => {
+    setCheckedProxy(!checkedProxy);
+  };
+
+  const handleChange = event => {
+    event.persist();
+    setFormState(() => ({
+      ...formState,
+      [event.target.name]: event.target.value
+    }));
+  };
+
   return (
     <section className="sec-t p-form2">
       <div className="container">
         <div className="max750">
-          <form autoComplete="on" className="row list-item form-contact c-form1">
+          <form autoComplete="on" className="row list-item form-contact c-form1" ref={form01}>
             <div className="col-12">
               <div className="text-center">
                 <h3 className="ctext mg-0 fs24">Bước 3/3: Thông tin phương án vay</h3>
@@ -31,11 +69,11 @@ const StepForm03 = ({ nextForm, backFrom }) => {
                   <div className="c-form1__control1">
                     <input
                       className="input"
-                      name="profileNumber"
-                      type="text"
-                      required
-                      placeholder="Nhập giá trị"
-                      defaultValue
+                      type="number"
+                      name="debt"
+                      // required
+                      defaultValue={formState.debt ? formState.debt : ''}
+                      onChange={e => handleChange(e)}
                     />
                     <span className="text1">VNĐ</span>
                   </div>
@@ -45,11 +83,11 @@ const StepForm03 = ({ nextForm, backFrom }) => {
                   <div className="c-form1__control1">
                     <input
                       className="input"
-                      name="profileNumber"
-                      type="text"
-                      required
-                      placeholder="Nhập giá trị"
-                      defaultValue
+                      type="number"
+                      name="return_monney"
+                      // required
+                      defaultValue={formState.return_monney ? formState.return_monney : ''}
+                      onChange={e => handleChange(e)}
                     />
                     <span className="text1">VNĐ</span>
                   </div>
@@ -68,11 +106,12 @@ const StepForm03 = ({ nextForm, backFrom }) => {
               <div className="c-form1__control1 c-form1__control1--text1">
                 <input
                   className="input"
-                  name="profileNumber"
-                  type="text"
-                  required
+                  type="number"
+                  name="salary"
+                  // required
                   placeholder="Nhập giá trị"
-                  defaultValue
+                  defaultValue={formState.salary ? formState.salary : ''}
+                  onChange={e => handleChange(e)}
                 />
                 <span className="text1">VNĐ/ tháng</span>
               </div>
@@ -81,12 +120,34 @@ const StepForm03 = ({ nextForm, backFrom }) => {
               <h6>Người đồng trả nợ/ Thu nhập hàng tháng của Người đồng trả nợ</h6>
               <label className="checkbox">
                 Vợ/ chồng của Khách hàng
-                <input type="checkbox" name="payee" required defaultValue={0} />
+                <input
+                  type="checkbox"
+                  name="payee"
+                  defaultValue={formState.payee}
+                  onChange={() => {
+                    setPayee(!payee);
+                    setFormState({
+                      ...formState,
+                      payee: payee
+                    });
+                  }}
+                />
                 <span />
               </label>
               <label className="checkbox">
                 Đồng trả nợ khác
-                <input type="checkbox" name="payee" required defaultValue={1} />
+                <input
+                  type="checkbox"
+                  name="partner_pay"
+                  defaultValue={formState.partner_pay}
+                  onChange={() => {
+                    setPartnerPay(!partnerPay);
+                    setFormState({
+                      ...formState,
+                      partner_pay: partnerPay
+                    });
+                  }}
+                />
                 <span />
               </label>
             </div>
@@ -95,11 +156,12 @@ const StepForm03 = ({ nextForm, backFrom }) => {
               <div className="c-form1__control1 c-form1__control1--text1">
                 <input
                   className="input"
-                  name="profileNumber"
-                  type="text"
-                  required
+                  name="num_wife"
+                  type="number"
+                  // required
                   placeholder="Nhập giá trị"
-                  defaultValue
+                  defaultValue={formState.partner_pay}
+                  onChange={e => handleChange(e)}
                 />
                 <span className="text1">VNĐ/ tháng</span>
               </div>
@@ -109,11 +171,11 @@ const StepForm03 = ({ nextForm, backFrom }) => {
               <div className="c-form1__control1 c-form1__control1--text1">
                 <input
                   className="input"
-                  name="profileNumber"
-                  type="text"
-                  required
+                  name="dif_payee"
+                  // required
+                  type="number"
                   placeholder="Nhập giá trị"
-                  defaultValue
+                  onChange={e => handleChange(e)}
                 />
                 <span className="text1">VNĐ/ tháng</span>
               </div>
@@ -122,14 +184,26 @@ const StepForm03 = ({ nextForm, backFrom }) => {
               <div className="c-form1__confirm">
                 <span className="confirm_text1">Tổng thu nhập</span>
                 <p className="confirm_sum1">
-                  <strong>32,000,000</strong> VNĐ
+                  <strong>
+                    {parseInt(formState.partner_pay) +
+                      parseInt(formState.salary) +
+                      parseInt(formState.dif_payee)}
+                  </strong>
+                  VNĐ
                 </p>
               </div>
             </div>
             <div className="col-12 c-form1__checkboxs mb-20">
               <label className="checkbox">
                 <strong className="font1">Tôi đã hiểu và cam kết</strong>
-                <input type="checkbox" name="commit" required defaultValue={0} />
+                <input
+                  type="checkbox"
+                  name="commit"
+                  value={false}
+                  required
+                  onChange={handleCheckProxy}
+                  checked={checkedProxy === true}
+                />
                 <span />
               </label>
             </div>
@@ -173,11 +247,39 @@ const StepForm03 = ({ nextForm, backFrom }) => {
                 <button className="btn type-white" onClick={backFrom}>
                   Quay về
                 </button>
-                <button className="btn c-form1-btn1-js" onClick={nextForm}>
+                <button
+                  type="submit"
+                  className="btn c-form1-btn1-js"
+                  onClick={event => {
+                    if (form01.current.reportValidity()) {
+                      event.preventDefault();
+                      showModal(event);
+                    }
+                  }}
+                >
                   Tiếp tục
                 </button>
               </div>
             </div>
+            <FirstSuccessModal
+              showModalContinue={showModalContinue}
+              showModal={showModal}
+              closeModal={closeModal}
+              modalContinue={modalContinue}
+              modal={active}
+              formState={formState}
+              setFormState={setFormState}
+            />
+            {modalContinue && (
+              <SecondSuccessModal
+                closeModal={closeModal}
+                showModalContinue={showModalContinue}
+                modalContinue={modalContinue}
+                formState={formState}
+                data={data}
+                pageId={pageId}
+              />
+            )}
           </form>
         </div>
       </div>
@@ -185,6 +287,12 @@ const StepForm03 = ({ nextForm, backFrom }) => {
   );
 };
 
-StepForm03.propTypes = propTypes;
+StepForm03.propTypes = {
+  backFrom: PropTypes.func,
+  formState: PropTypes.object,
+  setFormState: PropTypes.func,
+  data: PropTypes.object,
+  pageId: PropTypes.number
+};
 
 export default StepForm03;

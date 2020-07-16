@@ -15,9 +15,23 @@ const propTypes = {
   id: Proptypes.number
 };
 
-function FormStep({ data, id }) {
+function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
-  const [formState, setFormState] = useState({ nuComponion: [], collateral: [] });
+  const [formState, setFormState] = useState({
+    nuComponion: [],
+    collateral: [
+      {
+        id: 0,
+        decription: null,
+        estimate: null,
+        relaValue: null
+      }
+    ],
+    email: 'quanlamtran@gmail.com',
+    partner_pay: 0,
+    salary: 0,
+    dif_payee: 0
+  });
   data = {
     ...data,
     form: [
@@ -80,7 +94,15 @@ function FormStep({ data, id }) {
           backFrom={backForm}
         />
       )}
-      {formActive === 3 && <StepForm03 backFrom={backForm} formState={formState} />}
+      {formActive === 3 && (
+        <StepForm03
+          backFrom={backForm}
+          formState={formState}
+          setFormState={setFormState}
+          data={data}
+          pageId={pageId}
+        />
+      )}
     </section>
   );
 }

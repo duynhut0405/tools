@@ -3,7 +3,6 @@ import Proptypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import BaseSelect from 'react-select';
 import ChildboxForm1 from './ChildboxForm1';
-import { map } from 'lodash';
 import FixRequiredSelect from './FixRequiredSelect';
 
 const propTypes = {
@@ -14,7 +13,6 @@ const propTypes = {
 
 const StepForm01 = ({ nextForm, setFormState, formState }) => {
   const form01 = useRef(null);
-  const [nuComponion, setComponion] = useState([]);
   const [indexComponion, setIndex] = useState(0);
   const handleChange = event => {
     event.persist();
@@ -33,9 +31,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
 
   const removeComponion = id => {
     const listCompo = formState.nuComponion.filter(value => value.id !== id);
-    const listIDCompo = nuComponion.filter(value => value !== id);
     setFormState({ ...formState, nuComponion: listCompo });
-    setComponion(listIDCompo);
   };
 
   const listPartner = [
@@ -96,7 +92,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 className="input"
                 name="full_name"
                 type="text"
-                required
+                // required
                 placeholder="Họ và tên(*)"
                 defaultValue={formState.full_name}
                 onChange={e => handleChange(e)}
@@ -111,9 +107,9 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 <input
                   type="radio"
                   name="profileType"
-                  required
+                  // required
                   defaultValue={'cmnd'}
-                  defaultChecked={formState.profileType === 'cmnd' ? true : false}
+                  defaultChecked={formState.profileType === 'Chứng minh nhân dân' ? true : false}
                   onClick={e => handleChange(e)}
                 />
                 <span />
@@ -123,9 +119,9 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 <input
                   type="radio"
                   name="profileType"
-                  required
+                  // required
                   defaultValue={'cc'}
-                  defaultChecked={formState.profileType === 'cc' ? true : false}
+                  defaultChecked={formState.profileType === 'Căn cước' ? true : false}
                   onClick={e => handleChange(e)}
                 />
                 <span />
@@ -135,9 +131,9 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 <input
                   type="radio"
                   name="profileType"
-                  required
+                  // required
                   defaultValue={'hc'}
-                  defaultChecked={formState.profileType === 'hc' ? true : false}
+                  defaultChecked={formState.profileType === 'Hộ chiếu' ? true : false}
                   onClick={e => handleChange(e)}
                 />
                 <span />
@@ -147,9 +143,9 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 <input
                   type="radio"
                   name="profileType"
-                  required
-                  defaultValue={'cmqd'}
-                  defaultChecked={formState.profileType === 'cmqd' ? true : false}
+                  // required
+                  defaultValue={'Chứng minh quân đội'}
+                  defaultChecked={formState.profileType === 'Chứng minh quân đội' ? true : false}
                   onClick={e => handleChange(e)}
                 />
                 <span />
@@ -164,7 +160,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 className="input"
                 name="profileNumber"
                 type="text"
-                required
+                // required
                 placeholder="Số Giấy tờ tùy thân(*)"
                 defaultValue={formState.profileNumber}
                 onChange={e => handleChange(e)}
@@ -180,7 +176,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 <input
                   type="radio"
                   name="sex"
-                  required
+                  // required
                   defaultValue={'male'}
                   onClick={e => handleChange(e)}
                   defaultChecked={formState.sex === 'male' ? true : false}
@@ -192,7 +188,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 <input
                   type="radio"
                   name="sex"
-                  required
+                  // required
                   defaultValue={'female'}
                   defaultChecked={!formState.sex === 'male' ? true : false}
                   onClick={e => handleChange(e)}
@@ -231,7 +227,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 className="input"
                 name="phone"
                 type="tel"
-                required
+                // required
                 placeholder="Số điện thoại"
                 defaultValue={formState.phone}
                 onChange={e => handleChange(e)}
@@ -245,7 +241,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 className="input"
                 name="email"
                 type="Email"
-                required
+                // required
                 placeholder="email"
                 defaultValue={formState.email}
                 onChange={e => handleChange(e)}
@@ -264,7 +260,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
               <input
                 className="input"
                 type="text"
-                required
+                // required
                 placeholder="Chọn Tỉnh/ Thành phố"
                 defaultValue={formState.address ? formState.address.city_address : null}
                 onChange={e =>
@@ -286,7 +282,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 className="input"
                 name="current_district_address"
                 type="text"
-                required
+                // required
                 placeholder="Nhập địa chỉ khách hàng đang sinh sống"
                 defaultValue={formState.address ? formState.address.current_home : null}
                 onChange={e =>
@@ -308,7 +304,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                 className="input"
                 name="condition_residence"
                 type="text"
-                required
+                // required
                 placeholder="Chọn tình trạng nơi ở"
                 defaultValue={formState.address ? formState.address.status_home : null}
                 onChange={e =>
@@ -340,7 +336,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     className="input"
                     name="name_companion"
                     type="text"
-                    required
+                    // required
                     placeholder="Nhập đầy đủ họ tên vợ/ chồng"
                     defaultValue={formState.companion ? formState.companion.name : null}
                     onChange={e => {
@@ -355,44 +351,14 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                   <h6 className="title1">
                     Mối quan hệ (<span className="red">*</span>)
                   </h6>
-                  {/* <Select
-                    className="fix-select"
-                    // placeholder={listPartner[0]}
-                    required
-                    isSearchable
-                    options={listPartner}
-                    // defaultValue={
-                    //   formState.companion
-                    //     ? {
-                    //         label: formState.companion.value,
-                    //         value: formState.companion.value
-                    //       }
-                    //     : {}
-                    // }
-
-                    onChange={e => {
-                      setFormState({
-                        ...formState,
-                        companion: { ...formState.companion, relation: e.value }
-                      });
-                    }}
-                  /> */}
                   <Select
                     options={listPartner}
                     required
-                    value={
-                      formState.companion
-                        ? {
-                            lable: formState.companion.relation.value,
-                            value: formState.companion.relation.value
-                          }
-                        : ''
-                    }
+                    value={formState.companion ? formState.companion.relation : ''}
                     onChange={e => {
-                      console.log(1111, e);
                       setFormState({
                         ...formState,
-                        companion: { ...formState.companion, relation: e.value }
+                        companion: { ...formState.companion, relation: e }
                       });
                     }}
                   />
@@ -404,7 +370,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     name="profile_partner"
                     type="text"
                     // required
-                    defaultValue={{ label: formState.companion, value: formState.companion }}
+                    defaultValue={formState.companion ? formState.companion.num_profile : null}
                     placeholder="Nhập số giấy tờ tuỳ thân"
                     onChange={e => {
                       setFormState({
@@ -415,10 +381,10 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                   />
                 </div>
                 <div className="col-12 p-form1--mb1 c-add-relationship-js">
-                  {nuComponion.map((value, index) => (
+                  {formState.nuComponion.map((value, index) => (
                     <ChildboxForm1
-                      index={value}
                       key={index}
+                      item={value}
                       formState={formState}
                       setFormState={setFormState}
                       removeItem={removeComponion}
@@ -426,8 +392,20 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                   ))}
                   <a
                     className="c-form1__link1 c-link-add-form-js"
-                    onClick={() => {
-                      setComponion([...nuComponion, indexComponion]);
+                    onClick={e => {
+                      e.preventDefault();
+                      setFormState({
+                        ...formState,
+                        nuComponion: [
+                          ...formState.nuComponion,
+                          {
+                            id: indexComponion,
+                            name_componion: null,
+                            rela_componion: null,
+                            prof_componion: null
+                          }
+                        ]
+                      });
                       setIndex(indexComponion + 1);
                     }}
                   >

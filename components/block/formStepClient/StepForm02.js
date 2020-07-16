@@ -8,10 +8,13 @@ const propTypes = {
   setFormState: Proptypes.func,
   formState: Proptypes.object
 };
+
+const text01 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
+const text02 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
+const text03 = 'Tài sản hình thành từ vốn vay';
 const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
-  const [purposeLoan, setPurposeLoan] = useState(null);
-  const [iscollateral, setIsCollateral] = useState(false);
-  const [numAsset, setNumAsset] = useState([]);
+  const [iscollateral, setIsCollateral] = useState(formState.collateral === text03 ? false : true);
+  const [idAsset, setIdAsset] = useState(0);
   const form02 = useRef(null);
   const handleChange = event => {
     event.persist();
@@ -26,6 +29,11 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
       event.preventDefault();
       nextForm();
     }
+  };
+
+  const removeCollateral = id => {
+    const listColla = formState.collateral.filter(value => value.id !== id);
+    setFormState({ ...formState, collateral: listColla });
   };
 
   return (
@@ -49,11 +57,16 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                     type="radio"
                     name="purpose_loan"
                     required
-                    // defaultValue={0}
-                    onClick={() => setPurposeLoan(2)}
+                    defaultChecked={formState.type_purpose === 2 ? true : false}
+                    onClick={() =>
+                      setFormState({
+                        ...formState,
+                        type_purpose: 2
+                      })
+                    }
                   />
                   <span />
-                  {purposeLoan && purposeLoan === 2 && (
+                  {formState.type_purpose && formState.type_purpose === 2 && (
                     <div className="row p-form2--mt20">
                       <div className="col-12">
                         <label className="radio">
@@ -68,6 +81,11 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 purpose_loan: 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
                               })
                             }
+                            defaultChecked={
+                              formState.purpose_loan === 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
+                                ? true
+                                : false
+                            }
                           />
                           <span />
                         </label>
@@ -78,7 +96,12 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                           <input
                             type="radio"
                             name="test1"
-                            defaultValue={0}
+                            defaultChecked={
+                              formState.purpose_loan ===
+                              'Nhà chung cư, đất dự án chưa có Giấy chứng nhận (Sổ đỏ)'
+                                ? true
+                                : false
+                            }
                             onClick={() =>
                               setFormState({
                                 ...formState,
@@ -101,11 +124,16 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                     type="radio"
                     name="purpose_loan"
                     required
-                    // defaultValue={1}
-                    onClick={() => setPurposeLoan(1)}
+                    defaultChecked={formState.type_purpose === 1 ? true : false}
+                    onClick={() =>
+                      setFormState({
+                        ...formState,
+                        type_purpose: 1
+                      })
+                    }
                   />
                   <span />
-                  {purposeLoan && purposeLoan === 1 && (
+                  {formState.type_purpose && formState.type_purpose === 1 && (
                     <div className="row p-form2--mt20">
                       <div className="col-12">
                         <label className="radio">
@@ -114,6 +142,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             type="radio"
                             name="test1"
                             required
+                            defaultChecked={formState.purpose_loan === 'Xây nhà' ? true : false}
                             onClick={() =>
                               setFormState({
                                 ...formState,
@@ -131,7 +160,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             type="radio"
                             name="test1"
                             required
-                            defaultValue={1}
+                            defaultChecked={formState.purpose_loan === 'Sửa nhà' ? true : false}
                             onClick={() =>
                               setFormState({
                                 ...formState,
@@ -159,6 +188,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                   type="number"
                   required
                   placeholder="Nhập giá trị"
+                  defaultValue={formState.value_loan}
                   onChange={e => handleChange(e)}
                 />
                 <span className="text1"> VNĐ</span>
@@ -175,7 +205,8 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                   type="number"
                   required
                   placeholder="Nhập giá trị"
-                  onClick={e => handleChange(e)}
+                  defaultValue={formState.suggest_monney}
+                  onChange={e => handleChange(e)}
                 />
                 <span className="text1"> VNĐ</span>
               </div>
@@ -191,6 +222,9 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                     type="radio"
                     name="collateral"
                     required
+                    defaultChecked={
+                      formState.collateral === 'Tài sản hình thành từ vốn vay' ? true : false
+                    }
                     onClick={() => {
                       setIsCollateral(false);
                       setFormState({ ...formState, collateral: 'Tài sản hình thành từ vốn vay' });
@@ -200,30 +234,59 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                 </label>
               </div>
               <div className="col-12 p-form2__radio1">
-                <label className="radio" style={{ width: '100%' }}>
+                <div className="" style={{ width: '100%' }}>
                   Bất động sản khác
                   <input
                     type="radio"
                     name="collateral"
                     required
-                    defaultValue={0}
+                    defaultChecked={iscollateral}
                     onClick={() => {
                       setIsCollateral(true);
-                      setFormState({ ...formState, collateral: [] });
+                      setFormState({
+                        ...formState,
+                        collateral: [
+                          {
+                            id: 0,
+                            decription: null,
+                            estimate: null,
+                            relaValue: null
+                          }
+                        ]
+                      });
                     }}
                   />
                   <span />
                   <div className="row p-form2__block1">
                     {iscollateral && (
                       <div className="c-add-relationship-js">
-                        <ChildboxForm2 index={0} />
-                        {numAsset.map((value, key) => (
-                          <ChildboxForm2 index={key + 1} key={key} />
+                        {formState.collateral.map((value, key) => (
+                          <ChildboxForm2
+                            index={key + 1}
+                            key={key}
+                            item={value}
+                            formState={formState}
+                            setFormState={setFormState}
+                            removeItem={removeCollateral}
+                          />
                         ))}
                         <a
                           className="c-form1__link1 c-link-add-form-js"
-                          onClick={() => {
-                            setNumAsset([...numAsset, 1]);
+                          onClick={e => {
+                            e.preventDefault();
+                            setFormState({
+                              ...formState,
+                              collateral: [
+                                ...formState.collateral,
+                                {
+                                  id: idAsset,
+                                  decription: null,
+                                  estimate: null,
+                                  relaValue: null
+                                }
+                              ]
+                            });
+                            setIdAsset(idAsset + 1);
                           }}
                         >
                           Thêm tài sản đảm bảo
@@ -234,7 +297,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                       </div>
                     )}
                   </div>
-                </label>
+                </div>
               </div>
             </div>
             <div className="col-12 c-form1__btns-list1">
