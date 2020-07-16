@@ -13,6 +13,7 @@ function Step({ data, formActive }) {
       <div className="container">
         <div className="max950">
           <div className="flex-bw">
+            {console.log(data)}
             {map(data, (form, index) => (
               <div className="step" key={form.value}>
                 <a className={index + 1 === formActive ? 'b active' : 'b'}>

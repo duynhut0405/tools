@@ -34,6 +34,7 @@ const SecondSuccessModal = props => {
       idForm: idForm,
       idPage: pageId
     };
+    console.log(idForm);
     sendMailService(body);
   };
 
