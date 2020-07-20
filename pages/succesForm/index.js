@@ -1,11 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import Proptypes from 'prop-types';
 
 const propTypes = {};
 
 function SuccesForm() {
+  const router = useRouter();
+  console.log(router);
   return (
     <section className="p-thank1 sec-tb sec-ab-1">
       <Head>
@@ -58,7 +61,7 @@ function SuccesForm() {
                     <p className="list1_text1">- Số tiền đề xuất vay:</p>
                   </div>
                   <div className="col-7 col-md-8">
-                    <h4 className="list1_title1">5,000,000,000 VNĐ</h4>
+                    <h4 className="list1_title1">{router.query.suggest_monney}</h4>
                   </div>
                 </div>
               </div>
@@ -69,7 +72,7 @@ function SuccesForm() {
                     <p className="list1_text1">- Mục đích vay:</p>
                   </div>
                   <div className="col-7 col-md-8">
-                    <h4 className="list1_title1">Mua nhà đất tại dự án đầu tư xây dựng</h4>
+                    <h4 className="list1_title1">{router.query.purpose_loan}</h4>
                   </div>
                 </div>
               </div>
