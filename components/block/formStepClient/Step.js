@@ -7,20 +7,21 @@ const propTypes = {
   formActive: Proptypes.number
 };
 
-function Step({ data, formActive }) {
+function Step({ formActive }) {
   return (
     <section className="online-signup">
       <div className="container">
         <div className="max950">
           <div className="flex-bw">
-            {console.log(data)}
-            {map(data, (form, index) => (
-              <div className="step" key={form.value}>
-                <a className={index + 1 === formActive ? 'b active' : 'b'}>
-                  {index + 1 < 10 ? `0 ${index + 1}` : `${index + 1}`}
-                </a>
-              </div>
-            ))}
+            <div className="step">
+              <a className={formActive === 1 ? 'b active' : 'b'}>01</a>
+            </div>
+            <div className="step">
+              <a className={formActive === 2 ? 'b active' : 'b'}>02</a>
+            </div>
+            <div className="step">
+              <a className={formActive === 3 ? 'b active' : 'b'}>03</a>
+            </div>
             <div className="step-line"></div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import BaseSelect from 'react-select';
 import ChildboxForm1 from './ChildboxForm1';
 import FixRequiredSelect from './FixRequiredSelect';
+import { filter } from 'lodash';
 
 const propTypes = {
   nextForm: Proptypes.func,
@@ -13,7 +14,6 @@ const propTypes = {
 
 const StepForm01 = ({ nextForm, setFormState, formState }) => {
   const form01 = useRef(null);
-  const [indexComponion, setIndex] = useState(0);
   const handleChange = event => {
     event.persist();
     setFormState(() => ({
@@ -29,8 +29,8 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
     }
   };
 
-  const removeComponion = id => {
-    const listCompo = formState.nuComponion.filter(value => value.id !== id);
+  const removeComponion = indexItem => {
+    const listCompo = filter(formState.nuComponion, (value, index) => index !== indexItem);
     setFormState({ ...formState, nuComponion: listCompo });
   };
 
@@ -385,39 +385,26 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     <ChildboxForm1
                       key={index}
                       item={value}
-                      index={value.id}
+                      index={index}
                       formState={formState}
                       setFormState={setFormState}
                       removeItem={removeComponion}
                     />
                   ))}
-                  <a
-                    className="c-form1__link1 c-link-add-form-js"
-                    onClick={e => {
-                      e.preventDefault();
-                      if (!formState.nuComponion.length) {
-                        setIndex(0);
-                      }
-                      if (indexComponion < 3) {
+                  {formState.nuComponion && formState.nuComponion.length < 3 && (
+                    <a
+                      className="c-form1__link1 c-link-add-form-js"
+                      onClick={() => {
                         setFormState({
                           ...formState,
-                          nuComponion: [
-                            ...formState.nuComponion,
-                            {
-                              id: indexComponion,
-                              name_componion: null,
-                              rela_componion: null,
-                              prof_componion: null
-                            }
-                          ]
+                          nuComponion: [...formState.nuComponion, {}]
                         });
-                        setIndex(indexComponion + 1);
-                      }
-                    }}
-                  >
-                    Thêm mối quan hệ
-                    <i className="fa fa-plus" aria-hidden="true"></i>
-                  </a>
+                      }}
+                    >
+                      Thêm mối quan hệ
+                      <i className="fa fa-plus" aria-hidden="true"></i>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

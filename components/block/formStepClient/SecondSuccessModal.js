@@ -12,7 +12,6 @@ const SecondSuccessModal = props => {
   const { closeModal, modalContinue, showModalContinue, formState, data, pageId } = props;
   const [dataColla, setDataColla] = useState([]);
   const componentRef = useRef();
-
   useEffect(() => {
     const collaterals = formState.collateral;
     if (collaterals && collaterals.length > 0) {
@@ -26,7 +25,7 @@ const SecondSuccessModal = props => {
 
   const summitForm = () => {
     const email = formState.email;
-    const idForm = find(data.form, value => value).value;
+    const idForm = data.form[0] ? data.form[0].value : 399952;
     const body = {
       content: JSON.stringify(formState),
       contentMail: '',
@@ -276,7 +275,7 @@ const SecondSuccessModal = props => {
               <h4 className="file1_title1 file1_title1-type1">
                 <span className="file1_title1_text1">Tổng thu nhập</span>
                 <p className="file1_title1_sum1">
-                <strong>
+                  <strong>
                     {formatCurrency(
                       addCurrency(
                         parseInt(formState.salary),

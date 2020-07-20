@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 function FormStep({ data, id, pageId }) {
-  const [formActive, setFormActive] = useState(2);
+  const [formActive, setFormActive] = useState(1);
   const [formState, setFormState] = useState({
     is_loan: false,
     nuComponion: [],
@@ -33,10 +33,6 @@ function FormStep({ data, id, pageId }) {
     salary: 0,
     dif_payee: 0
   });
-  data = {
-    ...data,
-    form: [...data.form, {}]
-  };
 
   const nextForm = () => {
     if (formActive < 3) {
@@ -71,13 +67,7 @@ function FormStep({ data, id, pageId }) {
       </div>
       {data.form !== null && (
         <React.Fragment>
-          <Step
-            data={[
-              ...data.form,
-              { type: 'result', label: 'Hoàn tất đăng ký trực tuyến', value: null }
-            ]}
-            formActive={formActive}
-          />
+          <Step formActive={formActive} />
         </React.Fragment>
       )}
       {formActive === 1 && (
