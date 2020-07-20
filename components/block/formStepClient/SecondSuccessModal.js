@@ -4,7 +4,7 @@ import WrapModal from './WrapModal';
 import { Modal, ModalBody } from 'reactstrap';
 import { useReactToPrint } from 'react-to-print';
 import ComponentToPrint from './Printer';
-import find from 'lodash/find';
+import { useRouter } from 'next/router';
 import moment from 'moment';
 import { sendMailService } from '../../../services/form';
 
@@ -12,6 +12,7 @@ const SecondSuccessModal = props => {
   const { closeModal, modalContinue, showModalContinue, formState, data, pageId } = props;
   const [dataColla, setDataColla] = useState([]);
   const componentRef = useRef();
+  const router = useRouter();
   useEffect(() => {
     const collaterals = formState.collateral;
     if (collaterals && collaterals.length > 0) {
@@ -23,7 +24,7 @@ const SecondSuccessModal = props => {
     content: () => componentRef.current
   });
 
-  const summitForm = () => {
+  const summitForm = async () => {
     const email = formState.email;
     const idForm = data.form[0] ? data.form[0].value : 399952;
     const body = {
@@ -33,7 +34,10 @@ const SecondSuccessModal = props => {
       idForm: idForm,
       idPage: pageId
     };
-    sendMailService(body);
+    const res = await sendMailService(body);
+    if (res && res.status === 200 && res.data === true) {
+      router.push('/succesForm');
+    }
     closeModal();
   };
 
