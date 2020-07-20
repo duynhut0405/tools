@@ -7,10 +7,11 @@ const propTypes = {
   setFormState: Proptypes.func,
   formState: Proptypes.object,
   item: Proptypes.object,
+  index: Proptypes.number,
   removeItem: Proptypes.func
 };
 
-const ChildboxForm1 = ({ formState, setFormState, item, removeItem }) => {
+const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem }) => {
   const [name, setName] = useState(item.name_componion);
   const [relationship, setRelationship] = useState(item.rela_componion);
   const [typeProfile, setTypeProfile] = useState(item.prof_componion);

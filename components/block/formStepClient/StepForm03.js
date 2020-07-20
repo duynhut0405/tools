@@ -2,16 +2,15 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import FirstSuccessModal from './FirstSuccessModal';
 import SecondSuccessModal from './SecondSuccessModal';
+import AlertInfo from './AlertInfo';
 
 const StepForm03 = props => {
-  const { backFrom, formState, setFormState, data, pageId } = props;
+  const { backFrom, formState, setFormState, setFormActive, data, pageId } = props;
   const form01 = useRef(null);
   const [active, setActive] = useState(false);
-  const [activeAlertInfo, setActiveAlertInfo] = useState(true);
+  const [activeAlertInfo, setActiveAlertInfo] = useState(false);
   const [checkedProxy, setCheckedProxy] = useState(false);
   const [modalContinue, setModalContinue] = useState(false);
-  const [payee, setPayee] = useState(true);
-  const [partnerPay, setPartnerPay] = useState(true);
   const showModal = e => {
     e.preventDefault();
     if (checkedProxy) {
@@ -26,22 +25,45 @@ const StepForm03 = props => {
     setModalContinue(true);
     setActive(false);
   };
+  const showActiveAlertInfo = () => {
+    setActiveAlertInfo(!activeAlertInfo);
+  };
   const closeModal = () => {
     setActive(false);
     setModalContinue(false);
-    setActiveAlertInfo(true);
+    setActiveAlertInfo(false);
   };
-
   const handleCheckProxy = () => {
     setCheckedProxy(!checkedProxy);
   };
 
   const handleChange = event => {
     event.persist();
-    setFormState(() => ({
-      ...formState,
-      [event.target.name]: event.target.value
-    }));
+    if (event.target.value) {
+      setFormState(() => ({
+        ...formState,
+        [event.target.name]: parseInt(event.target.value)
+      }));
+    } else {
+      setFormState(() => ({
+        ...formState,
+        [event.target.name]: 0
+      }));
+    }
+  };
+
+  const formatCurrency = money => {
+    const moneyConvert = `${money}`;
+    if (moneyConvert.length < 16) {
+      return `${money}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+    return 0;
+  };
+
+  const addCurrency = (...moneies) => {
+    return moneies.reduce((sum, money) => {
+      return sum + money;
+    }, 0);
   };
 
   return (
@@ -71,7 +93,7 @@ const StepForm03 = props => {
                       className="input"
                       type="number"
                       name="debt"
-                      // required
+                      required
                       defaultValue={formState.debt ? formState.debt : ''}
                       onChange={e => handleChange(e)}
                     />
@@ -85,7 +107,7 @@ const StepForm03 = props => {
                       className="input"
                       type="number"
                       name="return_monney"
-                      // required
+                      required
                       defaultValue={formState.return_monney ? formState.return_monney : ''}
                       onChange={e => handleChange(e)}
                     />
@@ -108,7 +130,7 @@ const StepForm03 = props => {
                   className="input"
                   type="number"
                   name="salary"
-                  // required
+                  required
                   placeholder="Nhập giá trị"
                   defaultValue={formState.salary ? formState.salary : ''}
                   onChange={e => handleChange(e)}
@@ -120,34 +142,12 @@ const StepForm03 = props => {
               <h6>Người đồng trả nợ/ Thu nhập hàng tháng của Người đồng trả nợ</h6>
               <label className="checkbox">
                 Vợ/ chồng của Khách hàng
-                <input
-                  type="checkbox"
-                  name="payee"
-                  defaultValue={formState.payee}
-                  onChange={() => {
-                    setPayee(!payee);
-                    setFormState({
-                      ...formState,
-                      payee: payee
-                    });
-                  }}
-                />
+                <input type="checkbox" name="payee" required defaultValue={0} />
                 <span />
               </label>
               <label className="checkbox">
                 Đồng trả nợ khác
-                <input
-                  type="checkbox"
-                  name="partner_pay"
-                  defaultValue={formState.partner_pay}
-                  onChange={() => {
-                    setPartnerPay(!partnerPay);
-                    setFormState({
-                      ...formState,
-                      partner_pay: partnerPay
-                    });
-                  }}
-                />
+                <input type="checkbox" name="payee" required defaultValue={1} />
                 <span />
               </label>
             </div>
@@ -156,9 +156,9 @@ const StepForm03 = props => {
               <div className="c-form1__control1 c-form1__control1--text1">
                 <input
                   className="input"
-                  name="num_wife"
+                  name="partner_pay"
                   type="number"
-                  // required
+                  required
                   placeholder="Nhập giá trị"
                   defaultValue={formState.partner_pay}
                   onChange={e => handleChange(e)}
@@ -185,9 +185,13 @@ const StepForm03 = props => {
                 <span className="confirm_text1">Tổng thu nhập</span>
                 <p className="confirm_sum1">
                   <strong>
-                    {parseInt(formState.partner_pay) +
-                      parseInt(formState.salary) +
-                      parseInt(formState.dif_payee)}
+                    {formatCurrency(
+                      addCurrency(
+                        parseInt(formState.salary),
+                        parseInt(formState.partner_pay),
+                        parseInt(formState.dif_payee)
+                      )
+                    )}
                   </strong>
                   VNĐ
                 </p>
@@ -200,7 +204,6 @@ const StepForm03 = props => {
                   type="checkbox"
                   name="commit"
                   value={false}
-                  required
                   onChange={handleCheckProxy}
                   checked={checkedProxy === true}
                 />
@@ -247,20 +250,18 @@ const StepForm03 = props => {
                 <button className="btn type-white" onClick={backFrom}>
                   Quay về
                 </button>
-                <button
-                  type="submit"
-                  className="btn c-form1-btn1-js"
-                  onClick={event => {
-                    if (form01.current.reportValidity()) {
-                      event.preventDefault();
-                      showModal(event);
-                    }
-                  }}
-                >
+                <button className="btn c-form1-btn1-js" onClick={showModal}>
                   Tiếp tục
                 </button>
               </div>
             </div>
+            {activeAlertInfo && (
+              <AlertInfo
+                closeModal={closeModal}
+                showActiveAlertInfo={showActiveAlertInfo}
+                activeAlertInfo={activeAlertInfo}
+              />
+            )}
             <FirstSuccessModal
               showModalContinue={showModalContinue}
               showModal={showModal}
@@ -276,6 +277,7 @@ const StepForm03 = props => {
                 showModalContinue={showModalContinue}
                 modalContinue={modalContinue}
                 formState={formState}
+                setFormActive={setFormActive}
                 data={data}
                 pageId={pageId}
               />
@@ -288,10 +290,11 @@ const StepForm03 = props => {
 };
 
 StepForm03.propTypes = {
-  backFrom: PropTypes.func,
   formState: PropTypes.object,
-  setFormState: PropTypes.func,
   data: PropTypes.object,
+  backFrom: PropTypes.func,
+  setFormState: PropTypes.func,
+  setFormActive: PropTypes.func,
   pageId: PropTypes.number
 };
 

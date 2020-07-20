@@ -16,8 +16,9 @@ const propTypes = {
 };
 
 function FormStep({ data, id, pageId }) {
-  const [formActive, setFormActive] = useState(1);
+  const [formActive, setFormActive] = useState(2);
   const [formState, setFormState] = useState({
+    is_loan: false,
     nuComponion: [],
     collateral: [
       {
@@ -34,10 +35,7 @@ function FormStep({ data, id, pageId }) {
   });
   data = {
     ...data,
-    form: [
-      { value: 223002, label: 'Thông tin dịch vụ' },
-      { value: 73602, label: 'Form Menu Intro' }
-    ]
+    form: [...data.form, {}]
   };
 
   const nextForm = () => {
@@ -65,7 +63,6 @@ function FormStep({ data, id, pageId }) {
 
   return (
     <section className={`form-step-wapper ${padding} formStep`} id={id}>
-      {console.log(formState)}
       <div className="container">
         <div className="text-center" id="form_step_top">
           <h1>{data.name}</h1>
@@ -99,6 +96,7 @@ function FormStep({ data, id, pageId }) {
           backFrom={backForm}
           formState={formState}
           setFormState={setFormState}
+          setFormActive
           data={data}
           pageId={pageId}
         />

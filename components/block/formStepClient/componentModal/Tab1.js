@@ -1,15 +1,17 @@
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { getDistrictService, searchBranchesService } from '../../../../services/map';
+import { debounce } from 'lodash';
 
 const Tab1 = props => {
   /* eslint-disable no-debugger, no-console */
   const { branchs, setBranchs, provinces, formState, setFormState } = props;
-  const [selectedBranch, setSelectedBranch] = useState('209974');
   const [district, setDistrict] = useState([]);
+  const [selectedBranch, setSelectedBranch] = useState(0);
   const [selectProvince, setSelectProvince] = useState(0);
   const [selectDistrict, setSelectDistrict] = useState(0);
+  const [searchKey, setSearchKey] = useState('');
   const dataProvince = [];
   useEffect(() => {
     for (const province of provinces) {
@@ -19,6 +21,7 @@ const Tab1 = props => {
       });
     }
   }, [dataProvince]);
+
   useEffect(() => {
     const query = {
       districtCity: selectDistrict.value || null,
@@ -29,11 +32,13 @@ const Tab1 = props => {
       setBranchs(res.data);
     });
   }, [selectProvince, selectDistrict]);
+
   const customStyles = {
     menu: () => ({
       zIndex: '999px'
     })
   };
+
   const handleSelectProvince = item => {
     setSelectProvince(item);
     getDistrictService(item.value)
@@ -51,9 +56,11 @@ const Tab1 = props => {
         console.log(err);
       });
   };
+
   const handleSelectDistrict = item => {
     setSelectDistrict(item);
   };
+
   const handleSelect = item => {
     setSelectedBranch(item.id);
     setFormState(() => ({
@@ -63,13 +70,24 @@ const Tab1 = props => {
     }));
   };
 
+  const handleChange = useCallback(
+    debounce(e => {
+      setSearchKey(e);
+    }, 1000),
+    []
+  );
+
   return (
     <div className="block1" data-tabname="name1">
       <div className="col-12">
         <div className="row">
           <div className="col-12 col-sm-6">
             <div className="form-search-focus mb-20">
-              <input type="text" placeholder="Địa điểm" />
+              <input
+                type="text"
+                placeholder="Địa điểm"
+                onChange={event => handleChange(event.target.value)}
+              />
               <button>
                 <i className="icon-search-2"></i>
               </button>
@@ -131,8 +149,8 @@ const Tab1 = props => {
 
 Tab1.propTypes = {
   branchs: PropTypes.array,
-  formState: PropTypes.any,
-  provinces: PropTypes.any,
+  formState: PropTypes.object,
+  provinces: PropTypes.array,
   setBranchs: PropTypes.func,
   setFormState: PropTypes.func
 };

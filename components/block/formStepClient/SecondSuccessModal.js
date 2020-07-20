@@ -34,8 +34,22 @@ const SecondSuccessModal = props => {
       idForm: idForm,
       idPage: pageId
     };
-    console.log(idForm);
     sendMailService(body);
+    closeModal();
+  };
+
+  const formatCurrency = money => {
+    const moneyConvert = `${money}`;
+    if (moneyConvert.length < 16) {
+      return `${money}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+    return 0;
+  };
+
+  const addCurrency = (...moneies) => {
+    return moneies.reduce((sum, money) => {
+      return sum + money;
+    }, 0);
   };
 
   return (
@@ -262,7 +276,15 @@ const SecondSuccessModal = props => {
               <h4 className="file1_title1 file1_title1-type1">
                 <span className="file1_title1_text1">Tổng thu nhập</span>
                 <p className="file1_title1_sum1">
-                  <strong> {formState.num_wife + formState.dif_payee + formState.salary}</strong>{' '}
+                <strong>
+                    {formatCurrency(
+                      addCurrency(
+                        parseInt(formState.salary),
+                        parseInt(formState.partner_pay),
+                        parseInt(formState.dif_payee)
+                      )
+                    )}
+                  </strong>
                   VNĐ/ tháng
                 </p>
               </h4>

@@ -21,7 +21,7 @@ module.exports = withFonts(
           use: {
             loader: 'url-loader',
             options: {
-              limit: 100000
+              limit: 1000000
             }
           }
         });
