@@ -20,24 +20,27 @@ function TableRate({ data, type }) {
             <th>{t('sold_out')}</th>
           </tr>
           {map(data, value => {
-            const valueCurrency = value.currency.split(' ')[0];
-            return (
-              <tr key={value.id}>
-                <td className="td-img">
-                  <img
-                    className="lazyload"
-                    data-src={`/static/currency/${valueCurrency}.png`}
-                    alt="images"
-                    width="24"
-                    importance="low"
-                  />
-                  {value.currency}
-                </td>
-                <td>{rate(value.buy_cash)}</td>
-                <td>{rate(value.buy_transfer)}</td>
-                <td>{rate(value.sell)}</td>
-              </tr>
-            );
+            const valueCurrency = value.currency ? value.currency.split(' ')[0] : '';
+            if (valueCurrency !== '') {
+              return (
+                <tr key={value.id}>
+                  <td className="td-img">
+                    <img
+                      className="lazyload"
+                      data-src={`/static/currency/${valueCurrency}.png`}
+                      alt="images"
+                      width="24"
+                      importance="low"
+                    />
+                    {value.currency}
+                  </td>
+                  <td>{rate(value.buy_cash)}</td>
+                  <td>{rate(value.buy_transfer)}</td>
+                  <td>{rate(value.sell)}</td>
+                </tr>
+              );
+            }
+            return null;
           })}
         </tbody>
       </table>

@@ -12,13 +12,6 @@ const StepForm03 = props => {
   const [checkedProxy, setCheckedProxy] = useState(false);
   const [modalContinue, setModalContinue] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 300,
-      behavior: 'smooth'
-    });
-  }, []);
-
   const showModal = e => {
     e.preventDefault();
     if (checkedProxy) {

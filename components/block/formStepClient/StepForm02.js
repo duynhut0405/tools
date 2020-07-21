@@ -17,12 +17,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
   const [idAsset, setIdAsset] = useState(0);
   const form02 = useRef(null);
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 300,
-      behavior: 'smooth'
-    });
-  }, []);
   const handleChange = event => {
     event.persist();
     setFormState(() => ({
