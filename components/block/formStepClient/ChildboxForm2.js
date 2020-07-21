@@ -4,13 +4,39 @@ import BaseSelect from 'react-select';
 import FixRequiredSelect from './FixRequiredSelect';
 
 const propTypes = {
+  errors: Proptypes.shape({
+    decriptiom: Proptypes.any,
+    profileNumber: Proptypes.any,
+    relaValue: Proptypes.any
+  }),
+  formState: Proptypes.shape({
+    collateral: Proptypes.any
+  }),
+  handleChange: Proptypes.func,
+  item: Proptypes.shape({
+    decription: Proptypes.any,
+    estimate: Proptypes.any,
+    id: Proptypes.any,
+    relaValue: Proptypes.any
+  }),
+  removeItem: Proptypes.func,
   setFormState: Proptypes.func,
-  formState: Proptypes.object,
-  item: Proptypes.object,
-  removeItem: Proptypes.func
+  touched: Proptypes.shape({
+    decriptiom: Proptypes.any,
+    profileNumber: Proptypes.any,
+    relaValue: Proptypes.any
+  })
 };
 
-const ChildboxForm2 = ({ formState, setFormState, item, removeItem }) => {
+const ChildboxForm2 = ({
+  formState,
+  setFormState,
+  item,
+  removeItem,
+  touched,
+  errors,
+  setFieldValue
+}) => {
   const [decription, setDecription] = useState(item.decription);
   const [estimate, setEstimate] = useState(item.estimate);
   const [relaValue, setRelaValue] = useState(item.relaValue);
@@ -91,12 +117,18 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem }) => {
               className="input"
               name="decriptiom"
               type="text"
-              required
+              // required
               defaultValue={decription}
-              onChange={e => setDecription(e.target.value)}
+              onChange={e => {
+                setFieldValue('decriptiom', e.target.value);
+                setDecription(e.target.value);
+              }}
               style={{ position: 'relative !important', opacity: 1 }}
               placeholder="Nhập địa chỉ, diện tích…."
             />
+            {touched.decriptiom && errors.decriptiom && (
+              <p className="red error">{errors.decriptiom}</p>
+            )}
           </div>
           <div className="col-12 col-md-6">
             <h6 className="title1">
@@ -107,13 +139,19 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem }) => {
                 className="input"
                 name="profileNumber"
                 type="text"
-                required
+                // required
                 placeholder="Nhập giá trị"
                 defaultValue={estimate}
-                onChange={e => setEstimate(e.target.value)}
+                onChange={e => {
+                  setFieldValue('profileNumber', e.target.value);
+                  setEstimate(e.target.value);
+                }}
               />
               <span className="text1">VNĐ</span>
             </div>
+            {touched.profileNumber && errors.profileNumber && (
+              <p className="red error">{errors.profileNumber}</p>
+            )}
           </div>
           <div className="col-12 col-md-6">
             <h6 className="title1">
@@ -121,10 +159,15 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem }) => {
             </h6>
             <Select
               options={listPartner}
-              required
               value={relaValue}
-              onChange={e => setRelaValue(e)}
+              onChange={e => {
+                setFieldValue('relaValue', e.target.value);
+                setRelaValue(e);
+              }}
             />
+            {touched.relaValue && errors.relaValue && (
+              <p className="red error">{errors.relaValue}</p>
+            )}
           </div>
         </div>
       </section>
