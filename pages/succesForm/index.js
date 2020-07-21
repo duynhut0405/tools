@@ -8,7 +8,6 @@ const propTypes = {};
 
 function SuccesForm() {
   const router = useRouter();
-  console.log(router);
   return (
     <section className="p-thank1 sec-tb sec-ab-1">
       <Head>

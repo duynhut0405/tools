@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import ChildboxForm2 from './ChildboxForm2';
 
@@ -16,6 +16,13 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
   const [iscollateral, setIsCollateral] = useState(formState.collateral === text03 ? false : true);
   const [idAsset, setIdAsset] = useState(0);
   const form02 = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 300,
+      behavior: 'smooth'
+    });
+  }, []);
   const handleChange = event => {
     event.persist();
     setFormState(() => ({
@@ -37,7 +44,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
   };
 
   return (
-    <section className="sec-t p-form2">
+    <section className="sec-t p-form2" id="featured">
       <div className="container">
         <div className="max750">
           <form autoComplete="on" className="row list-item form-contact c-form1" ref={form02}>

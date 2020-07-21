@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import FirstSuccessModal from './FirstSuccessModal';
 import SecondSuccessModal from './SecondSuccessModal';
@@ -11,6 +11,14 @@ const StepForm03 = props => {
   const [activeAlertInfo, setActiveAlertInfo] = useState(false);
   const [checkedProxy, setCheckedProxy] = useState(false);
   const [modalContinue, setModalContinue] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 300,
+      behavior: 'smooth'
+    });
+  }, []);
+
   const showModal = e => {
     e.preventDefault();
     if (checkedProxy) {

@@ -29,7 +29,6 @@ class FixRequiredSelect extends React.Component {
     const { SelectComponent, required, ...props } = this.props;
     const { isDisabled } = this.props;
     const enableRequired = !isDisabled;
-    console.log(this.props.value);
 
     return (
       <div>

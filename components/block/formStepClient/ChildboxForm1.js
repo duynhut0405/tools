@@ -45,10 +45,7 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem }) => 
         prof_componion: typeProfile
       };
       setFormState({ ...formState, nuComponion: updateItem(object, formState.nuComponion) });
-      console.log(updateItem(object, formState.nuComponion));
-      console.log(object);
     }
-    console.log('ádasd');
   }, [name, relationship, typeProfile]);
 
   const listPartner = [
