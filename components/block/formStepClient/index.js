@@ -18,7 +18,6 @@ const propTypes = {
 function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const [formState, setFormState] = useState({
-    is_loan: false,
     nuComponion: [],
     collateral: [
       {
@@ -28,7 +27,6 @@ function FormStep({ data, id, pageId }) {
         relaValue: null
       }
     ],
-    email: 'quanlamtran@gmail.com',
     partner_pay: 0,
     salary: 0,
     dif_payee: 0

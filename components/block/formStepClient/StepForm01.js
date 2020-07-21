@@ -15,8 +15,16 @@ const propTypes = {
 };
 
 const validationSchema = yup.object().shape({
-  full_name: yup.string().required(),
-  profileType: yup.string().required(),
+  full_name: yup.string().required('Trường bắt buộc nhập'),
+  profileType: yup.string().required('Trường bắt buộc nhập'),
+  is_loan: yup.boolean().required('Trường bắt buộc nhập'),
+  sex: yup.string().required('Trường bắt buộc nhập'),
+  city_address: yup.string().required('Trường bắt buộc nhập'),
+  current_home: yup.string().required('Trường bắt buộc nhập'),
+  status_home: yup.string().required('Trường bắt buộc nhập'),
+  companionName: yup.string().required('Trường bắt buộc nhập'),
+  birthday: yup.string().required('Trường bắt buộc nhập'),
+  phone: yup.string().required('Trường bắt buộc nhập'),
   email: yup
     .string()
     .required('Trường bắt buộc nhập')
@@ -56,13 +64,6 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
       [event.target.name]: event.target.value
     }));
   };
-  console.log(formState);
-  const summitForm01 = () => {
-    if (form01.current.reportValidity()) {
-      event.preventDefault();
-      nextForm();
-    }
-  };
 
   const removeComponion = indexItem => {
     const listCompo = filter(formState.nuComponion, (value, index) => index !== indexItem);
@@ -83,14 +84,40 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
   return (
     <Formik
       initialValues={{
-        profileType: '',
-        full_name: '',
-        profileNumber: '',
-        email: ''
+        profileType: formState.profileType ? formState.profileType : '',
+        full_name: formState.full_name ? formState.full_name : '',
+        profileNumber: formState.profileNumber ? formState.profileNumber : '',
+        email: formState.email ? formState.email : '',
+        is_loan: formState.is_loan ? formState.is_loan : '',
+        sex: formState.sex ? formState.sex : '',
+        city_address: formState.city_address ? formState.city_address : '',
+        current_home: formState.current_home ? formState.current_home : '',
+        status_home: formState.status_home ? formState.status_home : '',
+        companionName: formState.companionName ? formState.companionName : '',
+        birthday: formState.birthday ? formState.birthday : '',
+        phone: formState.phone ? formState.phone : ''
       }}
       onSubmit={(values, actions) => {
-        console.log(values);
-        summitForm01();
+        setFormState(preState => ({
+          ...preState,
+          full_name: values.full_name,
+          profileType: values.profileType,
+          email: values.email,
+          is_loan: values.is_loan,
+          sex: values.sex,
+          address: {
+            ...preState.address,
+            city_address: values.city_address,
+            current_home: values.current_home,
+            status_home: values.status_home
+          },
+          companion: {
+            name: values.companionName
+          },
+          birthday: values.birthday,
+          phone: values.phone
+        }));
+        nextForm();
       }}
       validationSchema={validationSchema}
     >
@@ -114,9 +141,7 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                       type="radio"
                       name="is_loan"
                       value={true}
-                      required
-                      defaultChecked={formState.is_loan ? true : false}
-                      onClick={e => handleChange(e)}
+                      onClick={formikProps.handleChange('is_loan')}
                     />
                     <span />
                   </label>
@@ -125,13 +150,14 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     <input
                       type="radio"
                       name="is_loan"
-                      required={false}
                       value={false}
-                      defaultChecked={!formState.is_loan ? true : false}
-                      onClick={e => handleChange(e)}
+                      onClick={formikProps.handleChange('is_loan')}
                     />
                     <span />
                   </label>
+                  {formikProps.touched['is_loan'] && formikProps.errors['is_loan'] && (
+                    <p className="red error">{formikProps.errors['is_loan']}</p>
+                  )}
                 </div>
                 <div className="col-12 form-control">
                   <h6 className="title1">
@@ -145,6 +171,9 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     defaultValue={formState.full_name}
                     onChange={formikProps.handleChange('full_name')}
                   />
+                  {formikProps.touched['full_name'] && formikProps.errors['full_name'] && (
+                    <p className="red error">{formikProps.errors['full_name']}</p>
+                  )}
                 </div>
                 <div className="col-12">
                   <h6 className="title1">
@@ -229,9 +258,8 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     <input
                       type="radio"
                       name="sex"
-                      required
                       defaultValue={'male'}
-                      onClick={e => handleChange(e)}
+                      onClick={formikProps.handleChange('sex')}
                       defaultChecked={formState.sex === 'male' ? true : false}
                     />
                     <span />
@@ -241,13 +269,15 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     <input
                       type="radio"
                       name="sex"
-                      required
                       defaultValue={'female'}
                       defaultChecked={!formState.sex === 'male' ? true : false}
-                      onClick={e => handleChange(e)}
+                      onClick={formikProps.handleChange('sex')}
                     />
                     <span />
                   </label>
+                  {formikProps.touched['sex'] && formikProps.errors['sex'] && (
+                    <p className="red error">{formikProps.errors['sex']}</p>
+                  )}
                 </div>
                 <div className="col-12">
                   <h6 className="title1">
@@ -258,17 +288,13 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                       <DatePicker
                         placeholderText={'dd/MM/yyyy'}
                         autoComplete="off"
-                        required
-                        selected={formState.birthday}
+                        selected={formikProps.values.birthday}
                         name={'birthday'}
-                        onChange={e =>
-                          setFormState({
-                            ...formState,
-                            birthday: e
-                          })
-                        }
+                        onChange={e => formikProps.setFieldValue('birthday', e)}
                       ></DatePicker>
-                      <p className="red error">Ngày tháng không hợp lệ</p>
+                      {formikProps.touched['birthday'] && formikProps.errors['birthday'] && (
+                        <p className="red error">{formikProps.errors['birthday']}</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -283,8 +309,11 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     required
                     placeholder="Số điện thoại"
                     defaultValue={formState.phone}
-                    onChange={e => handleChange(e)}
+                    onChange={formikProps.handleChange('phone')}
                   />
+                  {formikProps.touched['phone'] && formikProps.errors['phone'] && (
+                    <p className="red error">{formikProps.errors['phone']}</p>
+                  )}
                 </div>
                 <div className="col-12">
                   <h6 className="title1">
@@ -315,19 +344,13 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                   <input
                     className="input"
                     type="text"
-                    required
                     placeholder="Chọn Tỉnh/ Thành phố"
                     defaultValue={formState.address ? formState.address.city_address : null}
-                    onChange={e =>
-                      setFormState({
-                        ...formState,
-                        address: {
-                          ...formState.address,
-                          city_address: e.target.value
-                        }
-                      })
-                    }
+                    onChange={formikProps.handleChange('city_address')}
                   />
+                  {formikProps.touched['city_address'] && formikProps.errors['city_address'] && (
+                    <p className="red error">{formikProps.errors['city_address']}</p>
+                  )}
                 </div>
                 <div className="col-12 col-md-6">
                   <h6 className="title1">
@@ -340,16 +363,11 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     required
                     placeholder="Nhập địa chỉ khách hàng đang sinh sống"
                     defaultValue={formState.address ? formState.address.current_home : null}
-                    onChange={e =>
-                      setFormState({
-                        ...formState,
-                        address: {
-                          ...formState.address,
-                          current_home: e.target.value
-                        }
-                      })
-                    }
+                    onChange={formikProps.handleChange('current_home')}
                   />
+                  {formikProps.touched['current_home'] && formikProps.errors['current_home'] && (
+                    <p className="red error">{formikProps.errors['current_home']}</p>
+                  )}
                 </div>
                 <div className="col-12 col-md-6">
                   <h6 className="title1">
@@ -362,16 +380,11 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     required
                     placeholder="Chọn tình trạng nơi ở"
                     defaultValue={formState.address ? formState.address.status_home : null}
-                    onChange={e =>
-                      setFormState({
-                        ...formState,
-                        address: {
-                          ...formState.address,
-                          status_home: e.target.value
-                        }
-                      })
-                    }
+                    onChange={formikProps.handleChange('status_home')}
                   />
+                  {formikProps.touched['status_home'] && formikProps.errors['status_home'] && (
+                    <p className="red error">{formikProps.errors['status_home']}</p>
+                  )}
                 </div>
                 <div className="col-12 c-form1__title1 c-tabs-btn-js">
                   <div className="text-center">
@@ -394,17 +407,16 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                         required
                         placeholder="Nhập đầy đủ họ tên vợ/ chồng"
                         defaultValue={formState.companion ? formState.companion.name : null}
-                        onChange={e => {
-                          setFormState({
-                            ...formState,
-                            companion: { ...formState.companion, name: e.target.value }
-                          });
-                        }}
+                        onChange={formikProps.handleChange('companionName')}
                       />
+                      {formikProps.touched['companionName'] &&
+                        formikProps.errors['companionName'] && (
+                          <p className="red error">{formikProps.errors['companionName']}</p>
+                        )}
                     </div>
                     <div className="col-12 col-md-12">
                       <h6 className="title1">
-                        Mối quan hệ (<span className="red">*</span>)
+                        (<span className="red">*</span>)
                       </h6>
                       <Select
                         options={listPartner}
@@ -468,7 +480,6 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
                     type="button"
                     className="btn"
                     onClick={() => {
-                      summitForm01();
                       formikProps.handleSubmit();
                     }}
                   >
