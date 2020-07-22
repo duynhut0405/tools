@@ -20,28 +20,28 @@ const FirstSuccessModal = props => {
   const [provinces, setProvinces] = useState([]);
   const [selected, setSelected] = useState('name1');
 
-  // useEffect(() => {
-  //   const query = {
-  //     districtCity: null,
-  //     networkCategory: 'transaction',
-  //     provinceCity: null
-  //   };
-  //   searchBranchesService(query)
-  //     .then(res => {
-  //       setBranchs(res.data);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
+  useEffect(() => {
+    const query = {
+      districtCity: null,
+      networkCategory: 'transaction',
+      provinceCity: null
+    };
+    searchBranchesService(query)
+      .then(res => {
+        setBranchs(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
-  //   getProvinceService()
-  //     .then(res => {
-  //       setProvinces(res.data);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }, []);
+    getProvinceService()
+      .then(res => {
+        setProvinces(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   const handleSelect = e => {
     setSelected(e.target.value);

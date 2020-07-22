@@ -26,10 +26,10 @@ function FormStep({ data, id, pageId }) {
         estimate: null,
         relaValue: null
       }
-    ]
-    // partner_pay: 0,
-    // salary: 0,
-    // dif_payee: 0
+    ],
+    partner_pay: 0,
+    salary: 0,
+    dif_payee: 0
   });
 
   const nextForm = () => {
