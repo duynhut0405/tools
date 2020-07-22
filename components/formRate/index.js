@@ -18,11 +18,12 @@ function FormRate({ data, interestRate }) {
   const [currencyTo, setcurrencyTo] = useState('VND');
 
   const arrNotUSD = data.exchangeRateDetail
-    ? data.exchangeRateDetail.filter(item => item.currency.split(' ')[0] !== 'USD')
+    ? data.exchangeRateDetail.filter(item => item.currency && item.currency.split(' ')[0] !== 'USD')
     : [];
   const objUSD = data.exchangeRateDetail
     ? data.exchangeRateDetail.find(
-        item => (item.currency.split(' ')[0] === 'USD' && item.currency.sell) !== null
+        item =>
+          (item.currency && item.currency.split(' ')[0] === 'USD' && item.currency.sell) !== null
       )
     : {};
 

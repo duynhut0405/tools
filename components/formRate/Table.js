@@ -19,8 +19,9 @@ function TableRate({ data, type }) {
             <th>{t('transfer')}</th>
             <th>{t('sold_out')}</th>
           </tr>
+
           {map(data, value => {
-            const valueCurrency = value.currency.split(' ')[0];
+            const valueCurrency = value.currency ? value.currency.split(' ')[0] : '';
             return (
               <tr key={value.id}>
                 <td className="td-img">
