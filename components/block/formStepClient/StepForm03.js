@@ -79,10 +79,7 @@ const StepForm03 = props => {
       .number()
       .required('Trường bắt buộc nhập')
       .max(9999999999999999, 'Không được quá 12 số'),
-    salary: yup
-      .number()
-      .required('Trường bắt buộc nhập')
-      .max(9999999999999999, 'Không được quá 12 số'),
+    salary: yup.number().max(9999999999999999, 'Không được quá 12 số'),
     partner_pay: yup.number().max(9999999999999999, 'Không được quá 12 số'),
     dif_payee: yup.number().max(9999999999999999, 'Không được quá 12 số')
   });
@@ -95,13 +92,19 @@ const StepForm03 = props => {
         salary: formState.salary ? formState.salary : ''
       }}
       onSubmit={(values, actions) => {
+        e.preventDefault();
         setFormState(preState => ({
           ...preState,
           return_monney: values.return_monney,
           debt: values.debt,
           salary: values.salary
         }));
-        showModal();
+        if (checkedProxy) {
+          setActive(!active);
+          setActiveAlertInfo(false);
+        } else {
+          setActiveAlertInfo(true);
+        }
       }}
       validationSchema={validationSchema}
     >
@@ -190,12 +193,12 @@ const StepForm03 = props => {
                   <h6>Người đồng trả nợ/ Thu nhập hàng tháng của Người đồng trả nợ</h6>
                   <label className="checkbox">
                     Vợ/ chồng của Khách hàng
-                    <input type="checkbox" name="payee" required defaultValue={0} />
+                    <input type="checkbox" name="payee" defaultValue={0} />
                     <span />
                   </label>
                   <label className="checkbox">
                     Đồng trả nợ khác
-                    <input type="checkbox" name="payee" required defaultValue={1} />
+                    <input type="checkbox" name="payee" defaultValue={1} />
                   </label>
                 </div>
                 <div className="col-12 form-control">
@@ -210,8 +213,8 @@ const StepForm03 = props => {
                       onChange={formikProps.handleChange('partner_pay')}
                     />
                     <span className="text1">VNĐ/ tháng</span>
-                    {formikProps.touched['salary'] && formikProps.errors['salary'] && (
-                      <p className="red error">{formikProps.errors['salary']}</p>
+                    {formikProps.touched['partner_pay'] && formikProps.errors['partner_pay'] && (
+                      <p className="red error">{formikProps.errors['partner_pay']}</p>
                     )}
                     <span />
                     <span className="text1">VNĐ/ tháng</span>
@@ -234,6 +237,7 @@ const StepForm03 = props => {
                 <div className="col-12">
                   <div className="c-form1__confirm">
                     <span className="confirm_text1">Tổng thu nhập</span>
+                    {console.log(formState.salary)}
                     <p className="confirm_sum1">
                       <strong>
                         {formatCurrency(
@@ -303,6 +307,7 @@ const StepForm03 = props => {
                     </button>
                     <button
                       className="btn c-form1-btn1-js"
+                      type="button"
                       onClick={() => {
                         formikProps.handleSubmit();
                       }}

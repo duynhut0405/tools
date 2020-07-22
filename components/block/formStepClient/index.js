@@ -26,10 +26,10 @@ function FormStep({ data, id, pageId }) {
         estimate: null,
         relaValue: null
       }
-    ],
-    partner_pay: 0,
-    salary: 0,
-    dif_payee: 0
+    ]
+    // partner_pay: 0,
+    // salary: 0,
+    // dif_payee: 0
   });
 
   const nextForm = () => {
@@ -59,6 +59,7 @@ function FormStep({ data, id, pageId }) {
     <section className={`form-step-wapper ${padding} formStep`} id={id}>
       <div className="container">
         <div className="text-center" id="form_step_top">
+          {console.log(formState)}
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
         </div>
