@@ -16,7 +16,7 @@ const propTypes = {
   id: Proptypes.number
 };
 
-function FormStep({ data, id, pageId }) {
+function FormStep({ data, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const [formState, setFormState] = useState({
     nuComponion: [],
@@ -36,7 +36,6 @@ function FormStep({ data, id, pageId }) {
 
   const router = useRouter();
 
-  console.log(router.query.link);
   const nextForm = () => {
     if (formActive < 3) {
       setFormActive(formActive + 1);
@@ -61,10 +60,9 @@ function FormStep({ data, id, pageId }) {
   }
 
   return (
-    <section className={`form-step-wapper ${padding} formStep`} id={id}>
+    <section className={`form-step-wapper ${padding} formStep`}>
       <div className="container">
         <div className="text-center" id="form_step_top">
-          {console.log(formState)}
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
         </div>
