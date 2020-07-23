@@ -70,6 +70,17 @@ const StepForm03 = props => {
     }, 0);
   };
 
+  function onScroll() {
+    const elmnt = document.getElementById('step03');
+    if (elmnt !== null) {
+      elmnt.scrollIntoView();
+    }
+  }
+
+  useEffect(() => {
+    onScroll();
+  }, []);
+
   const validationSchema = yup.object().shape({
     return_monney: yup
       .number()
@@ -102,7 +113,7 @@ const StepForm03 = props => {
       validationSchema={validationSchema}
     >
       {formikProps => (
-        <section className="sec-t p-form2">
+        <section className="sec-t p-form2" id="step03">
           <div className="container">
             <div className="max750">
               <form autoComplete="on" className="row list-item form-contact c-form1" ref={form01}>

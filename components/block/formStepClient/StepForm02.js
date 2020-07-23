@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import ChildboxForm2 from './ChildboxForm2';
 import { Formik } from 'formik';
@@ -59,6 +59,17 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
       [event.target.name]: event.target.value
     }));
   };
+
+  function onScroll() {
+    const elmnt = document.getElementById('featured');
+    if (elmnt !== null) {
+      elmnt.scrollIntoView();
+    }
+  }
+
+  useEffect(() => {
+    onScroll();
+  }, []);
 
   const summitForm02 = () => {
     if (form02.current.reportValidity()) {
@@ -315,13 +326,13 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         <span />
                       </label>
                     </div>
+
                     <div className="col-12 p-form2__radio1">
-                      <div className="" style={{ width: '100%' }}>
+                      <label className="radio p-collateral-js" style={{ width: '100%' }}>
                         Bất động sản khác
                         <input
                           type="radio"
                           name="collateral"
-                          // required
                           defaultChecked={iscollateral}
                           onClick={() => {
                             setIsCollateral(true);
@@ -340,6 +351,8 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                           }}
                         />
                         <span />
+                      </label>
+                      <div className="row p-form2__block1" style={{ display: 'block' }}>
                         <div className="row p-form2__block1">
                           {iscollateral && (
                             <div className="c-add-relationship-js">
@@ -396,8 +409,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         className="btn"
                         onClick={() => {
                           handleSubmit();
-                          console.log(iscollateral);
-                          console.log(formikProps.values);
                         }}
                       >
                         Tiếp tục
