@@ -31,6 +31,7 @@ import { ListDowloadFIle, ListDowloadVideo } from '../common/download';
 import Transaction from '../transaction';
 import { Contact, DowloadCategory } from '../common';
 import FormStep from '../block/formStep';
+import FormStepClient from '../block/formStepClient';
 import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import NewCard from '../NewCard';
@@ -74,6 +75,15 @@ function BlockRender({ data, pageId }) {
                         optionWidth={JSON.parse(values.content).optionWidth}
                         data={JSON.parse(values.content)}
                         key={index}
+                        id={values.id}
+                      />
+                    );
+                  case 'FormStepClient':
+                    return (
+                      <FormStepClient
+                        key={index}
+                        pageId={pageId}
+                        data={JSON.parse(values.content)}
                         id={values.id}
                       />
                     );

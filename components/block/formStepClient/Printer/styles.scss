@@ -1,0 +1,30 @@
+.contentModal {
+  h5 {
+    margin-bottom: 10px;
+  }
+
+  .file1 {
+    padding: 100px;
+    font-family: 'Times New Roman', Times, serif;
+
+    &_logo1 {
+      max-width: 100px;
+    }
+  }
+
+  .sec1 {
+    text-align: center;
+  }
+
+  .list1 {
+    &_data1 {
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+
+  .author1 {
+    margin-left: auto;
+    text-align: center;
+  }
+}

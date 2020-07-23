@@ -22,7 +22,7 @@ module.exports = withPWA(
             use: {
               loader: 'url-loader',
               options: {
-                limit: 100000
+                limit: 1000000
               }
             }
           });
@@ -39,7 +39,8 @@ module.exports = withPWA(
           BASE_URL: 'https://mbbank3.mangoads.com.vn:8443',
           MB_URL: 'https://api2.vietstock.vn/data/stocktradinginfo',
           MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api/fe',
-          ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe'
+          ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe',
+          FRONTEND_URL: 'http://mbbank5.mangoads.com.vn/'
         },
         exportTrailingSlash: true,
         pwa: {
