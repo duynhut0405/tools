@@ -66,7 +66,7 @@ const Tab1 = props => {
     setFormState(() => ({
       ...formState,
       address_name: item.address_name,
-      address: item.address
+      address_branch: item.address
     }));
   };
 

@@ -20,6 +20,18 @@ const SecondSuccessModal = props => {
     }
   });
 
+  const convertContent = value => {
+    let result = '';
+    map(value, item => {
+      for (const key in item) {
+        if (item.hasOwnProperty(key)) {
+          result += `<p>${item[key]}</p>`;
+        }
+      }
+    });
+    return result;
+  };
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current
   });
@@ -29,7 +41,7 @@ const SecondSuccessModal = props => {
     const idForm = data.form[0] ? data.form[0].value : 399952;
     const body = {
       content: JSON.stringify(formState),
-      contentMail: '',
+      contentMail: JSON.stringify(formState),
       email: email,
       idForm: idForm,
       idPage: pageId

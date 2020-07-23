@@ -7,6 +7,7 @@ import FixRequiredSelect from './FixRequiredSelect';
 import { filter } from 'lodash';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import moment from 'moment';
 
 const propTypes = {
   nextForm: Proptypes.func,
@@ -115,7 +116,11 @@ const StepForm01 = ({ nextForm, setFormState, formState }) => {
             name: values.companionName
           },
           birthday: values.birthday,
-          phone: values.phone
+          phone: values.phone,
+          link: `${process.env.FRONTEND_URL}page/trang-test-new?link=${values.phone}/${moment(
+            new Date(),
+            'DD/MM/YYYY'
+          ).format()}`
         }));
         nextForm();
       }}

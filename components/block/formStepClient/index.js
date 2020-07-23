@@ -8,6 +8,7 @@ import StepForm01 from './StepForm01';
 import StepForm02 from './StepForm02';
 import StepForm03 from './StepForm03';
 import Proptypes from 'prop-types';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   data: Proptypes.object,
@@ -29,9 +30,13 @@ function FormStep({ data, id, pageId }) {
     ],
     partner_pay: 0,
     salary: 0,
-    dif_payee: 0
+    dif_payee: 0,
+    link: ''
   });
 
+  const router = useRouter();
+
+  console.log(router.query.link);
   const nextForm = () => {
     if (formActive < 3) {
       setFormActive(formActive + 1);
