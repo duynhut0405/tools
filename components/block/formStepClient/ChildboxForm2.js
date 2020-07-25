@@ -161,7 +161,7 @@ const ChildboxForm2 = ({
               options={listPartner}
               value={relaValue}
               onChange={e => {
-                setFieldValue('relaValue', e.target.value);
+                setFieldValue('relaValue', e.value);
                 setRelaValue(e);
               }}
             />

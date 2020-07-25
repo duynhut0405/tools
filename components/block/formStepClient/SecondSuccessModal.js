@@ -88,7 +88,7 @@ const SecondSuccessModal = props => {
               </div>
 
               <section className="sec1">
-                <h3 className="sec1_title1">Cộng Hoà xã hội chủ nghĩa việt nam</h3>
+                <h3 className="sec1_title1">Cộng Hoà xã hội chủ nghĩa Việt Nam</h3>
                 <p>Độc lập - Tự do - Hạnh phúc</p>
               </section>
               <a className="btn" onClick={handlePrint}>
