@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import find from 'lodash/find';
 import Step from './Step';
 // import FormWapper from './FormWapper';
@@ -8,7 +8,7 @@ import StepForm01 from './StepForm01';
 import StepForm02 from './StepForm02';
 import StepForm03 from './StepForm03';
 import Proptypes from 'prop-types';
-import { useRouter } from 'next/router';
+import { getProvinceService } from '../../../services/map';
 
 const propTypes = {
   data: Proptypes.object,
@@ -16,9 +16,11 @@ const propTypes = {
   id: Proptypes.number
 };
 
-function FormStep({ data, pageId }) {
+function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const [formState, setFormState] = useState({
+    full_name: null,
+    profileType: 'Chứng minh nhân dân',
     nuComponion: [],
     collateral: [
       {
@@ -30,11 +32,22 @@ function FormStep({ data, pageId }) {
     ],
     partner_pay: 0,
     salary: 0,
-    dif_payee: 0,
-    link: ''
+    dif_payee: 0
   });
+  const [provinces, setProvinces] = useState([]);
 
-  const router = useRouter();
+  useEffect(() => {
+    getProvinceService()
+      .then(res => {
+        return res.data.map(value => {
+          return { label: value.name, value: value };
+        });
+      })
+      .then(res => {
+        setProvinces(res);
+      })
+      .catch(error => {});
+  }, []);
 
   const nextForm = () => {
     if (formActive < 3) {
@@ -60,9 +73,10 @@ function FormStep({ data, pageId }) {
   }
 
   return (
-    <section className={`form-step-wapper ${padding} formStep`}>
+    <section className={`form-step-wapper ${padding} formStep`} id={id}>
       <div className="container">
         <div className="text-center" id="form_step_top">
+          {console.log(formState)}
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
         </div>
@@ -73,7 +87,12 @@ function FormStep({ data, pageId }) {
         </React.Fragment>
       )}
       {formActive === 1 && (
-        <StepForm01 setFormState={setFormState} formState={formState} nextForm={nextForm} />
+        <StepForm01
+          setFormState={setFormState}
+          formState={formState}
+          nextForm={nextForm}
+          provinces={provinces}
+        />
       )}
       {formActive === 2 && (
         <StepForm02

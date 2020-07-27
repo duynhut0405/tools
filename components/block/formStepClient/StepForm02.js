@@ -13,11 +13,13 @@ const propTypes = {
 
 const validationSchema = yup.object().shape({
   value_loan: yup
-    .string()
-    .required('Trường bắt buộc nhập')
-    .max(12, 'Tối đa 12 số'),
+    .number()
+    .min(125000000, 'Gía trị nhà đất không được nhỏ hơn 125 triệu')
+    .max(999999999999, 'Tối đa 12 số')
+    .required('Trường bắt buộc nhập'),
   suggest_monney: yup
     .number()
+
     .required('Trường bắt buộc nhập')
     .when('value_loan', value_loan => {
       const msg =
@@ -25,23 +27,25 @@ const validationSchema = yup.object().shape({
       return yup
         .number()
         .required('Trường bắt buộc nhập')
+        .min(100000000, 'Chưa phù hợp quy định MB, Số tiền tối thiểu 100 triệu đồng')
         .max(parseInt((value_loan * 80) / 100), msg);
       // .test('len', 'Tối đa 12 số', val => val.toString().length <= 12);
     }),
   purpose_loan: yup.string().required('Trường bắt buộc'),
-  isCollateral: yup.boolean(),
-  decriptiom: yup.string().when('isCollateral', {
-    is: true,
-    then: yup.string().required('Trường bắt buộc nhập')
-  }),
-  profileNumber: yup.string().when('isCollateral', {
-    is: true,
-    then: yup.string().required('Trường bắt buộc nhập')
-  }),
-  relaValue: yup.string().when('isCollateral', {
-    is: true,
-    then: yup.string().required('Trường bắt buộc nhập')
-  })
+  is_future: yup.string().required('Trường bắt buộc')
+  // isCollateral: yup.boolean(),
+  // decriptiom: yup.string().when('isCollateral', {
+  //   is: true,
+  //   then: yup.string().required('Trường bắt buộc nhập')
+  // }),
+  // profileNumber: yup.string().when('isCollateral', {
+  //   is: true,
+  //   then: yup.string().required('Trường bắt buộc nhập')
+  // }),
+  // relaValue: yup.string().when('isCollateral', {
+  //   is: true,
+  //   then: yup.string().required('Trường bắt buộc nhập')
+  // })
 });
 
 // const text01 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
@@ -49,7 +53,7 @@ const validationSchema = yup.object().shape({
 const text03 = 'Tài sản hình thành từ vốn vay';
 const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
   const [iscollateral, setIsCollateral] = useState(formState.collateral === text03 ? false : true);
-  const [idAsset, setIdAsset] = useState(0);
+  const [idAsset, setIdAsset] = useState(1);
   const form02 = useRef(null);
 
   const handleChangeCustom = event => {
@@ -121,7 +125,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         <input
                           type="radio"
                           name="purpose_loan"
-                          // required
                           defaultChecked={formState.type_purpose === 2 ? true : false}
                           onClick={() =>
                             setFormState({
@@ -139,7 +142,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 <input
                                   type="radio"
                                   name="test1"
-                                  // required
                                   defaultChecked={
                                     formState.purpose_loan ===
                                     'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
@@ -253,6 +255,48 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                       <p className="red error">{errors.purpose_loan}</p>
                     )}
                   </div>
+                  <div className="col-12">
+                    <h6 className="title1">
+                      Trang bị nội thất (<span className="red">*</span>)
+                    </h6>
+                    <label className="radio">
+                      Có
+                      <input
+                        type="radio"
+                        name="is_future"
+                        value={formState.is_future === 'true' ? true : false}
+                        defaultChecked={formState.is_future === 'true' ? true : false}
+                        onClick={() => {
+                          setFieldValue('is_future', 'true');
+                          setFormState({
+                            ...formState,
+                            is_future: 'true'
+                          });
+                        }}
+                      />
+                      <span />
+                    </label>
+                    <label className="radio">
+                      Không
+                      <input
+                        type="radio"
+                        name="is_future"
+                        value={formState.is_future === 'false' ? true : false}
+                        defaultChecked={formState.is_future === 'false' ? true : false}
+                        onClick={() => {
+                          setFieldValue('is_future', 'false');
+                          setFormState({
+                            ...formState,
+                            is_future: 'false'
+                          });
+                        }}
+                      />
+                      <span />
+                    </label>
+                    {formikProps.touched.is_future && formikProps.errors.is_future && (
+                      <p className="red error">{formikProps.errors.is_future}</p>
+                    )}
+                  </div>
                   <div className="col-12 form-control">
                     <h6 className="title1">
                       Giá trị nhà đất mua/ Chi phí xây/ sửa chữa/ trang bị nội thất (
@@ -263,7 +307,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         className="input"
                         name="value_loan"
                         type="number"
-                        // required
                         placeholder="Nhập giá trị"
                         defaultValue={formState.value_loan}
                         onChange={e => {
@@ -286,7 +329,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         className="input"
                         name="suggest_monney"
                         type="number"
-                        // required
                         placeholder="Nhập giá trị"
                         defaultValue={formState.suggest_monney}
                         onChange={e => {
@@ -310,7 +352,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         <input
                           type="radio"
                           name="collateral"
-                          // required
                           defaultChecked={
                             formState.collateral === 'Tài sản hình thành từ vốn vay' ? true : false
                           }
@@ -373,19 +414,21 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 className="c-form1__link1 c-link-add-form-js"
                                 onClick={e => {
                                   e.preventDefault();
-                                  setFormState({
-                                    ...formState,
-                                    collateral: [
-                                      ...formState.collateral,
-                                      {
-                                        id: idAsset,
-                                        decription: null,
-                                        estimate: null,
-                                        relaValue: null
-                                      }
-                                    ]
-                                  });
-                                  setIdAsset(idAsset + 1);
+                                  if (idAsset < 5) {
+                                    setFormState({
+                                      ...formState,
+                                      collateral: [
+                                        ...formState.collateral,
+                                        {
+                                          id: idAsset,
+                                          decription: null,
+                                          estimate: null,
+                                          relaValue: null
+                                        }
+                                      ]
+                                    });
+                                    setIdAsset(idAsset + 1);
+                                  }
                                 }}
                               >
                                 Thêm tài sản đảm bảo
@@ -408,6 +451,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         type="button"
                         className="btn"
                         onClick={() => {
+                          console.log(formikProps);
                           handleSubmit();
                         }}
                       >
