@@ -12,6 +12,7 @@ const StepForm03 = props => {
   const form01 = useRef(null);
   const [active, setActive] = useState(false);
   const [activeAlertInfo, setActiveAlertInfo] = useState(false);
+  const [hide01, setHide01] = useState(false);
   const [checkedProxy, setCheckedProxy] = useState(false);
   const [modalContinue, setModalContinue] = useState(false);
 
@@ -82,15 +83,12 @@ const StepForm03 = props => {
   }, []);
 
   const validationSchema = yup.object().shape({
-    return_monney: yup
+    return_monney: yup.number().max(9999999999999999, 'Tối đa 12 số'),
+    debt: yup.number().max(9999999999999999, 'Tối đa 12 số'),
+    salary: yup
       .number()
       .max(9999999999999999, 'Tối đa 12 số')
       .required('Trường bắt buộc nhập'),
-    debt: yup
-      .number()
-      .max(9999999999999999, 'Tối đa 12 số')
-      .required('Trường bắt buộc nhập'),
-    salary: yup.number().max(9999999999999999, 'Tối đa 12 số'),
     partner_pay: yup.number().max(9999999999999999, 'Tối đa 12 số'),
     dif_payee: yup.number().max(9999999999999999, 'Tối đa 12 số')
   });
@@ -123,58 +121,65 @@ const StepForm03 = props => {
                   </div>
                 </div>
                 <div className="col-12 c-form1__title1 c-tabs-btn-js">
-                  <div className="text-center">
+                  <div
+                    className="text-center"
+                    onClick={() => {
+                      setHide01(!hide01);
+                    }}
+                  >
                     <h3 className="ctext mg-0 pt-10 pb-10 bg-1 undefined">
                       Thông tin các khoản vay hiện tại của Khách hàng và người đồng trả nợ{' '}
                       <i className="icon icon-arrow-1 icon-up-js" />
                     </h3>
                   </div>
                 </div>
-                <div className="col-12 c-tabs-js">
-                  <div className="row">
-                    <div className="col-12 form-control">
-                      <h6 className="title1">Dư nợ tại các Tổ chức tín dụng</h6>
-                      <div className="c-form1__control1">
-                        <input
-                          className="input"
-                          type="number"
-                          name="debt"
-                          required
-                          defaultValue={formState.debt ? formState.debt : ''}
-                          onChange={e => {
-                            handleChange(e);
-                            formikProps.setFieldValue('debt', e.target.value);
-                          }}
-                        />
-                        {formikProps.touched['debt'] && formikProps.errors['debt'] && (
-                          <p className="red error">{formikProps.errors['debt']}</p>
-                        )}
-                        <span className="text1">VNĐ</span>
-                      </div>
-                    </div>
-                    <div className="col-12 form-control">
-                      <h6 className="title1">Số tiền trả nợ hàng tháng</h6>
-                      <div className="c-form1__control1">
-                        <input
-                          className="input"
-                          type="number"
-                          name="return_monney"
-                          required
-                          defaultValue={formState.return_monney ? formState.return_monney : ''}
-                          onChange={e => {
-                            handleChange(e);
-                            formikProps.setFieldValue('return_monney', e.target.value);
-                          }}
-                        />
-                        <span className="text1">VNĐ</span>
-                        {formikProps.touched['return_monney'] &&
-                          formikProps.errors['return_monney'] && (
-                            <p className="red error">{formikProps.errors['return_monney']}</p>
+                {hide01 && (
+                  <div className="col-12 c-tabs-js">
+                    <div className="row">
+                      <div className="col-12 form-control">
+                        <h6 className="title1">Dư nợ tại các Tổ chức tín dụng</h6>
+                        <div className="c-form1__control1">
+                          <input
+                            className="input"
+                            type="number"
+                            name="debt"
+                            required
+                            defaultValue={formState.debt ? formState.debt : ''}
+                            onChange={e => {
+                              handleChange(e);
+                              formikProps.setFieldValue('debt', e.target.value);
+                            }}
+                          />
+                          {formikProps.touched['debt'] && formikProps.errors['debt'] && (
+                            <p className="red error">{formikProps.errors['debt']}</p>
                           )}
+                          <span className="text1">VNĐ</span>
+                        </div>
+                      </div>
+                      <div className="col-12 form-control">
+                        <h6 className="title1">Số tiền trả nợ hàng tháng</h6>
+                        <div className="c-form1__control1">
+                          <input
+                            className="input"
+                            type="number"
+                            name="return_monney"
+                            required
+                            defaultValue={formState.return_monney ? formState.return_monney : ''}
+                            onChange={e => {
+                              handleChange(e);
+                              formikProps.setFieldValue('return_monney', e.target.value);
+                            }}
+                          />
+                          <span className="text1">VNĐ</span>
+                          {formikProps.touched['return_monney'] &&
+                            formikProps.errors['return_monney'] && (
+                              <p className="red error">{formikProps.errors['return_monney']}</p>
+                            )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
                 <div className="col-12">
                   <div className="text-center">
                     <h3 className="ctext mg-0 pt-10 pb-10 bg-1 undefined">
@@ -202,58 +207,63 @@ const StepForm03 = props => {
                     )}
                   </div>
                 </div>
-                <div className="col-12 c-form1__checkboxs">
-                  <h6>Người đồng trả nợ/ Thu nhập hàng tháng của Người đồng trả nợ</h6>
-                  <label className="checkbox">
-                    Vợ/ chồng của Khách hàng
-                    <input type="checkbox" name="payee" defaultValue={0} />
-                    <span />
-                  </label>
-                  <label className="checkbox">
-                    Đồng trả nợ khác
-                    <input type="checkbox" name="payee" defaultValue={1} />
-                    <span />
-                  </label>
-                </div>
-                <div className="col-12 form-control">
-                  <h6 className="title1">Vợ/ chồng của Khách hàng</h6>
-                  <div className="c-form1__control1 c-form1__control1--text1">
-                    <input
-                      className="input"
-                      type="number"
-                      name="partner_pay"
-                      placeholder="Nhập giá trị"
-                      defaultValue={formState.partner_pay ? formState.partner_pay : ''}
-                      onChange={e => {
-                        handleChange(e);
-                        formikProps.setFieldValue('partner_pay', e.target.value);
-                      }}
-                    />
-                    <span className="text1">VNĐ/ tháng</span>
-                    {formikProps.touched['partner_pay'] && formikProps.errors['partner_pay'] && (
-                      <p className="red error">{formikProps.errors['partner_pay']}</p>
-                    )}
-                    <span />
-                    <span className="text1">VNĐ/ tháng</span>
-                  </div>
-                </div>
-                <div className="col-12 form-control">
-                  <h6 className="title1">Đồng trả nợ khác</h6>
-                  <div className="c-form1__control1 c-form1__control1--text1">
-                    <input
-                      className="input"
-                      name="dif_payee"
-                      // required
-                      type="number"
-                      placeholder="Nhập giá trị"
-                      onChange={e => {
-                        handleChange(e);
-                        formikProps.setFieldValue('dif_payee', e.target.value);
-                      }}
-                    />
-                    <span className="text1">VNĐ/ tháng</span>
-                  </div>
-                </div>
+                {formState.companion && (
+                  <>
+                    <div className="col-12 c-form1__checkboxs">
+                      <h6>Người đồng trả nợ/ Thu nhập hàng tháng của Người đồng trả nợ</h6>
+                      <label className="checkbox">
+                        Vợ/ chồng của Khách hàng
+                        <input type="checkbox" name="payee" defaultValue={0} />
+                        <span />
+                      </label>
+                      <label className="checkbox">
+                        Đồng trả nợ khác
+                        <input type="checkbox" name="payee" defaultValue={1} />
+                        <span />
+                      </label>
+                    </div>
+                    <div className="col-12 form-control">
+                      <h6 className="title1">Vợ/ chồng của Khách hàng</h6>
+                      <div className="c-form1__control1 c-form1__control1--text1">
+                        <input
+                          className="input"
+                          type="number"
+                          name="partner_pay"
+                          placeholder="Nhập giá trị"
+                          defaultValue={formState.partner_pay ? formState.partner_pay : ''}
+                          onChange={e => {
+                            handleChange(e);
+                            formikProps.setFieldValue('partner_pay', e.target.value);
+                          }}
+                        />
+                        <span className="text1">VNĐ/ tháng</span>
+                        {formikProps.touched['partner_pay'] &&
+                          formikProps.errors['partner_pay'] && (
+                            <p className="red error">{formikProps.errors['partner_pay']}</p>
+                          )}
+                        <span />
+                        <span className="text1">VNĐ/ tháng</span>
+                      </div>
+                    </div>
+                    <div className="col-12 form-control">
+                      <h6 className="title1">Đồng trả nợ khác</h6>
+                      <div className="c-form1__control1 c-form1__control1--text1">
+                        <input
+                          className="input"
+                          name="dif_payee"
+                          // required
+                          type="number"
+                          placeholder="Nhập giá trị"
+                          onChange={e => {
+                            handleChange(e);
+                            formikProps.setFieldValue('dif_payee', e.target.value);
+                          }}
+                        />
+                        <span className="text1">VNĐ/ tháng</span>
+                      </div>
+                    </div>
+                  </>
+                )}
                 <div className="col-12">
                   <div className="c-form1__confirm">
                     <span className="confirm_text1">Tổng thu nhập</span>
@@ -328,6 +338,7 @@ const StepForm03 = props => {
                       className="btn c-form1-btn1-js"
                       type="button"
                       onClick={() => {
+                        console.log(formikProps);
                         formikProps.handleSubmit();
                       }}
                     >
