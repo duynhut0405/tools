@@ -20,7 +20,7 @@ function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const [formState, setFormState] = useState({
     full_name: null,
-    profileType: null,
+    profileType: 'Chứng minh nhân dân',
     nuComponion: [],
     collateral: [
       {
@@ -51,7 +51,6 @@ function FormStep({ data, id, pageId }) {
 
   const nextForm = () => {
     if (formActive < 3) {
-      console.log('next');
       setFormActive(formActive + 1);
     }
   };

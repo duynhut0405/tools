@@ -20,18 +20,26 @@ const propTypes = {
 const validationSchema = yup.object().shape({
   full_name: yup.string().required('Trường bắt buộc nhập'),
   profileType: yup.string().required('Trường bắt buộc nhập'),
-  companion_name: yup.string().required('Trường bắt buộc nhập'),
   is_loan: yup.boolean().required('Trường bắt buộc nhập'),
   sex: yup.string().required('Trường bắt buộc nhập'),
   city_address: yup.string().required('Trường bắt buộc nhập'),
   current_home: yup.string().required('Trường bắt buộc nhập'),
   status_home: yup.string().required('Trường bắt buộc nhập'),
-  profile_partner: yup
-    .string()
-    .required('Trường bắt buộc nhập')
-    .matches(/[a-zA-Z][0-9]+/, 'Yêu cầu số và chữ'),
-  name_companion: yup.string().required('Trường bắt buộc nhập'),
-  companionRelation: yup.string().required('Trường bắt buộc nhập'),
+  profile_partner: yup.string().when('isCheck', {
+    is: isCheck => isCheck === true,
+    then: yup
+      .string()
+      .matches(/[a-zA-Z][0-9]+/, 'Yêu cầu số và chữ')
+      .required('Trường bắt buộc nhập')
+  }),
+  name_companion: yup.string().when('isCheck', {
+    is: isCheck => isCheck === true,
+    then: yup.string().required('Trường bắt buộc nhập')
+  }),
+  companionRelation: yup.string().when('isCheck', {
+    is: isCheck => isCheck === true,
+    then: yup.string().required('Trường bắt buộc nhập')
+  }),
   birthday: yup.string().required('Trường bắt buộc nhập'),
   phone: yup
     .string()
@@ -42,10 +50,6 @@ const validationSchema = yup.object().shape({
     .string()
     .required('Trường bắt buộc nhập')
     .email('Email không hợp lệ'),
-  num_profile: yup
-    .string()
-    .required('Trường bắt buộc nhập')
-    .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ'),
   profileNumber: yup
     .string()
     .required('Trường bắt buộc nhập')
@@ -116,12 +120,13 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
         email: formState.email ? formState.email : '',
         is_loan: formState.is_loan ? formState.is_loan : '',
         sex: formState.sex ? formState.sex : '',
-        city_address: formState.city_address ? formState.city_address : '',
-        current_home: formState.current_home ? formState.current_home : '',
-        status_home: formState.status_home ? formState.status_home : '',
-        profile_partner: formState.profile_partner ? formState.profile_partner : '',
-        name_companion: formState.name_companion ? formState.name_companion : '',
-        companionRelation: formState.companionRelation ? formState.companionRelation : '',
+        city_address: formState.address ? formState.address.city_address : '',
+        current_home: formState.address ? formState.address.current_home : '',
+        status_home: formState.address ? formState.address.status_home : '',
+        profile_partner: formState.companion ? formState.companion.profile_partner : '',
+        name_companion: formState.companion ? formState.companion.name_companion : '',
+        isCheck: false,
+        companionRelation: formState.companion ? formState.companion.companionRelation : '',
         birthday: formState.birthday ? formState.birthday : '',
         phone: formState.phone ? formState.phone : ''
       }}
@@ -130,6 +135,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
           ...preState,
           full_name: values.full_name.toUpperCase(),
           profileType: values.profileType,
+          profileNumber: values.profileNumber,
           email: values.email,
           is_loan: values.is_loan,
           sex: values.sex,
@@ -152,6 +158,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
         nextForm();
       }}
       validationSchema={validationSchema}
+      validator={() => ({})}
     >
       {formikProps => {
         const { setFieldValue, handleSubmit } = formikProps;
@@ -176,6 +183,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         name="is_loan"
                         value={true}
                         onClick={formikProps.handleChange('is_loan')}
+                        defaultChecked={formState.is_loan === 'true' ? true : false}
                       />
                       <span />
                     </label>
@@ -185,6 +193,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         type="radio"
                         name="is_loan"
                         value={false}
+                        defaultChecked={formState.is_loan === 'false' ? true : false}
                         onClick={formikProps.handleChange('is_loan')}
                       />
                       <span />
@@ -222,8 +231,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       <input
                         type="radio"
                         name="profileType"
-                        required
-                        defaultValue={'cmnd'}
+                        defaultValue={'Chứng minh nhân dâns'}
                         defaultChecked={
                           !formState.profileType
                             ? true
@@ -240,8 +248,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       <input
                         type="radio"
                         name="profileType"
-                        required
-                        defaultValue={'cc'}
+                        defaultValue={'Căn cước'}
                         defaultChecked={formState.profileType === 'Căn cước' ? true : false}
                         onClick={formikProps.handleChange('profileType')}
                       />
@@ -252,8 +259,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       <input
                         type="radio"
                         name="profileType"
-                        required
-                        defaultValue={'hc'}
+                        defaultValue={'Hộ chiếu'}
                         defaultChecked={formState.profileType === 'Hộ chiếu' ? true : false}
                         onClick={formikProps.handleChange('profileType')}
                       />
@@ -264,7 +270,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       <input
                         type="radio"
                         name="profileType"
-                        required
                         defaultValue={'Chứng minh quân đội'}
                         defaultChecked={
                           formState.profileType === 'Chứng minh quân đội' ? true : false
@@ -283,7 +288,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       name="profileNumber"
                       type="text"
                       placeholder="Số Giấy tờ tùy thân(*)"
-                      defaultValue={formState.profileNumber}
+                      defaultValue={formState.profileNumber ? formState.profileNumber : ''}
                       onChange={formikProps.handleChange('profileNumber')}
                     />
                     {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
@@ -348,7 +353,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       className="input"
                       name="phone"
                       type="tel"
-                      required
                       placeholder="Số điện thoại"
                       defaultValue={formState.phone}
                       onChange={formikProps.handleChange('phone')}
@@ -365,7 +369,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       className="input"
                       name="email"
                       type="Email"
-                      required
                       placeholder="email"
                       defaultValue={formState.email}
                       onChange={formikProps.handleChange('email')}
@@ -385,8 +388,9 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                     </h6>
                     <Select
                       options={provinces}
-                      required
+                      defaultValue={formState.address ? formState.address.city_address : {}}
                       placeholder="Chọn Tỉnh/ Thành phố"
+                      name="city_address"
                       value={formState.address ? formState.address.city_address : {}}
                       onChange={e => {
                         setFieldValue('city_address', e);
@@ -396,8 +400,9 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         });
                       }}
                     />
-                    {formikProps.touched['city_address'] && formikProps.errors['city_address'] && (
-                      <p className="red error">{formikProps.errors['city_address']}</p>
+
+                    {formikProps.touched.city_address && formikProps.errors.city_address && (
+                      <p className="red error">{formikProps.errors.city_address}</p>
                     )}
                   </div>
                   <div className="col-12 col-md-6">
@@ -408,7 +413,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       className="input"
                       name="current_district_address"
                       type="text"
-                      required
                       placeholder="Nhập địa chỉ khách hàng đang sinh sống"
                       defaultValue={formState.address ? formState.address.current_home : null}
                       onChange={formikProps.handleChange('current_home')}
@@ -423,15 +427,16 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                     </h6>
                     <Select
                       options={statusHome}
-                      required
                       placeholder="Chọn tình trạng nơi ở"
                       value={formState.address ? formState.address.status_home : {}}
+                      defaultValue={formState.address ? formState.address.status_home : {}}
                       onChange={e => {
                         setFieldValue('status_home', e);
                         setFormState({
                           ...formState,
                           address: { ...formState.address, status_home: e }
                         });
+                        formikProps.handleChange('status_home');
                       }}
                     />
                     {formikProps.touched['status_home'] && formikProps.errors['status_home'] && (
@@ -443,6 +448,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       className="text-center"
                       onClick={() => {
                         setCollapParent(!collap);
+                        setFieldValue('isCheck', !collap);
                       }}
                     >
                       <h3 className="ctext mg-0 pt-10 pb-10 bg-1 undefined">
@@ -462,7 +468,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                             className="input"
                             name="name_companion"
                             type="text"
-                            required
                             placeholder="Nhập đầy đủ họ tên vợ/ chồng"
                             value={formState.companion && formState.companion.name}
                             onChange={e => {
@@ -488,7 +493,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                           </h6>
                           <Select
                             options={listPartner}
-                            required
                             name="companionRelation"
                             value={formState.companion ? formState.companion.relation : {}}
                             onChange={e => {
@@ -510,7 +514,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                             className="input"
                             name="profile_partner"
                             type="text"
-                            required
                             defaultValue={
                               formState.companion ? formState.companion.num_profile : null
                             }
@@ -560,11 +563,11 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                   )}
                   <div className="col-12 text-center">
                     <button
-                      type="submit"
+                      type="button"
                       className="btn"
-                      onClick={e => {
-                        e.preventDefault();
-                        handleSubmit();
+                      onClick={() => {
+                        console.log(formikProps);
+                        formikProps.handleSubmit();
                       }}
                     >
                       Tiếp tục

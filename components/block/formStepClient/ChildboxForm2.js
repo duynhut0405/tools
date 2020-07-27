@@ -43,9 +43,20 @@ const ChildboxForm2 = ({
 
   const listPartner = [
     { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' },
-    { value: 'Bố mẹ đẻ KH', label: 'Bố mẹ đẻ KH' },
-    { value: 'Bố mẹ chồng/bố mẹ vợ', label: 'Bố mẹ chồng/bố mẹ vợ' },
-    { value: 'Con cái con đẻ, con dâu, con rể', label: 'Con cái con đẻ, con dâu, con rể' }
+    { value: 'Bố mẹ đẻ/ Bố mẹ vợ/bố mẹ chồng', label: 'Bố mẹ đẻ/ Bố mẹ vợ/bố mẹ chồng' },
+    { value: 'Con cái (con đẻ, con dâu, con rể)', label: 'Con cái (con đẻ, con dâu, con rể)' },
+    {
+      value: 'Anh chị em ruột/Cô, dì,chú, bác, cậu ruột',
+      label: 'Anh chị em ruột/Cô, dì,chú, bác, cậu ruột'
+    },
+    {
+      value: 'Tài sản là đất sở hữu của hộ gia đình có KH là thành viên.',
+      label: 'Tài sản là đất sở hữu của hộ gia đình có KH là thành viên.'
+    },
+    {
+      value: 'Công ty TNHH hoặc DN tư nhân 100% vốn thuộc sở hữu của KH.',
+      label: 'Công ty TNHH hoặc DN tư nhân 100% vốn thuộc sở hữu của KH.  '
+    }
   ];
   const Select = props => (
     <FixRequiredSelect {...props} SelectComponent={BaseSelect} options={props.options || options} />
@@ -96,17 +107,19 @@ const ChildboxForm2 = ({
 
   return (
     <div className="c-form1__child1">
-      <span
-        className="btn-close close-js"
-        onClick={() => {
-          removeItem(item.id);
-          setDecription();
-          setEstimate();
-          setRelaValue();
-        }}
-      >
-        <i className="icon-close"> </i>
-      </span>
+      {item.id !== 0 && (
+        <span
+          className="btn-close close-js"
+          onClick={() => {
+            removeItem(item.id);
+            setDecription();
+            setEstimate();
+            setRelaValue();
+          }}
+        >
+          <i className="icon-close"> </i>
+        </span>
+      )}
       <section className="child1_box1">
         <div className="row">
           <div className="col-12 col-md-12 form-control">
@@ -117,7 +130,6 @@ const ChildboxForm2 = ({
               className="input"
               name="decriptiom"
               type="text"
-              // required
               defaultValue={decription}
               onChange={e => {
                 setFieldValue('decriptiom', e.target.value);
@@ -139,7 +151,6 @@ const ChildboxForm2 = ({
                 className="input"
                 name="profileNumber"
                 type="text"
-                // required
                 placeholder="Nhập giá trị"
                 defaultValue={estimate}
                 onChange={e => {
