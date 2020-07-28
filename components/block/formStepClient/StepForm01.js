@@ -7,6 +7,7 @@ import ChildboxForm1 from './ChildboxForm1';
 import FixRequiredSelect from './FixRequiredSelect';
 import { filter } from 'lodash';
 import { Formik } from 'formik';
+import classNames from 'classnames';
 import moment from 'moment';
 import * as yup from 'yup';
 
@@ -23,7 +24,10 @@ const validationSchema = yup.object().shape({
   is_loan: yup.boolean().required('Trường bắt buộc nhập'),
   sex: yup.string().required('Trường bắt buộc nhập'),
   city_address: yup.string().required('Trường bắt buộc nhập'),
-  current_home: yup.string().required('Trường bắt buộc nhập'),
+  current_home: yup
+    .string()
+    .length(300, 'Không được quá 300 kí tự')
+    .required('Trường bắt buộc nhập'),
   status_home: yup.string().required('Trường bắt buộc nhập'),
   profile_partner: yup.string().when('isCheck', {
     is: isCheck => isCheck === true,
@@ -48,27 +52,31 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập'),
   email: yup
     .string()
-    .required('Trường bắt buộc nhập')
-    .email('Email không hợp lệ'),
+    .matches(
+      /^[\`|\~|\!|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\>|\?|\/|\""|\;|\:|\s|\%]/,
+      'Không chứa kí tự đặc biệt và bắt đầu bằng số'
+    )
+    .email('Email không hợp lệ')
+    .required('Trường bắt buộc nhập'),
   profileNumber: yup
     .string()
     .required('Trường bắt buộc nhập')
     .when('profileType', {
-      is: profileType => profileType === 'cmnd',
+      is: profileType => profileType === 'Chứng minh nhân dân',
       then: yup
         .string()
         .length(9, 'Chứng minh nhân dân gồm 9 số')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
-      is: profileType => profileType === 'cc',
+      is: profileType => profileType === 'Căn cước',
       then: yup
         .string()
         .length(12, 'Căn cước gồm 12 số')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
-      is: profileType => profileType === 'hc' || profileType === 'Chứng minh quân đội',
+      is: profileType => profileType === 'Hộ chiếu' || profileType === 'Chứng minh quân đội',
       then: yup
         .string()
         .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa example: SD2123123')
@@ -96,7 +104,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
     { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' },
     { value: 'Bố mẹ đẻ KH', label: 'Bố mẹ đẻ KH' },
     { value: 'Bố mẹ chồng/bố mẹ vợ', label: 'Bố mẹ chồng/bố mẹ vợ' },
-    { value: 'Con cái con đẻ, con dâu, con rể', label: 'Con cái con đẻ, con dâu, con rể' }
+    { value: 'Con cái (con đẻ, con dâu, con rể)', label: 'Con cái (con đẻ, con dâu, con rể)' }
   ];
 
   const statusHome = [
@@ -231,7 +239,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       <input
                         type="radio"
                         name="profileType"
-                        defaultValue={'Chứng minh nhân dâns'}
+                        defaultValue={'Chứng minh nhân dân'}
                         defaultChecked={
                           !formState.profileType
                             ? true
@@ -316,8 +324,8 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         type="radio"
                         name="sex"
                         defaultValue={'female'}
-                        defaultChecked={!formState.sex === 'male' ? true : false}
                         onClick={formikProps.handleChange('sex')}
+                        defaultChecked={formState.sex === 'female' ? true : false}
                       />
                       <span />
                     </label>
@@ -449,11 +457,20 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       onClick={() => {
                         setCollapParent(!collap);
                         setFieldValue('isCheck', !collap);
+                        if (!collap) {
+                          setFormState({
+                            ...formState,
+                            companion: null,
+                            nuComponion: []
+                          });
+                        }
                       }}
                     >
-                      <h3 className="ctext mg-0 pt-10 pb-10 bg-1 undefined">
+                      <h3 className="ctext mg-0 pt-10 pb-10 bg-1">
                         Người đồng trả nợ
-                        <i className="icon icon-arrow-1 icon-up-js" />
+                        <i
+                          className={classNames('icon icon-arrow-1 icon-up-js', { active: collap })}
+                        />
                       </h3>
                     </div>
                   </div>
@@ -543,7 +560,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                               removeItem={removeComponion}
                             />
                           ))}
-                          {formState.nuComponion && formState.nuComponion.length < 3 && (
+                          {formState.nuComponion && formState.nuComponion.length < 2 && (
                             <a
                               className="c-form1__link1 c-link-add-form-js"
                               onClick={() => {
