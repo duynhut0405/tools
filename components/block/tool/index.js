@@ -9,6 +9,7 @@ import Tool6 from './Tool6';
 import Tool7 from './Tool7';
 import Tool8 from './Tool8';
 import Tool9 from './Tool9';
+import Tool10 from './Tool10';
 
 const propTypes = {
   content: Proptypes.object,
@@ -120,6 +121,17 @@ function Tools({ content, id }) {
       case 9:
         return (
           <Tool9
+            type={content.type}
+            id={id}
+            padding={padding}
+            minValue={parseInt(content.minValue)}
+            maxValue={parseInt(content.maxValue)}
+            interest_rate={parseFloat(content.interest_rate)}
+          />
+        );
+      case 10:
+        return (
+          <Tool10
             type={content.type}
             id={id}
             padding={padding}

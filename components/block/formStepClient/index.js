@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 function FormStep({ data, id, pageId }) {
-  const [formActive, setFormActive] = useState(1);
+  const [formActive, setFormActive] = useState(2);
   const [formState, setFormState] = useState({
     full_name: null,
     profileType: 'Chứng minh nhân dân',

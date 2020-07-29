@@ -31,21 +31,8 @@ const validationSchema = yup.object().shape({
         .max(parseInt((value_loan * 80) / 100), msg);
       // .test('len', 'Tối đa 12 số', val => val.toString().length <= 12);
     }),
-  purpose_loan: yup.string().required('Trường bắt buộc'),
+  type_purpose: yup.string().required('Trường bắt buộc'),
   is_future: yup.string().required('Trường bắt buộc')
-  // isCollateral: yup.boolean(),
-  // decriptiom: yup.string().when('isCollateral', {
-  //   is: true,
-  //   then: yup.string().required('Trường bắt buộc nhập')
-  // }),
-  // profileNumber: yup.string().when('isCollateral', {
-  //   is: true,
-  //   then: yup.string().required('Trường bắt buộc nhập')
-  // }),
-  // relaValue: yup.string().when('isCollateral', {
-  //   is: true,
-  //   then: yup.string().required('Trường bắt buộc nhập')
-  // })
 });
 
 // const text01 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
@@ -92,10 +79,13 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
       initialValues={{
         value_loan: formState.value_loan || '',
         suggest_monney: formState.suggest_monney || '',
-        purpose_loan: formState.purpose_loan || '',
+        purpose_loan_01: formState.purpose_loan_01 || '',
+        purpose_loan_02: formState.purpose_loan_02 || '',
         decriptiom: formState.decriptiom || '',
+        is_future: formState.is_future || '',
         profileNumber: formState.profileNumber || '',
         relaValue: formState.relaValue || '',
+        type_purpose: formState.type_purpose || '',
         isCollateral: iscollateral
       }}
       onSubmit={() => {
@@ -126,12 +116,15 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                           type="radio"
                           name="purpose_loan"
                           defaultChecked={formState.type_purpose === 2 ? true : false}
-                          onClick={() =>
+                          onClick={() => {
+                            setFieldValue('type_purpose', 2);
                             setFormState({
                               ...formState,
-                              type_purpose: 2
-                            })
-                          }
+                              type_purpose: 2,
+                              purpose_loan_01: false,
+                              purpose_loan_02: false
+                            });
+                          }}
                         />
                         <span />
                         {formState.type_purpose && formState.type_purpose === 2 && (
@@ -143,16 +136,16 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                   type="radio"
                                   name="test1"
                                   defaultChecked={
-                                    formState.purpose_loan ===
+                                    formState.purpose_loan_01 ===
                                     'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
                                       ? true
                                       : false
                                   }
                                   onClick={e => {
-                                    setFieldValue('purpose_loan', e.target.value);
+                                    setFieldValue('purpose_loan_01', e.target.value);
                                     setFormState({
                                       ...formState,
-                                      purpose_loan: 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
+                                      purpose_loan_01: 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
                                     });
                                   }}
                                 />
@@ -164,18 +157,18 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 Nhà chung cư, đất dự án chưa có Giấy chứng nhận (Sổ đỏ)
                                 <input
                                   type="radio"
-                                  name="test1"
+                                  name="test2"
                                   defaultChecked={
-                                    formState.purpose_loan ===
+                                    formState.purpose_loan_02 ===
                                     'Nhà chung cư, đất dự án chưa có Giấy chứng nhận (Sổ đỏ)'
                                       ? true
                                       : false
                                   }
                                   onClick={e => {
-                                    setFieldValue('purpose_loan', e.target.value);
+                                    setFieldValue('purpose_loan_02', e.target.value);
                                     setFormState({
                                       ...formState,
-                                      purpose_loan:
+                                      purpose_loan_02:
                                         'Nhà chung cư, đất dự án chưa có Giấy chứng nhận (Sổ đỏ)'
                                     });
                                   }}
@@ -195,12 +188,15 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                           name="purpose_loan"
                           // required
                           defaultChecked={formState.type_purpose === 1 ? true : false}
-                          onClick={() =>
+                          onClick={() => {
+                            setFieldValue('type_purpose', 1);
                             setFormState({
                               ...formState,
-                              type_purpose: 1
-                            })
-                          }
+                              type_purpose: 1,
+                              purpose_loan_01: false,
+                              purpose_loan_02: false
+                            });
+                          }}
                         />
                         <span />
                         {formState.type_purpose && formState.type_purpose === 1 && (
@@ -213,13 +209,13 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                   name="test1"
                                   // required
                                   defaultChecked={
-                                    formState.purpose_loan === 'Xây nhà' ? true : false
+                                    formState.purpose_loan_01 === 'Xây nhà' ? true : false
                                   }
                                   onClick={e => {
-                                    setFieldValue('purpose_loan', e.target.value);
+                                    setFieldValue('purpose_loan_01', e.target.value);
                                     setFormState({
                                       ...formState,
-                                      purpose_loan: 'Xây nhà'
+                                      purpose_loan_01: 'Xây nhà'
                                     });
                                   }}
                                 />
@@ -231,16 +227,16 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 Sửa nhà
                                 <input
                                   type="radio"
-                                  name="test1"
+                                  name="test2"
                                   // required
                                   defaultChecked={
-                                    formState.purpose_loan === 'Sửa nhà' ? true : false
+                                    formState.purpose_loan_02 === 'Sửa nhà' ? true : false
                                   }
                                   onClick={e => {
-                                    setFieldValue('purpose_loan', e.target.value);
+                                    setFieldValue('purpose_loan_02', e.target.value);
                                     setFormState({
                                       ...formState,
-                                      purpose_loan: 'Sửa nhà'
+                                      purpose_loan_02: 'Sửa nhà'
                                     });
                                   }}
                                 />
@@ -251,8 +247,8 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         )}
                       </label>
                     </div>
-                    {touched.purpose_loan && errors.purpose_loan && (
-                      <p className="red error">{errors.purpose_loan}</p>
+                    {touched.type_purpose && errors.type_purpose && (
+                      <p className="red error">{errors.type_purpose}</p>
                     )}
                   </div>
                   <div className="col-12">

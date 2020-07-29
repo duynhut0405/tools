@@ -26,12 +26,13 @@ const Tab1 = props => {
     const query = {
       districtCity: selectDistrict.value || null,
       networkCategory: 'transaction',
-      provinceCity: selectProvince.value || null
+      provinceCity: selectProvince.value || null,
+      search: searchKey
     };
     searchBranchesService(query).then(res => {
       setBranchs(res.data);
     });
-  }, [selectProvince, selectDistrict]);
+  }, [selectProvince, selectDistrict, searchKey]);
 
   const customStyles = {
     menu: () => ({

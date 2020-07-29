@@ -7,13 +7,14 @@ import t from '../../../translation';
 const propTypes = {
   label: Proptypes.string,
   maxValue: Proptypes.number,
+  minValue: Proptypes.number,
   value: Proptypes.string,
   onChange: Proptypes.func,
   note: Proptypes.bool,
   onBlur: Proptypes.func
 };
 
-function FieldInput({ label, maxValue, value, onChange, note, onBlur }) {
+function FieldInput({ label, maxValue, minValue, value, onChange, note, onBlur }) {
   return (
     <div className="row">
       <div className="col-md-7">
@@ -36,7 +37,8 @@ function FieldInput({ label, maxValue, value, onChange, note, onBlur }) {
             placeholder="Nhập số tiền (*)"
           />
         </div>
-        <div className="price">{rate(maxValue)}</div>
+        {maxValue && <div className="price">{rate(maxValue)}</div>}
+        {minValue && <div className="price">{rate(minValue)}</div>}
       </div>
     </div>
   );
