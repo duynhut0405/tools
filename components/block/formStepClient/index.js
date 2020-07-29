@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 function FormStep({ data, id, pageId }) {
-  const [formActive, setFormActive] = useState(2);
+  const [formActive, setFormActive] = useState(1);
   const [formState, setFormState] = useState({
     full_name: null,
     profileType: 'Chứng minh nhân dân',
@@ -76,7 +76,6 @@ function FormStep({ data, id, pageId }) {
     <section className={`form-step-wapper ${padding} formStep`} id={id}>
       <div className="container">
         <div className="text-center" id="form_step_top">
-          {console.log(formState)}
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
         </div>
