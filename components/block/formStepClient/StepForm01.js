@@ -53,7 +53,7 @@ const validationSchema = yup.object().shape({
   email: yup
     .string()
     .matches(
-      /^[\`|\~|\!|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\>|\?|\/|\""|\;|\:|\s|\%]/,
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Không chứa kí tự đặc biệt và bắt đầu bằng số'
     )
     .email('Email không hợp lệ')
@@ -66,6 +66,7 @@ const validationSchema = yup.object().shape({
       then: yup
         .string()
         .length(9, 'Chứng minh nhân dân gồm 9 số')
+        .matches(/^[0-9]{4,9}$/, 'Không chứa chữ cái và kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
@@ -79,7 +80,7 @@ const validationSchema = yup.object().shape({
       is: profileType => profileType === 'Hộ chiếu' || profileType === 'Chứng minh quân đội',
       then: yup
         .string()
-        .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa example: SD2123123')
+        .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .required('Trường bắt buộc nhập')
     })
 });
