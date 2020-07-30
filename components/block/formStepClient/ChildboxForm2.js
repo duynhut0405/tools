@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import BaseSelect from 'react-select';
 import FixRequiredSelect from './FixRequiredSelect';
+import NumberFormat from 'react-number-format';
 
 const propTypes = {
   errors: Proptypes.shape({
@@ -147,15 +148,15 @@ const ChildboxForm2 = ({
               Giá trị ước tính (<span className="red">*</span>)
             </h6>
             <div className="c-form1__control1">
-              <input
+              <NumberFormat
                 className="input"
                 name="profileNumber"
-                type="text"
+                thousandSeparator={true}
                 placeholder="Nhập giá trị"
                 defaultValue={estimate}
-                onChange={e => {
-                  setFieldValue('profileNumber', e.target.value);
-                  setEstimate(e.target.value);
+                onValueChange={e => {
+                  setFieldValue('profileNumber', e.floatValue);
+                  setEstimate(e.floatValue);
                 }}
               />
               <span className="text1">VNĐ</span>

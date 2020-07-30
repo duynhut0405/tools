@@ -3,7 +3,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import FirstSuccessModal from './FirstSuccessModal';
 import SecondSuccessModal from './SecondSuccessModal';
+import classNames from 'classnames';
 import AlertInfo from './AlertInfo';
+import NumberFormat from 'react-number-format';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -15,6 +17,8 @@ const StepForm03 = props => {
   const [hide01, setHide01] = useState(false);
   const [checkedProxy, setCheckedProxy] = useState(false);
   const [modalContinue, setModalContinue] = useState(false);
+  const [diff, setDiff] = useState(false);
+  const [wife, setWife] = useState(false);
 
   const showModal = e => {
     e.preventDefault();
@@ -83,14 +87,27 @@ const StepForm03 = props => {
   }, []);
 
   const validationSchema = yup.object().shape({
-    return_monney: yup.number().max(9999999999999999, 'Tối đa 12 số'),
-    debt: yup.number().max(9999999999999999, 'Tối đa 12 số'),
+    return_monney: yup
+      .number()
+      .min(0, 'Chỉ nhập số tự nhiên')
+      .max(9999999999999999, 'Tối đa 17 số'),
+    debt: yup
+      .number()
+      .min(0, 'Chỉ nhập số tự nhiên')
+      .max(9999999999999999, 'Tối đa 17 số'),
     salary: yup
       .number()
-      .max(9999999999999999, 'Tối đa 12 số')
+      .min(0, 'Chỉ nhập số tự nhiên')
+      .max(9999999999999999, 'Tối đa 17 số')
       .required('Trường bắt buộc nhập'),
-    partner_pay: yup.number().max(9999999999999999, 'Tối đa 12 số'),
-    dif_payee: yup.number().max(9999999999999999, 'Tối đa 12 số')
+    partner_pay: yup
+      .number()
+      .min(0, 'Chỉ nhập số tự nhiên')
+      .max(9999999999999999, 'Tối đa 17 số'),
+    dif_payee: yup
+      .number()
+      .min(0, 'Chỉ nhập số tự nhiên')
+      .max(9999999999999999, 'Tối đa 17 số')
   });
 
   return (
@@ -125,11 +142,20 @@ const StepForm03 = props => {
                     className="text-center"
                     onClick={() => {
                       setHide01(!hide01);
+                      if (!hide01) {
+                        setFormState({
+                          ...formState,
+                          debt: null,
+                          return_monney: null
+                        });
+                      }
                     }}
                   >
                     <h3 className="ctext mg-0 pt-10 pb-10 bg-1 undefined">
-                      Thông tin các khoản vay hiện tại của Khách hàng và người đồng trả nợ{' '}
-                      <i className="icon icon-arrow-1 icon-up-js" />
+                      Thông tin các khoản vay KH và người đồng trả nợ
+                      <i
+                        className={classNames('icon icon-arrow-1 icon-up-js', { active: hide01 })}
+                      />
                     </h3>
                   </div>
                 </div>
@@ -139,15 +165,17 @@ const StepForm03 = props => {
                       <div className="col-12 form-control">
                         <h6 className="title1">Dư nợ tại các Tổ chức tín dụng</h6>
                         <div className="c-form1__control1">
-                          <input
+                          <NumberFormat
                             className="input"
-                            type="number"
+                            thousandSeparator={true}
                             name="debt"
-                            required
+                            placeholder="Nhập giá trị"
                             defaultValue={formState.debt ? formState.debt : ''}
-                            onChange={e => {
-                              handleChange(e);
-                              formikProps.setFieldValue('debt', e.target.value);
+                            onValueChange={e => {
+                              formikProps.setFieldValue('debt', e.floatValue);
+                              if (e.floatValue > 0) {
+                                setFormState({ ...formState, debt: e.floatValue });
+                              }
                             }}
                           />
                           {formikProps.touched['debt'] && formikProps.errors['debt'] && (
@@ -157,17 +185,17 @@ const StepForm03 = props => {
                         </div>
                       </div>
                       <div className="col-12 form-control">
-                        <h6 className="title1">Số tiền trả nợ hàng tháng</h6>
+                        <h6 className="title1">Chi phí trả gốc/lãi trên tháng</h6>
                         <div className="c-form1__control1">
-                          <input
+                          <NumberFormat
                             className="input"
-                            type="number"
+                            thousandSeparator={true}
                             name="return_monney"
-                            required
+                            placeholder="Nhập giá trị"
                             defaultValue={formState.return_monney ? formState.return_monney : ''}
-                            onChange={e => {
-                              handleChange(e);
-                              formikProps.setFieldValue('return_monney', e.target.value);
+                            onValueChange={e => {
+                              formikProps.setFieldValue('return_monney', e.floatValue);
+                              setFormState({ ...formState, return_monney: e.floatValue });
                             }}
                           />
                           <span className="text1">VNĐ</span>
@@ -188,17 +216,19 @@ const StepForm03 = props => {
                   </div>
                 </div>
                 <div className="col-12 form-control">
-                  <h6 className="title1">Thu nhập hàng tháng của Khách hàng</h6>
+                  <h6 className="title1">
+                    Thu nhập hàng tháng của Khách hàng (<span className="red">*</span>)
+                  </h6>
                   <div className="c-form1__control1 c-form1__control1--text1">
-                    <input
+                    <NumberFormat
                       className="input"
-                      type="number"
+                      thousandSeparator={true}
                       name="salary"
                       placeholder="Nhập giá trị"
                       defaultValue={formState.salary ? formState.salary : ''}
-                      onChange={e => {
-                        handleChange(e);
-                        formikProps.setFieldValue('salary', e.target.value);
+                      onValueChange={e => {
+                        formikProps.setFieldValue('salary', e.floatValue);
+                        setFormState({ ...formState, salary: e.floatValue });
                       }}
                     />
                     <span className="text1">VNĐ/ tháng</span>
@@ -213,55 +243,79 @@ const StepForm03 = props => {
                       <h6>Người đồng trả nợ/ Thu nhập hàng tháng của Người đồng trả nợ</h6>
                       <label className="checkbox">
                         Vợ/ chồng của Khách hàng
-                        <input type="checkbox" name="payee" defaultValue={0} />
+                        <input
+                          type="checkbox"
+                          name="payee"
+                          defaultValue={0}
+                          onChange={() => {
+                            setWife(!wife);
+                            if (wife === true) {
+                              setFormState({ ...formState, partner_pay: 0 });
+                            }
+                          }}
+                        />
                         <span />
                       </label>
                       <label className="checkbox">
                         Đồng trả nợ khác
-                        <input type="checkbox" name="payee" defaultValue={1} />
+                        <input
+                          type="checkbox"
+                          name="payee"
+                          defaultValue={1}
+                          onChange={() => {
+                            setDiff(!diff);
+                            if (diff === true) {
+                              setFormState({ ...formState, dif_payee: 0 });
+                            }
+                          }}
+                        />
                         <span />
                       </label>
                     </div>
-                    <div className="col-12 form-control">
-                      <h6 className="title1">Vợ/ chồng của Khách hàng</h6>
-                      <div className="c-form1__control1 c-form1__control1--text1">
-                        <input
-                          className="input"
-                          type="number"
-                          name="partner_pay"
-                          placeholder="Nhập giá trị"
-                          defaultValue={formState.partner_pay ? formState.partner_pay : ''}
-                          onChange={e => {
-                            handleChange(e);
-                            formikProps.setFieldValue('partner_pay', e.target.value);
-                          }}
-                        />
-                        <span className="text1">VNĐ/ tháng</span>
-                        {formikProps.touched['partner_pay'] &&
-                          formikProps.errors['partner_pay'] && (
-                            <p className="red error">{formikProps.errors['partner_pay']}</p>
-                          )}
-                        <span />
-                        <span className="text1">VNĐ/ tháng</span>
+                    {wife && (
+                      <div className="col-12 form-control">
+                        <h6 className="title1">Vợ/ chồng của Khách hàng</h6>
+                        <div className="c-form1__control1 c-form1__control1--text1">
+                          <NumberFormat
+                            className="input"
+                            thousandSeparator={true}
+                            name="partner_pay"
+                            placeholder="Nhập giá trị"
+                            defaultValue={formState.partner_pay ? formState.partner_pay : ''}
+                            onValueChange={e => {
+                              formikProps.setFieldValue('partner_pay', e.floatValue);
+                              setFormState({ ...formState, partner_pay: e.floatValue });
+                            }}
+                          />
+                          <span className="text1">VNĐ/ tháng</span>
+                          {formikProps.touched['partner_pay'] &&
+                            formikProps.errors['partner_pay'] && (
+                              <p className="red error">{formikProps.errors['partner_pay']}</p>
+                            )}
+                          <span />
+                          <span className="text1">VNĐ/ tháng</span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="col-12 form-control">
-                      <h6 className="title1">Đồng trả nợ khác</h6>
-                      <div className="c-form1__control1 c-form1__control1--text1">
-                        <input
-                          className="input"
-                          name="dif_payee"
-                          // required
-                          type="number"
-                          placeholder="Nhập giá trị"
-                          onChange={e => {
-                            handleChange(e);
-                            formikProps.setFieldValue('dif_payee', e.target.value);
-                          }}
-                        />
-                        <span className="text1">VNĐ/ tháng</span>
+                    )}
+                    {diff && (
+                      <div className="col-12 form-control">
+                        <h6 className="title1">Đồng trả nợ khác</h6>
+                        <div className="c-form1__control1 c-form1__control1--text1">
+                          <NumberFormat
+                            className="input"
+                            thousandSeparator={true}
+                            name="dif_payee"
+                            placeholder="Nhập giá trị"
+                            defaultValue={formState.dif_payee ? formState.dif_payee : ''}
+                            onValueChange={e => {
+                              formikProps.setFieldValue('dif_payee', e.floatValue);
+                              setFormState({ ...formState, dif_payee: e.floatValue });
+                            }}
+                          />
+                          <span className="text1">VNĐ/ tháng</span>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </>
                 )}
                 <div className="col-12">

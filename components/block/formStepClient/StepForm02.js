@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import ChildboxForm2 from './ChildboxForm2';
 import { Formik } from 'formik';
+import NumberFormat from 'react-number-format';
 import * as yup from 'yup';
 
 const propTypes = {
@@ -15,7 +16,7 @@ const validationSchema = yup.object().shape({
   value_loan: yup
     .number()
     .min(125000000, 'Gía trị nhà đất không được nhỏ hơn 125 triệu')
-    .max(999999999999, 'Tối đa 12 số')
+    .max(9999999999999999, 'Tối đa 17 số')
     .required('Trường bắt buộc nhập'),
   suggest_monney: yup
     .number()
@@ -299,15 +300,15 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                       <span className="red">*</span>)
                     </h6>
                     <div className="c-form1__control1">
-                      <input
+                      <NumberFormat
                         className="input"
+                        thousandSeparator={true}
                         name="value_loan"
-                        type="number"
                         placeholder="Nhập giá trị"
                         defaultValue={formState.value_loan}
-                        onChange={e => {
-                          handleChangeCustom(e);
-                          setFieldValue('value_loan', parseInt(e.target.value));
+                        onValueChange={e => {
+                          setFieldValue('value_loan', e.floatValue);
+                          setFormState({ ...formState, value_loan: e.floatValue });
                         }}
                       />
                       <span className="text1"> VNĐ</span>
@@ -321,15 +322,15 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                       Số tiền đề xuất vay (<span className="red">*</span>)
                     </h6>
                     <div className="c-form1__control1">
-                      <input
+                      <NumberFormat
                         className="input"
+                        thousandSeparator={true}
                         name="suggest_monney"
-                        type="number"
                         placeholder="Nhập giá trị"
                         defaultValue={formState.suggest_monney}
-                        onChange={e => {
-                          handleChangeCustom(e);
-                          setFieldValue('suggest_monney', parseInt(e.target.value));
+                        onValueChange={e => {
+                          setFieldValue('suggest_monney', e.floatValue);
+                          setFormState({ ...formState, suggest_monney: e.floatValue });
                         }}
                       />
                       <span className="text1"> VNĐ</span>

@@ -26,7 +26,7 @@ const validationSchema = yup.object().shape({
   city_address: yup.string().required('Trường bắt buộc nhập'),
   current_home: yup
     .string()
-    .length(300, 'Không được quá 300 kí tự')
+    .max(300, 'Không được quá 300 kí tự')
     .required('Trường bắt buộc nhập'),
   status_home: yup.string().required('Trường bắt buộc nhập'),
   profile_partner: yup.string().when('isCheck', {
@@ -53,7 +53,7 @@ const validationSchema = yup.object().shape({
   email: yup
     .string()
     .matches(
-      /^[\`|\~|\!|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\>|\?|\/|\""|\;|\:|\s|\%]/,
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Không chứa kí tự đặc biệt và bắt đầu bằng số'
     )
     .email('Email không hợp lệ')
@@ -66,6 +66,7 @@ const validationSchema = yup.object().shape({
       then: yup
         .string()
         .length(9, 'Chứng minh nhân dân gồm 9 số')
+        .matches(/^[0-9]{4,9}$/, 'Không chứa chữ cái và kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
@@ -73,13 +74,21 @@ const validationSchema = yup.object().shape({
       then: yup
         .string()
         .length(12, 'Căn cước gồm 12 số')
+        .matches(/^[0-9]{4,9}$/, 'Không chứa chữ cái và kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
-      is: profileType => profileType === 'Hộ chiếu' || profileType === 'Chứng minh quân đội',
+      is: profileType => profileType === 'Hộ chiếu',
       then: yup
         .string()
-        .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa example: SD2123123')
+        .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .required('Trường bắt buộc nhập')
+    })
+    .when('profileType', {
+      is: profileType => profileType === 'Chứng minh quân đội',
+      then: yup
+        .string()
+        .matches(/^[0-9]{4,9}$/, 'Không chứa chữ cái và kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
 });
@@ -118,6 +127,12 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
   const Select = props => (
     <FixRequiredSelect {...props} SelectComponent={BaseSelect} options={props.options || options} />
   );
+
+  const customStyles = {
+    menu: () => ({
+      zIndex: '999px'
+    })
+  };
 
   return (
     <Formik
@@ -399,6 +414,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       defaultValue={formState.address ? formState.address.city_address : {}}
                       placeholder="Chọn Tỉnh/ Thành phố"
                       name="city_address"
+                      styles={customStyles}
                       value={formState.address ? formState.address.city_address : {}}
                       onChange={e => {
                         setFieldValue('city_address', e);
@@ -436,6 +452,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                     <Select
                       options={statusHome}
                       placeholder="Chọn tình trạng nơi ở"
+                      className="selectpicker"
                       value={formState.address ? formState.address.status_home : {}}
                       defaultValue={formState.address ? formState.address.status_home : {}}
                       onChange={e => {
@@ -455,8 +472,8 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                     <div
                       className="text-center"
                       onClick={() => {
-                        setCollapParent(!collap);
                         setFieldValue('isCheck', !collap);
+                        setCollapParent(!collap);
                         if (!collap) {
                           setFormState({
                             ...formState,
