@@ -70,6 +70,12 @@ const ChildboxForm2 = ({
     return false;
   };
 
+  const customStyles = {
+    menu: () => ({
+      zIndex: '999px'
+    })
+  };
+
   const updateItem = (object, list) => {
     return list.map(value => {
       if (object.id === value.id) {
@@ -172,6 +178,7 @@ const ChildboxForm2 = ({
             <Select
               options={listPartner}
               value={relaValue}
+              styles={customStyles}
               onChange={e => {
                 setFieldValue('relaValue', e.value);
                 setRelaValue(e);
