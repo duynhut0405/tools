@@ -46,20 +46,20 @@ const StepForm03 = props => {
     setCheckedProxy(!checkedProxy);
   };
 
-  const handleChange = event => {
-    event.persist();
-    if (event.target.value) {
-      setFormState(() => ({
-        ...formState,
-        [event.target.name]: parseInt(event.target.value)
-      }));
-    } else {
-      setFormState(() => ({
-        ...formState,
-        [event.target.name]: 0
-      }));
-    }
-  };
+  // const handleChange = event => {
+  //   event.persist();
+  //   if (event.target.value) {
+  //     setFormState(() => ({
+  //       ...formState,
+  //       [event.target.name]: parseInt(event.target.value)
+  //     }));
+  //   } else {
+  //     setFormState(() => ({
+  //       ...formState,
+  //       [event.target.name]: 0
+  //     }));
+  //   }
+  // };
 
   const formatCurrency = money => {
     const moneyConvert = `${money}`;
@@ -71,7 +71,10 @@ const StepForm03 = props => {
 
   const addCurrency = (...moneies) => {
     return moneies.reduce((sum, money) => {
-      return sum + money;
+      if (money) {
+        return sum + money;
+      }
+      return sum;
     }, 0);
   };
 
@@ -85,6 +88,21 @@ const StepForm03 = props => {
   useEffect(() => {
     onScroll();
   }, []);
+
+  useEffect(() => {
+    if (!formState.dif_payee_type) {
+      setFormState({
+        ...formState,
+        dif_payee: 0
+      });
+    }
+    if (!formState.partner_pay_type) {
+      setFormState({
+        ...formState,
+        partner_pay: 0
+      });
+    }
+  }, [formState.partner_pay_type, formState.dif_payee_type]);
 
   const validationSchema = yup.object().shape({
     return_monney: yup
@@ -109,29 +127,6 @@ const StepForm03 = props => {
       .min(0, 'Chỉ nhập số tự nhiên')
       .max(9999999999999999, 'Tối đa 17 số')
   });
-
-  function moneyFormat(amount, decimalCount = 2, decimal = ',', thousands = '.') {
-    try {
-      decimalCount = Math.abs(decimalCount);
-      decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
-      const negativeSign = amount < 0 ? '-' : '';
-      const i = parseInt((amount = Math.abs(Number(amount) || 0).toFixed(decimalCount))).toString();
-      const j = i.length > 3 ? i.length % 3 : 0;
-      return (
-        negativeSign +
-        (j ? i.substr(0, j) + thousands : '') +
-        i.substr(j).replace(/(\d{3})(?=\d)/g, `$1${thousands}`) +
-        (decimalCount
-          ? decimal +
-            Math.abs(amount - i)
-              .toFixed(decimalCount)
-              .slice(2)
-          : '')
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   return (
     <Formik
@@ -264,6 +259,13 @@ const StepForm03 = props => {
                       name="salary"
                       placeholder="Nhập giá trị"
                       defaultValue={formState.salary ? formState.salary : ''}
+                      isAllowed={values => {
+                        const { formattedValue, floatValue } = values;
+                        return (
+                          formattedValue === '' ||
+                          (floatValue <= 10000000000000000 && floatValue >= 0)
+                        );
+                      }}
                       onValueChange={e => {
                         formikProps.setFieldValue('salary', e.floatValue);
                         setFormState({ ...formState, salary: e.floatValue });
@@ -320,6 +322,13 @@ const StepForm03 = props => {
                             name="partner_pay"
                             placeholder="Nhập giá trị"
                             defaultValue={formState.partner_pay ? formState.partner_pay : ''}
+                            isAllowed={values => {
+                              const { formattedValue, floatValue } = values;
+                              return (
+                                formattedValue === '' ||
+                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                              );
+                            }}
                             onValueChange={e => {
                               formikProps.setFieldValue('partner_pay', e.floatValue);
                               setFormState({ ...formState, partner_pay: e.floatValue });
@@ -345,6 +354,13 @@ const StepForm03 = props => {
                             name="dif_payee"
                             placeholder="Nhập giá trị"
                             defaultValue={formState.dif_payee ? formState.dif_payee : ''}
+                            isAllowed={values => {
+                              const { formattedValue, floatValue } = values;
+                              return (
+                                formattedValue === '' ||
+                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                              );
+                            }}
                             onValueChange={e => {
                               formikProps.setFieldValue('dif_payee', e.floatValue);
                               setFormState({ ...formState, dif_payee: e.floatValue });

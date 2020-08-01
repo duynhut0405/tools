@@ -8,6 +8,7 @@ const propTypes = {};
 
 function SuccesForm() {
   const router = useRouter();
+
   return (
     <section className="p-thank1 sec-tb sec-ab-1">
       <Head>
@@ -49,7 +50,7 @@ function SuccesForm() {
                     <p className="list1_text1">- Mã ID đề nghị vay vốn:</p>
                   </div>
                   <div className="col-7 col-md-8">
-                    <h4 className="list1_title1">0123456789ABCXYZ</h4>
+                    <h4 className="list1_title1">{router.query.id}</h4>
                   </div>
                 </div>
               </div>

@@ -49,54 +49,56 @@ const FirstSuccessModal = props => {
   return (
     <Modal isOpen={modal} toggle={showModal}>
       <ModalBody>
-        <WrapModal
-          id="firstSuccessModal"
-          flag={true}
-          showModalContinue={showModalContinue}
-          modalContinue={modalContinue}
-          closeModal={closeModal}
-        >
-          <div className="col-12 radios c-modal-tabs1-option-js">
-            <label className="radio font-18">
-              <strong>Chọn chi nhánh</strong>
-              <input
-                type="radio"
-                name="branch"
-                required={true}
-                value="name1"
-                onChange={handleSelect}
-                defaultChecked="true"
-                checked={selected === 'name1'}
-              />
-              <span></span>
-            </label>
+        <form>
+          <WrapModal
+            id="firstSuccessModal"
+            flag={true}
+            showModalContinue={showModalContinue}
+            modalContinue={modalContinue}
+            closeModal={closeModal}
+          >
+            <div className="col-12 radios c-modal-tabs1-option-js">
+              <label className="radio font-18">
+                <strong>Chọn chi nhánh</strong>
+                <input
+                  type="radio"
+                  name="branch"
+                  required={true}
+                  value="name1"
+                  onChange={handleSelect}
+                  defaultChecked="true"
+                  checked={selected === 'name1'}
+                />
+                <span></span>
+              </label>
 
-            <label className="radio font-18">
-              <strong>Chọn cán bộ tín dụng</strong>
-              <input
-                type="radio"
-                name="branch"
-                required={true}
-                value="name2"
-                checked={selected === 'name2'}
-                onChange={handleSelect}
-              />
-              <span></span>
-            </label>
-          </div>
-          <div className="tab-100 c-modal-tabs1-js">
-            {selected === 'name1' && (
-              <Tab1
-                branchs={branchs}
-                setBranchs={setBranchs}
-                provinces={provinces}
-                formState={formState}
-                setFormState={setFormState}
-              />
-            )}
-            {selected === 'name2' && <Tab2 />}
-          </div>
-        </WrapModal>
+              <label className="radio font-18">
+                <strong>Chọn cán bộ tín dụng</strong>
+                <input
+                  type="radio"
+                  name="branch"
+                  required={true}
+                  value="name2"
+                  checked={selected === 'name2'}
+                  onChange={handleSelect}
+                />
+                <span></span>
+              </label>
+            </div>
+            <div className="tab-100 c-modal-tabs1-js">
+              {selected === 'name1' && (
+                <Tab1
+                  branchs={branchs}
+                  setBranchs={setBranchs}
+                  provinces={provinces}
+                  formState={formState}
+                  setFormState={setFormState}
+                />
+              )}
+              {selected === 'name2' && <Tab2 />}
+            </div>
+          </WrapModal>
+        </form>
       </ModalBody>
     </Modal>
   );

@@ -6,6 +6,21 @@ import moment from 'moment';
 class ComponentToPrint extends React.Component {
   render() {
     const { formState } = this.props;
+    moment.locale('vi');
+
+    const formatCurrency = money => {
+      const moneyConvert = `${money}`;
+      if (moneyConvert.length < 16) {
+        return `${money}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+      }
+      return 0;
+    };
+
+    const addCurrency = (...moneies) => {
+      return moneies.reduce((sum, money) => {
+        return sum + money;
+      }, 0);
+    };
 
     return (
       <div className="contentModal">
@@ -35,14 +50,12 @@ class ComponentToPrint extends React.Component {
 
                   <div className="col-3">
                     <label className="list1_label1">Giới tính:</label>
-                    <span className="list1_data1">{formState.sex}</span>
+                    <span className="list1_data1">{formState.sex === 'famale' ? 'Nũ' : 'Nam'}</span>
                   </div>
 
                   <div className="col-5">
                     <label className="list1_label1">Ngày sinh:</label>
-                    <span className="list1_data1">
-                      {moment(formState.birthday).format('MMM Do YY')}
-                    </span>
+                    <span className="list1_data1">{moment(formState.birthday).format('LL')}</span>
                   </div>
 
                   <div className="col-4">
@@ -66,7 +79,9 @@ class ComponentToPrint extends React.Component {
 
                   <div className="col-12">
                     <label className="list1_label1">Nơi ở hiện tại:</label>
-                    <span className="list1_data1">{formState.current_district_address}</span>
+                    <span className="list1_data1">
+                      {formState.address ? formState.address.current_home : null}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -84,20 +99,24 @@ class ComponentToPrint extends React.Component {
                           <label className="list1_label1">Họ và tên:</label>
                           <span className="list1_data1">
                             <span className="list1_data1">
-                              {formState.companion.name_componion}
+                              {formState.companion ? formState.companion.name : ''}
                             </span>
                           </span>
                         </div>
                         <div className="col-12 col-md-4">
                           <label className="list1_label1">Quan hệ:</label>
                           <span className="list1_data1">
-                            <span className="list1_data1">{formState.companion.value}</span>
+                            <span className="list1_data1">
+                              {formState.companion ? formState.companion.relation.label : ''}
+                            </span>
                           </span>
                         </div>
                         <div className="col-12">
                           <label className="list1_label1">Giấy tờ tuỳ thân:</label>
                           <span className="list1_data1">
-                            <span className="list1_data1">{formState.companion.num_profile}</span>
+                            <span className="list1_data1">
+                              {formState.companion ? formState.companion.num_profile : ''}
+                            </span>
                           </span>
                         </div>
                       </>
@@ -137,7 +156,9 @@ class ComponentToPrint extends React.Component {
                   <div className="col-12">
                     <label className="list1_label1">Mục đích vay vốn:</label>
                     <span className="list1_data1">
-                      <span className="list1_data1">{formState.purpose_loan}</span>
+                      <span className="list1_data1">
+                        {formState.purpose_loan_01},{formState.purpose_loan_02}
+                      </span>
                     </span>
                   </div>
 
@@ -207,13 +228,25 @@ class ComponentToPrint extends React.Component {
                 <div className="row">
                   <div className="col-12">
                     <label className="list1_label1">Thu nhập khách hàng (sau thuế)</label>
-                    <span className="list1_data1">20,000,000 VNĐ/ tháng</span>
+                    <span className="list1_data1">
+                      {formState.salary ? formState.salary : ''} VNĐ/ tháng
+                    </span>
                   </div>
-
-                  <div className="col-12">
-                    <label className="list1_label1">Thu nhập người đồng trả nợ (sau thuế)</label>
-                    <span className="list1_data1">12,000,000,000 VNĐ</span>
-                  </div>
+                  {formState.companion && (
+                    <div className="col-12">
+                      <label className="list1_label1">Thu nhập người đồng trả nợ (sau thuế)</label>
+                      <span className="list1_data1">
+                        {formState.partner_pay_type && formState.partner_pay
+                          ? `Vợ/ chồng của Khách hàng: ${formState.partner_pay}`
+                          : ''}
+                      </span>
+                      <span className="list1_data1">
+                        {formState.dif_payee_type && formState.dif_payee
+                          ? `Đồng trả nợ khác: ${formState.dif_payee}`
+                          : ''}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </section>
@@ -224,7 +257,16 @@ class ComponentToPrint extends React.Component {
               >
                 <span className="file1_title1_text1">Tổng thu nhập</span>
                 <p className="file1_title1_sum1">
-                  <strong>32,000,000</strong> VNĐ/ tháng
+                  <strong>
+                    {formatCurrency(
+                      addCurrency(
+                        parseInt(formState.salary),
+                        parseInt(formState.partner_pay),
+                        parseInt(formState.dif_payee)
+                      )
+                    )}
+                  </strong>
+                  VNĐ/ tháng
                 </p>
               </h3>
             </section>

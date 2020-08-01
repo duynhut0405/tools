@@ -14,4 +14,18 @@ const searchService = query => {
     });
 };
 
-export { searchService };
+const getSttForm = query => {
+  return request({
+    url: `common/search-user-id`,
+    method: 'GET',
+    params: { idForm: query, locale: 'vi', year: 2020 }
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
+export { searchService, getSttForm };

@@ -428,6 +428,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       mask="_"
                       defaultValue={formState.phone}
                       onValueChange={e => {
+                        setFormState({
+                          ...formState,
+                          phone: e.formattedValue
+                        });
                         formikProps.setFieldValue('phone', e.formattedValue);
                       }}
                     />
