@@ -18,8 +18,7 @@ const propTypes = {
 };
 
 function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
-  const [salary, setSalary] = useState('100000000');
-  const [amount, setAmount] = useState('100000000');
+  const [amount, setAmount] = useState('1000000000');
   const [month, setMonth] = useState('1');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
   const [monthlypayment, setMonthlyPayment] = useState(0);
@@ -30,7 +29,7 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
   const [interest, setInterest] = useState(0);
   const [active, setActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
-  const [maxMonth, setMaxMonth] = useState(240);
+  const [maxMonth, setMaxMonth] = useState(180);
 
   useEffect(() => {
     const _month = Number(month.replace(/[^0-9.-]+/g, ''));
@@ -47,6 +46,13 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
       setAmount(rate(checkAmount));
     }
   };
+
+  function onScroll() {
+    const elmnt = document.getElementById('featured');
+    if (elmnt !== null) {
+      elmnt.scrollIntoView();
+    }
+  }
 
   const calculation = event => {
     event.preventDefault();
@@ -122,7 +128,7 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                       <div className="inner">
                         <FieldInput
                           label={t('money_can_loan')}
-                          minValue={Number(amount.replace(/[^0-9.-]+/g, ''))}
+                          minValue={100000000000}
                           value={amount}
                           // onBlur={onBlur}
                           onChange={value => {
@@ -131,7 +137,7 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                         />
                         <FieldInput
                           label={t('term_loan')}
-                          maxValue={maxMonth}
+                          maxValue={180}
                           value={month}
                           note="Tháng"
                           onChange={value => setMonth(value)}
@@ -147,12 +153,16 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                         equity_capital={null} // vốn tự có
                         month={month}
                         totalAmount={sum + interest}
+                        data={table}
                       />
                     </div>
                   </div>
                   <p className="note">{t('tool_note_2')}</p>
-                  <a className="btn" onClick={calculation}>
+                  <a className="btn" onClick={calculation} style={{ marginRight: '15px' }}>
                     {t('show_table')}
+                  </a>
+                  <a className="btn" onClick={() => onScroll()}>
+                    {t('register_now')}
                   </a>
                 </div>
               </div>

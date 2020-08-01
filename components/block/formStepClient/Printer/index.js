@@ -58,7 +58,9 @@ class ComponentToPrint extends React.Component {
                   <div className="col-12">
                     <label className="list1_label1">Giấy tờ tuỳ thân:</label>
                     <span className="list1_data1">
-                      0011860000012 - Căn cước công dân (Căn cước)
+                      <span className="list1_data1">
+                        {formState.profileNumber} - {formState.profileType}
+                      </span>
                     </span>
                   </div>
 
@@ -70,24 +72,59 @@ class ComponentToPrint extends React.Component {
               </div>
 
               <section className="child1">
-                <h5 className="child1_title1">Thông tin người đồng trả nợ</h5>
+                {formState.companion && (
+                  <h5 className="child1_title1">Thông tin người đồng trả nợ</h5>
+                )}
 
                 <div className="list1">
                   <div className="row">
-                    <div className="col-12 col-md-8">
-                      <label className="list1_label1">Họ và tên:</label>
-                      <span className="list1_data1">Lê Văn Bách</span>
-                    </div>
-
-                    <div className="col-12 col-md-4">
-                      <label className="list1_label1">Quan hệ:</label>
-                      <span className="list1_data1">Chồng</span>
-                    </div>
-
-                    <div className="col-12">
-                      <label className="list1_label1">Giấy tờ tuỳ thân:</label>
-                      <span className="list1_data1">0011860000012</span>
-                    </div>
+                    {formState.companion && (
+                      <>
+                        <div className="col-12 col-md-8">
+                          <label className="list1_label1">Họ và tên:</label>
+                          <span className="list1_data1">
+                            <span className="list1_data1">
+                              {formState.companion.name_componion}
+                            </span>
+                          </span>
+                        </div>
+                        <div className="col-12 col-md-4">
+                          <label className="list1_label1">Quan hệ:</label>
+                          <span className="list1_data1">
+                            <span className="list1_data1">{formState.companion.value}</span>
+                          </span>
+                        </div>
+                        <div className="col-12">
+                          <label className="list1_label1">Giấy tờ tuỳ thân:</label>
+                          <span className="list1_data1">
+                            <span className="list1_data1">{formState.companion.num_profile}</span>
+                          </span>
+                        </div>
+                      </>
+                    )}
+                    {formState.nuComponion.length !== 0 &&
+                      formState.nuComponion.map((value, key) => (
+                        <React.Fragment key={key}>
+                          <div className="col-12 col-md-8">
+                            <label className="list1_label1">Họ và tên:</label>
+                            <span className="list1_data1">
+                              <span className="list1_data1">{value.name_componion}</span>
+                            </span>
+                          </div>
+                          <div className="col-12 col-md-4">
+                            <label className="list1_label1">Quan hệ:</label>
+                            <span className="list1_data1">
+                              <span className="list1_data1">{value.rela_componion.value}</span>
+                            </span>
+                          </div>
+                          <div className="col-12">
+                            <label className="list1_label1">Giấy tờ tuỳ thân:</label>
+                            <span className="list1_data1">
+                              <span className="list1_data1">{value.prof_componion}</span>
+                            </span>
+                          </div>
+                        </React.Fragment>
+                      ))}
                   </div>
                 </div>
               </section>
@@ -99,29 +136,39 @@ class ComponentToPrint extends React.Component {
                 <div className="row">
                   <div className="col-12">
                     <label className="list1_label1">Mục đích vay vốn:</label>
-                    <span className="list1_data1">Xây - Nhà đất đã có Giấy chứng nhận (Sổ đỏ)</span>
+                    <span className="list1_data1">
+                      <span className="list1_data1">{formState.purpose_loan}</span>
+                    </span>
                   </div>
 
                   <div className="col-12">
                     <label className="list1_label1">Trang bị nội thất:</label>
-                    <span className="list1_data1">Có</span>
+                    <span className="list1_data1">
+                      {formState.is_loan === 'true' ? 'Có' : 'Không'}
+                    </span>
                   </div>
 
                   <div className="col-12">
                     <label className="list1_label1">
                       Giá trị nhà đất mua/ Chi phí xây/ sửa chữa/ trang bị nội thất:
                     </label>
-                    <span className="list1_data1">8,000,000,000 VNĐ</span>
+                    <span className="list1_data1"> {formState.value_loan}</span>
                   </div>
 
                   <div className="col-12">
                     <label className="list1_label1">Số tiền đề xuất vay:</label>
-                    <span className="list1_data1">5,000,000,000 VNĐ</span>
+                    <span className="list1_data1">
+                      <span className="list1_data1">{formState.suggest_monney} VNĐ</span>
+                    </span>
                   </div>
 
                   <div className="col-12">
                     <label className="list1_label1">Tài sản thế chấp:</label>
-                    <span className="list1_data1">Bất động sản khác</span>
+                    <span className="list1_data1">
+                      {typeof formState.collateral === 'string'
+                        ? 'Tài sản hình thành từ vốn vay'
+                        : 'Bất động sản khác'}
+                    </span>
                   </div>
                 </div>
               </div>

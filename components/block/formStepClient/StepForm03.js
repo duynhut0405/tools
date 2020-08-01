@@ -110,6 +110,29 @@ const StepForm03 = props => {
       .max(9999999999999999, 'Tối đa 17 số')
   });
 
+  function moneyFormat(amount, decimalCount = 2, decimal = ',', thousands = '.') {
+    try {
+      decimalCount = Math.abs(decimalCount);
+      decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+      const negativeSign = amount < 0 ? '-' : '';
+      const i = parseInt((amount = Math.abs(Number(amount) || 0).toFixed(decimalCount))).toString();
+      const j = i.length > 3 ? i.length % 3 : 0;
+      return (
+        negativeSign +
+        (j ? i.substr(0, j) + thousands : '') +
+        i.substr(j).replace(/(\d{3})(?=\d)/g, `$1${thousands}`) +
+        (decimalCount
+          ? decimal +
+            Math.abs(amount - i)
+              .toFixed(decimalCount)
+              .slice(2)
+          : '')
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <Formik
       initialValues={{
@@ -168,6 +191,14 @@ const StepForm03 = props => {
                           <NumberFormat
                             className="input"
                             thousandSeparator={true}
+                            isAllowed={values => {
+                              const { formattedValue, floatValue } = values;
+                              return (
+                                formattedValue === '' ||
+                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                              );
+                            }}
+                            min="0"
                             name="debt"
                             placeholder="Nhập giá trị"
                             defaultValue={formState.debt ? formState.debt : ''}
@@ -191,6 +222,13 @@ const StepForm03 = props => {
                             className="input"
                             thousandSeparator={true}
                             name="return_monney"
+                            isAllowed={values => {
+                              const { formattedValue, floatValue } = values;
+                              return (
+                                formattedValue === '' ||
+                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                              );
+                            }}
                             placeholder="Nhập giá trị"
                             defaultValue={formState.return_monney ? formState.return_monney : ''}
                             onValueChange={e => {
@@ -246,12 +284,12 @@ const StepForm03 = props => {
                         <input
                           type="checkbox"
                           name="payee"
-                          defaultValue={0}
+                          defaultChecked={formState.partner_pay_type}
                           onChange={() => {
-                            setWife(!wife);
-                            if (wife === true) {
-                              setFormState({ ...formState, partner_pay: 0 });
-                            }
+                            setFormState({
+                              ...formState,
+                              partner_pay_type: !formState.partner_pay_type
+                            });
                           }}
                         />
                         <span />
@@ -261,18 +299,18 @@ const StepForm03 = props => {
                         <input
                           type="checkbox"
                           name="payee"
-                          defaultValue={1}
+                          defaultChecked={formState.dif_payee_type}
                           onChange={() => {
-                            setDiff(!diff);
-                            if (diff === true) {
-                              setFormState({ ...formState, dif_payee: 0 });
-                            }
+                            setFormState({
+                              ...formState,
+                              dif_payee_type: !formState.dif_payee_type
+                            });
                           }}
                         />
                         <span />
                       </label>
                     </div>
-                    {wife && (
+                    {formState.partner_pay_type && (
                       <div className="col-12 form-control">
                         <h6 className="title1">Vợ/ chồng của Khách hàng</h6>
                         <div className="c-form1__control1 c-form1__control1--text1">
@@ -297,7 +335,7 @@ const StepForm03 = props => {
                         </div>
                       </div>
                     )}
-                    {diff && (
+                    {formState.dif_payee_type && (
                       <div className="col-12 form-control">
                         <h6 className="title1">Đồng trả nợ khác</h6>
                         <div className="c-form1__control1 c-form1__control1--text1">
@@ -392,7 +430,7 @@ const StepForm03 = props => {
                       className="btn c-form1-btn1-js"
                       type="button"
                       onClick={() => {
-                        console.log(formikProps);
+                        // console.log(formikProps);
                         formikProps.handleSubmit();
                       }}
                     >

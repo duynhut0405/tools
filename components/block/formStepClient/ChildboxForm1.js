@@ -8,10 +8,11 @@ const propTypes = {
   formState: Proptypes.object,
   item: Proptypes.object,
   index: Proptypes.number,
-  removeItem: Proptypes.func
+  removeItem: Proptypes.func,
+  formikProps: Proptypes.object
 };
 
-const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem }) => {
+const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formikProps }) => {
   const [name, setName] = useState(item.name_componion);
   const [relationship, setRelationship] = useState(item.rela_componion);
   const [typeProfile, setTypeProfile] = useState(item.prof_componion);
@@ -57,7 +58,12 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem }) => 
 
   return (
     <div className="c-form1__child1">
-      <span className="btn-close close-js" onClick={() => removeItem(index)}>
+      <span
+        className="btn-close close-js"
+        onClick={() => {
+          removeItem(index, formikProps);
+        }}
+      >
         <i className="icon-close"> </i>
       </span>
       <section className="child1_box1">
@@ -69,12 +75,19 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem }) => 
             <input
               className="input"
               type="text"
-              //required
+              name="name_element1"
+              required
               placeholder="Nhập đầy đủ họ tên vợ/ chồng"
               defaultValue={item.name_componion}
-              onChange={e => setName(e.target.value)}
+              onChange={e => {
+                setName(e.target.value);
+                formikProps.setFieldValue('name_element1', e.target.value);
+              }}
               style={{ width: '100%' }}
             />
+            {formikProps.touched.name_element1 && formikProps.errors.name_element1 && (
+              <p className="red error">{formikProps.errors.name_element1}</p>
+            )}
           </div>
           <div className="col-12 col-md-6">
             <h6 className="title1">
@@ -82,10 +95,18 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem }) => 
             </h6>
             <Select
               options={listPartner}
-              //required
+              name="name_element1"
               value={relationship}
-              onChange={e => setRelationship(e)}
+              required
+              defaultValue={item.rela_componion ? item.rela_componion : {}}
+              onChange={e => {
+                formikProps.setFieldValue('rela_element1', e);
+                setRelationship(e);
+              }}
             />
+            {formikProps.touched.rela_element1 && formikProps.errors.rela_element1 && (
+              <p className="red error">{formikProps.errors.rela_element1}</p>
+            )}
           </div>
           <div className="col-12 col-md-6">
             <h6 className="title1">
@@ -94,7 +115,7 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem }) => 
             <input
               className="input"
               type="text"
-              //required
+              required
               placeholder="Nhập đầy đủ họ tên vợ/ chồng"
               defaultValue={item.prof_componion}
               onChange={e => setTypeProfile(e.target.value)}
