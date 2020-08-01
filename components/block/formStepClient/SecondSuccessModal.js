@@ -7,11 +7,13 @@ import ComponentToPrint from './Printer';
 import Router from 'next/router';
 import moment from 'moment';
 import { sendMailService } from '../../../services/form';
+import { getSttForm } from '../../../services/common';
 
 const SecondSuccessModal = props => {
   const { closeModal, modalContinue, showModalContinue, formState, data, pageId } = props;
   const [dataColla, setDataColla] = useState([]);
   const componentRef = useRef();
+  moment.locale('vi');
 
   useEffect(() => {
     const collaterals = formState.collateral;
@@ -36,6 +38,12 @@ const SecondSuccessModal = props => {
     content: () => componentRef.current
   });
 
+  function pad(n, width, z) {
+    z = z || '0';
+    n = `${n}`;
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+  }
+
   const summitForm = async () => {
     const email = formState.email;
     const idForm = data.form[0] ? data.form[0].value : 399952;
@@ -46,6 +54,7 @@ const SecondSuccessModal = props => {
       idForm: idForm,
       idPage: pageId
     };
+    const id = await getSttForm(idForm);
     const res = await sendMailService(body);
     if (res && res.status === 200 && res.data === true) {
       Router.push({
@@ -53,7 +62,7 @@ const SecondSuccessModal = props => {
         query: {
           purpose_loan: formState.purpose_loan,
           suggest_monney: formState.suggest_monney,
-          id: formState.birthday
+          id: `MB.${moment().format('YYYY')}.${pad(id.data, 6)}`
         }
       });
     }
@@ -111,14 +120,12 @@ const SecondSuccessModal = props => {
 
                   <div className="col-12 col-md-3">
                     <label className="list1_label1">Giới tính:</label>
-                    <span className="list1_data1">{formState.sex}</span>
+                    <span className="list1_data1">{formState.sex === 'famale' ? 'Nũ' : 'Nam'}</span>
                   </div>
 
                   <div className="col-12 col-md-5">
                     <label className="list1_label1">Ngày sinh:</label>
-                    <span className="list1_data1">
-                      {moment(formState.birthday).format('MMM Do YY')}
-                    </span>
+                    <span className="list1_data1">{moment(formState.birthday).format('LL')}</span>
                   </div>
 
                   <div className="col-12 col-md-4">
@@ -142,7 +149,9 @@ const SecondSuccessModal = props => {
 
                   <div className="col-12">
                     <label className="list1_label1">Nơi ở hiện tại:</label>
-                    <span className="list1_data1">{formState.current_district_address}</span>
+                    <span className="list1_data1">
+                      {formState.address ? formState.address.current_home : null}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -160,20 +169,24 @@ const SecondSuccessModal = props => {
                           <label className="list1_label1">Họ và tên:</label>
                           <span className="list1_data1">
                             <span className="list1_data1">
-                              {formState.companion.name_componion}
+                              {formState.companion ? formState.companion.name : ''}
                             </span>
                           </span>
                         </div>
                         <div className="col-12 col-md-4">
                           <label className="list1_label1">Quan hệ:</label>
                           <span className="list1_data1">
-                            <span className="list1_data1">{formState.companion.value}</span>
+                            <span className="list1_data1">
+                              {formState.companion ? formState.companion.relation.label : ''}
+                            </span>
                           </span>
                         </div>
                         <div className="col-12">
                           <label className="list1_label1">Giấy tờ tuỳ thân:</label>
                           <span className="list1_data1">
-                            <span className="list1_data1">{formState.companion.num_profile}</span>
+                            <span className="list1_data1">
+                              {formState.companion ? formState.companion.num_profile : ''}
+                            </span>
                           </span>
                         </div>
                       </>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import BaseSelect from 'react-select';
 import FixRequiredSelect from './FixRequiredSelect';
+import NumberFormat from 'react-number-format';
 
 const propTypes = {
   setFormState: Proptypes.func,
@@ -115,11 +116,20 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
             <input
               className="input"
               type="text"
-              required
-              placeholder="Nhập đầy đủ họ tên vợ/ chồng"
-              defaultValue={item.prof_componion}
               onChange={e => setTypeProfile(e.target.value)}
               style={{ width: '100%' }}
+            />
+            <NumberFormat
+              className="input"
+              name="suggest_monney"
+              placeholder="Nhập giấy tờ tùy thân"
+              format="############"
+              mask=" "
+              required
+              defaultValue={item.prof_componion}
+              onValueChange={e => {
+                setTypeProfile(e.formattedValue);
+              }}
             />
           </div>
         </div>
