@@ -56,7 +56,7 @@ const validationSchema = yup.object().shape({
     is: isCheck => isCheck === true,
     then: yup
       .string()
-      .matches(/[a-zA-Z][0-9]+/, 'Yêu cầu số và chữ')
+      .matches(/[a-zA-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
       .required('Trường bắt buộc nhập')
   }),
   name_companion: yup.string().when('isCheck', {
@@ -107,7 +107,7 @@ const validationSchema = yup.object().shape({
       is: profileType => profileType === 'Chứng minh quân đội',
       then: yup
         .string()
-        .matches(/^[0-9]{4,9}$/, 'Không chứa chữ cái và kí tự đặc biệt')
+        .matches(/^[0-9]{4,8}$/, 'Chứng minh quân đội bao gồm 8 số')
         .required('Trường bắt buộc nhập')
     })
 });
@@ -278,7 +278,11 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                             : false
                         }
                         onClick={e => {
-                          setFormState({ ...formState, profileType: e.target.value });
+                          setFormState({
+                            ...formState,
+                            profileType: e.target.value,
+                            profileNumber: ''
+                          });
                           setFieldValue('profileType', e.target.value);
                         }}
                       />
@@ -292,7 +296,11 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         defaultValue={'Căn cước'}
                         defaultChecked={formState.profileType === 'Căn cước' ? true : false}
                         onClick={e => {
-                          setFormState({ ...formState, profileType: e.target.value });
+                          setFormState({
+                            ...formState,
+                            profileType: e.target.value,
+                            profileNumber: ''
+                          });
                           setFieldValue('profileType', e.target.value);
                         }}
                       />
@@ -306,7 +314,11 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         defaultValue={'Hộ chiếu'}
                         defaultChecked={formState.profileType === 'Hộ chiếu' ? true : false}
                         onClick={e => {
-                          setFormState({ ...formState, profileType: e.target.value });
+                          setFormState({
+                            ...formState,
+                            profileType: e.target.value,
+                            profileNumber: ''
+                          });
                           setFieldValue('profileType', e.target.value);
                         }}
                       />
@@ -322,7 +334,11 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                           formState.profileType === 'Chứng minh quân đội' ? true : false
                         }
                         onClick={e => {
-                          setFormState({ ...formState, profileType: e.target.value });
+                          setFormState({
+                            ...formState,
+                            profileType: e.target.value,
+                            profileNumber: ''
+                          });
                           setFieldValue('profileType', e.target.value);
                         }}
                       />
@@ -333,15 +349,56 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                     <h6 className="title1">
                       Số Giấy tờ tùy thân (<span className="red">*</span>)
                     </h6>
-                    {formState.profileType !== 'Chứng minh nhân dân' && (
+                    {formState.profileType === 'Hộ chiếu' && (
                       <>
                         <input
                           className="input"
                           name="profileNumber"
                           type="text"
-                          placeholder="Số Giấy tờ tùy thân(*)"
+                          placeholder={formState.profileType}
                           defaultValue={formState.profileNumber ? formState.profileNumber : ''}
-                          onChange={formikProps.handleChange('profileNumber')}
+                          onChange={e => {
+                            setFieldValue('profileNumber', e.target.value);
+                            setFormState({ ...formState, profileNumber: e.target.value });
+                          }}
+                        />
+                        {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
+                          <p className="red error">{formikProps.errors.profileNumber}</p>
+                        )}
+                      </>
+                    )}
+
+                    {formState.profileType === 'Chứng minh quân đội' && (
+                      <>
+                        <input
+                          className="input"
+                          name="profileNumber"
+                          type="text"
+                          placeholder={formState.profileType}
+                          defaultValue={formState.profileNumber ? formState.profileNumber : ''}
+                          onChange={e => {
+                            setFieldValue('profileNumber', e.target.value);
+                            setFormState({ ...formState, profileNumber: e.target.value });
+                          }}
+                        />
+                        {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
+                          <p className="red error">{formikProps.errors.profileNumber}</p>
+                        )}
+                      </>
+                    )}
+                    {formState.profileType === 'Căn cước' && (
+                      <>
+                        <NumberFormat
+                          className="input"
+                          name="profileNumber"
+                          format="#### #### ####"
+                          mask="_"
+                          allowEmptyFormatting
+                          defaultValue={formState.profileNumber ? formState.profileNumber : ''}
+                          onValueChange={e => {
+                            setFieldValue('profileNumber', e.formattedValue);
+                            setFormState({ ...formState, profileNumber: e.formattedValue });
+                          }}
                         />
                         {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
                           <p className="red error">{formikProps.errors.profileNumber}</p>
@@ -352,10 +409,9 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       <NumberFormat
                         className="input"
                         name="profileNumber"
-                        placeholder="Số điện thoại"
                         format="#### ### ##"
-                        allowEmptyFormatting
                         mask="_"
+                        allowEmptyFormatting
                         defaultValue={formState.profileNumber ? formState.profileNumber : ''}
                         onValueChange={e => {
                           setFormState({ ...formState, profileNumber: e.formattedValue });

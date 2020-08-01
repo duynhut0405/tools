@@ -116,20 +116,10 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
             <input
               className="input"
               type="text"
-              onChange={e => setTypeProfile(e.target.value)}
-              style={{ width: '100%' }}
-            />
-            <NumberFormat
-              className="input"
-              name="suggest_monney"
               placeholder="Nhập giấy tờ tùy thân"
-              format="############"
-              mask=" "
+              onChange={e => setTypeProfile(e.target.value)}
               required
-              defaultValue={item.prof_componion}
-              onValueChange={e => {
-                setTypeProfile(e.formattedValue);
-              }}
+              style={{ width: '100%' }}
             />
           </div>
         </div>
