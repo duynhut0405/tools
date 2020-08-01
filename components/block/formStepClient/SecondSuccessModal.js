@@ -88,7 +88,7 @@ const SecondSuccessModal = props => {
               </div>
 
               <section className="sec1">
-                <h3 className="sec1_title1">Cộng Hoà xã hội chủ nghĩa Việt Nam</h3>
+                <h3 className="sec1_title1">Cộng Hoà Xã Hội Chủ Nghĩa Việt Nam</h3>
                 <p>Độc lập - Tự do - Hạnh phúc</p>
               </section>
               <a className="btn" onClick={handlePrint}>
@@ -218,14 +218,16 @@ const SecondSuccessModal = props => {
 
                   <div className="col-12">
                     <label className="list1_label1">Trang bị nội thất:</label>
-                    <span className="list1_data1">Có</span>
+                    <span className="list1_data1">
+                      {formState.is_loan === 'true' ? 'Có' : 'Không'}
+                    </span>
                   </div>
 
                   <div className="col-12">
                     <label className="list1_label1">
                       Giá trị nhà đất mua/ Chi phí xây/ sửa chữa/ trang bị nội thất:
                     </label>
-                    <span className="list1_data1">8,000,000,000 VNĐ</span>
+                    <span className="list1_data1"> {formState.value_loan}</span>
                   </div>
 
                   <div className="col-12">

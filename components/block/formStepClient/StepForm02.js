@@ -86,7 +86,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
         is_future: formState.is_future || '',
         profileNumber: formState.profileNumber || '',
         relaValue: formState.relaValue || '',
-        type_purpose: formState.type_purpose || '',
+        type_purpose: formState.type_purpose_02 || formState.type_purpose_01,
         isCollateral: iscollateral
       }}
       onSubmit={() => {
@@ -114,39 +114,37 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                       <label className="radio">
                         Mua nhà đất
                         <input
-                          type="radio"
-                          name="purpose_loan"
-                          defaultChecked={formState.type_purpose === 2 ? true : false}
+                          type="checkbox"
+                          name="type_purpose_02"
+                          defaultChecked={formState.type_purpose_02 ? true : false}
                           onClick={() => {
-                            setFieldValue('type_purpose', 2);
+                            setFieldValue('type_purpose', !formState.type_purpose_02);
                             setFormState({
                               ...formState,
-                              type_purpose: 2,
-                              purpose_loan_01: false,
-                              purpose_loan_02: false
+                              type_purpose_02: !formState.type_purpose_02
                             });
                           }}
                         />
                         <span />
-                        {formState.type_purpose && formState.type_purpose === 2 && (
+                        {formState.type_purpose_02 && (
                           <div className="row p-form2--mt20">
                             <div className="col-12">
                               <label className="radio">
                                 Nhà đất đã có Giấy chứng nhận (Sổ đỏ)
                                 <input
                                   type="radio"
-                                  name="test1"
+                                  name="test2"
                                   defaultChecked={
-                                    formState.purpose_loan_01 ===
+                                    formState.purpose_loan_02 ===
                                     'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
                                       ? true
                                       : false
                                   }
                                   onClick={e => {
-                                    setFieldValue('purpose_loan_01', e.target.value);
+                                    setFieldValue('purpose_loan_02', e.target.value);
                                     setFormState({
                                       ...formState,
-                                      purpose_loan_01: 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
+                                      purpose_loan_02: 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
                                     });
                                   }}
                                 />
@@ -185,22 +183,19 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                       <label className="radio">
                         Xây/ Sửa nhà đất
                         <input
-                          type="radio"
-                          name="purpose_loan"
-                          // required
-                          defaultChecked={formState.type_purpose === 1 ? true : false}
+                          type="checkbox"
+                          name="type_purpose_01"
+                          defaultChecked={formState.type_purpose_01 ? true : false}
                           onClick={() => {
                             setFieldValue('type_purpose', 1);
                             setFormState({
                               ...formState,
-                              type_purpose: 1,
-                              purpose_loan_01: false,
-                              purpose_loan_02: false
+                              type_purpose_01: !formState.type_purpose_01
                             });
                           }}
                         />
                         <span />
-                        {formState.type_purpose && formState.type_purpose === 1 && (
+                        {formState.type_purpose_01 && (
                           <div className="row p-form2--mt20">
                             <div className="col-12">
                               <label className="radio">
@@ -208,7 +203,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 <input
                                   type="radio"
                                   name="test1"
-                                  // required
                                   defaultChecked={
                                     formState.purpose_loan_01 === 'Xây nhà' ? true : false
                                   }
@@ -228,16 +222,16 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 Sửa nhà
                                 <input
                                   type="radio"
-                                  name="test2"
+                                  name="test1"
                                   // required
                                   defaultChecked={
-                                    formState.purpose_loan_02 === 'Sửa nhà' ? true : false
+                                    formState.purpose_loan_01 === 'Sửa nhà' ? true : false
                                   }
                                   onClick={e => {
-                                    setFieldValue('purpose_loan_02', e.target.value);
+                                    setFieldValue('purpose_loan_01', e.target.value);
                                     setFormState({
                                       ...formState,
-                                      purpose_loan_02: 'Sửa nhà'
+                                      purpose_loan_01: 'Sửa nhà'
                                     });
                                   }}
                                 />
@@ -441,14 +435,20 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                   </div>
                   <div className="col-12 c-form1__btns-list1">
                     <div className="text-center">
-                      <button className="btn type-white" onClick={backFrom}>
+                      <button
+                        className="btn type-white"
+                        onClick={e => {
+                          e.preventDefault();
+                          backFrom();
+                        }}
+                      >
                         Quay về
                       </button>
                       <button
                         type="button"
                         className="btn"
                         onClick={() => {
-                          console.log(formikProps);
+                          // console.log(formikProps);
                           handleSubmit();
                         }}
                       >
