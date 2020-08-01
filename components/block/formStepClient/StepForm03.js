@@ -31,8 +31,12 @@ const StepForm03 = props => {
   };
   const showModalContinue = e => {
     e.preventDefault();
-    setModalContinue(true);
-    setActive(false);
+    if (formState.address_name && formState.address_name) {
+      setModalContinue(true);
+      setActive(false);
+    } else {
+      alert('Vui lòng chọn tên chi nhánh ngân hàng');
+    }
   };
   const showActiveAlertInfo = () => {
     setActiveAlertInfo(!activeAlertInfo);

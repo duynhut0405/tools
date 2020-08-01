@@ -10,7 +10,15 @@ import { sendMailService } from '../../../services/form';
 import { getSttForm } from '../../../services/common';
 
 const SecondSuccessModal = props => {
-  const { closeModal, modalContinue, showModalContinue, formState, data, pageId } = props;
+  const {
+    closeModal,
+    modalContinue,
+    showModalContinue,
+    setFormActive,
+    formState,
+    data,
+    pageId
+  } = props;
   const [dataColla, setDataColla] = useState([]);
   const componentRef = useRef();
   moment.locale('vi');
@@ -120,7 +128,7 @@ const SecondSuccessModal = props => {
 
                   <div className="col-12 col-md-3">
                     <label className="list1_label1">Giới tính:</label>
-                    <span className="list1_data1">{formState.sex === 'famale' ? 'Nũ' : 'Nam'}</span>
+                    <span className="list1_data1">{formState.sex === 'female' ? 'Nữ' : 'Nam'}</span>
                   </div>
 
                   <div className="col-12 col-md-5">
@@ -225,7 +233,9 @@ const SecondSuccessModal = props => {
                   <div className="col-12">
                     <label className="list1_label1">Mục đích vay vốn:</label>
                     <span className="list1_data1">
-                      <span className="list1_data1">{formState.purpose_loan}</span>
+                      <span className="list1_data1">
+                        {formState.purpose_loan_01} , {formState.purpose_loan_02}
+                      </span>
                     </span>
                   </div>
 
@@ -240,13 +250,15 @@ const SecondSuccessModal = props => {
                     <label className="list1_label1">
                       Giá trị nhà đất mua/ Chi phí xây/ sửa chữa/ trang bị nội thất:
                     </label>
-                    <span className="list1_data1"> {formState.value_loan}</span>
+                    <span className="list1_data1"> {formatCurrency(formState.value_loan)}</span>
                   </div>
 
                   <div className="col-12">
                     <label className="list1_label1">Số tiền đề xuất vay:</label>
                     <span className="list1_data1">
-                      <span className="list1_data1">{formState.suggest_monney} VNĐ</span>
+                      <span className="list1_data1">
+                        {formatCurrency(formState.suggest_monney)} VNĐ
+                      </span>
                     </span>
                   </div>
 
@@ -276,12 +288,14 @@ const SecondSuccessModal = props => {
                           <label className="list1_label1">
                             Mối quan hệ với chủ tài sản với khách hàng:
                           </label>
-                          <span className="list1_data1">{item.relaValue}</span>
+                          <span className="list1_data1">
+                            {item.relaValue && item.relaValue.label}
+                          </span>
                         </div>
 
                         <div className="col-12">
                           <label className="list1_label1">Giá trị ước tính:</label>
-                          <span className="list1_data1">{item.estimate} VNĐ</span>
+                          <span className="list1_data1">{formatCurrency(item.estimate)} VNĐ</span>
                         </div>
                       </div>
                     </div>
@@ -295,17 +309,28 @@ const SecondSuccessModal = props => {
                   <div className="col-12">
                     <label className="list1_label1">Thu nhập khách hàng (sau thuế)</label>
                     <span className="list1_data1">
-                      <span className="list1_data1">{formState.salary} VNĐ/ tháng</span>
-                    </span>
-                  </div>
-                  <div className="col-12">
-                    <label className="list1_label1">Thu nhập người đồng trả nợ (sau thuế)</label>
-                    <span className="list1_data1">
                       <span className="list1_data1">
-                        {formState.num_wife + formState.dif_payee} VNĐ
+                        {formatCurrency(formState.salary)} VNĐ/ tháng
                       </span>
                     </span>
                   </div>
+                  {formState.companion && (
+                    <div className="col-12">
+                      <label className="list1_label1">Thu nhập người đồng trả nợ (sau thuế)</label>
+                      <span className="list1_data1">
+                        <span className="list1_data1">
+                          {formState.partner_pay_type && formState.partner_pay
+                            ? `Vợ/ chồng của Khách hàng: ${formatCurrency(formState.partner_pay)}`
+                            : ''}
+                        </span>
+                        <span className="list1_data1">
+                          {formState.dif_payee_type && formState.dif_payee
+                            ? `Đồng trả nợ khác: ${formatCurrency(formState.dif_payee)}`
+                            : ''}
+                        </span>
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </section>
@@ -370,7 +395,7 @@ const SecondSuccessModal = props => {
           <div className="btns-list1">
             <div className="row">
               <div className="col-12 text-center">
-                <button href="#" className="btn type-white">
+                <button href="#" className="btn type-white" onClick={() => setFormActive(1)}>
                   Sửa thông tin
                 </button>
                 <button className="btn" onClick={() => summitForm()}>
@@ -393,7 +418,8 @@ SecondSuccessModal.propTypes = {
   showModal: PropTypes.func,
   showModalContinue: PropTypes.func,
   data: PropTypes.object,
-  pageId: PropTypes.number
+  pageId: PropTypes.number,
+  setFormActive: PropTypes.func
 };
 
 export default SecondSuccessModal;

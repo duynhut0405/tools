@@ -50,7 +50,7 @@ class ComponentToPrint extends React.Component {
 
                   <div className="col-3">
                     <label className="list1_label1">Giới tính:</label>
-                    <span className="list1_data1">{formState.sex === 'famale' ? 'Nũ' : 'Nam'}</span>
+                    <span className="list1_data1">{formState.sex === 'female' ? 'Nữ' : 'Nam'}</span>
                   </div>
 
                   <div className="col-5">
@@ -173,13 +173,15 @@ class ComponentToPrint extends React.Component {
                     <label className="list1_label1">
                       Giá trị nhà đất mua/ Chi phí xây/ sửa chữa/ trang bị nội thất:
                     </label>
-                    <span className="list1_data1"> {formState.value_loan}</span>
+                    <span className="list1_data1"> {formatCurrency(formState.value_loan)}</span>
                   </div>
 
                   <div className="col-12">
                     <label className="list1_label1">Số tiền đề xuất vay:</label>
                     <span className="list1_data1">
-                      <span className="list1_data1">{formState.suggest_monney} VNĐ</span>
+                      <span className="list1_data1">
+                        {formatCurrency(formState.suggest_monney)} VNĐ
+                      </span>
                     </span>
                   </div>
 
@@ -193,33 +195,35 @@ class ComponentToPrint extends React.Component {
                   </div>
                 </div>
               </div>
+              {typeof formState.collateral !== 'string' &&
+                formState.collateral.map((item, key) => (
+                  <section className="child1" key={key}>
+                    <h5 className="child1_title1">Thông tin tài sản thế chấp</h5>
 
-              <section className="child1">
-                <h5 className="child1_title1">Thông tin tài sản thế chấp</h5>
+                    <div className="list1">
+                      <div className="row">
+                        <div className="col-12">
+                          <label className="list1_label1">Mô tả tài sản:</label>
+                          <span className="list1_data1">{item.decription}</span>
+                        </div>
 
-                <div className="list1">
-                  <div className="row">
-                    <div className="col-12">
-                      <label className="list1_label1">Mô tả tài sản:</label>
-                      <span className="list1_data1">
-                        Số 22, ngách 1, ngõ 178 Thái Hà - Quận Đống Đa - Hà Nội
-                      </span>
+                        <div className="col-12">
+                          <label className="list1_label1">
+                            Mối quan hệ với chủ tài sản với khách hàng:
+                          </label>
+                          <span className="list1_data1">
+                            {item.relaValue && item.relaValue.label}
+                          </span>
+                        </div>
+
+                        <div className="col-12">
+                          <label className="list1_label1">Giá trị ước tính:</label>
+                          <span className="list1_data1">{formatCurrency(item.estimate)} VNĐ</span>
+                        </div>
+                      </div>
                     </div>
-
-                    <div className="col-12">
-                      <label className="list1_label1">
-                        Mối quan hệ với chủ tài sản với khách hàng:
-                      </label>
-                      <span className="list1_data1">Bố mẹ đẻ</span>
-                    </div>
-
-                    <div className="col-12">
-                      <label className="list1_label1">Giá trị ước tính:</label>
-                      <span className="list1_data1">6,000,000,000 VNĐ</span>
-                    </div>
-                  </div>
-                </div>
-              </section>
+                  </section>
+                ))}
             </section>
             <section className="file1_box1">
               <h4 className="file1_title1">Thông tin tài chính</h4>
@@ -229,12 +233,14 @@ class ComponentToPrint extends React.Component {
                   <div className="col-12">
                     <label className="list1_label1">Thu nhập khách hàng (sau thuế)</label>
                     <span className="list1_data1">
-                      {formState.salary ? formState.salary : ''} VNĐ/ tháng
+                      {formState.salary ? formatCurrency(formState.salary) : ''} VNĐ/ tháng
                     </span>
                   </div>
                   {formState.companion && (
                     <div className="col-12">
-                      <label className="list1_label1">Thu nhập người đồng trả nợ (sau thuế)</label>
+                      <label className="list1_label1">
+                        Tổng thu nhập người đồng trả nợ (sau thuế)
+                      </label>
                       <span className="list1_data1">
                         {formState.partner_pay_type && formState.partner_pay
                           ? `Vợ/ chồng của Khách hàng: ${formState.partner_pay}`
