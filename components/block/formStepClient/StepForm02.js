@@ -40,7 +40,7 @@ const validationSchema = yup.object().shape({
 // const text02 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
 const text03 = 'Tài sản hình thành từ vốn vay';
 const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
-  const [iscollateral, setIsCollateral] = useState(formState.collateral === text03 ? false : true);
+  const [iscollateral, setIsCollateral] = useState(formState.isCollateral02 ? false : true);
   const [idAsset, setIdAsset] = useState(1);
   const form02 = useRef(null);
 
@@ -350,10 +350,17 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                           }
                           onClick={() => {
                             setFieldValue('isCollateral', false);
-                            setFormState({
-                              ...formState,
-                              collateral01: 'Tài sản hình thành từ vốn vay'
-                            });
+                            if (formState.collateral01 !== 'Tài sản hình thành từ vốn vay') {
+                              setFormState({
+                                ...formState,
+                                collateral01: 'Tài sản hình thành từ vốn vay'
+                              });
+                            } else {
+                              setFormState({
+                                ...formState,
+                                collateral01: ''
+                              });
+                            }
                           }}
                         />
                         <span />
