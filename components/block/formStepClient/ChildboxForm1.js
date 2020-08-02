@@ -112,11 +112,13 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               style={{ width: '100%' }}
               required
             />
+            {formikProps.touched.nuComponion &&
+              formikProps.errors &&
+              formikProps.touched.nuComponion[index].name_componion &&
+              formikProps.errors.nuComponion[index].name_componion && (
+                <p className="red error">{formikProps.errors.nuComponion[index].name_componion}</p>
+              )}
           </div>
-          {formikProps.touched.nuComponion[index].name_componion &&
-            formikProps.errors.nuComponion[index].name_componion && (
-              <p className="red error">{formikProps.errors.nuComponion[index].name_componion}</p>
-            )}
           <div className="col-12 col-md-6">
             <h6 className="title1">
               Quan hệ (<span className="red">*</span>)

@@ -26,9 +26,9 @@ const validationSchema = yup.object().shape({
   sex: yup.string().required('Trường bắt buộc nhập'),
   nuComponion: yup.array().of(
     yup.object().shape({
-      name_componion: yup.string().required('Required'),
-      rela_componion: yup.string().required('Required'),
-      prof_componion: yup.string().required('Required')
+      name_componion: yup.string().required('Trường bắt buộc nhập'),
+      rela_componion: yup.string().required('Trường bắt buộc nhập'),
+      prof_componion: yup.string().required('Trường bắt buộc nhập')
     })
   ),
   name_element1: yup.string().when('isLengths', {

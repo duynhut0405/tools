@@ -77,7 +77,7 @@ function FormStep({ data, id, pageId }) {
   return (
     <section className={`form-step-wapper ${padding} formStep`} id={id}>
       <div className="container">
-        {console.log(formState)}
+        {/* {console.log(formState)} */}
         <div className="text-center" id="form_step_top">
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
