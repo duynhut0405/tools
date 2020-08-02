@@ -133,6 +133,7 @@ const ChildboxForm2 = ({
             <h6 className="title1">
               Mô tả tài sản (<span className="red">*</span>)
             </h6>
+            {console.log(decription)}
             <input
               className="input"
               name="decriptiom"
@@ -144,6 +145,7 @@ const ChildboxForm2 = ({
               }}
               style={{ position: 'relative !important', opacity: 1 }}
               placeholder="Nhập địa chỉ, diện tích…."
+              required
             />
             {touched.decriptiom && errors.decriptiom && (
               <p className="red error">{errors.decriptiom}</p>
@@ -158,6 +160,7 @@ const ChildboxForm2 = ({
                 className="input"
                 name="profileNumber"
                 thousandSeparator={true}
+                required
                 placeholder="Nhập giá trị"
                 defaultValue={estimate}
                 onValueChange={e => {

@@ -341,17 +341,18 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                       <label className="radio">
                         Tài sản hình thành từ vốn vay
                         <input
-                          type="radio"
-                          name="collateral"
+                          type="checkbox"
+                          name="collateral01"
                           defaultChecked={
-                            formState.collateral === 'Tài sản hình thành từ vốn vay' ? true : false
+                            formState.collateral01 === 'Tài sản hình thành từ vốn vay'
+                              ? true
+                              : false
                           }
                           onClick={() => {
-                            setIsCollateral(false);
                             setFieldValue('isCollateral', false);
                             setFormState({
                               ...formState,
-                              collateral: 'Tài sản hình thành từ vốn vay'
+                              collateral01: 'Tài sản hình thành từ vốn vay'
                             });
                           }}
                         />
@@ -363,14 +364,15 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                       <label className="radio p-collateral-js" style={{ width: '100%' }}>
                         Bất động sản khác
                         <input
-                          type="radio"
-                          name="collateral"
+                          type="checkbox"
+                          name="collateral02"
                           defaultChecked={iscollateral}
                           onClick={() => {
-                            setIsCollateral(true);
-                            setFieldValue('isCollateral', true);
+                            setIsCollateral(!iscollateral);
+                            setFieldValue('isCollateral', iscollateral);
                             setFormState({
                               ...formState,
+                              isCollateral02: iscollateral,
                               collateral: [
                                 {
                                   id: 0,

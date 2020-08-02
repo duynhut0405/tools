@@ -70,7 +70,7 @@ const SecondSuccessModal = props => {
         query: {
           purpose_loan: formState.purpose_loan,
           suggest_monney: formState.suggest_monney,
-          id: `MB.${moment().format('YYYY')}.${pad(id.data, 6)}`
+          id: `W.${moment().format('YYYY')}.${pad(id.data, 6)}`
         }
       });
     }
@@ -234,7 +234,8 @@ const SecondSuccessModal = props => {
                     <label className="list1_label1">Mục đích vay vốn:</label>
                     <span className="list1_data1">
                       <span className="list1_data1">
-                        {formState.purpose_loan_01} , {formState.purpose_loan_02}
+                        {formState.purpose_loan_01 ? `${formState.purpose_loan_01},` : ''}
+                        {formState.purpose_loan_02}
                       </span>
                     </span>
                   </div>
@@ -323,6 +324,7 @@ const SecondSuccessModal = props => {
                             ? `Vợ/ chồng của Khách hàng: ${formatCurrency(formState.partner_pay)}`
                             : ''}
                         </span>
+                        <br />
                         <span className="list1_data1">
                           {formState.dif_payee_type && formState.dif_payee
                             ? `Đồng trả nợ khác: ${formatCurrency(formState.dif_payee)}`

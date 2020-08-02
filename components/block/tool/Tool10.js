@@ -128,7 +128,7 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                       <div className="inner">
                         <FieldInput
                           label={t('money_can_loan')}
-                          minValue={100000000000}
+                          minValue={1000000000}
                           value={amount}
                           // onBlur={onBlur}
                           onChange={value => {
