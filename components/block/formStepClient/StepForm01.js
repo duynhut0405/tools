@@ -51,8 +51,8 @@ const validationSchema = yup.object().shape({
     is: isCheck => isCheck === true,
     then: yup
       .string()
-      .matches(/[a-zA-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-      .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
+      .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+      .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
       .required('Trường bắt buộc nhập')
   }),
   name_companion: yup.string().when('isCheck', {
@@ -71,7 +71,7 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập'),
   email: yup
     .string()
-    .matches(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
+    .matches(/^[a-z0-9](\.?[a-z0-9]){100,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
     .matches(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Không chứa kí tự đặc biệt và bắt đầu bằng số'
@@ -96,16 +96,18 @@ const validationSchema = yup.object().shape({
       is: profileType => profileType === 'Hộ chiếu',
       then: yup
         .string()
-        .matches(/[A-Z0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
+        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
       is: profileType => profileType === 'Chứng minh quân đội',
       then: yup
         .string()
-        .matches(/[A-Z0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
+        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
 });
@@ -392,7 +394,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                           className="input"
                           name="profileNumber"
                           format="############"
-                          mask="_"
+                          mask=" "
                           allowEmptyFormatting
                           defaultValue={formState.profileNumber ? formState.profileNumber : ''}
                           onValueChange={e => {
@@ -410,7 +412,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         className="input"
                         name="profileNumber"
                         format="#### ### ##"
-                        mask="_"
+                        mask=" "
                         allowEmptyFormatting
                         defaultValue={formState.profileNumber ? formState.profileNumber : ''}
                         onValueChange={e => {
@@ -479,9 +481,9 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       className="input"
                       name="suggest_monney"
                       placeholder="Số điện thoại"
-                      format="0 ### ### ###"
+                      format="### ### ####"
                       allowEmptyFormatting
-                      mask="_"
+                      mask=" "
                       defaultValue={formState.phone}
                       onValueChange={e => {
                         setFormState({
@@ -707,7 +709,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                                   ]
                                 });
                                 setFieldValue('nuComponion', [
-                                  ...formikProps.values.nuComponion,
+                                  ...formState.nuComponion,
                                   {
                                     id: formState.nuComponion.length,
                                     name_componion: '',
@@ -715,6 +717,15 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                                     prof_componion: ''
                                   }
                                 ]);
+                                // setFieldError('nuComponion', [
+                                //   ...formikProps.values.nuComponion,
+                                //   {
+                                //     id: formState.nuComponion.length,
+                                //     name_componion: '',
+                                //     rela_componion: '',
+                                //     prof_componion: ''
+                                //   }
+                                // ]);
                               }}
                             >
                               Thêm mối quan hệ

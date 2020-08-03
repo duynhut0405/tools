@@ -32,7 +32,7 @@ function SuccesForm() {
       <div className="container">
         <div className="max750">
           <div className="p-thank1__img1">
-            <img src="static/images/success-icon.png" alt="success-icon.png" />
+            <img src="/static/images/success-icon.png" alt="success-icon.png" />
           </div>
 
           <h2 className="c-title1">Đăng ký thành công</h2>
@@ -97,7 +97,7 @@ function SuccesForm() {
           </div>
 
           <div className="col-12 text-center">
-            <a href="#" className="btn btnModal" data-modal="CheckedDataModal">
+            <a href="/" className="btn btnModal" data-modal="CheckedDataModal">
               Tiếp tục
             </a>
           </div>

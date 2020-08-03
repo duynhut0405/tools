@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FieldInput from './FieldInput';
+import FieldInput1 from './FieldInput1';
 import Table from './Table';
 import Result1 from './Result1';
 import t from '../../../translation';
@@ -19,7 +19,7 @@ const propTypes = {
 
 function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
   const [amount, setAmount] = useState('1000000000');
-  const [month, setMonth] = useState('1');
+  const [month, setMonth] = useState('180');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
   const [monthlypayment, setMonthlyPayment] = useState(0);
   const [checkAmount, setCheckAmount] = useState(0);
@@ -126,7 +126,7 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                   <div className="row ">
                     <div className="col-md-7 ">
                       <div className="inner">
-                        <FieldInput
+                        <FieldInput1
                           label={t('money_can_loan')}
                           minValue={1000000000}
                           value={amount}
@@ -134,13 +134,15 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                           onChange={value => {
                             setAmount(value);
                           }}
+                          placeholder={'Nhập số tiền'}
                         />
-                        <FieldInput
+                        <FieldInput1
                           label={t('term_loan')}
                           maxValue={180}
                           value={month}
                           note="Tháng"
                           onChange={value => setMonth(value)}
+                          placeholder={'Nhập tháng'}
                         />
                       </div>
                     </div>

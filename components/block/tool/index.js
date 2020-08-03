@@ -138,7 +138,7 @@ function Tools({ content, id }) {
             minValue={parseInt(content.minValue)}
             maxValue={parseInt(content.maxValue)}
             interest_rate={parseFloat(content.interest_rate)}
-          />
+          ></Tool10>
         );
       default:
         return null;
