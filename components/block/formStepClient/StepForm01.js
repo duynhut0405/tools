@@ -51,11 +51,8 @@ const validationSchema = yup.object().shape({
     is: isCheck => isCheck === true,
     then: yup
       .string()
-      .matches(
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        'Không chứa kí tự đặc biệt và bắt đầu bằng số'
-      )
       .matches(/[a-zA-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+      .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
       .required('Trường bắt buộc nhập')
   }),
   name_companion: yup.string().when('isCheck', {
@@ -99,7 +96,8 @@ const validationSchema = yup.object().shape({
       is: profileType => profileType === 'Hộ chiếu',
       then: yup
         .string()
-        .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/[A-Z0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
@@ -107,6 +105,7 @@ const validationSchema = yup.object().shape({
       then: yup
         .string()
         .matches(/[A-Z0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
 });
@@ -392,7 +391,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         <NumberFormat
                           className="input"
                           name="profileNumber"
-                          format="#### #### ####"
+                          format="############"
                           mask="_"
                           allowEmptyFormatting
                           defaultValue={formState.profileNumber ? formState.profileNumber : ''}
@@ -701,13 +700,21 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                                     ...formState.nuComponion,
                                     {
                                       id: formState.nuComponion.length,
-                                      name_componion: null,
-                                      rela_componion: null,
-                                      prof_componion: null
+                                      name_componion: '',
+                                      rela_componion: '',
+                                      prof_componion: ''
                                     }
                                   ]
                                 });
-                                setFieldValue('nuComponion', [...formikProps.values.nuComponion]);
+                                setFieldValue('nuComponion', [
+                                  ...formikProps.values.nuComponion,
+                                  {
+                                    id: formState.nuComponion.length,
+                                    name_componion: '',
+                                    rela_componion: '',
+                                    prof_componion: ''
+                                  }
+                                ]);
                               }}
                             >
                               Thêm mối quan hệ

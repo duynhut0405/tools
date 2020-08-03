@@ -354,7 +354,7 @@ const SecondSuccessModal = props => {
               </h4>
             </section>
             <article className="file1_box2">
-              <h5 className="file1_title2">Thông tin tài sản thế chấp</h5>
+              <h5 className="file1_title2">Cam kết của khách hàng</h5>
 
               <p>1. Cam kết các thông tin, số liệu kê khai trên là đúng sự thật.</p>
               <p>
