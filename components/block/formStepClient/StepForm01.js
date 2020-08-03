@@ -700,13 +700,21 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                                     ...formState.nuComponion,
                                     {
                                       id: formState.nuComponion.length,
-                                      name_componion: null,
-                                      rela_componion: null,
-                                      prof_componion: null
+                                      name_componion: '',
+                                      rela_componion: '',
+                                      prof_componion: ''
                                     }
                                   ]
                                 });
-                                setFieldValue('nuComponion', [...formikProps.values.nuComponion]);
+                                setFieldValue('nuComponion', [
+                                  ...formikProps.values.nuComponion,
+                                  {
+                                    id: formState.nuComponion.length,
+                                    name_componion: '',
+                                    rela_componion: '',
+                                    prof_componion: ''
+                                  }
+                                ]);
                               }}
                             >
                               Thêm mối quan hệ
