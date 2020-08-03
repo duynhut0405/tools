@@ -18,6 +18,7 @@ function MenuMiddle({ data, query }) {
   const lang = getLang();
   const typePage = 1;
   const typeUrl = 4;
+  const typeLink = 5;
   useEffect(() => {
     if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
       setHeight(ref.current.clientHeight);
@@ -27,7 +28,7 @@ function MenuMiddle({ data, query }) {
         setHeight(ref.current.clientHeight);
       }
     });
-    
+
     return () => {
       window.addEventListener('resize', () => {
         if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
@@ -85,6 +86,7 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
+                            {console.log('Number(item.type):', Number(item.type))}
                             {Number(item.type) === typeUrl && (
                               <LinkInput2 lang={lang} name={item.url}>
                                 <a className="link">
@@ -99,20 +101,34 @@ function MenuMiddle({ data, query }) {
                                 </a>
                               </LinkInput2>
                             )}
+                            {Number(item.type) === typeLink && (
+                              <a href={item.url}>
+                                <a className="link">
+                                  <div className="img">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.icon}`}
+                                    />
+                                  </div>
+                                  <div className="title">{item.name}</div>
+                                </a>
+                              </a>
+                            )}
                             {(Number(item.type) === typePage || item.type === null) && (
-                                <LinkPage lang={lang} name={item.slugPages}>
-                                  <a className="link">
-                                    <div className="img">
-                                      <img
-                                        className="lazyload"
-                                        alt="images"
-                                        data-src={`${process.env.DOMAIN}${item.icon}`}
-                                      />
-                                    </div>
-                                    <div className="title">{item.name}</div>
-                                  </a>
-                                </LinkPage>
-                              )}
+                              <LinkPage lang={lang} name={item.slugPages}>
+                                <a className="link">
+                                  <div className="img">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.icon}`}
+                                    />
+                                  </div>
+                                  <div className="title">{item.name}</div>
+                                </a>
+                              </LinkPage>
+                            )}
                           </div>
                         );
                       }
@@ -163,20 +179,34 @@ function MenuMiddle({ data, query }) {
                                 </a>
                               </LinkInput2>
                             )}
+                            {Number(item.type) === typeLink && (
+                              <a href={item.url}>
+                                <a className="link">
+                                  <div className="img">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.icon}`}
+                                    />
+                                  </div>
+                                  <div className="title">{item.name}</div>
+                                </a>
+                              </a>
+                            )}
                             {(Number(item.type) === typePage || item.type === null) && (
-                                <LinkPage lang={lang} name={item.slugPages}>
-                                  <a className="link">
-                                    <div className="img">
-                                      <img
-                                        className="lazyload"
-                                        alt="images"
-                                        data-src={`${process.env.DOMAIN}${item.icon}`}
-                                      />
-                                    </div>
-                                    <div className="title">{item.name}</div>
-                                  </a>
-                                </LinkPage>
-                              )}
+                              <LinkPage lang={lang} name={item.slugPages}>
+                                <a className="link">
+                                  <div className="img">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.icon}`}
+                                    />
+                                  </div>
+                                  <div className="title">{item.name}</div>
+                                </a>
+                              </LinkPage>
+                            )}
                           </div>
                         );
                       }
