@@ -10,6 +10,7 @@ const propTypes = {
     profileNumber: Proptypes.any,
     relaValue: Proptypes.any
   }),
+  index: Proptypes.number,
   formState: Proptypes.shape({
     collateral: Proptypes.any
   }),
@@ -26,18 +27,11 @@ const propTypes = {
     decriptiom: Proptypes.any,
     profileNumber: Proptypes.any,
     relaValue: Proptypes.any
-  })
+  }),
+  formikProps: Proptypes.object
 };
 
-const ChildboxForm2 = ({
-  formState,
-  setFormState,
-  item,
-  removeItem,
-  touched,
-  errors,
-  setFieldValue
-}) => {
+const ChildboxForm2 = ({ formState, setFormState, item, removeItem, index, formikProps }) => {
   const [decription, setDecription] = useState(item.decription);
   const [estimate, setEstimate] = useState(item.estimate);
   const [relaValue, setRelaValue] = useState(item.relaValue);
@@ -89,7 +83,7 @@ const ChildboxForm2 = ({
     if (decription && estimate && relaValue) {
       if (checkExitItem(item.id, formState.collateral)) {
         const object = {
-          id: item.id,
+          id: index,
           decription: decription,
           estimate: estimate,
           relaValue: relaValue
@@ -122,6 +116,7 @@ const ChildboxForm2 = ({
             setDecription();
             setEstimate();
             setRelaValue();
+            formikProps.setFieldValue('collateral', removeItem(item.id));
           }}
         >
           <i className="icon-close"> </i>
@@ -136,20 +131,23 @@ const ChildboxForm2 = ({
             {console.log(decription)}
             <input
               className="input"
-              name="decriptiom"
+              name="decription"
               type="text"
               defaultValue={decription}
               onChange={e => {
-                setFieldValue('decriptiom', e.target.value);
+                formikProps.setFieldValue(`collateral.${index}.decription`, e.target.value);
                 setDecription(e.target.value);
               }}
               style={{ position: 'relative !important', opacity: 1 }}
               placeholder="Nhập địa chỉ, diện tích…."
               required
             />
-            {touched.decriptiom && errors.decriptiom && (
-              <p className="red error">{errors.decriptiom}</p>
-            )}
+            {formikProps.touched.collateral &&
+              formikProps.errors.collateral &&
+              formikProps.touched.collateral[index] &&
+              formikProps.errors.collateral[index] && (
+                <p className="red error">{formikProps.errors.collateral[index].decription}</p>
+              )}
           </div>
           <div className="col-12 col-md-6">
             <h6 className="title1">
@@ -164,15 +162,18 @@ const ChildboxForm2 = ({
                 placeholder="Nhập giá trị"
                 defaultValue={estimate}
                 onValueChange={e => {
-                  setFieldValue('profileNumber', e.floatValue);
+                  formikProps.setFieldValue(`collateral.${index}.estimate`, e.floatValue);
                   setEstimate(e.floatValue);
                 }}
               />
               <span className="text1">VNĐ</span>
             </div>
-            {touched.profileNumber && errors.profileNumber && (
-              <p className="red error">{errors.profileNumber}</p>
-            )}
+            {formikProps.touched.collateral &&
+              formikProps.errors.collateral &&
+              formikProps.touched.collateral[index] &&
+              formikProps.errors.collateral[index] && (
+                <p className="red error">{formikProps.errors.collateral[index].estimate}</p>
+              )}
           </div>
           <div className="col-12 col-md-6">
             <h6 className="title1">
@@ -183,13 +184,16 @@ const ChildboxForm2 = ({
               value={relaValue}
               styles={customStyles}
               onChange={e => {
-                setFieldValue('relaValue', e.value);
+                formikProps.setFieldValue(`collateral.${index}.relaValue`, e.value);
                 setRelaValue(e);
               }}
             />
-            {touched.relaValue && errors.relaValue && (
-              <p className="red error">{errors.relaValue}</p>
-            )}
+            {formikProps.touched.collateral &&
+              formikProps.errors.collateral &&
+              formikProps.touched.collateral[index] &&
+              formikProps.errors.collateral[index] && (
+                <p className="red error">{formikProps.errors.collateral[index].relaValue}</p>
+              )}
           </div>
         </div>
       </section>

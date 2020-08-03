@@ -28,7 +28,12 @@ const validationSchema = yup.object().shape({
     yup.object().shape({
       name_componion: yup.string().required('Trường bắt buộc nhập'),
       rela_componion: yup.string().required('Trường bắt buộc nhập'),
-      prof_componion: yup.string().required('Trường bắt buộc nhập')
+      prof_componion: yup
+        .string()
+        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .required('Trường bắt buộc nhập')
     })
   ),
   name_element1: yup.string().when('isLengths', {
@@ -71,7 +76,7 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập'),
   email: yup
     .string()
-    .matches(/^[a-z0-9](\.?[a-z0-9]){100,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
+    .matches(/^[a-z0-9](\.?[a-z0-9]){0,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
     .matches(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Không chứa kí tự đặc biệt và bắt đầu bằng số'
@@ -197,7 +202,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
         const removeComponion = indexItem => {
           const listCompo = filter(formState.nuComponion, (value, index) => index !== indexItem);
           setFormState({ ...formState, nuComponion: listCompo });
-          setFieldValue('isLengths', listCompo);
+          return listCompo;
         };
 
         return (
@@ -586,9 +591,9 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       className="text-center"
                       onClick={() => {
                         setFieldValue('isCheck', !collap);
-
                         setCollapParent(!collap);
                         if (!collap) {
+                          setFieldValue('nuComponion', []);
                           setFormState({
                             ...formState,
                             companion: null,
@@ -709,7 +714,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                                   ]
                                 });
                                 setFieldValue('nuComponion', [
-                                  ...formState.nuComponion,
+                                  ...formikProps.values.nuComponion,
                                   {
                                     id: formState.nuComponion.length,
                                     name_componion: '',
@@ -717,15 +722,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                                     prof_componion: ''
                                   }
                                 ]);
-                                // setFieldError('nuComponion', [
-                                //   ...formikProps.values.nuComponion,
-                                //   {
-                                //     id: formState.nuComponion.length,
-                                //     name_componion: '',
-                                //     rela_componion: '',
-                                //     prof_componion: ''
-                                //   }
-                                // ]);
                               }}
                             >
                               Thêm mối quan hệ
@@ -742,7 +738,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       className="btn"
                       onClick={() => {
                         console.log(formikProps);
-                        // console.log(formState);
                         formikProps.handleSubmit();
                       }}
                     >

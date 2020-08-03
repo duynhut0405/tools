@@ -27,30 +27,6 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
     return false;
   };
 
-  // useEffect(() => {
-  //   const htmlInput = document.getElementById('child01_name');
-  //   htmlInput.oninvalid = function(e) {
-  //     if (!e.target.validity.valid) {
-  //       e.target.setCustomValidity('Trường bắt buộc nhập');
-  //     }
-  //   };
-  // }, [name, relationship, typeProfile]);
-
-  // const formVal = e => {
-  //   if (name) {
-  //     e.target.setCustomValidity('');
-  //   } else {
-  //     e.target.setCustomValidity('Trường bắt buộc nhập');
-  //   }
-  // };
-
-  // const formVal1 = e => {
-  //   e.target.setCustomValidity('Trường bắt buộc nhập');
-  // };
-  // const formVal2 = e => {
-  //   e.target.setCustomValidity('Trường bắt buộc nhập');
-  // };
-
   const updateItem = (object, list) => {
     return list.map(value => {
       if (object.id === value.id) {
@@ -89,6 +65,7 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
         className="btn-close close-js"
         onClick={() => {
           removeItem(index);
+          formikProps.setFieldValue('nuComponion', removeItem(index));
         }}
       >
         <i className="icon-close"> </i>
@@ -112,12 +89,12 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               style={{ width: '100%' }}
               required
             />
-            {console.log(formikProps)}
-            {formikProps.touched.nuComponion && formikProps.errors.nuComponion && (
-              // formikProps.touched.nuComponion[index].name_componion &&
-              // formikProps.errors.nuComponion[index].name_componion &&
-              <p className="red error">{formikProps.errors.nuComponion[index].name_componion}</p>
-            )}
+            {formikProps.touched.nuComponion &&
+              formikProps.errors.nuComponion &&
+              formikProps.touched.nuComponion[index] &&
+              formikProps.errors.nuComponion[index] && (
+                <p className="red error">{formikProps.errors.nuComponion[index].name_componion}</p>
+              )}
           </div>
           <div className="col-12 col-md-6">
             <h6 className="title1">
@@ -125,9 +102,7 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
             </h6>
             <Select
               options={listPartner}
-              name="name_element"
-              // id="name_input_1"
-              // onBlur={formVal1}
+              name="rela_componion"
               required
               defaultValue={relationship ? relationship : {}}
               onChange={e => {
@@ -135,9 +110,12 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
                 setRelationship(e);
               }}
             />
-            {/* {formikProps.touched.rela_element1 && formikProps.errors.rela_element1 && (
-              <p className="red error">{formikProps.errors.rela_element1}</p>
-            )} */}
+            {formikProps.touched.nuComponion &&
+              formikProps.errors.nuComponion &&
+              formikProps.touched.nuComponion[index] &&
+              formikProps.errors.nuComponion[index] && (
+                <p className="red error">{formikProps.errors.nuComponion[index].rela_componion}</p>
+              )}
           </div>
           <div className="col-12 col-md-6">
             <h6 className="title1">
@@ -146,15 +124,21 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
             <input
               className="input"
               type="text"
-              id="name_input_2"
+              id="prof_componion"
+              name="prof_componion"
               placeholder="Nhập giấy tờ tùy thân"
               onChange={e => {
-                // formVal(e);
                 setTypeProfile(e.target.value);
               }}
               required
               style={{ width: '100%' }}
             />
+            {formikProps.touched.nuComponion &&
+              formikProps.errors.nuComponion &&
+              formikProps.touched.nuComponion[index] &&
+              formikProps.errors.nuComponion[index] && (
+                <p className="red error">{formikProps.errors.nuComponion[index].prof_componion}</p>
+              )}
           </div>
         </div>
       </section>
