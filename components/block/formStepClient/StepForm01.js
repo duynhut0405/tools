@@ -183,10 +183,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
             'DD/MM/YYYY'
           ).format()}`
         }));
-        // if (form01.current.reportValidity()) {
-        //   event.preventDefault();
-        //   nextForm();
-        // }
+        if (form01.current.reportValidity()) {
+          event.preventDefault();
+          nextForm();
+        }
       }}
       validationSchema={validationSchema}
       validator={() => ({})}

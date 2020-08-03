@@ -68,7 +68,7 @@ const SecondSuccessModal = props => {
       Router.push({
         pathname: '/succesForm',
         query: {
-          purpose_loan: formState.purpose_loan,
+          purpose_loan: `${formState.purpose_loan_01} ${formState.purpose_loan_02}`,
           suggest_monney: formState.suggest_monney,
           id: `W.${moment().format('YYYY')}.${pad(id.data, 6)}`
         }
@@ -273,7 +273,7 @@ const SecondSuccessModal = props => {
                   </div>
                 </div>
               </div>
-              {typeof formState.collateral !== 'string' &&
+              {formState.isCollateral02 &&
                 dataColla.map((item, key) => (
                   <section className="child1" key={key}>
                     <h5 className="child1_title1">Thông tin tài sản thế chấp</h5>
