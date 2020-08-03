@@ -1,5 +1,5 @@
 /* eslint-disable dot-notation */
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Proptypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import BaseSelect from 'react-select';
@@ -26,14 +26,9 @@ const validationSchema = yup.object().shape({
   sex: yup.string().required('Trường bắt buộc nhập'),
   nuComponion: yup.array().of(
     yup.object().shape({
-      name_element1: yup.string().when('isLengths', {
-        is: isLengths => isLengths.length !== 0,
-        then: yup
-          .string()
-          .matches(/[a-zA-Z]+/, 'Yêu cầu chữ')
-          .required('Trường bắt buộc nhập')
-      }), // these constraints take precedence
-      rela_element1: yup.string().required('Required') // these constraints take precedence
+      name_componion: yup.string().required('Trường bắt buộc nhập'),
+      rela_componion: yup.string().required('Trường bắt buộc nhập'),
+      prof_componion: yup.string().required('Trường bắt buộc nhập')
     })
   ),
   name_element1: yup.string().when('isLengths', {
@@ -57,6 +52,7 @@ const validationSchema = yup.object().shape({
     then: yup
       .string()
       .matches(/[a-zA-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+      .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
       .required('Trường bắt buộc nhập')
   }),
   name_companion: yup.string().when('isCheck', {
@@ -75,6 +71,7 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập'),
   email: yup
     .string()
+    .matches(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
     .matches(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Không chứa kí tự đặc biệt và bắt đầu bằng số'
@@ -92,22 +89,23 @@ const validationSchema = yup.object().shape({
       is: profileType => profileType === 'Căn cước',
       then: yup
         .string()
-        .length(12, 'Căn cước gồm 12 số')
-        .matches(/^[0-9]{0,12}$/, 'Không chứa chữ cái và kí tự đặc biệt')
+        .matches(/^[0-9]{0,15}$/, 'Không chứa chữ cái và kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
       is: profileType => profileType === 'Hộ chiếu',
       then: yup
         .string()
-        .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/[A-Z0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
       is: profileType => profileType === 'Chứng minh quân đội',
       then: yup
         .string()
-        .matches(/^[0-9]{4,8}$/, 'Chứng minh quân đội bao gồm 8 số')
+        .matches(/[A-Z0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[^<>*&#@!()%$]*$/, 'Không chứa kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
 });
@@ -144,8 +142,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
   return (
     <Formik
       initialValues={{
-        // name_element1: '',
-        // rela_element1: '',
+        nuComponion: formState.nuComponion ? formState.nuComponion : [],
         profileType: formState.profileType ? formState.profileType : 'cmnd',
         full_name: formState.full_name ? formState.full_name : '',
         profileNumber: formState.profileNumber ? formState.profileNumber : '',
@@ -185,7 +182,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
             'DD/MM/YYYY'
           ).format()}`
         }));
-        nextForm();
+        if (form01.current.reportValidity()) {
+          event.preventDefault();
+          nextForm();
+        }
       }}
       validationSchema={validationSchema}
       validator={() => ({})}
@@ -391,7 +391,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         <NumberFormat
                           className="input"
                           name="profileNumber"
-                          format="#### #### ####"
+                          format="############"
                           mask="_"
                           allowEmptyFormatting
                           defaultValue={formState.profileNumber ? formState.profileNumber : ''}
@@ -679,10 +679,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                             )}
                         </div>
                         <div className="col-12 p-form1--mb1 c-add-relationship-js">
-                          {/* <FieldArray
-                            name="friends"
-                            render={arrayHelpers => (
-                              <> */}
                           {formState.nuComponion.map((value, index) => (
                             <ChildboxForm1
                               key={index}
@@ -694,18 +690,31 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                               formikProps={formikProps}
                             />
                           ))}
-                          {/* </> */}
-                          {/* )}
-                          /> */}
                           {formState.nuComponion && formState.nuComponion.length < 2 && (
                             <a
                               className="c-form1__link1 c-link-add-form-js"
                               onClick={() => {
                                 setFormState({
                                   ...formState,
-                                  nuComponion: [...formState.nuComponion, {}]
+                                  nuComponion: [
+                                    ...formState.nuComponion,
+                                    {
+                                      id: formState.nuComponion.length,
+                                      name_componion: '',
+                                      rela_componion: '',
+                                      prof_componion: ''
+                                    }
+                                  ]
                                 });
-                                setFieldValue('isLengths', [...formState.nuComponion, {}]);
+                                setFieldValue('nuComponion', [
+                                  ...formikProps.values.nuComponion,
+                                  {
+                                    id: formState.nuComponion.length,
+                                    name_componion: '',
+                                    rela_componion: '',
+                                    prof_componion: ''
+                                  }
+                                ]);
                               }}
                             >
                               Thêm mối quan hệ
@@ -721,7 +730,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       type="button"
                       className="btn"
                       onClick={() => {
-                        // console.log(formikProps);
+                        console.log(formikProps);
                         // console.log(formState);
                         formikProps.handleSubmit();
                       }}

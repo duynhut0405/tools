@@ -8,6 +8,13 @@ const propTypes = {};
 
 function SuccesForm() {
   const router = useRouter();
+  const formatCurrency = money => {
+    const moneyConvert = `${money}`;
+    if (moneyConvert.length < 16) {
+      return `${money}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+    return 0;
+  };
 
   return (
     <section className="p-thank1 sec-tb sec-ab-1">
@@ -61,7 +68,7 @@ function SuccesForm() {
                     <p className="list1_text1">- Số tiền đề xuất vay:</p>
                   </div>
                   <div className="col-7 col-md-8">
-                    <h4 className="list1_title1">{router.query.suggest_monney}</h4>
+                    <h4 className="list1_title1">{formatCurrency(router.query.suggest_monney)}</h4>
                   </div>
                 </div>
               </div>
@@ -82,7 +89,7 @@ function SuccesForm() {
           <div className="p-thank1__text3">
             <p>
               Cán bộ <strong>MB</strong> sẽ liên hệ với Quý Khách hàng trong thời gian sớm nhất (tối
-              đa 01 ngày làm việc) để hoàn thiện thủ tục vay vốn theo quy định MB. 
+              đa 01 ngày làm việc) để hoàn thiện thủ tục vay vốn theo quy định MB.
             </p>
             <p>
               <b>Kính chúc Quý Khách hàng sức khoẻ.</b>

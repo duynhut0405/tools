@@ -195,7 +195,7 @@ class ComponentToPrint extends React.Component {
                   </div>
                 </div>
               </div>
-              {typeof formState.collateral !== 'string' &&
+              {formState.isCollateral02 &&
                 formState.collateral.map((item, key) => (
                   <section className="child1" key={key}>
                     <h5 className="child1_title1">Thông tin tài sản thế chấp</h5>

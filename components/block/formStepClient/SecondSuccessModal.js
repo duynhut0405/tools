@@ -68,9 +68,9 @@ const SecondSuccessModal = props => {
       Router.push({
         pathname: '/succesForm',
         query: {
-          purpose_loan: formState.purpose_loan,
+          purpose_loan: `${formState.purpose_loan_01} ${formState.purpose_loan_02}`,
           suggest_monney: formState.suggest_monney,
-          id: `MB.${moment().format('YYYY')}.${pad(id.data, 6)}`
+          id: `W.${moment().format('YYYY')}.${pad(id.data, 6)}`
         }
       });
     }
@@ -234,7 +234,8 @@ const SecondSuccessModal = props => {
                     <label className="list1_label1">Mục đích vay vốn:</label>
                     <span className="list1_data1">
                       <span className="list1_data1">
-                        {formState.purpose_loan_01} , {formState.purpose_loan_02}
+                        {formState.purpose_loan_01 ? `${formState.purpose_loan_01},` : ''}
+                        {formState.purpose_loan_02}
                       </span>
                     </span>
                   </div>
@@ -272,7 +273,7 @@ const SecondSuccessModal = props => {
                   </div>
                 </div>
               </div>
-              {typeof formState.collateral !== 'string' &&
+              {formState.isCollateral02 &&
                 dataColla.map((item, key) => (
                   <section className="child1" key={key}>
                     <h5 className="child1_title1">Thông tin tài sản thế chấp</h5>
@@ -323,6 +324,7 @@ const SecondSuccessModal = props => {
                             ? `Vợ/ chồng của Khách hàng: ${formatCurrency(formState.partner_pay)}`
                             : ''}
                         </span>
+                        <br />
                         <span className="list1_data1">
                           {formState.dif_payee_type && formState.dif_payee
                             ? `Đồng trả nợ khác: ${formatCurrency(formState.dif_payee)}`
@@ -352,7 +354,7 @@ const SecondSuccessModal = props => {
               </h4>
             </section>
             <article className="file1_box2">
-              <h5 className="file1_title2">Thông tin tài sản thế chấp</h5>
+              <h5 className="file1_title2">Cam kết của khách hàng</h5>
 
               <p>1. Cam kết các thông tin, số liệu kê khai trên là đúng sự thật.</p>
               <p>
