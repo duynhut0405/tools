@@ -86,7 +86,6 @@ function MenuMiddle({ data, query }) {
                             className={query === item.slugPages ? 'item active' : 'item'}
                             key={key}
                           >
-                            {console.log('Number(item.type):', Number(item.type))}
                             {Number(item.type) === typeUrl && (
                               <LinkInput2 lang={lang} name={item.url}>
                                 <a className="link">
