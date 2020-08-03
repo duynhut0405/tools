@@ -18,7 +18,6 @@ function MenuMiddle({ data, query }) {
   const lang = getLang();
   const typePage = 1;
   const typeUrl = 4;
-  const typeLink = 5;
   useEffect(() => {
     if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
       setHeight(ref.current.clientHeight);
@@ -100,20 +99,6 @@ function MenuMiddle({ data, query }) {
                                 </a>
                               </LinkInput2>
                             )}
-                            {Number(item.type) === typeLink && (
-                              <a href={item.url}>
-                                <a className="link">
-                                  <div className="img">
-                                    <img
-                                      className="lazyload"
-                                      alt="images"
-                                      data-src={`${process.env.DOMAIN}${item.icon}`}
-                                    />
-                                  </div>
-                                  <div className="title">{item.name}</div>
-                                </a>
-                              </a>
-                            )}
                             {(Number(item.type) === typePage || item.type === null) && (
                               <LinkPage lang={lang} name={item.slugPages}>
                                 <a className="link">
@@ -177,20 +162,6 @@ function MenuMiddle({ data, query }) {
                                   <div className="title">{item.name}</div>
                                 </a>
                               </LinkInput2>
-                            )}
-                            {Number(item.type) === typeLink && (
-                              <a href={item.url}>
-                                <a className="link">
-                                  <div className="img">
-                                    <img
-                                      className="lazyload"
-                                      alt="images"
-                                      data-src={`${process.env.DOMAIN}${item.icon}`}
-                                    />
-                                  </div>
-                                  <div className="title">{item.name}</div>
-                                </a>
-                              </a>
                             )}
                             {(Number(item.type) === typePage || item.type === null) && (
                               <LinkPage lang={lang} name={item.slugPages}>
