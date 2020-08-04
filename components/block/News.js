@@ -277,7 +277,6 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               draggable
               minimumTouchDrag={80}
               ssr={true} // means to render carousel on server-side.
-              infinite={true}
               keyBoardControl={true}
               arrows={false}
               renderButtonGroupOutside={true}

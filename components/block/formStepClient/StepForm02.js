@@ -33,7 +33,14 @@ const validationSchema = yup.object().shape({
       // .test('len', 'Tối đa 12 số', val => val.toString().length <= 12);
     }),
   type_purpose: yup.string().required('Trường bắt buộc'),
-  is_future: yup.string().required('Trường bắt buộc')
+  is_future: yup.string().required('Trường bắt buộc'),
+  collateral: yup.array().of(
+    yup.object().shape({
+      decription: yup.string().required('Trường bắt buộc nhập'),
+      estimate: yup.string().required('Trường bắt buộc nhập'),
+      relaValue: yup.string().required('Trường bắt buộc nhập')
+    })
+  )
 });
 
 // const text01 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
@@ -64,20 +71,22 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
   }, []);
 
   const summitForm02 = () => {
-    if (form02.current.reportValidity()) {
-      event.preventDefault();
-      nextForm();
-    }
+    // if (form02.current.reportValidity()) {
+    event.preventDefault();
+    nextForm();
+    // }
   };
 
   const removeCollateral = id => {
     const listColla = formState.collateral.filter(value => value.id !== id);
     setFormState({ ...formState, collateral: listColla });
+    return listColla;
   };
 
   return (
     <Formik
       initialValues={{
+        collateral: formState.collateral || '',
         value_loan: formState.value_loan || '',
         suggest_monney: formState.suggest_monney || '',
         purpose_loan_01: formState.purpose_loan_01 || '',
@@ -299,6 +308,13 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         thousandSeparator={true}
                         name="value_loan"
                         placeholder="Nhập giá trị"
+                        isAllowed={values => {
+                          const { formattedValue, floatValue } = values;
+                          return (
+                            formattedValue === '' ||
+                            (floatValue <= 10000000000000000 && floatValue >= 0)
+                          );
+                        }}
                         defaultValue={formState.value_loan}
                         onValueChange={e => {
                           setFieldValue('value_loan', e.floatValue);
@@ -321,6 +337,13 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         thousandSeparator={true}
                         name="suggest_monney"
                         placeholder="Nhập giá trị"
+                        isAllowed={values => {
+                          const { formattedValue, floatValue } = values;
+                          return (
+                            formattedValue === '' ||
+                            (floatValue <= 10000000000000000 && floatValue >= 0)
+                          );
+                        }}
                         defaultValue={formState.suggest_monney}
                         onValueChange={e => {
                           setFieldValue('suggest_monney', e.floatValue);
@@ -383,12 +406,25 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                               collateral: [
                                 {
                                   id: 0,
-                                  decription: null,
-                                  estimate: null,
-                                  relaValue: null
+                                  decription: '',
+                                  estimate: '',
+                                  relaValue: ''
                                 }
                               ]
                             });
+                            if (!iscollateral) {
+                              setFieldValue('collateral', [
+                                ...formikProps.values.collateral,
+                                {
+                                  id: 0,
+                                  decription: '',
+                                  estimate: '',
+                                  relaValue: ''
+                                }
+                              ]);
+                            } else {
+                              setFieldValue('collateral', []);
+                            }
                           }}
                         />
                         <span />
@@ -399,35 +435,44 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             <div className="c-add-relationship-js">
                               {formState.collateral.map((value, key) => (
                                 <ChildboxForm2
-                                  index={key + 1}
+                                  index={key}
                                   key={key}
                                   item={value}
                                   formState={formState}
                                   setFormState={setFormState}
                                   removeItem={removeCollateral}
-                                  touched={touched}
-                                  errors={errors}
-                                  setFieldValue={setFieldValue}
+                                  formikProps={formikProps}
                                 />
                               ))}
+                              {console.log(formikProps)}
                               <a
                                 className="c-form1__link1 c-link-add-form-js"
                                 onClick={e => {
                                   e.preventDefault();
+
                                   if (idAsset < 5) {
                                     setFormState({
                                       ...formState,
                                       collateral: [
                                         ...formState.collateral,
                                         {
-                                          id: idAsset,
-                                          decription: null,
-                                          estimate: null,
-                                          relaValue: null
+                                          id: formState.collateral.length,
+                                          decription: '',
+                                          estimate: '',
+                                          relaValue: ''
                                         }
                                       ]
                                     });
                                     setIdAsset(idAsset + 1);
+                                    setFieldValue('collateral', [
+                                      ...formikProps.values.collateral,
+                                      {
+                                        id: formState.collateral.length,
+                                        decription: '',
+                                        estimate: '',
+                                        relaValue: ''
+                                      }
+                                    ]);
                                   }
                                 }}
                               >

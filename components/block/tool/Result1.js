@@ -26,7 +26,7 @@ function Result({
   // monthlyInterest,
   monthlypayment,
   totalAmount,
-  // interest_rate,
+  interest_rate,
   data
 }) {
   return (
@@ -56,7 +56,7 @@ function Result({
           <h5 className="title">{t('interest_rate')} :</h5>
         </div>
         <div className="col-md-6">
-          <span className="t2">{rate(11)}</span>
+          <span className="t2">{rate(interest_rate)}</span>
           <span className="t3">%</span>
         </div>
       </div>

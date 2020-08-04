@@ -25,9 +25,9 @@ function FormStep({ data, id, pageId }) {
     collateral: [
       {
         id: 0,
-        decription: null,
-        estimate: null,
-        relaValue: null
+        decription: '',
+        estimate: '',
+        relaValue: ''
       }
     ],
     partner_pay_type: false,

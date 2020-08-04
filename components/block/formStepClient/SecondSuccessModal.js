@@ -68,7 +68,9 @@ const SecondSuccessModal = props => {
       Router.push({
         pathname: '/succesForm',
         query: {
-          purpose_loan: `${formState.purpose_loan_01} ${formState.purpose_loan_02}`,
+          purpose_loan: `${formState.purpose_loan_01 ? formState.purpose_loan_01 : ''} ${
+            formState.purpose_loan_02 ? formState.purpose_loan_01 : ''
+          }`,
           suggest_monney: formState.suggest_monney,
           id: `W.${moment().format('YYYY')}.${pad(id.data, 6)}`
         }
