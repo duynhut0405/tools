@@ -17,8 +17,6 @@ const StepForm03 = props => {
   const [hide01, setHide01] = useState(false);
   const [checkedProxy, setCheckedProxy] = useState(false);
   const [modalContinue, setModalContinue] = useState(false);
-  const [diff, setDiff] = useState(false);
-  const [wife, setWife] = useState(false);
 
   const showModal = e => {
     e.preventDefault();

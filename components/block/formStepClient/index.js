@@ -9,6 +9,7 @@ import StepForm02 from './StepForm02';
 import StepForm03 from './StepForm03';
 import Proptypes from 'prop-types';
 import { getProvinceService } from '../../../services/map';
+import { getItemForm } from '../../../services/common';
 
 const propTypes = {
   data: Proptypes.object,
@@ -47,6 +48,11 @@ function FormStep({ data, id, pageId }) {
       })
       .then(res => {
         setProvinces(res);
+      })
+      .catch(error => {});
+    getItemForm(window.location.href)
+      .then(res => {
+        console.log(res);
       })
       .catch(error => {});
   }, []);

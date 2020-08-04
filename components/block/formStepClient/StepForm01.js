@@ -469,9 +469,14 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                           dateFormat="dd/MM/yyyy"
                           selected={formikProps.values.birthday}
                           name={'birthday'}
-                          onChange={e => formikProps.setFieldValue('birthday', e)}
+                          onChange={e => {
+                            if (e) {
+                              formikProps.setFieldValue('birthday', e);
+                            } else {
+                              formikProps.setFieldValue('birthday', '');
+                            }
+                          }}
                         ></DatePicker>
-                        {/* {console.log(formikProps.values.birthday)} */}
                         {formikProps.touched.birthday && formikProps.errors.birthday && (
                           <p className="red error">{formikProps.errors.birthday}</p>
                         )}
@@ -486,7 +491,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       className="input"
                       name="suggest_monney"
                       placeholder="Số điện thoại"
-                      format="### ### ####"
+                      format="##########"
                       allowEmptyFormatting
                       mask=" "
                       defaultValue={formState.phone}

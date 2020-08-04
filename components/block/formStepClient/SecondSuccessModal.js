@@ -57,7 +57,7 @@ const SecondSuccessModal = props => {
     const idForm = data.form[0] ? data.form[0].value : 399952;
     const body = {
       content: JSON.stringify(formState),
-      contentMail: JSON.stringify(formState),
+      contentMail: `Đến form của bạn${formState.link}`,
       email: email,
       idForm: idForm,
       idPage: pageId
