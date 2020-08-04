@@ -30,9 +30,9 @@ const getSttForm = query => {
 
 const getItemForm = query => {
   return request({
-    url: `common/search`,
+    url: `common/search-user`,
     method: 'GET',
-    params: { idForm: query, year: 2020 }
+    params: { locale: 'vi', id: query }
   })
     .then(res => {
       return res;
@@ -42,4 +42,4 @@ const getItemForm = query => {
     });
 };
 
-export { searchService, getSttForm };
+export { searchService, getSttForm, getItemForm };
