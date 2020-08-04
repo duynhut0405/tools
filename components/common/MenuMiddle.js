@@ -27,7 +27,7 @@ function MenuMiddle({ data, query }) {
         setHeight(ref.current.clientHeight);
       }
     });
-    
+
     return () => {
       window.addEventListener('resize', () => {
         if (ref !== null && ref.current !== null && ref.current.clientHeight !== null) {
@@ -100,19 +100,19 @@ function MenuMiddle({ data, query }) {
                               </LinkInput2>
                             )}
                             {(Number(item.type) === typePage || item.type === null) && (
-                                <LinkPage lang={lang} name={item.slugPages}>
-                                  <a className="link">
-                                    <div className="img">
-                                      <img
-                                        className="lazyload"
-                                        alt="images"
-                                        data-src={`${process.env.DOMAIN}${item.icon}`}
-                                      />
-                                    </div>
-                                    <div className="title">{item.name}</div>
-                                  </a>
-                                </LinkPage>
-                              )}
+                              <LinkPage lang={lang} name={item.slugPages}>
+                                <a className="link">
+                                  <div className="img">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.icon}`}
+                                    />
+                                  </div>
+                                  <div className="title">{item.name}</div>
+                                </a>
+                              </LinkPage>
+                            )}
                           </div>
                         );
                       }
@@ -164,19 +164,19 @@ function MenuMiddle({ data, query }) {
                               </LinkInput2>
                             )}
                             {(Number(item.type) === typePage || item.type === null) && (
-                                <LinkPage lang={lang} name={item.slugPages}>
-                                  <a className="link">
-                                    <div className="img">
-                                      <img
-                                        className="lazyload"
-                                        alt="images"
-                                        data-src={`${process.env.DOMAIN}${item.icon}`}
-                                      />
-                                    </div>
-                                    <div className="title">{item.name}</div>
-                                  </a>
-                                </LinkPage>
-                              )}
+                              <LinkPage lang={lang} name={item.slugPages}>
+                                <a className="link">
+                                  <div className="img">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.icon}`}
+                                    />
+                                  </div>
+                                  <div className="title">{item.name}</div>
+                                </a>
+                              </LinkPage>
+                            )}
                           </div>
                         );
                       }
