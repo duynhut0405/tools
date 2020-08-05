@@ -462,6 +462,9 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         }}
                       />
                     )}
+                    {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
+                      <p className="red error">{formikProps.errors.profileNumber}</p>
+                    )}
                   </div>
                   <div className="col-12 col-md-12">
                     <h6 className="title1">
@@ -634,6 +637,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         // setFieldValue('isCheck', !collap);
                         // setCollapParent(!collap);
                         if (formState.companion) {
+                          setFieldValue('isCheck', false);
                           setFieldValue('nuComponion', []);
                           setFormState({
                             ...formState,
@@ -641,10 +645,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                             nuComponion: []
                           });
                         } else {
+                          setFieldValue('isCheck', true);
                           setFormState({
                             ...formState,
                             companion: {
-                              num_profile: '',
                               relation: { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' }
                             },
                             nuComponion: []
