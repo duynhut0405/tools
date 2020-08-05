@@ -40,7 +40,7 @@ module.exports = withPWA(
           MB_URL: 'https://api2.vietstock.vn/data/stocktradinginfo',
           MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api/fe',
           ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe',
-          FRONTEND_URL: 'https://mbbank5.mangoads.com.vn/'
+          FRONTEND_URL: 'https://mbbank6.mangoads.com.vn/'
         },
         exportTrailingSlash: true,
         pwa: {

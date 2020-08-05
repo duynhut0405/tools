@@ -98,7 +98,7 @@ function SuccesForm() {
 
           <div className="col-12 text-center">
             <a href="/" className="btn btnModal" data-modal="CheckedDataModal">
-              Tiếp tục
+              Quay về trang chủ
             </a>
           </div>
         </div>
