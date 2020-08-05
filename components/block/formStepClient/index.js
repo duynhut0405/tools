@@ -22,10 +22,11 @@ function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const router = useRouter();
   const [isUpdate, setIsUpdate] = useState(router.query.link ? true : false);
-  // console.log(isUpdate);
+  // console.log(router.query.link);
   const [formState, setFormState] = useState({
     full_name: '',
     profileType: 'Chứng minh nhân dân',
+    // profileNumber: '',
     nuComponion: [],
     collateral: [
       {
@@ -55,11 +56,12 @@ function FormStep({ data, id, pageId }) {
       })
       .catch(error => {});
     getItemForm(
-      // window.location.href
-      'http://localhost:8080/page/trang-test-new?link=2341234123/0'
+      window.location.href
+      // 'http://localhost:8080/page/trang-test-new?link=2341234123/0'
     )
       .then(res => {
         console.log(res);
+        console.log(window.location.href);
         if (res.data.content !== '') {
           setFormState(JSON.parse(res.data.content));
         }

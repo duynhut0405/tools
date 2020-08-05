@@ -71,13 +71,10 @@ const SecondSuccessModal = props => {
       idPage: pageId
     };
     let res;
-    if (!isUpdate) {
+    if (isUpdate) {
       res = await sendMailService(body);
     } else {
-      res = await updateForm(
-        body,
-        'http://mbbank5.mangoads.com.vn/page/trang-test-new?link=5555555555/2020-08-04T12:52:48+07:00'
-      );
+      res = await updateForm(body, window.location.href);
     }
     if (res && res.status === 200 && res.data === true) {
       Router.push({

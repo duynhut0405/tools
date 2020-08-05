@@ -184,12 +184,12 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           },
           birthday: values.birthday,
           phone: values.phone,
-          // link: `${process.env.FRONTEND_URL}page/trang-test-new?link=${values.phone}/${moment(
-          link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
-          // ${moment(
-          //   new Date(),
-          //   'DD/MM/YYYY'
-          // ).format()}`
+          link: `${process.env.FRONTEND_URL}page/trang-test-new?link=${values.phone}/${moment(
+            // link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
+            // ${moment(
+            new Date(),
+            'DD/MM/YYYY'
+          ).format()}`
         });
 
         if (form01.current.reportValidity()) {
@@ -438,9 +438,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                           className="input"
                           name="profileNumber"
                           format="############"
-                          mask=" "
-                          allowEmptyFormatting
-                          defaultValue={formState.profileNumber ? formState.profileNumber : ''}
+                          value={formState.profileNumber ? formState.profileNumber : ''}
                           onValueChange={e => {
                             setFieldValue('profileNumber', e.formattedValue);
                             setFormState({ ...formState, profileNumber: e.formattedValue });
@@ -451,22 +449,19 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         )}
                       </>
                     )}
-                    {/* {console.log(formState.phone)}
-                    {console.log(formState.profileNumber)} */}
-                    {(formState.profileNumber || !isUpdate) &&
-                      formState.profileType === 'Chứng minh nhân dân' && (
-                        <NumberFormat
-                          className="input"
-                          name="profileNumber"
-                          format="#### ### ##"
-                          placeholder={formState.profileType}
-                          defaultValue={formState.profileNumber}
-                          onValueChange={e => {
-                            setFormState({ ...formState, profileNumber: e.formattedValue });
-                            setFieldValue('profileNumber', e.formattedValue);
-                          }}
-                        />
-                      )}
+                    {formState.profileType === 'Chứng minh nhân dân' && (
+                      <NumberFormat
+                        className="input"
+                        name="profileNumber"
+                        format="#### ### ##"
+                        placeholder={formState.profileType}
+                        value={formState.profileNumber ? formState.profileNumber : ''}
+                        onValueChange={e => {
+                          setFormState({ ...formState, profileNumber: e.formattedValue });
+                          setFieldValue('profileNumber', e.formattedValue);
+                        }}
+                      />
+                    )}
                   </div>
                   <div className="col-12 col-md-12">
                     <h6 className="title1">
@@ -529,24 +524,20 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                     <h6 className="title1">
                       Số điện thoại (<span className="red">*</span>)
                     </h6>
-                    {(formState.phone || !isUpdate) && (
-                      <NumberFormat
-                        className="input"
-                        name="suggest_monney"
-                        placeholder="Số điện thoại"
-                        format="##########"
-                        allowEmptyFormatting
-                        mask=""
-                        defaultValue={formState.phone ? formState.phone : ''}
-                        onValueChange={e => {
-                          setFormState({
-                            ...formState,
-                            phone: e.formattedValue
-                          });
-                          formikProps.setFieldValue('phone', e.formattedValue);
-                        }}
-                      />
-                    )}
+                    <NumberFormat
+                      className="input"
+                      name="suggest_monney"
+                      placeholder="Số điện thoại"
+                      format="##########"
+                      value={formState.phone ? formState.phone : ''}
+                      onValueChange={e => {
+                        setFormState({
+                          ...formState,
+                          phone: e.formattedValue
+                        });
+                        formikProps.setFieldValue('phone', e.formattedValue);
+                      }}
+                    />
                     {formikProps.touched.phone && formikProps.errors.phone && (
                       <p className="red error">{formikProps.errors.phone}</p>
                     )}
