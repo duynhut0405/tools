@@ -17,7 +17,7 @@ const searchService = query => {
 const getSttForm = query => {
   return request({
     url: `common/search-user-id`,
-    method: 'GET',
+    method: 'POST',
     params: { idForm: query, year: 2020 }
   })
     .then(res => {
@@ -42,11 +42,12 @@ const getItemForm = query => {
     });
 };
 
-const updateForm = query => {
+const updateForm = (data, idForm) => {
   return request({
-    url: `common/search-user-id`,
-    method: 'GET',
-    params: { locale: 'vi', search: query, year: 2020 }
+    url: `forms/send`,
+    method: 'POST',
+    params: { idForm: idForm, local: 'vi' },
+    data
   })
     .then(res => {
       return res;

@@ -162,8 +162,8 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
         phone: formState.phone ? formState.phone : ''
       }}
       onSubmit={(values, actions) => {
-        setFormState(preState => ({
-          ...preState,
+        setFormState({
+          ...formState,
           full_name: values.full_name.toUpperCase(),
           profileType: values.profileType,
           profileNumber: values.profileNumber,
@@ -171,14 +171,14 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           is_loan: values.is_loan,
           sex: values.sex,
           address: {
-            ...preState.address,
+            ...formState.address,
             city_address: values.city_address,
             current_home: values.current_home,
             status_home: values.status_home
           },
-          companion: {
+          companion: formState.companion && {
             ...formState.companion,
-            relation: formState.companion.relation
+            relation: formState.companion
               ? formState.companion.relation
               : { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' }
           },
@@ -188,7 +188,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
             new Date(),
             'DD/MM/YYYY'
           ).format()}`
-        }));
+        });
 
         if (form01.current.reportValidity()) {
           event.preventDefault();
@@ -511,7 +511,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                           onChange={e => {
                             if (e) {
                               formikProps.setFieldValue('birthday', e);
-                              setFormState({ ...formState.birthday, birthday: e });
+                              setFormState({ ...formState, birthday: e });
                             } else {
                               formikProps.setFieldValue('birthday', '');
                             }
