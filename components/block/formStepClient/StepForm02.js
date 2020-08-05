@@ -312,7 +312,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                           const { formattedValue, floatValue } = values;
                           return (
                             formattedValue === '' ||
-                            (floatValue <= 10000000000000000 && floatValue >= 0)
+                            (floatValue <= 1000000000000 && floatValue >= 0)
                           );
                         }}
                         defaultValue={formState.value_loan}
@@ -341,7 +341,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                           const { formattedValue, floatValue } = values;
                           return (
                             formattedValue === '' ||
-                            (floatValue <= 10000000000000000 && floatValue >= 0)
+                            (floatValue <= 1000000000000 && floatValue >= 0)
                           );
                         }}
                         defaultValue={formState.suggest_monney}
