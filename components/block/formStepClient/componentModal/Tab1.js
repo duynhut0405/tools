@@ -89,7 +89,11 @@ const Tab1 = props => {
                 placeholder="Địa điểm"
                 onChange={event => handleChange(event.target.value)}
               />
-              <button>
+              <button
+                onClick={e => {
+                  e.preventDefault();
+                }}
+              >
                 <i className="icon-search-2"></i>
               </button>
             </div>
