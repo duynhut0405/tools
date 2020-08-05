@@ -471,6 +471,8 @@ const StepForm03 = props => {
                   closeModal={closeModal}
                   modalContinue={modalContinue}
                   modal={active}
+                  data={data}
+                  isUpdate={isUpdate}
                   formState={formState}
                   setFormState={setFormState}
                 />
