@@ -456,6 +456,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         <NumberFormat
                           className="input"
                           name="profileNumber"
+                          format="#### ### ##"
                           placeholder={formState.profileType}
                           defaultValue={formState.profileNumber}
                           onValueChange={e => {
