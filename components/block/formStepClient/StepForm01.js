@@ -47,7 +47,7 @@ const validationSchema = yup.object().shape({
     is: isCheck => isCheck === true,
     then: yup
       .string()
-      .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+      .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
       .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
       .required('Trường bắt buộc nhập')
   }),
@@ -184,7 +184,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           },
           birthday: values.birthday,
           phone: values.phone,
-          link: `${process.env.FRONTEND_URL}page/trang-test-new?link=${values.phone}/${moment(
+          link: `${process.env.FRONTEND_URL}page/trang-test-new/?link=${values.phone}/${moment(
             // link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
             // ${moment(
             new Date(),

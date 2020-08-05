@@ -278,9 +278,7 @@ const SecondSuccessModal = props => {
                   <div className="col-12">
                     <label className="list1_label1">Tài sản thế chấp:</label>
                     <span className="list1_data1">
-                      {typeof formState.collateral === 'string'
-                        ? 'Tài sản hình thành từ vốn vay'
-                        : 'Bất động sản khác'}
+                      {formState.collateral01 ? 'Tài sản hình thành từ vốn vay' : ''}
                     </span>
                   </div>
                 </div>
