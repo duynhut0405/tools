@@ -630,6 +630,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                       <p className="red error">{formikProps.errors['status_home']}</p>
                     )}
                   </div>
+                  {console.log(formikProps.isCheck)}
                   <div className="col-12 c-form1__title1 c-tabs-btn-js">
                     <div
                       className="text-center"
@@ -646,6 +647,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                           });
                         } else {
                           setFieldValue('isCheck', true);
+                          setFieldValue('companionRelation', {
+                            value: 'Vợ/ chồng KH',
+                            label: 'Vợ/ chồng KH'
+                          });
                           setFormState({
                             ...formState,
                             companion: {

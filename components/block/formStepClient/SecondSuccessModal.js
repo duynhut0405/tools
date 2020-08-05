@@ -71,7 +71,7 @@ const SecondSuccessModal = props => {
       idPage: pageId
     };
     let res;
-    if (isUpdate) {
+    if (!isUpdate) {
       res = await sendMailService(body);
     } else {
       res = await updateForm(body, window.location.href);
