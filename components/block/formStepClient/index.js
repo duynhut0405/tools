@@ -55,10 +55,11 @@ function FormStep({ data, id, pageId }) {
       })
       .catch(error => {});
     getItemForm(
-      window.location.href
-      // 'https://mbbank5.mangoads.com.vn/page/trang-test-new?link=5555555555/2020-08-05T20:41:40+07:00'
+      // window.location.href
+      'http://localhost:8080/page/trang-test-new?link=2341234123/0'
     )
       .then(res => {
+        console.log(res);
         if (res.data.content !== '') {
           setFormState(JSON.parse(res.data.content));
         }

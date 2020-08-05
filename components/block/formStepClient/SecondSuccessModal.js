@@ -62,6 +62,7 @@ const SecondSuccessModal = props => {
       const idLandLoan = await `W.${moment().format('YYYY')}.${pad(id.data, 6)}`;
       await setFormState({ ...formState, idLandLoan: idLandLoan });
     }
+    console.log(formState);
     const body = {
       content: JSON.stringify(formState),
       contentMail: `Đến form của bạn : ${formState.link}`,
