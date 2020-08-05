@@ -59,10 +59,11 @@ const SecondSuccessModal = props => {
     const idForm = data.form[0] ? data.form[0].value : 399952;
     if (!isUpdate) {
       const id = await getSttForm(idForm);
-      const idLandLoan = await `W.${moment().format('YYYY')}.${pad(id.data, 6)}`;
-      await setFormState({ ...formState, idLandLoan: idLandLoan });
+      const idLandLoan = `W.${moment().format('YYYY')}.${pad(id.data, 6)}`;
+      setFormState({ ...formState, idLandLoan: idLandLoan });
     }
     console.log(formState);
+    console.log(idLandLoan);
     const body = {
       content: JSON.stringify(formState),
       contentMail: `Đến form của bạn : ${formState.link}`,
@@ -85,6 +86,8 @@ const SecondSuccessModal = props => {
           }`,
           suggest_monney: formState.suggest_monney,
           id: formState.idLandLoan
+            ? formState.idLandLoan
+            : `W.${moment().format('YYYY')}.${pad(id.data, 6)}`
         }
       });
     }
