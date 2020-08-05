@@ -136,6 +136,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
     })
   };
 
+  function compare(a, b) {
+    return a.label > b.label ? 1 : b.label > a.label ? -1 : 0;
+  }
+
   return (
     <Formik
       initialValues={{
@@ -171,6 +175,12 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
             city_address: values.city_address,
             current_home: values.current_home,
             status_home: values.status_home
+          },
+          companion: {
+            ...formState.companion,
+            relation: formState.companion.relation
+              ? formState.companion.relation
+              : { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' }
           },
           birthday: values.birthday,
           phone: values.phone,
@@ -441,18 +451,19 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                     )}
                     {/* {console.log(formState.phone)}
                     {console.log(formState.profileNumber)} */}
-                    {formState.profileNumber && formState.profileType === 'Chứng minh nhân dân' && (
-                      <NumberFormat
-                        className="input"
-                        name="profileNumber"
-                        placeholder={formState.profileType}
-                        defaultValue={formState.profileNumber}
-                        onValueChange={e => {
-                          setFormState({ ...formState, profileNumber: e.formattedValue });
-                          setFieldValue('profileNumber', e.formattedValue);
-                        }}
-                      />
-                    )}
+                    {(formState.profileNumber || !isUpdate) &&
+                      formState.profileType === 'Chứng minh nhân dân' && (
+                        <NumberFormat
+                          className="input"
+                          name="profileNumber"
+                          placeholder={formState.profileType}
+                          defaultValue={formState.profileNumber}
+                          onValueChange={e => {
+                            setFormState({ ...formState, profileNumber: e.formattedValue });
+                            setFieldValue('profileNumber', e.formattedValue);
+                          }}
+                        />
+                      )}
                   </div>
                   <div className="col-12 col-md-12">
                     <h6 className="title1">
@@ -515,7 +526,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                     <h6 className="title1">
                       Số điện thoại (<span className="red">*</span>)
                     </h6>
-                    {formState.phone && (
+                    {(formState.phone || !isUpdate) && (
                       <NumberFormat
                         className="input"
                         name="suggest_monney"
@@ -560,10 +571,11 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                   </div>
                   <div className="col-12 form-control">
                     <h6 className="title1">
-                      Khách hàng có hộ khẩu tại (<span className="red">*</span>)
+                      Tỉnh/ Thành phố (<span className="red">*</span>)
                     </h6>
                     <Select
-                      options={provinces}
+                      options={provinces.sort(compare)}
+                      hideSelectedOptions={true}
                       defaultValue={formState.address ? formState.address.city_address : {}}
                       placeholder="Chọn Tỉnh/ Thành phố"
                       name="city_address"
@@ -639,7 +651,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                             ...formState,
                             companion: {
                               num_profile: '',
-                              relation: {}
+                              relation: { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' }
                             },
                             nuComponion: []
                           });
@@ -693,7 +705,12 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                           <Select
                             options={listPartner}
                             name="companionRelation"
-                            value={formState.companion ? formState.companion.relation : {}}
+                            defaultValue={{ value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' }}
+                            value={
+                              formState.companion
+                                ? formState.companion.relation
+                                : { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' }
+                            }
                             onChange={e => {
                               setFieldValue('companionRelation', e.value);
                               setFormState({
@@ -784,6 +801,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                       className="btn"
                       onClick={() => {
                         console.log(formikProps);
+                        console.log(formState);
                         formikProps.handleSubmit();
                       }}
                     >
