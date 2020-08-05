@@ -56,13 +56,21 @@ function FormStep({ data, id, pageId }) {
       // 'http://mbbank5.mangoads.com.vn/page/trang-test-new?link=5555555555/2020-08-04T12:52:48+07:00'
     )
       .then(res => {
-        if (res.data.content) {
-          setIsUpdate(true);
+        if (res.data.content !== '') {
           setFormState(JSON.parse(res.data.content));
         }
+        return res;
       })
       .catch(error => {});
   }, []);
+
+  // useEffect(() => {
+  //   console.log(window.location.href);
+  //   console.log(`${process.env.FRONTEND_URL}page/trang-test-new`);
+  //   if (window.location.href === `${process.env.FRONTEND_URL}page/trang-test-new`) {
+  //     console.log(hello);
+  //   }
+  // }, [formState]);
 
   const nextForm = () => {
     if (formActive < 3) {
@@ -90,7 +98,6 @@ function FormStep({ data, id, pageId }) {
   return (
     <section className={`form-step-wapper ${padding} formStep`} id={id}>
       <div className="container">
-        formState
         <div className="text-center" id="form_step_top">
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
