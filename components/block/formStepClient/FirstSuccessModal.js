@@ -5,6 +5,8 @@ import Tab2 from './componentModal/Tab2';
 import Tab1 from './componentModal/Tab1';
 import { Modal, ModalBody } from 'reactstrap';
 import { searchBranchesService, getProvinceService } from '../../../services/map';
+import { getSttForm } from '../../../services/common';
+import moment from 'moment';
 
 const FirstSuccessModal = props => {
   const {
@@ -13,12 +15,19 @@ const FirstSuccessModal = props => {
     showModal,
     closeModal,
     modal,
+    data,
+    isUpdate,
     formState,
     setFormState
   } = props;
   const [branchs, setBranchs] = useState([]);
   const [provinces, setProvinces] = useState([]);
   const [selected, setSelected] = useState('name1');
+  function pad(n, width, z) {
+    z = z || '0';
+    n = `${n}`;
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+  }
 
   useEffect(() => {
     const query = {
@@ -41,6 +50,15 @@ const FirstSuccessModal = props => {
       .catch(error => {
         console.log(error);
       });
+    const idForm = data.form[0] ? data.form[0].value : 399952;
+    if (!isUpdate) {
+      getSttForm(idForm).then(res => {
+        setFormState({
+          ...formState,
+          idLandLoan: `W.${moment().format('YYYY')}.${pad(res.data, 6)}`
+        });
+      });
+    }
   }, []);
 
   const handleSelect = e => {
@@ -111,7 +129,9 @@ FirstSuccessModal.propTypes = {
   showModal: PropTypes.func,
   showModalContinue: PropTypes.func,
   formState: PropTypes.object,
-  setFormState: PropTypes.func
+  setFormState: PropTypes.func,
+  data: PropTypes.object,
+  isUpdate: PropTypes.bool
 };
 
 export default FirstSuccessModal;

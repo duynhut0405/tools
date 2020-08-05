@@ -57,13 +57,7 @@ const SecondSuccessModal = props => {
   const summitForm = async () => {
     const email = formState.email;
     const idForm = data.form[0] ? data.form[0].value : 399952;
-    if (!isUpdate) {
-      const id = await getSttForm(idForm);
-      const idLandLoan = `W.${moment().format('YYYY')}.${pad(id.data, 6)}`;
-      setFormState({ ...formState, idLandLoan: idLandLoan });
-    }
-    console.log(formState);
-    console.log(idLandLoan);
+
     const body = {
       content: JSON.stringify(formState),
       contentMail: `Đến form của bạn : ${formState.link}`,
@@ -87,7 +81,7 @@ const SecondSuccessModal = props => {
           suggest_monney: formState.suggest_monney,
           id: formState.idLandLoan
             ? formState.idLandLoan
-            : `W.${moment().format('YYYY')}.${pad(id.data, 6)}`
+            : `W.${moment().format('YYYY')}.${pad(0, 6)}` ////////////////---------------
         }
       });
     }
@@ -111,6 +105,7 @@ const SecondSuccessModal = props => {
   return (
     <Modal isOpen={modalContinue} toggle={showModalContinue}>
       <ModalBody>
+        {console.log(formState)}
         <WrapModal id="CheckedDataModal" closeModal={closeModal}>
           <div style={{ display: 'none' }}>
             <ComponentToPrint ref={componentRef} formState={formState} />
