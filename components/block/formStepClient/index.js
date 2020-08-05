@@ -21,8 +21,9 @@ const propTypes = {
 function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const router = useRouter();
-  const [isUpdate, setIsUpdate] = useState(router.query.link ? true : false);
-  // console.log(router.query.link);
+  const isUpdate = router.query.link ? true : false;
+  console.log(router.query.link);
+  console.log(isUpdate);
   const [formState, setFormState] = useState({
     full_name: '',
     profileType: 'Chứng minh nhân dân',
