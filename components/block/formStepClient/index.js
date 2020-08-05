@@ -55,11 +55,12 @@ function FormStep({ data, id, pageId }) {
         setProvinces(res);
       })
       .catch(error => {});
-    getItemForm();
-    window.location.href
+    getItemForm(
+      window.location.href
       // 'http://localhost:8080/page/trang-test-new?link=2341234123/0'
       // 'https://mbbank6.mangoads.com.vn/page/trang-test-new/?link=1231231231/2020-08-06T02:06:06+07:00'
       // 'https://mbbank6.mangoads.com.vn/page/trang-test-new?link=1231231231/2020-08-06T02:06:06+07:00'
+    )
       .then(res => {
         console.log(res);
         console.log(window.location.href);
