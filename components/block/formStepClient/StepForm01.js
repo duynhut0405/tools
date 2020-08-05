@@ -184,10 +184,12 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           },
           birthday: values.birthday,
           phone: values.phone,
-          link: `${process.env.FRONTEND_URL}page/trang-test-new?link=${values.phone}/${moment(
-            new Date(),
-            'DD/MM/YYYY'
-          ).format()}`
+          // link: `${process.env.FRONTEND_URL}page/trang-test-new?link=${values.phone}/${moment(
+          link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
+          // ${moment(
+          //   new Date(),
+          //   'DD/MM/YYYY'
+          // ).format()}`
         });
 
         if (form01.current.reportValidity()) {

@@ -57,9 +57,11 @@ const SecondSuccessModal = props => {
   const summitForm = async () => {
     const email = formState.email;
     const idForm = data.form[0] ? data.form[0].value : 399952;
-    const id = await getSttForm(idForm);
-    const idLandLoan = await `W.${moment().format('YYYY')}.${pad(id.data, 6)}`;
-    await setFormState({ ...formState, idLandLoan: idLandLoan });
+    if (!isUpdate) {
+      const id = await getSttForm(idForm);
+      const idLandLoan = await `W.${moment().format('YYYY')}.${pad(id.data, 6)}`;
+      await setFormState({ ...formState, idLandLoan: idLandLoan });
+    }
     const body = {
       content: JSON.stringify(formState),
       contentMail: `Đến form của bạn : ${formState.link}`,
@@ -67,12 +69,13 @@ const SecondSuccessModal = props => {
       idForm: idForm,
       idPage: pageId
     };
+    let res;
     if (!isUpdate) {
-      const res = await sendMailService(body);
+      res = await sendMailService(body);
     } else {
-      const res = await updateForm(
-        'http://mbbank5.mangoads.com.vn/page/trang-test-new?link=5555555555/2020-08-04T12:52:48+07:00',
-        body
+      res = await updateForm(
+        body,
+        'http://mbbank5.mangoads.com.vn/page/trang-test-new?link=5555555555/2020-08-04T12:52:48+07:00'
       );
     }
     if (res && res.status === 200 && res.data === true) {
@@ -83,7 +86,7 @@ const SecondSuccessModal = props => {
             formState.purpose_loan_02 ? formState.purpose_loan_01 : ''
           }`,
           suggest_monney: formState.suggest_monney,
-          id: idLandLoan
+          id: formState.idLandLoan && ''
         }
       });
     }

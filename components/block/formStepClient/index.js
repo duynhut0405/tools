@@ -10,6 +10,7 @@ import StepForm03 from './StepForm03';
 import Proptypes from 'prop-types';
 import { getProvinceService } from '../../../services/map';
 import { getItemForm } from '../../../services/common';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   data: Proptypes.object,
@@ -19,7 +20,9 @@ const propTypes = {
 
 function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
-  const [isUpdate, setIsUpdate] = useState(false);
+  const router = useRouter();
+  const [isUpdate, setIsUpdate] = useState(router.query.link ? true : false);
+  // console.log(isUpdate);
   const [formState, setFormState] = useState({
     full_name: '',
     profileType: 'Chứng minh nhân dân',
@@ -53,7 +56,7 @@ function FormStep({ data, id, pageId }) {
       .catch(error => {});
     getItemForm(
       window.location.href
-      // 'http://mbbank5.mangoads.com.vn/page/trang-test-new?link=5555555555/2020-08-04T12:52:48+07:00'
+      // 'https://mbbank5.mangoads.com.vn/page/trang-test-new?link=5555555555/2020-08-05T20:41:40+07:00'
     )
       .then(res => {
         if (res.data.content !== '') {
@@ -63,14 +66,6 @@ function FormStep({ data, id, pageId }) {
       })
       .catch(error => {});
   }, []);
-
-  // useEffect(() => {
-  //   console.log(window.location.href);
-  //   console.log(`${process.env.FRONTEND_URL}page/trang-test-new`);
-  //   if (window.location.href === `${process.env.FRONTEND_URL}page/trang-test-new`) {
-  //     console.log(hello);
-  //   }
-  // }, [formState]);
 
   const nextForm = () => {
     if (formActive < 3) {

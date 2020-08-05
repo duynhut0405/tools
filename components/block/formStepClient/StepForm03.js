@@ -39,11 +39,13 @@ const StepForm03 = props => {
   const showActiveAlertInfo = () => {
     setActiveAlertInfo(!activeAlertInfo);
   };
+
   const closeModal = () => {
     setActive(false);
     setModalContinue(false);
     setActiveAlertInfo(false);
   };
+
   const handleCheckProxy = () => {
     setCheckedProxy(!checkedProxy);
   };
