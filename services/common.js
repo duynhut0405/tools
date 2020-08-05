@@ -32,7 +32,7 @@ const getItemForm = query => {
   return request({
     url: `common/search-user`,
     method: 'GET',
-    params: { locale: 'vi', id: query }
+    params: { locale: 'vi', search: query }
   })
     .then(res => {
       return res;
@@ -42,4 +42,18 @@ const getItemForm = query => {
     });
 };
 
-export { searchService, getSttForm, getItemForm };
+const updateForm = query => {
+  return request({
+    url: `common/search-user-id`,
+    method: 'GET',
+    params: { locale: 'vi', search: query, year: 2020 }
+  })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      return error.response;
+    });
+};
+
+export { searchService, getSttForm, getItemForm, updateForm };

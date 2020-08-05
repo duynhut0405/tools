@@ -1,5 +1,5 @@
 /* eslint-disable dot-notation */
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import BaseSelect from 'react-select';
@@ -16,7 +16,8 @@ const propTypes = {
   nextForm: Proptypes.func,
   setFormState: Proptypes.func,
   formState: Proptypes.object,
-  provinces: Proptypes.array
+  provinces: Proptypes.array,
+  isUpdate: Proptypes.bool
 };
 
 const validationSchema = yup.object().shape({
@@ -36,16 +37,6 @@ const validationSchema = yup.object().shape({
         .required('Trường bắt buộc nhập')
     })
   ),
-  name_element1: yup.string().when('isLengths', {
-    is: isLengths => isLengths.length !== 0,
-    then: yup.string().matches(/[a-zA-Z]+/, 'Yêu cầu chữ')
-    // .required('Trường bắt buộc nhập')
-  }),
-  rela_element1: yup.string().when('isLengths', {
-    is: isLengths => isLengths.length !== 0,
-    then: yup.string()
-    // .required('Trường bắt buộc nhập')
-  }),
   city_address: yup.string().required('Trường bắt buộc nhập'),
   current_home: yup
     .string()
@@ -76,7 +67,7 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập'),
   email: yup
     .string()
-    .matches(/^[a-z0-9](\.?[a-z0-9]){0,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
+    .matches(/^[a-zA-z0-9](\.?[a-zA-z0-9]){0,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
     .matches(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Không chứa kí tự đặc biệt và bắt đầu bằng số'
@@ -117,9 +108,8 @@ const validationSchema = yup.object().shape({
     })
 });
 
-const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
+const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) => {
   const form01 = useRef(null);
-  const [collap, setCollapParent] = useState(formState.companion ? true : false);
 
   const listPartner = [
     { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' },
@@ -189,28 +179,63 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
             'DD/MM/YYYY'
           ).format()}`
         }));
+
         if (form01.current.reportValidity()) {
           event.preventDefault();
           nextForm();
         }
       }}
       validationSchema={validationSchema}
-      validator={() => ({})}
     >
       {formikProps => {
-        const { setFieldValue, handleSubmit } = formikProps;
+        const { setFieldValue } = formikProps;
         const removeComponion = indexItem => {
           const listCompo = filter(formState.nuComponion, (value, index) => index !== indexItem);
           setFormState({ ...formState, nuComponion: listCompo });
           return listCompo;
         };
-
+        // console.log(formState.companion);
+        // const [collap, setCollapParent] = useState();
+        if (isUpdate) {
+          useEffect(() => {
+            const fields = [
+              'full_name',
+              'nuComponion',
+              'profileType',
+              'full_name',
+              'profileNumber',
+              'email',
+              'is_loan',
+              'sex',
+              'city_address',
+              'current_home',
+              'status_home',
+              'profile_partner',
+              'name_companion',
+              'isCheck',
+              'isLengths',
+              'companionRelation',
+              'birthday',
+              'phone'
+            ];
+            // set
+            fields.forEach(field => {
+              setFieldValue(field, formState[field], false);
+              if (field === 'current_home' || field === 'city_address' || field === 'status_home') {
+                if (formState['address']) {
+                  setFieldValue('current_home', formState['address'].current_home);
+                  setFieldValue('city_address', formState['address'].city_address);
+                  setFieldValue('status_home', formState['address'].status_home);
+                }
+              }
+            });
+            // setCollapParent(formState.companion);
+          }, [formState]);
+        }
         return (
           <section className="sec-t p-form1" id="featured">
             <div className="container">
               <div className="max750">
-                {/* {console.log(formikProps.values.isLengths)}
-                {console.log(formState.nuComponion)} */}
                 <form autoComplete="on" className="row list-item form-contact c-form1" ref={form01}>
                   <div className="col-12">
                     <div className="text-center">
@@ -356,6 +381,8 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                     <h6 className="title1">
                       Số Giấy tờ tùy thân (<span className="red">*</span>)
                     </h6>
+                    {/* {console.log(formState.profileType)}
+                    {console.log(formState.profileNumber)} */}
                     {formState.profileType === 'Hộ chiếu' && (
                       <>
                         <input
@@ -412,14 +439,14 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                         )}
                       </>
                     )}
-                    {formState.profileType === 'Chứng minh nhân dân' && (
+                    {/* {console.log(formState.phone)}
+                    {console.log(formState.profileNumber)} */}
+                    {formState.profileNumber && formState.profileType === 'Chứng minh nhân dân' && (
                       <NumberFormat
                         className="input"
                         name="profileNumber"
-                        format="#### ### ##"
-                        mask=" "
-                        allowEmptyFormatting
-                        defaultValue={formState.profileNumber ? formState.profileNumber : ''}
+                        placeholder={formState.profileType}
+                        defaultValue={formState.profileNumber}
                         onValueChange={e => {
                           setFormState({ ...formState, profileNumber: e.formattedValue });
                           setFieldValue('profileNumber', e.formattedValue);
@@ -467,11 +494,12 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                           placeholderText={'dd/MM/yyyy'}
                           autoComplete="off"
                           dateFormat="dd/MM/yyyy"
-                          selected={formikProps.values.birthday}
+                          selected={Date.parse(formState.birthday)}
                           name={'birthday'}
                           onChange={e => {
                             if (e) {
                               formikProps.setFieldValue('birthday', e);
+                              setFormState({ ...formState.birthday, birthday: e });
                             } else {
                               formikProps.setFieldValue('birthday', '');
                             }
@@ -487,22 +515,24 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                     <h6 className="title1">
                       Số điện thoại (<span className="red">*</span>)
                     </h6>
-                    <NumberFormat
-                      className="input"
-                      name="suggest_monney"
-                      placeholder="Số điện thoại"
-                      format="##########"
-                      allowEmptyFormatting
-                      mask=" "
-                      defaultValue={formState.phone}
-                      onValueChange={e => {
-                        setFormState({
-                          ...formState,
-                          phone: e.formattedValue
-                        });
-                        formikProps.setFieldValue('phone', e.formattedValue);
-                      }}
-                    />
+                    {formState.phone && (
+                      <NumberFormat
+                        className="input"
+                        name="suggest_monney"
+                        placeholder="Số điện thoại"
+                        format="##########"
+                        allowEmptyFormatting
+                        mask=""
+                        defaultValue={formState.phone ? formState.phone : ''}
+                        onValueChange={e => {
+                          setFormState({
+                            ...formState,
+                            phone: e.formattedValue
+                          });
+                          formikProps.setFieldValue('phone', e.formattedValue);
+                        }}
+                      />
+                    )}
                     {formikProps.touched.phone && formikProps.errors.phone && (
                       <p className="red error">{formikProps.errors.phone}</p>
                     )}
@@ -595,13 +625,22 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                     <div
                       className="text-center"
                       onClick={() => {
-                        setFieldValue('isCheck', !collap);
-                        setCollapParent(!collap);
-                        if (!collap) {
+                        // setFieldValue('isCheck', !collap);
+                        // setCollapParent(!collap);
+                        if (formState.companion) {
                           setFieldValue('nuComponion', []);
                           setFormState({
                             ...formState,
                             companion: null,
+                            nuComponion: []
+                          });
+                        } else {
+                          setFormState({
+                            ...formState,
+                            companion: {
+                              num_profile: '',
+                              relation: {}
+                            },
                             nuComponion: []
                           });
                         }
@@ -610,12 +649,14 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
                       <h3 className="ctext mg-0 pt-10 pb-10 bg-1">
                         Người đồng trả nợ
                         <i
-                          className={classNames('icon icon-arrow-1 icon-up-js', { active: collap })}
+                          className={classNames('icon icon-arrow-1 icon-up-js', {
+                            active: formState.companion
+                          })}
                         />
                       </h3>
                     </div>
                   </div>
-                  {collap && (
+                  {formState.companion && (
                     <div className="col-12 c-tabs-js">
                       <div className="row">
                         <div className="col-12 form-control">

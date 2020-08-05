@@ -19,8 +19,9 @@ const propTypes = {
 
 function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
+  const [isUpdate, setIsUpdate] = useState(false);
   const [formState, setFormState] = useState({
-    full_name: null,
+    full_name: '',
     profileType: 'Chứng minh nhân dân',
     nuComponion: [],
     collateral: [
@@ -50,9 +51,15 @@ function FormStep({ data, id, pageId }) {
         setProvinces(res);
       })
       .catch(error => {});
-    getItemForm(window.location.href)
+    getItemForm(
+      window.location.href
+      // 'http://mbbank5.mangoads.com.vn/page/trang-test-new?link=5555555555/2020-08-04T12:52:48+07:00'
+    )
       .then(res => {
-        console.log(res);
+        if (res.data.content) {
+          setIsUpdate(true);
+          setFormState(JSON.parse(res.data.content));
+        }
       })
       .catch(error => {});
   }, []);
@@ -83,7 +90,7 @@ function FormStep({ data, id, pageId }) {
   return (
     <section className={`form-step-wapper ${padding} formStep`} id={id}>
       <div className="container">
-        {/* {console.log(formState)} */}
+        formState
         <div className="text-center" id="form_step_top">
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
@@ -100,6 +107,7 @@ function FormStep({ data, id, pageId }) {
           formState={formState}
           nextForm={nextForm}
           provinces={provinces}
+          isUpdate={isUpdate}
         />
       )}
       {formActive === 2 && (
@@ -108,6 +116,7 @@ function FormStep({ data, id, pageId }) {
           formState={formState}
           setFormState={setFormState}
           backFrom={backForm}
+          isUpdate={isUpdate}
         />
       )}
       {formActive === 3 && (
@@ -118,6 +127,7 @@ function FormStep({ data, id, pageId }) {
           setFormActive
           data={data}
           pageId={pageId}
+          isUpdate={isUpdate}
         />
       )}
     </section>

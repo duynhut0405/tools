@@ -10,7 +10,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 const StepForm03 = props => {
-  const { backFrom, formState, setFormState, setFormActive, data, pageId } = props;
+  const { backFrom, formState, setFormState, setFormActive, data, pageId, isUpdate } = props;
   const form01 = useRef(null);
   const [active, setActive] = useState(false);
   const [activeAlertInfo, setActiveAlertInfo] = useState(false);
@@ -478,9 +478,11 @@ const StepForm03 = props => {
                     showModalContinue={showModalContinue}
                     modalContinue={modalContinue}
                     formState={formState}
+                    setFormState={setFormState}
                     setFormActive={setFormActive}
                     data={data}
                     pageId={pageId}
+                    isUpdate={isUpdate}
                   />
                 )}
               </form>
@@ -498,7 +500,8 @@ StepForm03.propTypes = {
   backFrom: PropTypes.func,
   setFormState: PropTypes.func,
   setFormActive: PropTypes.func,
-  pageId: PropTypes.number
+  pageId: PropTypes.number,
+  isUpdate: PropTypes.bool
 };
 
 export default StepForm03;

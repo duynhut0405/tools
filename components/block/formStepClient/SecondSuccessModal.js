@@ -7,7 +7,7 @@ import ComponentToPrint from './Printer';
 import Router from 'next/router';
 import moment from 'moment';
 import { sendMailService } from '../../../services/form';
-import { getSttForm } from '../../../services/common';
+import { getSttForm, updateForm } from '../../../services/common';
 
 const SecondSuccessModal = props => {
   const {
@@ -16,7 +16,9 @@ const SecondSuccessModal = props => {
     showModalContinue,
     setFormActive,
     formState,
+    setFormState,
     data,
+    isUpdate,
     pageId
   } = props;
   const [dataColla, setDataColla] = useState([]);
@@ -55,15 +57,21 @@ const SecondSuccessModal = props => {
   const summitForm = async () => {
     const email = formState.email;
     const idForm = data.form[0] ? data.form[0].value : 399952;
+    const id = await getSttForm(idForm);
+    const idLandLoan = await `W.${moment().format('YYYY')}.${pad(id.data, 6)}`;
+    await setFormState({ ...formState, idLandLoan: idLandLoan });
     const body = {
       content: JSON.stringify(formState),
-      contentMail: `Đến form của bạn${formState.link}`,
+      contentMail: `Đến form của bạn : ${formState.link}`,
       email: email,
       idForm: idForm,
       idPage: pageId
     };
-    const id = await getSttForm(idForm);
-    const res = await sendMailService(body);
+    if (!isUpdate) {
+      const res = await sendMailService(body);
+    } else {
+      const res = await updateForm();
+    }
     if (res && res.status === 200 && res.data === true) {
       Router.push({
         pathname: '/succesForm',
@@ -72,7 +80,7 @@ const SecondSuccessModal = props => {
             formState.purpose_loan_02 ? formState.purpose_loan_01 : ''
           }`,
           suggest_monney: formState.suggest_monney,
-          id: `W.${moment().format('YYYY')}.${pad(id.data, 6)}`
+          id: idLandLoan
         }
       });
     }
@@ -423,7 +431,9 @@ SecondSuccessModal.propTypes = {
   showModalContinue: PropTypes.func,
   data: PropTypes.object,
   pageId: PropTypes.number,
-  setFormActive: PropTypes.func
+  setFormActive: PropTypes.func,
+  setFormState: PropTypes.func,
+  isUpdate: PropTypes.bool
 };
 
 export default SecondSuccessModal;
