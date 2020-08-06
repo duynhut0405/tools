@@ -111,7 +111,8 @@ const validationSchema = yup.object().shape({
 
 const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) => {
   const form01 = useRef(null);
-  const router = useRouter();
+  // const router = useRouter();
+  // const isUpdate = router.query.link ? true : false;
 
   const listPartner = [
     { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' },
