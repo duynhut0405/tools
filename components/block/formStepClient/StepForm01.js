@@ -220,29 +220,29 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
         };
         // console.log(formState.companion);
         // const [collap, setCollapParent] = useState();
-        if (isUpdate) {
-          useEffect(() => {
-            const fields = [
-              'full_name',
-              'nuComponion',
-              'profileType',
-              'full_name',
-              'profileNumber',
-              'email',
-              'is_loan',
-              'sex',
-              'city_address',
-              'current_home',
-              'status_home',
-              'profile_partner',
-              'name_companion',
-              'isCheck',
-              'isLengths',
-              'companionRelation',
-              'birthday',
-              'phone'
-            ];
-            // set
+        useEffect(() => {
+          const fields = [
+            'full_name',
+            'nuComponion',
+            'profileType',
+            'full_name',
+            'profileNumber',
+            'email',
+            'is_loan',
+            'sex',
+            'city_address',
+            'current_home',
+            'status_home',
+            'profile_partner',
+            'name_companion',
+            'isCheck',
+            'isLengths',
+            'companionRelation',
+            'birthday',
+            'phone'
+          ];
+          // set
+          if (formState.phone) {
             fields.forEach(field => {
               setFieldValue(field, formState[field], false);
               if (field === 'current_home' || field === 'city_address' || field === 'status_home') {
@@ -253,9 +253,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                 }
               }
             });
-            // setCollapParent(formState.companion);
-          }, [formState]);
-        }
+          }
+          // setCollapParent(formState.companion);
+        }, [formState]);
+
         return (
           <section className="sec-t p-form1" id="featured">
             <div className="container">
