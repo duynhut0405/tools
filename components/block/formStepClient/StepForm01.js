@@ -112,7 +112,6 @@ const validationSchema = yup.object().shape({
 const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
   const form01 = useRef(null);
   const router = useRouter();
-  const isUpdate = router.query.link ? true : false;
 
   const listPartner = [
     { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' },
@@ -220,7 +219,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
         };
         // console.log(formState.companion);
         // const [collap, setCollapParent] = useState();
-        if (isUpdate) {
+        if (router.query.link) {
           useEffect(() => {
             const fields = [
               'full_name',
