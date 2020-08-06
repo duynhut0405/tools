@@ -17,8 +17,8 @@ const propTypes = {
   nextForm: Proptypes.func,
   setFormState: Proptypes.func,
   formState: Proptypes.object,
-  provinces: Proptypes.array
-  // isUpdate: Proptypes.bool
+  provinces: Proptypes.array,
+  isUpdate: Proptypes.bool
 };
 
 const validationSchema = yup.object().shape({
@@ -109,7 +109,7 @@ const validationSchema = yup.object().shape({
     })
 });
 
-const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
+const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) => {
   const form01 = useRef(null);
   const router = useRouter();
 
@@ -219,7 +219,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
         };
         // console.log(formState.companion);
         // const [collap, setCollapParent] = useState();
-        if (router.query.link) {
+        if (isUpdate) {
           useEffect(() => {
             const fields = [
               'full_name',
