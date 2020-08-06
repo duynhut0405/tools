@@ -105,6 +105,36 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
     >
       {formikProps => {
         const { touched, errors, handleSubmit, setFieldValue } = formikProps;
+        useEffect(() => {
+          const fields = [
+            'collateral',
+            'value_loan',
+            'suggest_monney',
+            'purpose_loan_01',
+            'purpose_loan_02',
+            'decriptiom',
+            'is_future',
+            'profileNumber',
+            'relaValue',
+            'type_purpose',
+            'isCollateral'
+          ];
+          // set
+          if (formState.phone) {
+            fields.forEach(field => {
+              setFieldValue(field, formState[field], false);
+              if (field === 'type_purpose') {
+                if (formState.address) {
+                  setFieldValue(
+                    'type_purpose',
+                    formState.type_purpose_02 || formState.type_purpose_01
+                  );
+                }
+              }
+            });
+          }
+          // setCollapParent(formState.companion);
+        }, [formState]);
         return (
           <section className="sec-t p-form2" id="featured">
             <div className="container">
@@ -502,7 +532,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         type="button"
                         className="btn"
                         onClick={() => {
-                          // console.log(formikProps);
+                          console.log(formikProps);
                           handleSubmit();
                         }}
                       >
