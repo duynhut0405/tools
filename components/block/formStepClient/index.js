@@ -26,7 +26,7 @@ function FormStep({ data, id, pageId }) {
   const [formState, setFormState] = useState({
     full_name: '',
     profileType: 'Chứng minh nhân dân',
-    // profileNumber: '',
+    isCollateral02: true,
     nuComponion: [],
     collateral: [
       {

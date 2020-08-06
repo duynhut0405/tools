@@ -48,7 +48,7 @@ const validationSchema = yup.object().shape({
 // const text02 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
 const text03 = 'Tài sản hình thành từ vốn vay';
 const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
-  const [iscollateral, setIsCollateral] = useState(formState.isCollateral02 ? false : true);
+  const [iscollateral, setIsCollateral] = useState(formState.isCollateral02 ? true : false);
   const [idAsset, setIdAsset] = useState(1);
   const form02 = useRef(null);
   const router = useRouter();
@@ -129,8 +129,17 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                 if (formState.address) {
                   setFieldValue(
                     'type_purpose',
+
                     formState.type_purpose_02 || formState.type_purpose_01
                   );
+                }
+              }
+
+              if (field === 'isCollateral02') {
+                if (formState.isCollateral02 === true) {
+                  setFieldValue('isCollateral02', true);
+                } else {
+                  setFieldValue('isCollateral02', false);
                 }
               }
             });
@@ -343,8 +352,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         isAllowed={values => {
                           const { formattedValue, floatValue } = values;
                           return (
-                            formattedValue === '' ||
-                            (floatValue <= 1000000000000 && floatValue >= 0)
+                            formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0)
                           );
                         }}
                         defaultValue={formState.value_loan}
@@ -372,8 +380,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         isAllowed={values => {
                           const { formattedValue, floatValue } = values;
                           return (
-                            formattedValue === '' ||
-                            (floatValue <= 1000000000000 && floatValue >= 0)
+                            formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0)
                           );
                         }}
                         defaultValue={formState.suggest_monney}
