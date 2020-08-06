@@ -14,7 +14,7 @@ const StepForm03 = props => {
   const form01 = useRef(null);
   const [active, setActive] = useState(false);
   const [activeAlertInfo, setActiveAlertInfo] = useState(false);
-  const [hide01, setHide01] = useState(false);
+  const [hide01, setHide01] = useState(formState.debt || formState.return_monney);
   const [checkedProxy, setCheckedProxy] = useState(false);
   const [modalContinue, setModalContinue] = useState(false);
 
@@ -194,7 +194,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                                (floatValue < 1000000000000 && floatValue >= 0)
                               );
                             }}
                             min="0"
@@ -225,7 +225,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                                (floatValue < 1000000000000 && floatValue >= 0)
                               );
                             }}
                             placeholder="Nhập giá trị"
@@ -266,8 +266,7 @@ const StepForm03 = props => {
                       isAllowed={values => {
                         const { formattedValue, floatValue } = values;
                         return (
-                          formattedValue === '' ||
-                          (floatValue <= 10000000000000000 && floatValue >= 0)
+                          formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0)
                         );
                       }}
                       onValueChange={e => {
@@ -330,7 +329,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                                (floatValue <= 100000000000000000 && floatValue >= 0)
                               );
                             }}
                             onValueChange={e => {
@@ -362,7 +361,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                                (floatValue <= 1000000000000 && floatValue >= 0)
                               );
                             }}
                             onValueChange={e => {

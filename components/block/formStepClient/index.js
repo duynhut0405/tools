@@ -22,7 +22,8 @@ function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const router = useRouter();
   const isUpdate = router.query.link ? true : false;
-  // console.log(router.query.link);
+  console.log(router);
+
   const [formState, setFormState] = useState({
     full_name: '',
     profileType: 'Chứng minh nhân dân',
@@ -57,14 +58,17 @@ function FormStep({ data, id, pageId }) {
       .catch(error => {});
     if (isUpdate) {
       getItemForm(
-        window.location.href
+        `${process.env.FRONTEND_URL_LOAN}${router.asPath}`
+        // window.location.href
         // 'http://localhost:8080/page/trang-test-new?link=2341234123/0'
         // 'https://mbbank6.mangoads.com.vn/page/trang-test-new/?link=1231231231/2020-08-06T02:06:06+07:00'
         // 'https://mbbank6.mangoads.com.vn/page/trang-test-new?link=1231231231/2020-08-06T02:06:06+07:00'
+        // 'https://mbbank6.mangoads.com.vn/page/trang-test-new/?link=1231231231/2020-08-06T10:20:09+07:00'
       )
         .then(res => {
-          // console.log(res);
-          // console.log(window.location.href);
+          console.log(res);
+          console.log(`${process.env.FRONTEND_URL_LOAN}${router.asPath}`);
+          console.log(`${process.env.FRONTEND_URL}`);
           if (res.data.content !== '') {
             setFormState(JSON.parse(res.data.content));
           }
@@ -133,7 +137,7 @@ function FormStep({ data, id, pageId }) {
           backFrom={backForm}
           formState={formState}
           setFormState={setFormState}
-          setFormActive
+          setFormActive={setFormActive}
           data={data}
           pageId={pageId}
           isUpdate={isUpdate}
