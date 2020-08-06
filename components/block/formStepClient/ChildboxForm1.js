@@ -81,9 +81,9 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               type="text"
               name="name_componion"
               placeholder="Nhập đầy đủ họ tên vợ/ chồng"
-              value={name ? name : ''}
+              value={name ? name.toUpperCase() : ''}
               onChange={e => {
-                setName(e.target.value);
+                setName(e.target.value.toUpperCase());
                 formikProps.setFieldValue(`nuComponion.${index}.name_componion`, e.target.value);
               }}
               style={{ width: '100%' }}

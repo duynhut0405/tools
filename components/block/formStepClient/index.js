@@ -69,13 +69,12 @@ function FormStep({ data, id, pageId }) {
           console.log(res);
           console.log(`${process.env.FRONTEND_URL_LOAN}${router.asPath}`);
           console.log(`${process.env.FRONTEND_URL}`);
-          if (res.data.content !== '') {
+          if (res.status === 200 && res.data.content !== '') {
             setFormState(JSON.parse(res.data.content));
           }
-          return res;
         })
         .catch(error => {
-          // console.log(error);
+          console.log(error);
         });
     }
   }, []);
@@ -110,6 +109,7 @@ function FormStep({ data, id, pageId }) {
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
         </div>
+        {console.log(formState)}
       </div>
       {data.form !== null && (
         <React.Fragment>
