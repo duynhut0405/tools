@@ -1,564 +1,439 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Proptypes from 'prop-types';
-import ChildboxForm2 from './ChildboxForm2';
-import { Formik } from 'formik';
-import NumberFormat from 'react-number-format';
-import * as yup from 'yup';
-import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
+import React, { useRef, useState, useEffect } from 'react';
+import WrapModal from './WrapModal';
+import { Modal, ModalBody } from 'reactstrap';
+import { useReactToPrint } from 'react-to-print';
+import ComponentToPrint from './Printer';
+import Router from 'next/router';
+import moment from 'moment';
+import { sendMailService } from '../../../services/form';
+import { getSttForm, updateForm } from '../../../services/common';
 
-const propTypes = {
-  nextForm: Proptypes.func,
-  backFrom: Proptypes.func,
-  setFormState: Proptypes.func,
-  formState: Proptypes.object
-};
-
-const validationSchema = yup.object().shape({
-  value_loan: yup
-    .number()
-    .min(125000000, 'Gía trị nhà đất không được nhỏ hơn 125 triệu')
-    .max(9999999999999999, 'Tối đa 17 số')
-    .required('Trường bắt buộc nhập'),
-  suggest_monney: yup
-    .number()
-
-    .required('Trường bắt buộc nhập')
-    .when('value_loan', value_loan => {
-      const msg =
-        'Chưa phù hợp quy định MB, MB cho vay tối đa 80% giá trị nhà đất mua/chi phí xây/sửa chữa/trang bị nội thất.';
-      return yup
-        .number()
-        .required('Trường bắt buộc nhập')
-        .min(100000000, 'Chưa phù hợp quy định MB, Số tiền tối thiểu 100 triệu đồng')
-        .max(parseInt((value_loan * 80) / 100), msg);
-      // .test('len', 'Tối đa 12 số', val => val.toString().length <= 12);
-    }),
-  type_purpose: yup.string().required('Trường bắt buộc'),
-  is_future: yup.string().required('Trường bắt buộc'),
-  collateral: yup.array().of(
-    yup.object().shape({
-      decription: yup.string().required('Trường bắt buộc nhập'),
-      estimate: yup.string().required('Trường bắt buộc nhập'),
-      relaValue: yup.string().required('Trường bắt buộc nhập')
-    })
-  )
-});
-
-// const text01 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
-// const text02 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
-const text03 = 'Tài sản hình thành từ vốn vay';
-const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
-  const [idAsset, setIdAsset] = useState(1);
-  const form02 = useRef(null);
-  const router = useRouter();
-
-  const handleChangeCustom = event => {
-    event.persist();
-    setFormState(() => ({
-      ...formState,
-      [event.target.name]: event.target.value
-    }));
-  };
-
-  function onScroll() {
-    const elmnt = document.getElementById('featured');
-    if (elmnt !== null) {
-      elmnt.scrollIntoView();
-    }
-  }
+const SecondSuccessModal = props => {
+  const {
+    closeModal,
+    modalContinue,
+    showModalContinue,
+    setFormActive,
+    formState,
+    setFormState,
+    data,
+    isUpdate,
+    pageId
+  } = props;
+  const [dataColla, setDataColla] = useState([]);
+  const componentRef = useRef();
+  moment.locale('vi');
 
   useEffect(() => {
-    onScroll();
-  }, []);
+    const collaterals = formState.collateral;
+    if (collaterals && collaterals.length > 0) {
+      setDataColla(collaterals);
+    }
+  });
 
-  const summitForm02 = () => {
-    // if (form02.current.reportValidity()) {
-    event.preventDefault();
-    nextForm();
-    // }
+  const convertContent = value => {
+    let result = '';
+    map(value, item => {
+      for (const key in item) {
+        if (item.hasOwnProperty(key)) {
+          result += `<p>${item[key]}</p>`;
+        }
+      }
+    });
+    return result;
   };
 
-  const removeCollateral = id => {
-    const listColla = formState.collateral.filter(value => value.id !== id);
-    setFormState({ ...formState, collateral: listColla });
-    return listColla;
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current
+  });
+
+  function pad(n, width, z) {
+    z = z || '0';
+    n = `${n}`;
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+  }
+
+  const summitForm = async () => {
+    const email = formState.email;
+    const idForm = data.form[0] ? data.form[0].value : 399952;
+
+    const body = {
+      content: JSON.stringify(formState),
+      contentMail: `Đến form của bạn : ${formState.link}`,
+      email: email,
+      idForm: idForm,
+      idPage: pageId
+    };
+    let res;
+    if (isUpdate) {
+      res = await sendMailService(body);
+    } else {
+      res = await updateForm(body, window.location.href);
+    }
+    if (res && res.status === 200 && res.data === true) {
+      Router.push({
+        pathname: '/succesForm',
+        query: {
+          purpose_loan: `${formState.purpose_loan_01 ? formState.purpose_loan_01 : ''} ${
+            formState.purpose_loan_02 ? formState.purpose_loan_02 : ''
+          }`,
+          suggest_monney: formState.suggest_monney,
+          id: formState.idLandLoan
+            ? formState.idLandLoan
+            : `W.${moment().format('YYYY')}.${pad(0, 6)}` ////////////////---------------
+        }
+      });
+    }
+    closeModal();
+  };
+
+  const formatCurrency = money => {
+    const moneyConvert = `${money}`;
+    if (moneyConvert.length < 16) {
+      return `${money}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+    return 0;
+  };
+
+  const addCurrency = (...moneies) => {
+    return moneies.reduce((sum, money) => {
+      return sum + money;
+    }, 0);
   };
 
   return (
-    <Formik
-      initialValues={{
-        collateral: formState.collateral || '',
-        value_loan: formState.value_loan || '',
-        suggest_monney: formState.suggest_monney || '',
-        purpose_loan_01: formState.purpose_loan_01 || '',
-        purpose_loan_02: formState.purpose_loan_02 || '',
-        decriptiom: formState.decriptiom || '',
-        is_future: formState.is_future || '',
-        profileNumber: formState.profileNumber || '',
-        relaValue: formState.relaValue || '',
-        type_purpose: formState.type_purpose_02 || formState.type_purpose_01,
-        isCollateral: iscollateral
-      }}
-      onSubmit={() => {
-        summitForm02();
-      }}
-      validationSchema={validationSchema}
-    >
-      {formikProps => {
-        const { touched, errors, handleSubmit, setFieldValue } = formikProps;
-        useEffect(() => {
-          const fields = [
-            'collateral',
-            'value_loan',
-            'suggest_monney',
-            'purpose_loan_01',
-            'purpose_loan_02',
-            'decriptiom',
-            'is_future',
-            'profileNumber',
-            'relaValue',
-            'type_purpose',
-            'isCollateral'
-          ];
-          // set
-          if (router.query && router.query.link) {
-            fields.forEach(field => {
-              setFieldValue(field, formState[field], false);
-              if (field === 'type_purpose') {
-                if (formState.address) {
-                  setFieldValue(
-                    'type_purpose',
+    <Modal isOpen={modalContinue} toggle={showModalContinue}>
+      <ModalBody>
+        {console.log(formState)}
+        <WrapModal id="CheckedDataModal" closeModal={closeModal}>
+          <div style={{ display: 'none' }}>
+            <ComponentToPrint ref={componentRef} formState={formState} />
+          </div>
+          <article className="file1">
+            <div className="file1_header1">
+              <div className="file1_logo1">
+                <img src="/static/images/svg/logo-blue.svg" alt="logo" />
+              </div>
 
-                    formState.type_purpose_02 || formState.type_purpose_01
-                  );
-                }
-              }
+              <section className="sec1">
+                <h3 className="sec1_title1">Cộng Hoà Xã Hội Chủ Nghĩa Việt Nam</h3>
+                <p>Độc lập - Tự do - Hạnh phúc</p>
+              </section>
+              <a className="btn" onClick={handlePrint}>
+                <span>Tải xuống</span>
+                <i>
+                  <img src="/static/images/svg/download.svg" alt="download.svg" />
+                </i>
+              </a>
+            </div>
+            <h2 className="c-title1">Đề nghị vay vốn kiêm cam kết trả nợ</h2>
+            <section className="file1_box1">
+              <h4 className="file1_title1">Thông tin Khách hàng</h4>
 
-              if (field === 'isCollateral02') {
-                if (formState.isCollateral02 === true) {
-                  setFieldValue('isCollateral02', true);
-                } else {
-                  setFieldValue('isCollateral02', false);
-                }
-              }
-            });
-          }
-          // setCollapParent(formState.companion);
-        }, [formState]);
-        return (
-          <section className="sec-t p-form2" id="featured">
-            <div className="container">
-              <div className="max750">
-                <form autoComplete="on" className="row list-item form-contact c-form1" ref={form02}>
-                  <div className="col-12">
-                    <div className="text-center">
-                      <h3 className="ctext mg-0 fs24">Bước 2/3: Thông tin phương án vay</h3>
-                    </div>
+              <div className="list1">
+                <div className="row">
+                  <div className="col-12 col-md-4">
+                    <label className="list1_label1">Họ và tên:</label>
+                    <span className="list1_data1">{formState.full_name}</span>
                   </div>
+
+                  <div className="col-12 col-md-3">
+                    <label className="list1_label1">Giới tính:</label>
+                    <span className="list1_data1">{formState.sex === 'female' ? 'Nữ' : 'Nam'}</span>
+                  </div>
+
+                  <div className="col-12 col-md-5">
+                    <label className="list1_label1">Ngày sinh:</label>
+                    <span className="list1_data1">{moment(formState.birthday).format('LL')}</span>
+                  </div>
+
+                  <div className="col-12 col-md-4">
+                    <label className="list1_label1">Số điện thoại:</label>
+                    <span className="list1_data1">{formState.phone}</span>
+                  </div>
+
+                  <div className="col-12 col-md-8">
+                    <label className="list1_label1">Email:</label>
+                    <span className="list1_data1">{formState.email}</span>
+                  </div>
+
                   <div className="col-12">
-                    <h6 className="title1">
-                      Mục đích vay vốn (<span className="red">*</span>)
-                    </h6>
-                    <div className="col-12">
-                      <label className="radio">
-                        Mua nhà đất
-                        <input
-                          type="checkbox"
-                          name="type_purpose_02"
-                          defaultChecked={formState.type_purpose_02 ? true : false}
-                          onClick={() => {
-                            setFieldValue('type_purpose', !formState.type_purpose_02);
-                            setFormState({
-                              ...formState,
-                              type_purpose_02: !formState.type_purpose_02
-                            });
-                          }}
-                        />
-                        <span />
-                        {formState.type_purpose_02 && (
-                          <div className="row p-form2--mt20">
-                            <div className="col-12">
-                              <label className="radio">
-                                Nhà đất đã có Giấy chứng nhận (Sổ đỏ)
-                                <input
-                                  type="radio"
-                                  name="test2"
-                                  defaultChecked={
-                                    formState.purpose_loan_02 ===
-                                    'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
-                                      ? true
-                                      : false
-                                  }
-                                  onClick={e => {
-                                    setFieldValue('purpose_loan_02', e.target.value);
-                                    setFormState({
-                                      ...formState,
-                                      purpose_loan_02: 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)'
-                                    });
-                                  }}
-                                />
-                                <span />
-                              </label>
-                            </div>
-                            <div className="col-12">
-                              <label className="radio">
-                                Nhà chung cư, đất dự án chưa có Giấy chứng nhận (Sổ đỏ)
-                                <input
-                                  type="radio"
-                                  name="test2"
-                                  defaultChecked={
-                                    formState.purpose_loan_02 ===
-                                    'Nhà chung cư, đất dự án chưa có Giấy chứng nhận (Sổ đỏ)'
-                                      ? true
-                                      : false
-                                  }
-                                  onClick={e => {
-                                    setFieldValue('purpose_loan_02', e.target.value);
-                                    setFormState({
-                                      ...formState,
-                                      purpose_loan_02:
-                                        'Nhà chung cư, đất dự án chưa có Giấy chứng nhận (Sổ đỏ)'
-                                    });
-                                  }}
-                                />
-                                <span />
-                              </label>
-                            </div>
+                    <label className="list1_label1">Giấy tờ tuỳ thân:</label>
+                    <span className="list1_data1">
+                      <span className="list1_data1">
+                        {formState.profileNumber} - {formState.profileType}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="col-12">
+                    <label className="list1_label1">Nơi ở hiện tại:</label>
+                    <span className="list1_data1">
+                      {formState.address ? formState.address.current_home : null}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <section className="child1">
+                {formState.companion && (
+                  <h5 className="child1_title1">Thông tin người đồng trả nợ</h5>
+                )}
+
+                <div className="list1">
+                  <div className="row">
+                    {formState.companion && (
+                      <>
+                        <div className="col-12 col-md-8">
+                          <label className="list1_label1">Họ và tên:</label>
+                          <span className="list1_data1">
+                            <span className="list1_data1">
+                              {formState.companion ? formState.companion.name : ''}
+                            </span>
+                          </span>
+                        </div>
+                        <div className="col-12 col-md-4">
+                          <label className="list1_label1">Quan hệ:</label>
+                          <span className="list1_data1">
+                            <span className="list1_data1">
+                              {formState.companion ? formState.companion.relation.label : ''}
+                            </span>
+                          </span>
+                        </div>
+                        <div className="col-12">
+                          <label className="list1_label1">Giấy tờ tuỳ thân:</label>
+                          <span className="list1_data1">
+                            <span className="list1_data1">
+                              {formState.companion ? formState.companion.num_profile : ''}
+                            </span>
+                          </span>
+                        </div>
+                      </>
+                    )}
+                    {formState.nuComponion.length !== 0 &&
+                      formState.nuComponion.map((value, key) => (
+                        <React.Fragment key={key}>
+                          <div className="col-12 col-md-8">
+                            <label className="list1_label1">Họ và tên:</label>
+                            <span className="list1_data1">
+                              <span className="list1_data1">{value.name_componion}</span>
+                            </span>
                           </div>
-                        )}
-                      </label>
-                    </div>
-                    <div className="col-12">
-                      <label className="radio">
-                        Xây/ Sửa nhà đất
-                        <input
-                          type="checkbox"
-                          name="type_purpose_01"
-                          defaultChecked={formState.type_purpose_01 ? true : false}
-                          onClick={() => {
-                            setFieldValue('type_purpose', 1);
-                            setFormState({
-                              ...formState,
-                              type_purpose_01: !formState.type_purpose_01
-                            });
-                          }}
-                        />
-                        <span />
-                        {formState.type_purpose_01 && (
-                          <div className="row p-form2--mt20">
-                            <div className="col-12">
-                              <label className="radio">
-                                Xây nhà
-                                <input
-                                  type="radio"
-                                  name="test1"
-                                  defaultChecked={
-                                    formState.purpose_loan_01 === 'Xây nhà' ? true : false
-                                  }
-                                  onClick={e => {
-                                    setFieldValue('purpose_loan_01', e.target.value);
-                                    setFormState({
-                                      ...formState,
-                                      purpose_loan_01: 'Xây nhà'
-                                    });
-                                  }}
-                                />
-                                <span />
-                              </label>
-                            </div>
-                            <div className="col-12">
-                              <label className="radio">
-                                Sửa nhà
-                                <input
-                                  type="radio"
-                                  name="test1"
-                                  // required
-                                  defaultChecked={
-                                    formState.purpose_loan_01 === 'Sửa nhà' ? true : false
-                                  }
-                                  onClick={e => {
-                                    setFieldValue('purpose_loan_01', e.target.value);
-                                    setFormState({
-                                      ...formState,
-                                      purpose_loan_01: 'Sửa nhà'
-                                    });
-                                  }}
-                                />
-                                <span />
-                              </label>
-                            </div>
+                          <div className="col-12 col-md-4">
+                            <label className="list1_label1">Quan hệ:</label>
+                            <span className="list1_data1">
+                              <span className="list1_data1">{value.rela_componion.value}</span>
+                            </span>
                           </div>
-                        )}
-                      </label>
-                    </div>
-                    {touched.type_purpose && errors.type_purpose && (
-                      <p className="red error">{errors.type_purpose}</p>
-                    )}
+                          <div className="col-12">
+                            <label className="list1_label1">Giấy tờ tuỳ thân:</label>
+                            <span className="list1_data1">
+                              <span className="list1_data1">{value.prof_componion}</span>
+                            </span>
+                          </div>
+                        </React.Fragment>
+                      ))}
                   </div>
+                </div>
+              </section>
+            </section>
+            <section className="file1_box1">
+              <h4 className="file1_title1">Thông tin phương án vay</h4>
+              <div className="list1">
+                <div className="row">
                   <div className="col-12">
-                    <h6 className="title1">
-                      Trang bị nội thất (<span className="red">*</span>)
-                    </h6>
-                    <label className="radio">
-                      Có
-                      <input
-                        type="radio"
-                        name="is_future"
-                        value={formState.is_future === 'true' ? true : false}
-                        defaultChecked={formState.is_future === 'true' ? true : false}
-                        onClick={() => {
-                          setFieldValue('is_future', 'true');
-                          setFormState({
-                            ...formState,
-                            is_future: 'true'
-                          });
-                        }}
-                      />
-                      <span />
-                    </label>
-                    <label className="radio">
-                      Không
-                      <input
-                        type="radio"
-                        name="is_future"
-                        value={formState.is_future === 'false' ? true : false}
-                        defaultChecked={formState.is_future === 'false' ? true : false}
-                        onClick={() => {
-                          setFieldValue('is_future', 'false');
-                          setFormState({
-                            ...formState,
-                            is_future: 'false'
-                          });
-                        }}
-                      />
-                      <span />
-                    </label>
-                    {formikProps.touched.is_future && formikProps.errors.is_future && (
-                      <p className="red error">{formikProps.errors.is_future}</p>
-                    )}
+                    <label className="list1_label1">Mục đích vay vốn:</label>
+                    <span className="list1_data1">
+                      <span className="list1_data1">
+                        {formState.purpose_loan_01 ? `${formState.purpose_loan_01},` : ''}
+                        {formState.purpose_loan_02}
+                      </span>
+                    </span>
                   </div>
-                  <div className="col-12 form-control">
-                    <h6 className="title1">
-                      Giá trị nhà đất mua/ Chi phí xây/ sửa chữa/ trang bị nội thất (
-                      <span className="red">*</span>)
-                    </h6>
-                    <div className="c-form1__control1">
-                      <NumberFormat
-                        className="input"
-                        thousandSeparator={true}
-                        name="value_loan"
-                        placeholder="Nhập giá trị"
-                        isAllowed={values => {
-                          const { formattedValue, floatValue } = values;
-                          return (
-                            formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0)
-                          );
-                        }}
-                        defaultValue={formState.value_loan}
-                        onValueChange={e => {
-                          setFieldValue('value_loan', e.floatValue);
-                          setFormState({ ...formState, value_loan: e.floatValue });
-                        }}
-                      />
-                      <span className="text1"> VNĐ</span>
-                    </div>
-                    {touched.value_loan && errors.value_loan && (
-                      <p className="red error">{errors.value_loan}</p>
-                    )}
-                  </div>
-                  <div className="col-12 form-control">
-                    <h6 className="title1">
-                      Số tiền đề xuất vay (<span className="red">*</span>)
-                    </h6>
-                    <div className="c-form1__control1">
-                      <NumberFormat
-                        className="input"
-                        thousandSeparator={true}
-                        name="suggest_monney"
-                        placeholder="Nhập giá trị"
-                        isAllowed={values => {
-                          const { formattedValue, floatValue } = values;
-                          return (
-                            formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0)
-                          );
-                        }}
-                        defaultValue={formState.suggest_monney}
-                        onValueChange={e => {
-                          setFieldValue('suggest_monney', e.floatValue);
-                          setFormState({ ...formState, suggest_monney: e.floatValue });
-                        }}
-                      />
-                      <span className="text1"> VNĐ</span>
-                    </div>
-                    {touched.suggest_monney && errors.suggest_monney && (
-                      <p className="red error">{errors.suggest_monney}</p>
-                    )}
-                  </div>
+
                   <div className="col-12">
-                    <h6 className="title1">
-                      Tài sản thế chấp (<span className="red">*</span>)
-                    </h6>
-                    <div className="col-12">
-                      <label className="radio">
-                        Tài sản hình thành từ vốn vay
-                        <input
-                          type="checkbox"
-                          name="collateral01"
-                          defaultChecked={
-                            formState.collateral01 === 'Tài sản hình thành từ vốn vay'
-                              ? true
-                              : false
-                          }
-                          onClick={() => {
-                            setFieldValue('isCollateral', false);
-                            if (formState.collateral01 !== 'Tài sản hình thành từ vốn vay') {
-                              setFormState({
-                                ...formState,
-                                collateral01: 'Tài sản hình thành từ vốn vay'
-                              });
-                            } else {
-                              setFormState({
-                                ...formState,
-                                collateral01: ''
-                              });
-                            }
-                          }}
-                        />
-                        <span />
-                      </label>
-                    </div>
+                    <label className="list1_label1">Trang bị nội thất:</label>
+                    <span className="list1_data1">
+                      {formState.is_loan === 'true' ? 'Có' : 'Không'}
+                    </span>
+                  </div>
 
-                    <div className="col-12 p-form2__radio1">
-                      {console.log(iscollateral)}
-                      <label className="radio p-collateral-js" style={{ width: '100%' }}>
-                        Bất động sản khác
-                        <input
-                          type="checkbox"
-                          name="collateral02"
-                          defaultChecked={iscollateral}
-                          onClick={() => {
-                            setIsCollateral(!iscollateral);
-                            setFieldValue('isCollateral', iscollateral);
-                            setFormState({
-                              ...formState,
-                              isCollateral02: iscollateral,
-                              collateral: [
-                                {
-                                  id: 0,
-                                  decription: '',
-                                  estimate: '',
-                                  relaValue: ''
-                                }
-                              ]
-                            });
-                            if (!iscollateral) {
-                              setFieldValue('collateral', [
-                                ...formikProps.values.collateral,
-                                {
-                                  id: 0,
-                                  decription: '',
-                                  estimate: '',
-                                  relaValue: ''
-                                }
-                              ]);
-                            } else {
-                              setFieldValue('collateral', []);
-                            }
-                          }}
-                        />
-                        <span />
-                      </label>
-                      <div className="row p-form2__block1" style={{ display: 'block' }}>
-                        <div className="row p-form2__block1">
-                          {iscollateral && (
-                            <div className="c-add-relationship-js">
-                              {formState.collateral.map((value, key) => (
-                                <ChildboxForm2
-                                  index={key}
-                                  key={key}
-                                  item={value}
-                                  formState={formState}
-                                  setFormState={setFormState}
-                                  removeItem={removeCollateral}
-                                  formikProps={formikProps}
-                                />
-                              ))}
-                              {console.log(formikProps)}
-                              <a
-                                className="c-form1__link1 c-link-add-form-js"
-                                onClick={e => {
-                                  e.preventDefault();
+                  <div className="col-12">
+                    <label className="list1_label1">
+                      Giá trị nhà đất mua/ Chi phí xây/ sửa chữa/ trang bị nội thất:
+                    </label>
+                    <span className="list1_data1"> {formatCurrency(formState.value_loan)}</span>
+                  </div>
 
-                                  if (idAsset < 5) {
-                                    setFormState({
-                                      ...formState,
-                                      collateral: [
-                                        ...formState.collateral,
-                                        {
-                                          id: formState.collateral.length,
-                                          decription: '',
-                                          estimate: '',
-                                          relaValue: ''
-                                        }
-                                      ]
-                                    });
-                                    setIdAsset(idAsset + 1);
-                                    setFieldValue('collateral', [
-                                      ...formikProps.values.collateral,
-                                      {
-                                        id: formState.collateral.length,
-                                        decription: '',
-                                        estimate: '',
-                                        relaValue: ''
-                                      }
-                                    ]);
-                                  }
-                                }}
-                              >
-                                Thêm tài sản đảm bảo
-                                <i className="icon">
-                                  <i className="fa fa-plus" aria-hidden="true"></i>
-                                </i>
-                              </a>
-                            </div>
-                          )}
+                  <div className="col-12">
+                    <label className="list1_label1">Số tiền đề xuất vay:</label>
+                    <span className="list1_data1">
+                      <span className="list1_data1">
+                        {formatCurrency(formState.suggest_monney)} VNĐ
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="col-12">
+                    <label className="list1_label1">Tài sản thế chấp:</label>
+                    <span className="list1_data1">
+                      {formState.collateral01 ? 'Tài sản hình thành từ vốn vay' : ''}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              {formState.isCollateral02 &&
+                dataColla.map((item, key) => (
+                  <section className="child1" key={key}>
+                    <h5 className="child1_title1">Thông tin tài sản thế chấp</h5>
+
+                    <div className="list1">
+                      <div className="row">
+                        <div className="col-12">
+                          <label className="list1_label1">Mô tả tài sản:</label>
+                          <span className="list1_data1">{item.decription}</span>
+                        </div>
+
+                        <div className="col-12">
+                          <label className="list1_label1">
+                            Mối quan hệ với chủ tài sản với khách hàng:
+                          </label>
+                          <span className="list1_data1">
+                            {item.relaValue && item.relaValue.label}
+                          </span>
+                        </div>
+
+                        <div className="col-12">
+                          <label className="list1_label1">Giá trị ước tính:</label>
+                          <span className="list1_data1">{formatCurrency(item.estimate)} VNĐ</span>
                         </div>
                       </div>
                     </div>
+                  </section>
+                ))}
+            </section>
+            <section className="file1_box1">
+              <h4 className="file1_title1">Thông tin tài chính</h4>
+              <div className="list1">
+                <div className="row">
+                  <div className="col-12">
+                    <label className="list1_label1">Thu nhập khách hàng (sau thuế)</label>
+                    <span className="list1_data1">
+                      <span className="list1_data1">
+                        {formatCurrency(formState.salary)} VNĐ/ tháng
+                      </span>
+                    </span>
                   </div>
-                  <div className="col-12 c-form1__btns-list1">
-                    <div className="text-center">
-                      <button
-                        className="btn type-white"
-                        onClick={e => {
-                          e.preventDefault();
-                          backFrom();
-                        }}
-                      >
-                        Quay về
-                      </button>
-                      <button
-                        type="button"
-                        className="btn"
-                        onClick={() => {
-                          console.log(formikProps);
-                          handleSubmit();
-                        }}
-                      >
-                        Tiếp tục
-                      </button>
+                  {formState.companion && (
+                    <div className="col-12">
+                      <label className="list1_label1">Thu nhập người đồng trả nợ (sau thuế)</label>
+                      <span className="list1_data1">
+                        <span className="list1_data1">
+                          {formState.partner_pay_type && formState.partner_pay
+                            ? `Vợ/ chồng của Khách hàng: ${formatCurrency(formState.partner_pay)}`
+                            : ''}
+                        </span>
+                        <br />
+                        <span className="list1_data1">
+                          {formState.dif_payee_type && formState.dif_payee
+                            ? `Đồng trả nợ khác: ${formatCurrency(formState.dif_payee)}`
+                            : ''}
+                        </span>
+                      </span>
                     </div>
-                  </div>
-                </form>
+                  )}
+                </div>
+              </div>
+            </section>
+            <section className="file1_box1">
+              <h4 className="file1_title1 file1_title1-type1">
+                <span className="file1_title1_text1">Tổng thu nhập</span>
+                <p className="file1_title1_sum1">
+                  <strong>
+                    {formatCurrency(
+                      addCurrency(
+                        parseInt(formState.salary),
+                        parseInt(formState.partner_pay),
+                        parseInt(formState.dif_payee)
+                      )
+                    )}
+                  </strong>
+                  VNĐ/ tháng
+                </p>
+              </h4>
+            </section>
+            <article className="file1_box2">
+              <h5 className="file1_title2">Cam kết của khách hàng</h5>
+
+              <p>1. Cam kết các thông tin, số liệu kê khai trên là đúng sự thật.</p>
+              <p>
+                2. Sử dụng tiền vay đúng mục đích và chịu trách nhiệm về việc mục đích vay vốn tuân
+                thủ quy định Pháp luật.
+              </p>
+              <p>
+                3. Trả gốc, lãi, và các chi phí, phạt phát sinh (nếu có) của khoản vay đúng hạn cho
+                MB.
+              </p>
+              <p>
+                4. Nguồn thu nhập dùng để trả nợ đã hoàn thành các nghĩa vụ tài chính theo quy định
+                của Pháp luật.
+              </p>
+              <p>
+                5. Đồng ý và cho phép MB chia sẻ và trao đổi thông tin liên quan đến khoản vay cho
+                Bên thứ 3 theo quy định của MB.
+              </p>
+              <p>
+                6. Sẵn sàng tạo mọi điều kiện thuận lợi để MB xem xét, xác minh thông tin từ các
+                nguồn khác nhau và hoàn toàn chịu trách nhiệm trước MB và Pháp luật.
+              </p>
+              <p>
+                7. Các thông tin, hồ sơ khác đã cung cấp tại các khoản vay trước (nếu có) vẫn giữ
+                nguyên hiệu lực, không thay đổi thông tin và đảm bảo đúng, phù hợp với hiện trạng
+                thực tế tại thời điểm đề nghị vay vốn lần này.
+              </p>
+              <p>
+                8. Tuân thủ các điều khoản quy định của Hợp đồng tín dụng, Hợp đồng bảo đảm tiền vay
+                và các văn bản ký kết với MB (nếu có).
+              </p>
+
+              <div className="author1">
+                <p className="author1_date">Ngày….tháng….năm</p>
+                <h6 className="author1_title1">Khách hàng</h6>
+                <span className="author1_guild">(Ký và ghi rõ họ tên)</span>
+              </div>
+            </article>
+          </article>
+          <div className="btns-list1">
+            <div className="row">
+              <div className="col-12 text-center">
+                <button href="#" className="btn type-white" onClick={() => setFormActive(1)}>
+                  Sửa thông tin
+                </button>
+                <button className="btn" onClick={() => summitForm()}>
+                  Tiếp tục
+                </button>
               </div>
             </div>
-          </section>
-        );
-      }}
-    </Formik>
+          </div>
+        </WrapModal>
+      </ModalBody>
+    </Modal>
   );
 };
 
-StepForm02.propTypes = propTypes;
+SecondSuccessModal.propTypes = {
+  closeModal: PropTypes.func,
+  formState: PropTypes.object,
+  modal: PropTypes.bool,
+  modalContinue: PropTypes.bool,
+  showModal: PropTypes.func,
+  showModalContinue: PropTypes.func,
+  data: PropTypes.object,
+  pageId: PropTypes.number,
+  setFormActive: PropTypes.func,
+  setFormState: PropTypes.func,
+  isUpdate: PropTypes.bool
+};
 
-export default StepForm02;
+export default SecondSuccessModal;
