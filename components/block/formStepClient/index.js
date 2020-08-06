@@ -18,13 +18,10 @@ const propTypes = {
   id: Proptypes.number
 };
 
-`//@refresh reset`;
-
 function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const router = useRouter();
   const [isUpdate, setIsUpdate] = useState(router.query.link ? true : false);
-  console.log(router);
 
   const [formState, setFormState] = useState({
     full_name: '',

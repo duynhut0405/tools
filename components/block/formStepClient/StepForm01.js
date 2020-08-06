@@ -11,13 +11,14 @@ import classNames from 'classnames';
 import moment from 'moment';
 import * as yup from 'yup';
 import NumberFormat from 'react-number-format';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   nextForm: Proptypes.func,
   setFormState: Proptypes.func,
   formState: Proptypes.object,
-  provinces: Proptypes.array,
-  isUpdate: Proptypes.bool
+  provinces: Proptypes.array
+  // isUpdate: Proptypes.bool
 };
 
 const validationSchema = yup.object().shape({
@@ -108,8 +109,10 @@ const validationSchema = yup.object().shape({
     })
 });
 
-const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) => {
+const StepForm01 = ({ nextForm, setFormState, formState, provinces }) => {
   const form01 = useRef(null);
+  const router = useRouter();
+  const isUpdate = router.query.link ? true : false;
 
   const listPartner = [
     { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' },
