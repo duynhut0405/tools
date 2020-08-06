@@ -111,8 +111,7 @@ const validationSchema = yup.object().shape({
 
 const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) => {
   const form01 = useRef(null);
-  // const router = useRouter();
-  // const isUpdate = router.query.link ? true : false;
+  const router = useRouter();
 
   const listPartner = [
     { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' },
@@ -242,7 +241,8 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
             'phone'
           ];
           // set
-          if (formState.phone) {
+          console.log(router);
+          if (router.query.link) {
             fields.forEach(field => {
               setFieldValue(field, formState[field], false);
               if (field === 'current_home' || field === 'city_address' || field === 'status_home') {
@@ -278,7 +278,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         type="radio"
                         name="is_loan"
                         value={true}
-                        onClick={formikProps.handleChange('is_loan')}
+                        onClick={() => {
+                          setFormState({ ...formState, is_loan: 'true' });
+                          formikProps.setFieldValue('is_loan', 'true');
+                        }}
                         defaultChecked={formState.is_loan === 'true' ? true : false}
                       />
                       <span />
@@ -290,7 +293,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         name="is_loan"
                         value={false}
                         defaultChecked={formState.is_loan === 'false' ? true : false}
-                        onClick={formikProps.handleChange('is_loan')}
+                        onClick={() => {
+                          setFormState({ ...formState, is_loan: 'false' });
+                          formikProps.setFieldValue('is_loan', 'false');
+                        }}
                       />
                       <span />
                     </label>
@@ -492,7 +498,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         type="radio"
                         name="sex"
                         defaultValue={'male'}
-                        onClick={formikProps.handleChange('sex')}
+                        onClick={() => {
+                          setFormState({ ...formState, sex: 'male' });
+                          formikProps.setFieldValue('sex', 'male');
+                        }}
                         defaultChecked={formState.sex === 'male' ? true : false}
                       />
                       <span />
@@ -503,7 +512,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         type="radio"
                         name="sex"
                         defaultValue={'female'}
-                        onClick={formikProps.handleChange('sex')}
+                        onClick={() => {
+                          setFormState({ ...formState, sex: 'female' });
+                          formikProps.setFieldValue('sex', 'female');
+                        }}
                         defaultChecked={formState.sex === 'female' ? true : false}
                       />
                       <span />
@@ -571,7 +583,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                       type="Email"
                       placeholder="email"
                       defaultValue={formState.email}
-                      onChange={formikProps.handleChange('email')}
+                      onChange={e => {
+                        formikProps.setFieldValue('email', e.target.value);
+                        setFormState({ ...formState, email: e.target.value });
+                      }}
                     />
                     {formikProps.touched.email && formikProps.errors.email && (
                       <p className="red error">{formikProps.errors.email}</p>

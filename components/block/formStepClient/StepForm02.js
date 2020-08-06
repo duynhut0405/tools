@@ -4,6 +4,7 @@ import ChildboxForm2 from './ChildboxForm2';
 import { Formik } from 'formik';
 import NumberFormat from 'react-number-format';
 import * as yup from 'yup';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   nextForm: Proptypes.func,
@@ -50,6 +51,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
   const [iscollateral, setIsCollateral] = useState(formState.isCollateral02 ? false : true);
   const [idAsset, setIdAsset] = useState(1);
   const form02 = useRef(null);
+  const router = useRouter();
 
   const handleChangeCustom = event => {
     event.persist();
@@ -120,7 +122,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
             'isCollateral'
           ];
           // set
-          if (formState.phone) {
+          if (router.query && router.query.link) {
             fields.forEach(field => {
               setFieldValue(field, formState[field], false);
               if (field === 'type_purpose') {
