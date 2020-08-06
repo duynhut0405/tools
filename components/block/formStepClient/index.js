@@ -18,6 +18,8 @@ const propTypes = {
   id: Proptypes.number
 };
 
+`//@refresh reset`;
+
 function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const router = useRouter();
@@ -65,9 +67,9 @@ function FormStep({ data, id, pageId }) {
       // 'https://mbbank6.mangoads.com.vn/page/trang-test-new/?link=1231231231/2020-08-06T10:20:09+07:00'
     )
       .then(res => {
-        // console.log(res);
-        // console.log(`${process.env.FRONTEND_URL_LOAN}${router.asPath}`);
-        // console.log(`${process.env.FRONTEND_URL}`);
+        console.log(res);
+        console.log(`${process.env.FRONTEND_URL_LOAN}${router.asPath}`);
+        console.log(`${process.env.FRONTEND_URL}`);
         if (res.status === 200 && res.data.content !== '') {
           setFormState(JSON.parse(res.data.content));
         }
