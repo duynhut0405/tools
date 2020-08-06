@@ -193,7 +193,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           },
           birthday: values.birthday,
           phone: values.phone,
-          link: `${process.env.FRONTEND_URL}page/trang-test-new/?link=${values.phone}/${moment(
+          link: `${process.env.FRONTEND_URL_LOAN}page/trang-test-new?link=${values.phone}/${moment(
             // link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
             // ${moment(
             new Date(),
@@ -459,20 +459,22 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                       </>
                     )}
                     {formState.profileType === 'Chứng minh nhân dân' && (
-                      <NumberFormat
-                        className="input"
-                        name="profileNumber"
-                        format="#### ### ##"
-                        placeholder={formState.profileType}
-                        value={formState.profileNumber ? formState.profileNumber : ''}
-                        onValueChange={e => {
-                          setFormState({ ...formState, profileNumber: e.formattedValue });
-                          setFieldValue('profileNumber', e.formattedValue);
-                        }}
-                      />
-                    )}
-                    {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
-                      <p className="red error">{formikProps.errors.profileNumber}</p>
+                      <>
+                        <NumberFormat
+                          className="input"
+                          name="profileNumber"
+                          format="#### ### ##"
+                          placeholder={formState.profileType}
+                          value={formState.profileNumber ? formState.profileNumber : ''}
+                          onValueChange={e => {
+                            setFormState({ ...formState, profileNumber: e.formattedValue });
+                            setFieldValue('profileNumber', e.formattedValue);
+                          }}
+                        />
+                        {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
+                          <p className="red error">{formikProps.errors.profileNumber}</p>
+                        )}
+                      </>
                     )}
                   </div>
                   <div className="col-12 col-md-12">
