@@ -161,6 +161,10 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem, index, formi
                 required
                 placeholder="Nhập giá trị"
                 defaultValue={estimate}
+                isAllowed={values => {
+                  const { formattedValue, floatValue } = values;
+                  return formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0);
+                }}
                 onValueChange={e => {
                   formikProps.setFieldValue(`collateral.${index}.estimate`, e.floatValue);
                   setEstimate(e.floatValue);

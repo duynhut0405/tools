@@ -74,7 +74,9 @@ function FormStep({ data, id, pageId }) {
           }
           return res;
         })
-        .catch(error => {});
+        .catch(error => {
+          console.log(error);
+        });
     }
   }, []);
 

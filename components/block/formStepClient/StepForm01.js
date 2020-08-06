@@ -136,6 +136,15 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
     })
   };
 
+  // function compare(a, b) {
+  //   const text_a = a.label;
+  //   const text_b = b.label;
+  //   console.log(text_a);
+  //   console.log(text_b);
+  //   console.log(text_a.localeCompare(text_b));
+  //   return text_a.localeCompare(text_b) ? 1 : text_b.localeCompare(text_a) ? -1 : 0;
+  // }
+
   function compare(a, b) {
     return a.label > b.label ? 1 : b.label > a.label ? -1 : 0;
   }
