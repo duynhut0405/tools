@@ -48,8 +48,11 @@ const validationSchema = yup.object().shape({
 // const text02 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
 const text03 = 'Tài sản hình thành từ vốn vay';
 const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
-  const [iscollateral, setIsCollateral] = useState(formState.isCollateral02 ? true : false);
   const [idAsset, setIdAsset] = useState(1);
+  const [iscollateral, setIsCollateral] = useState(
+    formState.collateral.length !== 0 ? true : false
+  );
+
   const form02 = useRef(null);
   const router = useRouter();
 
@@ -98,7 +101,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
         profileNumber: formState.profileNumber || '',
         relaValue: formState.relaValue || '',
         type_purpose: formState.type_purpose_02 || formState.type_purpose_01,
-        isCollateral: iscollateral
+        isCollateral02: formState.isCollateral02 ? true : false
       }}
       onSubmit={() => {
         summitForm02();
@@ -119,7 +122,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
             'profileNumber',
             'relaValue',
             'type_purpose',
-            'isCollateral'
+            'isCollateral02'
           ];
           // set
           if (router.query && router.query.link) {
@@ -229,6 +232,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         )}
                       </label>
                     </div>
+                    {console.log(iscollateral)}
                     <div className="col-12">
                       <label className="radio">
                         Xây/ Sửa nhà đất
@@ -411,7 +415,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                               : false
                           }
                           onClick={() => {
-                            setFieldValue('isCollateral', false);
                             if (formState.collateral01 !== 'Tài sản hình thành từ vốn vay') {
                               setFormState({
                                 ...formState,

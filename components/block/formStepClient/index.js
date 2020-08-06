@@ -106,7 +106,7 @@ function FormStep({ data, id, pageId }) {
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
         </div>
-        {console.log(formState)}
+        {/* {console.log(formState)} */}
       </div>
       {data.form !== null && (
         <React.Fragment>
