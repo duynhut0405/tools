@@ -24,7 +24,7 @@ const propTypes = {
 const validationSchema = yup.object().shape({
   full_name: yup
     .string()
-    .matches(/^[^<>*&#@!()?.,/^|%$]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+    .matches(/^[^<>*&#@!()?.,/^|%$0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường,số')
     .required('Trường bắt buộc nhập'),
   profileType: yup.string().required('Trường bắt buộc nhập'),
   is_loan: yup.boolean().required('Trường bắt buộc nhập'),
