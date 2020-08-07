@@ -103,7 +103,6 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
             <Select
               options={listPartner}
               name="rela_componion"
-              required
               defaultValue={relationship ? relationship : {}}
               onChange={e => {
                 // formVal(e);
