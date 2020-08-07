@@ -7,6 +7,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import { searchBranchesService, getProvinceService } from '../../../services/map';
 import { getSttForm } from '../../../services/common';
 import moment from 'moment';
+import { useRouter } from 'next/router';
 
 const FirstSuccessModal = props => {
   const {
@@ -23,6 +24,7 @@ const FirstSuccessModal = props => {
   const [branchs, setBranchs] = useState([]);
   const [provinces, setProvinces] = useState([]);
   const [selected, setSelected] = useState('name1');
+  const router = useRouter();
   function pad(n, width, z) {
     z = z || '0';
     n = `${n}`;
@@ -51,7 +53,7 @@ const FirstSuccessModal = props => {
         console.log(error);
       });
     const idForm = data.form[0] ? data.form[0].value : 399952;
-    if (!isUpdate) {
+    if (!router.query.link) {
       getSttForm(idForm).then(res => {
         setFormState({
           ...formState,
@@ -110,6 +112,7 @@ const FirstSuccessModal = props => {
                   setBranchs={setBranchs}
                   provinces={provinces}
                   formState={formState}
+                  // default={}
                   setFormState={setFormState}
                 />
               )}

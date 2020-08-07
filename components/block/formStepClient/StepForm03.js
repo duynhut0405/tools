@@ -15,7 +15,7 @@ const StepForm03 = props => {
   const [active, setActive] = useState(false);
   const [activeAlertInfo, setActiveAlertInfo] = useState(false);
   const [hide01, setHide01] = useState(formState.debt || formState.return_monney);
-  const [checkedProxy, setCheckedProxy] = useState(false);
+  const [checkedProxy, setCheckedProxy] = useState(formState.commitment ? true : false);
   const [modalContinue, setModalContinue] = useState(false);
 
   const showModal = e => {
@@ -395,11 +395,15 @@ const StepForm03 = props => {
                 <div className="col-12 c-form1__checkboxs mb-20">
                   <label className="checkbox">
                     <strong className="font1">Tôi đã hiểu và cam kết</strong>
+                    {console.log(formState.commitment)}
                     <input
                       type="checkbox"
                       name="commit"
                       value={false}
-                      onChange={handleCheckProxy}
+                      onChange={() => {
+                        setFormState({ ...formState, commitment: !formState.commitment });
+                        handleCheckProxy();
+                      }}
                       checked={checkedProxy === true}
                     />
                     <span />

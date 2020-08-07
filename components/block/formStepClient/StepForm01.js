@@ -32,8 +32,7 @@ const validationSchema = yup.object().shape({
       rela_componion: yup.string().required('Trường bắt buộc nhập'),
       prof_componion: yup
         .string()
-        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
@@ -68,7 +67,7 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập'),
   email: yup
     .string()
-    .matches(/^[a-zA-z0-9](\.?[a-zA-z0-9]){0,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
+    // .matches(/^[a-zA-z0-9](\.?[a-zA-z0-9]){0,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
     .matches(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Không chứa kí tự đặc biệt và bắt đầu bằng số'
@@ -95,7 +94,7 @@ const validationSchema = yup.object().shape({
         .string()
         .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .matches(/^[^<>*&#@!()?.,/^|%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
@@ -807,7 +806,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                                     {
                                       id: formState.nuComponion.length,
                                       name_componion: '',
-                                      rela_componion: '',
+                                      rela_componion: {
+                                        value: 'Vợ/ chồng KH',
+                                        label: 'Vợ/ chồng KH'
+                                      },
                                       prof_componion: ''
                                     }
                                   ]
@@ -817,7 +819,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                                   {
                                     id: formState.nuComponion.length,
                                     name_componion: '',
-                                    rela_componion: '',
+                                    rela_componion: {
+                                      value: 'Vợ/ chồng KH',
+                                      label: 'Vợ/ chồng KH'
+                                    },
                                     prof_componion: ''
                                   }
                                 ]);

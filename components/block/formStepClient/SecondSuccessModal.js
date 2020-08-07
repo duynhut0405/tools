@@ -105,7 +105,7 @@ const SecondSuccessModal = props => {
   return (
     <Modal isOpen={modalContinue} toggle={showModalContinue}>
       <ModalBody>
-        {console.log(formState)}
+        {console.log(formState.idLandLoan)}
         <WrapModal id="CheckedDataModal" closeModal={closeModal}>
           <div style={{ display: 'none' }}>
             <ComponentToPrint ref={componentRef} formState={formState} />

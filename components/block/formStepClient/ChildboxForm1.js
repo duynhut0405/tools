@@ -107,6 +107,7 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               defaultValue={relationship ? relationship : {}}
               onChange={e => {
                 // formVal(e);
+                formikProps.setFieldValue(`nuComponion.${index}.rela_componion`, e);
                 setRelationship(e);
               }}
             />
@@ -129,6 +130,7 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               placeholder="Nhập giấy tờ tùy thân"
               onChange={e => {
                 setTypeProfile(e.target.value);
+                formikProps.setFieldValue(`nuComponion.${index}.prof_componion`, e.target.value);
               }}
               required
               style={{ width: '100%' }}
