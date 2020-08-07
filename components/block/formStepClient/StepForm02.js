@@ -446,15 +446,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             setFieldValue('isCollateral', iscollateral);
                             setFormState({
                               ...formState,
-                              isCollateral02: iscollateral,
-                              collateral: [
-                                {
-                                  id: 0,
-                                  decription: '',
-                                  estimate: '',
-                                  relaValue: ''
-                                }
-                              ]
+                              isCollateral02: iscollateral
                             });
                             if (!iscollateral) {
                               setFieldValue('collateral', [
@@ -466,8 +458,24 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                   relaValue: ''
                                 }
                               ]);
+                              setFormState({
+                                ...formState,
+                                collateral: [
+                                  {
+                                    id: 0,
+                                    decription: '',
+                                    estimate: '',
+                                    relaValue: ''
+                                  }
+                                ]
+                              });
+                              setIdAsset(0);
                             } else {
                               setFieldValue('collateral', []);
+                              setFormState({
+                                ...formState,
+                                collateral: []
+                              });
                             }
                           }}
                         />
@@ -493,7 +501,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 className="c-form1__link1 c-link-add-form-js"
                                 onClick={e => {
                                   e.preventDefault();
-
                                   if (idAsset < 5) {
                                     setFormState({
                                       ...formState,
