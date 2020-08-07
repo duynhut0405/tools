@@ -313,6 +313,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                       className="input"
                       name="full_name"
                       type="text"
+                      maxLength="40"
                       placeholder="Họ và tên(*)"
                       value={formState.full_name && formState.full_name.toUpperCase()}
                       defaultValue={formState.full_name ? formState.full_name : null}
@@ -714,6 +715,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                             className="input"
                             name="name_companion"
                             type="text"
+                            maxLength="40"
                             placeholder="Nhập đầy đủ họ tên vợ/ chồng"
                             value={formState.companion && formState.companion.name}
                             onChange={e => {

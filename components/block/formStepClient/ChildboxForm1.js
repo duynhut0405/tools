@@ -80,6 +80,7 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               className="input"
               type="text"
               name="name_componion"
+              maxLength="40"
               placeholder="Nhập đầy đủ họ tên vợ/ chồng"
               value={name ? name.toUpperCase() : ''}
               onChange={e => {
