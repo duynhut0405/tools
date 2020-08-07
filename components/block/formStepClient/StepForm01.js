@@ -31,7 +31,10 @@ const validationSchema = yup.object().shape({
   sex: yup.string().required('Trường bắt buộc nhập'),
   nuComponion: yup.array().of(
     yup.object().shape({
-      name_componion: yup.string().required('Trường bắt buộc nhập'),
+      name_componion: yup
+        .string()
+        .matches(/^[^<>*&#@!()?.,/^|%$0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường,số')
+        .required('Trường bắt buộc nhập'),
       rela_componion: yup.string().required('Trường bắt buộc nhập'),
       prof_componion: yup
         .string()
@@ -56,7 +59,10 @@ const validationSchema = yup.object().shape({
   }),
   name_companion: yup.string().when('isCheck', {
     is: isCheck => isCheck === true,
-    then: yup.string().required('Trường bắt buộc nhập')
+    then: yup
+      .string()
+      .matches(/^[^<>*&#@!()?.,/^|%$0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường,số')
+      .required('Trường bắt buộc nhập')
   }),
   companionRelation: yup.string().when('isCheck', {
     is: isCheck => isCheck === true,

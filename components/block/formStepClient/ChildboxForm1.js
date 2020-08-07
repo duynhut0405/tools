@@ -128,11 +128,11 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               id="prof_componion"
               name="prof_componion"
               placeholder="Nhập giấy tờ tùy thân"
+              value={typeProfile ? typeProfile : ''}
               onChange={e => {
                 setTypeProfile(e.target.value);
                 formikProps.setFieldValue(`nuComponion.${index}.prof_componion`, e.target.value);
               }}
-              required
               style={{ width: '100%' }}
             />
             {formikProps.touched.nuComponion &&
