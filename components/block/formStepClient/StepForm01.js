@@ -38,8 +38,8 @@ const validationSchema = yup.object().shape({
       rela_componion: yup.string().required('Trường bắt buộc nhập'),
       prof_componion: yup
         .string()
-        .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .required('Trường bắt buộc nhập')
     })
   ),
