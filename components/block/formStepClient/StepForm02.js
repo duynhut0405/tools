@@ -174,11 +174,13 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             setFieldValue('type_purpose', !formState.type_purpose_02);
                             setFormState({
                               ...formState,
-                              type_purpose_02: !formState.type_purpose_02
+                              type_purpose_02: !formState.type_purpose_02,
+                              purpose_loan_02: formState.type_purpose_02 && ''
                             });
                           }}
                         />
                         <span />
+                        {console.log(formState.type_purpose_02)}
                         {formState.type_purpose_02 && (
                           <div className="row p-form2--mt20">
                             <div className="col-12">
@@ -232,7 +234,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         )}
                       </label>
                     </div>
-                    {console.log(iscollateral)}
                     <div className="col-12">
                       <label className="radio">
                         Xây/ Sửa nhà đất
@@ -244,7 +245,8 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             setFieldValue('type_purpose', 1);
                             setFormState({
                               ...formState,
-                              type_purpose_01: !formState.type_purpose_01
+                              type_purpose_01: !formState.type_purpose_01,
+                              purpose_loan_01: formState.type_purpose_01 && ''
                             });
                           }}
                         />

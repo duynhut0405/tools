@@ -28,6 +28,8 @@ function FormStep({ data, id, pageId }) {
     profileType: 'Chứng minh nhân dân',
     isCollateral02: true,
     nuComponion: [],
+    type_purpose_02: false,
+    type_purpose_01: false,
     collateral: [
       {
         id: 0,

@@ -29,7 +29,7 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
   const [interest, setInterest] = useState(0);
   const [active, setActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
-  const [maxMonth, setMaxMonth] = useState(180);
+  const [maxMonth, setMaxMonth] = useState(240);
 
   const calculation = () => {
     // const _salary = Number(salary.replace(/[^0-9.-]+/g, ''));
