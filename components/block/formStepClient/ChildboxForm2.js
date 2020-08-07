@@ -133,6 +133,7 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem, index, formi
               className="input"
               name="decription"
               type="text"
+              maxLength="400"
               defaultValue={decription}
               onChange={e => {
                 formikProps.setFieldValue(`collateral.${index}.decription`, e.target.value);
