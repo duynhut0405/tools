@@ -85,6 +85,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
   const removeCollateral = id => {
     const listColla = formState.collateral.filter(value => value.id !== id);
     setFormState({ ...formState, collateral: listColla });
+    setIdAsset(idAsset - 1);
     return listColla;
   };
 
