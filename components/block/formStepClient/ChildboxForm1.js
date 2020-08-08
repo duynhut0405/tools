@@ -85,7 +85,10 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               value={name ? name.toUpperCase() : ''}
               onChange={e => {
                 setName(e.target.value.toUpperCase());
-                formikProps.setFieldValue(`nuComponion.${index}.name_componion`, e.target.value);
+                formikProps.setFieldValue(
+                  `nuComponion.${index}.name_componion`,
+                  e.target.value.toUpperCase()
+                );
               }}
               style={{ width: '100%' }}
               required
