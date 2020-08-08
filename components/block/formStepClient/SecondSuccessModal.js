@@ -8,7 +8,7 @@ import Router from 'next/router';
 import moment from 'moment';
 import { sendMailService } from '../../../services/form';
 import { getSttForm, updateForm } from '../../../services/common';
-const html2canvas = process.browser ? require('html2canvas') : null;
+
 const SecondSuccessModal = props => {
   const {
     closeModal,
@@ -23,7 +23,6 @@ const SecondSuccessModal = props => {
   } = props;
   const [dataColla, setDataColla] = useState([]);
   const componentRef = useRef();
-  const docToPrint = React.createRef();
   moment.locale('vi');
 
   useEffect(() => {
@@ -89,39 +88,6 @@ const SecondSuccessModal = props => {
     closeModal();
   };
 
-  // const printPDF = () => {
-  //   const jsPdf = require('jspdf');
-  //   const input = docToPrint.current;
-  //   html2canvas(domElement, {
-  //     onclone: document => {
-  //       document.getElementById('print').style.visibility = 'hidden';
-  //     }
-  //   }).then(canvas => {
-  //     context = canvas.getContext('2d'),
-  //     const imgData = canvas.toDataURL('image/png');
-  //     console.log(imgData);
-  //     const pdf = new jsPdf('p', 'pt', 'a4');
-  //     pdf.addImage(imgData, 'JPEG', 10, 10);
-  //     pdf.save(`${new Date().toISOString()}.pdf`);
-  //   });
-  // };
-  const jsPDF = require('jspdf');
-  const printPDF = () => {
-    const input = docToPrint.current;
-    html2canvas(input).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      console.log(imgData);
-      const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'px',
-        format: [600, 400]
-      });
-      pdf.addImage(imgData, 'JPEG', 0, 0);
-      pdf.output('dataurlnewwindow');
-      pdf.save('Up4-receipt.pdf');
-    });
-  };
-
   const formatCurrency = money => {
     const moneyConvert = `${money}`;
     if (moneyConvert.length < 16) {
@@ -144,82 +110,12 @@ const SecondSuccessModal = props => {
           <div style={{ display: 'none' }}>
             <ComponentToPrint ref={componentRef} formState={formState} />
           </div>
-          <div
-            ref={docToPrint}
-            style={{
-              borderRadius: '5px',
-              width: '600px',
-              height: '400px',
-              margin: '0 auto',
-              padding: '10mm'
-            }}
-          >
-            <div>
-              Transaction ID: 1223jhdjfde <br />
-              Transaction Date: 2/2/2019 <br />
-              Customer's Name: Customer Name <br />
-              Customer's Email: customer@email.com <br />
-            </div>
-            <h2>UP4</h2>
-            <div>Thank you for your payment!</div>
-            <table
-              style={{
-                width: '100%',
-                textAlign: 'left'
-              }}
-            >
-              <tr>
-                <th>Desc</th>
-                <th>Qty.</th>
-                <th>@</th>
-                <th>Price</th>
-              </tr>
-              <tr>
-                <td>UP4 Montly Subscribtion (2/2/2019 - 2/3/2019)</td>
-                <td>1</td>
-                <td>$9.99</td>
-                <td>$9.99</td>
-              </tr>
-              <tr>
-                <td />
-                <td>Subtotal</td>
-                <td />
-                <td>$9.99</td>
-              </tr>
-              <tr>
-                <td />
-                <td>Tax</td>
-                <td />
-                <td>$0.00</td>
-              </tr>
-              <tr>
-                <td />
-                <td>Total</td>
-                <td />
-                <td>$9.99</td>
-              </tr>
-              <tr>
-                <td />
-                <td>Amount paid</td>
-                <td />
-                <td>$9.99</td>
-              </tr>
-              <tr>
-                <td />
-                <td>Balance Due</td>
-                <td />
-                <td>$0.00</td>
-              </tr>
-            </table>
-          </div>
           <article className="file1">
             <div className="file1_header1">
               <div className="file1_logo1">
                 <img src="/static/images/svg/logo-blue.svg" alt="logo" />
               </div>
-              <button id="print" onClick={printPDF}>
-                PRINT
-              </button>
+
               <section className="sec1">
                 <h3 className="sec1_title1">Cộng Hoà Xã Hội Chủ Nghĩa Việt Nam</h3>
                 <p>Độc lập - Tự do - Hạnh phúc</p>
