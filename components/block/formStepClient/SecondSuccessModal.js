@@ -251,21 +251,18 @@ const SecondSuccessModal = props => {
                       </span>
                     </span>
                   </div>
-
                   <div className="col-12">
                     <label className="list1_label1">Trang bị nội thất:</label>
                     <span className="list1_data1">
                       {formState.is_loan === 'true' ? 'Có' : 'Không'}
                     </span>
                   </div>
-
                   <div className="col-12">
                     <label className="list1_label1">
                       Giá trị nhà đất mua/ Chi phí xây/ sửa chữa/ trang bị nội thất:
                     </label>
                     <span className="list1_data1"> {formatCurrency(formState.value_loan)}</span>
                   </div>
-
                   <div className="col-12">
                     <label className="list1_label1">Số tiền đề xuất vay:</label>
                     <span className="list1_data1">
@@ -274,7 +271,6 @@ const SecondSuccessModal = props => {
                       </span>
                     </span>
                   </div>
-
                   <div className="col-12">
                     <label className="list1_label1">Tài sản thế chấp:</label>
                     <span className="list1_data1">
@@ -287,7 +283,6 @@ const SecondSuccessModal = props => {
                 dataColla.map((item, key) => (
                   <section className="child1" key={key}>
                     <h5 className="child1_title1">Thông tin tài sản thế chấp</h5>
-
                     <div className="list1">
                       <div className="row">
                         <div className="col-12">
@@ -365,7 +360,6 @@ const SecondSuccessModal = props => {
             </section>
             <article className="file1_box2">
               <h5 className="file1_title2">Cam kết của khách hàng</h5>
-
               <p>1. Cam kết các thông tin, số liệu kê khai trên là đúng sự thật.</p>
               <p>
                 2. Sử dụng tiền vay đúng mục đích và chịu trách nhiệm về việc mục đích vay vốn tuân
