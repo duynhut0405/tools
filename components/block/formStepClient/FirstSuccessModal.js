@@ -93,7 +93,7 @@ const FirstSuccessModal = props => {
               </label>
 
               <label className="radio font-18">
-                <strong>Chọn cán bộ tín dụng</strong>
+                <strong>Chọn cán bộ tín dụng(MB)</strong>
                 <input
                   type="radio"
                   name="branch"
@@ -112,7 +112,6 @@ const FirstSuccessModal = props => {
                   setBranchs={setBranchs}
                   provinces={provinces}
                   formState={formState}
-                  // default={}
                   setFormState={setFormState}
                 />
               )}
