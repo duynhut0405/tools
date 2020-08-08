@@ -38,7 +38,7 @@ const validationSchema = yup.object().shape({
       rela_componion: yup.string().required('Trường bắt buộc nhập'),
       prof_componion: yup
         .string()
-        .matches(/^[^<>^|//.,*&#@!()%$\\a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .matches(/^[^<>^|//.,*&#@!()%$\\+-_=a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .required('Trường bắt buộc nhập')
     })
@@ -61,7 +61,7 @@ const validationSchema = yup.object().shape({
     is: isCheck => isCheck === true,
     then: yup
       .string()
-      .matches(/^[^<>*&#@!()?.,/^|%$0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường,số')
+      .matches(/^[^<>*&#@!()?.,/^+-_=|%$0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường,số')
       .required('Trường bắt buộc nhập')
   }),
   companionRelation: yup.string().when('isCheck', {
@@ -103,7 +103,7 @@ const validationSchema = yup.object().shape({
         .string()
         .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/^[^<>*&#@!()?.,/^|%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .matches(/^[A-Z0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
@@ -112,7 +112,7 @@ const validationSchema = yup.object().shape({
         .string()
         .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .matches(/^[A-Z0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
 });
