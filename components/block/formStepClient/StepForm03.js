@@ -265,8 +265,8 @@ const StepForm03 = props => {
                       }}
                     />
                     <span className="text1">VNĐ/ tháng</span>
-                    {formikProps.touched['salary'] && formikProps.errors['salary'] && (
-                      <p className="red error">{formikProps.errors['salary']}</p>
+                    {formikProps.touched.salary && formikProps.errors.salary && (
+                      <p className="red error">{formikProps.errors.salary}</p>
                     )}
                   </div>
                 </div>
