@@ -8,6 +8,7 @@ import AlertInfo from './AlertInfo';
 import NumberFormat from 'react-number-format';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+// import domtoimage from 'dom-to-image';
 
 const StepForm03 = props => {
   const { backFrom, formState, setFormState, setFormActive, data, pageId, isUpdate } = props;
@@ -17,6 +18,8 @@ const StepForm03 = props => {
   const [hide01, setHide01] = useState(formState.debt || formState.return_monney);
   const [checkedProxy, setCheckedProxy] = useState(formState.commitment ? true : false);
   const [modalContinue, setModalContinue] = useState(false);
+
+  const docToPrint = React.createRef();
 
   const showModal = e => {
     e.preventDefault();
@@ -49,21 +52,6 @@ const StepForm03 = props => {
   const handleCheckProxy = () => {
     setCheckedProxy(!checkedProxy);
   };
-
-  // const handleChange = event => {
-  //   event.persist();
-  //   if (event.target.value) {
-  //     setFormState(() => ({
-  //       ...formState,
-  //       [event.target.name]: parseInt(event.target.value)
-  //     }));
-  //   } else {
-  //     setFormState(() => ({
-  //       ...formState,
-  //       [event.target.name]: 0
-  //     }));
-  //   }
-  // };
 
   const formatCurrency = money => {
     const moneyConvert = `${money}`;
