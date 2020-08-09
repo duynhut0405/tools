@@ -126,10 +126,12 @@ const StepForm03 = props => {
       .number()
       .min(0, 'Chỉ nhập số tự nhiên')
       .max(9999999999999999, 'Tối đa 17 số'),
+    // .required('Trường bắt buộc nhập'),
     dif_payee: yup
       .number()
       .min(0, 'Chỉ nhập số tự nhiên')
       .max(9999999999999999, 'Tối đa 17 số')
+    // .required('Trường bắt buộc nhập')
   });
 
   return (
@@ -329,7 +331,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 100000000000000000 && floatValue >= 0)
+                                (floatValue < 1000000000000 && floatValue >= 0)
                               );
                             }}
                             onValueChange={e => {

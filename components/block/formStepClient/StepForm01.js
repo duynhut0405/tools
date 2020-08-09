@@ -116,8 +116,7 @@ const validationSchema = yup.object().shape({
       is: profileType => profileType === 'Hộ chiếu',
       then: yup
         .string()
-        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .matches(/^[A-Z0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
@@ -125,8 +124,7 @@ const validationSchema = yup.object().shape({
       is: profileType => profileType === 'Chứng minh quân đội',
       then: yup
         .string()
-        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
         .matches(/^[A-Z0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })

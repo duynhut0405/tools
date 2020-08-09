@@ -82,7 +82,6 @@ const Tab1 = props => {
     <div className="block1" data-tabname="name1">
       <div className="col-12">
         <div className="row">
-          {console.log(branchs)}
           <div className="col-12 col-sm-6">
             <div className="form-search-focus mb-20">
               <input
@@ -90,11 +89,7 @@ const Tab1 = props => {
                 placeholder="Địa điểm"
                 onChange={event => handleChange(event.target.value)}
               />
-              <button
-                onClick={e => {
-                  e.preventDefault();
-                }}
-              >
+              <button>
                 <i className="icon-search-2"></i>
               </button>
             </div>
