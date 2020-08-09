@@ -26,7 +26,11 @@ const Tab1 = props => {
     const query = {
       districtCity: selectDistrict.value || null,
       networkCategory: 'transaction',
-      provinceCity: selectProvince.value || null,
+      provinceCity:
+        selectProvince.value ||
+        (formState.address &&
+          formState.address.city_address &&
+          formState.address.city_address.value.id),
       search: searchKey
     };
     searchBranchesService(query).then(res => {
@@ -80,6 +84,8 @@ const Tab1 = props => {
 
   return (
     <div className="block1" data-tabname="name1">
+      {console.log(selectProvince)}
+      {console.log(dataProvince)}
       <div className="col-12">
         <div className="row">
           <div className="col-12 col-sm-6">
@@ -104,6 +110,7 @@ const Tab1 = props => {
                 styles={customStyles}
                 onChange={item => handleSelectProvince(item)}
                 placeholder="Chọn TP"
+                defaultValue={formState.address.city_address}
                 className="selectpicker"
               />
             </div>
