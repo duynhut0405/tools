@@ -84,8 +84,8 @@ const Tab1 = props => {
 
   return (
     <div className="block1" data-tabname="name1">
-      {console.log(selectProvince)}
-      {console.log(dataProvince)}
+      {/* {console.log(selectProvince)} */}
+      {/* {console.log(dataProvince)} */}
       <div className="col-12">
         <div className="row">
           <div className="col-12 col-sm-6">
