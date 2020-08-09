@@ -157,7 +157,8 @@ class ComponentToPrint extends React.Component {
                     <label className="list1_label1">Mục đích vay vốn:</label>
                     <span className="list1_data1">
                       <span className="list1_data1">
-                        {formState.purpose_loan_01},{formState.purpose_loan_02}
+                        {formState.purpose_loan_01 ? `${formState.purpose_loan_01},` : ''}
+                        {formState.purpose_loan_02 ? `${formState.purpose_loan_02},` : ''}
                       </span>
                     </span>
                   </div>
@@ -188,9 +189,7 @@ class ComponentToPrint extends React.Component {
                   <div className="col-12">
                     <label className="list1_label1">Tài sản thế chấp:</label>
                     <span className="list1_data1">
-                      {typeof formState.collateral === 'string'
-                        ? 'Tài sản hình thành từ vốn vay'
-                        : 'Bất động sản khác'}
+                      {formState.collateral01 ? 'Tài sản hình thành từ vốn vay' : ''}
                     </span>
                   </div>
                 </div>
