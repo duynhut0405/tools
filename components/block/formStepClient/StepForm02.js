@@ -472,7 +472,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                   }
                                 ]
                               });
-                              setIdAsset(0);
+                              setIdAsset(1);
                             } else {
                               setFieldValue('collateral', []);
                               setFormState({
