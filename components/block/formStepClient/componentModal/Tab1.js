@@ -89,7 +89,11 @@ const Tab1 = props => {
                 placeholder="Địa điểm"
                 onChange={event => handleChange(event.target.value)}
               />
-              <button>
+              <button
+                onClick={e => {
+                  e.preventDefault();
+                }}
+              >
                 <i className="icon-search-2"></i>
               </button>
             </div>
@@ -129,7 +133,6 @@ const Tab1 = props => {
                       <input
                         type="radio"
                         name="search_location"
-                        required
                         value={item.id}
                         onChange={() => handleSelect(item)}
                         checked={selectedBranch === item.id}
