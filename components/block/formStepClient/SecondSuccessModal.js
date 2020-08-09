@@ -246,8 +246,8 @@ const SecondSuccessModal = props => {
                     <label className="list1_label1">Mục đích vay vốn:</label>
                     <span className="list1_data1">
                       <span className="list1_data1">
-                        {formState.purpose_loan_01 ? `${formState.purpose_loan_01},` : ''}
-                        {formState.purpose_loan_02 ? `${formState.purpose_loan_02},` : ''}
+                        {formState.purpose_loan_01 ? `${formState.purpose_loan_01}; ` : ''}
+                        {formState.purpose_loan_02 ? `${formState.purpose_loan_02}` : ''}
                       </span>
                     </span>
                   </div>
