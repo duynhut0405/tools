@@ -78,7 +78,12 @@ const validationSchema = yup.object().shape({
     is: isCheck => isCheck === true,
     then: yup.string().required('Trường bắt buộc nhập')
   }),
-  birthday: yup.string().required('Trường bắt buộc nhập'),
+  birthday: yup
+    .string()
+    .test('DOB', 'Độ tuổi cho vay trên 18', value => {
+      return moment().diff(moment(value), 'years') >= 18;
+    })
+    .required('Trường bắt buộc nhập'),
   phone: yup
     .string()
     .matches(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, 'Không đúng định dạng số')
