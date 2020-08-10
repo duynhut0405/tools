@@ -110,7 +110,7 @@ const Tab1 = props => {
                 styles={customStyles}
                 onChange={item => handleSelectProvince(item)}
                 placeholder="Chọn TP"
-                defaultValue={formState.address.city_address}
+                defaultValue={formState.address ? formState.address.city_address : {}}
                 className="selectpicker"
               />
             </div>
