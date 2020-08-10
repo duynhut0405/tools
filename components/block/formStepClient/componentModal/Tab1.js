@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { getDistrictService, searchBranchesService } from '../../../../services/map';
+import ReactHtmlParser from 'react-html-parser';
 import { debounce } from 'lodash';
 
 const Tab1 = props => {
@@ -84,8 +85,6 @@ const Tab1 = props => {
 
   return (
     <div className="block1" data-tabname="name1">
-      {/* {console.log(selectProvince)} */}
-      {/* {console.log(dataProvince)} */}
       <div className="col-12">
         <div className="row">
           <div className="col-12 col-sm-6">
@@ -136,6 +135,7 @@ const Tab1 = props => {
                 <div className="item" key={key}>
                   <div className="location" data-latlng="">
                     <label className="radio">
+                      {console.log(item)}
                       <strong>{item.address_name}</strong>
                       <input
                         type="radio"
@@ -146,7 +146,11 @@ const Tab1 = props => {
                       />
                       <span></span>
                     </label>
-                    <div className="address">{item.address}</div>
+                    <div className="address">
+                      {item.address}
+                      <br />
+                      {ReactHtmlParser(item.description)}
+                    </div>
                   </div>
                 </div>
               ))}
