@@ -267,7 +267,6 @@ const StepForm03 = props => {
                         onValueChange={e => {
                           setFormState({ ...formState, salary: e.floatValue });
                           formikProps.setFieldValue('salary', e.floatValue);
-                          console.log(formikProps);
                         }}
                       />
                       <span className="text1">VNĐ/ tháng</span>
@@ -373,9 +372,7 @@ const StepForm03 = props => {
                   )}
                   <div className="col-12">
                     <div className="c-form1__confirm">
-                      <span className="confirm_text1" onClick={() => console.log(formikProps)}>
-                        Tổng thu nhập
-                      </span>
+                      <span className="confirm_text1">Tổng thu nhập</span>
                       <p className="confirm_sum1">
                         <strong>
                           {formatCurrency(
@@ -450,7 +447,6 @@ const StepForm03 = props => {
                         className="btn c-form1-btn1-js"
                         type="button"
                         onClick={() => {
-                          console.log(formikProps);
                           formikProps.handleSubmit();
                         }}
                       >
