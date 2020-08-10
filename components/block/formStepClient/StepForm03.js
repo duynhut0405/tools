@@ -2,12 +2,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import FirstSuccessModal from './FirstSuccessModal';
-import SecondSuccessModal from './SecondSuccessModal';
 import classNames from 'classnames';
 import AlertInfo from './AlertInfo';
 import NumberFormat from 'react-number-format';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import dynamic from 'next/dynamic'
+
+const SecondSuccessModal = dynamic(
+  () => import('./SecondSuccessModal'),
+  { ssr: false }
+)
 // import domtoimage from 'dom-to-image';
 
 const StepForm03 = props => {

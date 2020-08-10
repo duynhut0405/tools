@@ -8,6 +8,22 @@ import Router from 'next/router';
 import moment from 'moment';
 import { sendMailService } from '../../../services/form';
 import { getSttForm, updateForm } from '../../../services/common';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+
+const printDocument = () => {
+  html2canvas(document.getElementById('download111')).then(canvas => {
+    const imgData = canvas.toDataURL('image/png', 1);
+    console.log(imgData);
+    const pdf = new jsPDF({
+      unit: 'px',
+      format: [2000, 1000]
+    });
+    pdf.addImage(imgData, 'JPEG', 0, 0);
+    // pdf.output("dataurlnewwindow");
+    pdf.save('Up4-receipt.pdf');
+  });
+};
 
 const SecondSuccessModal = props => {
   const {
@@ -110,7 +126,7 @@ const SecondSuccessModal = props => {
           <div style={{ display: 'none' }}>
             <ComponentToPrint ref={componentRef} formState={formState} />
           </div>
-          <article className="file1">
+          <article id="download111" className="file1">
             <div className="file1_header1">
               <div className="file1_logo1">
                 <img src="/static/images/svg/logo-blue.svg" alt="logo" />
@@ -120,7 +136,7 @@ const SecondSuccessModal = props => {
                 <h3 className="sec1_title1">Cộng Hoà Xã Hội Chủ Nghĩa Việt Nam</h3>
                 <p>Độc lập - Tự do - Hạnh phúc</p>
               </section>
-              <a className="btn" onClick={handlePrint}>
+              <a className="btn" onClick={printDocument}>
                 <span>Tải xuống</span>
                 <i>
                   <img src="/static/images/svg/download.svg" alt="download.svg" />
