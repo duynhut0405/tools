@@ -56,6 +56,7 @@ const SecondSuccessModal = props => {
     const ratio = heightref / widthref;
     html2canvas(document.getElementById('download1111')).then(canvas => {
       const imgData = canvas.toDataURL();
+      console.log(imgData);
       const pdf = new jsPDF('p', 'mm', 'a4');
       const width = pdf.internal.pageSize.getWidth();
       const height = pdf.internal.pageSize.getHeight();
@@ -92,7 +93,7 @@ const SecondSuccessModal = props => {
       Router.push({
         pathname: '/succesForm',
         query: {
-          purpose_loan: `${formState.purpose_loan_01 ? formState.purpose_loan_01 : ''} ${
+          purpose_loan: `${formState.purpose_loan_01 ? `${formState.purpose_loan_01} ;` : ''} ${
             formState.purpose_loan_02 ? formState.purpose_loan_02 : ''
           }`,
           suggest_monney: formState.suggest_monney,

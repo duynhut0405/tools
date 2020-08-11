@@ -94,7 +94,7 @@ const validationSchema = yup.object().shape({
     .matches(/^[a-zA-Z0-9@.]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
     .matches(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      'Không chứa kí tự đặc biệt và bắt đầu bằng số'
+      'Không chứa kí tự đặc biệt và kết thúc bằng số'
     )
     .email('Email không hợp lệ')
     .required('Trường bắt buộc nhập'),
@@ -626,7 +626,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                     <h6 className="title1">
                       Tỉnh/ Thành phố (<span className="red">*</span>)
                     </h6>
-                    {console.log(formState)}
                     <Select
                       options={provinces.sort(compare)}
                       hideSelectedOptions={true}
