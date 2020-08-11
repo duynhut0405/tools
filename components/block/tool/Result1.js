@@ -13,6 +13,7 @@ const propTypes = {
   totalAmount: Proptypes.number,
   month: Proptypes.string,
   interest_rate: Proptypes.number,
+  higthPay: Proptypes.number,
   t: Proptypes.func,
   data: Proptypes.array
 };
@@ -24,6 +25,7 @@ function Result({
   // equity_capital,
   month,
   // monthlyInterest,
+  higthPay,
   monthlypayment,
   totalAmount,
   interest_rate,
@@ -76,11 +78,11 @@ function Result({
           <h5 className="title">{t('best_return_loan')}</h5>
         </div>
         <div className="col-md-6">
-          {data.length !== 0 ? (
-            <span className="t4">{rate(data[1].amount_paid + data[1].interest)}</span>
-          ) : (
-            <span className="t4">{rate(0)}</span>
-          )}
+          {/* {data.length !== 0 ? ( */}
+          <span className="t4">{rate(higthPay)}</span>
+          {/* ) : ( */}
+          {/* <span className="t4">{rate(0)}</span> */}
+          {/* )} */}
           <span className="t3">VNĐ</span>
         </div>
       </div>

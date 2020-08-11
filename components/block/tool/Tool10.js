@@ -27,6 +27,9 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
   const [table, setTable] = useState([]);
   const [sum, setSum] = useState(0);
   const [interest, setInterest] = useState(0);
+  const [higthpay, sethigthpay] = useState(
+    Math.ceil((1000000000 * (interest_rate / 100)) / 12 + 1000000000 / 180)
+  );
   const [active, setActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
   const [maxMonth, setMaxMonth] = useState(240);
@@ -96,6 +99,8 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
     if (_month > maxMonth) {
       setMonth(rate(maxMonth));
     }
+    const a = Math.ceil((_amount * (interest_rate / 100)) / 12 + _amount / _month);
+    sethigthpay(a);
     setMonthlyPayment(Math.ceil(_amount / _month));
   }, [month, amount]);
 
@@ -153,9 +158,9 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                         amount={Number(amount.replace(/[^0-9.-]+/g, ''))}
                         monthlyInterest={null} //tiền lãi hàng tháng
                         monthlypayment={monthlypayment} //Tiền gốc hàng tháng
-                        equity_capital={null} // vốn tự có
                         month={month}
                         totalAmount={sum + interest}
+                        higthPay={higthpay}
                         data={table}
                       />
                     </div>
