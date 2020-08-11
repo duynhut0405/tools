@@ -45,8 +45,28 @@ const Tab1 = props => {
     })
   };
 
+  useEffect(() => {
+    if (formState.address.city_address) {
+      getDistrictService(formState.address.city_address.value.id)
+        .then(res => {
+          const arr = [];
+          for (const dt of res.data) {
+            arr.push({
+              value: dt.id,
+              label: dt.name
+            });
+          }
+          setDistrict(arr);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, []);
+
   const handleSelectProvince = item => {
     setSelectProvince(item);
+    console.log(item);
     getDistrictService(item.value)
       .then(res => {
         const arr = [];
