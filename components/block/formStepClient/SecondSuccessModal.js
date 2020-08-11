@@ -67,7 +67,7 @@ const SecondSuccessModal = props => {
   // }; //3508 x 2480
 
   const printDocument = () => {
-    html2canvas(document.getElementById('download111')).then(canvas => {
+    html2canvas(document.getElementById('download1111')).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       console.log(imgData);
       const pdf = new jsPDF({
