@@ -10,6 +10,7 @@ import { sendMailService } from '../../../services/form';
 import { getSttForm, updateForm } from '../../../services/common';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { useRouter } from 'next/router';
 
 const SecondSuccessModal = props => {
   const {
@@ -25,6 +26,7 @@ const SecondSuccessModal = props => {
   } = props;
   const [dataColla, setDataColla] = useState([]);
   const componentRef = useRef();
+  const router = useRouter();
   moment.locale('vi');
 
   useEffect(() => {
@@ -105,10 +107,10 @@ const SecondSuccessModal = props => {
       idPage: pageId
     };
     let res;
-    if (!isUpdate) {
-      res = await sendMailService(body);
-    } else {
+    if (router.query && router.query.link) {
       res = await updateForm(body, formState.link);
+    } else {
+      res = await sendMailService(body);
     }
     if (res && res.status === 200 && res.data === true) {
       Router.push({
