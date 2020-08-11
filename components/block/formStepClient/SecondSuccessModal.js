@@ -50,42 +50,42 @@ const SecondSuccessModal = props => {
     content: () => componentRef.current
   });
 
-  // const printDocument = () => {
-  //   const heightref = componentRef.current.offsetHeight;
-  //   const widthref = componentRef.current.offsetWidth;
-  //   const ratio = heightref / widthref;
-  //   html2canvas(document.getElementById('download1111')).then(canvas => {
-  //     const imgData = canvas.toDataURL();
-  //     console.log(imgData);
-  //     const pdf = new jsPDF('p', 'mm', 'a4');
-  //     const width = pdf.internal.pageSize.getWidth();
-  //     const height = pdf.internal.pageSize.getHeight();
-  //     pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
-  //     // pdf.output("dataurlnewwindow");
-  //     pdf.save(`De_Nghi_Vay_Von_${formState.full_name}_${formState.phone}.pdf`);
-  //   });
-  // }; //3508 x 2480
-
   const printDocument = () => {
+    const heightref = componentRef.current.offsetHeight;
+    const widthref = componentRef.current.offsetWidth;
+    const ratio = heightref / widthref;
     html2canvas(document.getElementById('download1111')).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL();
       console.log(imgData);
-      const pdf = new jsPDF({
-        unit: 'px',
-        format: [2000, 1000]
-      });
-      pdf.addImage(imgData, 'JPEG', 0, 0);
-      // pdf.output("dataurlnewwindow");
-      if (
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      ) {
-        const blob = pdf.output();
-        window.open(URL.createObjectURL(blob));
-      } else {
-        pdf.save('filename.pdf');
-      }
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+      pdf.output('dataurlnewwindow');
+      pdf.save(`De_Nghi_Vay_Von_${formState.full_name}_${formState.phone}.pdf`);
     });
-  };
+  }; //3508 x 2480
+
+  // const printDocument = () => {
+  //   html2canvas(document.getElementById('download1111')).then(canvas => {
+  //     const imgData = canvas.toDataURL('image/png');
+  //     console.log(imgData);
+  //     const pdf = new jsPDF({
+  //       unit: 'px',
+  //       format: [2000, 1000]
+  //     });
+  //     pdf.addImage(imgData, 'JPEG', 0, 0);
+  //     // pdf.output("dataurlnewwindow");
+  //     if (
+  //       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  //     ) {
+  //       const blob = pdf.output();
+  //       window.open(URL.createObjectURL(blob));
+  //     } else {
+  //       pdf.save('filename.pdf');
+  //     }
+  //   });
+  // };
 
   function pad(n, width, z) {
     z = z || '0';
