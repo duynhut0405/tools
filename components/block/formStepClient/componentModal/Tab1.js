@@ -135,7 +135,6 @@ const Tab1 = props => {
                 <div className="item" key={key}>
                   <div className="location" data-latlng="">
                     <label className="radio">
-                      {console.log(item)}
                       <strong>{item.address_name}</strong>
                       <input
                         type="radio"

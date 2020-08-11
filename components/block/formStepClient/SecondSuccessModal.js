@@ -11,20 +11,6 @@ import { getSttForm, updateForm } from '../../../services/common';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-const printDocument = () => {
-  html2canvas(document.getElementById('download111')).then(canvas => {
-    const imgData = canvas.toDataURL('image/png', 1);
-    console.log(imgData);
-    const pdf = new jsPDF({
-      unit: 'px',
-      format: [2000, 1000]
-    });
-    pdf.addImage(imgData, 'JPEG', 0, 0);
-    // pdf.output("dataurlnewwindow");
-    pdf.save('Up4-receipt.pdf');
-  });
-};
-
 const SecondSuccessModal = props => {
   const {
     closeModal,
@@ -63,6 +49,21 @@ const SecondSuccessModal = props => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current
   });
+
+  const printDocument = () => {
+    const heightref = componentRef.current.offsetHeight;
+    const widthref = componentRef.current.offsetWidth;
+    const ratio = heightref / widthref;
+    html2canvas(document.getElementById('download1111')).then(canvas => {
+      const imgData = canvas.toDataURL();
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+      // pdf.output("dataurlnewwindow");
+      pdf.save('Up4-receipt.pdf');
+    });
+  };
 
   function pad(n, width, z) {
     z = z || '0';
@@ -121,13 +122,15 @@ const SecondSuccessModal = props => {
   return (
     <Modal isOpen={modalContinue} toggle={showModalContinue}>
       <ModalBody>
-        {console.log(formState.idLandLoan)}
         <WrapModal id="CheckedDataModal" closeModal={closeModal}>
-          <div style={{ display: 'none' }}>
-            <ComponentToPrint ref={componentRef} formState={formState} />
-          </div>
-          <article id="download111" className="file1">
-            <div className="file1_header1">
+          <div style={{ display: 'none' }}>{/* <ComponentToPrint formState={formState} /> */}</div>
+          <article
+            id="download1111"
+            ref={componentRef}
+            className="file1"
+            style={{ padding: '80px 50px' }}
+          >
+            <div className="file1_header1" style={{ marginBottom: '15px' }}>
               <div className="file1_logo1">
                 <img src="/static/images/svg/logo-blue.svg" alt="logo" />
               </div>
@@ -136,17 +139,18 @@ const SecondSuccessModal = props => {
                 <h3 className="sec1_title1">Cộng Hoà Xã Hội Chủ Nghĩa Việt Nam</h3>
                 <p>Độc lập - Tự do - Hạnh phúc</p>
               </section>
-              <a className="btn" onClick={printDocument}>
+              <a className="btn" onClick={() => printDocument()} id="ignorePDF">
                 <span>Tải xuống</span>
                 <i>
                   <img src="/static/images/svg/download.svg" alt="download.svg" />
                 </i>
               </a>
             </div>
-            <h2 className="c-title1">Đề nghị vay vốn kiêm cam kết trả nợ</h2>
+            <h2 className="c-title1" style={{ marginBottom: '30px' }}>
+              Đề nghị vay vốn kiêm cam kết trả nợ
+            </h2>
             <section className="file1_box1">
               <h4 className="file1_title1">Thông tin Khách hàng</h4>
-
               <div className="list1">
                 <div className="row">
                   <div className="col-12 col-md-4">
