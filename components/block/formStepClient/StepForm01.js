@@ -103,12 +103,16 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập')
     .when('profileType', {
       is: profileType => profileType === 'Chứng minh nhân dân',
-      then: yup.string().required('Trường bắt buộc nhập')
+      then: yup
+        .string()
+        .length(9, 'Yêu cầu 9 chữ số')
+        .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
       is: profileType => profileType === 'Căn cước',
       then: yup
         .string()
+        .length(12, 'Yêu cầu nhập đủ 12 số và chữ')
         .matches(/^[0-9]{0,15}$/, 'Không chứa chữ cái và kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
@@ -484,8 +488,8 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                           format="############"
                           value={formState.profileNumber ? formState.profileNumber : ''}
                           onValueChange={e => {
-                            setFieldValue('profileNumber', e.formattedValue);
-                            setFormState({ ...formState, profileNumber: e.formattedValue });
+                            setFieldValue('profileNumber', e.formattedValue.trim());
+                            setFormState({ ...formState, profileNumber: e.formattedValue.trim() });
                           }}
                         />
                         {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
@@ -498,12 +502,12 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         <NumberFormat
                           className="input"
                           name="profileNumber"
-                          format="#### ### ##"
+                          format="#########"
                           placeholder={formState.profileType}
                           value={formState.profileNumber ? formState.profileNumber : ''}
                           onValueChange={e => {
-                            setFormState({ ...formState, profileNumber: e.formattedValue });
-                            setFieldValue('profileNumber', e.formattedValue);
+                            setFormState({ ...formState, profileNumber: e.formattedValue.trim() });
+                            setFieldValue('profileNumber', e.formattedValue.trim());
                           }}
                         />
                         {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
