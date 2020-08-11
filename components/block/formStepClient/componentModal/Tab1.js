@@ -68,6 +68,7 @@ const Tab1 = props => {
   };
 
   const handleSelect = item => {
+    console.log(item);
     setSelectedBranch(item.id);
     setFormState(() => ({
       ...formState,
@@ -135,13 +136,15 @@ const Tab1 = props => {
                 <div className="item" key={key}>
                   <div className="location" data-latlng="">
                     <label className="radio">
+                      {/* {console.log(item)} */}
                       <strong>{item.address_name}</strong>
                       <input
                         type="radio"
                         name="search_location"
                         value={item.id}
                         onChange={() => handleSelect(item)}
-                        checked={selectedBranch === item.id}
+                        checked={item.address_name === formState.address_name}
+                        // defaultChecked={item.address_name === formState.address_name}
                       />
                       <span></span>
                     </label>
