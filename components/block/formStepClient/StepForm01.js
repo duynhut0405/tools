@@ -216,14 +216,14 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           },
           birthday: values.birthday,
           phone: values.phone,
-          link: `${process.env.FRONTEND_URL_LOAN}/page/trang-test-new/?link=${
-            values.phone
-          }/${moment(
-            // link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
-            // ${moment(
-            new Date(),
-            'DD/MM/YYYY'
-          ).format()}`
+          link: formState.link
+            ? formState.link
+            : `${process.env.FRONTEND_URL_LOAN}/page/trang-test-new/?link=${values.phone}/${moment(
+                // link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
+                // ${moment(
+                new Date(),
+                'DD/MM/YYYY'
+              ).format()}`
         });
 
         if (form01.current.reportValidity()) {
@@ -240,7 +240,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           setFormState({ ...formState, nuComponion: listCompo });
           return listCompo;
         };
-        // console.log(formState.companion);
         // const [collap, setCollapParent] = useState();
         useEffect(() => {
           const fields = [
@@ -283,7 +282,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
         return (
           <section className="sec-t p-form1" id="featured">
             <div className="container">
-              {/* {console.log(isUpdate)} */}
+              {console.log(formState)}
               <div className="max750">
                 <form autoComplete="on" className="row list-item form-contact c-form1" ref={form01}>
                   <div className="col-12">

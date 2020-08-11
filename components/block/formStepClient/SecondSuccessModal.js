@@ -108,7 +108,7 @@ const SecondSuccessModal = props => {
     if (!isUpdate) {
       res = await sendMailService(body);
     } else {
-      res = await updateForm(body, window.location.href);
+      res = await updateForm(body, formState.link);
     }
     if (res && res.status === 200 && res.data === true) {
       Router.push({
