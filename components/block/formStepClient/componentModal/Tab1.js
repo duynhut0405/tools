@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { getDistrictService, searchBranchesService } from '../../../../services/map';
 import ReactHtmlParser from 'react-html-parser';
-import { debounce } from 'lodash';
+import { debounce, isNumber } from 'lodash';
 
 const Tab1 = props => {
   /* eslint-disable no-debugger, no-console */
   const { branchs, setBranchs, provinces, formState, setFormState } = props;
   const [district, setDistrict] = useState([]);
+  const [idCityDefauft, setidCityDefauft] = useState(
+    formState.address && formState.address.city_address && formState.address.city_address.value.id
+  );
   const [selectedBranch, setSelectedBranch] = useState(0);
-  const [selectProvince, setSelectProvince] = useState(0);
+  const [selectProvince, setSelectProvince] = useState(
+    formState.address ? formState.address.city_address : 0
+  );
   const [selectDistrict, setSelectDistrict] = useState(0);
   const [searchKey, setSearchKey] = useState('');
   const dataProvince = [];
@@ -27,11 +32,9 @@ const Tab1 = props => {
     const query = {
       districtCity: selectDistrict.value || null,
       networkCategory: 'transaction',
-      provinceCity:
-        selectProvince.value ||
-        (formState.address &&
-          formState.address.city_address &&
-          formState.address.city_address.value.id),
+      provinceCity: isNumber(selectProvince.value)
+        ? selectProvince.value
+        : selectProvince.value && selectProvince.value.id,
       search: searchKey
     };
     searchBranchesService(query).then(res => {
@@ -46,7 +49,7 @@ const Tab1 = props => {
   };
 
   useEffect(() => {
-    if (formState.address.city_address) {
+    if (formState.address) {
       getDistrictService(formState.address.city_address.value.id)
         .then(res => {
           const arr = [];
@@ -65,8 +68,8 @@ const Tab1 = props => {
   }, []);
 
   const handleSelectProvince = item => {
-    setSelectProvince(item);
     console.log(item);
+    setSelectProvince(item);
     getDistrictService(item.value)
       .then(res => {
         const arr = [];
@@ -89,7 +92,7 @@ const Tab1 = props => {
 
   const handleSelect = item => {
     console.log(item);
-    setSelectedBranch(item.id);
+    setidCityDefauft('');
     setFormState(() => ({
       ...formState,
       address_name: item.address_name,
@@ -100,7 +103,7 @@ const Tab1 = props => {
   const handleChange = useCallback(
     debounce(e => {
       setSearchKey(e);
-    }, 1000),
+    }, 500),
     []
   );
 
@@ -113,7 +116,10 @@ const Tab1 = props => {
               <input
                 type="text"
                 placeholder="Địa điểm"
-                onChange={event => handleChange(event.target.value)}
+                onChange={event => {
+                  setSelectProvince({});
+                  handleChange(event.target.value);
+                }}
               />
               <button
                 onClick={e => {
@@ -128,9 +134,13 @@ const Tab1 = props => {
               <Select
                 options={dataProvince}
                 styles={customStyles}
-                onChange={item => handleSelectProvince(item)}
+                value={selectProvince}
+                onChange={item => {
+                  setSearchKey('');
+                  handleSelectProvince(item);
+                }}
                 placeholder="Chọn TP"
-                defaultValue={formState.address ? formState.address.city_address : {}}
+                // defaultValue={formState.address ? formState.address.city_address : {}}
                 className="selectpicker"
               />
             </div>
@@ -138,7 +148,10 @@ const Tab1 = props => {
               <h6 className="block1_title1">Quận/Huyện</h6>
               <Select
                 options={district}
-                onChange={item => handleSelectDistrict(item)}
+                onChange={item => {
+                  setSearchKey('');
+                  handleSelectDistrict(item);
+                }}
                 placeholder="Chọn quận/ huyện"
                 className="selectpicker"
               />
