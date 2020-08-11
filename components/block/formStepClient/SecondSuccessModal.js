@@ -61,9 +61,9 @@ const SecondSuccessModal = props => {
       const height = pdf.internal.pageSize.getHeight();
       pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
       // pdf.output("dataurlnewwindow");
-      pdf.save('Up4-receipt.pdf');
+      pdf.save(`De_Nghi_Vay_Von_${formState.full_name}_${formState.phone}.pdf`);
     });
-  };
+  }; //3508 x 2480
 
   function pad(n, width, z) {
     z = z || '0';

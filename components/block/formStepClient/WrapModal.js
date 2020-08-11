@@ -23,7 +23,7 @@ const WrapModal = props => {
         ></span>
       )}
       <div className="container">
-        <div className="contentModal">
+        <div className="contentModal" style={{ padding: '80px 50px' }}>
           <span className="btnModal btn-close" onClick={closeModal}>
             <i className="icon-close" />
           </span>
