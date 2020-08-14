@@ -109,7 +109,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
   return (
     <React.Fragment>
-      <section className=" menuIntro sec-menu">
+      <section className="menuIntro sec-menu">
         <div className="container">
           <div className="inner">
             <ul>
@@ -134,7 +134,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
         <div className="container">
           <div className="row list-item ">
             <div className="col-lg-8">
-              <div className="boxwidget entry-content">
+              <div className="boxwidget entry-content scroll-title">
                 <h2 className="widget-title">{ReactHtmlParser(data.title)}</h2>
                 {ReactHtmlParser(data.descriptionTop)}
               </div>
