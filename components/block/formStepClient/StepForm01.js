@@ -267,7 +267,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
             'phone'
           ];
           // set
-          console.log(router);
           if (router.query.link) {
             fields.forEach(field => {
               setFieldValue(field, formState[field], false);
@@ -286,7 +285,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
         return (
           <section className="sec-t p-form1" id="featured">
             <div className="container">
-              {console.log(formState)}
               <div className="max750">
                 <form autoComplete="on" className="row list-item form-contact c-form1" ref={form01}>
                   <div className="col-12">

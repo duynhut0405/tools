@@ -109,7 +109,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
   return (
     <React.Fragment>
-      <section className=" menuIntro sec-menu">
+      <section className="menuIntro sec-menu">
         <div className="container">
           <div className="inner">
             <ul>
