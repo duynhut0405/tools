@@ -8,15 +8,18 @@ import AlertInfo from './AlertInfo';
 import NumberFormat from 'react-number-format';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+// import domtoimage from 'dom-to-image';
 
 const StepForm03 = props => {
   const { backFrom, formState, setFormState, setFormActive, data, pageId, isUpdate } = props;
   const form01 = useRef(null);
   const [active, setActive] = useState(false);
   const [activeAlertInfo, setActiveAlertInfo] = useState(false);
-  const [hide01, setHide01] = useState(false);
-  const [checkedProxy, setCheckedProxy] = useState(false);
+  const [hide01, setHide01] = useState(formState.debt || formState.return_monney);
+  const [checkedProxy, setCheckedProxy] = useState(formState.commitment ? true : false);
   const [modalContinue, setModalContinue] = useState(false);
+
+  const docToPrint = React.createRef();
 
   const showModal = e => {
     e.preventDefault();
@@ -49,21 +52,6 @@ const StepForm03 = props => {
   const handleCheckProxy = () => {
     setCheckedProxy(!checkedProxy);
   };
-
-  // const handleChange = event => {
-  //   event.persist();
-  //   if (event.target.value) {
-  //     setFormState(() => ({
-  //       ...formState,
-  //       [event.target.name]: parseInt(event.target.value)
-  //     }));
-  //   } else {
-  //     setFormState(() => ({
-  //       ...formState,
-  //       [event.target.name]: 0
-  //     }));
-  //   }
-  // };
 
   const formatCurrency = money => {
     const moneyConvert = `${money}`;
@@ -126,10 +114,12 @@ const StepForm03 = props => {
       .number()
       .min(0, 'Chỉ nhập số tự nhiên')
       .max(9999999999999999, 'Tối đa 17 số'),
+    // .required('Trường bắt buộc nhập'),
     dif_payee: yup
       .number()
       .min(0, 'Chỉ nhập số tự nhiên')
       .max(9999999999999999, 'Tối đa 17 số')
+    // .required('Trường bắt buộc nhập')
   });
 
   return (
@@ -194,7 +184,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                                (floatValue < 1000000000000 && floatValue >= 0)
                               );
                             }}
                             min="0"
@@ -225,7 +215,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                                (floatValue < 1000000000000 && floatValue >= 0)
                               );
                             }}
                             placeholder="Nhập giá trị"
@@ -266,8 +256,7 @@ const StepForm03 = props => {
                       isAllowed={values => {
                         const { formattedValue, floatValue } = values;
                         return (
-                          formattedValue === '' ||
-                          (floatValue <= 10000000000000000 && floatValue >= 0)
+                          formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0)
                         );
                       }}
                       onValueChange={e => {
@@ -330,7 +319,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                                (floatValue < 1000000000000 && floatValue >= 0)
                               );
                             }}
                             onValueChange={e => {
@@ -362,7 +351,7 @@ const StepForm03 = props => {
                               const { formattedValue, floatValue } = values;
                               return (
                                 formattedValue === '' ||
-                                (floatValue <= 10000000000000000 && floatValue >= 0)
+                                (floatValue <= 1000000000000 && floatValue >= 0)
                               );
                             }}
                             onValueChange={e => {
@@ -396,11 +385,15 @@ const StepForm03 = props => {
                 <div className="col-12 c-form1__checkboxs mb-20">
                   <label className="checkbox">
                     <strong className="font1">Tôi đã hiểu và cam kết</strong>
+                    {console.log(formState.commitment)}
                     <input
                       type="checkbox"
                       name="commit"
                       value={false}
-                      onChange={handleCheckProxy}
+                      onChange={() => {
+                        setFormState({ ...formState, commitment: !formState.commitment });
+                        handleCheckProxy();
+                      }}
                       checked={checkedProxy === true}
                     />
                     <span />

@@ -80,11 +80,15 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               className="input"
               type="text"
               name="name_componion"
+              maxLength="40"
               placeholder="Nhập đầy đủ họ tên vợ/ chồng"
-              value={name ? name : ''}
+              value={name ? name.toUpperCase() : ''}
               onChange={e => {
-                setName(e.target.value);
-                formikProps.setFieldValue(`nuComponion.${index}.name_componion`, e.target.value);
+                setName(e.target.value.toUpperCase());
+                formikProps.setFieldValue(
+                  `nuComponion.${index}.name_componion`,
+                  e.target.value.toUpperCase()
+                );
               }}
               style={{ width: '100%' }}
               required
@@ -103,10 +107,10 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
             <Select
               options={listPartner}
               name="rela_componion"
-              required
               defaultValue={relationship ? relationship : {}}
               onChange={e => {
                 // formVal(e);
+                formikProps.setFieldValue(`nuComponion.${index}.rela_componion`, e);
                 setRelationship(e);
               }}
             />
@@ -127,10 +131,11 @@ const ChildboxForm1 = ({ formState, setFormState, index, item, removeItem, formi
               id="prof_componion"
               name="prof_componion"
               placeholder="Nhập giấy tờ tùy thân"
+              value={typeProfile ? typeProfile : ''}
               onChange={e => {
                 setTypeProfile(e.target.value);
+                formikProps.setFieldValue(`nuComponion.${index}.prof_componion`, e.target.value);
               }}
-              required
               style={{ width: '100%' }}
             />
             {formikProps.touched.nuComponion &&

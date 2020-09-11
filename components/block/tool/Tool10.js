@@ -29,33 +29,9 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
   const [interest, setInterest] = useState(0);
   const [active, setActive] = useState(false);
   const [show_result, setShowResult] = useState(false);
-  const [maxMonth, setMaxMonth] = useState(180);
+  const [maxMonth, setMaxMonth] = useState(240);
 
-  useEffect(() => {
-    const _month = Number(month.replace(/[^0-9.-]+/g, ''));
-    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
-    if (_month > maxMonth) {
-      setMonth(rate(maxMonth));
-    }
-    setMonthlyPayment(Math.ceil(_amount / _month));
-  }, [month, amount]);
-
-  const onBlur = () => {
-    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
-    if (_amount > checkAmount) {
-      setAmount(rate(checkAmount));
-    }
-  };
-
-  function onScroll() {
-    const elmnt = document.getElementById('featured');
-    if (elmnt !== null) {
-      elmnt.scrollIntoView();
-    }
-  }
-
-  const calculation = event => {
-    event.preventDefault();
+  const calculation = () => {
     // const _salary = Number(salary.replace(/[^0-9.-]+/g, ''));
     const __month = Number(month.replace(/[^0-9.-]+/g, ''));
     const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
@@ -114,6 +90,29 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
     setShowResult(true);
   };
 
+  useEffect(() => {
+    const _month = Number(month.replace(/[^0-9.-]+/g, ''));
+    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    if (_month > maxMonth) {
+      setMonth(rate(maxMonth));
+    }
+    setMonthlyPayment(Math.ceil(_amount / _month));
+  }, [month, amount]);
+
+  const onBlur = () => {
+    const _amount = Number(amount.replace(/[^0-9.-]+/g, ''));
+    if (_amount > checkAmount) {
+      setAmount(rate(checkAmount));
+    }
+  };
+
+  function onScroll() {
+    const elmnt = document.getElementById('featured');
+    if (elmnt !== null) {
+      elmnt.scrollIntoView();
+    }
+  }
+
   return (
     <div className={`${padding} tool-${type}`} id={id}>
       <div className="container">
@@ -128,7 +127,7 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                       <div className="inner">
                         <FieldInput1
                           label={t('money_can_loan')}
-                          minValue={1000000000}
+                          maxValue={50000000000}
                           value={amount}
                           // onBlur={onBlur}
                           onChange={value => {
@@ -138,10 +137,12 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                         />
                         <FieldInput1
                           label={t('term_loan')}
-                          maxValue={180}
+                          maxValue={240}
                           value={month}
                           note="Tháng"
-                          onChange={value => setMonth(value)}
+                          onChange={value => {
+                            setMonth(value);
+                          }}
                           placeholder={'Nhập tháng'}
                         />
                       </div>
@@ -160,7 +161,15 @@ function Tool10({ minValue, maxValue, interest_rate, padding, id, type }) {
                     </div>
                   </div>
                   <p className="note">{t('tool_note_2')}</p>
-                  <a className="btn" onClick={calculation} style={{ marginRight: '15px' }}>
+                  <a
+                    className="btn"
+                    onClick={e => {
+                      e.preventDefault();
+                      setActive(!active);
+                      calculation();
+                    }}
+                    style={{ marginRight: '15px' }}
+                  >
                     {t('show_table')}
                   </a>
                   <a className="btn" onClick={() => onScroll()}>

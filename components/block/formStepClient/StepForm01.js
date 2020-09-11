@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import moment from 'moment';
 import * as yup from 'yup';
 import NumberFormat from 'react-number-format';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   nextForm: Proptypes.func,
@@ -21,19 +22,30 @@ const propTypes = {
 };
 
 const validationSchema = yup.object().shape({
-  full_name: yup.string().required('Trường bắt buộc nhập'),
+  full_name: yup
+    .string()
+    .matches(
+      /^[AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Z ]*$/,
+      'Không chứa kí tự đặc biệt và chữ viết thường,số'
+    )
+    .required('Trường bắt buộc nhập'),
   profileType: yup.string().required('Trường bắt buộc nhập'),
   is_loan: yup.boolean().required('Trường bắt buộc nhập'),
   sex: yup.string().required('Trường bắt buộc nhập'),
   nuComponion: yup.array().of(
     yup.object().shape({
-      name_componion: yup.string().required('Trường bắt buộc nhập'),
+      name_componion: yup
+        .string()
+        .matches(
+          /^[AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Z ]*$/,
+          'Không chứa kí tự đặc biệt và chữ viết thường,số'
+        )
+        .required('Trường bắt buộc nhập'),
       rela_componion: yup.string().required('Trường bắt buộc nhập'),
       prof_componion: yup
         .string()
-        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[A-Z0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
   ),
@@ -47,19 +59,31 @@ const validationSchema = yup.object().shape({
     is: isCheck => isCheck === true,
     then: yup
       .string()
-      .matches(/[A-Z][0-9]+/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-      .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+      .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+      .matches(/^[A-Z0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+      // .matches(/^[^<>*&#@!~()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
       .required('Trường bắt buộc nhập')
   }),
   name_companion: yup.string().when('isCheck', {
     is: isCheck => isCheck === true,
-    then: yup.string().required('Trường bắt buộc nhập')
+    then: yup
+      .string()
+      .matches(
+        /^[AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Z ]*$/,
+        'Không chứa kí tự đặc biệt và chữ viết thường,số'
+      )
+      .required('Trường bắt buộc nhập')
   }),
   companionRelation: yup.string().when('isCheck', {
     is: isCheck => isCheck === true,
     then: yup.string().required('Trường bắt buộc nhập')
   }),
-  birthday: yup.string().required('Trường bắt buộc nhập'),
+  birthday: yup
+    .string()
+    .test('DOB', 'Độ tuổi cho vay trên 18', value => {
+      return moment().diff(moment(value), 'years') >= 18;
+    })
+    .required('Trường bắt buộc nhập'),
   phone: yup
     .string()
     .matches(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, 'Không đúng định dạng số')
@@ -67,7 +91,7 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập'),
   email: yup
     .string()
-    .matches(/^[a-zA-z0-9](\.?[a-zA-z0-9]){0,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
+    // .matches(/^[a-zA-z0-9](\.?[a-zA-z0-9]){0,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
     .matches(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Không chứa kí tự đặc biệt và bắt đầu bằng số'
@@ -92,24 +116,23 @@ const validationSchema = yup.object().shape({
       is: profileType => profileType === 'Hộ chiếu',
       then: yup
         .string()
-        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[A-Z0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
       is: profileType => profileType === 'Chứng minh quân đội',
       then: yup
         .string()
-        .matches(/(?=[A-Z])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/(?=[0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
-        .matches(/^[^<>*&#@!()%$a-z]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
+        .matches(/(?=[A-Z0-9])/, 'Yêu cầu số và chữ viết hoa. Ví dụ: SD2123123')
+        .matches(/^[A-Z0-9]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
         .required('Trường bắt buộc nhập')
     })
 });
 
 const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) => {
   const form01 = useRef(null);
+  const router = useRouter();
 
   const listPartner = [
     { value: 'Vợ/ chồng KH', label: 'Vợ/ chồng KH' },
@@ -135,6 +158,15 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
       zIndex: '999px'
     })
   };
+
+  // function compare(a, b) {
+  //   const text_a = a.label;
+  //   const text_b = b.label;
+  //   console.log(text_a);
+  //   console.log(text_b);
+  //   console.log(text_a.localeCompare(text_b));
+  //   return text_a.localeCompare(text_b) ? 1 : text_b.localeCompare(text_a) ? -1 : 0;
+  // }
 
   function compare(a, b) {
     return a.label > b.label ? 1 : b.label > a.label ? -1 : 0;
@@ -184,7 +216,9 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           },
           birthday: values.birthday,
           phone: values.phone,
-          link: `${process.env.FRONTEND_URL}page/trang-test-new?link=${values.phone}/${moment(
+          link: `${process.env.FRONTEND_URL_LOAN}/page/trang-test-new/?link=${
+            values.phone
+          }/${moment(
             // link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
             // ${moment(
             new Date(),
@@ -208,29 +242,30 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
         };
         // console.log(formState.companion);
         // const [collap, setCollapParent] = useState();
-        if (isUpdate) {
-          useEffect(() => {
-            const fields = [
-              'full_name',
-              'nuComponion',
-              'profileType',
-              'full_name',
-              'profileNumber',
-              'email',
-              'is_loan',
-              'sex',
-              'city_address',
-              'current_home',
-              'status_home',
-              'profile_partner',
-              'name_companion',
-              'isCheck',
-              'isLengths',
-              'companionRelation',
-              'birthday',
-              'phone'
-            ];
-            // set
+        useEffect(() => {
+          const fields = [
+            'full_name',
+            'nuComponion',
+            'profileType',
+            'full_name',
+            'profileNumber',
+            'email',
+            'is_loan',
+            'sex',
+            'city_address',
+            'current_home',
+            'status_home',
+            'profile_partner',
+            'name_companion',
+            'isCheck',
+            'isLengths',
+            'companionRelation',
+            'birthday',
+            'phone'
+          ];
+          // set
+          console.log(router);
+          if (router.query.link) {
             fields.forEach(field => {
               setFieldValue(field, formState[field], false);
               if (field === 'current_home' || field === 'city_address' || field === 'status_home') {
@@ -241,12 +276,14 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                 }
               }
             });
-            // setCollapParent(formState.companion);
-          }, [formState]);
-        }
+          }
+          // setCollapParent(formState.companion);
+        }, [formState]);
+
         return (
           <section className="sec-t p-form1" id="featured">
             <div className="container">
+              {/* {console.log(isUpdate)} */}
               <div className="max750">
                 <form autoComplete="on" className="row list-item form-contact c-form1" ref={form01}>
                   <div className="col-12">
@@ -264,7 +301,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         type="radio"
                         name="is_loan"
                         value={true}
-                        onClick={formikProps.handleChange('is_loan')}
+                        onClick={() => {
+                          setFormState({ ...formState, is_loan: 'true' });
+                          formikProps.setFieldValue('is_loan', 'true');
+                        }}
                         defaultChecked={formState.is_loan === 'true' ? true : false}
                       />
                       <span />
@@ -276,7 +316,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         name="is_loan"
                         value={false}
                         defaultChecked={formState.is_loan === 'false' ? true : false}
-                        onClick={formikProps.handleChange('is_loan')}
+                        onClick={() => {
+                          setFormState({ ...formState, is_loan: 'false' });
+                          formikProps.setFieldValue('is_loan', 'false');
+                        }}
                       />
                       <span />
                     </label>
@@ -292,6 +335,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                       className="input"
                       name="full_name"
                       type="text"
+                      maxLength="40"
                       placeholder="Họ và tên(*)"
                       value={formState.full_name && formState.full_name.toUpperCase()}
                       defaultValue={formState.full_name ? formState.full_name : null}
@@ -437,6 +481,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         <NumberFormat
                           className="input"
                           name="profileNumber"
+                          placeholder={formState.profileType}
                           format="############"
                           value={formState.profileNumber ? formState.profileNumber : ''}
                           onValueChange={e => {
@@ -450,20 +495,22 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                       </>
                     )}
                     {formState.profileType === 'Chứng minh nhân dân' && (
-                      <NumberFormat
-                        className="input"
-                        name="profileNumber"
-                        format="#### ### ##"
-                        placeholder={formState.profileType}
-                        value={formState.profileNumber ? formState.profileNumber : ''}
-                        onValueChange={e => {
-                          setFormState({ ...formState, profileNumber: e.formattedValue });
-                          setFieldValue('profileNumber', e.formattedValue);
-                        }}
-                      />
-                    )}
-                    {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
-                      <p className="red error">{formikProps.errors.profileNumber}</p>
+                      <>
+                        <NumberFormat
+                          className="input"
+                          name="profileNumber"
+                          format="#### ### ##"
+                          placeholder={formState.profileType}
+                          value={formState.profileNumber ? formState.profileNumber : ''}
+                          onValueChange={e => {
+                            setFormState({ ...formState, profileNumber: e.formattedValue });
+                            setFieldValue('profileNumber', e.formattedValue);
+                          }}
+                        />
+                        {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
+                          <p className="red error">{formikProps.errors.profileNumber}</p>
+                        )}
+                      </>
                     )}
                   </div>
                   <div className="col-12 col-md-12">
@@ -476,7 +523,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         type="radio"
                         name="sex"
                         defaultValue={'male'}
-                        onClick={formikProps.handleChange('sex')}
+                        onClick={() => {
+                          setFormState({ ...formState, sex: 'male' });
+                          formikProps.setFieldValue('sex', 'male');
+                        }}
                         defaultChecked={formState.sex === 'male' ? true : false}
                       />
                       <span />
@@ -487,7 +537,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         type="radio"
                         name="sex"
                         defaultValue={'female'}
-                        onClick={formikProps.handleChange('sex')}
+                        onClick={() => {
+                          setFormState({ ...formState, sex: 'female' });
+                          formikProps.setFieldValue('sex', 'female');
+                        }}
                         defaultChecked={formState.sex === 'female' ? true : false}
                       />
                       <span />
@@ -555,7 +608,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                       type="Email"
                       placeholder="email"
                       defaultValue={formState.email}
-                      onChange={formikProps.handleChange('email')}
+                      onChange={e => {
+                        formikProps.setFieldValue('email', e.target.value);
+                        setFormState({ ...formState, email: e.target.value });
+                      }}
                     />
                     {formikProps.touched.email && formikProps.errors.email && (
                       <p className="red error">{formikProps.errors.email}</p>
@@ -682,6 +738,7 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                             className="input"
                             name="name_companion"
                             type="text"
+                            maxLength="40"
                             placeholder="Nhập đầy đủ họ tên vợ/ chồng"
                             value={formState.companion && formState.companion.name}
                             onChange={e => {
@@ -774,7 +831,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                                     {
                                       id: formState.nuComponion.length,
                                       name_componion: '',
-                                      rela_componion: '',
+                                      rela_componion: {
+                                        value: 'Vợ/ chồng KH',
+                                        label: 'Vợ/ chồng KH'
+                                      },
                                       prof_componion: ''
                                     }
                                   ]
@@ -784,7 +844,10 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                                   {
                                     id: formState.nuComponion.length,
                                     name_componion: '',
-                                    rela_componion: '',
+                                    rela_componion: {
+                                      value: 'Vợ/ chồng KH',
+                                      label: 'Vợ/ chồng KH'
+                                    },
                                     prof_componion: ''
                                   }
                                 ]);

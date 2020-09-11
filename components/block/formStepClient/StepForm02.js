@@ -4,6 +4,7 @@ import ChildboxForm2 from './ChildboxForm2';
 import { Formik } from 'formik';
 import NumberFormat from 'react-number-format';
 import * as yup from 'yup';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   nextForm: Proptypes.func,
@@ -47,9 +48,13 @@ const validationSchema = yup.object().shape({
 // const text02 = 'Nhà đất đã có Giấy chứng nhận (Sổ đỏ)';
 const text03 = 'Tài sản hình thành từ vốn vay';
 const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
-  const [iscollateral, setIsCollateral] = useState(formState.isCollateral02 ? false : true);
   const [idAsset, setIdAsset] = useState(1);
+  const [iscollateral, setIsCollateral] = useState(
+    formState.collateral.length !== 0 ? true : false
+  );
+
   const form02 = useRef(null);
+  const router = useRouter();
 
   const handleChangeCustom = event => {
     event.persist();
@@ -80,6 +85,9 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
   const removeCollateral = id => {
     const listColla = formState.collateral.filter(value => value.id !== id);
     setFormState({ ...formState, collateral: listColla });
+    if (idAsset > 1) {
+      setIdAsset(idAsset - 1);
+    }
     return listColla;
   };
 
@@ -96,7 +104,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
         profileNumber: formState.profileNumber || '',
         relaValue: formState.relaValue || '',
         type_purpose: formState.type_purpose_02 || formState.type_purpose_01,
-        isCollateral: iscollateral
+        isCollateral02: formState.isCollateral02 ? true : false
       }}
       onSubmit={() => {
         summitForm02();
@@ -105,6 +113,45 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
     >
       {formikProps => {
         const { touched, errors, handleSubmit, setFieldValue } = formikProps;
+        useEffect(() => {
+          const fields = [
+            'collateral',
+            'value_loan',
+            'suggest_monney',
+            'purpose_loan_01',
+            'purpose_loan_02',
+            'decriptiom',
+            'is_future',
+            'profileNumber',
+            'relaValue',
+            'type_purpose',
+            'isCollateral02'
+          ];
+          // set
+          if (router.query && router.query.link) {
+            fields.forEach(field => {
+              setFieldValue(field, formState[field], false);
+              if (field === 'type_purpose') {
+                if (formState.address) {
+                  setFieldValue(
+                    'type_purpose',
+
+                    formState.type_purpose_02 || formState.type_purpose_01
+                  );
+                }
+              }
+
+              if (field === 'isCollateral02') {
+                if (formState.isCollateral02 === true) {
+                  setFieldValue('isCollateral02', true);
+                } else {
+                  setFieldValue('isCollateral02', false);
+                }
+              }
+            });
+          }
+          // setCollapParent(formState.companion);
+        }, [formState]);
         return (
           <section className="sec-t p-form2" id="featured">
             <div className="container">
@@ -130,11 +177,13 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             setFieldValue('type_purpose', !formState.type_purpose_02);
                             setFormState({
                               ...formState,
-                              type_purpose_02: !formState.type_purpose_02
+                              type_purpose_02: !formState.type_purpose_02,
+                              purpose_loan_02: formState.type_purpose_02 && ''
                             });
                           }}
                         />
                         <span />
+                        {console.log(formState.type_purpose_02)}
                         {formState.type_purpose_02 && (
                           <div className="row p-form2--mt20">
                             <div className="col-12">
@@ -199,7 +248,8 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             setFieldValue('type_purpose', 1);
                             setFormState({
                               ...formState,
-                              type_purpose_01: !formState.type_purpose_01
+                              type_purpose_01: !formState.type_purpose_01,
+                              purpose_loan_01: formState.type_purpose_01 && ''
                             });
                           }}
                         />
@@ -311,8 +361,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         isAllowed={values => {
                           const { formattedValue, floatValue } = values;
                           return (
-                            formattedValue === '' ||
-                            (floatValue <= 1000000000000 && floatValue >= 0)
+                            formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0)
                           );
                         }}
                         defaultValue={formState.value_loan}
@@ -340,8 +389,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         isAllowed={values => {
                           const { formattedValue, floatValue } = values;
                           return (
-                            formattedValue === '' ||
-                            (floatValue <= 1000000000000 && floatValue >= 0)
+                            formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0)
                           );
                         }}
                         defaultValue={formState.suggest_monney}
@@ -372,7 +420,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                               : false
                           }
                           onClick={() => {
-                            setFieldValue('isCollateral', false);
                             if (formState.collateral01 !== 'Tài sản hình thành từ vốn vay') {
                               setFormState({
                                 ...formState,
@@ -402,15 +449,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                             setFieldValue('isCollateral', iscollateral);
                             setFormState({
                               ...formState,
-                              isCollateral02: iscollateral,
-                              collateral: [
-                                {
-                                  id: 0,
-                                  decription: '',
-                                  estimate: '',
-                                  relaValue: ''
-                                }
-                              ]
+                              isCollateral02: iscollateral
                             });
                             if (!iscollateral) {
                               setFieldValue('collateral', [
@@ -422,8 +461,24 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                   relaValue: ''
                                 }
                               ]);
+                              setFormState({
+                                ...formState,
+                                collateral: [
+                                  {
+                                    id: 0,
+                                    decription: '',
+                                    estimate: '',
+                                    relaValue: ''
+                                  }
+                                ]
+                              });
+                              setIdAsset(1);
                             } else {
                               setFieldValue('collateral', []);
+                              setFormState({
+                                ...formState,
+                                collateral: []
+                              });
                             }
                           }}
                         />
@@ -449,7 +504,6 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                                 className="c-form1__link1 c-link-add-form-js"
                                 onClick={e => {
                                   e.preventDefault();
-
                                   if (idAsset < 5) {
                                     setFormState({
                                       ...formState,
@@ -502,7 +556,7 @@ const StepForm02 = ({ nextForm, backFrom, setFormState, formState }) => {
                         type="button"
                         className="btn"
                         onClick={() => {
-                          // console.log(formikProps);
+                          console.log(formikProps);
                           handleSubmit();
                         }}
                       >

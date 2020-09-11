@@ -32,8 +32,11 @@ function FieldInput({ label, maxValue, minValue, value, onChange, note, onBlur, 
             className="input"
             value={value}
             minimumValue="0"
+            maximumValue="50000000000"
             decimalPlaces={0}
-            onChange={event => onChange(event.target.value)}
+            onChange={event => {
+              onChange(event.target.value);
+            }}
             onBlur={onBlur}
             placeholder={placeholder}
           />

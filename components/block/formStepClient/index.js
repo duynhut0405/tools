@@ -22,12 +22,14 @@ function FormStep({ data, id, pageId }) {
   const [formActive, setFormActive] = useState(1);
   const router = useRouter();
   const [isUpdate, setIsUpdate] = useState(router.query.link ? true : false);
-  // console.log(router.query.link);
+
   const [formState, setFormState] = useState({
     full_name: '',
     profileType: 'Chứng minh nhân dân',
-    // profileNumber: '',
+    isCollateral02: true,
     nuComponion: [],
+    type_purpose_02: false,
+    type_purpose_01: false,
     collateral: [
       {
         id: 0,
@@ -56,18 +58,24 @@ function FormStep({ data, id, pageId }) {
       })
       .catch(error => {});
     getItemForm(
-      window.location.href
+      `${process.env.FRONTEND_URL_LOAN}${router.asPath}`
+      // window.location.href
       // 'http://localhost:8080/page/trang-test-new?link=2341234123/0'
+      // 'https://mbbank6.mangoads.com.vn/page/trang-test-new/?link=1231231231/2020-08-06T02:06:06+07:00'
+      // 'https://mbbank6.mangoads.com.vn/page/trang-test-new?link=1231231231/2020-08-06T02:06:06+07:00'
+      // 'https://mbbank6.mangoads.com.vn/page/trang-test-new/?link=1231231231/2020-08-06T10:20:09+07:00'
     )
       .then(res => {
         console.log(res);
-        console.log(window.location.href);
-        if (res.data.content !== '') {
+        console.log(`${process.env.FRONTEND_URL_LOAN}${router.asPath}`);
+        console.log(`${process.env.FRONTEND_URL}`);
+        if (res.status === 200 && res.data.content !== '') {
           setFormState(JSON.parse(res.data.content));
         }
-        return res;
       })
-      .catch(error => {});
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
 
   const nextForm = () => {
@@ -100,6 +108,7 @@ function FormStep({ data, id, pageId }) {
           <h1>{data.name}</h1>
           <p className="desc max750">{data.description}</p>
         </div>
+        {/* {console.log(formState)} */}
       </div>
       {data.form !== null && (
         <React.Fragment>
@@ -129,7 +138,7 @@ function FormStep({ data, id, pageId }) {
           backFrom={backForm}
           formState={formState}
           setFormState={setFormState}
-          setFormActive
+          setFormActive={setFormActive}
           data={data}
           pageId={pageId}
           isUpdate={isUpdate}

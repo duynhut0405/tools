@@ -133,6 +133,7 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem, index, formi
               className="input"
               name="decription"
               type="text"
+              maxLength="400"
               defaultValue={decription}
               onChange={e => {
                 formikProps.setFieldValue(`collateral.${index}.decription`, e.target.value);
@@ -161,6 +162,10 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem, index, formi
                 required
                 placeholder="Nhập giá trị"
                 defaultValue={estimate}
+                isAllowed={values => {
+                  const { formattedValue, floatValue } = values;
+                  return formattedValue === '' || (floatValue < 1000000000000 && floatValue >= 0);
+                }}
                 onValueChange={e => {
                   formikProps.setFieldValue(`collateral.${index}.estimate`, e.floatValue);
                   setEstimate(e.floatValue);
