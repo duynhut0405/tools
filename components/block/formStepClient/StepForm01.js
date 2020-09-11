@@ -91,10 +91,10 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập'),
   email: yup
     .string()
-    // .matches(/^[a-zA-z0-9](\.?[a-zA-z0-9]){0,}@g(oogle)?mail\.com$/, 'Email không hợp lệ')
+    .matches(/^[a-zA-Z0-9@.]*$/, 'Không chứa kí tự đặc biệt và chữ viết thường')
     .matches(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      'Không chứa kí tự đặc biệt và bắt đầu bằng số'
+      'Không chứa kí tự đặc biệt và kết thúc bằng số'
     )
     .email('Email không hợp lệ')
     .required('Trường bắt buộc nhập'),
@@ -103,12 +103,16 @@ const validationSchema = yup.object().shape({
     .required('Trường bắt buộc nhập')
     .when('profileType', {
       is: profileType => profileType === 'Chứng minh nhân dân',
-      then: yup.string().required('Trường bắt buộc nhập')
+      then: yup
+        .string()
+        .length(9, 'Yêu cầu 9 chữ số')
+        .required('Trường bắt buộc nhập')
     })
     .when('profileType', {
       is: profileType => profileType === 'Căn cước',
       then: yup
         .string()
+        .length(12, 'Yêu cầu nhập đủ 12 số và chữ')
         .matches(/^[0-9]{0,15}$/, 'Không chứa chữ cái và kí tự đặc biệt')
         .required('Trường bắt buộc nhập')
     })
@@ -216,14 +220,14 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           },
           birthday: values.birthday,
           phone: values.phone,
-          link: `${process.env.FRONTEND_URL_LOAN}/page/trang-test-new/?link=${
-            values.phone
-          }/${moment(
-            // link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
-            // ${moment(
-            new Date(),
-            'DD/MM/YYYY'
-          ).format()}`
+          link: formState.link
+            ? formState.link
+            : `${process.env.FRONTEND_URL_LOAN}/page/trang-test-new/?link=${values.phone}/${moment(
+                // link: `http://localhost:8080/page/trang-test-new?link=${values.phone}/0`
+                // ${moment(
+                new Date(),
+                'DD/MM/YYYY'
+              ).format()}`
         });
 
         if (form01.current.reportValidity()) {
@@ -240,7 +244,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
           setFormState({ ...formState, nuComponion: listCompo });
           return listCompo;
         };
-        // console.log(formState.companion);
         // const [collap, setCollapParent] = useState();
         useEffect(() => {
           const fields = [
@@ -264,7 +267,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
             'phone'
           ];
           // set
-          console.log(router);
           if (router.query.link) {
             fields.forEach(field => {
               setFieldValue(field, formState[field], false);
@@ -283,7 +285,6 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
         return (
           <section className="sec-t p-form1" id="featured">
             <div className="container">
-              {/* {console.log(isUpdate)} */}
               <div className="max750">
                 <form autoComplete="on" className="row list-item form-contact c-form1" ref={form01}>
                   <div className="col-12">
@@ -485,8 +486,8 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                           format="############"
                           value={formState.profileNumber ? formState.profileNumber : ''}
                           onValueChange={e => {
-                            setFieldValue('profileNumber', e.formattedValue);
-                            setFormState({ ...formState, profileNumber: e.formattedValue });
+                            setFieldValue('profileNumber', e.formattedValue.trim());
+                            setFormState({ ...formState, profileNumber: e.formattedValue.trim() });
                           }}
                         />
                         {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (
@@ -499,12 +500,12 @@ const StepForm01 = ({ nextForm, setFormState, formState, provinces, isUpdate }) 
                         <NumberFormat
                           className="input"
                           name="profileNumber"
-                          format="#### ### ##"
+                          format="#########"
                           placeholder={formState.profileType}
                           value={formState.profileNumber ? formState.profileNumber : ''}
                           onValueChange={e => {
-                            setFormState({ ...formState, profileNumber: e.formattedValue });
-                            setFieldValue('profileNumber', e.formattedValue);
+                            setFormState({ ...formState, profileNumber: e.formattedValue.trim() });
+                            setFieldValue('profileNumber', e.formattedValue.trim());
                           }}
                         />
                         {formikProps.touched.profileNumber && formikProps.errors.profileNumber && (

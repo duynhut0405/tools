@@ -8,6 +8,9 @@ import Router from 'next/router';
 import moment from 'moment';
 import { sendMailService } from '../../../services/form';
 import { getSttForm, updateForm } from '../../../services/common';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { useRouter } from 'next/router';
 
 const SecondSuccessModal = props => {
   const {
@@ -23,6 +26,7 @@ const SecondSuccessModal = props => {
   } = props;
   const [dataColla, setDataColla] = useState([]);
   const componentRef = useRef();
+  const router = useRouter();
   moment.locale('vi');
 
   useEffect(() => {
@@ -48,6 +52,43 @@ const SecondSuccessModal = props => {
     content: () => componentRef.current
   });
 
+  const printDocument = () => {
+    const heightref = componentRef.current.offsetHeight;
+    const widthref = componentRef.current.offsetWidth;
+    const ratio = heightref / widthref;
+    html2canvas(document.getElementById('download1111')).then(canvas => {
+      const imgData = canvas.toDataURL();
+      console.log(imgData);
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+      pdf.output('dataurlnewwindow');
+      pdf.save(`De_Nghi_Vay_Von_${formState.full_name}_${formState.phone}.pdf`);
+    });
+  }; //3508 x 2480
+
+  // const printDocument = () => {
+  //   html2canvas(document.getElementById('download1111')).then(canvas => {
+  //     const imgData = canvas.toDataURL('image/png');
+  //     console.log(imgData);
+  //     const pdf = new jsPDF({
+  //       unit: 'px',
+  //       format: [2000, 1000]
+  //     });
+  //     pdf.addImage(imgData, 'JPEG', 0, 0);
+  //     // pdf.output("dataurlnewwindow");
+  //     if (
+  //       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  //     ) {
+  //       const blob = pdf.output();
+  //       window.open(URL.createObjectURL(blob));
+  //     } else {
+  //       pdf.save('filename.pdf');
+  //     }
+  //   });
+  // };
+
   function pad(n, width, z) {
     z = z || '0';
     n = `${n}`;
@@ -66,16 +107,16 @@ const SecondSuccessModal = props => {
       idPage: pageId
     };
     let res;
-    if (!isUpdate) {
-      res = await sendMailService(body);
+    if (router.query && router.query.link) {
+      res = await updateForm(body, formState.link);
     } else {
-      res = await updateForm(body, window.location.href);
+      res = await sendMailService(body);
     }
     if (res && res.status === 200 && res.data === true) {
       Router.push({
         pathname: '/succesForm',
         query: {
-          purpose_loan: `${formState.purpose_loan_01 ? formState.purpose_loan_01 : ''} ${
+          purpose_loan: `${formState.purpose_loan_01 ? `${formState.purpose_loan_01} ;` : ''} ${
             formState.purpose_loan_02 ? formState.purpose_loan_02 : ''
           }`,
           suggest_monney: formState.suggest_monney,
@@ -105,13 +146,15 @@ const SecondSuccessModal = props => {
   return (
     <Modal isOpen={modalContinue} toggle={showModalContinue}>
       <ModalBody>
-        {console.log(formState.idLandLoan)}
         <WrapModal id="CheckedDataModal" closeModal={closeModal}>
-          <div style={{ display: 'none' }}>
-            <ComponentToPrint ref={componentRef} formState={formState} />
-          </div>
-          <article className="file1">
-            <div className="file1_header1">
+          <div style={{ display: 'none' }}>{/* <ComponentToPrint formState={formState} /> */}</div>
+          <article
+            id="download1111"
+            ref={componentRef}
+            className="file1"
+            style={{ padding: '80px 50px' }}
+          >
+            <div className="file1_header1" style={{ marginBottom: '15px' }}>
               <div className="file1_logo1">
                 <img src="/static/images/svg/logo-blue.svg" alt="logo" />
               </div>
@@ -120,17 +163,18 @@ const SecondSuccessModal = props => {
                 <h3 className="sec1_title1">Cộng Hoà Xã Hội Chủ Nghĩa Việt Nam</h3>
                 <p>Độc lập - Tự do - Hạnh phúc</p>
               </section>
-              <a className="btn" onClick={handlePrint}>
+              <a className="btn" onClick={() => printDocument()} id="ignorePDF">
                 <span>Tải xuống</span>
                 <i>
                   <img src="/static/images/svg/download.svg" alt="download.svg" />
                 </i>
               </a>
             </div>
-            <h2 className="c-title1">Đề nghị vay vốn kiêm cam kết trả nợ</h2>
+            <h2 className="c-title1" style={{ marginBottom: '30px' }}>
+              Đề nghị vay vốn kiêm cam kết trả nợ
+            </h2>
             <section className="file1_box1">
               <h4 className="file1_title1">Thông tin Khách hàng</h4>
-
               <div className="list1">
                 <div className="row">
                   <div className="col-12 col-md-4">

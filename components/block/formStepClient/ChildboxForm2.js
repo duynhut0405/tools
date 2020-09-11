@@ -128,7 +128,6 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem, index, formi
             <h6 className="title1">
               Mô tả tài sản (<span className="red">*</span>)
             </h6>
-            {console.log(decription)}
             <input
               className="input"
               name="decription"
@@ -188,6 +187,7 @@ const ChildboxForm2 = ({ formState, setFormState, item, removeItem, index, formi
               options={listPartner}
               value={relaValue}
               styles={customStyles}
+              placeholder="Chọn..."
               onChange={e => {
                 formikProps.setFieldValue(`collateral.${index}.relaValue`, e.value);
                 setRelaValue(e);

@@ -109,7 +109,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
   return (
     <React.Fragment>
-      <section className=" menuIntro sec-menu">
+      <section className="menuIntro sec-menu">
         <div className="container">
           <div className="inner">
             <ul>
@@ -133,7 +133,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
       <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`}>
         <div className="container">
           <div className="row list-item ">
-            <div className="col-lg-8">
+            <div className={!data.isForm || data.isForm === 0 ? 'col-lg-8' : 'col-lg-12'}>
               <div className="boxwidget entry-content">
                 <h2 className="widget-title">{ReactHtmlParser(data.title)}</h2>
                 {ReactHtmlParser(data.descriptionTop)}
@@ -154,7 +154,10 @@ function MenuIntro({ data, pageId, optionWidth }) {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 sidebar" id="#widget-form-tuvan">
+            <div
+              className={data.isForm || data.isForm === 1 ? 'd-none' : 'col-lg-4'}
+              id="#widget-form-tuvan"
+            >
               <div className="widget widget-tuvan">
                 <form onSubmit={onSend} autoComplete="on" className="form-tuvan">
                   {map(formdata, (item, index) => {

@@ -2,14 +2,20 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { getDistrictService, searchBranchesService } from '../../../../services/map';
-import { debounce } from 'lodash';
+import ReactHtmlParser from 'react-html-parser';
+import { debounce, isNumber } from 'lodash';
 
 const Tab1 = props => {
   /* eslint-disable no-debugger, no-console */
   const { branchs, setBranchs, provinces, formState, setFormState } = props;
   const [district, setDistrict] = useState([]);
+  const [idCityDefauft, setidCityDefauft] = useState(
+    formState.address && formState.address.city_address && formState.address.city_address.value.id
+  );
   const [selectedBranch, setSelectedBranch] = useState(0);
-  const [selectProvince, setSelectProvince] = useState(0);
+  const [selectProvince, setSelectProvince] = useState(
+    formState.address ? formState.address.city_address : 0
+  );
   const [selectDistrict, setSelectDistrict] = useState(0);
   const [searchKey, setSearchKey] = useState('');
   const dataProvince = [];
@@ -26,7 +32,9 @@ const Tab1 = props => {
     const query = {
       districtCity: selectDistrict.value || null,
       networkCategory: 'transaction',
-      provinceCity: selectProvince.value || null,
+      provinceCity: isNumber(selectProvince.value)
+        ? selectProvince.value
+        : selectProvince.value && selectProvince.value.id,
       search: searchKey
     };
     searchBranchesService(query).then(res => {
@@ -40,7 +48,27 @@ const Tab1 = props => {
     })
   };
 
+  useEffect(() => {
+    if (formState.address) {
+      getDistrictService(formState.address.city_address.value.id)
+        .then(res => {
+          const arr = [];
+          for (const dt of res.data) {
+            arr.push({
+              value: dt.id,
+              label: dt.name
+            });
+          }
+          setDistrict(arr);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, []);
+
   const handleSelectProvince = item => {
+    console.log(item);
     setSelectProvince(item);
     getDistrictService(item.value)
       .then(res => {
@@ -63,7 +91,8 @@ const Tab1 = props => {
   };
 
   const handleSelect = item => {
-    setSelectedBranch(item.id);
+    console.log(item);
+    setidCityDefauft('');
     setFormState(() => ({
       ...formState,
       address_name: item.address_name,
@@ -74,7 +103,7 @@ const Tab1 = props => {
   const handleChange = useCallback(
     debounce(e => {
       setSearchKey(e);
-    }, 1000),
+    }, 500),
     []
   );
 
@@ -87,7 +116,10 @@ const Tab1 = props => {
               <input
                 type="text"
                 placeholder="Địa điểm"
-                onChange={event => handleChange(event.target.value)}
+                onChange={event => {
+                  setSelectProvince({});
+                  handleChange(event.target.value);
+                }}
               />
               <button
                 onClick={e => {
@@ -102,8 +134,13 @@ const Tab1 = props => {
               <Select
                 options={dataProvince}
                 styles={customStyles}
-                onChange={item => handleSelectProvince(item)}
+                value={selectProvince}
+                onChange={item => {
+                  setSearchKey('');
+                  handleSelectProvince(item);
+                }}
                 placeholder="Chọn TP"
+                // defaultValue={formState.address ? formState.address.city_address : {}}
                 className="selectpicker"
               />
             </div>
@@ -111,7 +148,10 @@ const Tab1 = props => {
               <h6 className="block1_title1">Quận/Huyện</h6>
               <Select
                 options={district}
-                onChange={item => handleSelectDistrict(item)}
+                onChange={item => {
+                  setSearchKey('');
+                  handleSelectDistrict(item);
+                }}
                 placeholder="Chọn quận/ huyện"
                 className="selectpicker"
               />
@@ -129,17 +169,23 @@ const Tab1 = props => {
                 <div className="item" key={key}>
                   <div className="location" data-latlng="">
                     <label className="radio">
+                      {/* {console.log(item)} */}
                       <strong>{item.address_name}</strong>
                       <input
                         type="radio"
                         name="search_location"
                         value={item.id}
                         onChange={() => handleSelect(item)}
-                        checked={selectedBranch === item.id}
+                        checked={item.address_name === formState.address_name}
+                        // defaultChecked={item.address_name === formState.address_name}
                       />
                       <span></span>
                     </label>
-                    <div className="address">{item.address}</div>
+                    <div className="address">
+                      {item.address}
+                      <br />
+                      {ReactHtmlParser(item.description)}
+                    </div>
                   </div>
                 </div>
               ))}

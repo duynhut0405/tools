@@ -54,6 +54,7 @@ function Layout({ children, isPrioty, idPage }) {
   const [lang, setLang] = useState('vi');
   const [priority, setPriority] = useState('/');
   const [btnForm, setbtnForm] = useState(false);
+  const [btnlandingPage, setBtnLandingPage] = useState(false);
 
   const getLayout = async () => {
     const menuData = await getMemnu(getLang());
@@ -94,12 +95,23 @@ function Layout({ children, isPrioty, idPage }) {
       const entry = document.getElementsByClassName('entry-breadcrumb')[0];
       const sec_menu = document.getElementsByClassName('sec-menu')[0];
       const sec_form_tuvan = document.getElementsByClassName('sec-form-tuvan')[0];
+      const scroll_title = document.getElementsByClassName('scroll-title')[0];
       if (entry && sec_menu && sec_form_tuvan) {
         const stv = entry.clientHeight + sec_menu.clientHeight + sec_form_tuvan.clientHeight;
         if (window.pageYOffset > stv) {
           document.body.classList.add('showBtnRegister');
         } else {
           document.body.classList.remove('showBtnRegister');
+        }
+      }
+      if (entry && sec_menu && scroll_title) {
+        const stv = entry.clientHeight + scroll_title.clientHeight + sec_menu.clientHeight;
+        if (window.pageYOffset > stv) {
+          document.body.classList.add('showBtnRegister');
+          setBtnLandingPage(true);
+        } else {
+          document.body.classList.remove('showBtnRegister');
+          setBtnLandingPage(false);
         }
       }
     };
@@ -446,6 +458,11 @@ function Layout({ children, isPrioty, idPage }) {
                       </div>
                       {btnForm && (
                         <a className="btnRegister" onClick={() => onScroll('#widget-form-tuvan')}>
+                          {t('register_now')}
+                        </a>
+                      )}
+                      {btnlandingPage && (
+                        <a className="btnRegister" onClick={() => onScroll('form_step_ladding')}>
                           {t('register_now')}
                         </a>
                       )}

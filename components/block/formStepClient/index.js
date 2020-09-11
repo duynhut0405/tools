@@ -47,6 +47,7 @@ function FormStep({ data, id, pageId }) {
   const [provinces, setProvinces] = useState([]);
 
   useEffect(() => {
+    // Cookies.set('btn_lading', true);
     getProvinceService()
       .then(res => {
         return res.data.map(value => {
@@ -66,9 +67,7 @@ function FormStep({ data, id, pageId }) {
       // 'https://mbbank6.mangoads.com.vn/page/trang-test-new/?link=1231231231/2020-08-06T10:20:09+07:00'
     )
       .then(res => {
-        console.log(res);
-        console.log(`${process.env.FRONTEND_URL_LOAN}${router.asPath}`);
-        console.log(`${process.env.FRONTEND_URL}`);
+        document.body.classList.add(`page-fom-dang-ky-tu-van`);
         if (res.status === 200 && res.data.content !== '') {
           setFormState(JSON.parse(res.data.content));
         }
@@ -102,7 +101,7 @@ function FormStep({ data, id, pageId }) {
   }
 
   return (
-    <section className={`form-step-wapper ${padding} formStep`} id={id}>
+    <section className={`form-step-wapper ${padding} formStep`} id="form_step_ladding">
       <div className="container">
         <div className="text-center" id="form_step_top">
           <h1>{data.name}</h1>

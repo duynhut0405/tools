@@ -36,10 +36,10 @@ const getPriority = () => {
 
 const getBtn = () => {
   const btn = Cookies.get('btn');
-  if (btn) {
+  if (btn === 'true') {
     return true;
   }
-  return '/';
+  return false;
 };
 
 module.exports = { getLang, getFlag, setLang, getPriority, getBtn };
