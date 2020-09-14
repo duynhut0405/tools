@@ -154,7 +154,7 @@ function Layout({ children, isPrioty, idPage }) {
       }
     );
   };
-
+  
   const footerItem = data => {
     return map(data, (item, index) => {
       if (item.children.length > 0) {
@@ -167,7 +167,7 @@ function Layout({ children, isPrioty, idPage }) {
       }
       if (item.type === '4') {
         return (
-          <li key={index}>
+          <li className="li-footer" key={index}>
             {item.target === '2' ? (
               <a
                 href={item.url}
@@ -186,7 +186,7 @@ function Layout({ children, isPrioty, idPage }) {
         );
       }
       return (
-        <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
+        <li key={item.id} className={item.children.length > 0 ? 'children li-footer' : 'li-footer'}>
           <LinkPage lang={lang} name={item.slugPages}>
             <a>
               <span>{item.name}</span>
@@ -205,7 +205,7 @@ function Layout({ children, isPrioty, idPage }) {
       return (
         <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t" key={key}>
           <div className="widget">
-            <h4 className="widget-title">{values.name}</h4>
+            <h5 className="widget-title" style={{color: "#fff"}}>{values.name}</h5>
             <ul className="menu">{footerItem(values.children)}</ul>
           </div>
           {/* {key === items.length - 1 && <Social data={socialLink} />} */}
@@ -305,6 +305,40 @@ function Layout({ children, isPrioty, idPage }) {
     }
   };
 
+  const liStyle = {
+    fontWeight: '600',
+    paddingLeft: '5px',
+    fontSize: '13px'
+  };
+
+  const icon = {
+    margin: 0,
+    padding: 0,
+    fontSize: '13px'
+  }
+
+  const aStyle = {
+    fontWeight: '600',
+    fontSize: '13px'
+  }
+
+  const logoStyle = {
+    width: '109px',
+    height: '45px'
+  }
+
+  const homeCustom = {
+    content: "",
+    width: '1px',
+    height: '24px',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    WebkitTransform: 'translateY(-50%)',
+    right: '0'
+  }
+
   // const onChangeSearch = debounce(value => {
   //   setQuery(value);
   // }, 3000);
@@ -316,10 +350,10 @@ function Layout({ children, isPrioty, idPage }) {
             <div id="panel">
               <div className="container">
                 <ul className="menu line text-right">
-                  <li>
+                  <li style={ liStyle }>
                     <form id="form-search-hd" autoComplete="off" onSubmit={onSearch}>
                       <button className="search-sg" type="submit">
-                        <i className="icon-search-2"></i>
+                        <i className="icon-search" style={icon}></i>
                       </button>
                       <input
                         id="search"
@@ -328,7 +362,7 @@ function Layout({ children, isPrioty, idPage }) {
                         onFocus={onFocus}
                         // onBlur={onBlur}
                         onChange={event => setQuery(event.target.value)}
-                        style={{ width: '70px' }}
+                        style={{ width: '70px', fontWeight: '600', fontSize: '13px' }}
                       />
                     </form>
                   </li>
@@ -337,7 +371,7 @@ function Layout({ children, isPrioty, idPage }) {
                     (values, key) => {
                       if (values.type === '4') {
                         return (
-                          <li key={key}>
+                          <li key={key} style={ liStyle }>
                             {values.target === '2' ? (
                               <a href={values.url} target="_blank" rel="noopener noreferrer">
                                 {values.name}
@@ -349,7 +383,7 @@ function Layout({ children, isPrioty, idPage }) {
                         );
                       }
                       return (
-                        <li key={key}>
+                        <li key={key} style={ liStyle }>
                           <LinkPage lang={lang} name={values.slugPages}>
                             <a>{values.name}</a>
                           </LinkPage>
@@ -362,11 +396,23 @@ function Layout({ children, isPrioty, idPage }) {
                       <div className="title">
                         <span>
                           <img
-                            onClick={() => changeLang(lang === 'vi' ? 'en' : 'vi')}
-                            src={`/static/images/flags/${lang === 'vi' ? 'gb' : 'vn'}.png`}
+                            src={`/static/images/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
                             alt="images"
                           />
                         </span>
+                        <i className="icon-arrow-2 ib" style={{marginLeft: '10px'}}></i>
+                      </div>
+                      <div className="content">
+                        <div className="inner">
+                          <ul className="menu">
+                            <li className={lang === 'vi' ? 'lang-en' : 'lang-en active'} onClick={() => changeLang('en')}>
+                              <a style={aStyle} title="English (en)"><img src="/static/images/flags/gb.png" alt=""/> <span>English</span></a>
+                            </li>
+                            <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'} style={{borderTop: '1px solid rgba(0, 0, 0, 0.2)'}} onClick={() => changeLang('vi')}>
+                              <a style={aStyle}  title="Tiếng Việt (vi)"><img src="/static/images/flags/vn.png" alt=""/> <span>Tiếng Việt</span></a>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -406,7 +452,7 @@ function Layout({ children, isPrioty, idPage }) {
                           {priority === '/' && (
                             <Link href="/" as="/">
                               <a id="logo" className="isPriotyDefaul">
-                                <img id="img_log" src="/static/images/svg/logo.svg" alt="logo" />
+                                <img id="img_log" src="/static/images/svg/logo.svg" alt="logo"/>
                               </a>
                             </Link>
                           )}
@@ -425,11 +471,12 @@ function Layout({ children, isPrioty, idPage }) {
                       )}
                       <div className="wrap-menu-header">
                         <ul className="menu-top-header" data-style="1">
+                          <li className="home"><a href="#"><img src="/static/images/home.svg"/></a><div style={homeCustom} /></li>
                           {nestChild(menuNav)}
-                          <li className="highlight children">
-                            <span className="showsubmenu icon-arrow-2 ib"></span>
+                          <li class="highlight">
                             <a href="#">
-                              <span>Ebanking</span>
+                            <img src="/static/images/menu.svg" alt=""/>
+                            <span>Login eBanking</span>
                             </a>
                             <div className="wrapul">
                               <ul>
@@ -472,14 +519,26 @@ function Layout({ children, isPrioty, idPage }) {
                             <div className="title">
                               <span>
                                 <img
-                                  onClick={() => changeLang(lang === 'vi' ? 'en' : 'vi')}
-                                  src={`/static/images/flags/${lang === 'vi' ? 'gb' : 'vn'}.png`}
+                                  src={`/static/images/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
                                   alt="images"
                                 />
                               </span>
+                              <i className="icon-arrow-2 ib"></i>
+                            </div>
+                            <div className="content">
+                              <div className="inner">
+                                <ul className="menu">
+                                  <li className={lang === 'vi' ? 'lang-en' : 'lang-en active'} onClick={() => changeLang('en')}>
+                                    <a style={aStyle} title="English (en)"><img src="/static/images/flags/gb.png" alt=""/> <span>English</span></a>
+                                  </li>
+                                  <li className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'} style={{borderTop: '1px solid rgba(0, 0, 0, 0.2)'}} onClick={() => changeLang('vi')}>
+                                    <a style={aStyle} title="Tiếng Việt (vi)"><img src="/static/images/flags/vn.png" alt=""/> <span>Tiếng Việt</span></a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
                             </div>
                           </div>
-                        </div>
                         <div
                           className="item imenu"
                           onClick={() => {
@@ -603,9 +662,25 @@ function Layout({ children, isPrioty, idPage }) {
                 </div>
               </div>
             </section>
-            <div id="footer-pc" className="group-ef loaded">
+            <div id="footer-pc" className="group-ef loaded" style={{backgroundColor: '#141ED2', color: '#fff'}}>
               <div className="container">
-                <div className="row grid-space-10">
+                <div>
+                  {lang === 'vi' && (
+                    <Link href="/">
+                      <a className="logo">
+                        <img className="lazyload" data-src="/images/logo.svg" alt="images" style={logoStyle}/>
+                      </a>
+                    </Link>
+                  )}
+                  {lang === 'en' && (
+                    <Link href="/en">
+                      <a className="logo">
+                        <img className="lazyload" data-src="/images/logo.svg" alt="images" />
+                      </a>
+                    </Link>
+                  )}
+                </div>
+                <div className="row">
                   <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
                     <div className="widget widget-info">
                       <Widget data={settingFooter} />

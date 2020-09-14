@@ -241,6 +241,102 @@ ul.menu.line > li button.search-sg i {
   #search-sg #logo img {
     max-height: 70px;
   }
+  
+  #header #logo img {
+    max-height: 45px !important;
+    max-width: 109px !important;
+  }
+
+  ul.menu-top-header > li > a {
+    display: block;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    position: relative;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 16px;
+  }
+
+  /* ul.menu-top-header > li.highlight {
+    margin-left: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #141ED2;
+  }
+
+  ul.menu-top-header > li.highlight > a {
+    position: relative;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #141ED2;
+  }
+
+  ul.menu-top-header > li.highlight > a img {
+    position: absolute;
+    max-width: inherit;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+  }
+
+
+  ul.menu-top-header > li.highlight > a span {
+    position: relative;
+    display: block;
+    line-height: normal;
+    background: url(/static/images/key.svg) no-repeat center left;
+    padding-left: 30px;
+    text-align: left;
+    width: 110px;
+  } */
+
+  ul.menu-top-header > li.highlight {
+    margin-left: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 0;
+    float: left;
+    display: contents;
+    background-color: #141ED2 !important;
+  }
+
+  ul.menu-top-header > li.highlight > a {
+    color: #fff;
+    position: relative;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #141ED2;
+    line-height: 80px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0 16px;
+    background-color: #141ED2 !important;
+  }
+
+  ul.menu-top-header > li.highlight > a img {
+    position: absolute;
+    max-width: inherit;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  ul.menu-top-header > li.highlight > a span {
+    position: relative;
+    display: block;
+    line-height: normal;
+    background: url(/static/images/key.svg) no-repeat center left;
+    padding-left: 30px;
+    text-align: left;
+    width: 110px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -1380,3 +1476,7 @@ li.active {
 
 /*========================================*/
 /*=========================================================*/
+
+.li-footer :hover {
+  color: #a0d1ff !important;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="214px" height="80px" viewBox="0 0 214 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Fill 1</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home" transform="translate(-1396.000000, -40.000000)" fill="#A0D2FF">
+            <g id="Group-3-+-Group-3-Copy-Mask" transform="translate(0.000000, 40.000000)">
+                <g id="Group-3" transform="translate(1532.037930, -5.070314) rotate(21.000000) translate(-1532.037930, 5.070314) translate(1394.537930, -158.570314)">
+                    <path d="M286.863766,153.619642 C286.863766,175.699642 268.863766,193.699642 246.663766,193.699642 L55.7937657,210.019642 L46.0237657,210.859642 C14.3427657,210.859642 -11.3362343,185.180642 -11.3362343,153.619642 C-11.3362343,121.939642 14.3427657,96.2606416 46.0237657,96.2606416 L55.7937657,97.0996416 L246.663766,113.420642 C268.863766,113.420642 286.863766,131.420642 286.863766,153.619642" id="Fill-1" transform="translate(137.763766, 153.560142) rotate(-52.000000) translate(-137.763766, -153.560142) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
