@@ -557,7 +557,7 @@ function Layout({ children, isPrioty, idPage }) {
             </Sticky>
             <div>{children}</div>
             {/* contact */}
-            <section className="sec-cta">
+            {/* <section className="sec-cta">
               <div className="container">
                 <div className="row center">
                   {map(
@@ -626,9 +626,9 @@ function Layout({ children, isPrioty, idPage }) {
                   )}
                 </div>
               </div>
-            </section>
+            </section> */}
             {/* tải appp */}
-            <section className="sec-download-pc group-ef loaded">
+            {/* <section className="sec-download-pc group-ef loaded">
               <div className="container">
                 <div className="row">
                   <div className="col-md-6   efch-2 ef-img-r">
@@ -661,7 +661,7 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
             <div id="footer-pc" className="group-ef loaded" style={{backgroundColor: '#141ED2', color: '#fff'}}>
               <div className="container">
                 <div>
@@ -689,6 +689,65 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                   {renderFooter(menuFooterMain)}
                 </div>
+                <div className="row bottom">
+                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                    <div className="widget widget-wapp" style={{ marginTop: '30px'}}>
+                       <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
+                         <span className="code"><img src="/static/images/svg/qr.svg" style={{width: '50px'}} alt=""/></span>
+                         <a href={linkApp ? linkApp.ios : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px', paddingLeft: '20px'}}>
+                            <img
+                              className="lazyload"
+                              data-src="/static/images/app-1.png"
+                              importance="low"
+                              alt="images"
+                            />
+                          </a>
+                          <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px'}}>{t('donwload_app_today')}</h5>
+                       </div>
+                       <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
+                        <span className="code"><img src="/static/images/svg/qr.svg" style={{width: '50px'}} alt=""/></span>
+                        <a href={linkApp ? linkApp.android : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px', paddingLeft: '20px'}}>
+                          <img
+                            className="lazyload"
+                            data-src="/static/images/app-2.png"
+                            importance="low"
+                            alt="images"
+                          />
+                        </a>
+                        <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px'}}>{t('download_app_today_2')}</h5>
+                       </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'20px' }}>
+                    <div className="widget widget-subscribe">
+                      <h5 className="widget-title" style={{color: '#fff'}}>{t('sign_up_promotional')}</h5>
+                      <form onSubmit={onRegister} class="subscribeForm">
+                        <div>
+                          <input
+                              type="text"
+                              placeholder={
+                                lang === 'vi'
+                                  ? 'Nhập email!'
+                                  : 'Enter email'
+                              }
+                              onChange={event => setRegister(event.target.value)}
+                              name="email"
+                              className="input"
+                            />
+                        </div>
+                        <button type="submit" class=""><i class="icon-arrow-1"></i></button>
+                      </form> 
+                    </div>
+                  </div>
+
+                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'20px' }}>
+                    <div className="widget widget-subscribe">
+                      <h5 className="widget-title" style={{color: '#fff'}}>{t('find_ATM')}</h5>
+                      <a class="location" href="/page/diem-giao-dich-atm"> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
+                    </div>
+                  </div>
+                </div>
+                
                 <div className="line"></div>
                 <div className="row grid-space-10">
                   <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
@@ -725,6 +784,7 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                 </div>
               </div>
+              <a id="back-top" class="back-top-1" href="#" ><i class="icon-arrow-2 it"></i></a>
             </div>
             <section className="sec-download-mb">
               <div className="wform">

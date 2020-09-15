@@ -12,8 +12,9 @@
   "viewmore": "Xem thêm",
   "page_about_title": "Giải thưởng & Thành tích",
   "exchange_rate": "Tỷ giá",
-  "sign_up_promotional": "Đăng ký nhận thông tin khuyến mãi",
-  "donwload_app_today": "Tải app ngay hôm nay",
+  "sign_up_promotional": "Đăng ký nhận thông tin",
+  "donwload_app_today": "Tải App MBBank",
+  "download_app_today_2": "Tải Biz MBBank",
   "enter_email": "Nhập email để nhận thông tin!",
   "codeNT": "Mã NT",
   "period": "Kỳ hạn",
@@ -140,5 +141,7 @@
   "dead_office": "Hộ sở chính MBBank:",
   "find_out_now": "Tìm hiểu ngay",
   "register_now": "Đăng ký ngay",
-  "download": "Tải ngay"
+  "download": "Tải ngay",
+  "find_ATM": "Tìm ATM & điểm GD",
+  "near_ATM": "Điểm giao dịch gần nhất"
 }

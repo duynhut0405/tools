@@ -15,7 +15,6 @@ const logoStyle = {
 
 function Widget({ data }) {
   const lang = getLang();
-  console.log(data);
   return (
     <React.Fragment>
       {data && data.footer_brief !== undefined && ReactHtmlParser(data.footer_brief)}

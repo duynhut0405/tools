@@ -1480,3 +1480,63 @@ li.active {
 .li-footer :hover {
   color: #a0d1ff !important;
 }
+.col-lg-4 .col-md-5 .efch-5 .ef-img-t .show-768 {
+  opacity: 1;
+  transform: translate(0, 0) scale3d(1, 1, 1);
+}
+
+.subscribeForm button {
+  width: 30px;
+  height: 100%;
+  right: 12px;
+  position: absolute;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  top: -2px;
+  font-size: 12px;
+  color: #141ED2;
+}
+
+.subscribeForm .input {
+  width: 100%;
+  height: 44px;
+}
+
+.location {
+  display: block;
+  background-color: #A0D2FF;
+  border-radius: 5px;
+  line-height: 24px;
+  color: #141ED2;
+  padding: 10px 15px;
+  overflow: hidden;
+  font-weight: normal;
+}
+
+.location img {
+  float: left;
+  margin-right: 10px;
+}
+
+ul.menu.line>li:not(:first-child):before {
+  background-color: #fff;
+}
+
+.back-top-1 {
+  background-color: #fff;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
+  font-size: 14px;
+  color: #141ED2;
+  cursor: pointer;
+  display: block;
+  height: 38px;
+  width: 38px;
+  text-align: center;
+  text-decoration: none;
+  z-index: 1040;
+  position: absolute;
+  top: 60px;
+  right: 45px;
+}

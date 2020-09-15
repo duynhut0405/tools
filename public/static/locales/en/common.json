@@ -13,8 +13,9 @@
   "page_about_title": "Achievement & Award",
   "exchange_rate": "Exchange rate",
   "change_foreign_currency": "Change foreign currency",
-  "sign_up_promotional": "Sign up to receive promotional information",
-  "donwload_app_today": "Download app today",
+  "sign_up_promotional": "Sign up to receive information",
+  "donwload_app_today": "Download app MBBank",
+  "download_app_today_2": "Download Biz MBBank",
   "enter_email": "Enter email to receive information",
   "codeNT": "Code NT",
   "period": "Period",
@@ -140,5 +141,7 @@
   "dead_office": "MBBank dead office",
   "find_out_now": "Find out now",
   "register_now": "Register now",
-  "download": "Download now"
+  "download": "Download now",
+  "find_ATM": "find ATM and transaction point",
+  "near_ATM": "Nearest transaction point"
 }
