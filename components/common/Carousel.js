@@ -27,7 +27,7 @@ function Carousels({ silder }) {
                     backgroundImage: `url("/static/images/bgsliderback.jpg")`
                   }}
                 >
-                  <div className={`container  option-${item.options}`} key={index}>
+                  <div className={`container container-custom  option-${item.options}`} key={index}>
                     <div className="row center">
                       <div className="col-md-6">
                         <div className="img">
@@ -64,36 +64,38 @@ function Carousels({ silder }) {
               >
                 {map(silder, (_item, _index) => {
                   return (
-                    <div className={`container  option-2`} key={_index}>
-                      <div className="divtext text-left-mg ">
-                        <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(_item.note_1)}</h1>
-                        <div className="cl1">{ReactHtmlParser(_item.note_2)}</div>
-                        <div className="text_content3">{_item.note_3}</div>
-                        {_item.text_action === null ||
-                        _item.text_action === undefined ||
-                        _item.text_action === '' ? (
-                          ''
-                        ) : (
-                          <a
-                            className="btn"
-                            href={
-                              _item.url === null || _item.url === undefined || _item.url === ''
-                                ? '#'
-                                : _item.url
-                            }
-                          >
-                            {_item.text_action}
-                          </a>
-                        )}
-                        {_item.video_url !== undefined && _item.video_url !== '' && (
-                          <div>
-                            <iframe src={_item.video_url} />
-                          </div>
-                        )}
+                    <div className={`container container-custom option-2`} key={_index} style={{minWidth:"2575px", minHeight: "730px", paddingLeft: "0"}}>
+                      <div className="container" style={{height: "-webkit-fill-available"}}>
+                        <div className="divtext text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
+                          {ReactHtmlParser(_item.note_2)}
+                          <h1 className=" efch-2 ef-img-l" style={{color: "#fff", fontSize: "72px"}}>{ReactHtmlParser(_item.note_1)}</h1>
+                          {/* <div className="text_content3">{_item.note_3}</div> */}
+                          {_item.text_action === null ||
+                          _item.text_action === undefined ||
+                          _item.text_action === '' ? (
+                            ''
+                          ) : (
+                            <a
+                              className="btn"
+                              href={
+                                _item.url === null || _item.url === undefined || _item.url === ''
+                                  ? '#'
+                                  : _item.url
+                              }
+                            >
+                              {_item.text_action}
+                            </a>
+                          )}
+                          {_item.video_url !== undefined && _item.video_url !== '' && (
+                            <div>
+                              <iframe src={_item.video_url} />
+                            </div>
+                          )}
+                        </div>
                       </div>
                       <div className="wimg">
                         <img
-                          className="img-center img-pc"
+                          className="img img-pc" style={{ objectFit: "cover" }}
                           src={`${process.env.DOMAIN}${_item.urlImage}`}
                           alt="icon"
                         />

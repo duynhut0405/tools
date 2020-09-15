@@ -1546,8 +1546,18 @@ ul.menu.line>li:not(:first-child):before {
   right: 45px;
 }
 
-.banner-heading-1 .container {
-  max-width: 2000px;
+
+.banner-heading-1 .divtext h1 {
+  font-weight: 600;
+  text-transform: inherit;
+  line-height: normal;
+  margin-bottom: 10px;
+  font-size: 72px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  letter-spacing: -2px;
+}
+.banner-heading-1 .divtext {
+  padding-top: 45px;
 }
 
 #footer-pc .widget-title {
