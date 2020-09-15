@@ -43,7 +43,7 @@ module.exports = withPWA(
           FRONTEND_URL: 'https://mbbank6.mangoads.com.vn/',
           FRONTEND_URL_LOAN: 'https://mbbank6.mangoads.com.vn'
         },
-        exportTrailingSlash: true,
+        // exportTrailingSlash: true,
         pwa: {
           dest: 'public'
         },
