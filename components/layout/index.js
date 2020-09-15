@@ -663,8 +663,8 @@ function Layout({ children, isPrioty, idPage }) {
               </div>
             </section> */}
             <div id="footer-pc" className="group-ef loaded" style={{backgroundColor: '#141ED2', color: '#fff'}}>
-              <div className="container">
-                <div>
+              <div className="container" style={{paddingBottom: '20px'}}>
+                <p>
                   {lang === 'vi' && (
                     <Link href="/">
                       <a className="logo">
@@ -675,11 +675,11 @@ function Layout({ children, isPrioty, idPage }) {
                   {lang === 'en' && (
                     <Link href="/en">
                       <a className="logo">
-                        <img className="lazyload" data-src="/images/logo.svg" alt="images" />
+                        <img className="lazyload" data-src="/images/logo.svg" alt="images" style={logoStyle}/>
                       </a>
                     </Link>
                   )}
-                </div>
+                </p>
                 <div className="row">
                   <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
                     <div className="widget widget-info">
@@ -691,8 +691,8 @@ function Layout({ children, isPrioty, idPage }) {
                 </div>
                 <div className="row bottom">
                   <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                    <div className="widget widget-wapp" style={{ marginTop: '30px'}}>
-                       <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
+                    <div className="widget widget-wapp" style={{ marginTop: '0'}}>
+                       <div className="wapp" style={{ color: '#fff',display: 'flex' , marginBottom:"5px"}}>
                          <span className="code"><img src="/static/images/svg/qr.svg" style={{width: '50px'}} alt=""/></span>
                          <a href={linkApp ? linkApp.ios : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px', paddingLeft: '20px'}}>
                             <img
@@ -718,7 +718,7 @@ function Layout({ children, isPrioty, idPage }) {
                        </div>
                     </div>
                   </div>
-                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'20px' }}>
+                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
                     <div className="widget widget-subscribe">
                       <h5 className="widget-title" style={{color: '#fff'}}>{t('sign_up_promotional')}</h5>
                       <form onSubmit={onRegister} class="subscribeForm">
@@ -740,7 +740,7 @@ function Layout({ children, isPrioty, idPage }) {
                     </div>
                   </div>
 
-                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'20px' }}>
+                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
                     <div className="widget widget-subscribe">
                       <h5 className="widget-title" style={{color: '#fff'}}>{t('find_ATM')}</h5>
                       <a class="location" href="/page/diem-giao-dich-atm"> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
@@ -748,7 +748,7 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                 </div>
                 
-                <div className="line"></div>
+                {/* <div className="line"></div>
                 <div className="row grid-space-10">
                   <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
                     <ul className="menu line">
@@ -781,6 +781,44 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
                     <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                  </div>
+                </div> */}
+              </div>
+              <div className="line-custom">
+                <div className="container">
+                  <div className="row grid-space-10">
+                      <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
+                        <ul className="menu line">
+                          {map(
+                            menuFooterBottom.sort((a, b) => a.position - b.position),
+                            (values, key) => {
+                              if (values.type === '4') {
+                                return (
+                                  <li className="li-footer" key={key}>
+                                    {values.target === '2' ? (
+                                      <a href={values.url} target="_blank" rel="noopener noreferrer">
+                                        {values.name}
+                                      </a>
+                                    ) : (
+                                      <a href={values.url}>{values.name}</a>
+                                    )}
+                                  </li>
+                                );
+                              }
+                              return (
+                                <li className="li-footer" key={key}>
+                                  <LinkPage lang={lang} name={values.slugPages}>
+                                    <a>{values.name}</a>
+                                  </LinkPage>
+                                </li>
+                              );
+                            }
+                          )}
+                        </ul>
+                      </div>
+                      <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
+                        <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                      </div>
                   </div>
                 </div>
               </div>

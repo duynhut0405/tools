@@ -243,8 +243,8 @@ ul.menu.line > li button.search-sg i {
   }
   
   #header #logo img {
-    max-height: 45px !important;
-    max-width: 109px !important;
+    height: 45px !important;
+    width: 109px !important;
   }
 
   ul.menu-top-header > li > a {
@@ -1480,6 +1480,11 @@ li.active {
 .li-footer :hover {
   color: #a0d1ff !important;
 }
+
+.li-footer {
+  font-size: 13px;
+  font-weight: 300;
+}
 .col-lg-4 .col-md-5 .efch-5 .ef-img-t .show-768 {
   opacity: 1;
   transform: translate(0, 0) scale3d(1, 1, 1);
@@ -1488,12 +1493,12 @@ li.active {
 .subscribeForm button {
   width: 30px;
   height: 100%;
-  right: 12px;
+  right: 15px;
   position: absolute;
   text-align: center;
   background-color: transparent;
   border: none;
-  top: -2px;
+  top: 12px;
   font-size: 12px;
   color: #141ED2;
 }
@@ -1539,4 +1544,29 @@ ul.menu.line>li:not(:first-child):before {
   position: absolute;
   top: 60px;
   right: 45px;
+}
+
+.banner-heading-1 .container {
+  max-width: 2000px;
+}
+
+#footer-pc .widget-title {
+  margin-bottom: 10px !important;
+}
+
+#footer-pc .widget {
+  margin-bottom: 0 !important;
+}
+
+.line-custom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 18px 0;
+  margin-top: 10px;
+}
+
+#footer-pc {
+  background-color: #141ED2;
+  font-size: 13px;
+  padding: 60px 0 0;
+  position: relative;
 }
