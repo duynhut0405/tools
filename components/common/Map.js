@@ -12,6 +12,23 @@ const propTypes = {
   zoom: PropTypes.number,
   id: PropTypes.number
 };
+const mapOptionsCreator = {
+  scrollwheel: true,
+  // zoomControlOptions: {
+  //     position: map.ControlPosition.RIGHT_CENTER,    // as long as this is not set it works
+  //     style: map.ZoomControlStyle.SMALL
+  // },
+  // mapTypeControlOptions: {
+  //     position: map.ControlPosition.BOTTOM_RIGHT     // this makes the map type control disappear
+  // },
+  mapTypeControl: false,
+  zoomControl: false,
+  draggable: true,
+  rotateControl: true,
+  scaleControl: true,
+  streetViewControl: false,
+  panControl: false,
+};
 
 function Map({ data, location, zoom, id }) {
   const [isCheck, setIsCheck] = useState(null);
@@ -23,15 +40,15 @@ function Map({ data, location, zoom, id }) {
   const MyMapComponent = compose(
     withProps({
       googleMapURL:
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU&libraries=geometry,drawing,places',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyArRfxyxqmW2NviGCwmUSethLU5Yr5Qbxw',
       loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div style={{ height: `600px` }} />,
+      containerElement: <div style={{ height: `500px` }} />,
       mapElement: <div style={{ height: `100%` }} />
     }),
     withScriptjs,
     withGoogleMap
   )(() => (
-    <GoogleMap defaultZoom={zoom} defaultCenter={location}>
+    <GoogleMap defaultZoom={zoom} defaultCenter={location} options={mapOptionsCreator} mapTypeControl="true">
       {map(data, (item, index) => {
         return (
           <Marker
@@ -41,12 +58,13 @@ function Map({ data, location, zoom, id }) {
             isCheck={isCheck === item.id}
             onOpenCLick={() => setIsCheck(item.id)}
             onCloseClick={() => setIsCheck(null)}
+            
           />
         );
       })}
     </GoogleMap>
   ));
-  return <div style={{ height: '600px' }}>{MyMapComponent()}</div>;
+  return <div style={{  width: "100.5%" }}>{MyMapComponent()}</div>;
 }
 
 Map.propTypes = propTypes;

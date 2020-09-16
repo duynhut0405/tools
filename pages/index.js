@@ -82,7 +82,7 @@ function Home({ page, silder, menuMiddle }) {
         <Carousel silder={silder}/>
         <MenuMiddle data={menuMiddle} />
         <BlockRender data={page.pageBlocks} pageId={page.id} />
-        <FormRate data={listRate} interestRate={listInterestRate} />
+        {/* <FormRate data={listRate} interestRate={listInterestRate} /> */}
       </div>
       {/* </Layout> */}
     </React.Fragment>
@@ -106,7 +106,6 @@ Home.getInitialProps = async () => {
   // const common = await getCommon('vi');
   // const { general, socialLink, linkApp } = common;
   const pageResponse = await getPageMutiLangBySlug('vi', 'homepage');
-  console.log(pageResponse.data.menuMiddle);
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
     menuMiddle = pageResponse.data.menuMiddle;

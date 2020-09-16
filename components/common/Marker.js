@@ -18,6 +18,7 @@ function Markers({ index, item, isCheck, onOpenCLick, onCloseClick }) {
       position={{ lat: Number(item.latitude), lng: Number(item.longitude) }}
       key={index}
       onClick={onOpenCLick}
+      icon={'static/images/pin-2.png'}
     >
       {isCheck && (
         <InfoWindow onCloseClick={onCloseClick}>

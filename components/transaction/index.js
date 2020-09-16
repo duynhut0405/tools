@@ -9,7 +9,7 @@ import { searchBranchesService, getProvinceService, getDistrictService } from '.
 const propTypes = {
   listBranches: ProppTypes.array,
   data: ProppTypes.object,
-  id: ProppTypes.number
+  id: ProppTypes.number,
 };
 
 const searchBranches = async (query, setData) => {
@@ -49,10 +49,12 @@ const getAddress = async (lat, long, setData, setListBranches) => {
   }
 };
 
+let firstLoad = true;
+
 function Transaction({ data, id }) {
   const [location, setLocation] = useState({ lat: 21.027763, lng: 105.83416 });
   const [locationId, setID] = useState(null);
-  const [zoom, setZoom] = useState(8);
+  const [zoom, setZoom] = useState(10);
   const [district, setDistrict] = useState(null);
   const [branches_type, setBranchesType] = useState('all');
   const [province, setProvince] = useState(null);
@@ -97,7 +99,7 @@ function Transaction({ data, id }) {
       },
       setListBranches
     );
-    setZoom(8);
+    setZoom(10);
     getDistrict(provinceItem.value, setListDistrict);
   };
 
@@ -126,7 +128,7 @@ function Transaction({ data, id }) {
       },
       setListBranches
     );
-    setZoom(8);
+    setZoom(10);
     setBranchesType(type);
   };
 
@@ -159,6 +161,19 @@ function Transaction({ data, id }) {
       setListBranches
     );
   };
+  
+  const onLoad = () => {
+    searchBranches(
+      {
+        districtCity: null,
+        networkCategory: 'all',
+        provinceCity: null,
+        search: 'Hà Nội'
+      },
+      setListBranches
+    );
+    firstLoad = false;
+  };
 
   let padding = '';
   if (data.optionWidth === '2') {
@@ -171,30 +186,39 @@ function Transaction({ data, id }) {
     padding = 'sec-';
   }
 
+  if (firstLoad) {
+    onLoad();
+  }
+
+
   return (
-    <div className={`wrap-list-map ${padding} transaction`} id={id}>
-      <div className="row grid-space-0">
-        <div className="col-md-4 ">
-          <BoxSearch
-            listBranches={listBranches}
-            listDistrict={listDistrict}
-            listProvince={listProvince}
-            branches_type={branches_type}
-            handleProvince={handleProvince}
-            setQuery={onChange}
-            query={query}
-            onSearch={onSearch}
-            districtValue={districtValue}
-            setBranchesType={handleBranchesType}
-            setDistrict={handleDistrict}
-            getDetail={getDetail}
-          />
-        </div>
-        <div className="col-md-8">
-          <Map data={listBranches} location={location} zoom={zoom} id={locationId} />
+    <session className="sec-tb sec-locations">
+      <div className="container">
+        <div className={`wrap-list-map ${padding} transaction`} id={id} style={{marginBottom:"70px"}}>
+          <div className="row grid-space-0" style={{height:"inherit"}}>
+            <div className="col-md-5">
+              <BoxSearch
+                listBranches={listBranches}
+                listDistrict={listDistrict}
+                listProvince={listProvince}
+                branches_type={branches_type}
+                handleProvince={handleProvince}
+                setQuery={onChange}
+                query={query}
+                onSearch={onSearch}
+                districtValue={districtValue}
+                setBranchesType={handleBranchesType}
+                setDistrict={handleDistrict}
+                getDetail={getDetail}
+              />
+            </div>
+            <div className="col-md-7">
+              <Map data={listBranches} location={location} zoom={zoom} id={locationId} />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </session>
   );
 }
 

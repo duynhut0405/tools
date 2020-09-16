@@ -34,9 +34,11 @@ function BoxSearch({
   query,
   districtValue
 }) {
+
   return (
     <div className="ajax-content-map">
-      <ul className="menu row grid-space-0">
+      <h5 class="uppercase">Mạng lưới</h5>
+      {/* <ul className="menu row grid-space-0">
         <li
           className={branches_type === 'all' ? 'col-4 active' : 'col-4'}
           onClick={() => setBranchesType('all')}
@@ -55,7 +57,7 @@ function BoxSearch({
         >
           <span className="item">{t('atm')}</span>
         </li>
-      </ul>
+      </ul> */}
 
       <div className="form-search-focus mb-20">
         <form onSubmit={onSearch}>
@@ -71,7 +73,7 @@ function BoxSearch({
         </form>
       </div>
       <div className="mb-20">
-        <div>{t('province')}</div>
+        {/* <div>{t('province')}</div> */}
         <Select
           className="fix-select"
           placeholder={t('province')}
@@ -84,7 +86,7 @@ function BoxSearch({
           onChange={handleProvince}
         />
       </div>
-      <div className="mb-20">
+      {/* <div className="mb-20">
         <div>{t('district')}</div>
         <Select
           className="fix-select1"
@@ -98,17 +100,17 @@ function BoxSearch({
           }))}
           onChange={provinceItem => setDistrict(provinceItem.value, provinceItem.label)}
         />
-      </div>
+      </div> */}
       <div className="map-list-store">
         {map(listBranches, (branches, index) => (
           <div
             className={
               branches.network_category === 'atm'
-                ? 'item color-2'
+                ? 'item'
                 : branches.network_category === 'transaction' ||
                   branches.network_category === 'transaction_online'
-                ? 'item color-3'
-                : 'item color-1'
+                ? 'item'
+                : 'item'
             }
             key={index}
           >
