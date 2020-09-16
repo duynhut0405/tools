@@ -64,7 +64,7 @@ function Carousels({ silder }) {
               >
                 {map(silder, (_item, _index) => {
                   return (
-                    <div className={`option-2`} key={_index} style={{ height: "730px", paddingLeft: "0"}}>
+                    <div className={`container-custom option-2`} key={_index} style={{ paddingLeft: "0"}}>
                       <div className="container" style={{height: "-webkit-fill-available"}}>
                         <div className="divtext text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
                           {ReactHtmlParser(_item.note_2)}

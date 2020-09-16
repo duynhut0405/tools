@@ -1580,3 +1580,26 @@ ul.menu.line>li:not(:first-child):before {
   padding: 60px 0 0;
   position: relative;
 }
+
+@media (max-width: 1500px) {
+  .banner-heading-1 .container-custom {
+    height: calc(100vh - 100px) !important;
+  }
+  .banner-heading-1 img {
+    height: calc(100vh - 100px) !important;
+  }
+}
+
+.banner-heading-1 .container-custom {
+  height: 730px;
+}
+
+.banner-heading-1 img {
+  height: 730px;
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 768px) {
+  .banner-heading-4 .container-custom img {
+    height: calc(100vh - 100px) !important;
+  }
+}
