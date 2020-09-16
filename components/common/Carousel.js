@@ -27,7 +27,7 @@ function Carousels({ silder }) {
                     backgroundImage: `url("/static/images/bgsliderback.jpg")`
                   }}
                 >
-                  <div className={`container container-custom  option-${item.options}`} key={index}>
+                  <div className={`container option-${item.options}`} key={index}>
                     <div className="row center">
                       <div className="col-md-6">
                         <div className="img">
@@ -64,7 +64,7 @@ function Carousels({ silder }) {
               >
                 {map(silder, (_item, _index) => {
                   return (
-                    <div className={`container container-custom option-2`} key={_index} style={{minWidth:"2575px", minHeight: "730px", paddingLeft: "0"}}>
+                    <div className={`option-2`} key={_index} style={{ height: "730px", paddingLeft: "0"}}>
                       <div className="container" style={{height: "-webkit-fill-available"}}>
                         <div className="divtext text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
                           {ReactHtmlParser(_item.note_2)}

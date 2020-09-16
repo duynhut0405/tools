@@ -106,6 +106,7 @@ Home.getInitialProps = async () => {
   // const common = await getCommon('vi');
   // const { general, socialLink, linkApp } = common;
   const pageResponse = await getPageMutiLangBySlug('vi', 'homepage');
+  console.log(pageResponse);
   if (pageResponse && pageResponse !== undefined && pageResponse.status === 200) {
     page = pageResponse.data;
     menuMiddle = pageResponse.data.menuMiddle;
