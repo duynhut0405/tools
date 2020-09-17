@@ -423,7 +423,7 @@ function Layout({ children, isPrioty, idPage }) {
             <Sticky topOffset={40}>
               {({ style }) => (
                 <div className="setzindex" style={style}>
-                  <header id="header" className="fixe" role="banner">
+                  <header id="header" role="banner">
                     <div className="container">
                       {lang === 'en' && (
                         <React.Fragment>
@@ -552,7 +552,6 @@ function Layout({ children, isPrioty, idPage }) {
                       </div>
                     </div>
                   </header>
-                  <div className="afterHeader" style={{height: "60px"}}></div>
                 </div>
               )}
             </Sticky>

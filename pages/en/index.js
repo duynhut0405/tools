@@ -77,7 +77,7 @@ function Home({ page, silder, menuMiddle }) {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="354" />
       </Head>
-      <div className="main_content" style={{top: "20px"}}>
+      <div className="main_content">
         {page.breadCrumb && <Breadcrumb data={[]} />}
         <Carousel silder={silder} />
         <MenuMiddle data={menuMiddle} />

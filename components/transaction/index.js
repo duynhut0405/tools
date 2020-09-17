@@ -77,6 +77,7 @@ function Transaction({ data, id }) {
       navigator.geolocation.getCurrentPosition(showPosition);
     }
     getProvince(setListProvince);
+    onLoad();
   }, []);
 
   const handleProvince = provinceItem => {
@@ -184,10 +185,6 @@ function Transaction({ data, id }) {
     padding = 'sec-b';
   } else {
     padding = 'sec-';
-  }
-
-  if (firstLoad) {
-    onLoad();
   }
 
 

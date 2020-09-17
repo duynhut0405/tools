@@ -1700,3 +1700,65 @@ ul.menu.line>li:not(:first-child):before {
   margin-right: 5px;
   top: 2px; */
 }
+
+.viewall-custom {
+  font-size: 16px;
+  color: #141ED2;
+  font-weight: 600;
+  right: 0;
+  position: absolute;
+  top: 8px;
+}
+
+.viewall-custom i {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+.title-custom {
+  opacity: 1;
+    transform: translate(0, 0) scale3d(1, 1, 1);
+    transition-delay: 0s !important;
+    display: block;
+    transition: all 1s cubic-bezier(0, 0.15, 0, 1);
+    margin-bottom: 0;
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.news-col6-custom {
+  opacity: 1;
+  transform: translate(0, 0) scale3d(1, 1, 1);
+  transition-delay: 0.8s !important;
+  margin-bottom: 30px;
+  display: block;
+  transition: all 1s cubic-bezier(0, 0.15, 0, 1);
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.on-hover-blue {
+  margin: 0; 
+  max-width: 400px;
+}
+
+.on-hover-blue:hover {
+  color:blue;
+}
+
+@media only screen and (max-width: 1199px)
+{h5, .h5 {
+    font-size: 16px;
+}}
+
+@media only screen and (min-width: 1200px)
+{.list-1 h5 {
+    font-size: 18px !important;
+}}

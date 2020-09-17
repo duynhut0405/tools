@@ -78,7 +78,7 @@ function Home({ page, silder, menuMiddle }) {
       </Head>
       {/* <Layout lang="vi" idPage={page.id}> */}
       <div className="main_content">
-        {page.breadCrumb && <Breadcrumb/>}
+        {page.breadCrumb && <Breadcrumb data={[]} />}
         <Carousel silder={silder}/>
         <MenuMiddle data={menuMiddle} />
         <BlockRender data={page.pageBlocks} pageId={page.id} />

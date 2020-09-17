@@ -782,6 +782,166 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
       </section>
     );
   }
+  if (type === '10') {
+    return (
+      <section className={`${padding} sec-h-4 news-${type}`} id={id}>
+        <div className="container">
+          {(data.title || data.title !== '') && (
+            <div className="entry-head text-center" style={{marginBottom:"15px"}}>
+              <h2 className="title-custom ">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall-custom">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall-custom">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
+            </div>
+          )}
+          {/* 2tabs main */}
+          <div className="row list-item list-1">
+          {map(listNews, (item, index) => (
+                  <div className="col-md-6 efch-5 ef-img-t" key={index}>
+                    <LinkNew lang={lang} name={item.url}>
+                      <a className={`item tRes_66`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{item.title}</h4>
+                        </div>
+                      </a>
+                    </LinkNew>
+                  </div>
+                ))}
+          {map(listNewsTabs, (item, index) => (
+                  <div className="col-md-4 efch-5 ef-img-t" key={index}>
+                    <listNewsTabs lang={lang} name={item.url}>
+                      <a className={`item tRes_66`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <h5 className="title line2 on-hover-blue">{item.title}</h5>
+                        </div>
+                      </a>
+                    </listNewsTabs>
+                  </div>
+                ))}
+          </div>
+          {(data.title === undefined || data.title === '') && (
+            <div className="text-center mt-4">
+              <LinkCategory lang={lang} name={slugCategory}>
+                <a className="btn lg">{t('view')}</a>
+              </LinkCategory>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+  if (type === '11') {
+    return (
+      <section className={`${padding} sec-h-4 news-${type}`} id={id}>
+        <div className="container">
+          {(data.title || data.title !== '') && (
+            <div className="entry-head text-center" style={{marginBottom:"15px"}}>
+              <h2 className="title-custom ">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall-custom">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall-custom">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
+            </div>
+          )}
+          {/* 2tabs main */}
+          <div className="row list-item list-1">
+          {map(listNews, (item, index) => (
+                  <div className="col-md-6 efch-5 ef-img-t" key={index}>
+                    <LinkNew lang={lang} name={item.url}>
+                      <a className={`item tRes_66`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{item.title}</h4>
+                        </div>
+                      </a>
+                    </LinkNew>
+                  </div>
+                ))}
+          {map(listNewsTabs, (item, index) => (
+                  <div className="col-md-4 efch-5 ef-img-t" key={index}>
+                    <listNewsTabs lang={lang} name={item.url}>
+                      <a className={`item tRes_66`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <h5 className="title line2 on-hover-blue">{item.title}</h5>
+                        </div>
+                      </a>
+                    </listNewsTabs>
+                  </div>
+                ))}
+          </div>
+          {(data.title === undefined || data.title === '') && (
+            <div className="text-center mt-4">
+              <LinkCategory lang={lang} name={slugCategory}>
+                <a className="btn lg">{t('view')}</a>
+              </LinkCategory>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
 }
 News.propTypes = propTypes;
 
