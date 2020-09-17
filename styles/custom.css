@@ -1750,7 +1750,7 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .on-hover-blue:hover {
-  color:blue;
+  color:#141ED2;
 }
 
 @media only screen and (max-width: 1199px)
@@ -1774,4 +1774,26 @@ ul.menu.line>li:not(:first-child):before {
   margin: 0;
   text-transform: none !important;
   font-size: 20px;
+}
+
+.title-custom-1 {
+  margin: 0 0 10px;
+  color: #000 !important;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  color: inherit;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.title-custom-1:hover {
+  color:#141ED2 !important;
+}
+
+.list-5 .item .divtext {
+  padding: 20px 25px 25px;
 }
