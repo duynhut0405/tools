@@ -30,6 +30,8 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   const [listCategory, setListCategory] = useState([]);
   const [slugCategory, setSlugCategory] = useState('');
   const listNews = slice(uniqBy(listCategory, 'newsId'), 0, 2);
+  const listNews4 = slice(uniqBy(listCategory, 'newsId'), 0, 1);
+  const listNewsTabs4 = slice(uniqBy(listCategory, 'newsId'), 1, 4);
   const listNewsTabs = slice(uniqBy(listCategory, 'newsId'), 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
 
@@ -811,7 +813,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
           {/* 2tabs main */}
           <div className="row list-item list-1">
           {map(listNews, (item, index) => (
-                  <div className="col-md-6 efch-5 ef-img-t" key={index}>
+                  <div className="col-md-6 efch-5 ef-img-t" key={index} style={{maxHeight:"356.39px"}}>
                     <LinkNew lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
@@ -870,29 +872,21 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
             <div className="entry-head text-center" style={{marginBottom:"15px"}}>
               <h2 className="title-custom ">{data.title}</h2>
               <p className="cl5">{data.description}</p>
-              {(data.inputUrl === undefined || data.inputUrl === '') && (
+              {/* {(data.inputUrl === undefined || data.inputUrl === '') && (
                 <LinkCategory lang={lang} name={slugCategory}>
                   <a className="viewall-custom">
                     {t('view')}
                     <i className="icon-arrow-1"></i>
                   </a>
                 </LinkCategory>
-              )}
-              {data.inputUrl && (
-                <LinkInput lang={lang} name={data.inputUrl}>
-                  <a className="viewall-custom">
-                    {t('view')}
-                    <i className="icon-arrow-1"></i>
-                  </a>
-                </LinkInput>
-              )}
+              )} */}
             </div>
           )}
           {/* 2tabs main */}
           <div className="row list-item list-1">
-          {map(listNews, (item, index) => (
-                  <div className="col-md-6 efch-5 ef-img-t" key={index}>
-                    <LinkNew lang={lang} name={item.url}>
+          {map(listNews4, (item, index) => (
+                  <div className="col-md-8 efch-1 ef-img-t" key={index} style={{maxHeight:"318.5px"}}>
+                    <listNews4 lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
                             className="lazyload"
@@ -907,12 +901,12 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h4 className="title line2 on-hover-blue">{item.title}</h4>
                         </div>
                       </a>
-                    </LinkNew>
+                    </listNews4>
                   </div>
                 ))}
-          {map(listNewsTabs, (item, index) => (
-                  <div className="col-md-4 efch-5 ef-img-t" key={index}>
-                    <listNewsTabs lang={lang} name={item.url}>
+                {map(listNewsTabs4, (item, index) => (
+                  <div className={`col-md-4 efch-${index} ef-img-t`} key={index}>
+                    <listNewsTabs4 lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
                             className="lazyload"
@@ -927,9 +921,20 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h5 className="title line2 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
-                    </listNewsTabs>
+                    </listNewsTabs4>
                   </div>
                 ))}
+                
+                <div className={`col-md-4 efch-5 ef-img-t`}>
+                    <LinkInput lang={lang} name={data.url}>
+                      <a className={`item none tRes_66 list-1-custom`} href={data.url} style={{backgroundColor:data.color.value}}>
+                        <div className="divtext">
+                          <div class="category">{data.blockTitle}</div>
+                          <h5 className="title line2 on-hover-blue">{data.viewMoreText}<i class="icon-arrow-2" style={{fontSize:"11px"}}></i></h5>
+                        </div>
+                      </a>
+                    </LinkInput>
+                </div>
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
