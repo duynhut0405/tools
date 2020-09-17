@@ -32,8 +32,34 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   const listNews = slice(uniqBy(listCategory, 'newsId'), 0, 2);
   const listNews4 = slice(uniqBy(listCategory, 'newsId'), 0, 1);
   const listNewsTabs4 = slice(uniqBy(listCategory, 'newsId'), 1, 4);
+  const listNews6 = slice(uniqBy(listCategory, 'newsId'), 0, 1);
+  const listNewsTabs6 = slice(uniqBy(listCategory, 'newsId'), 1, 5);
+  const listNewsTabsLast6 = slice(uniqBy(listCategory, 'newsId'), 5, 6);
   const listNewsTabs = slice(uniqBy(listCategory, 'newsId'), 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
+  if (data.type === '10') {
+    console.log(listCategory);
+  }
+  let array = [];
+    if (data.blockTitle1 !== null) {
+      array.push(data.blockTitle1);
+    }
+    if (data.blockTitle2 !== null) {
+      array.push(data.blockTitle2);
+    }
+    if (data.blockTitle3 !== null) {
+      array.push(data.blockTitle3);
+    }
+    if (data.blockTitle4 !== null) {
+      array.push(data.blockTitle4);
+    }
+    if (data.blockTitle5 !== null) {
+      array.push(data.blockTitle5);
+    }
+    if (data.blockTitle6 !== null) {
+      array.push(data.blockTitle6);
+    }
+  const titleBlockArray = array;
 
   const lang = getLang();
   const size = UseWindowResize();
@@ -898,6 +924,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             alt="images"
                           />
                         <div className="divtext">
+                          <div class="category">{data.blockTitle1}</div>
                           <h4 className="title line2 on-hover-blue">{item.title}</h4>
                         </div>
                       </a>
@@ -918,6 +945,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             alt="images"
                           />
                         <div className="divtext">
+                          <div class="category">{titleBlockArray[index+1] === undefined ? '' : titleBlockArray[index+1]}</div>
                           <h5 className="title line2 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
@@ -929,7 +957,113 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                     <LinkInput lang={lang} name={data.url}>
                       <a className={`item none tRes_66 list-1-custom`} href={data.url} style={{backgroundColor:data.color.value}}>
                         <div className="divtext">
-                          <div class="category">{data.blockTitle}</div>
+                          <div class="category">{data.blockTitle5}</div>
+                          <h5 className="title line2 on-hover-blue">{data.viewMoreText}<i class="icon-arrow-2" style={{fontSize:"11px"}}></i></h5>
+                        </div>
+                      </a>
+                    </LinkInput>
+                </div>
+          </div>
+          {(data.title === undefined || data.title === '') && (
+            <div className="text-center mt-4">
+              <LinkCategory lang={lang} name={slugCategory}>
+                <a className="btn lg">{t('view')}</a>
+              </LinkCategory>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+  if (type === '12') {
+    return (
+      <section className={`${padding} sec-h-4 news-${type}`} id={id}>
+        <div className="container">
+          {(data.title || data.title !== '') && (
+            <div className="entry-head text-center" style={{marginBottom:"15px"}}>
+              <h2 className="title-custom ">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              {/* {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall-custom">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )} */}
+            </div>
+          )}
+          {/* 2tabs main */}
+          <div className="row list-item list-1">
+          {map(listNews6, (item, index) => (
+                  <div className="col-md-8 efch-1 ef-img-t" key={index} style={{maxHeight:"318.5px"}}>
+                    <listNews6 lang={lang} name={item.url}>
+                      <a className={`item tRes_66`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <div class="category">{data.blockTitle1}</div>
+                          <h4 className="title line2 on-hover-blue">{item.title}</h4>
+                        </div>
+                      </a>
+                    </listNews6>
+                  </div>
+                ))}
+                {map(listNewsTabs6, (item, index) => (
+                  <div className={`col-md-4 efch-${index} ef-img-t`} key={index}>
+                    <listNewsTabs6 lang={lang} name={item.url}>
+                      <a className={`item tRes_66`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <div class="category">{titleBlockArray[index+1] === undefined ? '' : titleBlockArray[index+1]}</div>
+                          <h5 className="title line2 on-hover-blue">{item.title}</h5>
+                        </div>
+                      </a>
+                    </listNewsTabs6>
+                  </div>
+                ))}
+                {map(listNewsTabsLast6, (item, index) => (
+                  <div className="col-md-8 efch-1 ef-img-t" style={{maxHeight:"318.5px"}}>
+                    <listNewsTabsLast6 lang={lang} name={item.url}>
+                      <a className={`item tRes_66`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <div class="category">{data.blockTitle6}</div>
+                          <h4 className="title line2 on-hover-blue">{item.title}</h4>
+                        </div>
+                      </a>
+                    </listNewsTabsLast6>
+                  </div>
+                ))}
+                
+                <div className={`col-md-4 efch-5 ef-img-t`}>
+                    <LinkInput lang={lang} name={data.url}>
+                      <a className={`item none tRes_66 list-1-custom`} href={data.url} style={{backgroundColor:data.color.value}}>
+                        <div className="divtext">
+                          <div class="category">{data.blockTitle6}</div>
                           <h5 className="title line2 on-hover-blue">{data.viewMoreText}<i class="icon-arrow-2" style={{fontSize:"11px"}}></i></h5>
                         </div>
                       </a>
