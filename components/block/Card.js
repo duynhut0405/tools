@@ -2,6 +2,9 @@ import React from 'react';
 import map from 'lodash/map';
 import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
+import { LinkInput } from '../common/link';
+import { getLang } from '../../utils/cookie';
+import t from '../../translation';
 
 const propTypes = {
   data: PropTypes.any,
@@ -21,6 +24,7 @@ function Card({ data, type, optionWidth, id }) {
   } else {
     padding = 'sec-';
   }
+  const lang = getLang();
   return (
     <React.Fragment>
       {type === '1' && (
@@ -28,7 +32,7 @@ function Card({ data, type, optionWidth, id }) {
           <section className={`${padding} bg-gray card-${type}`} id={id}>
             <div className="container">
               <div className="entry-head ">
-                <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
+                <h2 className="title-custom">{data === null ? '' : data.title}</h2>
               </div>
               <div className="list-10 row list-item">
                 {map(data.listCard, (items, index) => {
@@ -216,6 +220,97 @@ function Card({ data, type, optionWidth, id }) {
                         </div>
                       </div>
                     </a>
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {type && type === '7' && (
+        <React.Fragment>
+          <section className={`${padding} sec-ab-4 card-${type} `} id={id}>
+            <div className="container">
+              <div className="entry-head text-center" style={{borderBottom: "1px solid #DADADA",paddingBottom: "10px"}}>
+                {data.title && (
+                  <h2 className="title-custom">{data === null ? '' : data.title}</h2>
+                )}
+                {data.nextUrl && (
+                  <LinkInput lang={lang} name={data.nextUrl}>
+                    <a className="viewall-custom">
+                      {t('view')}
+                      <i className="icon-arrow-1"></i>
+                    </a>
+                  </LinkInput>
+                )}
+              </div>
+              <div className="  row ">
+                {data && data.listCard && data.listCard[0] ? (
+                  <div className="col-md-3 col-6 efch-2 ef-img-t">
+                    <div class="item">
+                      <a href={data.listCard[0].url}>
+                          <div className="img text-center">
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
+                              alt="images"
+                            />
+                          </div>
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  ''
+                )}
+                {data && data.listCard && data.listCard[1] ? (
+                  <div className="col-md-3 col-6 efch-2 ef-img-t">
+                    <div class="item">
+                      <a href={data.listCard[1].url}>
+                          <div className="img text-center">
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
+                              alt="images"
+                            />
+                          </div>
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  ''
+                )}
+                {data && data.listCard && data.listCard[2] ? (
+                  <div className="col-md-3 col-6 efch-2 ef-img-t">
+                    <div class="item">
+                      <a href={data.listCard[2].url}>
+                          <div className="img text-center">
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
+                              alt="images"
+                            />
+                          </div>
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  ''
+                )}
+                {data && data.listCard && data.listCard[3] ? (
+                  <div className="col-md-3 col-6 efch-2 ef-img-t">
+                    <div class="item">
+                      <a href={data.listCard[3].url}>
+                          <div className="img text-center">
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
+                              alt="images"
+                            />
+                          </div>
+                      </a>
+                    </div>
                   </div>
                 ) : (
                   ''
