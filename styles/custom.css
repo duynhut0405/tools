@@ -1797,3 +1797,61 @@ ul.menu.line>li:not(:first-child):before {
 .list-5 .item .divtext {
   padding: 20px 25px 25px;
 }
+
+.sec-n-h1 {
+  padding: 20px 0 30px !important;
+}
+
+.sec-n-h1 .container {
+  max-width: 1320px;
+}
+
+/* .sec-n-h1 .wsec {
+  overflow: hidden;
+  position: unset !important;
+  background-repeat: unset !important;
+  background-position: unset !important;
+  background-size: unset !important;
+} */
+
+@media only screen and (min-width: 1200px)
+{.sec-n-h1 .wsec .title {
+    float: left;
+    width: 150px;
+    margin-right: 15px;
+    font-size: 18px;
+    line-height: 18px;
+    margin-top: 28px;
+}
+.sec-n-h1 .wsec .inner {
+  overflow: hidden;
+}
+.sec-n-h1 .inner .row {
+  display: table;
+}
+.sec-n-h1 .inner .row > div {
+  display: table-cell;
+  width: auto;
+}
+}
+
+.row.bottom {
+  align-items: flex-end;
+}
+
+.sec-n-h1 .wsec .title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  opacity: 1;
+  transform: translate(0, 0) scale3d(1, 1, 1) !important;
+}
+
+.ef.loaded, .group-ef.loaded [class*=efch], .loaded.group-ef-hover [class*=efch], .group-ef-hover:hover [class*=efch] {
+  opacity: 1;
+  transform: translate(0, 0) scale3d(1, 1, 1) !important;
+}
+
+.next-shadow+div:before, .next-shadow+main:before, .next-shadow+section:before {
+  background: none !important;
+  transform: translate(0, 0) scale3d(1, 1, 1) !important;
+}

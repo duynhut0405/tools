@@ -320,6 +320,99 @@ function Card({ data, type, optionWidth, id }) {
           </section>
         </React.Fragment>
       )}
+      {type && type === '8' && (
+        <React.Fragment>
+          <section className={`sec-n-h1 group-ef loaded`} id={id}>
+            <div className="container">
+              <div className="wsec" style={{maxHeight:"92px"}}>
+                <div class="title efch-1 ef-img-t">{data === null ? '' : data.title}</div>
+                <div class="inner">
+                  <div className="row bottom">
+                  {data && data.listCard && data.listCard[0] ? (
+                    <div className="col-lg-2 col-md-4 col-6">
+                      <a href={data.listCard[0].url}>
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
+                              alt="images"
+                            />
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {data && data.listCard && data.listCard[1] ? (
+                    <div className="col-lg-2 col-md-4 col-6">
+                      <a href={data.listCard[0].url}>
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
+                              alt="images"
+                            />
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {data && data.listCard && data.listCard[2] ? (
+                    <div className="col-lg-2 col-md-4 col-6">
+                      <a href={data.listCard[0].url}>
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
+                              alt="images"
+                            />
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {data && data.listCard && data.listCard[3] ? (
+                    <div className="col-lg-2 col-md-4 col-6">
+                      <a href={data.listCard[0].url}>
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
+                              alt="images"
+                            />
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {data && data.listCard && data.listCard[4] ? (
+                    <div className="col-lg-2 col-md-4 col-6">
+                      <a href={data.listCard[0].url}>
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
+                              alt="images"
+                            />
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {data && data.listCard && data.listCard[5] ? (
+                    <div className="col-lg-2 col-md-4 col-6">
+                      <a href={data.listCard[0].url}>
+                            <img
+                              className="lazyload"
+                              data-src={`${process.env.DOMAIN}${data.listCard[5].urlImage}`}
+                              alt="images"
+                            />
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 }
