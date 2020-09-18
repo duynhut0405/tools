@@ -235,7 +235,7 @@ function Card({ data, type, optionWidth, id }) {
             <div className="container">
               <div className="entry-head text-center" style={{borderBottom: "1px solid #DADADA",paddingBottom: "10px"}}>
                 {data.title && (
-                  <h2 className="title-custom">{data === null ? '' : data.title}</h2>
+                  <h2 className="title-custom">{data === null ? '' : ReactHtmlParser(data.title)}</h2>
                 )}
                 {data.nextUrl && (
                   <LinkInput lang={lang} name={data.nextUrl}>
@@ -249,7 +249,7 @@ function Card({ data, type, optionWidth, id }) {
               <div className="  row ">
                 {data && data.listCard && data.listCard[0] ? (
                   <div className="col-md-3 col-6 efch-2 ef-img-t">
-                    <div class="item">
+                    <div className="item">
                       <a href={data.listCard[0].url}>
                           <div className="img text-center">
                             <img
@@ -266,7 +266,7 @@ function Card({ data, type, optionWidth, id }) {
                 )}
                 {data && data.listCard && data.listCard[1] ? (
                   <div className="col-md-3 col-6 efch-2 ef-img-t">
-                    <div class="item">
+                    <div className="item">
                       <a href={data.listCard[1].url}>
                           <div className="img text-center">
                             <img
@@ -283,7 +283,7 @@ function Card({ data, type, optionWidth, id }) {
                 )}
                 {data && data.listCard && data.listCard[2] ? (
                   <div className="col-md-3 col-6 efch-2 ef-img-t">
-                    <div class="item">
+                    <div className="item">
                       <a href={data.listCard[2].url}>
                           <div className="img text-center">
                             <img
@@ -300,7 +300,7 @@ function Card({ data, type, optionWidth, id }) {
                 )}
                 {data && data.listCard && data.listCard[3] ? (
                   <div className="col-md-3 col-6 efch-2 ef-img-t">
-                    <div class="item">
+                    <div className="item">
                       <a href={data.listCard[3].url}>
                           <div className="img text-center">
                             <img
@@ -325,12 +325,12 @@ function Card({ data, type, optionWidth, id }) {
           <section className={`sec-n-h1 group-ef loaded`} id={id}>
             <div className="container">
               <div className="wsec" style={{maxHeight:"92px"}}>
-                <div class="title efch-1 ef-img-t">{data === null ? '' : data.title}</div>
-                <div class="inner">
+                <div className="title efch-1 ef-img-t">{data === null ? '' : data.title}</div>
+                <div className="inner">
                   <div className="row bottom">
                   {data && data.listCard && data.listCard[0] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a href={data.listCard[0].url}>
+                      <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
@@ -343,7 +343,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[1] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a href={data.listCard[0].url}>
+                      <a className="item efch-4 ef-img-t" href={data.listCard[0].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
@@ -356,7 +356,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[2] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a href={data.listCard[0].url}>
+                      <a className="item efch-5 ef-img-t" href={data.listCard[0].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
@@ -369,7 +369,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[3] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a href={data.listCard[0].url}>
+                      <a className="item efch-6 ef-img-t" href={data.listCard[0].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
@@ -382,7 +382,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[4] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a href={data.listCard[0].url}>
+                      <a className="item efch-7 ef-img-t" href={data.listCard[0].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
@@ -395,7 +395,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[5] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a href={data.listCard[0].url}>
+                      <a className="item efch-8 ef-img-t" href={data.listCard[0].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[5].urlImage}`}

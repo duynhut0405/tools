@@ -1772,7 +1772,7 @@ ul.menu.line>li:not(:first-child):before {
 
 .list-1 .divtext .title {
   margin: 0;
-  text-transform: none !important;
+  /* text-transform: none !important; */
   font-size: 20px;
 }
 
@@ -1843,15 +1843,21 @@ ul.menu.line>li:not(:first-child):before {
   font-weight: 600;
   margin-bottom: 10px;
   opacity: 1;
-  transform: translate(0, 0) scale3d(1, 1, 1) !important;
 }
 
-.ef.loaded, .group-ef.loaded [class*=efch], .loaded.group-ef-hover [class*=efch], .group-ef-hover:hover [class*=efch] {
+
+.ef.loaded, .group-ef-hover:hover [class*=efch], .group-ef.loaded [class*=efch], .loaded.group-ef-hover [class*=efch] {
   opacity: 1;
-  transform: translate(0, 0) scale3d(1, 1, 1) !important;
+  transform: translate(0, 0) scale3d(1, 1, 1);
+}
+
+
+.group-ef [class*=efch], .group-ef-hover [class*=efch] {
+  opacity: 0;
+  display: block;
+  transition: all 1s cubic-bezier(0, 0.15, 0, 1);
 }
 
 .next-shadow+div:before, .next-shadow+main:before, .next-shadow+section:before {
   background: none !important;
-  transform: translate(0, 0) scale3d(1, 1, 1) !important;
 }
