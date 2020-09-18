@@ -3,6 +3,7 @@ import map from 'lodash/map';
 import Proptypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 import UseWindowResize from '../common/Resize';
+import t from '../../translation';
 
 const propTypes = {
   data: Proptypes.array,
@@ -556,6 +557,77 @@ function Icon({ data, id }) {
                     </div>
                   );
                 })}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '9' && (
+        <React.Fragment>
+          <section
+            className={`sec-b sec-n-h2  group-ef loaded`}
+            id={id}
+          >
+            <div className="row grid-space-0">
+              <div className="col-lg-4 efch-2 ef-img-t">
+                {data && data[0] && data[0].urlImageBackGround ? (
+                  <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[0].imageBackGround} style={{backgroundImage: `url("${data[0].imageBackGround}")`, backgroundSize: "100% 100%"}}>
+                    <div className="divtext" style={{textAlign: "left"}}>
+                      <div className="img" style={{maxWidth: "65px"}}>
+                        <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[0].image} src={data[0].image}/>
+                      </div>
+                      <div className="title" style={{color: "#A0D2FF", marginBottom: "20px", fontWeight: "600"}}>
+                        {data[0].note_1}
+                      </div>
+                      <div className="desc">
+                        {data[0].note_2}
+                      </div>
+                      <a className="link link-custom-1" href={data[0].url} style={{color:"#fff"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
+                    </div>
+                  </div>
+                    ) : (
+                      ''
+                )}
+              </div>
+              <div className="col-lg-4 efch-2 ef-img-t">
+                {data && data[1] && data[1].urlImageBackGround ? (
+                  <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[1].imageBackGround} style={{backgroundImage: `url("${data[1].imageBackGround}")`, backgroundSize: "100% 100%"}}>
+                    <div className="divtext" style={{textAlign: "left"}}>
+                      <div className="img" style={{maxWidth: "65px"}}>
+                        <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[1].image} src={data[1].image}/>
+                      </div>
+                      <div className="title" style={{color: "#141ED2", marginBottom: "20px", fontWeight: "600"}}>
+                        {data[1].note_1}
+                      </div>
+                      <div className="desc" style={{color:"#141ED2"}}>
+                        {data[1].note_2}
+                      </div>
+                      <a className="link link-custom-2" href={data[1].url} style={{color:"#141ED2"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
+                    </div>
+                  </div>
+                    ) : (
+                      ''
+                )}
+              </div>
+              <div className="col-lg-4 efch-2 ef-img-t">
+                {data && data[2] && data[2].urlImageBackGround ? (
+                  <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[2].imageBackGround} style={{backgroundImage: `url("${data[2].imageBackGround}")`, backgroundSize: "100% 100%"}}>
+                    <div className="divtext" style={{textAlign: "left"}}>
+                      <div className="img" style={{maxWidth: "65px"}}>
+                        <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[2].image} src={data[2].image}/>
+                      </div>
+                      <div className="title" style={{color: "#141ED2", marginBottom: "20px", fontWeight: "600"}}>
+                        {data[2].note_1}
+                      </div>
+                      <div className="desc" style={{color:"#141ED2"}}>
+                        {data[2].note_2}
+                      </div>
+                      <a className="link link-custom-2" href={data[2].url} style={{color:"#141ED2"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
+                    </div>
+                  </div>
+                    ) : (
+                      ''
+                )}
               </div>
             </div>
           </section>

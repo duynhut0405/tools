@@ -116,6 +116,7 @@
   "branch": "Branch",
   "transaction_online": "Transaction online",
   "transaction": "Transaction/ PGD",
+  "discovery": "Discovery",
   "place": "Place",
   "province": "Province/City",
   "district": "District",

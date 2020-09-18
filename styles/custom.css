@@ -1861,3 +1861,83 @@ ul.menu.line>li:not(:first-child):before {
 .next-shadow+div:before, .next-shadow+main:before, .next-shadow+section:before {
   background: none !important;
 }
+
+.sec-n-h2 .img img {
+  height: 100%;
+  max-width: 65px;
+}
+
+@media only screen and (min-width: 1399px)
+{.sec-n-h2 .title {
+  font-size: 32px;
+  line-height: 34px;
+}
+
+.sec-n-h2 .item {
+  padding: 70px;
+}
+}
+@media only screen and (min-width: 1400px)
+{.sec-n-h2 .title {
+    font-size: 45px;
+    line-height: 51px;
+}
+}
+@media only screen and (max-width: 1399px)
+{.sec-n-h2 .title {
+    font-size: 32px;
+    line-height: 34px;
+    padding: 30px;
+}
+}
+@media only screen and (min-width: 992px)
+{.sec-n-h2 .divtext {
+    min-height: 410px;
+}
+}
+
+@media only screen and (max-width: 1399px)
+{.sec-n-h2 .desc {
+    font-size: 16px !important;
+}}
+
+.sec-n-h2 .divtext {
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.sec-n-h2 .desc {
+  font-size: 18px;
+  max-width: 330px;
+  color: #fff;
+}
+
+.sec-n-h2 .img {
+  margin-bottom: 20px;
+  max-width: 65px;
+}
+
+.sec-n-h2 .link-custom-1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: 
+}
+
+.sec-n-h2 .link-custom-2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.sec-n-h2 i {
+  font-size: 10px;
+}
+
+.link-custom-1:hover {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.link-custom-2:hover {
+  color: #fff !important;
+}
