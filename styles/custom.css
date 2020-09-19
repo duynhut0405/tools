@@ -1941,3 +1941,62 @@ ul.menu.line>li:not(:first-child):before {
 .link-custom-2:hover {
   color: #fff !important;
 }
+
+.video-banner {
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 15px;
+  color: #fff;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+@media only screen and (min-width: 1200px)
+{.video-banner {
+    padding: 60px;
+}}
+
+.video-banner .single_video {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.single_video .btnvideo:before {
+  display: inline-block;
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent !important;
+  border-bottom: 25px solid transparent !important;
+  border-left: 35px solid #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+}
+
+.h2, h2 {
+  font-size: 24px;
+  text-transform: none;
+  line-height: normal;
+}
+
+.video-banner .divtext {
+  max-width: 320px;
+}
+
+.sec-video2 .entry-content ul li, .sec-video2 .entry-content ol li {
+  margin-bottom: 10px;
+}
+
+.btn-video-custom {
+  border: 1px solid #fff;
+  text-transform: none;
+}
+
+.btn-video-custom:hover {
+  background-color: #041d79;
+}

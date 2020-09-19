@@ -12,13 +12,15 @@ function Images({ data, id }) {
   return (
     <>
       {map(data, (item, index) => {
-        return (
-          <div className="container" key={index}>
-            <div className={`entry-head text-${item.options}`} id={id}>
-              <h2 className="ht  efch-1 ef-img-t">{item.title}</h2>
+        if (item.type !== '4') {
+          return (
+            <div className="container" key={index}>
+              <div className={`entry-head text-${item.options}`} id={id}>
+                <h2 className="ht  efch-1 ef-img-t">{item.title}</h2>
+              </div>
             </div>
-          </div>
-        );
+          );
+        }
       })}
       {map(data, (items, index) => {
         let padding = '';
@@ -37,6 +39,11 @@ function Images({ data, id }) {
           );
         }
         if (items.type === '2') {
+          return (
+            <ImageRight items={items} key={index} padding={padding} id={id} type={items.type} />
+          );
+        }
+        if (items.type === '4') {
           return (
             <ImageRight items={items} key={index} padding={padding} id={id} type={items.type} />
           );

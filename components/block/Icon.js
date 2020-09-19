@@ -4,6 +4,7 @@ import Proptypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 import UseWindowResize from '../common/Resize';
 import t from '../../translation';
+import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
   data: Proptypes.array,
@@ -577,7 +578,7 @@ function Icon({ data, id }) {
                         <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[0].image} src={data[0].image}/>
                       </div>
                       <div className="title" style={{color: "#A0D2FF", marginBottom: "20px", fontWeight: "600"}}>
-                        {data[0].note_1}
+                        {ReactHtmlParser(data[0].note_1)}
                       </div>
                       <div className="desc">
                         {data[0].note_2}
