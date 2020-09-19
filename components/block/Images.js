@@ -12,7 +12,7 @@ function Images({ data, id }) {
   return (
     <>
       {map(data, (item, index) => {
-        if (item.type !== '4') {
+        if (item.type !== '4' && item.type !== '6') {
           return (
             <div className="container" key={index}>
               <div className={`entry-head text-${item.options}`} id={id}>
@@ -51,6 +51,11 @@ function Images({ data, id }) {
         if (items.type === '5') {
           return (
             <ImageRightMB items={items} key={index} padding={padding} id={id} type={items.type} />
+          );
+        }
+        if (items.type === '6') {
+          return (
+            <ImageRight items={items} key={index} padding={padding} id={id} type={items.type} />
           );
         }
         return (

@@ -2000,3 +2000,33 @@ ul.menu.line>li:not(:first-child):before {
 .btn-video-custom:hover {
   background-color: #041d79;
 }
+
+.a-custom {
+  cursor: default !important;
+}
+
+.btn-custom {
+  position: absolute;
+  top: 81%;
+  left: 19%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  border: black;
+  border: bold;
+  width: 120px;
+  height: 40px;
+}
+
+.img-banner {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
