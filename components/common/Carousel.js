@@ -53,7 +53,7 @@ function Carousels({ silder }) {
                 </section>
               );
             })}
-          {silder[0].options !== '3' && (
+          {silder[0].options === '2' && (
             <section className="silder banner-heading-1 home next-shadow">
               <Carousel
                 showThumbs={false}
@@ -110,6 +110,64 @@ function Carousels({ silder }) {
                 })}
               </Carousel>
             </section>
+          )}
+          {silder[0].options === '4' && (
+              <Carousel
+                showThumbs={false}
+                showStatus={false}
+                infiniteLoop={true}
+                emulateTouch
+                showIndicators={false}
+              >
+                {map(silder, (_item, _index) => {
+                  return (
+                    <section className="banner-heading-5">
+                      <div className="container" style={{height: "-webkit-fill-available"}}>
+                        <div className="divtext">
+                          <div className="item-group space-20">
+                            <a href={_item.url} target="_blank" className="item-group-addon img"><img className="img-center" src={`${process.env.DOMAIN}${_item.urlImageIcon}`} alt=""/></a>
+                          <span className="item-group-content center">
+                            <h1 className=" efch-2 ef-img-l" style={{color: "#fff", transform: "none"}}>{ReactHtmlParser(_item.note_1)}</h1>
+                          </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="wing">
+                        <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt=""/>
+                      </div>
+                      
+                      </section>
+                  );
+                })}
+              </Carousel>
+          )}
+          {silder[0].options === '5' && (
+              <Carousel
+                showThumbs={false}
+                showStatus={false}
+                infiniteLoop={true}
+                emulateTouch
+                showIndicators={false}
+              >
+                {map(silder, (_item, _index) => {
+                  return (
+                    <section className="banner-heading-5">
+                      <div className="container" style={{height: "-webkit-fill-available"}}>
+                        <div className="divtext">
+                          <div className="item-group space-20">
+                          <h1 className=" efch-2 ef-img-l" style={{color: "#fff", transform: "none"}}>{ReactHtmlParser(_item.note_1)}</h1>
+              
+                          </div>
+                        </div>
+                      </div>
+                      <div className="wing">
+                        <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt=""/>
+                      </div>
+                      
+                      </section>
+                  );
+                })}
+              </Carousel>
           )}
         </>
       )}

@@ -60,6 +60,21 @@ function Icon({ data, id }) {
     }
   };
 
+  const responsive3 = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 6
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 4
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2
+    }
+  };
+
   let padding = '';
   if (data[0].optionWidth === '2') {
     padding = 'sec-tb';
@@ -630,6 +645,123 @@ function Icon({ data, id }) {
                       ''
                 )}
               </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '10' && (
+        <React.Fragment>
+          <section className={`sec-menuicon2 group-ef next-shadow loaded`} id={id} style={{padding: "10px 0"}}>
+            <div className="container"  style={{minHeight: "130px", padding: "inherit"}}>
+              {size.width >= 768 && (
+                <div className="wrap-carousel max850 pc">
+                  <Carousel
+                    responsive={responsive3}
+                    draggable
+                    minimumTouchDrag={80}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    className="list-9 menuicon2"
+                    arrows={false}
+                    renderButtonGroupOutside={true}
+                    ref={ref => {
+                      setRefCarousel(ref);
+                    }}
+                  >
+                    {map(data, (item, index) => (
+                        <a  className="link" href={item.url} style={{minHeight: "110px"}}>
+                          <div className="img-custom-menu">
+                            <img
+                              className="lazyload"
+                              alt="images"
+                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                              style={{ maxHeight: "100%" }}
+                            />
+                          </div>
+                          <div className="title">{ReactHtmlParser(item.note_1)}</div>
+                        </a>
+                    ))}
+                  </Carousel>
+                  <div className="carousel-nav center">
+                    <div
+                      className="carousel-prev "
+                      onClick={() => {
+                        refCarousel.previous();
+                      }}
+                    >
+                      <i className="icon-arrow-1 ix"></i>
+                    </div>
+                    <div
+                      className="carousel-next"
+                      onClick={() => {
+                        refCarousel.next();
+                      }}
+                    >
+                      <i className="icon-arrow-1"></i>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {size.width < 768 && (
+                <div className="list-9 list-item">
+                  {map(data, (item, index) => (
+                    <a href={item.url} className={`item efch-${index + 2} ef-img-l `} key={index}>
+                      <div className="img">
+                        <img
+                          className="lazyload"
+                          alt="images"
+                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                        />
+                      </div>
+                      <div className="des">{item.note_1}</div>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '11' && (
+        <React.Fragment>
+          <section className={`sec-menuicon2 group-ef next-shadow loaded`} id={id} style={{padding: "10px 0"}}>
+            <div className="container"  style={{minHeight: "121px", padding: "inherit"}}>
+              {size.width >= 768 && (
+                <div className="list-9 list-item max850 pc row">
+                  {map(data, (item, index) => (
+                      <div className="col">
+                        <a  className="link" href={item.url} style={{minHeight: "121px"}}>
+                          <div className="img-custom-menu">
+                            <img
+                              className="lazyload"
+                              alt="images"
+                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                              style={{ maxHeight: "100%" }}
+                            />
+                          </div>
+                          <div className="title-custom-2">{ReactHtmlParser(item.note_1)}</div>
+                        </a>
+                      </div>
+                    ))}
+                </div>
+              )}
+              {size.width < 768 && (
+                <div className="list-9 list-item">
+                  {map(data, (item, index) => (
+                    <a href={item.url} className={`item efch-${index + 2} ef-img-l `} key={index}>
+                      <div className="img">
+                        <img
+                          className="lazyload"
+                          alt="images"
+                          data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                        />
+                      </div>
+                      <div className="des">{item.note_1}</div>
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
         </React.Fragment>
