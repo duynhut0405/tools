@@ -155,6 +155,55 @@ function Pages({ data, type, id, optionWidth }) {
     );
   }
 
+  if (type && type === '7') {
+    return (
+      <div className="container" id={id}>
+        <section className={`${padding} block-page block-type-2 category-${type}`}>
+          <div
+            className={
+              data.linkurl && data.linkurl !== ''
+                ? 'entry-head text-center title-padding'
+                : 'entry-head text-center'
+            }
+            style={{marginBottom: "15px"}}
+          >
+            <h2 className="ht styleht">{data.title}</h2>
+            {data.linkurl !== undefined && data.linkurl !== '' && (
+              <a className="viewall" href={data.linkurl}>
+                {t('view')} <i className="icon-arrow-1"></i>
+              </a>
+            )}
+          </div>
+          <div className="list-7 list-item row category-custom-mini">
+            {map(listPage, item => (
+              <div className="col-md-6" key={item.newsId}>
+                <LinkPage lang={lang} name={item.slug}>
+                  <a className="item-custom-category item-inline-table style-colummb">
+                    <div className="img tRes_70" style={{width: "47%"}}>
+                      <img
+                        className="lazyload"
+                        data-src={
+                          item.baseImage === null
+                            ? `/images/imgdefault.jpg`
+                            : `${process.env.DOMAIN}${item.baseImage}`
+                        }
+                        alt="icon"
+                      />
+                    </div>
+                    <div className="divtext">
+                      <h4 className="title line2" style={{marginBottom: "10px"}}>{item.name}</h4>
+                      <div className="desc line4">{item.meta_description}..</div>
+                    </div>
+                  </a>
+                </LinkPage>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   if (type && type === '3') {
     return (
       <section className={`${padding} sec-related bg-gray category-${type}`} id={id}>

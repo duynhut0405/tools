@@ -2166,3 +2166,17 @@ ul.menu.line>li:not(:first-child):before {
   color: #141ED2;
   text-align: center;
 }
+
+.list-7 .item-custom-category {
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  border: 1px solid #EEEEEE;
+  position: relative;
+  overflow: hidden;
+  min-height: 190px;
+  height: 100%;
+}
+
+.list-7 .item-custom-category:hover .title {
+  color: #141ED2;
+}

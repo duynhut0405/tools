@@ -55,7 +55,7 @@ function Layout({ children, isPrioty, idPage }) {
   const [priority, setPriority] = useState('/');
   const [btnForm, setbtnForm] = useState(false);
   const [btnlandingPage, setBtnLandingPage] = useState(false);
-
+  
   const getLayout = async () => {
     const menuData = await getMemnu(getLang());
     const settingData = await getCommon(getLang());
@@ -226,7 +226,7 @@ function Layout({ children, isPrioty, idPage }) {
   //     );
   //   });
   // };
-
+  console.log(router.pathname);
   const changeLang = _lang => {
     const regex = new RegExp(`^/(${['vi', 'en'].join('|')})`);
     const path = router.asPath.replace(regex, `/${_lang}`);
@@ -471,7 +471,7 @@ function Layout({ children, isPrioty, idPage }) {
                       )}
                       <div className="wrap-menu-header">
                         <ul className="menu-top-header" data-style="1">
-                          <li className="home"><a href="#"><img src="/static/images/home.svg"/></a><div style={homeCustom} /></li>
+                          <li className="home"><a href="/"><img src="/static/images/home.svg"/></a><div style={homeCustom} /></li>
                           {nestChild(menuNav)}
                           <li class="highlight">
                             <a href="#">
@@ -557,22 +557,57 @@ function Layout({ children, isPrioty, idPage }) {
             </Sticky>
             <div>{children}</div>
             {/* contact */}
-            {/* <section className="sec-cta">
-              <div className="container">
-                <div className="row center">
-                  {map(
-                    menuFooterTop.sort((a, b) => a.position - b.position),
-                    values => {
-                      if (values.type === '4') {
+            {router.pathname !== '/' & router.pathname !== '/en' && (
+              <section className="sec-cta">
+                <div className="container">
+                  <div className="row center">
+                    {map(
+                      menuFooterTop.sort((a, b) => a.position - b.position),
+                      values => {
+                        if (values.type === '4') {
+                          return (
+                            <div className="col-4" key={values.id}>
+                              {values.target === '2' ? (
+                                <a
+                                  href={values.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="item"
+                                >
+                                  <span className="img">
+                                    <img
+                                      className="lazyload"
+                                      data-src={`${process.env.DOMAIN}${values.icon}`}
+                                      alt="images"
+                                    />
+                                  </span>
+                                  <div className="divtext">
+                                    <h4 className="title">{values.name}</h4>
+                                    <div className="desc">{values.description}</div>
+                                  </div>
+                                </a>
+                              ) : (
+                                <a href={values.url} className="item">
+                                  <span className="img">
+                                    <img
+                                      className="lazyload"
+                                      data-src={`${process.env.DOMAIN}${values.icon}`}
+                                      alt="images"
+                                    />
+                                  </span>
+                                  <div className="divtext">
+                                    <h4 className="title">{values.name}</h4>
+                                    <div className="desc">{values.description}</div>
+                                  </div>
+                                </a>
+                              )}
+                            </div>
+                          );
+                        }
                         return (
                           <div className="col-4" key={values.id}>
-                            {values.target === '2' ? (
-                              <a
-                                href={values.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="item"
-                              >
+                            <LinkPage lang={lang} name={values.slugPages}>
+                              <a className="item">
                                 <span className="img">
                                   <img
                                     className="lazyload"
@@ -585,48 +620,16 @@ function Layout({ children, isPrioty, idPage }) {
                                   <div className="desc">{values.description}</div>
                                 </div>
                               </a>
-                            ) : (
-                              <a href={values.url} className="item">
-                                <span className="img">
-                                  <img
-                                    className="lazyload"
-                                    data-src={`${process.env.DOMAIN}${values.icon}`}
-                                    alt="images"
-                                  />
-                                </span>
-                                <div className="divtext">
-                                  <h4 className="title">{values.name}</h4>
-                                  <div className="desc">{values.description}</div>
-                                </div>
-                              </a>
-                            )}
+                            </LinkPage>
                           </div>
                         );
                       }
-                      return (
-                        <div className="col-4" key={values.id}>
-                          <LinkPage lang={lang} name={values.slugPages}>
-                            <a className="item">
-                              <span className="img">
-                                <img
-                                  className="lazyload"
-                                  data-src={`${process.env.DOMAIN}${values.icon}`}
-                                  alt="images"
-                                />
-                              </span>
-                              <div className="divtext">
-                                <h4 className="title">{values.name}</h4>
-                                <div className="desc">{values.description}</div>
-                              </div>
-                            </a>
-                          </LinkPage>
-                        </div>
-                      );
-                    }
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-            </section> */}
+              </section>
+            )}
+            
             {/* tải appp */}
             {/* <section className="sec-download-pc group-ef loaded">
               <div className="container">
