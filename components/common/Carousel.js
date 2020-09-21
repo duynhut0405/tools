@@ -12,6 +12,12 @@ const propType = {
 };
 
 function Carousels({ silder }) {
+  const styleImg = {
+    bottom: "0",
+    maxHeight: "100%",
+    minWidth: "100%",
+    objectFit: "cover"
+  }
   return (
     <React.Fragment>
       {!isEmpty(silder) && (
@@ -55,6 +61,62 @@ function Carousels({ silder }) {
             })}
           {silder[0].options === '2' && (
             <section className="silder banner-heading-1 home next-shadow">
+              <Carousel
+                showThumbs={false}
+                showStatus={false}
+                infiniteLoop={true}
+                emulateTouch
+                showIndicators={false}
+              >
+                {map(silder, (_item, _index) => {
+                  return (
+                    <div className={`container  option-2`} key={_index}>
+                      <div className="divtext text-left-mg ">
+                        <h1 className=" efch-2 ef-img-l">{ReactHtmlParser(_item.note_1)}</h1>
+                        <div className="cl1">{ReactHtmlParser(_item.note_2)}</div>
+                        <div className="text_content3">{ReactHtmlParser(_item.note_3)}</div>
+                        {_item.text_action === null ||
+                        _item.text_action === undefined ||
+                        _item.text_action === '' ? (
+                          ''
+                        ) : (
+                          <a
+                            className="btn"
+                            href={
+                              _item.url === null || _item.url === undefined || _item.url === ''
+                                ? '#'
+                                : _item.url
+                            }
+                          >
+                            {_item.text_action}
+                          </a>
+                        )}
+                        {_item.video_url !== undefined && _item.video_url !== '' && (
+                          <div>
+                            <iframe src={_item.video_url} />
+                          </div>
+                        )}
+                      </div>
+                      <div className="wimg">
+                        <img
+                          className="img-center img-pc"
+                          src={`${process.env.DOMAIN}${_item.urlImage}`}
+                          alt="icon"
+                        />
+                        <img
+                          className="img-center img-mb"
+                          src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
+                          alt="icon"
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </Carousel>
+            </section>
+          )}
+          {silder[0].options === '6' && (
+            <section className="silder banner-heading-2 home next-shadow">
               <Carousel
                 showThumbs={false}
                 showStatus={false}
@@ -121,8 +183,8 @@ function Carousels({ silder }) {
               >
                 {map(silder, (_item, _index) => {
                   return (
-                    <section className="banner-heading-5">
-                      <div className="container" style={{height: "-webkit-fill-available"}}>
+                    <section className="banner-heading-5" style={{height: "430px"}}>
+                      <div className="container" style={{height: "430px"}}>
                         <div className="divtext">
                           <div className="item-group space-20">
                             <a href={_item.url} target="_blank" className="item-group-addon img"><img className="img-center" src={`${process.env.DOMAIN}${_item.urlImageIcon}`} alt=""/></a>
@@ -132,8 +194,8 @@ function Carousels({ silder }) {
                           </div>
                         </div>
                       </div>
-                      <div className="wing">
-                        <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt=""/>
+                      <div className="wing wing-custom" style={{height: "430px"}}>
+                        <img className="img" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/>
                       </div>
                       
                       </section>
@@ -151,8 +213,8 @@ function Carousels({ silder }) {
               >
                 {map(silder, (_item, _index) => {
                   return (
-                    <section className="banner-heading-5">
-                      <div className="container" style={{height: "-webkit-fill-available"}}>
+                    <section className="banner-heading-5" style={{height: "430px"}}>
+                      <div className="container" style={{height: "430px"}}>
                         <div className="divtext">
                           <div className="item-group space-20">
                           <h1 className=" efch-2 ef-img-l" style={{color: "#fff", transform: "none"}}>{ReactHtmlParser(_item.note_1)}</h1>
@@ -160,8 +222,8 @@ function Carousels({ silder }) {
                           </div>
                         </div>
                       </div>
-                      <div className="wing">
-                        <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt=""/>
+                      <div className="wing wing-custom" style={{height: "430px"}}>
+                        <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/>
                       </div>
                       
                       </section>

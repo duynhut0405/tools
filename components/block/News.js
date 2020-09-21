@@ -272,7 +272,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
       </section>
     );
   }
-  if (type === '4') {
+  if (type === '13') {
     return (
       <section className={`${padding} sec-h-4 news-${type}`} id={id}>
         <div className="container">
@@ -306,10 +306,10 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                     <listCategory lang={lang} name={item.url}>
                       <a className={`item efch-0 ef-img-l`} style={{height: "100%",
                       boxShadow: "none",
-    borderRadius: "8px",
-    backgroundColor: "#FFFFFF",
-    border: "1px solid #E2DFDF",
-    overflow: "hidden"}}>
+                      borderRadius: "8px",
+                      backgroundColor: "#FFFFFF",
+                      border: "1px solid #E2DFDF",
+                      overflow: "hidden"}}>
                           <div className="img tRes_85">
                             <img
                               className="lazyload"
@@ -374,6 +374,145 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
       </section>
     );
   }
+  if (type === '4') {
+    return (
+      <section className={`${padding} sec-h-3 news-${type} `} id={id}>
+        <div className="container">
+          {(data.title || data.title !== '') && (
+            <div className="entry-head title-padding">
+              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
+            </div>
+          )}
+
+          <div className="wrap-carousel">
+            <Carousel
+              responsive={responsive}
+              draggable
+              minimumTouchDrag={80}
+              ssr={true} // means to render carousel on server-side.
+              keyBoardControl={true}
+              arrows={false}
+              renderButtonGroupOutside={true}
+              className="list-5 convert-slide-to-scroll"
+              ref={ref => {
+                setRefCarousel(ref);
+              }}
+            >
+              {map(uniqBy(listCategory, 'newsId'), (item, index) => (
+                <div className="slide-item" key={index}>
+                  <LinkNew lang={lang} name={item.url}>
+                    <a
+                      className={`item efch-${index} ef-img-l `}
+                      key={index}
+                      //style={{ height: '300px', width: '262px' }}
+                    >
+                      <div className="img tRes_71">
+                        <img
+                          className="lazyload"
+                          data-src={
+                            item.base_image === null
+                              ? `/images/imgdefault.jpg`
+                              : `${process.env.DOMAIN}${item.base_image}`
+                          }
+                          style={{ height: '187px' }}
+                          alt="images"
+                        />
+                      </div>
+                      <div className="divtext">
+                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        <h4 className="title">
+                          <ShowMoreText lines={1} more="" expanded={false} width={370}>
+                            {item.title}
+                          </ShowMoreText>
+                        </h4>
+                      </div>
+                    </a>
+                  </LinkNew>
+                </div>
+              ))}
+            </Carousel>
+            {size.width >= 768 && (
+              <div className="carousel-nav center">
+                <div
+                  className="carousel-prev "
+                  onClick={() => {
+                    refCarousel.previous();
+                  }}
+                >
+                  <i className="icon-arrow-1 ix"></i>
+                </div>
+                <div
+                  className="carousel-next"
+                  onClick={() => {
+                    refCarousel.next();
+                  }}
+                >
+                  <i className="icon-arrow-1"></i>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* {size.width < 768 && (
+            <div className="list-5 list-item">
+              {map(uniqBy(listCategory, 'newsId'), (item, index) => (
+                <LinkNew lang={lang} name={item.url} key={index}>
+                  <a className={`item efch-${index} ef-img-l `}>
+                    <div className="img tRes_71">
+                      <img
+                        className="lazyload"
+                        data-src={
+                          item.base_image === null
+                            ? `/images/imgdefault.jpg`
+                            : `${process.env.DOMAIN}${item.base_image}`
+                        }
+                        style={{ height: '187px' }}
+                        alt="images"
+                      />
+                    </div>
+                    <div className="divtext">
+                      <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                      <h4 className="title">
+                        <ShowMoreText lines={1} more="" expanded={false} width={370}>
+                          {item.title}
+                        </ShowMoreText>
+                      </h4>
+                    </div>
+                  </a>
+                </LinkNew>
+              ))}
+            </div>
+          )} */}
+
+          {(data.title === undefined || data.title === '') && (
+            <div className="text-center mt-4">
+              <LinkCategory lang={lang} name={slugCategory}>
+                <a className="btn lg">{t('view')}</a>
+              </LinkCategory>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+
   if (type === '5') {
     return (
       <section className={`${padding} news-${type}`} id={id}>
@@ -918,14 +1057,28 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                 ))}
                 
                 <div className={`col-md-4 efch-5 ef-img-t`}>
-                    <LinkInput lang={lang} name={data.url}>
+                    
+                    {(data.color.label == 'Xanh') && (
+                      <LinkInput lang={lang} name={data.url}>
                       <a className={`item none tRes_66 list-1-custom`} href={data.url} style={{backgroundColor:data.color.value}}>
+                      <div className="divtext">
+                        <div class="category">{data.blockTitle5}</div>
+                        <h5 className="title line2 on-hover-blue">{data.viewMoreText}<i class="icon-arrow-2" style={{fontSize:"11px"}}></i></h5>
+                      </div>
+                    </a>
+                    </LinkInput>
+                    )}
+                    {(data.color.label == 'Tím') && (
+                      <LinkInput lang={lang} name={data.url}>
+                      <a className={`item none tRes_66 list-2-custom`} href={data.url} style={{backgroundColor:data.color.value}}>
                         <div className="divtext">
                           <div class="category">{data.blockTitle5}</div>
                           <h5 className="title line2 on-hover-blue">{data.viewMoreText}<i class="icon-arrow-2" style={{fontSize:"11px"}}></i></h5>
                         </div>
                       </a>
-                    </LinkInput>
+                      </LinkInput>
+                    )}
+                    
                 </div>
           </div>
           {(data.title === undefined || data.title === '') && (
@@ -1024,14 +1177,26 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                 ))}
                 
                 <div className={`col-md-4 efch-5 ef-img-t`}>
-                    <LinkInput lang={lang} name={data.url}>
+                    {(data.color.label == 'Xanh') && (
+                      <LinkInput lang={lang} name={data.url}>
                       <a className={`item none tRes_66 list-1-custom`} href={data.url} style={{backgroundColor:data.color.value}}>
+                      <div className="divtext">
+                        <div class="category">{data.blockTitle5}</div>
+                        <h5 className="title line2 on-hover-blue">{data.viewMoreText}<i class="icon-arrow-2" style={{fontSize:"11px"}}></i></h5>
+                      </div>
+                    </a>
+                    </LinkInput>
+                    )}
+                    {(data.color.label == 'Tím') && (
+                      <LinkInput lang={lang} name={data.url}>
+                      <a className={`item none tRes_66 list-2-custom`} href={data.url} style={{backgroundColor:data.color.value}}>
                         <div className="divtext">
-                          <div class="category">{data.blockTitle6}</div>
+                          <div class="category">{data.blockTitle5}</div>
                           <h5 className="title line2 on-hover-blue">{data.viewMoreText}<i class="icon-arrow-2" style={{fontSize:"11px"}}></i></h5>
                         </div>
                       </a>
-                    </LinkInput>
+                      </LinkInput>
+                    )}
                 </div>
           </div>
           {(data.title === undefined || data.title === '') && (
