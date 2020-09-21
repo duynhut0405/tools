@@ -302,7 +302,7 @@ ul.menu.line > li button.search-sg i {
     margin-right: 0;
     float: left;
     display: contents;
-    background-color: #141ED2 !important;
+    background-color: transparent !important;
   }
 
   ul.menu-top-header > li.highlight > a {
@@ -317,7 +317,7 @@ ul.menu.line > li button.search-sg i {
     font-weight: 600;
     font-size: 16px;
     padding: 0 16px;
-    background-color: #141ED2 !important;
+    background-color: transparent !important;
   }
 
   ul.menu-top-header > li.highlight > a img {
