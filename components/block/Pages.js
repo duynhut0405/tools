@@ -168,11 +168,11 @@ function Pages({ data, type, id, optionWidth }) {
             style={{marginBottom: "15px"}}
           >
             <h2 className="ht styleht">{data.title}</h2>
-            {data.linkurl !== undefined && data.linkurl !== '' && (
+            {/* {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
                 {t('view')} <i className="icon-arrow-1"></i>
               </a>
-            )}
+            )} */}
           </div>
           <div className="list-7 list-item row category-custom-mini">
             {map(listPage, item => (

@@ -37,7 +37,7 @@ function BoxSearch({
 
   return (
     <div className="ajax-content-map">
-      <h5 class="uppercase">Mạng lưới</h5>
+      <h5 class="uppercase">{t('net_work')}</h5>
       {/* <ul className="menu row grid-space-0">
         <li
           className={branches_type === 'all' ? 'col-4 active' : 'col-4'}

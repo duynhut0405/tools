@@ -144,5 +144,6 @@
   "register_now": "Register now",
   "download": "Download now",
   "find_ATM": "find ATM and transaction point",
-  "near_ATM": "Nearest transaction point"
+  "near_ATM": "Nearest transaction point",
+  "net_work": "Net work"
 }

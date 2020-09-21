@@ -68,7 +68,6 @@ const Tab1 = props => {
   }, []);
 
   const handleSelectProvince = item => {
-    console.log(item);
     setSelectProvince(item);
     getDistrictService(item.value)
       .then(res => {

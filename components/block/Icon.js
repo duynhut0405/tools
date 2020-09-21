@@ -596,7 +596,7 @@ function Icon({ data, id }) {
                         {ReactHtmlParser(data[0].note_1)}
                       </div>
                       <div className="desc">
-                        {data[0].note_2}
+                        {ReactHtmlParser(data[0].note_2)}
                       </div>
                       <a className="link link-custom-1" href={data[0].url} style={{color:"#fff"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
                     </div>
@@ -613,10 +613,10 @@ function Icon({ data, id }) {
                         <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[1].image} src={data[1].image}/>
                       </div>
                       <div className="title" style={{color: "#141ED2", marginBottom: "20px", fontWeight: "600"}}>
-                        {data[1].note_1}
+                        {ReactHtmlParser(data[1].note_1)}
                       </div>
                       <div className="desc" style={{color:"#141ED2"}}>
-                        {data[1].note_2}
+                      {ReactHtmlParser(data[1].note_2)}
                       </div>
                       <a className="link link-custom-2" href={data[1].url} style={{color:"#141ED2"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
                     </div>
@@ -633,10 +633,10 @@ function Icon({ data, id }) {
                         <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[2].image} src={data[2].image}/>
                       </div>
                       <div className="title" style={{color: "#141ED2", marginBottom: "20px", fontWeight: "600"}}>
-                        {data[2].note_1}
+                        {ReactHtmlParser(data[2].note_1)}
                       </div>
                       <div className="desc" style={{color:"#141ED2"}}>
-                        {data[2].note_2}
+                        {ReactHtmlParser(data[2].note_2)}
                       </div>
                       <a className="link link-custom-2" href={data[2].url} style={{color:"#141ED2"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
                     </div>

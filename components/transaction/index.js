@@ -14,9 +14,10 @@ const propTypes = {
 
 const searchBranches = async (query, setData) => {
   const res = await searchBranchesService(query);
-  if (res && res !== undefined && res.status === 200) {
-    setData(res.data);
-  }
+  setData(res.data);
+  // if (res && res !== undefined && res.status === 200) {
+  //   setData(res.data);
+  // }
 };
 
 const getProvince = async setData => {
@@ -54,7 +55,7 @@ let firstLoad = true;
 function Transaction({ data, id }) {
   const [location, setLocation] = useState({ lat: 21.027763, lng: 105.83416 });
   const [locationId, setID] = useState(null);
-  const [zoom, setZoom] = useState(10);
+  const [zoom, setZoom] = useState(14);
   const [district, setDistrict] = useState(null);
   const [branches_type, setBranchesType] = useState('all');
   const [province, setProvince] = useState(null);
@@ -87,20 +88,28 @@ function Transaction({ data, id }) {
         lng: Number(provinceItem.longitude)
       }));
     }
+    
     setProvince(provinceItem.value);
     setDistrict(null);
-    setQuery('');
+    // setQuery('');
     setDistrictValue(null);
     searchBranches(
       {
-        districtCity: district,
+        // districtCity: district,
         networkCategory: branches_type,
         provinceCity: provinceItem.value,
-        search: null
+        search: query
       },
       setListBranches
     );
-    setZoom(10);
+    setZoom(8);
+    // getDetail(listBranches);
+    // console.log("listBranches");
+    // console.log(listBranches);
+    // setLocation(() => ({
+    //   lat: Number(listBranches[0].latitude),
+    //   lng: Number(listBranches[0].longitude)
+    // }));
     getDistrict(provinceItem.value, setListDistrict);
   };
 

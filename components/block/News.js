@@ -37,9 +37,6 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   const listNewsTabsLast6 = slice(uniqBy(listCategory, 'newsId'), 5, 6);
   const listNewsTabs = slice(uniqBy(listCategory, 'newsId'), 2, 5);
   const [refCarousel, setRefCarousel] = useState(null);
-  if (data.type === '10') {
-    console.log(listCategory);
-  }
   let array = [];
     if (data.blockTitle1 !== null) {
       array.push(data.blockTitle1);
@@ -106,9 +103,8 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
       idItemNews = map(res1.data, item => item.newsId);
     }
 
-    const idItems = map(data.news, item => item.newsId);
+    const idItems = map(data.news, item => item.value);
     const totalIdItems = uniq(idItems).concat(uniq(idItemNews));
-
     const limit = data.limit === '' || data.limit === null ? 4 : Number(data.limit);
     const res = await getNewByIdService(
       uniq(totalIdItems),
@@ -1035,7 +1031,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                   </div>
                 ))}
                 {map(listNewsTabs4, (item, index) => (
-                  <div className={`col-md-4 efch-${index} ef-img-t`} key={index}>
+                  <div className={`col-md-4 efch-${index} ef-img-t`} key={index} style={{minHeight: index === '0' ? "100%" : "266px"}}>
                     <listNewsTabs4 lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
