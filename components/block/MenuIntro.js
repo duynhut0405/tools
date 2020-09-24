@@ -109,56 +109,67 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
   return (
     <React.Fragment>
-      <section className="menuIntro sec-menu">
-        <div className="container">
-          <div className="inner">
-            <ul>
-              <li className="active">
-                <a>{data.title}</a>
-              </li>
-              {map(data.listBlock, (values, index) => (
-                <li
-                  key={index}
-                  onClick={() => {
-                    onScroll(values.id);
-                  }}
-                >
-                  <a>{values.title}</a>
+      <section className="menuIntro sec-menu" style={{backgroundColor:"#fff", padding: "0px 15px 0"}}>
+        <div className="container" style={{backgroundColor:"#fff", height:"82px"}}>
+          <div style={{backgroundColor:"#fff", height:"82px", borderBottom: "1px solid #ddd"}}>
+          <ul style={{height: "82px"}}>
+                <li className="active" style={{paddingTop: "12px", padding: "0", color: "#333333", textAlign: "left", padding: "0 0"}}>
+                  <a style={{padding: "0 0"}}>{data.title}</a>
                 </li>
-              ))}
-            </ul>
+                {map(data.listBlock, (values, index) => (
+                  <li
+                    key={index}
+                    onClick={() => {
+                      onScroll(values.id);
+                    }}
+                    style={{paddingTop: "12px", color: "#787878"}}
+                  >
+                    <a>{values.title}</a>
+                  </li>
+                ))}
+              </ul>
           </div>
         </div>
       </section>
-      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`}>
+      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{marginTop: "68px", height: data.maxHeight}}>
         <div className="container">
           <div className="row list-item ">
-            <div className={!data.isForm || data.isForm === 0 ? 'col-lg-8' : 'col-lg-12'}>
-              <div className="boxwidget entry-content">
-                <h2 className="widget-title">{ReactHtmlParser(data.title)}</h2>
+            <div className={!data.isForm || data.isForm === 0 ? 'col-lg-7' : 'col-lg-12'}>
+              <div className="entry-content">
+                <h4 style= {{color:data.color}}> {ReactHtmlParser(data.description)} </h4>
                 {ReactHtmlParser(data.descriptionTop)}
-              </div>
-              <div className="boxwidget-2">
-                <div>{ReactHtmlParser(data.descriptionBot)}</div>
-                <div className="row">
-                  <div className="col-md-5">
-                    <a className="btnPhone" href="tel:1900545426">
-                      {data.contact_1} <i className="icon-arrow-2"></i>{' '}
-                    </a>
-                  </div>
-                  <div className="col-md-7">
-                    <a className="btnPhone" href="tel:+8437674050">
-                      {data.contact_2} <i className="icon-arrow-2"></i>{' '}
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
             <div
-              className={data.isForm || data.isForm === 1 ? 'd-none' : 'col-lg-4'}
-              id="#widget-form-tuvan"
+              className={data.isForm || data.isForm === 1 ? 'd-none' : 'col-lg-5'}
+              style={{textAlign:"center"}}
             >
-              <div className="widget widget-tuvan">
+              <a className={`item`} href={data.url_image} style={{}}>
+                  <img
+                    className="lazyload"
+                    data-src={
+                      data.urlImage === null
+                        ? `/images/imgdefault.jpg`
+                        : `${process.env.DOMAIN}${data.urlImage}`
+                    }
+                    alt="images"
+                  />
+              </a>
+              <div className="custom-content-1">
+                <div style={{paddingBottom: "10px",
+                  fontSize: "18px",
+                  fontWeight: "600",
+                  borderBottom: "1px solid #ddd"}}>
+                  {data.descriptionBot}
+                </div>
+                <a className="btnPhone-Custom" href="tel:1900545426">
+                  {data.contact_1}
+                </a>
+                <a className="btnPhone-Custom" href="tel:+8437674050">
+                  {data.contact_2}
+                </a>
+              </div>
+              {/* <div className="widget widget-tuvan">
                 <form onSubmit={onSend} autoComplete="on" className="form-tuvan">
                   {map(formdata, (item, index) => {
                     if (item.type === 'header') {
@@ -283,7 +294,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     return null;
                   })}
                 </form>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

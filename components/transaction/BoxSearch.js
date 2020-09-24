@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import map from 'lodash/map';
 import PropTypes from 'prop-types';
@@ -17,7 +17,8 @@ const propTypes = {
   getDetail: PropTypes.func,
   onSearch: PropTypes.func,
   query: PropTypes.string,
-  districtValue: PropTypes.any
+  districtValue: PropTypes.any,
+  onLoad1: PropTypes.func
 };
 
 function BoxSearch({
@@ -31,9 +32,12 @@ function BoxSearch({
   setDistrict,
   getDetail,
   onSearch,
+  onLoad1,
   query,
   districtValue
 }) {
+
+  const [queryCustom, setQueryCustom] = useState('');
 
   return (
     <div className="ajax-content-map">
@@ -60,17 +64,15 @@ function BoxSearch({
       </ul> */}
 
       <div className="form-search-focus mb-20">
-        <form onSubmit={onSearch}>
           <input
             type="text"
-            value={query}
+            // value={query}
             placeholder={t('place')}
-            onChange={event => setQuery(event.target.value)}
+            onChange={event => setQueryCustom(event.target.value)}
           />
-          <button type="submit">
+          <button type="submit" onClick={event => onLoad1(queryCustom)}>
             <i className="icon-search-2"></i>
           </button>
-        </form>
       </div>
       <div className="mb-20">
         {/* <div>{t('province')}</div> */}

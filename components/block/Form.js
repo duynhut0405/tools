@@ -98,16 +98,22 @@ function Form({ data, pageId, id }) {
     padding = 'sec-';
   }
 
+  const styleImg = {
+    backgroundImage: `url(${process.env.DOMAIN}${data.urlImage})`,
+    padding: "46px",
+    borderRadius: "5px"
+  };
+
   return (
-    <section className={`${padding} sec-tuvan form-register`} id={id}>
-      <div className="container">
+    <section className={`${padding} sec-tuvan form-register`} id={id} style={{boxShadow: "none"}}>
+      <div className="container" style={styleImg}>
         <form onSubmit={onSend} autoComplete="on" className="row">
           {map(formdata, (item, index) => {
             if (item.type === 'header') {
               return (
                 <React.Fragment>
                   <div className={`col-12`}>
-                    <h2 className={`text-center__ ${item.className}`}>
+                    <h2 className={`text-center__ ${item.className}`} style={{marginBottom: "5px"}}>
                       {ReactHtmlParser(item.label)}
                     </h2>
                   </div>
@@ -117,7 +123,7 @@ function Form({ data, pageId, id }) {
             if (item.type === 'paragraph') {
               return (
                 <div className={`col-12`}>
-                  <div className={`form-desc ${item.className}`} key={index}>
+                  <div className={`form-desc ${item.className}`} key={index} style={{fontSize: "16px", color: "#686868"}}>
                     {ReactHtmlParser(item.label)}
                   </div>
                 </div>
@@ -193,13 +199,13 @@ function Form({ data, pageId, id }) {
               return (
                 <React.Fragment>
                   <div className="col-12 wrecaptchar">
-                    <ReCAPTCHA
+                    {/* <ReCAPTCHA
                       style={{ display: 'inline-block' }}
                       ref={recaptchaRef}
                       onChange={handleChangeCapcha}
                       sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
                       // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                    />
+                    /> */}
                   </div>
                   <div className={`d-flex col-12 text-center__ `}>
                     <div style={{ position: 'relative', display: 'inline-block' }}>
@@ -231,13 +237,6 @@ function Form({ data, pageId, id }) {
           })}
         </form>
       </div>
-      {data.image && (
-        <img
-          className=" br loaded loaded lazyload"
-          alt="images"
-          data-src={`${process.env.DOMAIN}${data.urlImage}`}
-        ></img>
-      )}
       <PopupThankyou modal={modal} setModal={() => setModal(false)} />
     </section>
   );

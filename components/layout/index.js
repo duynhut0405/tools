@@ -226,7 +226,7 @@ function Layout({ children, isPrioty, idPage }) {
   //     );
   //   });
   // };
-  console.log(router.pathname);
+
   const changeLang = _lang => {
     const regex = new RegExp(`^/(${['vi', 'en'].join('|')})`);
     const path = router.asPath.replace(regex, `/${_lang}`);
@@ -557,8 +557,8 @@ function Layout({ children, isPrioty, idPage }) {
             </Sticky>
             <div>{children}</div>
             {/* contact */}
-            {router.pathname !== '/' & router.pathname !== '/en' && (
-              <section className="sec-cta">
+            
+              <section className="sec-cta" style={{display: (router.pathname == '/' || router.pathname == '/en') ? "none" : "block"}}>
                 <div className="container">
                   <div className="row center">
                     {map(
@@ -628,43 +628,6 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                 </div>
               </section>
-            )}
-            
-            {/* tải appp */}
-            {/* <section className="sec-download-pc group-ef loaded">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-6   efch-2 ef-img-r">
-                    <p className="stitle">{t('sign_up_promotional')}</p>
-                    <form onSubmit={onRegister}>
-                      <div>
-                        <input
-                          type="text"
-                          placeholder={
-                            lang === 'vi'
-                              ? 'Nhập email để nhận thông tin!'
-                              : 'Enter email to receive information'
-                          }
-                          onChange={event => setRegister(event.target.value)}
-                          name="email"
-                          className="input"
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        className="btn btn-2"
-                        // onClick={() => setActiveForm(true)}
-                      >
-                        {t('registration')}
-                      </button>
-                    </form>
-                  </div>
-                  <div className="col-md-6   efch-3 ef-img-r">
-                    <DownloadApp linkApp={linkApp} />
-                  </div>
-                </div>
-              </div>
-            </section> */}
             <div id="footer-pc" className="group-ef loaded" style={{backgroundColor: '#141ED2', color: '#fff'}}>
               <div className="container" style={{paddingBottom: '20px'}}>
                 <p>
@@ -746,7 +709,7 @@ function Layout({ children, isPrioty, idPage }) {
                   <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
                     <div className="widget widget-subscribe">
                       <h5 className="widget-title" style={{color: '#fff'}}>{t('find_ATM')}</h5>
-                      <a class="location" href="/page/diem-giao-dich-atm"> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
+                      <a class="location" href="/page/diem-giao-dich-atm" style={{backgroundColor: "#A0D2FF", color: "#141ED2"}}><img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
                     </div>
                   </div>
                 </div>
@@ -827,7 +790,190 @@ function Layout({ children, isPrioty, idPage }) {
               </div>
               <a id="back-top" class="back-top-1" href="#" ><i class="icon-arrow-2 it"></i></a>
             </div>
-            <section className="sec-download-mb">
+
+            <div id="footer-mb" className="group-ef loaded" style={{backgroundColor: '#141ED2', color: '#fff', padding: "30px 0 0"}}>
+              <div className="container" style={{paddingBottom: '20px'}}>
+                <p>
+                  {lang === 'vi' && (
+                    <Link href="/">
+                      <a className="logo">
+                        <img className="lazyload" data-src="/images/logo.svg" alt="images" style={logoStyle}/>
+                      </a>
+                    </Link>
+                  )}
+                  {lang === 'en' && (
+                    <Link href="/en">
+                      <a className="logo">
+                        <img className="lazyload" data-src="/images/logo.svg" alt="images" style={logoStyle}/>
+                      </a>
+                    </Link>
+                  )}
+                </p>
+                <div className="row">
+                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                    <div className="widget widget-info">
+                      <Widget data={settingFooter} />
+                      {/* <Social data={socialLink} /> */}
+                    </div>
+                  </div>
+                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
+                    <div className="widget widget-wapp" style={{ marginTop: '0',display: 'flex'}}>
+                      <div className="wapp" style={{ color: '#fff',display: 'flex' , marginBottom:"5px"}}>
+                        <a href={linkApp ? linkApp.ios : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px'}}>
+                            <img
+                              className="lazyload"
+                              data-src="/static/images/app-1.png"
+                              importance="low"
+                              alt="images"
+                            />
+                          </a>
+                          <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px', marginBottom: "0px"}}>{t('donwload_app_today')}</h5>
+                      </div>
+                      <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
+                        <a href={linkApp ? linkApp.android : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px'}}>
+                          <img
+                            className="lazyload"
+                            data-src="/static/images/app-2.png"
+                            importance="low"
+                            alt="images"
+                          />
+                        </a>
+                        <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px', marginBottom: "0px"}}>{t('download_app_today_2')}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-8 col-md-7">
+                  <div className="accodion accodion-0">
+                    <div className="accodion-tab ">
+                      <input type="checkbox" id="chck_mf" />
+                      <label className="accodion-title" htmlFor="chck_mf">
+                        <span> {t('extend')} </span>{' '}
+                        <span className="triangle">
+                        </span>
+                        <i class="icon-arrow-2 ib"></i>
+                      </label>
+                      <div className="accodion-content">
+                        <div className="inner">
+                          <div className="row grid-space-10">{renderFooter(menuFooterMain)}</div>
+                          <label className="accodion-title" htmlFor="chck_mf">
+                            <span> {t('unextend')} </span>{' '}
+                            <span className="triangle">
+                              <i className="icon-arrow-2 ib" style={{transform: "rotate(180deg)"}}></i>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div className="row bottom">
+                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t">
+                    <div className="widget widget-subscribe" style={{marginBottom: "15px"}}>
+                      <h5 className="widget-title" style={{color: '#fff'}}>{t('sign_up_promotional')}</h5>
+                      <form onSubmit={onRegister} class="subscribeForm">
+                        <div>
+                          <input
+                              type="text"
+                              placeholder={
+                                lang === 'vi'
+                                  ? 'Nhập email!'
+                                  : 'Enter email'
+                              }
+                              onChange={event => setRegister(event.target.value)}
+                              name="email"
+                              className="input"
+                            />
+                        </div>
+                        <button type="submit" class=""><i class="icon-arrow-1"></i></button>
+                      </form> 
+                    </div>
+                  </div>
+
+                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t">
+                    <div className="widget widget-subscribe">
+                      <a class="location" href="/page/diem-giao-dich-atm" style= {{backgroundColor: "#A0D2FF", color: "#141ED2"}}> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* <div className="line"></div>
+                <div className="row grid-space-10">
+                  <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
+                    <ul className="menu line">
+                      {map(
+                        menuFooterBottom.sort((a, b) => a.position - b.position),
+                        (values, key) => {
+                          if (values.type === '4') {
+                            return (
+                              <li key={key}>
+                                {values.target === '2' ? (
+                                  <a href={values.url} target="_blank" rel="noopener noreferrer">
+                                    {values.name}
+                                  </a>
+                                ) : (
+                                  <a href={values.url}>{values.name}</a>
+                                )}
+                              </li>
+                            );
+                          }
+                          return (
+                            <li key={key}>
+                              <LinkPage lang={lang} name={values.slugPages}>
+                                <a>{values.name}</a>
+                              </LinkPage>
+                            </li>
+                          );
+                        }
+                      )}
+                    </ul>
+                  </div>
+                  <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
+                    <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                  </div>
+                </div> */}
+              </div>
+              <div className="line-custom">
+                <div className="container">
+                  <div className="row grid-space-10">
+                      <div className="col-lg-6 col-md-7 efch-5 ef-img-t">
+                        <ul className="menu line">
+                          {map(
+                            menuFooterBottom.sort((a, b) => a.position - b.position),
+                            (values, key) => {
+                              if (values.type === '4') {
+                                return (
+                                  <li key={key} style={{display:"block"}}>
+                                    {values.target === '2' ? (
+                                      <a href={values.url} target="_blank" rel="noopener noreferrer" style={{padding:"0"}}>
+                                        {values.name}
+                                      </a>
+                                    ) : (
+                                      <a href={values.url}>{values.name}</a>
+                                    )}
+                                  </li>
+                                );
+                              }
+                              return (
+                                <li className="li-footer" key={key} style={{display:"block"}}>
+                                  <LinkPage lang={lang} name={values.slugPages}>
+                                    <a style={{padding:"0"}}>{values.name}</a>
+                                  </LinkPage>
+                                </li>
+                              );
+                            }
+                          )}
+                        </ul>
+                      </div>
+                      <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
+                        <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <section className="sec-download-mb">
               <div className="wform">
                 <p className="stitle">{t('sign_up_promotional')}</p>
                 <form onSubmit={onRegister}>
@@ -851,8 +997,8 @@ function Layout({ children, isPrioty, idPage }) {
                 </form>
               </div>
               <DownloadApp mobile linkApp={linkApp} />
-            </section>
-            <div id="footer-mb" className="group-ef loaded">
+            </section> */}
+            {/* <div id="footer-mb" className="group-ef loaded">
               <div className="container">
                 <div className="row grid-space-10">
                   <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
@@ -876,113 +1022,7 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                 </div>
               </div>
-              <div className="menu-footer-mb">
-                <div className="row">
-                  {map(
-                    menuMobile.sort((a, b) => a.position - b.position),
-                    (item, index) => {
-                      let slug = '';
-                      if (item.type === '1') {
-                        slug = item.slugPages === 'homepage' ? '/' : `${item.slugPages}`;
-                      } else {
-                        slug = item.url;
-                      }
-                      if (slug === '/search') {
-                        return (
-                          <div className="col-3" key={index}>
-                            <Link href="/search" as={lang === 'vi' ? '/search' : `/en/search`}>
-                              <a className="item">
-                                <span className="img">
-                                  <img
-                                    className="lazyload"
-                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                    alt="images"
-                                  />
-                                </span>
-                                <span className="name">{item.name}</span>
-                              </a>
-                            </Link>
-                          </div>
-                        );
-                      }
-                      if (lang === 'vi' && slug !== '/') {
-                        return (
-                          <div className="col-3" key={index}>
-                            <Link href="/page/[...name]" as={slug === '/' ? '/' : `/page/${slug}`}>
-                              <a className="item">
-                                <span className="img">
-                                  <img
-                                    className="lazyload"
-                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                    alt="images"
-                                  />
-                                </span>
-                                <span className="name">{item.name}</span>
-                              </a>
-                            </Link>
-                          </div>
-                        );
-                      }
-                      if (lang === 'vi' && slug === '/') {
-                        return (
-                          <div className="col-3" key={index}>
-                            <Link href="/" as="/">
-                              <a className="item">
-                                <span className="img">
-                                  <img
-                                    className="lazyload"
-                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                    alt="images"
-                                  />
-                                </span>
-                                <span className="name">{item.name}</span>
-                              </a>
-                            </Link>
-                          </div>
-                        );
-                      }
-                      if (lang === 'en' && slug !== '/') {
-                        return (
-                          <div className="col-3" key={index}>
-                            <Link href="/en/page/[...name]" as={`/en/page/${slug}`}>
-                              <a className="item ">
-                                <span className="img">
-                                  <img
-                                    className="lazyload"
-                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                    alt="images"
-                                  />
-                                </span>
-                                <span className="name">{item.name}</span>
-                              </a>
-                            </Link>
-                          </div>
-                        );
-                      }
-                      if (lang === 'en' && slug === '/') {
-                        return (
-                          <div className="col-3" key={index}>
-                            <Link href="/en" as="/en">
-                              <a className="item">
-                                <span className="img">
-                                  <img
-                                    className="lazyload"
-                                    data-src={`${process.env.BASE_URL}/${item.icon}`}
-                                    alt="images"
-                                  />
-                                </span>
-                                <span className="name">{item.name}</span>
-                              </a>
-                            </Link>
-                          </div>
-                        );
-                      }
-                      return null;
-                    }
-                  )}
-                </div>
-              </div>
-            </div>
+            </div> */}
           </div>
           {/* <FormPopup
             modal={activeForm}

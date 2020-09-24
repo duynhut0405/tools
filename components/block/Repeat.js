@@ -43,6 +43,120 @@ function Repeat({ data, type, id, optionWidth }) {
     );
   }
 
+  if (type === '5') {
+    const col = 6;
+    return (
+      <section className={`${padding} table-${type}`} id={id}>
+        <div className="container">
+          <div className="row list-item">
+            <div className="col-lg-7">
+              <div className="entry-head text-center" style={{borderBottom: "1px solid #ddd"}}>
+                <h2 style={{fontSize:"12px", color:"#686868", marginBottom: "10px"}}>{data.title}</h2>
+              </div>
+              <div className="row list-item grid-space-20">
+                {map(listTable, (item, index) => (
+                  <React.Fragment>
+                    <div className={`col-md-${col} `} key={index}>
+                      <div className="widget-default" style={{backgroundColor: item.backGroundColor}}>
+                        <div className="widget-content entry-content">
+                          <div
+                            className="toggleAutoHeight"
+                            data-more="+ Xem thêm"
+                            data-less="- Thu gọn"
+                            data-i=""
+                          >
+                            <h3 style={{fontSize: "18px"}}>{item.header}</h3>
+                            <TableItem data={item.description} maxheight={Number(data.height)} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (type === '6') {
+    const col = 4;
+    return (
+      <section className={`${padding} table-${type}`} id={id}>
+        <div className="container">
+          <div className="row list-item">
+            <div className="col-lg-12">
+              <div className="entry-head text-center" style={{borderBottom: "1px solid #ddd"}}>
+                <h2 style={{fontSize:"12px", color:"#686868", marginBottom: "10px"}}>{data.title}</h2>
+              </div>
+              <div className="row list-item grid-space-20">
+                {map(listTable, (item, index) => (
+                  <React.Fragment>
+                    <div className={`col-md-${col} `} key={index}>
+                      <div className="widget-default" style={{backgroundColor: item.backGroundColor}}>
+                        <div className="widget-content entry-content">
+                          <div
+                            className="toggleAutoHeight"
+                            data-more="+ Xem thêm"
+                            data-less="- Thu gọn"
+                            data-i=""
+                          >
+                            <h3 style={{fontSize: "18px"}}>{item.header}</h3>
+                            <TableItem data={item.description} maxheight={Number(data.height)} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (type === '7') {
+    const col = 3;
+    return (
+      <section className={`${padding} table-${type}`} id={id}>
+        <div className="container">
+          <div className="row list-item">
+            <div className="col-lg-12">
+              <div className="entry-head text-center" style={{borderBottom: "1px solid #ddd"}}>
+                <h2 style={{fontSize:"12px", color:"#686868", marginBottom: "10px"}}>{data.title}</h2>
+              </div>
+              <div className="row list-item grid-space-20">
+                {map(listTable, (item, index) => (
+                  <React.Fragment>
+                    <div className={`col-md-${col} `} key={index}>
+                      <div className="widget-default" style={{backgroundColor: item.backGroundColor}}>
+                        <div className="widget-content entry-content">
+                          <div
+                            className="toggleAutoHeight"
+                            data-more="+ Xem thêm"
+                            data-less="- Thu gọn"
+                            data-i=""
+                          >
+                            <h3 style={{fontSize: "18px"}}>{item.header}</h3>
+                            <TableItem data={item.description} maxheight={Number(data.height)} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   const col = 12 / type;
 
   return (

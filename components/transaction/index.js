@@ -14,6 +14,7 @@ const propTypes = {
 
 const searchBranches = async (query, setData) => {
   const res = await searchBranchesService(query);
+  console.log(res.data);
   setData(res.data);
   // if (res && res !== undefined && res.status === 200) {
   //   setData(res.data);
@@ -65,6 +66,30 @@ function Transaction({ data, id }) {
   const [listDistrict, setListDistrict] = useState([]);
   const [districtValue, setDistrictValue] = useState(null);
 
+  const searchBranches1 = async (query, setData) => {
+    const res = await searchBranchesService(query);
+    if (res.data.length !== 0) {
+      setListBranches(res.data);
+      let data1 = {lat: Number(res.data[0].latitude), lng: Number(res.data[0].longitude)};
+      setLocation(data1)
+      setProvince(null)
+    } else {
+      setListBranches([]);
+    }
+  };
+
+  const searchBranches2 = async (query, setData) => {
+    const res = await searchBranchesService(query);
+    if (res.data.length !== 0) {
+      setListBranches(res.data);
+      let data1 = {lat: Number(res.data[0].latitude), lng: Number(res.data[0].longitude)};
+      setLocation(data1)
+      // setProvince(null)
+    } else {
+      setListBranches([]);
+    }
+  };
+
   const showPosition = position => {
     setLocation(() => ({
       lat: position.coords.latitude,
@@ -93,7 +118,7 @@ function Transaction({ data, id }) {
     setDistrict(null);
     // setQuery('');
     setDistrictValue(null);
-    searchBranches(
+    searchBranches2(
       {
         // districtCity: district,
         networkCategory: branches_type,
@@ -102,7 +127,11 @@ function Transaction({ data, id }) {
       },
       setListBranches
     );
-    setZoom(8);
+    if (listBranches.length !== 0) {
+      let data1 = {lat: Number(listBranches[0].latitude), lng: Number(listBranches[0].longitude)};
+      setLocation(data1)
+    }
+    setZoom(10);
     // getDetail(listBranches);
     // console.log("listBranches");
     // console.log(listBranches);
@@ -171,6 +200,19 @@ function Transaction({ data, id }) {
       setListBranches
     );
   };
+
+  const onLoad1 = (value) => {
+    searchBranches1(
+      {
+        districtCity: null,
+        networkCategory: 'all',
+        provinceCity: null,
+        search: value
+      },
+      setListBranches
+    );
+    firstLoad = false;
+  };
   
   const onLoad = () => {
     searchBranches(
@@ -200,7 +242,7 @@ function Transaction({ data, id }) {
   return (
     <session className="sec-tb sec-locations">
       <div className="container">
-        <div className={`wrap-list-map ${padding} transaction`} id={id} style={{marginBottom:"70px"}}>
+        <div className={`wrap-list-map ${padding} transaction`} id={id} style={{marginBottom:"70px", height: "500px"}}>
           <div className="row grid-space-0" style={{height:"inherit"}}>
             <div className="col-md-5">
               <BoxSearch
@@ -209,8 +251,9 @@ function Transaction({ data, id }) {
                 listProvince={listProvince}
                 branches_type={branches_type}
                 handleProvince={handleProvince}
-                setQuery={onChange}
+                setQuery={setQuery}
                 query={query}
+                onLoad1={onLoad1}
                 onSearch={onSearch}
                 districtValue={districtValue}
                 setBranchesType={handleBranchesType}

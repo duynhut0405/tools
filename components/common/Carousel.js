@@ -14,7 +14,7 @@ const propType = {
 function Carousels({ silder }) {
   const styleImg = {
     bottom: "0",
-    maxHeight: "100%",
+    height: "430px",
     minWidth: "100%",
     objectFit: "cover"
   }
@@ -127,10 +127,10 @@ function Carousels({ silder }) {
                 {map(silder, (_item, _index) => {
                   return (
                     <div className={`container-custom option-2`} key={_index} style={{ paddingLeft: "0"}}>
-                      <div className="container" style={{height: "-webkit-fill-available"}}>
+                      <div className="container show-768" style={{height: "-webkit-fill-available"}}>
                         <div className="divtext text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
                           {ReactHtmlParser(_item.note_2)}
-                          <h1 className=" efch-2 ef-img-l" style={{color: "#fff", fontSize: "72px"}}>{ReactHtmlParser(_item.note_1)}</h1>
+                          <h1 className=" efch-2 ef-img-l h1-custom" style={{color: "#fff"}}>{ReactHtmlParser(_item.note_1)}</h1>
                           {/* <div className="text_content3">{_item.note_3}</div> */}
                           {_item.text_action === null ||
                           _item.text_action === undefined ||
@@ -155,14 +155,44 @@ function Carousels({ silder }) {
                           )}
                         </div>
                       </div>
-                      <div className="wimg">
+                      <div className="wimg show-768">
                         <img
                           className="img img-pc" style={{ objectFit: "cover" }}
                           src={`${process.env.DOMAIN}${_item.urlImage}`}
                           alt="icon"
                         />
+                      </div>
+                      <div className="container show-767" style={{height: "-webkit-fill-available"}}>
+                        <div className="divtext1 text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
+                          {ReactHtmlParser(_item.note_2)}
+                          <h1 className=" efch-2 ef-img-l h1-custom" style={{color: "#fff"}}>{ReactHtmlParser(_item.note_1)}</h1>
+                          {/* <div className="text_content3">{_item.note_3}</div> */}
+                          {_item.text_action === null ||
+                          _item.text_action === undefined ||
+                          _item.text_action === '' ? (
+                            ''
+                          ) : (
+                            <a
+                              className="btn"
+                              href={
+                                _item.url === null || _item.url === undefined || _item.url === ''
+                                  ? '#'
+                                  : _item.url
+                              }
+                            >
+                              {_item.text_action}
+                            </a>
+                          )}
+                          {_item.video_url !== undefined && _item.video_url !== '' && (
+                            <div>
+                              <iframe src={_item.video_url} />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="wimg show-767">
                         <img
-                          className="img-center img-mb"
+                          className="img-center img-mb img-banner-custom"
                           src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
                           alt="icon"
                         />

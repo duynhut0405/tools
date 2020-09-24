@@ -324,7 +324,7 @@ function Card({ data, type, optionWidth, id }) {
         <React.Fragment>
           <section className={`sec-n-h1 group-ef loaded`} id={id}>
             <div className="container">
-              <div className="wsec" style={{maxHeight:"92px"}}>
+              <div className="wsec">
                 <div className="title efch-1 ef-img-t">{data === null ? '' : ReactHtmlParser(data.title)}</div>
                 <div className="inner">
                   <div className="row bottom">
