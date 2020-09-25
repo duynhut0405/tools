@@ -2528,8 +2528,16 @@ ul.menu.line>li:not(:first-child):before {
 
 [class*=tRes]>img, [class*=tRes]>video {
   overflow: hidden !important;
+  border-radius: 8px;
+}
+
+.list-1 [class*=tRes]:before {
+  border-radius: 8px;
+  overflow: hidden !important;
 }
 
 .list-item .item {
   overflow: hidden !important;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
