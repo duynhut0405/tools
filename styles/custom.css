@@ -1884,14 +1884,15 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 @media only screen and (min-width: 1399px)
-{.sec-n-h2 .title {
-  font-size: 32px;
-  line-height: 34px;
-}
+{
+    .sec-n-h2 .title {
+    font-size: 32px;
+    line-height: 34px;
+  }
 
-.sec-n-h2 .item {
-  padding: 70px;
-}
+  .sec-n-h2 .item {
+    padding: 70px;
+  }
 }
 @media only screen and (min-width: 1400px)
 {.sec-n-h2 .title {
@@ -1903,7 +1904,6 @@ ul.menu.line>li:not(:first-child):before {
 {.sec-n-h2 .title {
     font-size: 32px;
     line-height: 34px;
-    padding: 30px;
 }
 }
 @media only screen and (min-width: 992px)
@@ -1929,6 +1929,7 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .sec-n-h2 .img {
+  height: 70px;
   margin-bottom: 20px;
   max-width: 65px;
 }
@@ -1967,10 +1968,78 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 
-@media only screen and (min-width: 1200px)
-{.video-banner {
-    padding: 60px;
-}}
+@media only screen and (max-width: 1400px)
+{
+  /* Edit by An Nguyen */
+  .sec-n-h2 .img {
+    height: 100px;
+  }
+  .sec-n-h2 .divtext{
+    padding: 30px;
+  }
+  .loaded{
+    padding-bottom: 20px;
+  }
+  .sec-n-h2 .divtext a{
+    margin-left: 30px;
+  }
+  
+  /* End edit by An Nguyen */
+}
+/* @media only screen and (min-width: 1024px) and (max-width:1400px)
+{
+  .sec-n-h2 .divtext{
+    padding: 30px;
+  }
+  .sec-n-h2 .divtext a{
+    margin-left: 28px;
+  }
+  .loaded{
+    padding-bottom: 20px;
+  }
+
+} */
+
+
+  /* Edit by An Nguyen */
+ 
+@media screen and (max-width: 768px) {
+  .sec-n-h2 .img {
+    height: 55px;
+  }
+  .sec-n-h2 .title{
+    padding: 0px;
+    font-size: 30px;
+  }
+  .sec-n-h2 .divtext .title br{
+    display: none;
+  }
+  .sec-n-h2 .divtext{
+    padding: 30px;
+  }
+  .sec-n-h2 .divtext a{
+    margin-left: 30px;
+  }
+  
+  .loaded {
+    padding-bottom: 20px;
+  }
+}
+  
+@media screen and (max-width: 500px) {
+  .sec-n-h2 .img {
+    height: 55px;
+  }
+  .sec-n-h2 .title{
+    padding: 0px;
+  }
+  .loaded {
+    padding-bottom: 20px;
+  }
+}
+  /* End edit by An Nguyen */
+
+
 
 .video-banner .single_video {
   border-radius: 5px;
@@ -2211,15 +2280,7 @@ ul.menu.line>li:not(:first-child):before {
   color: #141ED2;
 }
 
-.wing-custom:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.001) 40%);
-}
+
 
 .list-1 .item:hover .on-hover-blue {
   color: #141ED2
