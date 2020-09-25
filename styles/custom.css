@@ -2414,3 +2414,35 @@ ul.menu.line>li:not(:first-child):before {
 .copyright {
   font-weight: 300;
 }
+
+.ajax-content-map-custom {
+  padding: 15px;
+  position: relative;
+}
+
+@media only screen and (max-width: 767px)
+{
+  .wrap-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: 150px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #EBEBEB !important;
+  }
+  .wrap-scroll .map-list-store {
+    display: table;
+    max-height: 150px;
+  }
+.wrap-scroll .map-list-store .item {
+  display: table-cell;
+  min-width: 250px;
+}
+
+.map-list-store .item {
+  cursor: pointer;
+  border-bottom: 1px solid #EBEBEB;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+}

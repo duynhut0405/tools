@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BoxSearch from './BoxSearch';
+import BoxSearchMobile from './BoxSearchMobile';
 import Map from '../common/Map';
 import debounce from 'lodash/debounce';
 import ProppTypes from 'prop-types';
@@ -242,10 +243,27 @@ function Transaction({ data, id }) {
   return (
     <session className="sec-tb sec-locations">
       <div className="container">
-        <div className={`wrap-list-map ${padding} transaction`} id={id} style={{marginBottom:"70px", height: "500px"}}>
+        <div className={`wrap-list-map ${padding} transaction`} id={id} style={{marginBottom:"70px", minHeight: "500px"}}>
           <div className="row grid-space-0" style={{height:"inherit"}}>
-            <div className="col-md-5">
+            <div className="col-md-5 show-768">
               <BoxSearch
+                listBranches={listBranches}
+                listDistrict={listDistrict}
+                listProvince={listProvince}
+                branches_type={branches_type}
+                handleProvince={handleProvince}
+                setQuery={setQuery}
+                query={query}
+                onLoad1={onLoad1}
+                onSearch={onSearch}
+                districtValue={districtValue}
+                setBranchesType={handleBranchesType}
+                setDistrict={handleDistrict}
+                getDetail={getDetail}
+              />
+            </div>
+            <div className="col-md-5 show-767">
+              <BoxSearchMobile
                 listBranches={listBranches}
                 listDistrict={listDistrict}
                 listProvince={listProvince}

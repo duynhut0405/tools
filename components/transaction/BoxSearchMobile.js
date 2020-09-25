@@ -40,29 +40,8 @@ function BoxSearch({
   const [queryCustom, setQueryCustom] = useState('');
 
   return (
-    <div className="ajax-content-map">
+    <div className="ajax-content-map-custom">
       <h5 class="uppercase">{t('net_work')}</h5>
-      {/* <ul className="menu row grid-space-0">
-        <li
-          className={branches_type === 'all' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('all')}
-        >
-          <span className="item">{t('all')}</span>
-        </li>
-        <li
-          className={branches_type === 'transaction' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('transaction')}
-        >
-          <span className="item">{t('transaction')}</span>
-        </li>
-        <li
-          className={branches_type === 'atm' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('atm')}
-        >
-          <span className="item">{t('atm')}</span>
-        </li>
-      </ul> */}
-
       <div className="form-search-focus mb-20">
           <input
             type="text"
@@ -88,25 +67,27 @@ function BoxSearch({
           onChange={handleProvince}
         />
       </div>
-      <div className="map-list-store">
-        {map(listBranches, (branches, index) => (
-          <div
-            className={
-              branches.network_category === 'atm'
-                ? 'item'
-                : branches.network_category === 'transaction' ||
-                  branches.network_category === 'transaction_online'
-                ? 'item'
-                : 'item'
-            }
-            key={index}
-          >
-            <div className="location" onClick={() => getDetail(branches)}>
-              <h5 className="title">{branches.address_name}</h5>
-              <div className="address">{branches.address}</div>
+      <div className="wrap-scroll">
+        <div className="map-list-store">
+          {map(listBranches, (branches, index) => (
+            <div
+              className={
+                branches.network_category === 'atm'
+                  ? 'item'
+                  : branches.network_category === 'transaction' ||
+                    branches.network_category === 'transaction_online'
+                  ? 'item'
+                  : 'item'
+              }
+              key={index}
+            >
+              <div className="location" onClick={() => getDetail(branches)}>
+                <h5 className="title">{branches.address_name}</h5>
+                <div className="address">{branches.address}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
