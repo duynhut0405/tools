@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+// import UseWindowResize from '../../common/Resize';
 import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
@@ -11,13 +12,49 @@ const propTypes = {
 
 function ImageRight({ items, padding, id, type }) {
   const [active, setActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [height, setHeight] = useState("430px");
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 767 ? true: false)
+    setIsTablet(window.innerWidth <= 1199 & window.innerWidth > 767 ? true: false)
+    if (isTablet) {
+      setHeight("350px");
+    }
+    if (isMobile) {
+      setHeight("280px");
+    }
+  });
   const backGroundColor = items.background === "1" ? '#141ED2': '#fff';
   if (items.type === '4') {
     return (
       <section className={`${padding}  sec-b sec-video2`} id={id}>
         <div className="container">
           <div className="video-banner" style={{backgroundColor:backGroundColor}}>
-          <div className="row center end list-item">
+          <div className="row center">
+            <div className="col-lg-5" style={{marginBottom:"0px"}}>
+              <div className="divtext entry-content">
+                <h2 className="ht" style={{fontSize: "24px"}}>{ReactHtmlParser(items.note_1)}</h2>
+                <p className="desc">
+                {ReactHtmlParser(items.note_2)}
+                {ReactHtmlParser(items.note_3)}
+                </p>
+                {items.text_action === undefined || items.text_action === '' ? (
+                  ''
+                ) : (
+                  <a className="btn btn-video-custom" href={items.url === undefined ? '#' : items.url} style={{backgroundColor:"none"}}>
+                    {items.text_action === undefined ? 'Đăng ký ngay ' : items.text_action + ' '}
+                    {items.imageButton !== undefined ||
+                      items.imageButton !== '' ||
+                      items.imageButton !== null ? (
+                        <img src={items.imageButton} alt/>
+                      ) : (
+                        ''
+                      )}
+                  </a>
+                )}
+              </div>
+            </div>
             <div className="col-lg-7" style={{marginBottom:"0px"}}>
               {!active && (
                 <div
@@ -63,29 +100,6 @@ function ImageRight({ items, padding, id, type }) {
                   ></iframe>
                 </div>
               )}
-            </div>
-            <div className="col-lg-5" style={{marginBottom:"0px"}}>
-              <div className="divtext entry-content">
-                <h2 className="ht" style={{fontSize: "24px"}}>{ReactHtmlParser(items.note_1)}</h2>
-                <p className="desc">
-                {ReactHtmlParser(items.note_2)}
-                {ReactHtmlParser(items.note_3)}
-                </p>
-                {items.text_action === undefined || items.text_action === '' ? (
-                  ''
-                ) : (
-                  <a className="btn btn-video-custom" href={items.url === undefined ? '#' : items.url} style={{backgroundColor:"none"}}>
-                    {items.text_action === undefined ? 'Đăng ký ngay ' : items.text_action + ' '}
-                    {items.imageButton !== undefined ||
-                      items.imageButton !== '' ||
-                      items.imageButton !== null ? (
-                        <img src={items.imageButton} alt/>
-                      ) : (
-                        ''
-                      )}
-                  </a>
-                )}
-              </div>
             </div>
           </div>
           </div>

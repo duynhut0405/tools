@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
@@ -12,9 +13,26 @@ const propType = {
 };
 
 function Carousels({ silder }) {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [height, setHeight] = useState("430px");
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 767 ? true: false)
+    setIsTablet(window.innerWidth <= 1199 & window.innerWidth > 767 ? true: false)
+    if (isTablet) {
+      setHeight("350px");
+    }
+    if (isMobile) {
+      setHeight("280px");
+    }
+  });
+  
+  const styleHeight = {
+    height: height,
+  };
   const styleImg = {
     bottom: "0",
-    height: "430px",
+    height: height,
     minWidth: "100%",
     objectFit: "cover"
   }
@@ -213,8 +231,8 @@ function Carousels({ silder }) {
               >
                 {map(silder, (_item, _index) => {
                   return (
-                    <section className="banner-heading-5" style={{height: "430px"}}>
-                      <div className="container" style={{height: "430px"}}>
+                    <section className="banner-heading-5" style={styleHeight}>
+                      <div className="container" style={styleHeight}>
                         <div className="divtext">
                           <div className="item-group space-20">
                             <a href={_item.url} target="_blank" className="item-group-addon img"><img className="img-center" src={`${process.env.DOMAIN}${_item.urlImageIcon}`} alt=""/></a>
@@ -224,7 +242,7 @@ function Carousels({ silder }) {
                           </div>
                         </div>
                       </div>
-                      <div className="wing wing-custom" style={{height: "430px"}}>
+                      <div className="wing wing-custom" style={styleHeight}>
                         <img className="img" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/>
                       </div>
                       
@@ -243,8 +261,8 @@ function Carousels({ silder }) {
               >
                 {map(silder, (_item, _index) => {
                   return (
-                    <section className="banner-heading-5" style={{height: "430px"}}>
-                      <div className="container" style={{height: "430px"}}>
+                    <section className="banner-heading-5" style={styleHeight}>
+                      <div className="container" style={styleHeight}>
                         <div className="divtext">
                           <div className="item-group space-20">
                           <h1 className=" efch-2 ef-img-l" style={{color: "#fff", transform: "none"}}>{ReactHtmlParser(_item.note_1)}</h1>
@@ -252,7 +270,7 @@ function Carousels({ silder }) {
                           </div>
                         </div>
                       </div>
-                      <div className="wing wing-custom" style={{height: "430px"}}>
+                      <div className="wing wing-custom" style={styleHeight}>
                         <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/>
                       </div>
                       
