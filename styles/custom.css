@@ -2137,6 +2137,15 @@ ul.menu.line>li:not(:first-child):before {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.001) 40%);
 }
 
+.wimg:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.001) 40%);
+}
 .img-custom-menu {
   padding: 5px 0;
   display: flex;
