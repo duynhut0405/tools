@@ -1967,10 +1967,19 @@ ul.menu.line>li:not(:first-child):before {
   margin-right: 0px;
   margin-left: 0px;
 }
+/* Edit by An Nguyen */
+.container-custom .wimg:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.001) 40%);
+}
 
 @media only screen and (max-width: 1400px)
 {
-  /* Edit by An Nguyen */
   .sec-n-h2 .img {
     height: 100px;
   }
@@ -1983,26 +1992,20 @@ ul.menu.line>li:not(:first-child):before {
   .sec-n-h2 .divtext a{
     margin-left: 30px;
   }
-  
-  /* End edit by An Nguyen */
 }
-/* @media only screen and (min-width: 1024px) and (max-width:1400px)
+@media only screen and (min-width: 768px) and (max-width:1024px)
 {
-  .sec-n-h2 .divtext{
-    padding: 30px;
+  .custom-banner-text h1{
+    font-size: 48px !important;
   }
-  .sec-n-h2 .divtext a{
-    margin-left: 28px;
+}
+@media only screen and (min-width: 510px) and (max-width:1000px)
+{
+  .custom-banner-text{
+    top: 68% !important;
   }
-  .loaded{
-    padding-bottom: 20px;
-  }
+}
 
-} */
-
-
-  /* Edit by An Nguyen */
- 
 @media screen and (max-width: 768px) {
   .sec-n-h2 .img {
     height: 55px;
@@ -2507,3 +2510,4 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 }
+
