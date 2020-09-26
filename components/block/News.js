@@ -299,7 +299,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
             <div class="list-5 row">
             {map(listCategory, (item, index) => (
                   <div className="col-md-3" key={index} style={{maxHeight:"358.05px"}}>
-                    <listCategory lang={lang} name={item.url}>
+                    <LinkNew lang={lang} name={item.url}>
                       <a className={`item efch-0 ef-img-l`} style={{height: "100%",
                       boxShadow: "none",
                       borderRadius: "8px",
@@ -322,7 +322,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h5 className="title title-custom-1 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
-                    </listCategory>
+                    </LinkNew>
                   </div>
                 ))}
             </div>
@@ -959,7 +959,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                 ))}
           {map(listNewsTabs, (item, index) => (
                   <div className="col-md-4 efch-5 ef-img-t" key={index}>
-                    <listNewsTabs lang={lang} name={item.url}>
+                    <LinkNew lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
                             className="lazyload"
@@ -974,7 +974,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h5 className="title line2 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
-                    </listNewsTabs>
+                    </LinkNew>
                   </div>
                 ))}
           </div>
@@ -1011,7 +1011,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
           <div className="row list-item list-1">
           {map(listNews4, (item, index) => (
                   <div className="col-md-8 efch-1 ef-img-t" key={index} style={{maxHeight:"318.5px"}}>
-                    <listNews4 lang={lang} name={item.url}>
+                    <LinkNew lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
                             className="lazyload"
@@ -1027,12 +1027,12 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h4 className="title line2 on-hover-blue">{item.title}</h4>
                         </div>
                       </a>
-                    </listNews4>
+                    </LinkNew>
                   </div>
                 ))}
                 {map(listNewsTabs4, (item, index) => (
                   <div className={`col-md-4 efch-${index} ef-img-t`} key={index} style={{minHeight: index === '0' ? "100%" : "266px"}}>
-                    <listNewsTabs4 lang={lang} name={item.url}>
+                    <LinkNew lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
                             className="lazyload"
@@ -1048,7 +1048,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h5 className="title line2 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
-                    </listNewsTabs4>
+                    </LinkNew>
                   </div>
                 ))}
                 
@@ -1110,7 +1110,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
           <div className="row list-item list-1">
           {map(listNews6, (item, index) => (
                   <div className="col-md-8 efch-1 ef-img-t" key={index} style={{maxHeight:"318.5px"}}>
-                    <listNews6 lang={lang} name={item.url}>
+                    <LinkNew lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
                             className="lazyload"
@@ -1126,12 +1126,12 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h4 className="title line2 on-hover-blue">{item.title}</h4>
                         </div>
                       </a>
-                    </listNews6>
+                    </LinkNew>
                   </div>
                 ))}
                 {map(listNewsTabs6, (item, index) => (
                   <div className={`col-md-4 efch-${index} ef-img-t`} key={index}>
-                    <listNewsTabs6 lang={lang} name={item.url}>
+                    <LinkNew lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
                             className="lazyload"
@@ -1147,12 +1147,12 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h5 className="title line2 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
-                    </listNewsTabs6>
+                    </LinkNew>
                   </div>
                 ))}
                 {map(listNewsTabsLast6, (item, index) => (
                   <div className="col-md-8 efch-1 ef-img-t" style={{maxHeight:"318.5px"}}>
-                    <listNewsTabsLast6 lang={lang} name={item.url}>
+                    <LinkNew lang={lang} name={item.url}>
                       <a className={`item tRes_66`}>
                           <img
                             className="lazyload"
@@ -1168,7 +1168,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                           <h4 className="title line2 on-hover-blue">{item.title}</h4>
                         </div>
                       </a>
-                    </listNewsTabsLast6>
+                    </LinkNew>
                   </div>
                 ))}
                 
