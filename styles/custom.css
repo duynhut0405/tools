@@ -2345,14 +2345,13 @@ ul.menu.line>li:not(:first-child):before {
 
 .btnPhone-Custom {
   line-height: 24px;
-  padding-top: 10px;
+  padding-top: 5px;
   border-radius: 8px;
   position: relative;
   display: block;
   max-width: 320px;
   color: #141ED2;
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -2596,11 +2595,9 @@ ul.menu.line>li:not(:first-child):before {
 
 [class*=tRes]>img, [class*=tRes]>video {
   overflow: hidden !important;
-  border-radius: 8px;
 }
 
 .list-1 [class*=tRes]:before {
-  border-radius: 8px;
   overflow: hidden !important;
 }
 
