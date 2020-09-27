@@ -5,6 +5,7 @@ import Carousel from 'react-multi-carousel';
 import UseWindowResize from '../common/Resize';
 import t from '../../translation';
 import ReactHtmlParser from 'react-html-parser';
+import Link from 'next/link';
 
 const propTypes = {
   data: Proptypes.array,
@@ -14,6 +15,10 @@ const propTypes = {
 function Icon({ data, id }) {
   const [refCarousel, setRefCarousel] = useState(null);
   const size = UseWindowResize();
+  const haftFirstData = data.slice(0, (data.length/2));
+  const haftSecondData = data.slice((data.length/2),data.length + 1);
+
+  const column = data.length === 4 ? '3' : 4;
 
   const responsive = {
     desktop: {
@@ -590,7 +595,7 @@ function Icon({ data, id }) {
                   <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[0].imageBackGround} style={{backgroundImage: `url("${data[0].imageBackGround}")`, backgroundSize: "100% 100%"}}>
                     <div className="divtext" style={{textAlign: "left"}}>
                       <div className="img" style={{maxWidth: "65px"}}>
-                        <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[0].image} src={data[0].image}/>
+                        <img className=" loaded loaded" data-lazy-type="image" dataLazySrc={data[0].image} src={data[0].image}/>
                       </div>
                       <div className="title" style={{color: "#A0D2FF", marginBottom: "20px", fontWeight: "600"}}>
                         {ReactHtmlParser(data[0].note_1)}
@@ -610,7 +615,7 @@ function Icon({ data, id }) {
                   <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[1].imageBackGround} style={{backgroundImage: `url("${data[1].imageBackGround}")`, backgroundSize: "100% 100%"}}>
                     <div className="divtext" style={{textAlign: "left"}}>
                       <div className="img" style={{maxWidth: "65px"}}>
-                        <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[1].image} src={data[1].image}/>
+                        <img className=" loaded loaded" data-lazy-type="image" dataLazySrc={data[1].image} src={data[1].image}/>
                       </div>
                       <div className="title" style={{color: "#141ED2", marginBottom: "20px", fontWeight: "600"}}>
                         {ReactHtmlParser(data[1].note_1)}
@@ -630,7 +635,7 @@ function Icon({ data, id }) {
                   <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[2].imageBackGround} style={{backgroundImage: `url("${data[2].imageBackGround}")`, backgroundSize: "100% 100%"}}>
                     <div className="divtext" style={{textAlign: "left"}}>
                       <div className="img" style={{maxWidth: "65px"}}>
-                        <img class=" loaded loaded" data-lazy-type="image" dataLazySrc={data[2].image} src={data[2].image}/>
+                        <img className=" loaded loaded" data-lazy-type="image" dataLazySrc={data[2].image} src={data[2].image}/>
                       </div>
                       <div className="title" style={{color: "#141ED2", marginBottom: "20px", fontWeight: "600"}}>
                         {ReactHtmlParser(data[2].note_1)}
@@ -849,6 +854,316 @@ function Icon({ data, id }) {
                   ))}
               </div>
               )}
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '12' && (
+        <React.Fragment>
+        <section
+          className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+          id={id}
+        >
+          <div className="container">
+            <div className="title-has-line-custom">
+              <h2 className="ht" style={{fontSize: "14px", marginBottom: "5px"}}>{data === null ? '' : data[0].title}</h2>
+            </div>
+            <div>
+              <div className="row">
+                {map(data, (item, index) => (
+                  <div className={`col-md-${column}`} style={{paddingBottom: "20px"}}>
+                    <div className="item group-custom-1">
+                      <div className="divtext">
+                        <h4 className="title" style={{textTransform: "none"}}>{item.note_1}</h4>
+                        <div className="detail-custom-1">{item.note_2}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </React.Fragment>
+      )}
+      {data[0].type === '13' && (
+        <React.Fragment>
+        <section
+          className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+          id={id}
+        >
+          <div className="container">
+            <div className="">
+              <div className="row">
+                <div className="col-md-6" style={{marginBottom: "20px"}}>
+                  <div className="item group-custom-1" style={{backgroundColor:"#e0f0ff"}}>
+                    <div className="title-has-line-custom">
+                      <h2 className="ht" style={{fontSize: "14px", marginBottom: "5px"}}>{data === null ? '' : data[0].title}</h2>
+                    </div>
+                    {map(haftFirstData, (item, index) => (
+                      <div style={{ height: "150px", marginBottom: "10px"}}>
+                        <h4 className="title" style={{textTransform: "none"}}>{item.note_1}</h4>
+                        <div className="detail-custom-1" style={{maxHeight: "110px", overflow: "hidden"}}>{item.note_2}</div>
+                      </div>
+                    ))}
+                    <Link href={data[0].url_group_1 !== null || data[0].url_group_1 !== undefined ? data[0].url_group_1 : "#"} prefetch={false}>
+                      <a className="link">
+                        <p className="viewmore-custom" style={{marginBottom: "0px"}}>{t('viewmore')} +</p>
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+                <div className="col-md-6" style={{paddingBottom: "20px"}}>
+                  <div className="item group-custom-1">
+                    <div className="title-has-line-custom">
+                      <h2 className="ht" style={{fontSize: "14px", marginBottom: "5px"}}>{data === null ? '' : data[0].title_2}</h2>
+                    </div>
+                    {map(haftSecondData, (item, index) => (
+                      <div style={{height: "150px", marginBottom: "10px"}}>
+                        <h4 className="title" style={{textTransform: "none"}}>{item.note_1}</h4>
+                        <div className="detail-custom-1" style={{maxHeight: "110px", overflow: "hidden"}}>{item.note_2}</div>
+                      </div>
+                    ))}
+                    <Link href={data[0].url_group_2 !== null || data[0].url_group_2 !== undefined ? data[0].url_group_2 : "#"} prefetch={false}>
+                      <a className="link">
+                        <p className="viewmore-custom" style={{marginBottom: "0px"}}>{t('viewmore')} +</p>
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </React.Fragment>
+      )}
+      {data[0].type === '14' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="entry-head text-center">
+                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index}>
+                      <div className="item" style={{textAlign:"left"}}>
+                        <a href={items.url ? items.url : '#'}>
+                          <div className="img">
+                            <img
+                              className="lazyload"
+                              alt="images"
+                              data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                            />
+                          </div>
+                          <div className="divtext">
+                            <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
+                            <div className="desc">{items.note_2}</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '15' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container" style={{paddingBottom: "70px"}}>
+              <div className="title-has-line-custom">
+                <h2 className="ht" style={{fontSize: "14px", marginBottom: "5px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="row">
+                {map(data, (item, index) => (
+                    <div className={`col-md-${column}`} style={{paddingBottom: "50px"}}>
+                      <div style={{paddingBottom: "20px", padding:"30px", height: "120%", textAlign: "left", backgroundColor: "#e0f0ff", borderRadius: "5px", position: "relative", minHeight: "200px"}}>
+                      <h4 className="title" style={{textTransform: "none"}}>{item.note_1}</h4>
+                        <div className="detail-custom-1">
+                          {item.note_2}
+                        </div>
+                        <div style={{width:"46px", height:"46px", position: "absolute", right: "30px", bottom: "30px"}}>
+                          <img
+                            className="lazyload"
+                            alt="images"
+                            data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                            style={{ maxHeight: "100%" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '16' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="entry-head text-center">
+                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index}>
+                      
+                        <div className="item" style={{paddingBottom: "30px", padding:"30px", height: "100%", textAlign: "left", backgroundColor: "#f3f3ff", borderRadius: "5px"}}>
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="img">
+                              <img
+                                className="lazyload"
+                                alt="images"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              />
+                            </div>
+                            <div className="divtext">
+                              <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
+                              <div className="desc">{items.note_2}</div>
+                            </div>
+                          </a>
+                        </div>
+                      
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '17' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="entry-head text-center">
+                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index}>
+                      
+                        <div className="item" style={{paddingBottom: "30px", padding:"30px", height: "100%", textAlign: "left", backgroundColor: "#141ED2",color: "#fff", borderRadius: "5px"}}>
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="img">
+                              <img
+                                className="lazyload"
+                                alt="images"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              />
+                            </div>
+                            <div className="divtext">
+                              <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
+                              <div className="desc">{items.note_2}</div>
+                            </div>
+                          </a>
+                        </div>
+                      
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '18' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="entry-head text-center">
+                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index}>
+                      
+                        <div className="item" style={{paddingBottom: "30px", padding:"30px", height: "100%", textAlign: "left",
+                          backgroundColor: (index % 2 == 0) ? "#e0f0ff" : "#f3f3ff", borderRadius: "5px"}}>
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="img">
+                              <img
+                                className="lazyload"
+                                alt="images"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              />
+                            </div>
+                            <div className="divtext">
+                              <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
+                              <div className="desc">{items.note_2}</div>
+                            </div>
+                          </a>
+                        </div>
+                      
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '19' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="entry-head text-center">
+                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index}>
+                      
+                        <div className="item" style={{paddingBottom: "30px", padding:"30px", height: "100%", textAlign: "left",
+                          backgroundColor: (index % 2 == 0) ? "#e0f0ff" : "#f3f3ff", borderRadius: "5px"}}>
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="img">
+                              <div className="circle-custom">{(index <= 9) ? `0${index+1}` : `${index+1}`}</div>
+                            </div>
+                            <div className="divtext">
+                              <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
+                              <div className="desc">{items.note_2}</div>
+                            </div>
+                          </a>
+                        </div>
+                      
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </section>
         </React.Fragment>
