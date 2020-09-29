@@ -80,6 +80,21 @@ function Icon({ data, id }) {
     }
   };
 
+  const responsive4 = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
+
   let padding = '';
   if (data[0].optionWidth === '2') {
     padding = 'sec-tb';
@@ -1037,7 +1052,7 @@ function Icon({ data, id }) {
                             </div>
                             <div className="divtext">
                               <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
-                              <div className="desc">{items.note_2}</div>
+                              <div className="detail-custom-1">{items.note_2}</div>
                             </div>
                           </a>
                         </div>
@@ -1118,7 +1133,7 @@ function Icon({ data, id }) {
                             </div>
                             <div className="divtext">
                               <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
-                              <div className="desc">{items.note_2}</div>
+                              <div className="detail-custom-1">{items.note_2}</div>
                             </div>
                           </a>
                         </div>
@@ -1155,11 +1170,135 @@ function Icon({ data, id }) {
                             </div>
                             <div className="divtext">
                               <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
-                              <div className="desc">{items.note_2}</div>
+                              <div className="detail-custom-1">{items.note_2}</div>
                             </div>
                           </a>
                         </div>
                       
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '20' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="entry-head text-center">
+                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="wrap-carousel pc">
+                  <Carousel
+                    responsive={responsive4}
+                    draggable
+                    minimumTouchDrag={80}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    className="list-9 menuicon2"
+                    arrows={false}
+                    renderButtonGroupOutside={true}
+                    ref={ref => {
+                      setRefCarousel(ref);
+                    }}
+                  >
+                    {map(data, (item, index) => (
+                      <div className="gray-background-custom">
+                        <a  className="link" href={item.url} style={{minHeight: "110px"}}>
+                          <div className="img-custom-menu">
+                            <img
+                              className="lazyload"
+                              alt="images"
+                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                              style={{ maxHeight: "100%" }}
+                            />
+                          </div>
+                          <div className="title-gray-custom" style={{textTransform:"none"}}>{ReactHtmlParser(item.note_1)}</div>
+                        </a>
+                      </div>
+                    ))}
+                  </Carousel>
+                  <div className="carousel-nav center carousel-nav-custom">
+                    <div
+                      className="carousel-prev "
+                      onClick={() => {
+                        refCarousel.previous();
+                      }}
+                    >
+                      <i className="icon-arrow-1 ix"></i>
+                    </div>
+                    <div
+                      className="carousel-next"
+                      onClick={() => {
+                        refCarousel.next();
+                      }}
+                    >
+                      <i className="icon-arrow-1"></i>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '21' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="entry-head text-center">
+                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index}>
+                        <div className="gray-background-custom-2">
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="title" style={{textTransform:"none"}}>{ReactHtmlParser(items.note_1)}</div>
+                          </a>
+                        </div>
+                      
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '22' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="entry-head text-center">
+                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+              </div>
+
+              <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index}>
+                        <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
+                        </div>
+                        <div className="title-gray-custom-2">
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="title" style={{textTransform:"none"}}>{ReactHtmlParser(items.note_1)}</div>
+                          </a>
+                        </div>    
                     </div>
                   );
                 })}
