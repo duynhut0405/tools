@@ -1977,7 +1977,64 @@ ul.menu.line>li:not(:first-child):before {
   right: 0;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.001) 40%);
 }
+.banner-heading-3{
+  height: 350px;
+}
 
+.banner-heading-3 {
+	overflow: hidden;
+  position: relative;
+  height: 351px;
+}
+
+.banner-heading-3 .container {
+	display: table
+}
+
+.banner-heading-3 .divtext {
+	display: table-cell;
+	vertical-align: middle;
+	height: 300px;
+	padding: 50px 0;
+	text-align: center
+}
+
+
+.banner-heading-3 .divtext h1 {
+	color: #141ED2;
+	font-weight: 700;
+  text-transform: inherit;
+  padding-top: 110px;
+}
+
+.banner-heading-3>.img {
+	max-width: inherit;
+	position: absolute;
+	left: 19%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+  max-height: 486px;
+  top:-132px;
+}
+
+.banner-heading-3 .heading-new {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0
+}
+
+.banner-heading-3 .heading-new img {
+	max-width: inherit;
+	position: absolute;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	height: 100%
+}
 @media only screen and (max-width: 1400px)
 {
   .sec-n-h2 .img {
@@ -1993,8 +2050,25 @@ ul.menu.line>li:not(:first-child):before {
     margin-left: 30px;
   }
 }
+@media only screen and (min-width: 1024px) and (max-width:1200px)
+{}
+
 @media only screen and (min-width: 768px) and (max-width:1024px)
 {
+  .banner-heading-3>.img {
+		max-width: inherit;
+		position: absolute;
+		left: 19%;
+		-ms-transform: translateX(-50%);
+		transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+		max-height: 486px;
+		top: 1%;
+		width: 46%;
+	}
+  .banner-heading-3{
+    height: 355px;
+  }
   .custom-banner-text h1{
     font-size: 48px !important;
   }
@@ -2028,8 +2102,17 @@ ul.menu.line>li:not(:first-child):before {
     padding-bottom: 20px;
   }
 }
-  
+
 @media screen and (max-width: 500px) {
+  .banner-heading-3>.img {
+		left: 47%;
+		max-height: 486px;
+		top: 73px;
+		width: 110%;
+	}
+  .banner-heading-3{
+    margin-top:-59px ;
+  }
   .sec-n-h2 .img {
     height: 55px;
   }
@@ -2040,6 +2123,26 @@ ul.menu.line>li:not(:first-child):before {
     padding-bottom: 20px;
   }
 }
+
+@media screen and (min-width: 415px) and (max-width: 500px) {
+  .banner-heading-3>.img {
+		left: 47%;
+		max-height: 486px;
+		top: 35px;
+		width: 106%;
+	}
+}
+@media screen and (max-width: 415px) {
+  .banner-heading-3>.img {
+		left: 47%;
+		max-height: 486px;
+		top: 100px;
+		width: 110%;
+	}
+}
+
+
+
   /* End edit by An Nguyen */
 
 
@@ -2608,6 +2711,9 @@ ul.menu.line>li:not(:first-child):before {
 
 .list-1 [class*=tRes]:before {
   overflow: hidden !important;
+  /*Add by An Nguyen*/
+  border-radius: 8px;
+  /*End Add by An Nguyen*/
 }
 
 .list-item .item {

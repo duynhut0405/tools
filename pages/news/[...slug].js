@@ -103,7 +103,7 @@ function New({ news, category_name, category_url, socialLink }) {
               </div>
             </div>
           </div>
-          <section className="banner-heading-3 next-shadow">
+          <section className="banner-heading-3">
             <div className="container">
               <div className="divtext">
                 <div className="max750">
@@ -113,7 +113,7 @@ function New({ news, category_name, category_url, socialLink }) {
             </div>
             <img
               className="img img-pc br loaded loaded lazyload"
-              data-src="/static/images/heading-10-pc.svg"
+              data-src="/static/images/Group 6.png"
               alt="images"
             />
             <img
@@ -124,9 +124,11 @@ function New({ news, category_name, category_url, socialLink }) {
           </section>
           <main id="main" className="sec-b page-news-detail">
             <div className="container">
-              <div className=" max750">
-                <div className="top-heading">
-                  <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div>
+              <div className="max750">
+                <div className="top-heading" style={{marginTop:"-85px"}}>
+                  <div className="date">
+                    {category_name}  |   
+                    {moment(news.news.created_at).format('DD/MM/YYYY')}</div>
                   {socialLink && <Social data={socialLink} />}
                   {/* {console.log(socialLink)} */}
                 </div>
@@ -187,7 +189,6 @@ function New({ news, category_name, category_url, socialLink }) {
                 </div>
                 <br />
                 <div className="tags">
-                  <h2>{t('related_content')}</h2>
                   {map(news.news.categories, item => (
                     <Link
                       href="/news/category/[...name]"
