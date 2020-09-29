@@ -80,7 +80,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   function onScroll(id) {
     const elmnt = document.getElementById(id);
     if (elmnt !== null) {
-      elmnt.scrollIntoView();
+      elmnt.scrollIntoView({behavior: 'smooth'});
     }
   }
 
@@ -131,36 +131,38 @@ function MenuIntro({ data, pageId, optionWidth }) {
           </div>
         </div>
       </section>
-      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{marginTop: "68px", height: data.maxHeight}}>
+      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{marginTop: "68px"}}>
         <div className="container">
-          <div className="row list-item ">
+          <div className="row list-item">
             <div className={!data.isForm || data.isForm === 0 ? 'col-lg-7' : 'col-lg-12'}>
-              <div className="entry-content">
-                <h4 style= {{color:data.color}}> {ReactHtmlParser(data.description)} </h4>
+              <div className="entry-content entry-content-custom">
                 {ReactHtmlParser(data.descriptionTop)}
+                {ReactHtmlParser(data.description)}
               </div>
             </div>
             <div
               className={data.isForm || data.isForm === 1 ? 'd-none' : 'col-lg-5'}
               style={{textAlign:"center"}}
             >
-              <a className={`item`} href={data.url_image} style={{}}>
+              {(data.urlImage !== null & data.urlImage !== undefined ) ? (
+                <a className={`item`} href={data.url_image} style={{}}>
                   <img
                     className="lazyload"
                     data-src={
-                      data.urlImage === null
+                      data.urlImage === null || data.urlImage === undefined 
                         ? `/images/imgdefault.jpg`
                         : `${process.env.DOMAIN}${data.urlImage}`
                     }
                     alt="images"
                   />
-              </a>
+                </a>
+              ) : null}
               <div className="custom-content-1">
-                <div style={{paddingBottom: "10px",
-                  fontSize: "18px",
+                <div style={{
                   fontWeight: "600",
-                  borderBottom: "1px solid #ddd"}}>
-                  {data.descriptionBot}
+                  borderBottom: "1px solid #ddd"
+                }}>
+                  {ReactHtmlParser(data.descriptionBot)}
                 </div>
                 <a className="btnPhone-Custom" href="tel:1900545426">
                   {data.contact_1}

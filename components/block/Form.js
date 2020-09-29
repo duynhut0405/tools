@@ -101,7 +101,10 @@ function Form({ data, pageId, id }) {
   const styleImg = {
     backgroundImage: `url(${process.env.DOMAIN}${data.urlImage})`,
     padding: "46px",
-    borderRadius: "5px"
+    borderRadius: "5px",
+    backgroundPosition: "right",
+    backgroundRepeat: "no-repeat",
+    border: "1px solid rgb(221, 221, 221)"
   };
 
   return (

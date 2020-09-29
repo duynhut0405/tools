@@ -1884,14 +1884,15 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 @media only screen and (min-width: 1399px)
-{.sec-n-h2 .title {
-  font-size: 32px;
-  line-height: 34px;
-}
+{
+    .sec-n-h2 .title {
+    font-size: 32px;
+    line-height: 34px;
+  }
 
-.sec-n-h2 .item {
-  padding: 70px;
-}
+  .sec-n-h2 .item {
+    padding: 70px;
+  }
 }
 @media only screen and (min-width: 1400px)
 {.sec-n-h2 .title {
@@ -1903,7 +1904,6 @@ ul.menu.line>li:not(:first-child):before {
 {.sec-n-h2 .title {
     font-size: 32px;
     line-height: 34px;
-    padding: 30px;
 }
 }
 @media only screen and (min-width: 992px)
@@ -1929,6 +1929,7 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .sec-n-h2 .img {
+  height: 70px;
   margin-bottom: 20px;
   max-width: 65px;
 }
@@ -1966,6 +1967,81 @@ ul.menu.line>li:not(:first-child):before {
   margin-right: 0px;
   margin-left: 0px;
 }
+/* Edit by An Nguyen */
+.container-custom .wimg:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.001) 40%);
+}
+
+@media only screen and (max-width: 1400px)
+{
+  .sec-n-h2 .img {
+    height: 100px;
+  }
+  .sec-n-h2 .divtext{
+    padding: 30px;
+  }
+  .loaded{
+    padding-bottom: 20px;
+  }
+  .sec-n-h2 .divtext a{
+    margin-left: 30px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width:1024px)
+{
+  .custom-banner-text h1{
+    font-size: 48px !important;
+  }
+}
+@media only screen and (min-width: 510px) and (max-width:1000px)
+{
+  .custom-banner-text{
+    top: 68% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sec-n-h2 .img {
+    height: 55px;
+  }
+  .sec-n-h2 .title{
+    padding: 0px;
+    font-size: 30px;
+  }
+  .sec-n-h2 .divtext .title br{
+    display: none;
+  }
+  .sec-n-h2 .divtext{
+    padding: 30px;
+  }
+  .sec-n-h2 .divtext a{
+    margin-left: 30px;
+  }
+  
+  .loaded {
+    padding-bottom: 20px;
+  }
+}
+  
+@media screen and (max-width: 500px) {
+  .sec-n-h2 .img {
+    height: 55px;
+  }
+  .sec-n-h2 .title{
+    padding: 0px;
+  }
+  .loaded {
+    padding-bottom: 20px;
+  }
+}
+  /* End edit by An Nguyen */
+
 
 @media only screen and (min-width: 1200px)
 {
@@ -2232,15 +2308,7 @@ ul.menu.line>li:not(:first-child):before {
   color: #141ED2;
 }
 
-.wing-custom:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.001) 40%);
-}
+
 
 .list-1 .item:hover .on-hover-blue {
   color: #141ED2
@@ -2286,21 +2354,20 @@ ul.menu.line>li:not(:first-child):before {
 
 .btnPhone-Custom {
   line-height: 24px;
-  padding-top: 10px;
+  padding-top: 5px;
   border-radius: 8px;
   position: relative;
   display: block;
   max-width: 320px;
   color: #141ED2;
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .custom-content-1 {
   max-width: 313px;
   text-align: left;
-  margin-left: 68px;
+  margin: auto;
 }
 
 .toggleAutoHeight>section[aria-hidden=true]:after {
@@ -2539,6 +2606,88 @@ ul.menu.line>li:not(:first-child):before {
   overflow: hidden !important;
 }
 
+.list-1 [class*=tRes]:before {
+  overflow: hidden !important;
+}
+
 .list-item .item {
   overflow: hidden !important;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.entry-content-custom :first-of-type {
+  color: #141ED2;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.group-custom-1 {
+  padding: 30px;
+  text-align: left !important;
+  background-color: #f3f3ff;
+  border-radius: 8px;
+  min-height: 250px;
+}
+
+.detail-custom-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 8;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  color: #8d8d97;
+}
+
+.title-has-line-custom {
+  font-size: 14px;
+  color: #8d8d97;
+  border-bottom: 1px solid #d6d6d6;
+  margin-bottom: 20px;
+}
+
+.viewmore-custom {
+  font-weight: 600;
+  color: #141ED2;
+}
+
+.viewmore-custom:hover {
+  color: #041d79;
+  cursor: pointer;
+}
+
+.bottom-right-custom {
+  position: absolute;
+  right: 0;
+}
+
+.detail-custom-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 8;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  color: #8d8d97;
+  height: 100%;
+}
+
+.group-custom-2 {
+  padding: 30px;
+  padding-bottom: 60px;
+  text-align: left !important;
+  background-color: #f3f3ff;
+  border-radius: 8px;
+  min-height: 250px;
+  position: relative;
+}
+
+.circle-custom {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  background: #b5a5fb;
+  padding: 12px;
 }

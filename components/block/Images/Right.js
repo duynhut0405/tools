@@ -112,7 +112,7 @@ function ImageRight({ items, padding, id, type }) {
     return (
       <section className={`sec-t sec-b sec-video2`} id={id}>
         <div className="container">
-            <img class=" loaded loaded img-banner" dataLazyType="image" dataLazySrc={img} src={img} style={{borderRadius:"5px"}}/>
+            <img class=" loaded loaded img-banner" dataLazyType="image" dataLazySrc={img} src={img} style={{borderRadius:"5px", paddingBottom: "0"}}/>
           <a href={items.url_1} className="btn-custom" style={{top:items.top, left:items.left, height: items.height, width: items.width}}></a>
           <a href={items.url_2} className="btn-custom" style={{top:items.top2, left:items.left2, height: items.height2, width: items.width2}}></a>
         </div>
@@ -125,7 +125,7 @@ function ImageRight({ items, padding, id, type }) {
       <section className={`sec-t sec-b sec-video2`} id={id}>
         <div className="container">
           <a href={items.url_1} target="_blank">
-            <img class=" loaded loaded img-banner" dataLazyType="image" dataLazySrc={img} src={img} style={{borderRadius:"5px"}}/>
+            <img class=" loaded loaded img-banner" dataLazyType="image" dataLazySrc={img} src={img} style={{borderRadius:"5px", paddingBottom: "0"}}/>
           </a>
         </div>
       </section>

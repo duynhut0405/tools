@@ -201,7 +201,7 @@ function Pages({ data, type, id, optionWidth }) {
 
   if (type && type === '3') {
     return (
-      <section className={`${padding} sec-related bg-gray category-${type}`} id={id}>
+      <section className={`${padding} sec-related category-${type}`} id={id}>
         <div className="container">
           <div
             className={
