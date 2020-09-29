@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { map, isEmpty, slice } from 'lodash';
 import Question from './Item';
+import Question2 from './Item2';
 import Proptypes from 'prop-types';
 import t from '../../../translation';
 import { findAllNewsByCategory } from '../../../services/news';
@@ -68,6 +69,19 @@ function Questions({ data, id }) {
                   index //
                 ) => (
                   <Question
+                    key={index}
+                    index={`1-${index}`}
+                    id={index}
+                    answer={item.answer}
+                    question={item.question}
+                  />
+                ))}
+              {Number(data.optionChoose) === 3 &&
+                map(listPagination, (
+                  item,
+                  index //
+                ) => (
+                  <Question2
                     key={index}
                     index={`1-${index}`}
                     id={index}

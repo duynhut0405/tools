@@ -172,7 +172,7 @@ function Pages({ data, type, id, optionWidth }) {
           <div className="list-7 list-item row category-custom-mini">
             {map(listPage, item => (
               <div className="col-md-6" key={item.newsId}>
-                <LinkPage lang={lang} name={"vay-bat-dong-san"}>
+                <LinkPage lang={lang} name={item.slug}>
                   <a className="item-custom-category item-inline-table style-colummb">
                     <div className="img tRes_70" style={{width: "47%"}}>
                       <img
