@@ -2691,3 +2691,106 @@ ul.menu.line>li:not(:first-child):before {
   background: #b5a5fb;
   padding: 12px;
 }
+.sec-tuvan form {
+  max-width: 600px;
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 992px)
+{
+  .sec-tuvan form {
+    max-width: 550px;
+  }
+}
+
+.gray-background-custom {
+  background-color: #f5f3f4;
+  padding: 30px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 1285px)
+{.carousel-nav-custom {
+  display: none;
+}}
+
+.gray-background-custom-2 {
+  background-color: #f5f3f4;
+  /* padding: 20px; */
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  line-height: normal;
+  font-size: 16px;
+  color: #141ED2;
+  text-align: center;
+  height: 150px;
+  vertical-align: middle;
+  line-height: 150px;
+}
+
+.gray-background-custom-3 {
+  background-color: #f5f3f4;
+  /* padding: 20px; */
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  line-height: normal;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  height: 150px;
+  vertical-align: middle;
+  line-height: 150px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gray-background-custom-3::after {
+  content: "";
+  background: rgba(0,0,0,0.1);
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.001) 100%);
+  border-radius: 8px;
+}
+
+.title-gray-custom {
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 33px;
+  line-height: normal;
+  font-size: 14px;
+  color: #141ED2;
+  text-align: center;
+}
+
+.title-gray-custom-2 {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  margin-top: -90px;
+  z-index: 10;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.title-gray-custom-2:hover {
+  color: #141ed2;
+}
