@@ -134,7 +134,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
       <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{marginTop: "68px"}}>
         <div className="container">
           <div className="row list-item">
-            <div className={!data.isForm || data.isForm === 0 ? 'col-lg-7' : 'col-lg-12'}>
+            <div className={!data.isForm || data.isForm === 0 ? 'col-lg-7' : 'col-lg-7'}>
               <div className="entry-content entry-content-custom">
                 {ReactHtmlParser(data.descriptionTop)}
                 {ReactHtmlParser(data.description)}

@@ -22,6 +22,7 @@ const FirstSuccessModal = props => {
     setFormState
   } = props;
   const [branchs, setBranchs] = useState([]);
+  const [mobileNumber, setMoblieNumber] = useState('');
   const [provinces, setProvinces] = useState([]);
   const [selected, setSelected] = useState('name1');
   const router = useRouter();
@@ -115,7 +116,11 @@ const FirstSuccessModal = props => {
                   setFormState={setFormState}
                 />
               )}
-              {selected === 'name2' && <Tab2 />}
+              {selected === 'name2' && 
+                <Tab2
+                  mobileNumber={mobileNumber}
+                  setMoblieNumber={setMoblieNumber}
+                />}
             </div>
           </WrapModal>
         </form>
