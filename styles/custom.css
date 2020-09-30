@@ -2785,3 +2785,28 @@ ul.menu.line>li:not(:first-child):before {
 .title-gray-custom-2:hover {
   color: #141ed2;
 }
+
+
+.accodion-title-custom {
+  padding: 10px;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.title-plus-custom {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.icon-plus-custom {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 100%;
+  background-color: #141ED2;
+  color: #fff;
+  text-align: center;
+}
+
+.accodion-tab input:checked+[class*=-title] .triangle i:before {
+  content: "\E931";
+}
