@@ -2810,3 +2810,54 @@ ul.menu.line>li:not(:first-child):before {
 .accodion-tab input:checked+[class*=-title] .triangle i:before {
   content: "\E931";
 }
+
+.ul-menu-custom {
+  display: table;
+}
+
+.li-menu-custom {
+  display: table-cell;
+}
+
+.menu-div-custom {
+  min-width: 75px;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #787878;
+  /* padding-left: 10px;
+  padding-right: 10px; */
+}
+
+.menu-div-custom-1 {
+  min-width: 75px;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #787878;
+}
+
+.menu-div-custom-1:hover {
+  color: #141ED2 !important;
+}
+
+.menu-div-custom:hover {
+  color: #141ED2 !important;
+}
+
+.button-menu-custom {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+.menu-hung-custom {
+  /* border-bottom: 1px solid #d6d6d6; */
+  height: 82px;
+  width: 80%;
+}
+
+.menu-hung-custom .react-multi-carousel-item {
+  padding: 0 !important;
+}

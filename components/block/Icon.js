@@ -6,6 +6,9 @@ import UseWindowResize from '../common/Resize';
 import t from '../../translation';
 import ReactHtmlParser from 'react-html-parser';
 import Link from 'next/link';
+import { getLang } from '../../utils/cookie';
+import { LinkPage } from '../common/link';
+import { useRouter } from 'next/router';
 
 const propTypes = {
   data: Proptypes.array,
@@ -17,8 +20,9 @@ function Icon({ data, id }) {
   const size = UseWindowResize();
   const haftFirstData = data.slice(0, (data.length/2));
   const haftSecondData = data.slice((data.length/2),data.length + 1);
-
+  const lang = getLang();
   const column = data.length === 4 ? '3' : 4;
+  const router = useRouter();
 
   const responsive = {
     desktop: {
@@ -94,6 +98,22 @@ function Icon({ data, id }) {
       items: 1
     }
   };
+
+  const responsive5 = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 7
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2
+    }
+  };
+
 
   let padding = '';
   if (data[0].optionWidth === '2') {
@@ -1303,6 +1323,85 @@ function Icon({ data, id }) {
                   );
                 })}
               </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '23' && (
+        <React.Fragment>
+          <section className={`sec-menu"`} id={id}>
+            <div className="container">
+              {/* {size.width >= 768 && (
+                <div style={{borderBottom: "1px solid #d6d6d6", position: "relative"}}>
+                  <div className="ul-menu-custom">
+                    {map(data, (item, index) => (
+                        <div
+                        className="li-menu-custom"
+                        key={index}
+                        >
+                          {index === 0 && (
+                            <div className= "menu-div-custom-1" style= {{borderBottom: router.asPath == item.url ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                              <Link href="[...name]" as={item.url}>
+                                <a>{ReactHtmlParser(item.note_1)}</a>
+                              </Link>
+                            </div>
+                          )}
+                          {index !== 0 && (
+                            <div className= "menu-div-custom" style= {{borderBottom: router.asPath == item.url ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                              <Link href="[...name]" as={item.url}>
+                                <a>{ReactHtmlParser(item.note_1)}</a>
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                    ))}
+                  </div>
+                  <div className="button-menu-custom">
+                    <button class="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
+                  </div>
+                </div>
+              )} */}
+                <div style={{borderBottom: "1px solid #d6d6d6", position: "relative", height: "82px"}}>
+                <Carousel
+                  responsive={responsive5}
+                  draggable
+                  minimumTouchDrag={80}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  keyBoardControl={true}
+                  className="menu-hung-custom"
+                  arrows={false}
+                  renderButtonGroupOutside={true}
+                  ref={ref => {
+                    setRefCarousel(ref);
+                  }}
+                >
+                  {map(data, (item, index) => (
+                      <div
+                      className="li-menu-custom"
+                      key={index}
+                      >
+                        {index === 0 && (
+                          <div className= "menu-div-custom-1" style= {{borderBottom: router.asPath == item.url ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                            <Link href="[...name]" as={item.url}>
+                              <a>{ReactHtmlParser(item.note_1)}</a>
+                            </Link>
+                          </div>
+                        )}
+                        {index !== 0 && (
+                          <div className= "menu-div-custom" style= {{borderBottom: router.asPath == item.url ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                            <Link href="[...name]" as={item.url}>
+                              <a>{ReactHtmlParser(item.note_1)}</a>
+                            </Link>
+                          </div>
+                        )}
+                      </div>
+                  ))}
+                </Carousel>
+                  <div className="button-menu-custom">
+                    <button class="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
+                  </div>
+                </div>
             </div>
           </section>
         </React.Fragment>
