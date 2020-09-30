@@ -1968,6 +1968,31 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
+.question{
+  background-color: #F2F2F2;
+}
+.question .accodion-1-3 .accodion-1-1  .entry-content{
+  background-color: #E0F0FF;
+}
+.question .triangle {
+  width: 36px;
+  height: 36px;
+  line-height: 26px;
+  border-radius: 100%;
+  background-color: skyblue;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question .accodion-1-2{
+  margin-top: -32px;
+}
+.question .block-question-index{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  padding-top: 15px;
+}
 .container-custom .wimg:after {
   content: "";
   position: absolute;
@@ -2010,12 +2035,12 @@ ul.menu.line>li:not(:first-child):before {
 .banner-heading-3>.img {
 	max-width: inherit;
 	position: absolute;
-	left: 19%;
+	left: 22%;
 	-ms-transform: translateX(-50%);
 	transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
-  max-height: 486px;
-  top:-132px;
+  max-height: 400px;
+  top:-75px;
 }
 
 .banner-heading-3 .heading-new {
@@ -2035,6 +2060,30 @@ ul.menu.line>li:not(:first-child):before {
 	-webkit-transform: translateX(-50%);
 	height: 100%
 }
+.dowload_AppStore{
+  color: blue;
+  font-weight: 600;
+}
+.dowload_GooglePlay{
+  color: blue;
+  font-weight: 600;
+}
+.Phone_contact_1{
+  color: blue;
+  font-weight: 600;
+}
+.Phone_contact_2{
+  color: blue;
+  font-weight: 600;
+}
+.Dowload_information{
+  font-size: 12px;
+  border-top: 1px solid #EBEBEB;
+    border-bottom: 1px solid #EBEBEB;
+    padding: 15px 0;
+
+}
+.blog-item-social {float: right;}
 @media only screen and (max-width: 1400px)
 {
   .sec-n-h2 .img {
@@ -2050,9 +2099,14 @@ ul.menu.line>li:not(:first-child):before {
     margin-left: 30px;
   }
 }
-@media only screen and (min-width: 1024px) and (max-width:1200px)
-{}
-
+@media only screen and (max-width: 992px){
+  .question .triangle {
+      width: 36px;
+      height: 36px;
+      left: 20px;
+      line-height: 36px;
+  }
+}
 @media only screen and (min-width: 768px) and (max-width:1024px)
 {
   .banner-heading-3>.img {

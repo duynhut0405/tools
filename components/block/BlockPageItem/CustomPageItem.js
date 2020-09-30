@@ -13,6 +13,7 @@ const propTypes = {
 };
 function CustomPageItem({ data, indexTab }) {
   //
+
   const [refCarouselTwo, setRefCarouselTwo] = useState(null);
   const [active, setActive] = useState(false);
   const [listPage, setListPage] = useState([]);
@@ -58,7 +59,7 @@ function CustomPageItem({ data, indexTab }) {
       <div className="accodion-tab " key={indexTab}>
         <input type="checkbox" checked={active} />
         <label className="accodion-title" onClick={() => setActive(!active)}>
-          <span>{data === null ? '' : data.description}</span>
+          <span>{data === null ? '' : data.description} </span>
           <span className="triangle">
             <i className="icon-plus"></i>
           </span>

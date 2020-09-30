@@ -8,7 +8,13 @@ import { findAllNewsByCategory } from '../../../services/news';
 import Pagination from '../../common/Pagination';
 import ReactPaginate from 'react-paginate';
 
+import ReactHtmlParser from 'react-html-parser';
+
+
 const propTypes = {
+  question: Proptypes.string,
+  answer: Proptypes.string,
+  index: Proptypes.number,
   data: Proptypes.object,
   id: Proptypes.number
 };
@@ -51,17 +57,60 @@ function Questions({ data, id }) {
   }, [page]);
 
   const sizeList = Math.ceil(list && list.length / 5);
+  const [active, setAcive] = useState(false);
 
   if (data.listBlock && data.listBlock.length > 0) {
     return (
       <React.Fragment>
         <section className={`${padding} sec-cauhoi question`} id={id}>
           <div className="container">
-            <div className="entry-head text-center block-question-index">
-              {data.listBlock && data.listBlock[0].title !== undefined && (
-                <h2 className="ht ">{data.listBlock[0].title || ''}</h2>
-              )}
-            </div>
+            {Number(data.optionChoose) === 1 && Number(data.optionChoose) === 2 &&
+              <div className="entry-head text-center block-question-index">
+               {data.listBlock && data.listBlock[0].title !== undefined && (
+                 <h2 className="ht ">{data.listBlock[0].title || ''}</h2>
+               )}
+              </div>
+              
+            }
+            
+            {Number(data.optionChoose) === 3 && 
+              <div className="accodion-tab accodion-1-1 ">
+                <input
+                  id={`checkbox_main`}
+                  type="checkbox"
+                  checked={active}
+                  onClick={() => setAcive(!active)}
+                />
+                <label htmlFor={`checkbox_main`} className="entry-head text-center block-question-index">
+                {data.listBlock && data.listBlock[0].title !== undefined && (
+                    <h2 className="ht ">{data.listBlock[0].title || ''}</h2>
+                  )}
+                  <span className="triangle">
+                    <i className="icon-plus"></i>
+                  </span>
+                </label>
+                
+              <div className="accodion-content entry-content">
+                <div className="inner">
+                  <div className="accodion accodion-1 accodion-1-3">
+                  {Number(data.optionChoose) === 3 &&
+                    map(listPagination, (
+                      item,
+                      index //
+                    ) => (
+                      <Question2
+                        key={index}
+                        index={`1-${index}`}
+                        id={index}
+                        answer={item.answer}
+                        question={item.question}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+             </div>
+            }
             <div className="accodion accodion-1 accodion-1-2">
               {Number(data.optionChoose) === 1 &&
                 map(listPagination, (
@@ -69,19 +118,6 @@ function Questions({ data, id }) {
                   index //
                 ) => (
                   <Question
-                    key={index}
-                    index={`1-${index}`}
-                    id={index}
-                    answer={item.answer}
-                    question={item.question}
-                  />
-                ))}
-              {Number(data.optionChoose) === 3 &&
-                map(listPagination, (
-                  item,
-                  index //
-                ) => (
-                  <Question2
                     key={index}
                     index={`1-${index}`}
                     id={index}

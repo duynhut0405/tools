@@ -127,7 +127,7 @@ function New({ news, category_name, category_url, socialLink }) {
               <div className="max750">
                 <div className="top-heading" style={{marginTop:"-85px"}}>
                   <div className="date">
-                    {category_name}  |   
+                    {category_name}   | {t('space')}
                     {moment(news.news.created_at).format('DD/MM/YYYY')}</div>
                   {socialLink && <Social data={socialLink} />}
                   {/* {console.log(socialLink)} */}
@@ -198,6 +198,20 @@ function New({ news, category_name, category_url, socialLink }) {
                       <a className="tag">{item.name}</a>
                     </Link>
                   ))}
+                  {socialLink && <Social data={socialLink} />}
+                </div>
+                <div className="Dowload_information">
+                {t('New_dowload_title')} <br></br>
+                {t('dowload_AppStore_title')}
+                <a className="dowload_AppStore" href={t('dowload_AppStore')}>{t('dowload_AppStore')}</a> <br></br>
+                {t('dowload_GooglePlay_title')}
+                <a className="dowload_GooglePlay" href={t('dowload_GooglePlay')}>{t('dowload_GooglePlay')}</a><br></br>
+                {t('New_dowload_title_before')}
+                <a className="Phone_contact_1" href={t('Phone_contact_1')}>{t('Phone_contact_1')}</a> /
+                <a className="Phone_contact_2" href={t('Phone_contact_2')}>{t('Phone_contact_2')}</a> 
+                {t('New_dowload_title_after')}
+                
+
                 </div>
               </div>
             </div>

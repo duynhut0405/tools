@@ -8563,7 +8563,8 @@ ul.list-download li .down i {
 }
 
 .entry-head.text-center {
-	text-align: left
+	display: flex;
+	justify-content: space-between;
 }
 
 .entry-head.title-padding h2.ht {
@@ -9505,7 +9506,7 @@ ul.page-numbers .page-numbers.prev:not(:hover) {
 		width: 110%;
 	}
 	.page-news-detail .top-heading {
-		margin-top:-70px !important;
+		margin-top:-38px !important;
 	  }
 }
 
