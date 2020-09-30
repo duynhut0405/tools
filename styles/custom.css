@@ -1968,11 +1968,21 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
+
+.accodion-tab input:checked+[class*=-index] .triangle i:before {
+  content: "\E931";
+}
 .question{
   background-color: #F2F2F2;
 }
 .question .accodion-1-3 .accodion-1-1  .entry-content{
   background-color: #E0F0FF;
+}
+.question .accodion-1-4 .accodion-1-1  .entry-content{
+  background-color: #F2F2F2;
+}
+.inner-full .inner{
+  padding: unset !important;
 }
 .question .triangle {
   width: 36px;
@@ -1985,6 +1995,8 @@ ul.menu.line>li:not(:first-child):before {
   justify-content: center;
   align-items: center;
 }
+
+
 
 .question .accodion-1-2{
   margin-top: -32px;

@@ -28,6 +28,7 @@ function Questions({ data, id }) {
   const [list, setList] = useState(data.listBlock);
   const [listPagination, setlistPagination] = useState(data.listBlock);
 
+
   const getNewsByCategories = async (value, page, number) => {
     const res = await findAllNewsByCategory(value, page, number);
     if (res && res.status === 200) {
@@ -45,6 +46,7 @@ function Questions({ data, id }) {
   } else {
     padding = 'sec-';
   }
+  
 
   useEffect(() => {
     if (Number(data.optionChoose) === 2) {
@@ -58,31 +60,32 @@ function Questions({ data, id }) {
 
   const sizeList = Math.ceil(list && list.length / 5);
   const [active, setAcive] = useState(false);
+  const [active_title, setAciveTitle] = useState(true);
+  
 
   if (data.listBlock && data.listBlock.length > 0) {
     return (
       <React.Fragment>
         <section className={`${padding} sec-cauhoi question`} id={id}>
           <div className="container">
-            {Number(data.optionChoose) === 1 && Number(data.optionChoose) === 2 &&
+            {((Number(data.optionChoose) === 1) || (Number(data.optionChoose) === 2)) &&
               <div className="entry-head text-center block-question-index">
                {data.listBlock && data.listBlock[0].title !== undefined && (
                  <h2 className="ht ">{data.listBlock[0].title || ''}</h2>
                )}
               </div>
-              
             }
             
-            {Number(data.optionChoose) === 3 && 
-              <div className="accodion-tab accodion-1-1 ">
+            {(Number(data.optionChoose) === 3)    && 
+              <div className="accodion-tab">
                 <input
-                  id={`checkbox_main`}
+                  id={`checkbox_${id}`}
                   type="checkbox"
-                  checked={active}
-                  onClick={() => setAcive(!active)}
+                  checked={active_title}
+                  onClick={() => setAciveTitle(!active_title)}
                 />
-                <label htmlFor={`checkbox_main`} className="entry-head text-center block-question-index">
-                {data.listBlock && data.listBlock[0].title !== undefined && (
+                <label htmlFor={`checkbox_${id}`} className="entry-head text-center block-question-index">
+                  {data.listBlock && data.listBlock[0].title !== undefined && (
                     <h2 className="ht ">{data.listBlock[0].title || ''}</h2>
                   )}
                   <span className="triangle">
@@ -91,6 +94,27 @@ function Questions({ data, id }) {
                 </label>
                 
               <div className="accodion-content entry-content">
+                <div className="inner">
+                  <div className="accodion accodion-1 accodion-1-3">
+                  {(data.listBlock[0].optionFullWidth === '0') &&
+                <div className="inner-full">
+                  <div className="accodion accodion-1 accodion-1-3">
+                  {Number(data.optionChoose) === 3 &&
+                    map(listPagination, (
+                      item,
+                      index //
+                    ) => (
+                      <Question2
+                        key={index}
+                        index={`1-${index}`}
+                        id={index}
+                        answer={item.answer}
+                        question={item.question}
+                      />
+                    ))}
+                  </div>
+                </div>}
+                {(data.listBlock[0].optionFullWidth != '0') &&
                 <div className="inner">
                   <div className="accodion accodion-1 accodion-1-3">
                   {Number(data.optionChoose) === 3 &&
@@ -107,10 +131,70 @@ function Questions({ data, id }) {
                       />
                     ))}
                   </div>
+                </div>}
+                  </div>
                 </div>
               </div>
              </div>
             }
+            {(Number(data.optionChoose) === 4) && 
+              <div className="accodion-tab">
+                <input
+                  id={`checkbox_${id}`}
+                  type="checkbox"
+                  checked={active_title}
+                  onClick={() => setAciveTitle(!active_title)}
+                />
+                <label htmlFor={`checkbox_${id}`} className="entry-head text-center block-question-index">
+                  {data.listBlock && data.listBlock[0].title !== undefined && (
+                    <h2 className="ht ">{data.listBlock[0].title || ''}</h2>
+                  )}
+                  <span className="triangle">
+                    <i className="icon-plus"></i>
+                  </span>
+                </label>
+                
+              <div className="accodion-content entry-content">
+              {(data.listBlock[0].optionFullWidth === '0') &&
+                <div className="inner-full">
+                  <div className="accodion accodion-1 accodion-1-4">
+                  {Number(data.optionChoose) === 4 &&
+                    map(listPagination, (
+                      item,
+                      index //
+                    ) => (
+                      <Question2
+                        key={index}
+                        index={`1-${index}`}
+                        id={index}
+                        answer={item.answer}
+                        question={item.question}
+                      />
+                    ))}
+                  </div>
+                </div>}
+                {(data.listBlock[0].optionFullWidth != '0') &&
+                <div className="inner">
+                  <div className="accodion accodion-1 accodion-1-4">
+                  {Number(data.optionChoose) === 4 &&
+                    map(listPagination, (
+                      item,
+                      index //
+                    ) => (
+                      <Question2
+                        key={index}
+                        index={`1-${index}`}
+                        id={index}
+                        answer={item.answer}
+                        question={item.question}
+                      />
+                    ))}
+                  </div>
+                </div>}
+              </div>
+             </div>
+            }
+
             <div className="accodion accodion-1 accodion-1-2">
               {Number(data.optionChoose) === 1 &&
                 map(listPagination, (
