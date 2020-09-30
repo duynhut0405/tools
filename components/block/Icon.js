@@ -1382,7 +1382,7 @@ function Icon({ data, id }) {
                       key={index}
                       >
                         {index === 0 && (
-                          <div className= "menu-div-custom-1" style= {{borderBottom: router.asPath == item.url ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                          <div className= "menu-div-custom" style= {{borderBottom: router.asPath == item.url ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
                             <Link href="[...name]" as={item.url}>
                               <a>{ReactHtmlParser(item.note_1)}</a>
                             </Link>
