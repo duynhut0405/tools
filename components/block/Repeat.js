@@ -45,7 +45,7 @@ function Repeat({ data, type, id, optionWidth }) {
 
   if (type === '5') {
     const col = 5;
-    const [active, setAcive] = useState(false);
+    const [active, setAcive] = useState(true);
     return (
       <section className={`${padding} table-${type}`} id={id}>
         <div className="container">
@@ -99,7 +99,7 @@ function Repeat({ data, type, id, optionWidth }) {
 
   if (type === '6') {
     const col = 4;
-    const [active, setAcive] = useState(false);
+    const [active, setAcive] = useState(true);
     return (
       <section className={`${padding} table-${type}`} id={id}>
         <div className="container">
@@ -153,7 +153,7 @@ function Repeat({ data, type, id, optionWidth }) {
 
   if (type === '7') {
     const col = 3;
-    const [active, setAcive] = useState(false);
+    const [active, setAcive] = useState(true);
     return (
       <section className={`${padding} table-${type}`} id={id}>
         <div className="container">
@@ -207,7 +207,7 @@ function Repeat({ data, type, id, optionWidth }) {
     if (data.length === 4) {
       col = 3;
     }
-    const [active, setAcive] = useState(false);
+    const [active, setAcive] = useState(true);
     return (
       <section className={`${padding} table-${type}`} id={id}>
         <div className="container">
@@ -260,7 +260,7 @@ function Repeat({ data, type, id, optionWidth }) {
   }
 
   if (type === '9') {
-    const [active, setAcive] = useState(false);
+    const [active, setAcive] = useState(true);
     return (
       <section className={`${padding} table-${type}`} id={id}>
         <div className="container">
