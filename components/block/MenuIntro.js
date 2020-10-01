@@ -7,6 +7,7 @@ import { getFormbuilderByIdService } from '../../services/form';
 import ReactLoading from 'react-loading';
 import PopupThankyou from './Popup/PopupThankyou';
 import ReCAPTCHA from 'react-google-recaptcha';
+import UseWindowResize from '../common/Resize';
 
 const propTypes = {
   data: PropTypes.object,
@@ -30,6 +31,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   const [modal, setModal] = useState(false);
   const [capcha, setCapcha] = useState(false);
   const recaptchaRef = React.createRef();
+  const size = UseWindowResize();
 
   let padding = '';
   if (optionWidth === '2') {
@@ -111,7 +113,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
     <React.Fragment>
       <section className="menuIntro sec-menu" style={{backgroundColor:"#fff", padding: "0px 15px 0"}}>
         <div className="container" style={{backgroundColor:"#fff", height:"82px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom: "1px solid #ddd"}}>
-          <div className="menu-items" style={{backgroundColor:"#fff", height:"80px"}}>
+          <div className="convert-grid-to-scroll">
           <ul style={{height: "80px"}}>
                 <li className="active" style={{paddingTop: "12px", padding: "0", color: "#333333", textAlign: "left", padding: "0 0"}}>
                   <a style={{padding: "0 0"}}>{data.title}</a>
@@ -129,14 +131,18 @@ function MenuIntro({ data, pageId, optionWidth }) {
                 ))}
               </ul>
           </div>
-          {(data.button_title != "") &&
-          <div className="menu_buttom_right" style={{backgroundColor:"blue",height:"40px",width:"140px",
-        display:"flex",justifyContent:"center",alignItems:"center",
-        color:"white",fontWeight:"bold",borderRadius:"20px",marginTop:"14px"}}>
-            <a href={data.url_button_title}>{data.button_title}</a>
-          </div> 
-          }
-        </div>
+        
+          {size.width > 768 && (
+                      <div className="button-menu-custom">
+                        <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
+                      </div>
+                    )}
+          </div>
+            {size.width <= 768 && (
+              <div className="center-custom" style={{marginTop:"24px"}}>
+                <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
+              </div>
+            )}
       </section>
       <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{marginTop: "68px"}}>
         <div className="container">
@@ -178,6 +184,9 @@ function MenuIntro({ data, pageId, optionWidth }) {
                   {data.contact_2}
                 </a>
               </div>
+
+
+
               {/* <div className="widget widget-tuvan">
                 <form onSubmit={onSend} autoComplete="on" className="form-tuvan">
                   {map(formdata, (item, index) => {
