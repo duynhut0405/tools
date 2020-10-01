@@ -102,7 +102,7 @@ function Icon({ data, id }) {
   const responsive5 = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 7
+      items: 8
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -1361,7 +1361,7 @@ function Icon({ data, id }) {
                   </div>
                 </div>
               )} */}
-                <div style={{borderBottom: "1px solid #d6d6d6", position: "relative", height: "82px"}}>
+                {/* <div style={{borderBottom: "1px solid #d6d6d6", position: "relative", height: "82px"}}>
                 <Carousel
                   responsive={responsive5}
                   draggable
@@ -1372,6 +1372,7 @@ function Icon({ data, id }) {
                   className="menu-hung-custom"
                   arrows={false}
                   renderButtonGroupOutside={true}
+                  itemClass="carousel-item-padding-40-px"
                   ref={ref => {
                     setRefCarousel(ref);
                   }}
@@ -1382,14 +1383,14 @@ function Icon({ data, id }) {
                       key={index}
                       >
                         {index === 0 && (
-                          <div className= "menu-div-custom" style= {{borderBottom: router.asPath == item.url ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                          <div className= "menu-div-custom" style= {{borderBottom: router.asPath == item.url || router.asPath == item.url + '/' ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
                             <Link href="[...name]" as={item.url}>
                               <a>{ReactHtmlParser(item.note_1)}</a>
                             </Link>
                           </div>
                         )}
                         {index !== 0 && (
-                          <div className= "menu-div-custom" style= {{borderBottom: router.asPath == item.url ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                          <div className= "menu-div-custom" style= {{borderBottom: router.asPath == item.url || router.asPath == item.url + '/' ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
                             <Link href="[...name]" as={item.url}>
                               <a>{ReactHtmlParser(item.note_1)}</a>
                             </Link>
@@ -1401,8 +1402,58 @@ function Icon({ data, id }) {
                   <div className="button-menu-custom">
                     <button class="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
                   </div>
+                </div> */}
+                <div className="convert-grid-to-scroll">
+                  <div className="row list-item grid-space-20" style={{position: "relative", height: "82px", borderBottom: size.width >= 768 ? "1px solid #d6d6d6" : "none"}}>
+                    {map(data, (item, index) => (
+                        <div
+                        className="li-menu-custom"
+                        key={index}
+                        // style={{paddingLeft: "10px"}}
+                        >
+                          {index === 0 && (
+                            <div
+                            className="menu-custom-0"
+                            key={index}
+                            >
+                              <div className="menu-div-custom-1" style= {{borderBottom: router.asPath == item.url || router.asPath == item.url + '/' ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878", minWidth: "75px"}}>
+                                <Link href="[...name]" as={item.url}>
+                                  <a className="item efch-0 ef-img-l">
+                                    {ReactHtmlParser(item.note_1)}
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                          )}
+                          {index !== 0 && (
+                              <div
+                              className="menu-custom-1"
+                              key={index}
+                              >
+                                <div className="menu-div-custom-1" style= {{borderBottom: router.asPath == item.url || router.asPath == item.url + '/' ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                                <Link href="[...name]" as={item.url}>
+                                  <a className="item efch-0 ef-img-l">
+                                    {ReactHtmlParser(item.note_1)}
+                                  </a>
+                                </Link>
+                                </div>
+                              </div>
+                          )}
+                        </div>
+                    ))}
+                    {size.width > 768 && (
+                      <div className="button-menu-custom">
+                        <button class="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
+                      </div>
+                    )}
+                  </div>
                 </div>
             </div>
+            {size.width <= 768 && (
+              <div className="center-custom">
+                <button class="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
+              </div>
+            )}
           </section>
         </React.Fragment>
       )}
