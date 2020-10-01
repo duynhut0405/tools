@@ -1404,7 +1404,7 @@ function Icon({ data, id }) {
                   </div>
                 </div> */}
                 <div className="convert-grid-to-scroll">
-                  <div className="row list-item grid-space-20" style={{position: "relative", height: "82px", borderBottom: size.width >= 768 ? "1px solid #d6d6d6" : "none"}}>
+                  <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "82px", borderBottom: size.width > 768 ? "1px solid #d6d6d6" : "none"}}>
                     {map(data, (item, index) => (
                         <div
                         className="li-menu-custom"
@@ -1443,7 +1443,7 @@ function Icon({ data, id }) {
                     ))}
                     {size.width > 768 && (
                       <div className="button-menu-custom">
-                        <button class="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
+                        <button className="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
                       </div>
                     )}
                   </div>
@@ -1451,7 +1451,7 @@ function Icon({ data, id }) {
             </div>
             {size.width <= 768 && (
               <div className="center-custom">
-                <button class="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
+                <button className="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
               </div>
             )}
           </section>

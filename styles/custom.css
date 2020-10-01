@@ -2890,3 +2890,13 @@ ul.menu.line>li:not(:first-child):before {
 .center-custom {
   text-align: center;
 }
+
+@media only screen and (max-width: 767px)
+{.convert-grid-to-scroll>.row-custom {
+    margin: 0!important;
+    display: table!important;
+    -webkit-transform: none!important;
+    -ms-transform: none!important;
+    transform: none!important;
+    width: 100%;
+}}
