@@ -786,7 +786,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             alt="images"
                           />
                           <div className="divtext">
-                            <h4 className="title ">{item.title}</h4>
+                            <h4 className="title on-hover-blue">{item.title}</h4>
                           </div>
                         </a>
                       </LinkNew>
@@ -814,7 +814,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                               />
                             </div>
                             <div className="divtext">
-                              <h4 className="title line2">{item.title}</h4>
+                              <h5 className="title title-custom-1 on-hover-blue">{item.title}</h5>
                             </div>
                           </a>
                         </LinkNew>

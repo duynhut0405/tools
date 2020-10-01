@@ -2900,3 +2900,120 @@ ul.menu.line>li:not(:first-child):before {
 .title-gray-custom-2:hover {
   color: #141ed2;
 }
+
+
+.accodion-title-custom {
+  padding: 10px;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.title-plus-custom {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.icon-plus-custom {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 100%;
+  background-color: #141ED2;
+  color: #fff;
+  text-align: center;
+}
+
+.accodion-tab input:checked+[class*=-title] .triangle i:before {
+  content: "\E931";
+}
+
+.ul-menu-custom {
+  display: table;
+}
+
+.li-menu-custom {
+  display: table-cell;
+}
+
+.menu-div-custom {
+  min-width: 75px;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #787878;
+  /* padding-left: 10px;
+  padding-right: 10px; */
+}
+
+.menu-div-custom-1 {
+  min-width: max-content;
+  height: 82px;
+  /* display: flex; */
+  /* align-items: center; */
+  font-size: 16px;
+  color: #787878;
+  /* padding: 0; */
+  padding-top: 27px;
+}
+
+.menu-div-custom-1:hover {
+  color: #141ED2 !important;
+}
+
+.menu-div-custom:hover {
+  color: #141ED2 !important;
+}
+
+.button-menu-custom {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+.menu-hung-custom {
+  /* border-bottom: 1px solid #d6d6d6; */
+  height: 82px;
+  width: 100%;
+  padding-left: 10px;
+  /* max-width: 450px; */
+}
+
+.menu-hung-custom .react-multi-carousel-item {
+  padding: 0 !important;
+}
+
+@media only screen and (max-width: 767px)
+{ .button-menu-custom .btn {
+    /* font-size: 12px; */
+    /* line-height: 33px; */
+    height: 40px !important;
+    /* padding: 0 15px; */
+}}
+
+.menu-custom-0 {
+  padding-right: 50px;
+  height: 82px;
+  display: table-cell!important;
+}
+
+.menu-custom-1 {
+  /* padding-left: 30px; */
+  padding-right: 60px;
+  height: 82px;
+  display: flex!important;
+  width: max-content;
+  /* position: relative; */
+}
+
+.center-custom {
+  text-align: center;
+}
+
+@media only screen and (max-width: 767px)
+{.convert-grid-to-scroll>.row-custom {
+    margin: 0!important;
+    display: table!important;
+    -webkit-transform: none!important;
+    -ms-transform: none!important;
+    transform: none!important;
+    width: 100%;
+}}
