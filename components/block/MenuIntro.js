@@ -110,9 +110,9 @@ function MenuIntro({ data, pageId, optionWidth }) {
   return (
     <React.Fragment>
       <section className="menuIntro sec-menu" style={{backgroundColor:"#fff", padding: "0px 15px 0"}}>
-        <div className="container" style={{backgroundColor:"#fff", height:"82px"}}>
-          <div style={{backgroundColor:"#fff", height:"82px", borderBottom: "1px solid #ddd"}}>
-          <ul style={{height: "82px"}}>
+        <div className="container" style={{backgroundColor:"#fff", height:"82px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom: "1px solid #ddd"}}>
+          <div className="menu-items" style={{backgroundColor:"#fff", height:"80px"}}>
+          <ul style={{height: "80px"}}>
                 <li className="active" style={{paddingTop: "12px", padding: "0", color: "#333333", textAlign: "left", padding: "0 0"}}>
                   <a style={{padding: "0 0"}}>{data.title}</a>
                 </li>
@@ -124,11 +124,18 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     }}
                     style={{paddingTop: "12px", color: "#787878"}}
                   >
-                    <a>{values.title}</a>
+                    <a style={{right:"0"}}>{values.title}</a>
                   </li>
                 ))}
               </ul>
           </div>
+          {(data.button_title != "") &&
+          <div className="menu_buttom_right" style={{backgroundColor:"blue",height:"40px",width:"140px",
+        display:"flex",justifyContent:"center",alignItems:"center",
+        color:"white",fontWeight:"bold",borderRadius:"20px",marginTop:"14px"}}>
+            <a href={data.url_button_title}>{data.button_title}</a>
+          </div> 
+          }
         </div>
       </section>
       <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{marginTop: "68px"}}>

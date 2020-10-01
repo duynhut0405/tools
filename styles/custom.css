@@ -2121,6 +2121,7 @@ ul.menu.line>li:not(:first-child):before {
 }
 @media only screen and (min-width: 768px) and (max-width:1024px)
 {
+  
   .banner-heading-3>.img {
 		max-width: inherit;
 		position: absolute;
