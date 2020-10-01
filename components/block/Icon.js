@@ -1404,12 +1404,11 @@ function Icon({ data, id }) {
                   </div>
                 </div> */}
                 <div className="convert-grid-to-scroll">
-                  <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "82px", borderBottom: size.width > 768 ? "1px solid #d6d6d6" : "none"}}>
+                  <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "82px", borderBottom: "1px solid #d6d6d6"}}>
                     {map(data, (item, index) => (
                         <div
                         className="li-menu-custom"
                         key={index}
-                        // style={{paddingLeft: "10px"}}
                         >
                           {index === 0 && (
                             <div
@@ -1430,9 +1429,9 @@ function Icon({ data, id }) {
                               className="menu-custom-1"
                               key={index}
                               >
-                                <div className="menu-div-custom-1" style= {{borderBottom: router.asPath == item.url || router.asPath == item.url + '/' ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878"}}>
+                                <div className="menu-div-custom-1" style= {{borderBottom: router.asPath == item.url || router.asPath == item.url + '/' ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878", minWidth: "max-content"}}>
                                 <Link href="[...name]" as={item.url}>
-                                  <a className="item efch-0 ef-img-l">
+                                  <a>
                                     {ReactHtmlParser(item.note_1)}
                                   </a>
                                 </Link>

@@ -2884,7 +2884,9 @@ ul.menu.line>li:not(:first-child):before {
   /* padding-left: 30px; */
   padding-right: 60px;
   height: 82px;
-  display: table-cell!important;
+  display: flex!important;
+  width: max-content;
+  /* position: relative; */
 }
 
 .center-custom {
