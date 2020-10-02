@@ -4,9 +4,11 @@ import Proptypes from 'prop-types';
 import { getPagesByIdService } from '../../services/page';
 import Carousel from 'react-multi-carousel';
 import CustomPageItem from './BlockPageItem/CustomPageItem';
+import CustomPageItemTab from './BlockPageItem/CustomPageItemTab';
 import { LinkPage } from '../common/link';
 import { getLang } from '../../utils/cookie';
 import t from '../../translation';
+import { forEach } from 'lodash';
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -18,7 +20,18 @@ const propTypes = {
 function Pages({ data, type, id, optionWidth }) {
   const [listPage, setListPage] = useState([]);
   const [refCarouselThree, setRefCarouselThree] = useState(null);
+  const [listPageAll, setListPageAll] = useState([]);
   const lang = getLang();
+
+  const getPageBlockAll = async pages => {
+    const ids = map(pages, values => values.value);
+    console.log(ids);
+    const res = await getPagesByIdService(ids);
+    if (res && res.status === 200) {
+      return res.data;
+    }
+    return [];
+  };
 
   const getPageBlock = async pages => {
     const ids = map(pages, values => values.value);
@@ -54,9 +67,21 @@ function Pages({ data, type, id, optionWidth }) {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (data.pages) {
       getPageBlock(data.pages);
+    }
+    let array = [];
+    if (type === '8') {
+      for (let i = 0; i < data.listTag.length; i++) {
+        let res = await getPageBlockAll(data.listTag[i].pages);
+        let des = {
+          'value' : data.listTag[i].page.value,
+          'listPages': res
+        };
+        array.push(des);
+      }
+      setListPageAll(array);
     }
   }, [data.pages && id]);
 
@@ -380,7 +405,7 @@ function Pages({ data, type, id, optionWidth }) {
               data.linkurl && data.linkurl !== '' ? 'entry-head title-padding' : 'entry-head'
             }
           >
-            <h2 className="ht ">{data === null ? '' : data.title}</h2>
+            <h2 className="ht">{data === null ? '' : data.title}</h2>
             {data.linkurl !== undefined && data.linkurl !== '' && (
               <a className="viewall" href={data.linkurl}>
                 {t('view')} <i className="icon-arrow-1"></i>
@@ -395,6 +420,92 @@ function Pages({ data, type, id, optionWidth }) {
         </div>
       </section>
     );
+  }
+  if (type && type === '8') {
+    return (
+      <section className={`${padding} category-${type}`} id={id} style={{backgroundColor:"#E0F0FF", paddingTop: "70px"}}>
+        <div className="container">
+            <div className="text-center title-category-custom-backbround">
+              <div className="">
+                <h2 className="intro-title-custom-category" style={{marginBottom:"0px"}}>{ data.title === null ? '' : data.title}</h2>
+              </div>
+              {/* <div className="convert-grid-to-scroll">
+                <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "67px", borderBottom: "1px solid #d6d6d6"}}>
+                  {map(data.listTag, (item, index) => (
+                    <div
+                    className="li-menu-custom"
+                    key={index}
+                    >
+                      <div
+                        className="menu-custom-1" style={{height:"67px"}}
+                        key={index}
+                        >
+                        <div className="menu-div-custom-1" style={{height:"67px"}}> 
+                          {item.description}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div> */}
+              <div style={{borderBottom: "1px solid #d6d6d6"}}>
+                <div style={{width: "max-content", margin: "auto"}}>
+                <div className="convert-grid-to-scroll">
+                <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "67px"}}>
+                  {map(data.listTag, (item, index) => (
+                      <div
+                      className="li-menu-custom"
+                      key={index}
+                      >
+                        <div
+                          className="menu-custom-middle" style={{height:"67px"}}
+                          key={index}
+                          >
+                          <div className="menu-div-custom-1" style={{height:"67px"}}> 
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div className="list-category-custom-backbround">
+                {map(listPageAll, (items, index) => (
+                  <div className="row list-item">
+                    {map(items.listPages, (item, index1) => (
+                      <div className="col-lg-12" key={item.newsId}>
+                        <div className="list-6-custom">
+                          <LinkPage lang={lang} name={item.slug}>
+                            <a className="item item-inline-table">
+                              <div className="img">
+                                <img
+                                  className="lazyload"
+                                  data-src={
+                                    item.baseImage === null
+                                      ? `/images/imgdefault.jpg`
+                                      : `${process.env.DOMAIN}${item.baseImage}`
+                                  }
+                                  alt="icon"
+                                />
+                              </div>
+                              <div className="divtext">
+                                <h4 className="title line2" style={{marginBottom: "10px"}}>{item.name}</h4>
+                                <div className="desc line4">{item.meta_description}..</div>
+                              </div>
+                            </a>
+                          </LinkPage>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+        </div>
+      </section>
+    )
   }
   return null;
 }
