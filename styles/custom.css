@@ -1989,7 +1989,7 @@ ul.menu.line>li:not(:first-child):before {
   height: 36px;
   line-height: 26px;
   border-radius: 100%;
-  background-color: skyblue;
+  background-color: #141ED2;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -2117,6 +2117,17 @@ ul.menu.line>li:not(:first-child):before {
       height: 36px;
       left: 20px;
       line-height: 36px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width:991px)
+{
+  .sec-menu ul a {
+    font-size: 13px;
+    padding: 0px 5px;
+  }
+  .button-menu-custom .btn{
+    font-size: 13px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width:1024px)

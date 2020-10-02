@@ -111,34 +111,57 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
   return (
     <React.Fragment>
-      <section className="menuIntro sec-menu" style={{backgroundColor:"#fff", padding: "0px 15px 0"}}>
-        <div className="container" style={{backgroundColor:"#fff", height:"82px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom: "1px solid #ddd"}}>
+      <section className={`sec-menu"`}>
+        {/* style={{backgroundColor:"#fff", padding: "0px 15px 0"}}> */}
+        <div className="container"> 
+        {/* style={{backgroundColor:"#fff", height:"82px",display:"flex",justifyContent:"space-between",alignItems:"center"}}> */}
           <div className="convert-grid-to-scroll">
-          <ul style={{height: "80px"}}>
-                <li className="active" style={{paddingTop: "12px", padding: "0", color: "#333333", textAlign: "left", padding: "0 0"}}>
-                  <a style={{padding: "0 0"}}>{data.title}</a>
-                </li>
+          <div className="row-custom list-item grid-space-20">
+          
                 {map(data.listBlock, (values, index) => (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      onScroll(values.id);
-                    }}
-                    style={{paddingTop: "12px", color: "#787878"}}
-                  >
-                    <a style={{right:"0"}}>{values.title}</a>
-                  </li>
+                  <div
+                  className="li-menu-custom"
+                  key={index}
+                  onClick={() => {
+                    onScroll(values.id);
+                  }}>
+                    {index === 0 && (
+                    <div className="menu-div-custom-1" >
+                              
+                    <div
+                            className="menu-custom-0"
+                            key={index}
+                            onClick={() => {
+                              onScroll(values.id);
+                            }}>
+                    <a className="item efch-0 ef-img-l"  style={{borderBottom: "2px solid #141ED2"}}>{values.title}</a>
+                  </div>
+                  </div>
+                  )}
+                  {index != 0 && (
+                    <div className="menu-div-custom-1" >
+                              
+                    <div
+                            className="menu-custom-0"
+                            key={index}
+                            onClick={() => {
+                              onScroll(values.id);
+                            }}>
+                    <a className="item efch-0 ef-img-l">{values.title}</a>
+                  </div>
+                  </div>
+                  )}
+                  </div>
                 ))}
-              </ul>
           </div>
-        
-          {size.width > 768 && (
+        </div>
+          {size.width > 768 && data.button_title != null && (
                       <div className="button-menu-custom">
                         <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
                       </div>
                     )}
           </div>
-            {size.width <= 768 && (
+            {size.width <= 768 && data.button_title != null && (
               <div className="center-custom" style={{marginTop:"24px"}}>
                 <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
               </div>
