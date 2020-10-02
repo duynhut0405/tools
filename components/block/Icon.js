@@ -1,140 +1,143 @@
-import React, { useState } from 'react';
-import map from 'lodash/map';
-import Proptypes from 'prop-types';
-import Carousel from 'react-multi-carousel';
-import UseWindowResize from '../common/Resize';
-import t from '../../translation';
-import ReactHtmlParser from 'react-html-parser';
-import Link from 'next/link';
-import { getLang } from '../../utils/cookie';
-import { LinkPage } from '../common/link';
-import { useRouter } from 'next/router';
+import React, { useState } from "react";
+import map from "lodash/map";
+import Proptypes from "prop-types";
+import Carousel from "react-multi-carousel";
+import UseWindowResize from "../common/Resize";
+import t from "../../translation";
+import ReactHtmlParser from "react-html-parser";
+import Link from "next/link";
+import { getLang } from "../../utils/cookie";
+import { LinkPage } from "../common/link";
+import { useRouter } from "next/router";
 
 const propTypes = {
   data: Proptypes.array,
-  id: Proptypes.number
+  id: Proptypes.number,
 };
 
 function Icon({ data, id }) {
   const [refCarousel, setRefCarousel] = useState(null);
   const size = UseWindowResize();
-  const haftFirstData = data.slice(0, (data.length/2));
-  const haftSecondData = data.slice((data.length/2),data.length + 1);
+  const haftFirstData = data.slice(0, data.length / 2);
+  const haftSecondData = data.slice(data.length / 2, data.length + 1);
   const lang = getLang();
-  const column = data.length === 4 ? '3' : 4;
+  const column = data.length === 4 ? "3" : 4;
   const router = useRouter();
+  const [active_title, setAciveTitle] = useState(true);
 
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 8
+      items: 8,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 4
+      items: 4,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2
-    }
+      items: 2,
+    },
   };
 
   const responsive1 = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
+      items: 1,
+    },
   };
 
   const responsive2 = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
+      items: 1,
+    },
   };
 
   const responsive3 = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 6
+      items: 6,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2
-    }
+      items: 2,
+    },
   };
 
   const responsive4 = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
+      items: 1,
+    },
   };
 
   const responsive5 = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 8
+      items: 8,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2
-    }
+      items: 2,
+    },
   };
 
-
-  let padding = '';
-  if (data[0].optionWidth === '2') {
-    padding = 'sec-tb';
-  } else if (data[0].optionWidth === '3') {
-    padding = 'sec-t';
-  } else if (data[0].optionWidth === '4') {
-    padding = 'sec-b';
+  let padding = "";
+  if (data[0].optionWidth === "2") {
+    padding = "sec-tb";
+  } else if (data[0].optionWidth === "3") {
+    padding = "sec-t";
+  } else if (data[0].optionWidth === "4") {
+    padding = "sec-b";
   } else {
-    padding = 'sec-';
+    padding = "sec-";
   }
 
   return (
     <React.Fragment>
-      {data[0].type === '1' && (
+      {data[0].type === "1" && (
         <React.Fragment>
           {data.length > 8 && (
-            <section className={`${padding} sec-h-1 group-ef block-icon-${data[0].type}`} id={id}>
+            <section
+              className={`${padding} sec-h-1 group-ef block-icon-${data[0].type}`}
+              id={id}
+            >
               <div className="container">
                 <div className="entry-head text-center">
-                  <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+                  <h2 className="ht">{data === null ? "" : data[0].title}</h2>
                 </div>
                 {size.width >= 768 && (
                   <div className="sec-b wrap-carousel">
@@ -147,13 +150,19 @@ function Icon({ data, id }) {
                       keyBoardControl={true}
                       className="menuicon"
                       arrows={false}
-                      ref={ref => {
+                      ref={(ref) => {
                         setRefCarousel(ref);
                       }}
                     >
                       {map(data, (items, index) => (
-                        <div className="item ef-img-t item_carousel" key={index}>
-                          <a href={items.url ? items.url : '#'} className="link">
+                        <div
+                          className="item ef-img-t item_carousel"
+                          key={index}
+                        >
+                          <a
+                            href={items.url ? items.url : "#"}
+                            className="link"
+                          >
                             <div className="img">
                               <img
                                 className="lazyload"
@@ -190,7 +199,7 @@ function Icon({ data, id }) {
                   <div>
                     {map(data, (items, index) => (
                       <div className="item ef-img-t item_carousel" key={index}>
-                        <a href={items.url ? items.url : '#'} className="link">
+                        <a href={items.url ? items.url : "#"} className="link">
                           <div className="img">
                             <img
                               className="lazyload"
@@ -208,14 +217,22 @@ function Icon({ data, id }) {
             </section>
           )}
           {data.length <= 8 && (
-            <section className={`${padding} sec-h-1  loaded block-icon-${data[0].type}`} id={id}>
+            <section
+              className={`${padding} sec-h-1  loaded block-icon-${data[0].type}`}
+              id={id}
+            >
               <div className="container">
                 <div className="entry-head text-center">
-                  <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
+                  <h2 className="ht efch-1 ef-img-t">
+                    {data === null ? "" : data[0].title}
+                  </h2>
                 </div>
                 <div className="menuicon">
                   {map(data, (items, index) => (
-                    <div className={`item  efch-${index + 3} ef-img-t`} key={index}>
+                    <div
+                      className={`item  efch-${index + 3} ef-img-t`}
+                      key={index}
+                    >
                       <a href={items.url} className="link">
                         <div className="img">
                           <img
@@ -234,7 +251,7 @@ function Icon({ data, id }) {
           )}
         </React.Fragment>
       )}
-      {data[0].type === '2' && (
+      {data[0].type === "2" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
@@ -242,7 +259,7 @@ function Icon({ data, id }) {
           >
             <div className="container">
               <div className="entry-head text-center">
-                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+                <h2 className="ht">{data === null ? "" : data[0].title}</h2>
               </div>
 
               {Number(data[0].column) === 6 && (
@@ -250,9 +267,12 @@ function Icon({ data, id }) {
                   <div className="row list-item">
                     {map(data, (items, index) => {
                       return (
-                        <div className={`col-sm-6 col-md-${data[0].column}`} key={index}>
+                        <div
+                          className={`col-sm-6 col-md-${data[0].column}`}
+                          key={index}
+                        >
                           <div className="item">
-                            <a href={items.url ? items.url : '#'}>
+                            <a href={items.url ? items.url : "#"}>
                               <div className="img">
                                 <img
                                   className="lazyload"
@@ -276,9 +296,12 @@ function Icon({ data, id }) {
                 <div className="row list-item">
                   {map(data, (items, index) => {
                     return (
-                      <div className={`col-sm-6 col-md-${data[0].column}`} key={index}>
+                      <div
+                        className={`col-sm-6 col-md-${data[0].column}`}
+                        key={index}
+                      >
                         <div className="item">
-                          <a href={items.url ? items.url : '#'}>
+                          <a href={items.url ? items.url : "#"}>
                             <div className="img">
                               <img
                                 className="lazyload"
@@ -301,12 +324,17 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '3' && (
+      {data[0].type === "3" && (
         <React.Fragment>
-          <section className={`${padding} sec-h-3 block-icon-${data[0].type}`} id={id}>
+          <section
+            className={`${padding} sec-h-3 block-icon-${data[0].type}`}
+            id={id}
+          >
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht efch-1 ef-img-t">{data === null ? '' : data[0].title}</h2>
+                <h2 className="ht efch-1 ef-img-t">
+                  {data === null ? "" : data[0].title}
+                </h2>
               </div>
               {size.width >= 768 && (
                 <div className="sec-b wrap-carousel">
@@ -320,19 +348,22 @@ function Icon({ data, id }) {
                     className="list-9"
                     arrows={false}
                     renderButtonGroupOutside={true}
-                    ref={ref => {
+                    ref={(ref) => {
                       setRefCarousel(ref);
                     }}
                   >
                     {map(data, (item, index) => (
-                      <div className={`item efch-${index + 2} ef-img-l `} key={index}>
+                      <div
+                        className={`item efch-${index + 2} ef-img-l `}
+                        key={index}
+                      >
                         <a href={item.url}>
                           <div className="img">
                             <img
                               className="lazyload"
                               alt="images"
                               data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                              style={{ width: '160px', height: '52px' }}
+                              style={{ width: "160px", height: "52px" }}
                             />
                           </div>
                           <div className="des">{item.note_1}</div>
@@ -363,7 +394,11 @@ function Icon({ data, id }) {
               {size.width < 768 && (
                 <div className="list-9 list-item">
                   {map(data, (item, index) => (
-                    <a href={item.url} className={`item efch-${index + 2} ef-img-l `} key={index}>
+                    <a
+                      href={item.url}
+                      className={`item efch-${index + 2} ef-img-l `}
+                      key={index}
+                    >
                       <div className="img">
                         <img
                           className="lazyload"
@@ -380,7 +415,7 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '4' && (
+      {data[0].type === "4" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg-2 group-ef loaded block-icon-${data[0].type}`}
@@ -388,7 +423,7 @@ function Icon({ data, id }) {
           >
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+                <h2 className="ht">{data === null ? "" : data[0].title}</h2>
               </div>
               <div className="row list-item">
                 {map(data, (items, index) => {
@@ -396,8 +431,8 @@ function Icon({ data, id }) {
                     <div className="col-sm-4 efch-2 ef-img-t" key={index}>
                       <a
                         className="item"
-                        href={items.url ? items.url : '#'}
-                        style={{ padding: '40px 10px' }}
+                        href={items.url ? items.url : "#"}
+                        style={{ padding: "40px 10px" }}
                       >
                         <div className="img ">
                           <img
@@ -418,18 +453,21 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '5' && (
+      {data[0].type === "5" && (
         <React.Fragment>
-          <div className={`${padding} sec-img-svg-4 block-icon-${data[0].type}`} id={id}>
+          <div
+            className={`${padding} sec-img-svg-4 block-icon-${data[0].type}`}
+            id={id}
+          >
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+                <h2 className="ht">{data === null ? "" : data[0].title}</h2>
               </div>
               <div className="row list-item">
                 {map(data, (items, index) => {
                   return (
                     <div className="col-sm-4 efch-2 ef-img-t" key={index}>
-                      <a className="item" href={items.url ? items.url : '#'}>
+                      <a className="item" href={items.url ? items.url : "#"}>
                         <div className="img ">
                           <img
                             className="lazyload"
@@ -449,7 +487,7 @@ function Icon({ data, id }) {
           </div>
         </React.Fragment>
       )}
-      {data[0].type === '6' && (
+      {data[0].type === "6" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg-2 group-ef loaded block-icon-${data[0].type}`}
@@ -457,7 +495,7 @@ function Icon({ data, id }) {
           >
             <div className="container">
               <div className="entry-head text-left">
-                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+                <h2 className="ht">{data === null ? "" : data[0].title}</h2>
               </div>
               {size.width >= 768 && (
                 <div className="sec-b wrap-carousel">
@@ -470,16 +508,19 @@ function Icon({ data, id }) {
                     keyBoardControl={true}
                     arrows={false}
                     className=""
-                    ref={ref => {
+                    ref={(ref) => {
                       setRefCarousel(ref);
                     }}
                   >
                     {map(data, (items, index) => (
                       <div className="item ef-img-t item_carousel" key={index}>
                         <a
-                          href={items.url ? items.url : '#'}
+                          href={items.url ? items.url : "#"}
                           className="link"
-                          style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
+                          style={{
+                            backgroundColor: "#F5F4F4",
+                            boxShadow: "none",
+                          }}
                         >
                           <div className="img">
                             <img
@@ -520,9 +561,12 @@ function Icon({ data, id }) {
                   {map(data, (items, index) => (
                     <div className="item ef-img-t item_carousel" key={index}>
                       <a
-                        href={items.url ? items.url : '#'}
+                        href={items.url ? items.url : "#"}
                         className="link"
-                        style={{ backgroundColor: '#F5F4F4', boxShadow: 'none' }}
+                        style={{
+                          backgroundColor: "#F5F4F4",
+                          boxShadow: "none",
+                        }}
                       >
                         <div className="img">
                           <img
@@ -531,7 +575,10 @@ function Icon({ data, id }) {
                             alt="images"
                           />
                         </div>
-                        <div className="divtext" style={{ paddingLeft: '20px' }}>
+                        <div
+                          className="divtext"
+                          style={{ paddingLeft: "20px" }}
+                        >
                           <h3 className="title">{items.note_2}</h3>
                         </div>
                       </a>
@@ -543,7 +590,7 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '7' && (
+      {data[0].type === "7" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg-3 group-ef loaded block-icon-${data[0].type}`}
@@ -551,13 +598,16 @@ function Icon({ data, id }) {
           >
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+                <h2 className="ht">{data === null ? "" : data[0].title}</h2>
               </div>
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className="col-sm-6 col-md-4 efch-2 ef-img-t" key={index}>
-                      <a href={items.url ? items.url : '#'}>
+                    <div
+                      className="col-sm-6 col-md-4 efch-2 ef-img-t"
+                      key={index}
+                    >
+                      <a href={items.url ? items.url : "#"}>
                         <div className="item">
                           <div className="img ">
                             <img
@@ -567,10 +617,16 @@ function Icon({ data, id }) {
                             />
                           </div>
                           <div className="divtext">
-                            <h4 className="title equal" style={{ textAlign: 'center' }}>
+                            <h4
+                              className="title equal"
+                              style={{ textAlign: "center" }}
+                            >
                               {items.note_1}
                             </h4>
-                            <div className="desc" style={{ textAlign: 'center' }}>
+                            <div
+                              className="desc"
+                              style={{ textAlign: "center" }}
+                            >
                               {items.note_2}
                             </div>
                           </div>
@@ -584,7 +640,7 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '8' && (
+      {data[0].type === "8" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg-3 group-ef loaded block-icon-${data[0].type}`}
@@ -592,19 +648,31 @@ function Icon({ data, id }) {
           >
             <div className="container">
               <div className="entry-head">
-                <h2 className="ht">{data === null ? '' : data[0].title}</h2>
+                <h2 className="ht">{data === null ? "" : data[0].title}</h2>
               </div>
               <div className="row equalHeight list-item">
                 {map(data, (items, index) => {
                   return (
-                    <div className={`col-sm-6 col-md-4 efch-2 ef-img-t`} key={index}>
-                      <a href={items.url ? items.url : '#'}>
+                    <div
+                      className={`col-sm-6 col-md-4 efch-2 ef-img-t`}
+                      key={index}
+                    >
+                      <a href={items.url ? items.url : "#"}>
                         <div className="item">
-                          <div className="divtext" style={{ paddingTop: '29px' }}>
-                            <h4 className="title equal" style={{ textAlign: 'center' }}>
+                          <div
+                            className="divtext"
+                            style={{ paddingTop: "29px" }}
+                          >
+                            <h4
+                              className="title equal"
+                              style={{ textAlign: "center" }}
+                            >
                               {items.note_1}
                             </h4>
-                            <div className="desc" style={{ textAlign: 'center' }}>
+                            <div
+                              className="desc"
+                              style={{ textAlign: "center" }}
+                            >
                               {items.note_2}
                             </div>
                           </div>
@@ -618,81 +686,175 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '9' && (
+      {data[0].type === "9" && (
         <React.Fragment>
-          <section
-            className={`sec-b sec-n-h2  group-ef loaded`}
-            id={id}
-          >
+          <section className={`sec-b sec-n-h2  group-ef loaded`} id={id}>
             <div className="row grid-space-0">
               <div className="col-lg-4 efch-2 ef-img-t">
                 {data && data[0] && data[0].urlImageBackGround ? (
-                  <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[0].imageBackGround} style={{backgroundImage: `url("${data[0].imageBackGround}")`, backgroundSize: "100% 100%"}}>
-                    <div className="divtext" style={{textAlign: "left"}}>
-                      <div className="img" style={{maxWidth: "65px"}}>
-                        <img className=" loaded loaded" data-lazy-type="image" dataLazySrc={data[0].image} src={data[0].image}/>
+                  <div
+                    className="item item-1 loaded"
+                    dataLazyType="bg"
+                    dataLazySrc={data[0].imageBackGround}
+                    style={{
+                      backgroundImage: `url("${data[0].imageBackGround}")`,
+                      backgroundSize: "100% 100%",
+                    }}
+                  >
+                    <div className="divtext" style={{ textAlign: "left" }}>
+                      <div className="img" style={{ maxWidth: "65px" }}>
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          dataLazySrc={data[0].image}
+                          src={data[0].image}
+                        />
                       </div>
-                      <div className="title" style={{color: "#A0D2FF", marginBottom: "20px", fontWeight: "600"}}>
+                      <div
+                        className="title"
+                        style={{
+                          color: "#A0D2FF",
+                          marginBottom: "20px",
+                          fontWeight: "600",
+                        }}
+                      >
                         {ReactHtmlParser(data[0].note_1)}
                       </div>
                       <div className="desc">
                         {ReactHtmlParser(data[0].note_2)}
                       </div>
-                      <a className="link link-custom-1" href={data[0].url} style={{color:"#fff"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
+                      <a
+                        className="link link-custom-1"
+                        href={data[0].url}
+                        style={{ color: "#fff" }}
+                      >
+                        {t("discovery")}
+                        <i
+                          className="icon-arrow-1"
+                          style={{ padding: "2px" }}
+                        ></i>
+                      </a>
                     </div>
                   </div>
-                    ) : (
-                      ''
+                ) : (
+                  ""
                 )}
               </div>
               <div className="col-lg-4 efch-2 ef-img-t">
                 {data && data[1] && data[1].urlImageBackGround ? (
-                  <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[1].imageBackGround} style={{backgroundImage: `url("${data[1].imageBackGround}")`, backgroundSize: "100% 100%"}}>
-                    <div className="divtext" style={{textAlign: "left"}}>
-                      <div className="img" style={{maxWidth: "65px"}}>
-                        <img className=" loaded loaded" data-lazy-type="image" dataLazySrc={data[1].image} src={data[1].image}/>
+                  <div
+                    className="item item-1 loaded"
+                    dataLazyType="bg"
+                    dataLazySrc={data[1].imageBackGround}
+                    style={{
+                      backgroundImage: `url("${data[1].imageBackGround}")`,
+                      backgroundSize: "100% 100%",
+                    }}
+                  >
+                    <div className="divtext" style={{ textAlign: "left" }}>
+                      <div className="img" style={{ maxWidth: "65px" }}>
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          dataLazySrc={data[1].image}
+                          src={data[1].image}
+                        />
                       </div>
-                      <div className="title" style={{color: "#141ED2", marginBottom: "20px", fontWeight: "600"}}>
+                      <div
+                        className="title"
+                        style={{
+                          color: "#141ED2",
+                          marginBottom: "20px",
+                          fontWeight: "600",
+                        }}
+                      >
                         {ReactHtmlParser(data[1].note_1)}
                       </div>
-                      <div className="desc" style={{color:"#141ED2"}}>
-                      {ReactHtmlParser(data[1].note_2)}
+                      <div className="desc" style={{ color: "#141ED2" }}>
+                        {ReactHtmlParser(data[1].note_2)}
                       </div>
-                      <a className="link link-custom-2" href={data[1].url} style={{color:"#141ED2"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
+                      <a
+                        className="link link-custom-2"
+                        href={data[1].url}
+                        style={{ color: "#141ED2" }}
+                      >
+                        {t("discovery")}
+                        <i
+                          className="icon-arrow-1"
+                          style={{ padding: "2px" }}
+                        ></i>
+                      </a>
                     </div>
                   </div>
-                    ) : (
-                      ''
+                ) : (
+                  ""
                 )}
               </div>
               <div className="col-lg-4 efch-2 ef-img-t">
                 {data && data[2] && data[2].urlImageBackGround ? (
-                  <div className="item item-1 loaded" dataLazyType="bg" dataLazySrc={data[2].imageBackGround} style={{backgroundImage: `url("${data[2].imageBackGround}")`, backgroundSize: "100% 100%"}}>
-                    <div className="divtext" style={{textAlign: "left"}}>
-                      <div className="img" style={{maxWidth: "65px"}}>
-                        <img className=" loaded loaded" data-lazy-type="image" dataLazySrc={data[2].image} src={data[2].image}/>
+                  <div
+                    className="item item-1 loaded"
+                    dataLazyType="bg"
+                    dataLazySrc={data[2].imageBackGround}
+                    style={{
+                      backgroundImage: `url("${data[2].imageBackGround}")`,
+                      backgroundSize: "100% 100%",
+                    }}
+                  >
+                    <div className="divtext" style={{ textAlign: "left" }}>
+                      <div className="img" style={{ maxWidth: "65px" }}>
+                        <img
+                          className=" loaded loaded"
+                          data-lazy-type="image"
+                          dataLazySrc={data[2].image}
+                          src={data[2].image}
+                        />
                       </div>
-                      <div className="title" style={{color: "#141ED2", marginBottom: "20px", fontWeight: "600"}}>
+                      <div
+                        className="title"
+                        style={{
+                          color: "#141ED2",
+                          marginBottom: "20px",
+                          fontWeight: "600",
+                        }}
+                      >
                         {ReactHtmlParser(data[2].note_1)}
                       </div>
-                      <div className="desc" style={{color:"#141ED2"}}>
+                      <div className="desc" style={{ color: "#141ED2" }}>
                         {ReactHtmlParser(data[2].note_2)}
                       </div>
-                      <a className="link link-custom-2" href={data[2].url} style={{color:"#141ED2"}}>{t('discovery')}<i className="icon-arrow-1" style={{padding: "2px"}}></i></a>
+                      <a
+                        className="link link-custom-2"
+                        href={data[2].url}
+                        style={{ color: "#141ED2" }}
+                      >
+                        {t("discovery")}
+                        <i
+                          className="icon-arrow-1"
+                          style={{ padding: "2px" }}
+                        ></i>
+                      </a>
                     </div>
                   </div>
-                    ) : (
-                      ''
+                ) : (
+                  ""
                 )}
               </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '10' && (
+      {data[0].type === "10" && (
         <React.Fragment>
-          <section className={`sec-menuicon2 group-ef next-shadow loaded`} id={id} style={{padding: "10px 0"}}>
-            <div className="container"  style={{maxHeight: "130px", padding: "inherit"}}>
+          <section
+            className={`sec-menuicon2 group-ef next-shadow loaded`}
+            id={id}
+            style={{ padding: "10px 0" }}
+          >
+            <div
+              className="container"
+              style={{ maxHeight: "130px", padding: "inherit" }}
+            >
               {size.width >= 1200 && (
                 <div className="wrap-carousel max850 pc">
                   <Carousel
@@ -705,22 +867,28 @@ function Icon({ data, id }) {
                     className="list-9 menuicon2"
                     arrows={false}
                     renderButtonGroupOutside={true}
-                    ref={ref => {
+                    ref={(ref) => {
                       setRefCarousel(ref);
                     }}
                   >
                     {map(data, (item, index) => (
-                        <a  className="link" href={item.url} style={{minHeight: "110px"}}>
-                          <div className="img-custom-menu">
-                            <img
-                              className="lazyload"
-                              alt="images"
-                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                              style={{ maxHeight: "100%" }}
-                            />
-                          </div>
-                          <div className="title">{ReactHtmlParser(item.note_1)}</div>
-                        </a>
+                      <a
+                        className="link"
+                        href={item.url}
+                        style={{ minHeight: "110px" }}
+                      >
+                        <div className="img-custom-menu">
+                          <img
+                            className="lazyload"
+                            alt="images"
+                            data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                            style={{ maxHeight: "100%" }}
+                          />
+                        </div>
+                        <div className="title">
+                          {ReactHtmlParser(item.note_1)}
+                        </div>
+                      </a>
                     ))}
                   </Carousel>
                   <div className="carousel-nav center">
@@ -743,7 +911,7 @@ function Icon({ data, id }) {
                   </div>
                 </div>
               )}
-              {(size.width >= 768 && size.width < 1200) && (
+              {size.width >= 768 && size.width < 1200 && (
                 <div className="wrap-carousel max850 pc">
                   <Carousel
                     responsive={responsive3}
@@ -755,25 +923,34 @@ function Icon({ data, id }) {
                     className="list-9 menuicon2"
                     arrows={false}
                     renderButtonGroupOutside={true}
-                    ref={ref => {
+                    ref={(ref) => {
                       setRefCarousel(ref);
                     }}
                   >
                     {map(data, (item, index) => (
-                        <a  className="link" href={item.url} style={{minHeight: "110px"}}>
-                          <div className="img-custom-menu">
-                            <img
-                              className="lazyload"
-                              alt="images"
-                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                              style={{ maxHeight: "100%" }}
-                            />
-                          </div>
-                          <div className="title">{ReactHtmlParser(item.note_1)}</div>
-                        </a>
+                      <a
+                        className="link"
+                        href={item.url}
+                        style={{ minHeight: "110px" }}
+                      >
+                        <div className="img-custom-menu">
+                          <img
+                            className="lazyload"
+                            alt="images"
+                            data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                            style={{ maxHeight: "100%" }}
+                          />
+                        </div>
+                        <div className="title">
+                          {ReactHtmlParser(item.note_1)}
+                        </div>
+                      </a>
                     ))}
                   </Carousel>
-                  <div className="carousel-nav-custom center" style={{left: "-20px", right: "-20px"}}>
+                  <div
+                    className="carousel-nav-custom center"
+                    style={{ left: "-20px", right: "-20px" }}
+                  >
                     <div
                       className="carousel-prev "
                       onClick={() => {
@@ -794,7 +971,10 @@ function Icon({ data, id }) {
                 </div>
               )}
               {size.width < 768 && (
-                <div className="wrap-carousel pc" style={{padding: "10px 10px 10px"}}>
+                <div
+                  className="wrap-carousel pc"
+                  style={{ padding: "10px 10px 10px" }}
+                >
                   <Carousel
                     responsive={responsive3}
                     draggable
@@ -805,22 +985,28 @@ function Icon({ data, id }) {
                     className="list-9 menuicon2"
                     arrows={false}
                     renderButtonGroupOutside={true}
-                    ref={ref => {
+                    ref={(ref) => {
                       setRefCarousel(ref);
                     }}
                   >
                     {map(data, (item, index) => (
-                        <a  className="link" href={item.url} style={{minHeight: "110px"}}>
-                          <div className="img-custom-menu">
-                            <img
-                              className="lazyload"
-                              alt="images"
-                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                              style={{ maxHeight: "100%" }}
-                            />
-                          </div>
-                          <div className="title">{ReactHtmlParser(item.note_1)}</div>
-                        </a>
+                      <a
+                        className="link"
+                        href={item.url}
+                        style={{ minHeight: "110px" }}
+                      >
+                        <div className="img-custom-menu">
+                          <img
+                            className="lazyload"
+                            alt="images"
+                            data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                            style={{ maxHeight: "100%" }}
+                          />
+                        </div>
+                        <div className="title">
+                          {ReactHtmlParser(item.note_1)}
+                        </div>
+                      </a>
                     ))}
                   </Carousel>
                   <div className="carousel-nav center">
@@ -847,34 +1033,26 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '11' && (
+      {data[0].type === "11" && (
         <React.Fragment>
-          <section className={`sec-menuicon2 group-ef next-shadow loaded`} id={id} style={{padding: "10px 0"}}>
-            <div className="container"  style={{minHeight: "121px", padding: "inherit"}}>
+          <section
+            className={`sec-menuicon2 group-ef next-shadow loaded`}
+            id={id}
+            style={{ padding: "10px 0" }}
+          >
+            <div
+              className="container"
+              style={{ minHeight: "121px", padding: "inherit" }}
+            >
               {size.width >= 768 && (
                 <div className="list-9 list-item max850 pc row">
                   {map(data, (item, index) => (
-                      <div className="col">
-                        <a  className="link" href={item.url} style={{minHeight: "121px"}}>
-                          <div className="img-custom-menu">
-                            <img
-                              className="lazyload"
-                              alt="images"
-                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                              style={{ maxHeight: "100%" }}
-                            />
-                          </div>
-                          <div className="title-custom-2">{ReactHtmlParser(item.note_1)}</div>
-                        </a>
-                      </div>
-                    ))}
-                </div>
-              )}
-              {size.width < 768 && (
-                <div className="list-9 list-item max850 pc row">
-                {map(data, (item, index) => (
                     <div className="col">
-                      <a  className="link" href={item.url} style={{minHeight: "121px"}}>
+                      <a
+                        className="link"
+                        href={item.url}
+                        style={{ minHeight: "121px" }}
+                      >
                         <div className="img-custom-menu">
                           <img
                             className="lazyload"
@@ -883,96 +1061,215 @@ function Icon({ data, id }) {
                             style={{ maxHeight: "100%" }}
                           />
                         </div>
-                        <div className="title-custom-2">{ReactHtmlParser(item.note_1)}</div>
+                        <div className="title-custom-2">
+                          {ReactHtmlParser(item.note_1)}
+                        </div>
                       </a>
                     </div>
                   ))}
-              </div>
+                </div>
+              )}
+              {size.width < 768 && (
+                <div className="list-9 list-item max850 pc row">
+                  {map(data, (item, index) => (
+                    <div className="col">
+                      <a
+                        className="link"
+                        href={item.url}
+                        style={{ minHeight: "121px" }}
+                      >
+                        <div className="img-custom-menu">
+                          <img
+                            className="lazyload"
+                            alt="images"
+                            data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                            style={{ maxHeight: "100%" }}
+                          />
+                        </div>
+                        <div className="title-custom-2">
+                          {ReactHtmlParser(item.note_1)}
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '12' && (
+      {data[0].type === "12" && (
         <React.Fragment>
-        <section
-          className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
-          id={id}
-        >
-          <div className="container">
-            <div className="title-has-line-custom">
-              <h2 className="ht" style={{fontSize: "14px", marginBottom: "5px"}}>{data === null ? '' : data[0].title}</h2>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row">
+                          {map(data, (item, index) => (
+                            <div
+                              className={`col-md-${column}`}
+                              style={{ paddingBottom: "20px" }}
+                            >
+                              <div className="item group-custom-1">
+                                <div className="divtext">
+                                  <h4
+                                    className="title"
+                                    style={{ textTransform: "none" }}
+                                  >
+                                    {item.note_1}
+                                  </h4>
+                                  <div className="detail-custom-1">
+                                    {item.note_2}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="row">
-                {map(data, (item, index) => (
-                  <div className={`col-md-${column}`} style={{paddingBottom: "20px"}}>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === "13" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="container">
+              <div className="">
+                <div className="row">
+                  <div className="col-md-6" style={{ marginBottom: "20px" }}>
+                    <div
+                      className="item group-custom-1"
+                      style={{ backgroundColor: "#e0f0ff" }}
+                    >
+                      <div className="title-has-line-custom">
+                        <h2
+                          className="ht"
+                          style={{ fontSize: "14px", marginBottom: "5px" }}
+                        >
+                          {data === null ? "" : data[0].title}
+                        </h2>
+                      </div>
+                      {map(haftFirstData, (item, index) => (
+                        <div style={{ height: "150px", marginBottom: "10px" }}>
+                          <h4
+                            className="title"
+                            style={{ textTransform: "none" }}
+                          >
+                            {item.note_1}
+                          </h4>
+                          <div
+                            className="detail-custom-1"
+                            style={{ maxHeight: "110px", overflow: "hidden" }}
+                          >
+                            {item.note_2}
+                          </div>
+                        </div>
+                      ))}
+                      <Link
+                        href={
+                          data[0].url_group_1 !== null ||
+                          data[0].url_group_1 !== undefined
+                            ? data[0].url_group_1
+                            : "#"
+                        }
+                        prefetch={false}
+                      >
+                        <a className="link">
+                          <p
+                            className="viewmore-custom"
+                            style={{ marginBottom: "0px" }}
+                          >
+                            {t("viewmore")} +
+                          </p>
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="col-md-6" style={{ paddingBottom: "20px" }}>
                     <div className="item group-custom-1">
-                      <div className="divtext">
-                        <h4 className="title" style={{textTransform: "none"}}>{item.note_1}</h4>
-                        <div className="detail-custom-1">{item.note_2}</div>
+                      <div className="title-has-line-custom">
+                        <h2
+                          className="ht"
+                          style={{ fontSize: "14px", marginBottom: "5px" }}
+                        >
+                          {data === null ? "" : data[0].title_2}
+                        </h2>
                       </div>
+                      {map(haftSecondData, (item, index) => (
+                        <div style={{ height: "150px", marginBottom: "10px" }}>
+                          <h4
+                            className="title"
+                            style={{ textTransform: "none" }}
+                          >
+                            {item.note_1}
+                          </h4>
+                          <div
+                            className="detail-custom-1"
+                            style={{ maxHeight: "110px", overflow: "hidden" }}
+                          >
+                            {item.note_2}
+                          </div>
+                        </div>
+                      ))}
+                      <Link
+                        href={
+                          data[0].url_group_2 !== null ||
+                          data[0].url_group_2 !== undefined
+                            ? data[0].url_group_2
+                            : "#"
+                        }
+                        prefetch={false}
+                      >
+                        <a className="link">
+                          <p
+                            className="viewmore-custom"
+                            style={{ marginBottom: "0px" }}
+                          >
+                            {t("viewmore")} +
+                          </p>
+                        </a>
+                      </Link>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      </React.Fragment>
-      )}
-      {data[0].type === '13' && (
-        <React.Fragment>
-        <section
-          className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
-          id={id}
-        >
-          <div className="container">
-            <div className="">
-              <div className="row">
-                <div className="col-md-6" style={{marginBottom: "20px"}}>
-                  <div className="item group-custom-1" style={{backgroundColor:"#e0f0ff"}}>
-                    <div className="title-has-line-custom">
-                      <h2 className="ht" style={{fontSize: "14px", marginBottom: "5px"}}>{data === null ? '' : data[0].title}</h2>
-                    </div>
-                    {map(haftFirstData, (item, index) => (
-                      <div style={{ height: "150px", marginBottom: "10px"}}>
-                        <h4 className="title" style={{textTransform: "none"}}>{item.note_1}</h4>
-                        <div className="detail-custom-1" style={{maxHeight: "110px", overflow: "hidden"}}>{item.note_2}</div>
-                      </div>
-                    ))}
-                    <Link href={data[0].url_group_1 !== null || data[0].url_group_1 !== undefined ? data[0].url_group_1 : "#"} prefetch={false}>
-                      <a className="link">
-                        <p className="viewmore-custom" style={{marginBottom: "0px"}}>{t('viewmore')} +</p>
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-                <div className="col-md-6" style={{paddingBottom: "20px"}}>
-                  <div className="item group-custom-1">
-                    <div className="title-has-line-custom">
-                      <h2 className="ht" style={{fontSize: "14px", marginBottom: "5px"}}>{data === null ? '' : data[0].title_2}</h2>
-                    </div>
-                    {map(haftSecondData, (item, index) => (
-                      <div style={{height: "150px", marginBottom: "10px"}}>
-                        <h4 className="title" style={{textTransform: "none"}}>{item.note_1}</h4>
-                        <div className="detail-custom-1" style={{maxHeight: "110px", overflow: "hidden"}}>{item.note_2}</div>
-                      </div>
-                    ))}
-                    <Link href={data[0].url_group_2 !== null || data[0].url_group_2 !== undefined ? data[0].url_group_2 : "#"} prefetch={false}>
-                      <a className="link">
-                        <p className="viewmore-custom" style={{marginBottom: "0px"}}>{t('viewmore')} +</p>
-                      </a>
-                    </Link>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </React.Fragment>
+          </section>
+        </React.Fragment>
       )}
-      {data[0].type === '14' && (
+      {data[0].type === "14" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
@@ -980,15 +1277,23 @@ function Icon({ data, id }) {
           >
             <div className="container">
               <div className="entry-head text-center">
-                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
+                <h2
+                  className="ht"
+                  style={{
+                    borderBottom: "1px solid #d6d6d6",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  {data === null ? "" : data[0].title}
+                </h2>
               </div>
 
               <div className="row list-item">
                 {map(data, (items, index) => {
                   return (
                     <div className={`col-sm-6 col-md-${column}`} key={index}>
-                      <div className="item" style={{textAlign:"left"}}>
-                        <a href={items.url ? items.url : '#'}>
+                      <div className="item" style={{ textAlign: "left" }}>
+                        <a href={items.url ? items.url : "#"}>
                           <div className="img">
                             <img
                               className="lazyload"
@@ -997,7 +1302,12 @@ function Icon({ data, id }) {
                             />
                           </div>
                           <div className="divtext">
-                            <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
+                            <h4
+                              className="title"
+                              style={{ textTransform: "none" }}
+                            >
+                              {items.note_1}
+                            </h4>
                             <div className="desc">{items.note_2}</div>
                           </div>
                         </a>
@@ -1010,324 +1320,658 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '15' && (
+      {data[0].type === "15" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
           >
-            <div className="container" style={{paddingBottom: "70px"}}>
-              <div className="title-has-line-custom">
-                <h2 className="ht" style={{fontSize: "14px", marginBottom: "5px"}}>{data === null ? '' : data[0].title}</h2>
-              </div>
-
-              <div className="row">
-                {map(data, (item, index) => (
-                    <div className={`col-md-${column}`} style={{paddingBottom: "50px"}}>
-                      <div style={{paddingBottom: "20px", padding:"30px", height: "120%", textAlign: "left", backgroundColor: "#e0f0ff", borderRadius: "5px", position: "relative", minHeight: "200px"}}>
-                      <h4 className="title" style={{textTransform: "none"}}>{item.note_1}</h4>
-                        <div className="detail-custom-1">
-                          {item.note_2}
-                        </div>
-                        <div style={{width:"46px", height:"46px", position: "absolute", right: "30px", bottom: "30px"}}>
-                          <img
-                            className="lazyload"
-                            alt="images"
-                            data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                            style={{ maxHeight: "100%" }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </section>
-        </React.Fragment>
-      )}
-      {data[0].type === '16' && (
-        <React.Fragment>
-          <section
-            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
-            id={id}
-          >
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
-              </div>
-
-              <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index}>
-                      
-                        <div className="item" style={{paddingBottom: "30px", padding:"30px", height: "100%", textAlign: "left", backgroundColor: "#f3f3ff", borderRadius: "5px"}}>
-                          <a href={items.url ? items.url : '#'}>
-                            <div className="img">
-                              <img
-                                className="lazyload"
-                                alt="images"
-                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
-                              />
-                            </div>
-                            <div className="divtext">
-                              <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
-                              <div className="detail-custom-1">{items.note_2}</div>
-                            </div>
-                          </a>
-                        </div>
-                      
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        </React.Fragment>
-      )}
-      {data[0].type === '17' && (
-        <React.Fragment>
-          <section
-            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
-            id={id}
-          >
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
-              </div>
-
-              <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index}>
-                      
-                        <div className="item" style={{paddingBottom: "30px", padding:"30px", height: "100%", textAlign: "left", backgroundColor: "#141ED2",color: "#fff", borderRadius: "5px"}}>
-                          <a href={items.url ? items.url : '#'}>
-                            <div className="img">
-                              <img
-                                className="lazyload"
-                                alt="images"
-                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
-                              />
-                            </div>
-                            <div className="divtext">
-                              <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
-                              <div className="desc">{items.note_2}</div>
-                            </div>
-                          </a>
-                        </div>
-                      
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        </React.Fragment>
-      )}
-      {data[0].type === '18' && (
-        <React.Fragment>
-          <section
-            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
-            id={id}
-          >
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
-              </div>
-
-              <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index}>
-                      
-                        <div className="item" style={{paddingBottom: "30px", padding:"30px", height: "100%", textAlign: "left",
-                          backgroundColor: (index % 2 == 0) ? "#e0f0ff" : "#f3f3ff", borderRadius: "5px"}}>
-                          <a href={items.url ? items.url : '#'}>
-                            <div className="img">
-                              <img
-                                className="lazyload"
-                                alt="images"
-                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
-                              />
-                            </div>
-                            <div className="divtext">
-                              <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
-                              <div className="detail-custom-1">{items.note_2}</div>
-                            </div>
-                          </a>
-                        </div>
-                      
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        </React.Fragment>
-      )}
-      {data[0].type === '19' && (
-        <React.Fragment>
-          <section
-            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
-            id={id}
-          >
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
-              </div>
-
-              <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index}>
-                      
-                        <div className="item" style={{paddingBottom: "30px", padding:"30px", height: "100%", textAlign: "left",
-                          backgroundColor: (index % 2 == 0) ? "#e0f0ff" : "#f3f3ff", borderRadius: "5px"}}>
-                          <a href={items.url ? items.url : '#'}>
-                            <div className="img">
-                              <div className="circle-custom">{(index <= 9) ? `0${index+1}` : `${index+1}`}</div>
-                            </div>
-                            <div className="divtext">
-                              <h4 className="title" style={{textTransform:"none"}}>{items.note_1}</h4>
-                              <div className="detail-custom-1">{items.note_2}</div>
-                            </div>
-                          </a>
-                        </div>
-                      
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        </React.Fragment>
-      )}
-      {data[0].type === '20' && (
-        <React.Fragment>
-          <section
-            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
-            id={id}
-          >
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
-              </div>
-
-              <div className="wrap-carousel pc">
-                  <Carousel
-                    responsive={responsive4}
-                    draggable
-                    minimumTouchDrag={80}
-                    ssr={true} // means to render carousel on server-side.
-                    infinite={true}
-                    keyBoardControl={true}
-                    className="list-9 menuicon2"
-                    arrows={false}
-                    renderButtonGroupOutside={true}
-                    ref={ref => {
-                      setRefCarousel(ref);
-                    }}
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
                   >
-                    {map(data, (item, index) => (
-                      <div className="gray-background-custom">
-                        <a  className="link" href={item.url} style={{minHeight: "110px"}}>
-                          <div className="img-custom-menu">
-                            <img
-                              className="lazyload"
-                              alt="images"
-                              data-src={`${process.env.DOMAIN}${item.urlImage}`}
-                              style={{ maxHeight: "100%" }}
-                            />
-                          </div>
-                          <div className="title-gray-custom" style={{textTransform:"none"}}>{ReactHtmlParser(item.note_1)}</div>
-                        </a>
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row">
+                          {map(data, (item, index) => (
+                            <div
+                              className={`col-md-${column}`}
+                              style={{ paddingBottom: "50px" }}
+                            >
+                              <div
+                                style={{
+                                  paddingBottom: "20px",
+                                  padding: "30px",
+                                  height: "120%",
+                                  textAlign: "left",
+                                  backgroundColor: "#e0f0ff",
+                                  borderRadius: "5px",
+                                  position: "relative",
+                                  minHeight: "200px",
+                                }}
+                              >
+                                <h4
+                                  className="title"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  {item.note_1}
+                                </h4>
+                                <div className="detail-custom-1">
+                                  {item.note_2}
+                                </div>
+                                <div
+                                  style={{
+                                    width: "46px",
+                                    height: "46px",
+                                    position: "absolute",
+                                    right: "30px",
+                                    bottom: "30px",
+                                  }}
+                                >
+                                  <img
+                                    className="lazyload"
+                                    alt="images"
+                                    data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                                    style={{ maxHeight: "100%" }}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    ))}
-                  </Carousel>
-                  <div className="carousel-nav center carousel-nav-custom">
-                    <div
-                      className="carousel-prev "
-                      onClick={() => {
-                        refCarousel.previous();
-                      }}
-                    >
-                      <i className="icon-arrow-1 ix"></i>
-                    </div>
-                    <div
-                      className="carousel-next"
-                      onClick={() => {
-                        refCarousel.next();
-                      }}
-                    >
-                      <i className="icon-arrow-1"></i>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '21' && (
+      {data[0].type === "16" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
           >
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
-              </div>
-
-              <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index}>
-                        <div className="gray-background-custom-2">
-                          <a href={items.url ? items.url : '#'}>
-                            <div className="title" style={{textTransform:"none"}}>{ReactHtmlParser(items.note_1)}</div>
-                          </a>
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map(data, (items, index) => {
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    paddingBottom: "30px",
+                                    padding: "30px",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    backgroundColor: "#f3f3ff",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    <div className="img">
+                                      <img
+                                        className="lazyload"
+                                        alt="images"
+                                        data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                                      />
+                                    </div>
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{ textTransform: "none" }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div className="detail-custom-1">
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
                         </div>
-                      
+                      </div>
                     </div>
-                  );
-                })}
+                  </div>
+                </div>
               </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '22' && (
+      {data[0].type === "17" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
           >
-            <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht" style={{ borderBottom: "1px solid #d6d6d6", paddingBottom: "10px"}}>{data === null ? '' : data[0].title}</h2>
-              </div>
-
-              <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index}>
-                        <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map(data, (items, index) => {
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    paddingBottom: "30px",
+                                    padding: "30px",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    backgroundColor: "#141ED2",
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    <div
+                                      className="img"
+                                      style={{ color: "#fff" }}
+                                    >
+                                      <img
+                                        className="lazyload"
+                                        alt="images"
+                                        data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                                      />
+                                    </div>
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{
+                                          textTransform: "none",
+                                          color: "#fff",
+                                        }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div
+                                        className="desc"
+                                        style={{ color: "#fff" }}
+                                      >
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
                         </div>
-                        <div className="title-gray-custom-2">
-                          <a href={items.url ? items.url : '#'}>
-                            <div className="title" style={{textTransform:"none"}}>{ReactHtmlParser(items.note_1)}</div>
-                          </a>
-                        </div>    
+                      </div>
                     </div>
-                  );
-                })}
+                  </div>
+                </div>
               </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '23' && (
+      {data[0].type === "18" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map(data, (items, index) => {
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    paddingBottom: "30px",
+                                    padding: "30px",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    backgroundColor:
+                                      index % 2 == 0 ? "#e0f0ff" : "#f3f3ff",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    <div className="img">
+                                      <img
+                                        className="lazyload"
+                                        alt="images"
+                                        data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                                      />
+                                    </div>
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{ textTransform: "none" }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div className="detail-custom-1">
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === "19" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map(data, (items, index) => {
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    paddingBottom: "30px",
+                                    padding: "30px",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    backgroundColor:
+                                      index % 2 == 0 ? "#e0f0ff" : "#f3f3ff",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    <div className="img">
+                                      <div className="circle-custom">
+                                        {index <= 9
+                                          ? `0${index + 1}`
+                                          : `${index + 1}`}
+                                      </div>
+                                    </div>
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{ textTransform: "none" }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div className="detail-custom-1">
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === "20" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="wrap-carousel pc">
+                          <Carousel
+                            responsive={responsive4}
+                            draggable
+                            minimumTouchDrag={80}
+                            ssr={true} // means to render carousel on server-side.
+                            infinite={true}
+                            keyBoardControl={true}
+                            className="list-9 menuicon2"
+                            arrows={false}
+                            renderButtonGroupOutside={true}
+                            ref={(ref) => {
+                              setRefCarousel(ref);
+                            }}
+                          >
+                            {map(data, (item, index) => (
+                              <div className="gray-background-custom">
+                                <a
+                                  className="link"
+                                  href={item.url}
+                                  style={{ minHeight: "110px" }}
+                                >
+                                  <div className="img-custom-menu">
+                                    <img
+                                      className="lazyload"
+                                      alt="images"
+                                      data-src={`${process.env.DOMAIN}${item.urlImage}`}
+                                      style={{ maxHeight: "100%" }}
+                                    />
+                                  </div>
+                                  <div
+                                    className="title-gray-custom"
+                                    style={{ textTransform: "none" }}
+                                  >
+                                    {ReactHtmlParser(item.note_1)}
+                                  </div>
+                                </a>
+                              </div>
+                            ))}
+                          </Carousel>
+                          <div className="carousel-nav center carousel-nav-custom">
+                            <div
+                              className="carousel-prev "
+                              onClick={() => {
+                                refCarousel.previous();
+                              }}
+                            >
+                              <i className="icon-arrow-1 ix"></i>
+                            </div>
+                            <div
+                              className="carousel-next"
+                              onClick={() => {
+                                refCarousel.next();
+                              }}
+                            >
+                              <i className="icon-arrow-1"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === "21" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map(data, (items, index) => {
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div className="gray-background-custom-2">
+                                  <a href={items.url ? items.url : "#"}>
+                                    <div
+                                      className="title"
+                                      style={{ textTransform: "none" }}
+                                    >
+                                      {ReactHtmlParser(items.note_1)}
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === "22" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map(data, (items, index) => {
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="gray-background-custom-3"
+                                  style={{
+                                    backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`,
+                                    filter: "brightness(70%)",
+                                  }}
+                                ></div>
+                                <div className="title-gray-custom-2">
+                                  <a href={items.url ? items.url : "#"}>
+                                    <div
+                                      className="title"
+                                      style={{ textTransform: "none" }}
+                                    >
+                                      {ReactHtmlParser(items.note_1)}
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === "23" && (
         <React.Fragment>
           <section className={`sec-menu"`} id={id}>
             <div className="container">
@@ -1361,7 +2005,7 @@ function Icon({ data, id }) {
                   </div>
                 </div>
               )} */}
-                {/* <div style={{borderBottom: "1px solid #d6d6d6", position: "relative", height: "82px"}}>
+              {/* <div style={{borderBottom: "1px solid #d6d6d6", position: "relative", height: "82px"}}>
                 <Carousel
                   responsive={responsive5}
                   draggable
@@ -1403,81 +2047,121 @@ function Icon({ data, id }) {
                     <button class="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
                   </div>
                 </div> */}
-                <div className="convert-grid-to-scroll">
-                  <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "82px", borderBottom: "1px solid #d6d6d6"}}>
-                    {map(data, (item, index) => (
-                        <div
-                        className="li-menu-custom"
-                        key={index}
-                        >
-                          {index === 0 && (
-                            <div
-                            className="menu-custom-0"
-                            key={index}
-                            >
-                              <div className="menu-div-custom-1" style= {{borderBottom: router.asPath == item.url || router.asPath == item.url + '/' ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878", minWidth: "75px"}}>
-                                <Link href="[...name]" as={item.url}>
-                                  <a className="item efch-0 ef-img-l">
-                                    {ReactHtmlParser(item.note_1)}
-                                  </a>
-                                </Link>
-                              </div>
-                            </div>
-                          )}
-                          {index !== 0 && (
-                              <div
-                              className="menu-custom-1"
-                              key={index}
-                              >
-                                <div className="menu-div-custom-1" style= {{borderBottom: router.asPath == item.url || router.asPath == item.url + '/' ? "2px solid #141ED2" : "none", color: router.asPath == item.url ? "#333333" : "#787878", minWidth: "max-content"}}>
-                                <Link href="[...name]" as={item.url}>
-                                  <a>
-                                    {ReactHtmlParser(item.note_1)}
-                                  </a>
-                                </Link>
-                                </div>
-                              </div>
-                          )}
+              <div className="convert-grid-to-scroll">
+                <div
+                  className="row-custom list-item grid-space-20"
+                  style={{
+                    position: "relative",
+                    height: "82px",
+                    borderBottom: "1px solid #d6d6d6",
+                  }}
+                >
+                  {map(data, (item, index) => (
+                    <div className="li-menu-custom" key={index}>
+                      {index === 0 && (
+                        <div className="menu-custom-0" key={index}>
+                          <div
+                            className="menu-div-custom-1"
+                            style={{
+                              borderBottom:
+                                router.asPath == item.url ||
+                                router.asPath == item.url + "/"
+                                  ? "2px solid #141ED2"
+                                  : "none",
+                              color:
+                                router.asPath == item.url
+                                  ? "#333333"
+                                  : "#787878",
+                              minWidth: "75px",
+                            }}
+                          >
+                            <Link href="[...name]" as={item.url}>
+                              <a className="item efch-0 ef-img-l">
+                                {ReactHtmlParser(item.note_1)}
+                              </a>
+                            </Link>
+                          </div>
                         </div>
-                    ))}
-                    {size.width > 768 && (
-                      <div className="button-menu-custom">
-                        <button className="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                      {index !== 0 && (
+                        <div className="menu-custom-1" key={index}>
+                          <div
+                            className="menu-div-custom-1"
+                            style={{
+                              borderBottom:
+                                router.asPath == item.url ||
+                                router.asPath == item.url + "/"
+                                  ? "2px solid #141ED2"
+                                  : "none",
+                              color:
+                                router.asPath == item.url
+                                  ? "#333333"
+                                  : "#787878",
+                              minWidth: "max-content",
+                            }}
+                          >
+                            <Link href="[...name]" as={item.url}>
+                              <a>{ReactHtmlParser(item.note_1)}</a>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                  {size.width > 768 && (
+                    <div className="button-menu-custom">
+                      <button className="btn" type="submit">
+                        <a href={data[0].button_url}>
+                          {ReactHtmlParser(data[0].button_name)}
+                        </a>
+                      </button>
+                    </div>
+                  )}
                 </div>
+              </div>
             </div>
             {size.width <= 768 && (
               <div className="center-custom">
-                <button className="btn" type="submit"><a href={data[0].button_url}>{ReactHtmlParser(data[0].button_name)}</a></button>
+                <button className="btn" type="submit">
+                  <a href={data[0].button_url}>
+                    {ReactHtmlParser(data[0].button_name)}
+                  </a>
+                </button>
               </div>
             )}
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '24' && (
+      {data[0].type === "24" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
-            style={{paddingTop:"90px"}}
+            style={{ paddingTop: "90px" }}
           >
             <div className="container">
               <div className="text-center blog-custom">
                 <div className="blog-custom-1">
-                  <h2 className="intro-title-custom-1">{data === null ? '' : data[0].title}</h2>
+                  <h2 className="intro-title-custom-1">
+                    {data === null ? "" : data[0].title}
+                  </h2>
                   <div>
-                    <h4 className="intro-des-custom-1">{ReactHtmlParser(data[0].description_top)}</h4>
+                    <h4 className="intro-des-custom-1">
+                      {ReactHtmlParser(data[0].description_top)}
+                    </h4>
                   </div>
                 </div>
               </div>
 
               <div className="small-container">
                 <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index} style= {{marginTop: "55px"}}>
+                  {map(data, (items, index) => {
+                    return (
+                      <div
+                        className={`col-sm-6 col-md-${column}`}
+                        key={index}
+                        style={{ marginTop: "55px" }}
+                      >
                         {/* <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
                         </div>
                         <div className="title-gray-custom-2">
@@ -1486,48 +2170,70 @@ function Icon({ data, id }) {
                           </a>
                         </div>     */}
                         <Link href="[...name]" as={items.url}>
-                        <div className="img">
+                          <div className="img">
                             <div className="circle-custom-icon">
-                              <img className="lazyload img-icon-41"
-                                  alt="icon"
-                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}></img>
+                              <img
+                                className="lazyload img-icon-41"
+                                alt="icon"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              ></img>
                             </div>
-                            <div className="text-center" style={{paddingTop: "12px", maxWidth: "250px", margin: "auto"}}>
-                              <h4 className="intro-des-custom-1" style={{fontWeight: "600"}}>{ReactHtmlParser(items.note_1)}</h4>
+                            <div
+                              className="text-center"
+                              style={{
+                                paddingTop: "12px",
+                                maxWidth: "250px",
+                                margin: "auto",
+                              }}
+                            >
+                              <h4
+                                className="intro-des-custom-1"
+                                style={{ fontWeight: "600" }}
+                              >
+                                {ReactHtmlParser(items.note_1)}
+                              </h4>
                             </div>
                           </div>
                         </Link>
-                    </div>
-                  );
-                })}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '25' && (
+      {data[0].type === "25" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
-            style={{paddingTop:"90px"}}
+            style={{ paddingTop: "90px" }}
           >
             <div className="container">
               <div className="text-center blog-custom">
                 <div className="blog-custom-1">
-                  <h2 className="intro-title-custom-black">{data === null ? '' : data[0].title}</h2>
+                  <h2 className="intro-title-custom-black">
+                    {data === null ? "" : data[0].title}
+                  </h2>
                   <div>
-                    <h4 className="intro-des-custom-1">{ReactHtmlParser(data[0].description_top)}</h4>
+                    <h4 className="intro-des-custom-1">
+                      {ReactHtmlParser(data[0].description_top)}
+                    </h4>
                   </div>
                 </div>
               </div>
 
               <div className="small-container">
                 <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index} style= {{marginTop: "55px"}}>
+                  {map(data, (items, index) => {
+                    return (
+                      <div
+                        className={`col-sm-6 col-md-${column}`}
+                        key={index}
+                        style={{ marginTop: "55px" }}
+                      >
                         {/* <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
                         </div>
                         <div className="title-gray-custom-2">
@@ -1536,48 +2242,70 @@ function Icon({ data, id }) {
                           </a>
                         </div>     */}
                         <Link href="[...name]" as={items.url}>
-                        <div className="img">
+                          <div className="img">
                             <div className="circle-custom-icon-black">
-                              <img className="lazyload img-icon-41"
-                                  alt="icon"
-                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}></img>
+                              <img
+                                className="lazyload img-icon-41"
+                                alt="icon"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              ></img>
                             </div>
-                            <div className="text-center" style={{paddingTop: "12px", maxWidth: "250px", margin: "auto"}}>
-                              <h4 className="intro-des-custom-1" style={{fontWeight: "600"}}>{ReactHtmlParser(items.note_1)}</h4>
+                            <div
+                              className="text-center"
+                              style={{
+                                paddingTop: "12px",
+                                maxWidth: "250px",
+                                margin: "auto",
+                              }}
+                            >
+                              <h4
+                                className="intro-des-custom-1"
+                                style={{ fontWeight: "600" }}
+                              >
+                                {ReactHtmlParser(items.note_1)}
+                              </h4>
                             </div>
                           </div>
                         </Link>
-                    </div>
-                  );
-                })}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '26' && (
+      {data[0].type === "26" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
-            style={{paddingTop:"90px"}}
+            style={{ paddingTop: "90px" }}
           >
             <div className="container">
               <div className="text-center blog-custom">
                 <div className="blog-custom-1">
-                  <h2 className="intro-title-custom-1">{data === null ? '' : data[0].title}</h2>
+                  <h2 className="intro-title-custom-1">
+                    {data === null ? "" : data[0].title}
+                  </h2>
                   <div>
-                    <h4 className="intro-des-custom-1">{ReactHtmlParser(data[0].description_top)}</h4>
+                    <h4 className="intro-des-custom-1">
+                      {ReactHtmlParser(data[0].description_top)}
+                    </h4>
                   </div>
                 </div>
               </div>
 
               <div className="small-container">
                 <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index} style= {{marginTop: "55px"}}>
+                  {map(data, (items, index) => {
+                    return (
+                      <div
+                        className={`col-sm-6 col-md-${column}`}
+                        key={index}
+                        style={{ marginTop: "55px" }}
+                      >
                         {/* <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
                         </div>
                         <div className="title-gray-custom-2">
@@ -1586,48 +2314,70 @@ function Icon({ data, id }) {
                           </a>
                         </div>     */}
                         <Link href="[...name]" as={items.url}>
-                        <div className="img">
+                          <div className="img">
                             <div className="circle-custom-icon-purple">
-                              <img className="lazyload img-icon-41"
-                                  alt="icon"
-                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}></img>
+                              <img
+                                className="lazyload img-icon-41"
+                                alt="icon"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              ></img>
                             </div>
-                            <div className="text-center" style={{paddingTop: "12px", maxWidth: "250px", margin: "auto"}}>
-                              <h4 className="intro-des-custom-1" style={{fontWeight: "600"}}>{ReactHtmlParser(items.note_1)}</h4>
+                            <div
+                              className="text-center"
+                              style={{
+                                paddingTop: "12px",
+                                maxWidth: "250px",
+                                margin: "auto",
+                              }}
+                            >
+                              <h4
+                                className="intro-des-custom-1"
+                                style={{ fontWeight: "600" }}
+                              >
+                                {ReactHtmlParser(items.note_1)}
+                              </h4>
                             </div>
                           </div>
                         </Link>
-                    </div>
-                  );
-                })}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           </section>
         </React.Fragment>
       )}
-      {data[0].type === '27' && (
+      {data[0].type === "27" && (
         <React.Fragment>
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
-            style={{paddingTop:"90px"}}
+            style={{ paddingTop: "90px" }}
           >
             <div className="container">
               <div className="text-center blog-custom">
                 <div className="blog-custom-1">
-                  <h2 className="intro-title-custom-1">{data === null ? '' : data[0].title}</h2>
+                  <h2 className="intro-title-custom-1">
+                    {data === null ? "" : data[0].title}
+                  </h2>
                   <div>
-                    <h4 className="intro-des-custom-1">{ReactHtmlParser(data[0].description_top)}</h4>
+                    <h4 className="intro-des-custom-1">
+                      {ReactHtmlParser(data[0].description_top)}
+                    </h4>
                   </div>
                 </div>
               </div>
 
               <div className="small-container">
                 <div className="row list-item">
-                {map(data, (items, index) => {
-                  return (
-                    <div className={`col-sm-6 col-md-${column}`} key={index} style= {{marginTop: "55px"}}>
+                  {map(data, (items, index) => {
+                    return (
+                      <div
+                        className={`col-sm-6 col-md-${column}`}
+                        key={index}
+                        style={{ marginTop: "55px" }}
+                      >
                         {/* <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
                         </div>
                         <div className="title-gray-custom-2">
@@ -1636,20 +2386,34 @@ function Icon({ data, id }) {
                           </a>
                         </div>     */}
                         <Link href="[...name]" as={items.url}>
-                        <div className="img">
+                          <div className="img">
                             <div className="circle-custom-icon-green">
-                              <img className="lazyload img-icon-41"
-                                  alt="icon"
-                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}></img>
+                              <img
+                                className="lazyload img-icon-41"
+                                alt="icon"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              ></img>
                             </div>
-                            <div className="text-center" style={{paddingTop: "12px", maxWidth: "250px", margin: "auto"}}>
-                              <h4 className="intro-des-custom-1" style={{fontWeight: "600"}}>{ReactHtmlParser(items.note_1)}</h4>
+                            <div
+                              className="text-center"
+                              style={{
+                                paddingTop: "12px",
+                                maxWidth: "250px",
+                                margin: "auto",
+                              }}
+                            >
+                              <h4
+                                className="intro-des-custom-1"
+                                style={{ fontWeight: "600" }}
+                              >
+                                {ReactHtmlParser(items.note_1)}
+                              </h4>
                             </div>
                           </div>
                         </Link>
-                    </div>
-                  );
-                })}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>

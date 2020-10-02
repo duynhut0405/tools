@@ -67,22 +67,22 @@ function Pages({ data, type, id, optionWidth }) {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (data.pages) {
       getPageBlock(data.pages);
     }
     let array = [];
-    if (type === '8') {
-      for (let i = 0; i < data.listTag.length; i++) {
-        let res = await getPageBlockAll(data.listTag[i].pages);
-        let des = {
-          'value' : data.listTag[i].page.value,
-          'listPages': res
-        };
-        array.push(des);
-      }
-      setListPageAll(array);
-    }
+    // if (type === '8') {
+    //   for (let i = 0; i < data.listTag.length; i++) {
+    //     let res = getPageBlockAll(data.listTag[i].pages);
+    //     let des = {
+    //       'value' : data.listTag[i].page.value,
+    //       'listPages': res
+    //     };
+    //     array.push(des);
+    //   }
+    //   setListPageAll(array);
+    // }
   }, [data.pages && id]);
 
   if (type && type === '1') {
