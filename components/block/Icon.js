@@ -1723,7 +1723,7 @@ function Icon({ data, id }) {
                                     <div className="divtext">
                                       <h4
                                         className="title"
-                                        style={{ textTransform: "none" }}
+                                        style={{ textTransform: "none", color:"#333333"}}
                                       >
                                         {items.note_1}
                                       </h4>
@@ -1952,7 +1952,7 @@ function Icon({ data, id }) {
                                   <a href={items.url ? items.url : "#"}>
                                     <div
                                       className="title"
-                                      style={{ textTransform: "none" }}
+                                      style={{ textTransform: "none", color: "#fff" }}
                                     >
                                       {ReactHtmlParser(items.note_1)}
                                     </div>
