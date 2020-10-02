@@ -1456,6 +1456,206 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
+      {data[0].type === '24' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+            style={{paddingTop:"90px"}}
+          >
+            <div className="container">
+              <div className="text-center blog-custom">
+                <div className="blog-custom-1">
+                  <h2 className="intro-title-custom-1">{data === null ? '' : data[0].title}</h2>
+                  <div>
+                    <h4 className="intro-des-custom-1">{ReactHtmlParser(data[0].description_top)}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className="small-container">
+                <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index} style= {{marginTop: "55px"}}>
+                        {/* <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
+                        </div>
+                        <div className="title-gray-custom-2">
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="title" style={{textTransform:"none"}}>{ReactHtmlParser(items.note_1)}</div>
+                          </a>
+                        </div>     */}
+                        <Link href="[...name]" as={items.url}>
+                        <div className="img">
+                            <div className="circle-custom-icon">
+                              <img className="lazyload img-icon-41"
+                                  alt="icon"
+                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}></img>
+                            </div>
+                            <div className="text-center" style={{paddingTop: "12px", maxWidth: "250px", margin: "auto"}}>
+                              <h4 className="intro-des-custom-1" style={{fontWeight: "600"}}>{ReactHtmlParser(items.note_1)}</h4>
+                            </div>
+                          </div>
+                        </Link>
+                    </div>
+                  );
+                })}
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '25' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+            style={{paddingTop:"90px"}}
+          >
+            <div className="container">
+              <div className="text-center blog-custom">
+                <div className="blog-custom-1">
+                  <h2 className="intro-title-custom-black">{data === null ? '' : data[0].title}</h2>
+                  <div>
+                    <h4 className="intro-des-custom-1">{ReactHtmlParser(data[0].description_top)}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className="small-container">
+                <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index} style= {{marginTop: "55px"}}>
+                        {/* <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
+                        </div>
+                        <div className="title-gray-custom-2">
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="title" style={{textTransform:"none"}}>{ReactHtmlParser(items.note_1)}</div>
+                          </a>
+                        </div>     */}
+                        <Link href="[...name]" as={items.url}>
+                        <div className="img">
+                            <div className="circle-custom-icon-black">
+                              <img className="lazyload img-icon-41"
+                                  alt="icon"
+                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}></img>
+                            </div>
+                            <div className="text-center" style={{paddingTop: "12px", maxWidth: "250px", margin: "auto"}}>
+                              <h4 className="intro-des-custom-1" style={{fontWeight: "600"}}>{ReactHtmlParser(items.note_1)}</h4>
+                            </div>
+                          </div>
+                        </Link>
+                    </div>
+                  );
+                })}
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '26' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+            style={{paddingTop:"90px"}}
+          >
+            <div className="container">
+              <div className="text-center blog-custom">
+                <div className="blog-custom-1">
+                  <h2 className="intro-title-custom-1">{data === null ? '' : data[0].title}</h2>
+                  <div>
+                    <h4 className="intro-des-custom-1">{ReactHtmlParser(data[0].description_top)}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className="small-container">
+                <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index} style= {{marginTop: "55px"}}>
+                        {/* <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
+                        </div>
+                        <div className="title-gray-custom-2">
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="title" style={{textTransform:"none"}}>{ReactHtmlParser(items.note_1)}</div>
+                          </a>
+                        </div>     */}
+                        <Link href="[...name]" as={items.url}>
+                        <div className="img">
+                            <div className="circle-custom-icon-purple">
+                              <img className="lazyload img-icon-41"
+                                  alt="icon"
+                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}></img>
+                            </div>
+                            <div className="text-center" style={{paddingTop: "12px", maxWidth: "250px", margin: "auto"}}>
+                              <h4 className="intro-des-custom-1" style={{fontWeight: "600"}}>{ReactHtmlParser(items.note_1)}</h4>
+                            </div>
+                          </div>
+                        </Link>
+                    </div>
+                  );
+                })}
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === '27' && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+            style={{paddingTop:"90px"}}
+          >
+            <div className="container">
+              <div className="text-center blog-custom">
+                <div className="blog-custom-1">
+                  <h2 className="intro-title-custom-1">{data === null ? '' : data[0].title}</h2>
+                  <div>
+                    <h4 className="intro-des-custom-1">{ReactHtmlParser(data[0].description_top)}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className="small-container">
+                <div className="row list-item">
+                {map(data, (items, index) => {
+                  return (
+                    <div className={`col-sm-6 col-md-${column}`} key={index} style= {{marginTop: "55px"}}>
+                        {/* <div className="gray-background-custom-3" style={{backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`, filter: "brightness(70%)"}}>
+                        </div>
+                        <div className="title-gray-custom-2">
+                          <a href={items.url ? items.url : '#'}>
+                            <div className="title" style={{textTransform:"none"}}>{ReactHtmlParser(items.note_1)}</div>
+                          </a>
+                        </div>     */}
+                        <Link href="[...name]" as={items.url}>
+                        <div className="img">
+                            <div className="circle-custom-icon-green">
+                              <img className="lazyload img-icon-41"
+                                  alt="icon"
+                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}></img>
+                            </div>
+                            <div className="text-center" style={{paddingTop: "12px", maxWidth: "250px", margin: "auto"}}>
+                              <h4 className="intro-des-custom-1" style={{fontWeight: "600"}}>{ReactHtmlParser(items.note_1)}</h4>
+                            </div>
+                          </div>
+                        </Link>
+                    </div>
+                  );
+                })}
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 }
