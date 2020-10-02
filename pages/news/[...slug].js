@@ -103,7 +103,7 @@ function New({ news, category_name, category_url, socialLink }) {
               </div>
             </div>
           </div>
-          <section className="banner-heading-3 next-shadow">
+          <section className="banner-heading-3">
             <div className="container">
               <div className="divtext">
                 <div className="max750">
@@ -113,7 +113,7 @@ function New({ news, category_name, category_url, socialLink }) {
             </div>
             <img
               className="img img-pc br loaded loaded lazyload"
-              data-src="/static/images/heading-10-pc.svg"
+              data-src="/static/images/Group 6.png"
               alt="images"
             />
             <img
@@ -124,9 +124,11 @@ function New({ news, category_name, category_url, socialLink }) {
           </section>
           <main id="main" className="sec-b page-news-detail">
             <div className="container">
-              <div className=" max750">
-                <div className="top-heading">
-                  <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div>
+              <div className="max750">
+                <div className="top-heading" style={{marginTop:"-85px"}}>
+                  <div className="date">
+                    {category_name}   | {t('space')}
+                    {moment(news.news.created_at).format('DD/MM/YYYY')}</div>
                   {socialLink && <Social data={socialLink} />}
                   {/* {console.log(socialLink)} */}
                 </div>
@@ -187,7 +189,6 @@ function New({ news, category_name, category_url, socialLink }) {
                 </div>
                 <br />
                 <div className="tags">
-                  <h2>{t('related_content')}</h2>
                   {map(news.news.categories, item => (
                     <Link
                       href="/news/category/[...name]"
@@ -197,6 +198,20 @@ function New({ news, category_name, category_url, socialLink }) {
                       <a className="tag">{item.name}</a>
                     </Link>
                   ))}
+                  {socialLink && <Social data={socialLink} />}
+                </div>
+                <div className="Dowload_information">
+                {t('New_dowload_title')} <br></br>
+                {t('dowload_AppStore_title')}
+                <a className="dowload_AppStore" href={t('dowload_AppStore')}>{t('dowload_AppStore')}</a> <br></br>
+                {t('dowload_GooglePlay_title')}
+                <a className="dowload_GooglePlay" href={t('dowload_GooglePlay')}>{t('dowload_GooglePlay')}</a><br></br>
+                {t('New_dowload_title_before')}
+                <a className="Phone_contact_1" href={t('Phone_contact_1')}>{t('Phone_contact_1')}</a> /
+                <a className="Phone_contact_2" href={t('Phone_contact_2')}>{t('Phone_contact_2')}</a> 
+                {t('New_dowload_title_after')}
+                
+
                 </div>
               </div>
             </div>

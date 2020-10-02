@@ -146,5 +146,15 @@
   "download": "Download now",
   "find_ATM": "find ATM and transaction point",
   "near_ATM": "Nearest transaction point",
-  "net_work": "Net work"
+  "net_work": "Net work",
+  "New_dowload_title":"Customers can download MBBank application and experience at: ",
+  "dowload_AppStore_title":"- Link download at appstore: ",
+  "dowload_GooglePlay_title":"- Link download at google play: ",
+  "dowload_AppStore":"https://apple.co/2AqB7ZM",
+  "dowload_GooglePlay":"https://play.google.com/store/apps/details?id=com.mbmobile",
+  "Phone_contact_1":"1900 545 426",
+  "Phone_contact_2":" 024 3767 4050",
+  "New_dowload_title_before":"Or contact MB247: ",
+  "New_dowload_title_after":" for advice.",
+  "space": " "
 }

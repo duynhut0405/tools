@@ -7,6 +7,7 @@ import { getFormbuilderByIdService } from '../../services/form';
 import ReactLoading from 'react-loading';
 import PopupThankyou from './Popup/PopupThankyou';
 import ReCAPTCHA from 'react-google-recaptcha';
+import UseWindowResize from '../common/Resize';
 
 const propTypes = {
   data: PropTypes.object,
@@ -30,6 +31,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   const [modal, setModal] = useState(false);
   const [capcha, setCapcha] = useState(false);
   const recaptchaRef = React.createRef();
+  const size = UseWindowResize();
 
   let padding = '';
   if (optionWidth === '2') {
@@ -109,27 +111,61 @@ function MenuIntro({ data, pageId, optionWidth }) {
 
   return (
     <React.Fragment>
-      <section className="menuIntro sec-menu" style={{backgroundColor:"#fff", padding: "0px 15px 0"}}>
-        <div className="container" style={{backgroundColor:"#fff", height:"82px"}}>
-          <div style={{backgroundColor:"#fff", height:"82px", borderBottom: "1px solid #ddd"}}>
-          <ul style={{height: "82px"}}>
-                <li className="active" style={{paddingTop: "12px", padding: "0", color: "#333333", textAlign: "left", padding: "0 0"}}>
-                  <a style={{padding: "0 0"}}>{data.title}</a>
-                </li>
+      <section className={`sec-menu"`}>
+        {/* style={{backgroundColor:"#fff", padding: "0px 15px 0"}}> */}
+        <div className="container"> 
+        {/* style={{backgroundColor:"#fff", height:"82px",display:"flex",justifyContent:"space-between",alignItems:"center"}}> */}
+          <div className="convert-grid-to-scroll">
+          <div className="row-custom list-item grid-space-20">
+          
                 {map(data.listBlock, (values, index) => (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      onScroll(values.id);
-                    }}
-                    style={{paddingTop: "12px", color: "#787878"}}
-                  >
-                    <a>{values.title}</a>
-                  </li>
+                  <div
+                  className="li-menu-custom"
+                  key={index}
+                  onClick={() => {
+                    onScroll(values.id);
+                  }}>
+                    {index === 0 && (
+                    <div className="menu-div-custom-1" >
+                              
+                    <div
+                            className="menu-custom-0"
+                            key={index}
+                            onClick={() => {
+                              onScroll(values.id);
+                            }}>
+                    <a className="item efch-0 ef-img-l"  style={{borderBottom: "2px solid #141ED2"}}>{values.title}</a>
+                  </div>
+                  </div>
+                  )}
+                  {index != 0 && (
+                    <div className="menu-div-custom-1" >
+                              
+                    <div
+                            className="menu-custom-0"
+                            key={index}
+                            onClick={() => {
+                              onScroll(values.id);
+                            }}>
+                    <a className="item efch-0 ef-img-l">{values.title}</a>
+                  </div>
+                  </div>
+                  )}
+                  </div>
                 ))}
-              </ul>
           </div>
         </div>
+          {size.width > 768 && data.button_title != null && (
+                      <div className="button-menu-custom">
+                        <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
+                      </div>
+                    )}
+          </div>
+            {size.width <= 768 && data.button_title != null && (
+              <div className="center-custom" style={{marginTop:"24px"}}>
+                <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
+              </div>
+            )}
       </section>
       <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{marginTop: "68px"}}>
         <div className="container">
@@ -171,6 +207,9 @@ function MenuIntro({ data, pageId, optionWidth }) {
                   {data.contact_2}
                 </a>
               </div>
+
+
+
               {/* <div className="widget widget-tuvan">
                 <form onSubmit={onSend} autoComplete="on" className="form-tuvan">
                   {map(formdata, (item, index) => {
