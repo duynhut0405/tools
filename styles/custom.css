@@ -2996,8 +2996,8 @@ ul.menu.line>li:not(:first-child):before {
 
 .menu-custom-middle {
   /* padding-left: 30px; */
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 10px;
+  padding-left: 10px;
   height: 82px;
   display: flex!important;
   width: max-content;
@@ -3029,4 +3029,56 @@ ul.menu.line>li:not(:first-child):before {
 .title-category-custom-backbround {
   padding-left: 8.8%;
   padding-right: 8.8%;
+}
+
+.item-inline-table .divtext-custom-list {
+  padding: 25px 25px;
+  display: table-cell;
+  width: 55%;
+  /* vertical-align: middle; */
+}
+
+.next-custom {
+  display: table-cell;
+  width: 100%;
+  vertical-align: middle;
+  margin: auto;
+  text-align: center;
+}
+
+.icon-custom-button {
+  color: #141ED2;
+  font-size: 14px;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  border-radius: 100%;
+  text-align: center;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2)!important;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2)!important;
+  cursor: pointer;
+  margin: auto;
+}
+
+.icon-custom-button:hover {
+  background-color: #141ED2;
+  color: #fff;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .border-custom-1 {
+    border-bottom: 1px solid #d6d6d6;
+  }
+}
+
+@media only screen and (max-width: 767px)
+{ .next-custom {
+  display: none;
+}
+  .border-custom-1 {
+    border-bottom: none;
+  }
+
 }

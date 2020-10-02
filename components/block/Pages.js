@@ -21,6 +21,7 @@ function Pages({ data, type, id, optionWidth }) {
   const [listPage, setListPage] = useState([]);
   const [refCarouselThree, setRefCarouselThree] = useState(null);
   const [listPageAll, setListPageAll] = useState([]);
+  const [initIndex, setInitIndex] = useState(0);
   const lang = getLang();
 
   const getPageBlockAll = async pages => {
@@ -32,6 +33,30 @@ function Pages({ data, type, id, optionWidth }) {
     }
     return [];
   };
+
+  const openModal = (id, className, index) => {
+    var i;
+    var x = document.getElementsByClassName(className);
+    console.log(x);
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    setInitIndex(index);
+    document.getElementById(id).style.display = "block";  
+  }
+  
+  const getPage = async () => {
+    let array = [];
+    for (let i = 0; i < data.listTag.length; i++) {
+      let res = await getPageBlockAll(data.listTag[i].pages);
+      let des = {
+        'value' : data.listTag[i].page.value,
+        'listPages': res
+      };
+      array.push(des);
+    }
+    setListPageAll(array);
+  }
 
   const getPageBlock = async pages => {
     const ids = map(pages, values => values.value);
@@ -67,21 +92,13 @@ function Pages({ data, type, id, optionWidth }) {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (data.pages) {
       getPageBlock(data.pages);
     }
     let array = [];
     if (type === '8') {
-      for (let i = 0; i < data.listTag.length; i++) {
-        let res = await getPageBlockAll(data.listTag[i].pages);
-        let des = {
-          'value' : data.listTag[i].page.value,
-          'listPages': res
-        };
-        array.push(des);
-      }
-      setListPageAll(array);
+      getPage();
     }
   }, [data.pages && id]);
 
@@ -426,9 +443,11 @@ function Pages({ data, type, id, optionWidth }) {
       <section className={`${padding} category-${type}`} id={id} style={{backgroundColor:"#E0F0FF", paddingTop: "70px"}}>
         <div className="container">
             <div className="text-center title-category-custom-backbround">
-              <div className="">
-                <h2 className="intro-title-custom-category" style={{marginBottom:"0px"}}>{ data.title === null ? '' : data.title}</h2>
-              </div>
+                <div className="">
+                  <h2 className="intro-title-custom-category" style={{marginBottom:"0px"}}>{ data.title === null ? '' : data.title}</h2>
+                </div>
+            </div>
+            <div className="text-center title-category-custom-backbround convert-grid-to-scroll">
               {/* <div className="convert-grid-to-scroll">
                 <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "67px", borderBottom: "1px solid #d6d6d6"}}>
                   {map(data.listTag, (item, index) => (
@@ -448,9 +467,9 @@ function Pages({ data, type, id, optionWidth }) {
                   ))}
                 </div>
               </div> */}
-              <div style={{borderBottom: "1px solid #d6d6d6"}}>
+              <div className="border-custom-1">
                 <div style={{width: "max-content", margin: "auto"}}>
-                <div className="convert-grid-to-scroll">
+                <div className="">
                 <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "67px"}}>
                   {map(data.listTag, (item, index) => (
                       <div
@@ -460,8 +479,9 @@ function Pages({ data, type, id, optionWidth }) {
                         <div
                           className="menu-custom-middle" style={{height:"67px"}}
                           key={index}
+                          onClick={() => {openModal(`id_${item.page.value}`, `des-${id}`, index)}}
                           >
-                          <div className="menu-div-custom-1" style={{height:"67px"}}> 
+                          <div className={`menu-div-custom-1`} style={{height:"67px", paddingLeft: "10px", paddingRight: "10px", color: index == initIndex ? "#141ED2" : "#606D6F", borderBottom: index == initIndex ? "2px solid #141ED2" : "none"}}> 
                             {item.description}
                           </div>
                         </div>
@@ -474,13 +494,13 @@ function Pages({ data, type, id, optionWidth }) {
             </div>
             <div className="list-category-custom-backbround">
                 {map(listPageAll, (items, index) => (
-                  <div className="row list-item">
+                  <div className={`row list-item des-${id}`} id={`id_${items.value}`} style={{display: index == 0 ? "block" : "none"}}>
                     {map(items.listPages, (item, index1) => (
                       <div className="col-lg-12" key={item.newsId}>
                         <div className="list-6-custom">
                           <LinkPage lang={lang} name={item.slug}>
                             <a className="item item-inline-table">
-                              <div className="img">
+                              <div className="img" style={{width: "30%"}}>
                                 <img
                                   className="lazyload"
                                   data-src={
@@ -491,9 +511,19 @@ function Pages({ data, type, id, optionWidth }) {
                                   alt="icon"
                                 />
                               </div>
-                              <div className="divtext">
+                              <div className="divtext-custom-list">
                                 <h4 className="title line2" style={{marginBottom: "10px"}}>{item.name}</h4>
                                 <div className="desc line4">{item.meta_description}..</div>
+                              </div>
+                              <div
+                                  className="carousel-next next-custom"
+                                  // onClick={() => {
+                                  //   refCarousel.next();
+                                  // }}
+                              >
+                                <div className="icon-custom-button">
+                                <i className="icon-arrow-1"></i>
+                                </div>
                               </div>
                             </a>
                           </LinkPage>
