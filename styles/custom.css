@@ -1969,11 +1969,16 @@ ul.menu.line>li:not(:first-child):before {
 }
 /* Edit by An Nguyen */
 
+
 .accodion-tab input:checked+[class*=-index] .triangle i:before {
   content: "\E931";
 }
 .question{
   background-color: #F2F2F2;
+}
+.question .accodion-tab .block-question-index{
+  display: flex;
+  justify-content: space-between;
 }
 .question .accodion-1-3 .accodion-1-1  .entry-content{
   background-color: #E0F0FF;
