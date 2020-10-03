@@ -2990,6 +2990,10 @@ ul.menu.line>li:not(:first-child):before {
   color: #141ed2;
 }
 
+.title-gray-custom-2>a>div:hover {
+  color: #141ed2 !important;
+}
+
 
 .accodion-title-custom {
   padding: 10px;
