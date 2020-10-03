@@ -116,7 +116,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
         <div className="container"> 
         {/* style={{backgroundColor:"#fff", height:"82px",display:"flex",justifyContent:"space-between",alignItems:"center"}}> */}
           <div className="convert-grid-to-scroll">
-          <div className="row-custom list-item grid-space-20">
+          <div className="row-custom list-item grid-space-20" style={{borderBottom:"1px solid rgb(214, 214, 214)"}}>
           
                 {map(data.listBlock, (values, index) => (
                   <div
@@ -126,27 +126,29 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     onScroll(values.id);
                   }}>
                     {index === 0 && (
-                    <div className="menu-div-custom-1" >
+                    <div className="menu-custom-0" >
                               
                     <div
-                            className="menu-custom-0"
+                            className="menu-div-custom-1"
                             key={index}
                             onClick={() => {
                               onScroll(values.id);
-                            }}>
-                    <a className="item efch-0 ef-img-l"  style={{borderBottom: "2px solid #141ED2"}}>{values.title}</a>
+                            }}
+                            style={{minWidth: "75px",borderBottom: "2px solid #141ED2",textAlign: "center"}}>
+                    <a className="item efch-0 ef-img-l"  >{values.title}</a>
                   </div>
                   </div>
                   )}
                   {index != 0 && (
-                    <div className="menu-div-custom-1" >
+                    <div className="menu-custom-0" >
                               
                     <div
-                            className="menu-custom-0"
+                            className="menu-div-custom-1"
                             key={index}
                             onClick={() => {
                               onScroll(values.id);
-                            }}>
+                            }}
+                            >
                     <a className="item efch-0 ef-img-l">{values.title}</a>
                   </div>
                   </div>
