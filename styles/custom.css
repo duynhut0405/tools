@@ -1968,6 +1968,10 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
+.block-icon-8 .blog-custom .blog-custom-1 .intro-title-custom-1 p{
+  margin: unset;
+  color: black;
+}
 .setzindex #header .wrap-menu-header .menu-top-header .highlight{
   float: left;
   display: unset;
