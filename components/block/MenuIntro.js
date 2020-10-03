@@ -134,7 +134,8 @@ function MenuIntro({ data, pageId, optionWidth }) {
                             onClick={() => {
                               onScroll(values.id);
                             }}
-                            style={{minWidth: "75px",borderBottom: "2px solid #141ED2",textAlign: "center"}}>
+                            style={{minWidth: "75px",borderBottom: "2px solid #141ED2",textAlign: "center",
+                            fontWeight: "bold"}}>
                     <a className="item efch-0 ef-img-l"  >{values.title}</a>
                   </div>
                   </div>

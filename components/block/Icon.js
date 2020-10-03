@@ -2073,6 +2073,10 @@ function Icon({ data, id }) {
                                   ? "#333333"
                                   : "#787878",
                               minWidth: "75px",
+                              fontWeight:
+                                router.asPath == item.url
+                                  ? "600"
+                                  : "400"
                             }}
                           >
                             <Link href="[...name]" as={item.url}>
