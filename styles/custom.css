@@ -3294,3 +3294,115 @@ ul.menu.line>li:not(:first-child):before {
   }
 
 }
+
+.menu-div-custom-2 {
+  min-width: max-content;
+  height: 82px;
+  /* display: flex; */
+  /* align-items: center; */
+  font-size: 16px;
+  color: #787878;
+  /* padding: 0; */
+  padding-top: 27px;
+}
+
+.menu-div-custom-2:hover {
+  color: #333333 !important;
+  cursor: pointer;
+}
+
+.icon-custom-button-black {
+  color: #333333;
+  font-size: 14px;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  border-radius: 100%;
+  text-align: center;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2)!important;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2)!important;
+  cursor: pointer;
+  margin: auto;
+}
+
+.icon-custom-button-black:hover {
+  background-color: #000000;
+  color: #fff;
+}
+
+.row-custom .col-3 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 20%;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+.title-category-custom-backbround-1 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.title-category-custom-backbround-1-table {
+  min-width: max-content;
+  background-color: #E0F0FF;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.menu-div-custom-1-table {
+  /* display: flex; */
+  /* align-items: center; */
+  font-size: 14px;
+  color: #787878;
+  /* padding: 0; */
+  padding-top: 13px;
+}
+
+.menu-div-custom-1-table:hover {
+  color: #141ED2 !important;
+}
+
+.menu-custom-middle-table {
+  /* padding-left: 30px; */
+  padding-right: 10px;
+  padding-left: 10px;
+  display: flex!important;
+  width: max-content;
+  text-align: center;
+  margin: auto;
+  /* position: relative; */
+}
+
+.menu-div-custom-1-table:hover {
+  cursor: pointer;
+}
+
+.list-category-custom-backbround-1 {
+  padding-top: 25px;
+}
+
+.title-category-custom-backbround-1-table {
+  min-width: max-content;
+  background-color: #d6d6d6;
+  border-radius: 8px;
+}
+
+.border-custom-27 {
+  background-color: #fff;
+  border-radius: 27px;
+  height: 54px;
+  -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2)!important;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2)!important;
+}
+
+.menu-div-custom-2-table {
+  /* display: flex; */
+  /* align-items: center; */
+  font-size: 14px;
+  color: #787878;
+  /* padding: 0; */
+  padding-top: 15px;
+  min-width: 175px;
+  cursor: pointer;
+}
