@@ -1968,7 +1968,13 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
-
+.setzindex #header .wrap-menu-header .menu-top-header .highlight{
+  float: left;
+  display: unset;
+}
+.question .accodion-tab .accodion-1-3 .react-multi-carousel-list .react-multi-carousel-item{
+  margin-left: -4px;
+}
 .accodion-tab input:checked+[class*=-index] .triangle i:before {
   content: "\E931";
 }
@@ -2007,7 +2013,7 @@ ul.menu.line>li:not(:first-child):before {
   margin-top: -32px;
 }
 .question .block-question-index{
-  border-bottom: 1px solid rgb(214, 214, 214);;
+  border-bottom: 1px solid rgb(214, 214, 214);
   padding-top: 15px;
 }
 .container-custom .wimg:after {
