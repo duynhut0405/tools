@@ -2420,6 +2420,90 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
+      {data[0].type === "28" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(true)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                  >
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map(data, (items, index) => {
+                            let colors = ['#B4A5FA', '#9BE6C8', '#B5D9F9', '#141ED2'];
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    padding: "30px",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    backgroundColor: colors[index],
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                    minHeight: "290px",
+                                    paddingTop: "145px"
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{
+                                          textTransform: "none",
+                                          color: "#fff",
+                                          fontSize: "40px",
+                                          marginBottom: "0"
+                                        }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div
+                                        className="desc"
+                                        style={{ color: "#fff", fontSize: "20px" }}
+                                      >
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 }

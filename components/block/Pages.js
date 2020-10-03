@@ -44,6 +44,17 @@ function Pages({ data, type, id, optionWidth }) {
     setInitIndex(index);
     document.getElementById(id).style.display = "block";  
   }
+
+  const openModalTab = (id, className, index) => {
+    var i;
+    var x = document.getElementsByClassName(className);
+    console.log(x);
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    setInitIndex(index);
+    document.getElementById(id).style.display = "flex";  
+  }
   
   const getPage = async () => {
     let array = [];
@@ -97,7 +108,7 @@ function Pages({ data, type, id, optionWidth }) {
       getPageBlock(data.pages);
     }
     let array = [];
-    if (type === '8') {
+    if (type === '8' || type === '9' || type === '10' || type === '11') {
       getPage();
     }
   }, [data.pages && id]);
@@ -479,9 +490,9 @@ function Pages({ data, type, id, optionWidth }) {
                         <div
                           className="menu-custom-middle" style={{height:"67px"}}
                           key={index}
-                          onClick={() => {openModal(`id_${item.page.value}`, `des-${id}`, index)}}
+                          onClick={() => {openModal(`id_8_${item.page.value}`, `des-${id}`, index)}}
                           >
-                          <div className={`menu-div-custom-1`} style={{height:"67px", paddingLeft: "10px", paddingRight: "10px", color: index == initIndex ? "#141ED2" : "#606D6F", borderBottom: index == initIndex ? "2px solid #141ED2" : "none"}}> 
+                          <div className={`menu-div-custom-1`} style={{height:"67px", paddingLeft: "10px", paddingRight: "10px", color: index == initIndex ? "#141ED2" : "#606D6F", borderBottom: index == initIndex ? "2px solid #141ED2" : "none", fontWeight: index == initIndex ? "600" : "normal"}}> 
                             {item.description}
                           </div>
                         </div>
@@ -494,7 +505,7 @@ function Pages({ data, type, id, optionWidth }) {
             </div>
             <div className="list-category-custom-backbround">
                 {map(listPageAll, (items, index) => (
-                  <div className={`row list-item des-${id}`} id={`id_${items.value}`} style={{display: index == 0 ? "block" : "none"}}>
+                  <div className={`row list-item des-${id}`} id={`id_8_${items.value}`} style={{display: index == 0 ? "block" : "none"}}>
                     {map(items.listPages, (item, index1) => (
                       <div className="col-lg-12" key={item.newsId}>
                         <div className="list-6-custom">
@@ -524,6 +535,237 @@ function Pages({ data, type, id, optionWidth }) {
                                 <div className="icon-custom-button">
                                 <i className="icon-arrow-1"></i>
                                 </div>
+                              </div>
+                            </a>
+                          </LinkPage>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+        </div>
+      </section>
+    )
+  }
+  if (type && type === '9') {
+    return (
+      <section className={`${padding} category-${type}`} id={id} style={{backgroundColor:"#F5F4F4", paddingTop: "70px"}}>
+        <div className="container">
+            <div className="text-center title-category-custom-backbround">
+                <div className="">
+                  <h2 className="intro-title-custom-category" style={{marginBottom:"0px"}}>{ data.title === null ? '' : data.title}</h2>
+                </div>
+            </div>
+            <div className="text-center title-category-custom-backbround convert-grid-to-scroll">
+              {/* <div className="convert-grid-to-scroll">
+                <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "67px", borderBottom: "1px solid #d6d6d6"}}>
+                  {map(data.listTag, (item, index) => (
+                    <div
+                    className="li-menu-custom"
+                    key={index}
+                    >
+                      <div
+                        className="menu-custom-1" style={{height:"67px"}}
+                        key={index}
+                        >
+                        <div className="menu-div-custom-1" style={{height:"67px"}}> 
+                          {item.description}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div> */}
+              <div className="border-custom-1">
+                <div style={{width: "max-content", margin: "auto"}}>
+                <div className="">
+                <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "67px"}}>
+                  {map(data.listTag, (item, index) => (
+                      <div
+                      className="li-menu-custom"
+                      key={index}
+                      >
+                        <div
+                          className="menu-custom-middle" style={{height:"67px"}}
+                          key={index}
+                          onClick={() => {openModal(`id_9_${item.page.value}`, `des-${id}`, index)}}
+                          >
+                          <div className={`menu-div-custom-2`} style={{height:"67px", paddingLeft: "10px", paddingRight: "10px", color: index == initIndex ? "#333333" : "#606D6F", borderBottom: index == initIndex ? "2px solid #333333" : "none", fontWeight: index == initIndex ? "600" : "normal"}}> 
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div className="list-category-custom-backbround">
+                {map(listPageAll, (items, index) => (
+                  <div className={`row list-item des-${id}`} id={`id_9_${items.value}`} style={{display: index == 0 ? "block" : "none"}}>
+                    {map(items.listPages, (item, index1) => (
+                      <div className="col-lg-12" key={item.newsId}>
+                        <div className="list-6-custom">
+                          <LinkPage lang={lang} name={item.slug}>
+                            <a className="item item-inline-table">
+                              <div className="img" style={{width: "30%"}}>
+                                <img
+                                  className="lazyload"
+                                  data-src={
+                                    item.baseImage === null
+                                      ? `/images/imgdefault.jpg`
+                                      : `${process.env.DOMAIN}${item.baseImage}`
+                                  }
+                                  alt="icon"
+                                />
+                              </div>
+                              <div className="divtext-custom-list">
+                                <h4 className="title line2" style={{marginBottom: "10px"}}>{item.name}</h4>
+                                <div className="desc line4">{item.meta_description}..</div>
+                              </div>
+                              <div
+                                  className="carousel-next next-custom"
+                                  // onClick={() => {
+                                  //   refCarousel.next();
+                                  // }}
+                              >
+                                <div className="icon-custom-button-black">
+                                <i className="icon-arrow-1"></i>
+                                </div>
+                              </div>
+                            </a>
+                          </LinkPage>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+        </div>
+      </section>
+    )
+  }
+  if (type && type === '10') {
+    return (
+      <section className={`${padding} category-${type}`} id={id}>
+        <div className="container">
+            <div className="text-center title-category-custom-backbround-1 convert-grid-to-scroll">
+              <div>
+                <div>
+                <div className="title-category-custom-backbround-1-table">
+                <div className="row row-custom list-item grid-space-20" style={{position: "relative", height: "58px", margin: "0"}}>
+                  {map(data.listTag, (item, index) => (
+                      <div
+                      className="col-3 li-menu-custom"
+                      key={index}
+                      style={{borderBottom: index == initIndex ? "2px solid #141ED2" : "none"}}
+                      >
+                        <div
+                          className="menu-custom-middle-table"
+                          key={index}
+                          onClick={() => {openModalTab(`id_10_${item.page.value}`, `des-10-${id}`, index)}}
+                          >
+                          <div className={`menu-div-custom-1-table`} style={{height:"58px", color: index == initIndex ? "#141ED2" : "#606D6F", fontWeight: index == initIndex ? "600" : "normal", paddingTop: index == initIndex ? "20px" : "13px"}}> 
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div className="list-category-custom-backbround-1">
+                {map(listPageAll, (items, index) => (
+                  <div className={`row list-item des-10-${id}`} id={`id_10_${items.value}`} style={{display: index == 0 ? "flex" : "none"}}>
+                    {map(items.listPages, (item, index1) => (
+                      <div className="col-lg-6" key={item.newsId}>
+                        <div className="list-6-custom">
+                          <LinkPage lang={lang} name={item.slug}>
+                            <a className="item item-inline-table" style={{border: "1px solid #d6d6d6"}}>
+                              <div className="img" style={{width: "40%"}}>
+                                <img
+                                  className="lazyload"
+                                  data-src={
+                                    item.baseImage === null
+                                      ? `/images/imgdefault.jpg`
+                                      : `${process.env.DOMAIN}${item.baseImage}`
+                                  }
+                                  alt="icon"
+                                />
+                              </div>
+                              <div className="divtext-custom-list">
+                                <h4 className="title line2" style={{marginBottom: "10px"}}>{item.name}</h4>
+                                <div className="desc line3">{item.meta_description}..</div>
+                              </div>
+                            </a>
+                          </LinkPage>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+        </div>
+      </section>
+    )
+  }
+  if (type && type === '11') {
+    return (
+      <section className={`${padding} category-${type}`} id={id}>
+        <div className="container">
+            <div className="text-center title-category-custom-backbround-1 convert-grid-to-scroll">
+              <div>
+                <div>
+                <div className="title-category-custom-backbround-1-table">
+                <div className="row row-custom list-item grid-space-20" style={{position: "relative", height: "58px", margin: "0"}}>
+                  {map(data.listTag, (item, index) => (
+                      <div
+                      className="col-3 li-menu-custom"
+                      key={index}
+                      style={{padding: "2px"}}
+                      >
+                        <div
+                          className={index == initIndex ? "border-custom-27" : ""}
+                          key={index}
+                          onClick={() => {openModalTab(`id_11_${id}_${item.page.value}`, `des-11-${id}`, index)}}
+                          >
+                          <div className={`menu-div-custom-2-table`} style={{height:"58px", color: index == initIndex ? "#333333" : "#606D6F", fontWeight: index == initIndex ? "600" : "normal", paddingTop: index == initIndex ? "15px" : "13px"}}> 
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div className="list-category-custom-backbround-1">
+                {map(listPageAll, (items, index) => (
+                  <div className={`row list-item des-11-${id}`} id={`id_11_${id}_${items.value}`} style={{display: index == 0 ? "flex" : "none"}}>
+                    {map(items.listPages, (item, index1) => (
+                      <div className="col-lg-6" key={item.newsId}>
+                        <div className="list-6-custom">
+                          <LinkPage lang={lang} name={item.slug}>
+                            <a className="item item-inline-table" style={{border: "1px solid #d6d6d6"}}>
+                              <div className="img" style={{width: "40%"}}>
+                                <img
+                                  className="lazyload"
+                                  data-src={
+                                    item.baseImage === null
+                                      ? `/images/imgdefault.jpg`
+                                      : `${process.env.DOMAIN}${item.baseImage}`
+                                  }
+                                  alt="icon"
+                                />
+                              </div>
+                              <div className="divtext-custom-list">
+                                <h4 className="title line2" style={{marginBottom: "10px"}}>{item.name}</h4>
+                                <div className="desc line3">{item.meta_description}..</div>
                               </div>
                             </a>
                           </LinkPage>
