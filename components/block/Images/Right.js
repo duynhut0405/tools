@@ -247,6 +247,118 @@ function ImageRight({ items, padding, id, type }) {
       </section>
     );
   }
+
+  if (items.type === '10') {
+    let img = `${process.env.DOMAIN}${items.urlImage}`;
+    return (
+      <section className={`${padding} sec-h-4 news-${type}`} id={id}>
+        <div className="block-image-10">
+          <div className="container">
+            {(items.title || items.title !== '') && (
+              <div className="entry-head text-center" 
+              style={{textAlign:"center",paddingBottom:"25px",paddingTop:"20px",marginBottom:"28px",borderBottom:"1px solid #AFBFC3"}}>
+                <h2 className="title-custom ">{items.title}</h2>
+              </div>
+            )}
+            {/* 3tabs main */}
+            {/* start block */}
+            <div className="row list-item list-1">
+              {/* block 1 */}
+            <div className="col-md-8 efch-1 ef-img-t block-1" style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_66`} href={items.block_url_1}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              items.urlImageType10_1 === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${items.urlImageType10_1}`
+                            }
+                            style={{borderRadius: "8px"}}
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{items.title_block_1}</h4>
+                        </div>
+                      </a>
+                  </div>
+                  {/* block 2 */}
+                  <div className="col-md-4 efch-1 ef-img-t block-2" style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_66`} href={items.block_url_2}>
+                          
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{items.title_block_2}</h4>
+                        </div>
+                      </a>
+                  </div>
+                 {/* block 3 */}
+                 <div className="col-md-4 efch-1 ef-img-t block-3" style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_66`} href={items.block_url_3}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              items.urlImageType10_2 === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${items.urlImageType10_2}`
+                            }
+                            style={{borderRadius: "8px"}}
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{items.title_block_3}</h4>
+                        </div>
+                      </a>
+                  </div>
+                 {/* block 4 */}
+                 <div className="col-md-8 efch-1 ef-img-t block-4" style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_66`} href={items.block_url_4}>
+                          
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{items.title_block_4}</h4>
+                        </div>
+                      </a>
+                  </div>
+                  {/* block 5 */}
+                  <div className="col-md-4 efch-1 ef-img-t block-5" style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_66`} href={items.block_url_5}>
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{items.title_block_5}</h4>
+                        </div>
+                      </a>
+                  </div>
+                  {/* block 6 */}
+                  <div className="col-md-4 efch-1 ef-img-t block-6" style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_66`} href={items.block_url_6}>
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{items.title_block_6}</h4>
+                        </div>
+                      </a>
+                  </div>
+                  {/* block 7 */}
+                  <div className="col-md-4 efch-1 ef-img-t block-7" style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_66`} href={items.block_url_7}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              items.urlImageType10_3 === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${items.urlImageType10_3}`
+                            }
+                            style={{borderRadius: "8px"}}
+                            alt="images"
+                          />
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue">{items.title_block_7}</h4>
+                        </div>
+                      </a>
+                  </div>
+                 </div>
+             {/* end block */}
+          </div>
+        </div>
+      </section>
+
+    );
+  }
   return (
     <section className={`${padding} sec-img-text group-ef loaded block-images-${type}`} id={id}>
       <div className="container">
