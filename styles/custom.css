@@ -1968,6 +1968,76 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
+.block-image-10 .block-2 .tRes_66 .divtext h4:hover{
+  color: #000;
+}
+.block-image-10 .block-4 .tRes_66 .divtext h4:hover{
+  color: #000;
+}
+.block-image-10 .block-5 .tRes_66 .divtext h4:hover{
+  color: #000;
+}
+.block-image-10 .block-6 .tRes_66 .divtext h4:hover{
+  color: #000;
+}
+.block-image-10 .block-1 .tRes_66::before{
+  background: url(/static/images/shadow_veMBbank.svg) repeat-x bottom center !important;
+}
+.block-image-10 .block-3 .tRes_66::before{
+  background: url(/static/images/shadow_veMBbank.svg) repeat-x bottom center !important;
+}
+.block-image-10 .block-7 .tRes_66::before{
+  background: url(/static/images/shadow_veMBbank.svg) repeat-x bottom center !important;
+}
+
+
+.block-image-10 .block-2 .tRes_66::before{
+  background: unset !important;
+}
+.block-image-10 .block-4 .tRes_66::before{
+  background: unset !important;
+}
+.block-image-10 .block-5 .tRes_66::before{
+  background: unset !important;
+}
+.block-image-10 .block-6 .tRes_66::before{
+  background: unset !important;
+}
+.block-image-10 .block-2 .tRes_66{
+  color: #141ED2;
+  background-color: #E0F0FF;
+}
+.block-image-10 .block-4 .tRes_66{
+  color: #141ED2;
+  background-color: #B5D9F9;
+}
+.block-image-10 .block-5 .tRes_66{
+  color: #141ED2;
+  background-color: #D6CFF8;
+}
+.block-image-10 .block-6 .tRes_66{
+  color: #141ED2;
+  background-color: #DCF4EA;
+  
+
+}
+
+.block-icon-3 .entry-head{
+  padding-top: 20px;
+  margin-bottom: -15px;
+}
+.block-icon-3 .list-9 .item{
+  box-shadow: 0 0 2px 3px #D8D8D8 !important;
+  border-top: unset !important;
+}
+.block-icon-3 .carousel-nav{
+  margin-top: -22px;
+}
+.block-icon-3 .sec-b .carousel-nav>div:not(:hover){
+  background-color: unset !important;
+  color: #141ED2 !important;
+  box-shadow: 0 0 2px 3px #D8D8D8 !important;
+}
 .block-icon-8 .blog-custom .blog-custom-1 .intro-title-custom-1 p{
   margin: unset;
   color: black;
