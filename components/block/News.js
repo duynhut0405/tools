@@ -30,12 +30,14 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   const [listCategory, setListCategory] = useState([]);
   const [slugCategory, setSlugCategory] = useState('');
   const listNews = slice(uniqBy(listCategory, 'newsId'), 0, 2);
+  const listNews5 = slice(uniqBy(listCategory, 'newsId'), 0, 1);
   const listNews4 = slice(uniqBy(listCategory, 'newsId'), 0, 1);
   const listNewsTabs4 = slice(uniqBy(listCategory, 'newsId'), 1, 4);
   const listNews6 = slice(uniqBy(listCategory, 'newsId'), 0, 1);
   const listNewsTabs6 = slice(uniqBy(listCategory, 'newsId'), 1, 5);
   const listNewsTabsLast6 = slice(uniqBy(listCategory, 'newsId'), 5, 6);
   const listNewsTabs = slice(uniqBy(listCategory, 'newsId'), 2, 5);
+  const listNewsTabs5 = slice(uniqBy(listCategory, 'newsId'), 1, 5);
   const [refCarousel, setRefCarousel] = useState(null);
   let array = [];
     if (data.blockTitle1 !== null) {
@@ -1353,6 +1355,71 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                       </LinkInput>
                     )}
                 </div>
+          </div>
+          {(data.title === undefined || data.title === '') && (
+            <div className="text-center mt-4">
+              <LinkCategory lang={lang} name={slugCategory}>
+                <a className="btn lg">{t('view')}</a>
+              </LinkCategory>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+  if (type === '17') {
+    return (
+      <section className={`${padding} sec-h-4 news-${type}`} id={id}>
+        <div className="container">
+          {(data.title || data.title !== '') && (
+            <div className="entry-head text-center" style={{marginBottom:"15px"}}>
+              <h2 className="title-custom ">{data.title}</h2>
+            </div>
+          )}
+          {/* 2tabs main */}
+          <div className="row list-item list-1">
+          {map(listNews5, (item, index) => (
+                  <div className="col-md-8 efch-5 ef-img-t" key={index} style={{maxHeight:"330px"}}>
+                    <LinkNew lang={lang} name={item.url}>
+                      <a className={`item tRes_46 blue-shadow`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                            style={{borderRadius: "8px"}}
+                          />
+                        <div className="divtext">
+                          <h4 className="title line2 on-hover-blue" style={{fontSize: "18px", maxWidth: "300px"}}>{item.title}</h4>
+                        </div>
+                      </a>
+                    </LinkNew>
+                  </div>
+                ))}
+          {map(listNewsTabs5, (item, index) => (
+                  <div className="col-md-4 efch-5 ef-img-t" key={index}>
+                    <LinkNew lang={lang} name={item.url}>
+                      <a className={`item tRes_66 blue-shadow`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              item.base_image === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${item.base_image}`
+                            }
+                            alt="images"
+                            style={{borderRadius: "8px"}}
+                          />
+                        <div className="divtext">
+                          <h5 className="title line2 on-hover-blue" style={{fontSize: "18px", maxWidth: "300px"}}>{item.title}</h5>
+                        </div>
+                      </a>
+                    </LinkNew>
+                  </div>
+                ))}
           </div>
           {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">

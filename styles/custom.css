@@ -2042,7 +2042,7 @@ ul.menu.line>li:not(:first-child):before {
 }
 .setzindex #header .wrap-menu-header .menu-top-header .highlight{
   float: left;
-  display: unset;
+  display: contents;
 }
 .question .accodion-tab .accodion-1-3 .react-multi-carousel-list .react-multi-carousel-item{
   margin-left: -4px;
@@ -3473,4 +3473,54 @@ ul.menu.line>li:not(:first-child):before {
   padding-top: 15px;
   min-width: 175px;
   cursor: pointer;
+}
+
+.blue-shadow:before {
+  background: linear-gradient(0deg, rgba(115, 165, 243, 0.6) 0%, rgba(115, 165, 243, 0.001) 40%) !important;
+}
+
+.blog-custom-3 {
+  padding-bottom: 30px;
+}
+
+.intro-title-custom-3 {
+  font-size: 36px;
+  text-transform: none;
+  line-height: normal;
+  font-weight: bold;
+}
+
+.title-gray-custom-3 {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  margin-top: -40px;
+  z-index: 10;
+  color: #141ED2;
+  font-weight: 600;
+  font-size: 16px;
+  margin-left: 20px;
+}
+
+.gray-background-custom-4 {
+  background-color: #f5f3f4;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+    background-position: bottom;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* width: 100%; */
+    line-height: normal;
+    font-size: 16px;
+    color: #fff;
+    /* text-align: center; */
+    height: 204px;
+    /* vertical-align: middle; */
+    /* line-height: 204px; */
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 50px;
+    padding-bottom: 45px;
 }
