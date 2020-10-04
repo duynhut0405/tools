@@ -2508,6 +2508,121 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
+      {data[0].type === "29" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+            style={{ paddingTop: "90px" }}
+          >
+            <div className="container">
+              <div className="text-center blog-custom">
+                <div className="blog-custom-3">
+                  <h2 className="intro-title-custom-3">
+                    {data === null ? "" : data[0].title}
+                  </h2>
+                  <div>
+                    <h4 className="intro-des-custom-1">
+                      {ReactHtmlParser(data[0].description_top)}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className="inner-full">
+                  <div className="accodion accodion-1 accodion-1-3">
+                    <div className="row list-item">
+                      {map(data, (items, index) => {
+                        return (
+                          <div
+                            className={`col-sm-6 col-md-${column}`}
+                            key={index}
+                          >
+                            <div
+                              className="gray-background-custom-3"
+                              style={{
+                                backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`
+                              }}
+                            ></div>
+                            <div className="title-gray-custom-3">
+                              <a href={items.url ? items.url : "#"}>
+                                <div
+                                  className="title"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  {ReactHtmlParser(items.note_1)}
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+      {data[0].type === "30" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+            style={{ paddingTop: "90px" }}
+          >
+            <div className="container">
+              <div className="inner-full">
+                  <div className="accodion accodion-1 accodion-1-3">
+                    <div className="row list-item">
+                      {map(data, (items, index) => {
+                        return (
+                          <div
+                            className={`col-sm-6 col-md-${column}`}
+                            key={index}
+                          >
+                            <div
+                              className="gray-background-custom-4"
+                              style={{
+                                backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`
+                              }}
+                            >
+                              <div style={{paddingBottom:"37px"}}>
+                                {ReactHtmlParser(items.note_1)}
+                              </div>
+                              <div>
+                                <Link href="[...name]" as={items.url}>
+                                  <a href={items.url ? items.url : "#"}>
+                                    <div
+                                      className="title"
+                                      style={{ textTransform: "none", fontSize: "14px" }}
+                                    >
+                                      {ReactHtmlParser(items.note_2)} <i className="icon-arrow-1" style={{fontSize: "9px"}}></i>
+                                    </div>
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                            {/* <div className="title-gray-custom-3">
+                              <a href={items.url ? items.url : "#"}>
+                                <div
+                                  className="title"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  {ReactHtmlParser(items.note_1)}
+                                </div>
+                              </a>
+                            </div> */}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 }
