@@ -12,7 +12,7 @@ function Images({ data, id }) {
   return (
     <>
       {map(data, (item, index) => {
-        if (item.type !== '4' && item.type !== '6' && item.type !== '7' && item.type !== '9' &&item.type !== '8' && item.type !== '10') {
+        if (item.type !== '4' && item.type !== '6' && item.type !== '7' && item.type !== '9' &&item.type !== '8' && item.type !== '10' && item.type !== '11' && item.type !== '12' && item.type !== '13' && item.type !== '14' && item.type !== '15') {
           return (
             <div className="container" key={index}>
               <div className={`entry-head text-${item.options}`} id={id}>
@@ -76,6 +76,11 @@ function Images({ data, id }) {
           );
         }
         if (items.type === '10') {
+          return (
+            <ImageRight items={items} key={index} padding={padding} id={id} type={items.type} />
+          );
+        }
+        if (items.type === '11' || items.type === '12' || items.type === '13' || items.type === '14' || items.type === '15') {
           return (
             <ImageRight items={items} key={index} padding={padding} id={id} type={items.type} />
           );

@@ -26,7 +26,394 @@ function ImageRight({ items, padding, id, type }) {
       setHeight("280px");
     }
   });
-  const backGroundColor = items.background === "1" ? '#141ED2': '#fff';
+  const backGroundColor = '#141ED2';
+  if (items.type === '15') {
+    return (
+      <section className={`${padding}  sec-b sec-video2`} id={id}>
+        <div className="container">
+          <div className="video-banner-custom-1">
+          <div className="row center"  style={{margin:"0px", padding: "0px"}}>
+          <div className="col-lg-6" style={{marginBottom:"0px", padding: "0px"}}>
+              {!active && (
+                <div
+                  className={items.video_url ? 'single_video  tRes_4_3 max750' : ''}
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                  style={{maxHeight: "377px"}}
+                >
+                  <img
+                    className="lazyload"
+                    data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    alt="images"
+                  />
+                  {items.video_url !== undefined && (
+                    <span
+                      className="btnvideo"
+                      onClick={() => {
+                        setActive(!active);
+                      }}
+                    >
+                      {/* {items.video_url !== undefined ||
+                      items.video_url !== '' ||
+                      items.video_url !== null ? (
+                        <i className="icon-play"></i>
+                      ) : (
+                        ''
+                      )} */}
+                    </span>
+                  )}
+                </div>
+              )}
+              {active && (
+                <div
+                  className="single_video  tRes_4_3 max750"
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                  style={{maxHeight: "377px"}}
+                >
+                  <iframe
+                    frameBorder="0"
+                    allowFullScreen="1"
+                    allow="autoplay; encrypted-media;"
+                    src={`${items.video_url}?rel=0&autoplay=1`}
+                  ></iframe>
+                </div>
+              )}
+            </div>
+
+            <div className="col-lg-6" style={{marginBottom:"0px", padding: "40px", paddingLeft: "60px"}}>
+              <div className="divtext entry-content">
+                <h2 className="ht" style={{fontSize: "24px", fontWeight: "bold"}}>{ReactHtmlParser(items.note_1)}</h2>
+                <p className="desc">
+                {ReactHtmlParser(items.note_2)}
+                {ReactHtmlParser(items.note_3)}
+                </p>
+                {items.text_action === undefined || items.text_action === '' ? (
+                  ''
+                ) : (
+                  <a className="" href={items.url === undefined ? '#' : items.url} style={{backgroundColor:"none", fontWeight: "bold"}}>
+                    {items.text_action === undefined ? 'Đăng ký ngay ' : items.text_action + ' '}
+                    <i className="icon-arrow-1" style={{fontSize: "10px", fontWeight: "bold"}}></i>
+                  </a>
+                )}
+              </div>
+            </div>
+            
+          </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (items.type === '14') {
+    return (
+      <section className={`${padding}  sec-b sec-video2`} id={id}>
+        <div className="container">
+          <div className="video-banner-custom-1">
+          <div className="row center"  style={{margin:"0px", padding: "0px", background: "#F2F3FF"}}>
+          <div className="col-lg-6" style={{marginBottom:"0px", padding: "0px"}}>
+              {!active && (
+                <div
+                  className={items.video_url ? 'single_video  tRes_4_3 max750' : ''}
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                  style={{maxHeight: "377px"}}
+                >
+                  <img
+                    className="lazyload"
+                    data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    alt="images"
+                  />
+                  {items.video_url !== undefined && (
+                    <span
+                      className="btnvideo"
+                      onClick={() => {
+                        setActive(!active);
+                      }}
+                    >
+                      {/* {items.video_url !== undefined ||
+                      items.video_url !== '' ||
+                      items.video_url !== null ? (
+                        <i className="icon-play"></i>
+                      ) : (
+                        ''
+                      )} */}
+                    </span>
+                  )}
+                </div>
+              )}
+              {active && (
+                <div
+                className="single_video  tRes_4_3 max750"
+                data-id="2UrWPUAr68A"
+                data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                style={{maxHeight: "377px"}}
+                >
+                  <iframe
+                    frameBorder="0"
+                    allowFullScreen="1"
+                    allow="autoplay; encrypted-media;"
+                    src={`${items.video_url}?rel=0&autoplay=1`}
+                  ></iframe>
+                </div>
+              )}
+            </div>
+
+            <div className="col-lg-6" style={{marginBottom:"0px", padding: "40px", paddingLeft: "60px"}}>
+              <div className="divtext entry-content">
+                <h2 className="ht" style={{fontSize: "24px", fontWeight: "bold"}}>{ReactHtmlParser(items.note_1)}</h2>
+                <p className="desc">
+                {ReactHtmlParser(items.note_2)}
+                {ReactHtmlParser(items.note_3)}
+                </p>
+                {items.text_action === undefined || items.text_action === '' ? (
+                  ''
+                ) : (
+                  <a className="" href={items.url === undefined ? '#' : items.url} style={{backgroundColor:"none", fontWeight: "bold"}}>
+                    {items.text_action === undefined ? 'Đăng ký ngay ' : items.text_action + ' '}
+                    <i className="icon-arrow-1" style={{fontSize: "10px", fontWeight: "bold"}}></i>
+                  </a>
+                )}
+              </div>
+            </div>
+            
+          </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (items.type === '13') {
+    return (
+      <section className={`${padding}  sec-b sec-video2`} id={id}>
+        <div className="container">
+          <div className="video-banner-custom-1">
+          <div className="row center"  style={{margin:"0px", padding: "0px", background: "#F2F3FF"}}>
+            <div className="col-lg-6" style={{marginBottom:"0px", padding: "40px", paddingLeft: "60px"}}>
+              <div className="divtext entry-content">
+                <h2 className="ht" style={{fontSize: "24px", fontWeight: "bold"}}>{ReactHtmlParser(items.note_1)}</h2>
+                <p className="desc">
+                {ReactHtmlParser(items.note_2)}
+                {ReactHtmlParser(items.note_3)}
+                </p>
+                {items.text_action === undefined || items.text_action === '' ? (
+                  ''
+                ) : (
+                  <a className="" href={items.url === undefined ? '#' : items.url} style={{backgroundColor:"none", fontWeight: "bold"}}>
+                    {items.text_action === undefined ? 'Đăng ký ngay ' : items.text_action + ' '}
+                    <i className="icon-arrow-1" style={{fontSize: "10px", fontWeight: "bold"}}></i>
+                  </a>
+                )}
+              </div>
+            </div>
+            <div className="col-lg-6" style={{marginBottom:"0px", padding: "0px"}}>
+              {!active && (
+                <div
+                  className={items.video_url ? 'single_video  tRes_4_3 max750' : ''}
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                  style={{maxHeight: "377px"}}
+                >
+                  <img
+                    className="lazyload"
+                    data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    alt="images"
+                  />
+                  {items.video_url !== undefined && (
+                    <span
+                      className="btnvideo"
+                      onClick={() => {
+                        setActive(!active);
+                      }}
+                    >
+                      {/* {items.video_url !== undefined ||
+                      items.video_url !== '' ||
+                      items.video_url !== null ? (
+                        <i className="icon-play"></i>
+                      ) : (
+                        ''
+                      )} */}
+                    </span>
+                  )}
+                </div>
+              )}
+              {active && (
+                <div
+                  className="single_video  tRes_4_3 max750"
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                  style={{maxHeight: "377px"}}
+                >
+                  <iframe
+                    frameBorder="0"
+                    allowFullScreen="1"
+                    allow="autoplay; encrypted-media;"
+                    src={`${items.video_url}?rel=0&autoplay=1`}
+                  ></iframe>
+                </div>
+              )}
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (items.type === '12') {
+    return (
+      <section className={`${padding}  sec-b sec-video2`} id={id}>
+        <div className="container">
+          <div className="video-banner-custom-1">
+          <div className="row center"  style={{margin:"0px", padding: "0px"}}>
+            <div className="col-lg-6" style={{marginBottom:"0px", padding: "40px"}}>
+              <div className="divtext entry-content">
+                <h2 className="ht" style={{fontSize: "24px", fontWeight: "bold"}}>{ReactHtmlParser(items.note_1)}</h2>
+                <p className="desc">
+                {ReactHtmlParser(items.note_2)}
+                {ReactHtmlParser(items.note_3)}
+                </p>
+                {items.text_action === undefined || items.text_action === '' ? (
+                  ''
+                ) : (
+                  <a className="" href={items.url === undefined ? '#' : items.url} style={{backgroundColor:"none", fontWeight: "bold"}}>
+                    {items.text_action === undefined ? 'Đăng ký ngay ' : items.text_action + ' '}
+                    <i className="icon-arrow-1" style={{fontSize: "10px", fontWeight: "bold"}}></i>
+                  </a>
+                )}
+              </div>
+            </div>
+            <div className="col-lg-6" style={{marginBottom:"0px", padding: "0px"}}>
+              {!active && (
+                <div
+                  className={items.video_url ? 'single_video  tRes_4_3 max750' : ''}
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                  style={{maxHeight: "377px"}}
+                >
+                  <img
+                    className="lazyload"
+                    data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    alt="images"
+                  />
+                  {items.video_url !== undefined && (
+                    <span
+                      className="btnvideo"
+                      onClick={() => {
+                        setActive(!active);
+                      }}
+                    >
+                      {/* {items.video_url !== undefined ||
+                      items.video_url !== '' ||
+                      items.video_url !== null ? (
+                        <i className="icon-play"></i>
+                      ) : (
+                        ''
+                      )} */}
+                    </span>
+                  )}
+                </div>
+              )}
+              {active && (
+                <div
+                  className="single_video  tRes_4_3 max750"
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                  style={{maxHeight: "377px"}}
+                >
+                  <iframe
+                    frameBorder="0"
+                    allowFullScreen="1"
+                    allow="autoplay; encrypted-media;"
+                    src={`${items.video_url}?rel=0&autoplay=1`}
+                  ></iframe>
+                </div>
+              )}
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (items.type === '11') {
+    return (
+      <section className={`${padding}  sec-b sec-video2`} id={id}>
+        <div className="container">
+          <div className="video-banner video-banner-custom">
+          <div className="row">
+            <div className="col-lg-5" style={{marginBottom:"0px"}}>
+              <div className="divtext entry-content">
+                <h2 className="ht" style={{fontSize: "24px", fontWeight: "bold"}}>{ReactHtmlParser(items.note_1)}</h2>
+                <p className="desc">
+                {ReactHtmlParser(items.note_2)}
+                {ReactHtmlParser(items.note_3)}
+                </p>
+                {items.text_action === undefined || items.text_action === '' ? (
+                  ''
+                ) : (
+                  <a className="" href={items.url === undefined ? '#' : items.url} style={{backgroundColor:"none", fontWeight: "bold"}}>
+                    {items.text_action === undefined ? 'Đăng ký ngay ' : items.text_action + ' '}
+                    <i className="icon-arrow-1" style={{fontSize: "10px", fontWeight: "bold"}}></i>
+                  </a>
+                )}
+              </div>
+            </div>
+            <div className="col-lg-7" style={{marginBottom:"0px"}}>
+              {!active && (
+                <div
+                  className={items.video_url ? 'single_video  tRes_16_9 max750' : ''}
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                >
+                  <img
+                    className="lazyload"
+                    data-lazy-data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                    alt="images"
+                  />
+                  {items.video_url !== undefined && (
+                    <span
+                      className="btnvideo"
+                      onClick={() => {
+                        setActive(!active);
+                      }}
+                    >
+                      {/* {items.video_url !== undefined ||
+                      items.video_url !== '' ||
+                      items.video_url !== null ? (
+                        <i className="icon-play"></i>
+                      ) : (
+                        ''
+                      )} */}
+                    </span>
+                  )}
+                </div>
+              )}
+              {active && (
+                <div
+                  className="single_video  tRes_16_9 max750"
+                  data-id="2UrWPUAr68A"
+                  data-video="autoplay=1&amp;controls=1&amp;mute=0"
+                >
+                  <iframe
+                    frameBorder="0"
+                    allowFullScreen="1"
+                    allow="autoplay; encrypted-media;"
+                    src={`${items.video_url}?rel=0&autoplay=1`}
+                  ></iframe>
+                </div>
+              )}
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
   if (items.type === '4') {
     return (
       <section className={`${padding}  sec-b sec-video2`} id={id}>
