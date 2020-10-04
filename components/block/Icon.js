@@ -1919,15 +1919,12 @@ function Icon({ data, id }) {
                     checked={active_title}
                     onClick={() => setAciveTitle(!active_title)}
                   />
-                  <label
-                    htmlFor={`checkbox_${id}`}
-                    className="entry-head text-center block-question-index"
-                  >
+                  <div style={{paddingTop:"28px",paddingBottom:"10px"}}>
                     <h2 className="ht ">{data[0].title || ""}</h2>
-                    <span className="triangle">
+                    {/* <span className="triangle">
                       <i className="icon-plus"></i>
-                    </span>
-                  </label>
+                    </span> */}
+                  </div>
                   <div
                     className="accodion-content entry-content"
                     style={{ marginTop: "-17px" }}

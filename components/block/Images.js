@@ -12,7 +12,7 @@ function Images({ data, id }) {
   return (
     <>
       {map(data, (item, index) => {
-        if (item.type !== '4' && item.type !== '6' && item.type !== '7' && item.type !== '9' &&item.type !== '8') {
+        if (item.type !== '4' && item.type !== '6' && item.type !== '7' && item.type !== '9' &&item.type !== '8' && item.type !== '10') {
           return (
             <div className="container" key={index}>
               <div className={`entry-head text-${item.options}`} id={id}>
@@ -25,6 +25,8 @@ function Images({ data, id }) {
       {map(data, (items, index) => {
         let padding = '';
         if (items.optionWidth === '2') {
+          padding = 'sec-tb';
+        } else if (items.optionWidth === '10') {
           padding = 'sec-tb';
         } else if (items.optionWidth === '3') {
           padding = 'sec-t';
@@ -69,6 +71,11 @@ function Images({ data, id }) {
           );
         }
         if (items.type === '9') {
+          return (
+            <ImageRight items={items} key={index} padding={padding} id={id} type={items.type} />
+          );
+        }
+        if (items.type === '10') {
           return (
             <ImageRight items={items} key={index} padding={padding} id={id} type={items.type} />
           );
