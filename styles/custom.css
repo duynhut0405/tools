@@ -2026,10 +2026,12 @@ ul.menu.line>li:not(:first-child):before {
   padding-top: 20px;
   margin-bottom: -15px;
 }
-.list-9.react-multi-carousel-list .item{
+.block-icon-3 .list-9 .item{
   box-shadow: 0 0 2px 3px #D8D8D8 !important;
   border-top: unset !important;
-  border: 1px solid #848484;
+}
+.block-icon-3 .carousel-nav{
+  margin-top: -22px;
 }
 .block-icon-3 .sec-b .carousel-nav>div:not(:hover){
   background-color: unset !important;
