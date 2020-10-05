@@ -268,7 +268,7 @@ function Carousels({ silder }) {
               
               </div>
           )}
-          {/* {silder[0].options === '5' && (
+          {silder[0].options === '5' && (
               <Carousel
                 showThumbs={false}
                 showStatus={false}
@@ -295,7 +295,7 @@ function Carousels({ silder }) {
                   );
                 })}
               </Carousel>
-          )} */}
+          )}
         </>
       )}
     </React.Fragment>
