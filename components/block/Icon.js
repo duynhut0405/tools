@@ -2761,136 +2761,129 @@ function Icon({ data, id }) {
       )}
       {data[0].type === "32" && (
         <React.Fragment>
-          <section className={`${padding} sec-h-4 block-icon-${data[0].type}`} id={id} style={{backgroundColor: "#e0f0ff"}}>
+          <section className={`${padding} sec-h-4 block-icon-${data[0].type}`} id={id}>
         <div className="block-image-10">
           <div className="container">
             {(data[0].title || data[0].title !== '') && (
               <div className="entry-head text-center" 
-              style={{textAlign:"center",paddingBottom:"25px",paddingTop:"20px",marginBottom:"28px",borderBottom:"1px solid #AFBFC3"}}>
+              style={{textAlign:"center",paddingBottom:"25px",paddingTop:"20px",marginBottom:"40px",borderBottom:"1px solid #AFBFC3"}}>
                 <h2 className="title-custom ">{data[0].title}</h2>
               </div>
             )}
-            <div className="row list-item list-1">
-              <div className="col-md-8 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                <a className={`item tRes_46 blue-shadow`} href={data[0].url}>
-                    <img
-                      className="lazyload"
-                      data-src={
-                        data[0].urlImage === null
-                          ? `/images/imgdefault.jpg`
-                          : `${process.env.DOMAIN}${data[0].urlImage}`
-                      }
-                      style={{borderRadius: "8px"}}
-                      alt="images"
-                    />
-                  <div className="divtext">
-                    <h4 className="title line2 on-hover-blue">{data[0].note_1}</h4>
+            <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map([data[0], data[1], data[2], data[3]], (items, index) => {
+                            
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    height: "100%",
+                                    textAlign: "left",
+                                    // backgroundColor: colors[index],
+                                    backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`,
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                    minHeight: "290px",
+                                    paddingTop: "90px",
+                                    paddingLeft: "40px",
+                                    paddingRight: "40px",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "cover",
+                                    textAlign: "center"
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{
+                                          textTransform: "none",
+                                          color: "#fff",
+                                          fontSize: "40px",
+                                          marginBottom: "0"
+                                        }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div
+                                        className="desc"
+                                        style={{ color: "#fff", fontSize: "20px" }}
+                                      >
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                          {map([data[4]], (items, index) => {
+                            
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-8`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    height: "100%",
+                                    textAlign: "left",
+                                    // backgroundColor: colors[index],
+                                    backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`,
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                    minHeight: "290px",
+                                    paddingTop: "145px",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "cover",
+                                    paddingTop: "90px",
+                                    paddingLeft: "40px",
+                                    paddingRight: "40px",
+                                    textAlign: "center"
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{
+                                          textTransform: "none",
+                                          color: "#fff",
+                                          fontSize: "40px",
+                                          marginBottom: "0"
+                                        }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div
+                                        className="desc"
+                                        style={{ color: "#fff", fontSize: "20px" }}
+                                      >
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </a>
-            </div>
-              <div className="col-md-4 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                  <a className={`item tRes_46 blue-shadow`} href={data[1].url}>
-                      <img
-                        className="lazyload"
-                        data-src={
-                          data[1].urlImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${data[1].urlImage}`
-                        }
-                        style={{borderRadius: "8px"}}
-                        alt="images"
-                      />
-                    <div className="divtext">
-                      <h4 className="title line2 on-hover-blue">{data[1].note_1}</h4>
-                    </div>
-                  </a>
-              </div>
-              <div className="col-md-4 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                  <a className={`item tRes_46 blue-shadow`} href={data[2].url}>
-                      <img
-                        className="lazyload"
-                        data-src={
-                          data[2].urlImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${data[2].urlImage}`
-                        }
-                        style={{borderRadius: "8px"}}
-                        alt="images"
-                      />
-                    <div className="divtext">
-                      <h4 className="title line2 on-hover-blue">{data[2].note_1}</h4>
-                    </div>
-                  </a>
-              </div>
-              <div className="col-md-8 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                  <a className={`item tRes_46 blue-shadow`} href={data[3].url}>
-                      <img
-                        className="lazyload"
-                        data-src={
-                          data[3].urlImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${data[3].urlImage}`
-                        }
-                        style={{borderRadius: "8px"}}
-                        alt="images"
-                      />
-                    <div className="divtext">
-                      <h4 className="title line2 on-hover-blue">{data[3].note_1}</h4>
-                    </div>
-                  </a>
-              </div>
-              <div className="col-md-4 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                  <a className={`item tRes_86 blue-shadow`} href={data[4].url}>
-                      <img
-                        className="lazyload"
-                        data-src={
-                          data[4].urlImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${data[4].urlImage}`
-                        }
-                        style={{borderRadius: "8px"}}
-                        alt="images"
-                      />
-                    <div className="divtext">
-                      <h4 className="title line2 on-hover-blue">{data[4].note_1}</h4>
-                    </div>
-                  </a>
-              </div>
-              <div className="col-md-4 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                  <a className={`item tRes_86 blue-shadow`} href={data[5].url}>
-                      <img
-                        className="lazyload"
-                        data-src={
-                          data[5].urlImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${data[5].urlImage}`
-                        }
-                        style={{borderRadius: "8px"}}
-                        alt="images"
-                      />
-                    <div className="divtext">
-                      <h4 className="title line2 on-hover-blue">{data[5].note_1}</h4>
-                    </div>
-                  </a>
-              </div>
-              <div className="col-md-4 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                  <a className={`item tRes_86 blue-shadow`} href={data[6].url}>
-                      <img
-                        className="lazyload"
-                        data-src={
-                          data[4].urlImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${data[6].urlImage}`
-                        }
-                        style={{borderRadius: "8px"}}
-                        alt="images"
-                      />
-                    <div className="divtext">
-                      <h4 className="title line2 on-hover-blue">{data[6].note_1}</h4>
-                    </div>
-                  </a>
-              </div>
-            </div>
           </div>
         </div>
       </section>

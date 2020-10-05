@@ -3555,3 +3555,14 @@ ul.menu.line>li:not(:first-child):before {
 .custom-slider-1 + div {
   padding-top: 320px;
 }
+
+.divtext-custom-dau-an {
+  position: absolute;
+    /* bottom: 40%; */
+    top: 30%;
+    margin: auto;
+    z-index: 3;
+    font-size: 50px;
+    text-align: center;
+    left: 20%;
+}
