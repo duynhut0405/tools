@@ -2629,7 +2629,7 @@ function Icon({ data, id }) {
           <div className="container">
             {(data[0].title || data[0].title !== '') && (
               <div className="entry-head text-center" 
-              style={{textAlign:"center",paddingBottom:"25px",paddingTop:"20px",marginBottom:"28px",borderBottom:"1px solid #AFBFC3"}}>
+              style={{textAlign:"center",paddingBottom:"25px",paddingTop:"20px",marginBottom:"28px"}}>
                 <h2 className="title-custom ">{data[0].title}</h2>
               </div>
             )}
