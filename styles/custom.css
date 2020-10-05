@@ -3543,3 +3543,15 @@ ul.menu.line>li:not(:first-child):before {
   border-radius: 5px;
   overflow: hidden;
 }
+
+.custom-slider-1 {
+  width: 100%;
+}
+
+.custom-slider-1 + section {
+  padding-top: 320px;
+}
+
+.custom-slider-1 + div {
+  padding-top: 320px;
+}

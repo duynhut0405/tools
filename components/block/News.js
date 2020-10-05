@@ -373,6 +373,78 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
       </section>
     );
   }
+  if (type === '18') {
+    return (
+      <section className={`${padding} sec-h-4 news-${type}`} id={id}>
+        <div className="container">
+          {(data.title || data.title !== '') && (
+            <div className="entry-head text-center" style={{marginBottom: "0"}}>
+              <h2 className="title-custom">{data.title}</h2>
+              <p className="cl5">{data.description}</p>
+              {(data.inputUrl === undefined || data.inputUrl === '') && (
+                <LinkCategory lang={lang} name={slugCategory}>
+                  <a className="viewall-custom">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkCategory>
+              )}
+              {data.inputUrl && (
+                <LinkInput lang={lang} name={data.inputUrl}>
+                  <a className="viewall-custom">
+                    {t('view')}
+                    <i className="icon-arrow-1"></i>
+                  </a>
+                </LinkInput>
+              )}
+            </div>
+          )}
+
+          <div class="convert-grid-to-scroll">
+            <div class="list-5 row">
+            {map(listCategory, (item, index) => (
+                  <div className="col-md-4" key={index} style={{}}>
+                    <LinkNew lang={lang} name={item.url}>
+                      <a className={`item efch-0 ef-img-l`} style={{height: "100%",
+                      boxShadow: "none",
+                      borderRadius: "8px",
+                      backgroundColor: "#FFFFFF",
+                      border: "1px solid #E2DFDF",
+                      overflow: "hidden"}}>
+                          <div className="img tRes_71">
+                            <img
+                              className="lazyload"
+                              data-src={
+                                item.base_image === null
+                                  ? `/images/imgdefault.jpg`
+                                  : `${process.env.DOMAIN}${item.base_image}`
+                              }
+                              style={{borderTopLeftRadius: "8px", borderTopRightRadius: "8px"}}
+                              alt="images"
+                            />
+                          </div>
+                        <div className="divtext">
+                          <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div>
+                          <h5 className="title title-custom-1 on-hover-blue">{item.title}</h5>
+                        </div>
+                      </a>
+                    </LinkNew>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {(data.title === undefined || data.title === '') && (
+            <div className="text-center mt-4">
+              <LinkCategory lang={lang} name={slugCategory}>
+                <a className="btn lg">{t('view')}</a>
+              </LinkCategory>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
   if (type === '15') {
     return (
       <section className={`${padding} sec-h-4 news-${type}`} id={id}>

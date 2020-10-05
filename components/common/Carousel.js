@@ -251,7 +251,24 @@ function Carousels({ silder }) {
                 })}
               </Carousel>
           )}
-          {silder[0].options === '5' && (
+          {silder[0].options === '7' && (
+              <div class="custom-slider-1"  style={{backgroundImage: `url(${process.env.DOMAIN}${silder[0].urlImage})`, backgroundPosition: "left", backgroundRepeat: "no-repeat", textAlign: "center", top: "32px", position: "absolute", zIndex: "-3"}}>
+              {/* <img src={`${process.env.DOMAIN}${silder[0].urlImage}`} style="visibility: hidden;" /> */}
+              <img src={`${process.env.DOMAIN}${silder[0].urlImage}`} alt="" style= {{visibility: "hidden"}}/>
+              <div className="container" style={{position: "relative", bottom: "108px"}}>
+                <div className="divtext">
+                  <div className="item-group space-20">
+                  <h1 className=" efch-2 ef-img-l" style={{color: "#141ED2", transform: "none", fontSize: "44px"}}>{ReactHtmlParser(silder[0].note_1)}</h1>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="wing wing-custom" style={styleHeight}>
+                <img className="img-center" src={`${process.env.DOMAIN}${silder[0].urlImage}`} alt="" style= {styleImg}/>
+              </div> */}
+              
+              </div>
+          )}
+          {/* {silder[0].options === '5' && (
               <Carousel
                 showThumbs={false}
                 showStatus={false}
@@ -278,7 +295,7 @@ function Carousels({ silder }) {
                   );
                 })}
               </Carousel>
-          )}
+          )} */}
         </>
       )}
     </React.Fragment>

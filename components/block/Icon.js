@@ -2051,6 +2051,7 @@ function Icon({ data, id }) {
                     position: "relative",
                     height: "82px",
                     borderBottom: "1px solid #d6d6d6",
+                    margin: "0"
                   }}
                 >
                   {map(data, (item, index) => (
@@ -2110,7 +2111,8 @@ function Icon({ data, id }) {
                     </div>
                   ))}
                   {size.width > 768 && (
-                    <div className="button-menu-custom">
+                    
+                    <div className="button-menu-custom" style={{display: data[0].button_url === null || data[0].button_url === "" || data[0].button_url === undefined ? "none": "content"}}>
                       <button className="btn" type="submit">
                         <a href={data[0].button_url}>
                           {ReactHtmlParser(data[0].button_name)}
