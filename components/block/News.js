@@ -900,13 +900,13 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               </div>
             </div>
           </div>
-          {(data.title === undefined || data.title === '') && (
+          {/* {(data.title === undefined || data.title === '') && (
             <div className="text-center mt-4">
               <LinkCategory lang={lang} name={slugCategory}>
                 <a className="btn lg">{t('view')}</a>
               </LinkCategory>
             </div>
-          )}
+          )} */}
         </div>
       </section>
     );
