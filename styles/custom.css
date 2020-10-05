@@ -3157,14 +3157,14 @@ ul.menu.line>li:not(:first-child):before {
 }}
 
 .menu-custom-0 {
-  padding-right: 50px;
+  padding-right: 30px;
   height: 82px;
   display: table-cell!important;
 }
 
 .menu-custom-1 {
   /* padding-left: 30px; */
-  padding-right: 60px;
+  padding-right: 30px;
   height: 82px;
   display: flex!important;
   width: max-content;
