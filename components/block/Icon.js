@@ -3191,7 +3191,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}}>
+                      <a className={`item tRes_86 blue-shadow`}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3200,13 +3200,51 @@ function Icon({ data, id }) {
                                 : `${process.env.DOMAIN}${data[4].urlImage}`
                             }
                             alt="images"
-                            style={{borderRadius: "8px", visibility: "hidden"}}
+                            style={{borderRadius: "8px"}}
                           />
                         <div className="divtext">
                           <div class="category">{data[4].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[4].note_2} ></h4>
+                          <h4 className="title line2 on-hover-blue">{data[4].note_2}</h4>
                         </div>
                       </a>
+              </div>
+
+              <div className={`col-md-8 efch-0 ef-img-t`} key={5} style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_46 blue-shadow`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              data[5].urlImage === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${data[5].urlImage}`
+                            }
+                            alt="images"
+                            style={{borderRadius: "8px"}}
+                          />
+                        <div className="divtext">
+                          <div class="category">{data[5].note_1}</div>
+                          <h4 className="title line2 on-hover-blue">{data[5].note_2}</h4>
+                        </div>
+                      </a>
+              </div>
+
+              <div className={`col-md-4 efch-0 ef-img-t`} key={6} style={{maxHeight:"318.5px"}}>
+                <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}}>
+                    <img
+                      className="lazyload"
+                      // data-src={
+                      //   data[6].urlImage === null
+                      //     ? `/images/imgdefault.jpg`
+                      //     : `${process.env.DOMAIN}${data[6].urlImage}`
+                      // }
+                      alt="images"
+                      style={{borderRadius: "8px", visibility: "hidden"}}
+                    />
+                  <div className="divtext">
+                    <div class="category">{data[6].note_1}</div>
+                    <h4 className="title line2 on-hover-blue">{data[6].note_2} ></h4>
+                  </div>
+                </a>
               </div>
               
             </div>
@@ -3216,6 +3254,7 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
+
       {data[0].type === "36" && (
         <React.Fragment>
           <section className={`${padding} sec-h-4 block-icon-${data[0].type}`} id={id}>
@@ -3300,7 +3339,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}}>
+                      <a className={`item tRes_86 blue-shadow`}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3309,13 +3348,51 @@ function Icon({ data, id }) {
                                 : `${process.env.DOMAIN}${data[4].urlImage}`
                             }
                             alt="images"
-                            style={{borderRadius: "8px", visibility: "hidden"}}
+                            style={{borderRadius: "8px"}}
                           />
                         <div className="divtext">
                           <div class="category">{data[4].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[4].note_2} ></h4>
+                          <h4 className="title line2 on-hover-blue">{data[4].note_2}</h4>
                         </div>
                       </a>
+              </div>
+
+              <div className={`col-md-8 efch-0 ef-img-t`} key={5} style={{maxHeight:"318.5px"}}>
+                      <a className={`item tRes_46 blue-shadow`}>
+                          <img
+                            className="lazyload"
+                            data-src={
+                              data[5].urlImage === null
+                                ? `/images/imgdefault.jpg`
+                                : `${process.env.DOMAIN}${data[5].urlImage}`
+                            }
+                            alt="images"
+                            style={{borderRadius: "8px"}}
+                          />
+                        <div className="divtext">
+                          <div class="category">{data[5].note_1}</div>
+                          <h4 className="title line2 on-hover-blue">{data[5].note_2}</h4>
+                        </div>
+                      </a>
+              </div>
+
+              <div className={`col-md-4 efch-0 ef-img-t`} key={6} style={{maxHeight:"318.5px"}}>
+                <a className={`item tRes_86 none-shadow none-shadow-blue`} style={{backgroundColor: "#a0d2ff"}}>
+                    <img
+                      className="lazyload"
+                      // data-src={
+                      //   data[6].urlImage === null
+                      //     ? `/images/imgdefault.jpg`
+                      //     : `${process.env.DOMAIN}${data[6].urlImage}`
+                      // }
+                      alt="images"
+                      style={{borderRadius: "8px", visibility: "hidden"}}
+                    />
+                  <div className="divtext">
+                    <div class="category">{data[6].note_1}</div>
+                    <h4 className="title line2 on-hover-blue">{data[6].note_2} ></h4>
+                  </div>
+                </a>
               </div>
               
             </div>
@@ -3325,7 +3402,7 @@ function Icon({ data, id }) {
           </section>
         </React.Fragment>
       )}
-      
+
     </React.Fragment>
   );
 }
