@@ -115,7 +115,7 @@ function Carousels({ silder }) {
                           </div>
                         )}
                       </div>
-                      <div className="wimg">
+                      <div className="wimg wing-no-black-after">
                         <img
                           className="img-center img-pc"
                           src={`${process.env.DOMAIN}${_item.urlImage}`}

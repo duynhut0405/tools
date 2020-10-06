@@ -3577,3 +3577,7 @@ ul.menu.line>li:not(:first-child):before {
     text-align: center;
     left: 20%;
 }
+
+.wing-no-black-after::after {
+  content: none !important;
+}
