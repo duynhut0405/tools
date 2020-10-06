@@ -3536,7 +3536,7 @@ function Icon({ data, id }) {
               id={id}
             >
               <div className="container" style={{}}>
-                <div className="entry-head text-center">
+                <div className="entry-head text-center" style={{marginBottom:"0px"}}>
                   <h2 className="ht">{data === null ? "" : data[0].title}</h2>
                 </div>
                 {/* {size.width >= 768 && ( */}
@@ -3570,7 +3570,7 @@ function Icon({ data, id }) {
                                 data-src={`${process.env.DOMAIN}${items.urlImage}`}
                               />
                             </div>
-                            <div className="title">{items.note_1}</div>
+                            <div className="title" style={{fontSize: "12px"}}>{items.note_1}</div>
                           </a>
                         </div>
                       ))}
