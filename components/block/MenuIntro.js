@@ -170,7 +170,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
               </div>
             )}
       </section>
-      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{marginTop: "68px"}}>
+      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`}>
         <div className="container">
           <div className="row list-item">
             <div className={!data.isForm || data.isForm === 0 ? 'col-lg-7' : 'col-lg-7'}>
