@@ -2631,7 +2631,6 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .custom-content-1 {
-  max-width: 313px;
   text-align: left;
   margin: auto;
   padding-top: 10px;

@@ -178,6 +178,23 @@ function MenuIntro({ data, pageId, optionWidth }) {
                 {ReactHtmlParser(data.descriptionTop)}
                 {ReactHtmlParser(data.description)}
               </div>
+              {(data.descriptionBot !== null & data.descriptionBot !== undefined & data.descriptionBot !== '' ) ? (
+                <div className="custom-content-1">
+                  <div style={{
+                    fontWeight: "600",
+                    borderBottom: "1px solid #ddd",
+                    paddingBottom:"10px"
+                  }}>
+                    {ReactHtmlParser(data.descriptionBot)}
+                  </div>
+                  <a className="btnPhone-Custom" href="tel:1900545426">
+                    {data.contact_1}
+                  </a>
+                  <a className="btnPhone-Custom" href="tel:+8437674050">
+                    {data.contact_2}
+                  </a>
+                </div>
+              ) : null }
             </div>
             <div
               className={data.isForm || data.isForm === 1 ? 'd-none' : 'col-lg-5'}
@@ -195,22 +212,15 @@ function MenuIntro({ data, pageId, optionWidth }) {
                     alt="images"
                   />
                 </a>
-              ) : null}
-              <div className="custom-content-1">
-                <div style={{
-                  fontWeight: "600",
-                  borderBottom: "1px solid #ddd",
-                  paddingBottom:"10px"
-                }}>
-                  {ReactHtmlParser(data.descriptionBot)}
-                </div>
-                <a className="btnPhone-Custom" href="tel:1900545426">
-                  {data.contact_1}
+              ) : (
+                <a className={`item`} href={data.url_image} style={{}}>
+                  <img
+                    className="lazyload"
+                    data-src={`/images/09.jpg`}
+                    alt="images"
+                  />
                 </a>
-                <a className="btnPhone-Custom" href="tel:+8437674050">
-                  {data.contact_2}
-                </a>
-              </div>
+              )}
 
 
 
