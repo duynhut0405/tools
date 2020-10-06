@@ -2634,6 +2634,7 @@ ul.menu.line>li:not(:first-child):before {
   max-width: 313px;
   text-align: left;
   margin: auto;
+  padding-top: 10px;
 }
 
 .toggleAutoHeight>section[aria-hidden=true]:after {

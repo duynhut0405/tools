@@ -199,7 +199,8 @@ function MenuIntro({ data, pageId, optionWidth }) {
               <div className="custom-content-1">
                 <div style={{
                   fontWeight: "600",
-                  borderBottom: "1px solid #ddd"
+                  borderBottom: "1px solid #ddd",
+                  paddingBottom:"10px"
                 }}>
                   {ReactHtmlParser(data.descriptionBot)}
                 </div>
