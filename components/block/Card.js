@@ -322,7 +322,7 @@ function Card({ data, type, optionWidth, id }) {
       )}
       {type && type === '8' && (
         <React.Fragment>
-          <section className={`sec-n-h1 group-ef loaded`} id={id}>
+          <section className={`sec-n-h1 group-ef loaded next-shadow`} id={id}>
             <div className="container">
               <div className="wsec">
                 <div className="title efch-1 ef-img-t">{data === null ? '' : ReactHtmlParser(data.title)}</div>

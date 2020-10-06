@@ -1166,7 +1166,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
           {map(listNews, (item, index) => (
                   <div className="col-md-6 efch-5 ef-img-t" key={index} style={{maxHeight:"356.39px"}}>
                     <LinkNew lang={lang} name={item.url}>
-                      <a className={`item tRes_66`}>
+                      <a className={`item tRes_66 blue-shadow`}>
                           <img
                             className="lazyload"
                             data-src={
@@ -1187,7 +1187,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
           {map(listNewsTabs, (item, index) => (
                   <div className="col-md-4 efch-5 ef-img-t" key={index}>
                     <LinkNew lang={lang} name={item.url}>
-                      <a className={`item tRes_66`}>
+                      <a className={`item tRes_66 blue-shadow`}>
                           <img
                             className="lazyload"
                             data-src={
