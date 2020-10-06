@@ -40,6 +40,21 @@ function Icon({ data, id }) {
     },
   };
 
+  const responsive6 = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 8,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 4,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2,
+    },
+  };
+
   const responsive1 = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -3132,7 +3147,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[0].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[0].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[0].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3150,7 +3165,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[1].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[1].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[1].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3168,7 +3183,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[2].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[2].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[2].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3186,7 +3201,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[3].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[3].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[3].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3204,7 +3219,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[4].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[4].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[4].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3223,7 +3238,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[5].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[5].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[5].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3242,7 +3257,7 @@ function Icon({ data, id }) {
                     />
                   <div className="divtext">
                     <div class="category">{data[6].note_1}</div>
-                    <h4 className="title line2 on-hover-blue">{data[6].note_2} ></h4>
+                    <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[6].note_2)} ></h4>
                   </div>
                 </a>
               </div>
@@ -3510,6 +3525,130 @@ function Icon({ data, id }) {
           </div>
         
           </section>
+        </React.Fragment>
+      )}
+
+      {data[0].type === "38" && (
+        <React.Fragment>
+          {data.length >= 8 && (
+            <section
+              className={`${padding} sec-h-1 group-ef block-icon-${data[0].type}`}
+              id={id}
+            >
+              <div className="container" style={{}}>
+                <div className="entry-head text-center">
+                  <h2 className="ht">{data === null ? "" : data[0].title}</h2>
+                </div>
+                {/* {size.width >= 768 && ( */}
+                  <div className="sec-b wrap-carousel">
+                    <Carousel
+                      responsive={responsive6}
+                      draggable
+                      minimumTouchDrag={80}
+                      ssr={true} // means to render carousel on server-side.
+                      infinite={true}
+                      keyBoardControl={true}
+                      className="menuicon"
+                      arrows={false}
+                      ref={(ref) => {
+                        setRefCarousel(ref);
+                      }}
+                    >
+                      {map(data, (items, index) => (
+                        <div
+                          className="item ef-img-t item_carousel"
+                          key={index}
+                        >
+                          <a
+                            href={items.url ? items.url : "#"}
+                            className="link"
+                          >
+                            <div className="img">
+                              <img
+                                className="lazyload"
+                                alt="icon"
+                                data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                              />
+                            </div>
+                            <div className="title">{items.note_1}</div>
+                          </a>
+                        </div>
+                      ))}
+                    </Carousel>
+                    {/* <div className="carousel-nav center">
+                      <div
+                        className="carousel-prev "
+                        onClick={() => {
+                          refCarousel.previous();
+                        }}
+                      >
+                        <i className="icon-arrow-1 ix"></i>
+                      </div>
+                      <div
+                        className="carousel-next"
+                        onClick={() => {
+                          refCarousel.next();
+                        }}
+                      >
+                        <i className="icon-arrow-1"></i>
+                      </div>
+                    </div> */}
+                  </div>
+                
+                {/* {size.width < 768 && (
+                  <div>
+                    {map(data, (items, index) => (
+                      <div className="item ef-img-t item_carousel" key={index}>
+                        <a href={items.url ? items.url : "#"} className="link">
+                          <div className="img">
+                            <img
+                              className="lazyload"
+                              alt="icon"
+                              data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                            />
+                          </div>
+                          <div className="title">{items.note_1}</div>
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )} */}
+              </div>
+            </section>
+          )}
+          {data.length < 8 && (
+            <section
+              className={`${padding} sec-h-1  loaded block-icon-${data[0].type}`}
+              id={id}
+            >
+              <div className="container">
+                <div className="entry-head text-center">
+                  <h2 className="ht efch-1 ef-img-t">
+                    {data === null ? "" : data[0].title}
+                  </h2>
+                </div>
+                <div className="menuicon">
+                  {map(data, (items, index) => (
+                    <div
+                      className={`item  efch-${index + 3} ef-img-t`}
+                      key={index}
+                    >
+                      <a href={items.url} className="link">
+                        <div className="img">
+                          <img
+                            className="lazyload"
+                            alt="images"
+                            data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                          />
+                        </div>
+                        <div className="title">{items.note_1}</div>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
         </React.Fragment>
       )}
 

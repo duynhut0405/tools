@@ -20,6 +20,7 @@ const propTypes = {
 const seachRegulation = async (type, detailTypeId, number, page, year, setData) => {
   const res = await getRegulationListYear(type, detailTypeId, number, page, year);
   if (res !== undefined && res.status === 200) {
+    console.log(res.data);
     setData(res.data);
   }
 };

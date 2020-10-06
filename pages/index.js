@@ -82,7 +82,7 @@ function Home({ page, silder, menuMiddle }) {
         <Carousel silder={silder}/>
         <MenuMiddle data={menuMiddle} />
         <BlockRender data={page.pageBlocks} pageId={page.id} />
-        {/* <FormRate data={listRate} interestRate={listInterestRate} /> */}
+        <FormRate data={listRate} interestRate={listInterestRate} />
       </div>
       {/* </Layout> */}
     </React.Fragment>
