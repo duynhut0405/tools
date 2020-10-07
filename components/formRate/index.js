@@ -1,21 +1,99 @@
-import moment from 'moment';
+import moment, { months } from 'moment';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import t from '../../translation';
 import currency from './dataCurrent.json';
 import ExchangeRate from './exchangeRate';
 import RateSelect from './RateSelect';
+import { getInterestRateService } from '../../services/rate';
+import XLSX from 'xlsx';
+import ReactHtmlParser from "react-html-parser";
+import DatePicker from 'react-datepicker';
+
 
 const propTypes = {
   data: PropTypes.any,
-  interestRate: PropTypes.array
+  interestRate: PropTypes.array,
+  description1: PropTypes.string,
+  description2: PropTypes.string,
+  description3: PropTypes.string
 };
 
-function FormRate({ data, interestRate }) {
+function FormRate({ data, interestRate, description1, description2, description3, setTypeSearch, typeSearch }) {
   const [From, setFrom] = useState(0);
   const [to, setTo] = useState(0);
   const [currencyFrom, setcurrencyFrom] = useState('USD');
   const [currencyTo, setcurrencyTo] = useState('VND');
+  const [loan, setLoan] = useState([]);
+  const [minLoan, setMinLoan] = useState({});
+  const [maxDeposits, setMaxDeposits] = useState({});
+  const [deposits, setDeposits] = useState([]);
+  const [goldList, setGoldList] = useState([]);
+  const [currentGold, setCurrentGold] = useState({});
+  const [typeTable, setTypeTable] = useState(0);
+  const [typeGold, setTypeGold] = useState(0);
+  const [startDate, setStartDate] = useState(new Date());
+
+  
+  const convertToJson = (csv) => {
+    var lines = csv.split("\n");
+  
+    var result = [];
+  
+    var headers = lines[0].split(",");
+  
+    for (var i = 1; i < lines.length; i++) {
+      var obj = {};
+      var currentline = lines[i].split(",");
+  
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
+  
+      result.push(obj);
+    }
+  
+    //return result; //JavaScript object
+    return JSON.stringify(result); //JSON
+  }
+
+  const openModalTab = (close_id, blue_id, open_id, close_id_2) => {
+    var x = document.getElementById(close_id);
+    x.style.borderBottom = "none";
+    x.style.color = "#686868";
+
+    var y = document.getElementById(blue_id);
+    y.style.borderBottom = "2px solid #141ED2";
+    y.style.color = "#141ED2";
+
+    
+    var openId = document.getElementById(open_id);
+    openId.style.display = "block";
+
+    var closeId2 = document.getElementById(close_id_2);
+    closeId2.style.display="none";
+  }
+
+  
+  const setOpen = (ghiChuClass, openId, groupID) => {
+    console.log(groupID)
+    var x = document.getElementById(groupID);
+    var ghichu = document.getElementsByClassName(ghiChuClass);
+    for (let i= 0; i< ghichu.length; i++) {
+      ghichu[i].style.visibility = "hidden";
+    }
+    
+    if (x.style.display != 'none') {
+      x.style.display = 'none';
+      return
+    }
+    if (x.style.display == 'none') {
+      x.style.display = 'flex';
+      let ghichu1 = document.getElementById(openId);
+      ghichu1.style.visibility = "visible";
+      
+    }
+  }
 
   const arrNotUSD = data.exchangeRateDetail
     ? data.exchangeRateDetail.filter(item => item.currency && item.currency.split(' ')[0] !== 'USD')
@@ -40,6 +118,40 @@ function FormRate({ data, interestRate }) {
     }
     return 0;
   };
+
+  const getInterestRate = async () => {
+    const interestRateRes = await getInterestRateService();
+    if (interestRateRes && interestRateRes !== undefined && interestRateRes.status === 200) {
+      setType(interestRateRes.data);
+    }
+    var req = new XMLHttpRequest();
+    
+    req.open("GET", 'https://mbbank3.mangoads.com.vn:8443/uploads/excel/goldExchange.xlsx', true);
+    req.responseType = "arraybuffer";
+
+    req.onload = function(e) {
+      var data = new Uint8Array(req.response);
+      
+      var workbook = XLSX.read(data, {type:"array", cellDates:"true", dateNF: 'dd/mm/yyyy'});
+      workbook.SheetNames.forEach(function(sheetName) {
+        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], {raw: false});
+        var json_object = JSON.stringify(XL_row_object);
+        var as = JSON.parse(json_object);
+        setGoldList(as);
+        setCurrentGold(as[0]);
+
+        var dateString = as[0].date; // Oct 23
+        var dateParts = dateString.split("/");
+
+        // month is 0-based, that's why we need dataParts[1] - 1
+        var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]); 
+        setStartDate(dateObject);
+      })
+    }
+
+    req.send();
+  };
+ 
 
   const getBuyTransferBycurrency = _currency => {
     const obj = arrCurrency.find(item => item.currency.trim() === _currency.trim());
@@ -69,6 +181,26 @@ function FormRate({ data, interestRate }) {
       }
     }
   };
+  const searchCurrentGold = (d) => {
+    console.log(d);
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+    console.log(`${day}/${month}/${year}`)
+    const found = goldList.find(element => element.date == `${day}/${month}/${year}`);
+    console.log(found);
+    if (found) {
+      setCurrentGold(found);
+    } else {
+      setCurrentGold(goldList[0]);
+      var dateString = goldList[0].date; // Oct 23
+      var dateParts = dateString.split("/");
+
+      // month is 0-based, that's why we need dataParts[1] - 1
+      var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]); 
+      setStartDate(dateObject);
+    }
+  }
 
   const getCurrentTo = name => {
     if (name === 'VND') {
@@ -92,9 +224,34 @@ function FormRate({ data, interestRate }) {
     }
   };
 
+  const setType = aa => {
+    let loan = [];
+    let deposits = [];
+    for (let i = 0; i < aa.length; i++) {
+      let rate = aa[i];
+      if (rate.descriptionUSA == 'loan') {
+        loan.push(rate);
+      } else {
+        deposits.push(rate);
+      }
+    }
+    setLoan(loan);
+    setDeposits(deposits);
+    let max = deposits.reduce(function(prev, current) {
+      return (prev.interest_rate > current.interest_rate) ? prev : current
+    })
+
+    let min = loan.reduce(function(prev, current) {
+      return (prev.interest_rate < current.interest_rate) ? prev : current
+    })
+    setMaxDeposits(max);
+    setMinLoan(min);
+  }
+
   useEffect(() => {
     getCurrentTo('USD');
     setcurrencyTo('VND');
+    getInterestRate();
   }, []);
 
   useEffect(() => {
@@ -105,11 +262,6 @@ function FormRate({ data, interestRate }) {
 
   const FormatNumber = number => {
     const n = new Intl.NumberFormat().format(number);
-    // const res = n
-    //   .slice(0, 9)
-    //   .concat('.')
-    //   .concat(n.slice(10, 12));
-    //console.log(res);
     return n;
   };
   return (
@@ -117,17 +269,11 @@ function FormRate({ data, interestRate }) {
       {data !== undefined && (
         <div className="container">
           <div className="row list-item list-2">
-            <div className="col-lg-7">
-              <ExchangeRate
-                tab1={t('exchange_rate')}
-                tab2={t('interest_rate')}
-                data1={data}
-                data2={interestRate}
-              />
-            </div>
-            <div className="col-lg-5">
+            <div className="col-md-4">
               <div className="divquidoi">
                 <h2 className="exchange">{t('change_foreign_currency')}</h2>
+                <h5 style={{color: "#686868", fontSize: "14px", maxWidth: "264px"}}>{t('change_foreign_currency_custom')}</h5>
+                <div style={{height:"219px"}}>
                 <div>{t('transfer_from')}</div>
                 <div className="input-group">
                   <span className="input-group-addon none arrow">
@@ -170,12 +316,284 @@ function FormRate({ data, interestRate }) {
                     value={to.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
                   />
                 </div>
-                <p>{`${t('updated_at')} ${moment(data.created_at).format('HH:mm')} ${t(
+                {/* <p>{`${t('updated_at')} ${moment(data.created_at).format('HH:mm')} ${t(
                   'date'
-                )} ${moment(data.created_at).format('DD/MM/YYYY')}`}</p>
+                )} ${moment(data.created_at).format('DD/MM/YYYY')}`}</p> */}
+                </div>
+                <div className="action-custom" style={{ position: "relative", top: "5px", paddingBottom: "10px"}}>
+                  <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-1" ,`ghi-chu-group`)}}>
+                    <div style={{display:"table"}}>
+                      <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
+                      <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                    </div>
+                  </a>
+                  <div><a className="xem-chi-tiet" onClick={() => {
+                    if (typeSearch == "4") {
+                      setTypeSearch(0);
+                      setTypeGold(0);
+                    } else {
+                      setTypeGold(0);
+                      setTypeTable(0);
+                      setTypeSearch(4)}
+                    }
+                  }>{typeSearch == 4 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                </div>
+
+              </div>
+            </div>
+
+            <div className="col-md-4">
+              <div className="divquidoi widget widget-2" style={{backgroundColor:"#DCF9ED"}}>
+                <h2 className="exchange">{t('interest_rate')}</h2>
+                <div className="tabset">
+                  <input type="radio" name="tabset3" id="tset3" onClick={() => {openModalTab(`tset4-1`, "tset3-1" ,`loan`, `deposits`)}}></input>
+                  <label for="tset3" id="tset3-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>Tiền vay </label>
+                  <input type="radio" name="tabset4" id="tset4" onClick={() => {openModalTab(`tset3-1`, "tset4-1", `deposits`, "loan")}}></input>
+                  <label for="tset4" id="tset4-1">Tiền gửi</label>
+                  <div className="tab-panels">
+                    <div className="tab-panel" id="loan">
+                      <div className="content_2" style={{ height: "219px"}}>
+                        <div className="item-group-custom space-20">
+                          <div className="item-group-addon-custom">
+                            {minLoan.interest_rate}
+                          </div>
+                          <div className="item-group-content-custom">
+                            <div className="t1 w6">%</div>
+                            <div className="t2">{minLoan.description}</div>
+                            <div className="t3 w6">{minLoan.term}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="action-custom">
+                        <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
+                          <div style={{display:"table"}}>
+                            <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
+                            <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                          </div>
+                        </a>
+                        <div><a className="xem-chi-tiet" 
+                          onClick={() => {
+                            if (typeTable == "2") {
+                              setTypeTable(0);
+                              setTypeGold(0);
+                              setTypeSearch(0);
+                            } else {
+                              setTypeGold(0);
+                              setTypeSearch(0);
+                              setTypeTable(2);
+                            }
+                          }}
+                          >{typeTable == 2 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                      </div>
+                    </div>
+                    <div className="tab-panel" style={{display:"none"}} id="deposits">
+                      <div className="content_2" style={{ height: "219px"}}>
+                        <div className="item-group-custom space-20">
+                          <div className="item-group-addon-custom">
+                            {maxDeposits.interest_rate}
+                          </div>
+                          <div className="item-group-content-custom">
+                            <div className="t1 w6">%</div>
+                            <div className="t2">{maxDeposits.description}</div>
+                            <div className="t3 w6">{maxDeposits.term}</div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div className="action-custom">
+                      <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
+                          <div style={{display:"table"}}>
+                            <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
+                            <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                          </div>
+                        </a>
+                        <div><a className="xem-chi-tiet"
+                          onClick={() => {
+                            if (typeTable == "3") {
+                              setTypeTable(0);
+                              setTypeGold(0);
+                              setTypeSearch(0);
+                            } else {
+                              setTypeGold(0);
+                              setTypeSearch(0);
+                              setTypeTable(3);
+                            }
+                          }}
+                        >{typeSearch == 3 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div className="col-md-4">
+              <div className="divquidoi widget widget-2" style={{backgroundColor:"#F2F3FF"}}>
+                <h2 className="exchange">Giá Vàng</h2>
+                <div className="tabset">
+                  <input type="radio" name="tabset5" id="tset5" onClick={() => {openModalTab(`tset6-1`, "tset5-1" ,`mua`, `ban`)}}></input>
+                  <label for="tset5" id="tset5-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>Giá mua</label>
+                  <input type="radio" name="tabset6" id="tset6" onClick={() => {openModalTab(`tset5-1`, "tset6-1", `ban`, "mua")}}></input>
+                  <label for="tset6" id="tset6-1">Giá bán</label>
+                  <div className="tab-panels">
+                    <div className="tab-panel" id="mua">
+                      <div className="content_3" style={{ height: "219px"}}>
+                        <div className="t1-custom">
+                          {currentGold.buy_exchange}
+                          <span className="t2-custom">vnđ/<br/>chỉ</span>
+                        </div>
+                        <div className="t3-custom">{currentGold.gold_1_name}</div>
+                        <div className="t4-custom">{currentGold.des_vi}</div>
+                      </div>
+                      <div className="action-custom">
+                      <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
+                          <div style={{display:"table"}}>
+                            <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
+                            <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                          </div>
+                        </a>
+                        <div><a className="xem-chi-tiet" onClick={() => {
+                          if (typeGold == 0) {
+                            setTypeGold(1);
+                            setTypeTable(0);
+                            setTypeSearch(0);
+                          } else {
+                            setTypeTable(0);
+                            setTypeSearch(0);
+                            setTypeGold(0);
+                          }
+                        }}>{typeGold == 1 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                      </div>
+                    </div>
+                    <div className="tab-panel" style={{display:"none"}} id="ban">
+                      <div className="content_3" style={{ height: "219px"}}>
+                        <div className="t1-custom">
+                          {currentGold.sell_exchange}
+                          <span className="t2-custom">vnđ/<br/>chỉ</span>
+                        </div>
+                        <div className="t3-custom">{currentGold.gold_1_name}</div>
+                        <div className="t4-custom">{currentGold.des_2_vi}</div>
+                      </div>
+                      <div className="action-custom">
+                        <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
+                          <div style={{display:"table"}}>
+                            <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
+                            <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                          </div>
+                        </a>
+                        <div><a className="xem-chi-tiet" onClick={() => {
+                          if (typeGold == 0) {
+                            setTypeGold(1);
+                            setTypeTable(0);
+                            setTypeSearch(0);
+                          } else {
+                            setTypeTable(0);
+                            setTypeSearch(0);
+                            setTypeGold(0);
+                          }
+                        }}>{typeGold == 1 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
+
+          <div className="row list-item list-2" id="ghi-chu-group" style={{display:"none"}}>
+            <div className="col-md-4 ghi-chu" id="ghi-chu-1" style={{padding:"30px", visibility:"hidden"}}>
+              <div className="divquidoi widget widget-2 shadow-custom-box" style={{backgroundColor:"#fff"}}>
+              {ReactHtmlParser(description1)}
+              </div>
+            </div>
+
+            <div className="col-md-4 ghi-chu" id="ghi-chu-2" style={{padding:"30px", visibility:"hidden"}}>
+              <div className="divquidoi widget widget-2 shadow-custom-box" style={{backgroundColor:"#fff"}}>
+              {ReactHtmlParser(description2)}
+              </div>
+            </div>
+
+            <div className="col-md-4 ghi-chu" id="ghi-chu-3" style={{padding:"30px", visibility:"hidden"}}>
+              <div className="divquidoi widget widget-2 shadow-custom-box" style={{backgroundColor:"#fff"}}>
+              {ReactHtmlParser(description3)}
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-8" style={{margin: "auto"}}>
+            <ExchangeRate
+              tab1={t('exchange_rate')}
+              tab2={t('interest_rate')}
+              data1={data}
+              data2={deposits}
+              loan={loan}
+              gold={goldList}
+              type={typeTable}
+              setTypeTable={setTypeTable}
+            />
+          </div>
+
+          { typeGold == '1' && (<div className="row list-item list-2">
+            <div className="col-lg-12" style={{margin: "auto"}}>
+              <div className="search_ tigia mb-30 max950 ">
+                <div className="row center">
+                  <div className="col-md-4 col-lg-3">
+                    <h3 className="ctext mg-0">Tra cứu giá vàng</h3>
+                  </div>
+                  <div className="col-sm-7 col-md-5 col-lg-6">
+                    <DatePicker
+                      selected={startDate}
+                      onChange={setStartDate}
+                    ></DatePicker>
+                  </div>
+                  <div className="col-sm-5 col-md-3 ">
+                    <button className="btn lg" onClick={() => {searchCurrentGold(startDate)}}>
+                    {/* <button className="btn lg"> */}
+                      {t('table_rate_submit')}
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-12">
+              <div className="table-responsive" style={{textAlign:"center"}}>
+                <table className="table table-full table-ti-gia">
+                  <tbody>
+                    <tr>
+                      <th style={{textAlign:"center"}}>Loại vàng</th>
+                      <th style={{textAlign:"center"}}>Giá mua(VNĐ/chỉ)</th>
+                      <th style={{textAlign:"center"}}>Giá bán(VNĐ/chỉ)</th>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div className="t3-custom" style={{width:"100%", textAlign:"center"}}>{currentGold.gold_1_name}</div>
+                        <div className="t4-custom" style={{width:"100%", textAlign:"center"}}>{currentGold.des_vi}</div>
+                      </td>
+                      <td style={{textAlign:"center"}}>{currentGold.buy_exchange}</td>
+                      <td style={{textAlign:"center"}}>{currentGold.sell_exchange}</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div className="t3-custom" style={{width:"100%", textAlign:"center"}}>{currentGold.gold_2_name}</div>
+                        <div className="t4-custom" style={{width:"100%", textAlign:"center"}}>{currentGold.des_2_vi}</div>
+                      </td>
+                      <td style={{textAlign:"center"}}>{currentGold.buy_exchange_2}</td>
+                      <td style={{textAlign:"center"}}>{currentGold.sell_exchange_2}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>)}
+        
         </div>
       )}
     </section>

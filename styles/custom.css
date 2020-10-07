@@ -3581,3 +3581,138 @@ ul.menu.line>li:not(:first-child):before {
 .wing-no-black-after::after {
   content: none !important;
 }
+
+.sec-tigia .divquidoi {
+  padding: 30px;
+  /* height: 365px; */
+  background-color: #E0F0FF;
+  /* border: 8px; */
+  border-radius: 8px;
+}
+
+.tabset {
+  position: relative;
+}
+
+.tabset > label {
+  padding: 10px 5px;
+  font-weight: 600;
+  color: #737373;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.tabset > label:hover, .tabset > input:focus + label, .tabset > input:checked + label {
+    color: #141ED2;
+}
+
+.tabset > label {
+  position: relative;
+  cursor: pointer;
+  float: left;
+  text-align: center;
+}
+
+.tabset > input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tabset .tab-panels {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+.tabset .tab-panels {
+  clear: both;
+  padding-top: 20px;
+}
+
+.tabset .tab-panel {
+  padding-bottom: 0 !important;
+}
+
+.item-group-custom {
+  display: table;
+  width: 100%;
+  text-align: left;
+}
+
+.item-group-addon-custom {
+  font-size: 107px;
+  line-height: 78px;
+  white-space: nowrap;
+  vertical-align: top;
+  display: table-cell;
+  width: 50px;
+  height: 100%;
+}
+
+.item-group-content-custom {
+  display: table-cell;
+  position: relative;
+  height: 100%;
+  padding-left: 20px;
+}
+
+.content_3 {
+  min-height: 219px;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.t1-custom {
+  font-size: 50px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.t2-custom {
+  font-size: 16px;
+  display: inline-block;
+  line-height: 16px;
+}
+
+.t3-custom {
+  font-weight: 600;
+  width: 50%;
+}
+
+.t4-custom {
+  color: #9F9F9F;
+  width: 50%;
+}
+
+.action-custom {
+  text-align: right;
+  font-size: 13px;
+  color: #BCBCBC;
+  font-weight: 600;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.action-custom .t5-custom {
+  position: absolute;
+  left: 0;
+}
+
+
+.icon-custom::before {
+  transform: rotate(180deg);
+  background: #fff;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  content: "!";
+}
+
+.xem-chi-tiet {
+  color: #141ed2;
+}
+
+.shadow-custom-box {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}

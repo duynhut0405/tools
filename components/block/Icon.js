@@ -2139,7 +2139,7 @@ function Icon({ data, id }) {
               </div>
             </div>
             {size.width <= 768 && (
-              <div className="center-custom">
+              <div className="center-custom" style={{display: data[0].button_url === null || data[0].button_url === "" || data[0].button_url === undefined ? "none": "content"}}>
                 <button className="btn" type="submit">
                   <a href={data[0].button_url}>
                     {ReactHtmlParser(data[0].button_name)}

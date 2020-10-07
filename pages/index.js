@@ -81,8 +81,8 @@ function Home({ page, silder, menuMiddle }) {
         {page.breadCrumb && <Breadcrumb data={[]} />}
         <Carousel silder={silder}/>
         <MenuMiddle data={menuMiddle} />
-        <BlockRender data={page.pageBlocks} pageId={page.id} />
-        <FormRate data={listRate} interestRate={listInterestRate} />
+        <BlockRender data={page.pageBlocks} pageId={page.id}/>
+        {/* <FormRate data={listRate} interestRate={listInterestRate} /> */}
       </div>
       {/* </Layout> */}
     </React.Fragment>
