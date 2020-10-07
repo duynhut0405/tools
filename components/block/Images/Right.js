@@ -499,7 +499,7 @@ function ImageRight({ items, padding, id, type }) {
     let img = `${process.env.DOMAIN}${items.urlImage}`;
     return (
       <section className={`sec-t sec-b sec-video2`} id={id}>
-        <div className="container">
+        <div className="container" style={{textAlign:"center"}}>
             <img class=" loaded loaded img-banner" dataLazyType="image" dataLazySrc={img} src={img} style={{borderRadius:"5px", paddingBottom: "0"}}/>
           <a href={items.url_1} className="btn-custom" style={{top:items.top, left:items.left, height: items.height, width: items.width}}></a>
           <a href={items.url_2} className="btn-custom" style={{top:items.top2, left:items.left2, height: items.height2, width: items.width2}}></a>

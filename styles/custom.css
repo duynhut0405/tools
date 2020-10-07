@@ -2303,6 +2303,58 @@ ul.menu.line>li:not(:first-child):before {
 		width: 110%;
 	}
 }
+.downloadfile .question .sec .inner .grid-space-60{
+  padding-right: 13px;
+}
+.downloadfile .question .sec .accodion-title{
+  display: none;
+}
+.accodion {
+  margin-bottom: unset;
+}
+.accodion-2 {
+  margin-bottom: unset;
+  padding-top:8px ;
+  padding-bottom: 28px;
+}
+@media only screen and (min-width: 1200px)
+{
+  .downloadfile .question .search-block{
+    padding-left: 16%;
+    position: relative;
+    margin-right: 4%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1199px)
+{
+  .downloadfile .question .search-block{
+    padding-left: 18%;
+    position: relative;
+    margin-right: 4%;
+  }
+}
+@media only screen and (min-width: 1024px)
+{
+  .downloadfile .question label{margin-bottom: unset;}
+  .downloadfile .question .search-block{
+    margin-top: -52px; padding-bottom: 22px;
+    animation-duration:  12ms;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px)
+{
+  .downloadfile .question .search-block{
+    padding-bottom: 12px;
+    margin-top: -18px;
+  }
+}
+@media only screen and (max-width: 767px)
+{
+  .downloadfile .question .search-block{
+    padding-bottom: 12px;
+  }
+}
+
 
 
 
@@ -3091,6 +3143,9 @@ ul.menu.line>li:not(:first-child):before {
 
 .accodion-tab input:checked+[class*=-title] .triangle i:before {
   content: "\E931";
+}
+.question .accodion-tab .triangle:active .search_block{
+  opacity: 1;
 }
 
 .ul-menu-custom {

@@ -31,6 +31,7 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
   const title = convertTitle(data ? parseInt(data.type) : null);
   const [listRegulation, setListRegulation] = useState([]);
   const [listType, setListType] = useState([]);
+  const [active_title, setAciveTitle] = useState(false);
 
   const getTypeRegulation = async _type => {
     const res = await getTypeRegulationByIDServices(_type);
@@ -98,26 +99,35 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
   }
 
   return (
-    <div className={`${padding} accodion accodion-2 downloadfile`} id={id}>
+    <div className={`${padding} accodion accodion-2 downloadfile`} id={id}
+    style={{backgroundColor:"#E0F0FF"}}>
       <div className="container">
-        {data && (
-          <div
-            className={
-              data.url && data.url !== ''
-                ? 'entry-head text-center title-padding'
-                : 'entry-head text-center'
-            }
-          >
-            {data && data.title && data.title !== '' && (
-              <h2 className="ht efch-1 ef-img-l">{data.title}</h2>
-            )}
-            {data.url && data.url !== '' && (
-              <a className="viewall" href={data.url}>
-                {t('view')} <i className="icon-arrow-1"></i>
-              </a>
-            )}
-          </div>
-        )}
+      <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="accodion-tab">
+                  <input
+                    id={`checkbox_${id}`}
+                    type="checkbox"
+                    checked={active_title}
+                    onClick={() => setAciveTitle(!active_title)}
+                  />
+                  <label
+                    htmlFor={`checkbox_${id}`}
+                    className="entry-head text-center block-question-index"
+                    style={{paddingTop:"37px"}}
+                  >
+                    <h2 className="ht ">{data.title || ""}</h2>
+                    <span className="triangle">
+                      <i className="icon-plus"></i>
+                    </span>
+                  </label>
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="search-block">
         {search && (
           <Fillter
             center
@@ -127,6 +137,7 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
             setType={event => onChangeType(event.target.value)}
           />
         )}
+        </div>
         <div className="container">
           {listRegulation.investors && listRegulation.investors.length > 0 && (
             <div className="sec">
@@ -141,6 +152,12 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
           <Pagination size={listRegulation.size} setPage={pageNumber => onChangePage(pageNumber)} />
         )}
       </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
   );
 }
