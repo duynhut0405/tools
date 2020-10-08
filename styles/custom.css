@@ -3776,10 +3776,18 @@ ul.menu.line>li:not(:first-child):before {
   background-color: #141ED2;
 }
 
+#footer-mb {
+  background-color: #141ED2;
+}
+
 body.mb-priority #footer-pc {
   background-color: #0B1C2B;
 }
 
 body.mb-priority #footer-pc i {
   color: #0B1C2B;
+}
+
+body.mb-priority #footer-mb {
+  background-color: #0B1C2B;
 }

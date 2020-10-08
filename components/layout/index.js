@@ -791,7 +791,7 @@ function Layout({ children, isPrioty, idPage }) {
               <a id="back-top" class="back-top-1" href="#" ><i class="icon-arrow-2 it"></i></a>
             </div>
 
-            <div id="footer-mb" className="group-ef loaded" style={{backgroundColor: '#141ED2', color: '#fff', padding: "30px 0 0"}}>
+            <div id="footer-mb" className="group-ef loaded" style={{ color: '#fff', padding: "30px 0 0"}}>
               <div className="container" style={{paddingBottom: '20px'}}>
                 <p>
                   {lang === 'vi' && (
