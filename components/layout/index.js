@@ -628,7 +628,7 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                 </div>
               </section>
-            <div id="footer-pc" className="group-ef loaded" style={{backgroundColor: '#141ED2', color: '#fff'}}>
+            <div id="footer-pc" className="group-ef loaded" style={{color: '#fff'}}>
               <div className="container" style={{paddingBottom: '20px'}}>
                 <p>
                   {lang === 'vi' && (
@@ -650,7 +650,7 @@ function Layout({ children, isPrioty, idPage }) {
                   <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
                     <div className="widget widget-info">
                       <Widget data={settingFooter} />
-                      <Social data={socialLink} />
+                      {/* <Social data={socialLink} /> */}
                     </div>
                   </div>
                   {renderFooter(menuFooterMain)}

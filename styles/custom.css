@@ -3771,3 +3771,15 @@ ul.menu.line>li:not(:first-child):before {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   background-color: #fff;
 }
+
+#footer-pc {
+  background-color: #141ED2;
+}
+
+body.mb-priority #footer-pc {
+  background-color: #0B1C2B;
+}
+
+body.mb-priority #footer-pc i {
+  color: #0B1C2B;
+}

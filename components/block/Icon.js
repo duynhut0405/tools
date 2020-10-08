@@ -2916,7 +2916,7 @@ function Icon({ data, id }) {
 
             <div className="row list-item list-1">
               <div className={`col-md-8 efch-0 ef-img-t`} key={0} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[0].url != null & data[0].url != undefined ? data[0].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -2929,12 +2929,12 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[0].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[0].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[0].note_2)}</h4>
                         </div>
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={1} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[1].url != null & data[1].url != undefined ? data[1].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -2947,12 +2947,12 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[1].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[1].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[1].note_2)}</h4>
                         </div>
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                        <a className={`item tRes_46 blue-shadow`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#" }>
                           <img
                             className="lazyload"
                             data-src={
@@ -2965,12 +2965,12 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[2].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[2].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[2].note_2)}</h4>
                         </div>
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                        <a className={`item tRes_46 blue-shadow`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -2983,12 +2983,12 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[3].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[3].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[3].note_2)}</h4>
                         </div>
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 none-shadow none-shadow-blue`} style={{backgroundColor: "#a0d2ff"}}>
+                      <a className={`item tRes_86 none-shadow none-shadow-blue`} style={{backgroundColor: "#a0d2ff"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3001,7 +3001,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[4].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[4].note_2} ></h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[4].note_2)} ></h4>
                         </div>
                       </a>
               </div>
@@ -3025,7 +3025,7 @@ function Icon({ data, id }) {
 
             <div className="row list-item list-1">
               <div className={`col-md-8 efch-0 ef-img-t`} key={0} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[0].url != null & data[0].url != undefined ? data[0].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3043,7 +3043,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={1} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[1].url != null & data[1].url != undefined ? data[1].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3061,7 +3061,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3079,7 +3079,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3097,7 +3097,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}}>
+                      <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3134,7 +3134,7 @@ function Icon({ data, id }) {
 
             <div className="row list-item list-1">
               <div className={`col-md-8 efch-0 ef-img-t`} key={0} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[0].url != null & data[0].url != undefined ? data[0].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3152,7 +3152,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={1} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[1].url != null & data[1].url != undefined ? data[1].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3170,7 +3170,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3188,7 +3188,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3206,7 +3206,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3225,7 +3225,7 @@ function Icon({ data, id }) {
               </div>
 
               <div className={`col-md-8 efch-0 ef-img-t`} key={5} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[5].url != null & data[5].url != undefined ? data[5].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3244,7 +3244,7 @@ function Icon({ data, id }) {
               </div>
 
               <div className={`col-md-4 efch-0 ef-img-t`} key={6} style={{maxHeight:"318.5px"}}>
-                <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}}>
+                <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}} href={data[6].url != null & data[6].url != undefined ? data[6].url : "#"}>
                     <img
                       className="lazyload"
                       // data-src={
@@ -3282,7 +3282,7 @@ function Icon({ data, id }) {
 
             <div className="row list-item list-1">
               <div className={`col-md-8 efch-0 ef-img-t`} key={0} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[0].url != null & data[0].url != undefined ? data[0].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3300,7 +3300,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={1} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[1].url != null & data[1].url != undefined ? data[1].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3318,7 +3318,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3336,7 +3336,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3354,7 +3354,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3373,7 +3373,7 @@ function Icon({ data, id }) {
               </div>
 
               <div className={`col-md-8 efch-0 ef-img-t`} key={5} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[5].url != null & data[5].url != undefined ? data[5].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3392,7 +3392,7 @@ function Icon({ data, id }) {
               </div>
 
               <div className={`col-md-4 efch-0 ef-img-t`} key={6} style={{maxHeight:"318.5px"}}>
-                <a className={`item tRes_86 none-shadow none-shadow-blue`} style={{backgroundColor: "#a0d2ff"}}>
+                <a className={`item tRes_86 none-shadow none-shadow-blue`} style={{backgroundColor: "#a0d2ff"}} href={data[6].url != null & data[6].url != undefined ? data[6].url : "#"}>
                     <img
                       className="lazyload"
                       // data-src={
@@ -3430,7 +3430,7 @@ function Icon({ data, id }) {
 
             <div className="row list-item list-1">
               <div className={`col-md-8 efch-0 ef-img-t`} key={0} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[0].url != null & data[0].url != undefined ? data[0].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3448,7 +3448,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={1} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_46 blue-shadow`}>
+                      <a className={`item tRes_46 blue-shadow`} href={data[1].url != null & data[1].url != undefined ? data[1].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3466,7 +3466,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3484,7 +3484,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3502,7 +3502,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 blue-shadow`}>
+                      <a className={`item tRes_86 blue-shadow`} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={

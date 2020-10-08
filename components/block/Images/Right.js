@@ -542,13 +542,13 @@ function ImageRight({ items, padding, id, type }) {
             </div>
           </div>
           
-       <div className="col-lg-10" style={{margin:"auto"}}>
+       <div className="col-lg-10" style={{margin:"auto", textAlign: "center"}}>
               {!active && (
                 <div
                   className={items.video_url ? 'single_video  tRes_16_9 max750' : ''}
                   data-id="2UrWPUAr68A"
                   data-video="autoplay=1&amp;controls=1&amp;mute=0"
-                  style={{maxHeight:"348px",borderRadius:"8px"}}
+                  style={{maxHeight:items.video_url ? "348px" : "none",borderRadius:"8px"}}
                 >
                   <img
                     className="lazyload"
@@ -578,7 +578,7 @@ function ImageRight({ items, padding, id, type }) {
                   className="single_video  tRes_16_9 max750"
                   data-id="2UrWPUAr68A"
                   data-video="autoplay=1&amp;controls=1&amp;mute=0"
-                  style={{maxHeight:"348px",borderRadius:"8px"}}
+                  style={{maxHeight: items.video_url ? "348px" : "none",borderRadius:"8px"}}
                 >
                   <iframe
                     frameBorder="0"
