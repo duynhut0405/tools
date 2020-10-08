@@ -3652,6 +3652,188 @@ function Icon({ data, id }) {
         </React.Fragment>
       )}
 
+      {data[0].type === "39" && (
+        <React.Fragment>
+          <section className={`${padding} sec-h-4 block-icon-${data[0].type}`} id={id}>
+        <div className="block-image-10">
+          <div className="container">
+            {(data[0].title || data[0].title !== '') && (
+              <div className="entry-head text-center" 
+              style={{textAlign:"center",paddingBottom:"70px",paddingTop:"20px",marginBottom:"70px", maxWidth:"550px", margin:"auto"}}>
+                <h5 style={{fontWeight: "400"}}>{ReactHtmlParser(data[0].title)}</h5>
+              </div>
+            )}
+            <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map([data[0], data[1], data[2], data[3]], (items, index) => {
+                            
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    height: "100%",
+                                    textAlign: "left",
+                                    // backgroundColor: colors[index],
+                                    backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`,
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                    minHeight: "290px",
+                                    paddingTop: "90px",
+                                    paddingLeft: "40px",
+                                    paddingRight: "40px",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "cover",
+                                    textAlign: "center"
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{
+                                          textTransform: "none",
+                                          color: "#fff",
+                                          fontSize: "40px",
+                                          marginBottom: "0"
+                                        }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div
+                                        className="desc"
+                                        style={{ color: "#fff", fontSize: "20px" }}
+                                      >
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                          {map([data[4]], (items, index) => {
+                            
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-8`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    height: "100%",
+                                    textAlign: "left",
+                                    // backgroundColor: colors[index],
+                                    backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`,
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                    minHeight: "290px",
+                                    paddingTop: "145px",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "cover",
+                                    paddingTop: "90px",
+                                    paddingLeft: "40px",
+                                    paddingRight: "40px",
+                                    textAlign: "center"
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{
+                                          textTransform: "none",
+                                          color: "#fff",
+                                          fontSize: "40px",
+                                          marginBottom: "0"
+                                        }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div
+                                        className="desc"
+                                        style={{ color: "#fff", fontSize: "20px" }}
+                                      >
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                          {map([data[5], data[6], data[7]], (items, index) => {
+                            
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    height: "100%",
+                                    textAlign: "left",
+                                    // backgroundColor: colors[index],
+                                    backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`,
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                    minHeight: "290px",
+                                    paddingTop: "90px",
+                                    paddingLeft: "40px",
+                                    paddingRight: "40px",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "cover",
+                                    textAlign: "center"
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{
+                                          textTransform: "none",
+                                          color: "#fff",
+                                          fontSize: "40px",
+                                          marginBottom: "0"
+                                        }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div
+                                        className="desc"
+                                        style={{ color: "#fff", fontSize: "20px" }}
+                                      >
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          </div>
+        </div>
+      </section>
+        </React.Fragment>
+      )}
+
     </React.Fragment>
   );
 }
