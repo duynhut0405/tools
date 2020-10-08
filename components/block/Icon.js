@@ -3038,7 +3038,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[0].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[0].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[0].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3056,7 +3056,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[1].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[1].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[1].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3074,7 +3074,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[2].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[2].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[2].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3092,7 +3092,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[3].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[3].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[3].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3110,7 +3110,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[4].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[4].note_2} ></h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[4].note_2)} ></h4>
                         </div>
                       </a>
               </div>
@@ -3295,7 +3295,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[0].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[0].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[0].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3313,7 +3313,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[1].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[1].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[1].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3331,7 +3331,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[2].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[2].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[2].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3349,7 +3349,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[3].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[3].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[3].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3367,7 +3367,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[4].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[4].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[4].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3386,7 +3386,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[5].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{data[5].note_2}</h4>
+                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[5].note_2)}</h4>
                         </div>
                       </a>
               </div>

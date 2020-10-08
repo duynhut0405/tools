@@ -76,23 +76,17 @@ function FormRate({ data, interestRate, description1, description2, description3
 
   
   const setOpen = (ghiChuClass, openId, groupID) => {
-    console.log(groupID)
     var x = document.getElementById(groupID);
-    var ghichu = document.getElementsByClassName(ghiChuClass);
-    for (let i= 0; i< ghichu.length; i++) {
-      ghichu[i].style.visibility = "hidden";
-    }
-    
-    if (x.style.display != 'none') {
-      x.style.display = 'none';
-      return
-    }
-    if (x.style.display == 'none') {
-      x.style.display = 'flex';
-      let ghichu1 = document.getElementById(openId);
-      ghichu1.style.visibility = "visible";
-      
-    }
+    x.style.display = 'flex';
+    let ghichu1 = document.getElementById(openId);
+    ghichu1.style.visibility = "visible";
+  }
+
+  const setClose = (ghiChuClass, openId, groupID) => {
+    var x = document.getElementById(groupID);
+    x.style.display = 'none';
+    let ghichu1 = document.getElementById(openId);
+    ghichu1.style.visibility = "hidden";
   }
 
   const arrNotUSD = data.exchangeRateDetail
@@ -182,13 +176,10 @@ function FormRate({ data, interestRate, description1, description2, description3
     }
   };
   const searchCurrentGold = (d) => {
-    console.log(d);
     const year = d.getFullYear();
     const month = d.getMonth() + 1;
     const day = d.getDate();
-    console.log(`${day}/${month}/${year}`)
     const found = goldList.find(element => element.date == `${day}/${month}/${year}`);
-    console.log(found);
     if (found) {
       setCurrentGold(found);
     } else {
@@ -321,7 +312,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                 )} ${moment(data.created_at).format('DD/MM/YYYY')}`}</p> */}
                 </div>
                 <div className="action-custom" style={{ position: "relative", top: "5px", paddingBottom: "10px"}}>
-                  <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-1" ,`ghi-chu-group`)}}>
+                  <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-1" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-1" ,`ghi-chu-group`)}}>
                     <div style={{display:"table"}}>
                       <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
                       <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
@@ -365,7 +356,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         </div>
                       </div>
                       <div className="action-custom">
-                        <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
+                        <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
                             <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
@@ -401,7 +392,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         
                       </div>
                       <div className="action-custom">
-                      <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
+                      <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
                             <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
@@ -447,7 +438,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         <div className="t4-custom">{currentGold.des_vi}</div>
                       </div>
                       <div className="action-custom">
-                      <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
+                      <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
                             <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
@@ -476,7 +467,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         <div className="t4-custom">{currentGold.des_2_vi}</div>
                       </div>
                       <div className="action-custom">
-                        <a className="t5-custom" onClick={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
+                        <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
                             <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
