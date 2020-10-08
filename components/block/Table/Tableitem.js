@@ -22,7 +22,8 @@ function TableItem({ data, maxheight }) {
   return (
     <React.Fragment>
       <section {...getCollapseProps()}>
-        <div ref={ref}>{ReactHtmlParser(data)}</div>
+
+        <div className="custom-div" ref={ref}>{ReactHtmlParser(data)}</div>
       </section>
 
       {height >= maxheight && (

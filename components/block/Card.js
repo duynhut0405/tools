@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { LinkInput } from '../common/link';
 import { getLang } from '../../utils/cookie';
 import t from '../../translation';
+import TableItem from './Table/Tableitem';
 
 const propTypes = {
   data: PropTypes.any,
@@ -62,13 +63,12 @@ function Card({ data, type, optionWidth, id }) {
         <React.Fragment>
           <section className={`${padding} card-${type}`} id={id}>
             <div className="container">
-              <div className="entry-head text-center">
-                <h2 className="ht efch-1 ef-img-l">{data === null ? '' : data.title}</h2>
+            <p className="text-center fs16">{ReactHtmlParser(data.descrip)}</p>
+              <div className="text-center" style={{padding: "30px"}}>
+                <h2 className="ht efch-1 ef-img-l">{data === null ? '' : ReactHtmlParser(data.title)}</h2>
               </div>
-              <p className="text-center fs16">{ReactHtmlParser(data.descrip)}</p>
               <br />
-              <div className="hr"></div>
-              <div className="max950">
+              <div className="">
                 <div className="timeline ">
                   {map(data.listCard, (items, index) => {
                     return (
@@ -89,14 +89,49 @@ function Card({ data, type, optionWidth, id }) {
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${items.urlImage}`}
                                 alt="images"
+                                style={{visibility:"hidden"}}
                               />
                             </div>
                           </div>
-                          <div className="col-md-6 ">
-                            <span className="circle"></span>
-                            <div className="divtext efch-2 ef-tx-t">
-                              <h2 className="title">{ReactHtmlParser(items.note_2)}</h2>
-                              <div className="desc">{ReactHtmlParser(items.note_3)}</div>
+                          <div className="col-md-6">
+                            <span className="circle circle-custom-line"></span>
+                            <div className="divtext efch-2 ef-tx-t" style= {{textAlign: (index + 1) % 2 === 0 ? "right" : "left"}}>
+                              <h4 className="">{ReactHtmlParser(items.note_2)}</h4>
+                              <div className="desc">
+                                <div
+                                    className="toggleAutoHeight toggleAutoHeight-custom"
+                                    data-more="+ Xem thêm"
+                                    data-less="- Thu gọn"
+                                    data-i=""
+                                  >
+                                  <TableItem data={items.note_3} maxheight={200} />
+                                </div>
+                              </div>
+                              <div className="img" style={{paddingTop:"20px"}}>
+                                <img
+                                  className="lazyload"
+                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                                  alt="images"
+                                  
+                                />
+                              </div>
+                              {/* <div className="desc">
+                                <div
+                                    className="toggleAutoHeight"
+                                    data-more="+ Xem thêm"
+                                    data-less="- Thu gọn"
+                                    data-i=""
+                                  >
+                                  <TableItem data={items.note_3} maxheight={150} />
+                                </div>
+                              <div className="img">
+                                <img
+                                  className="lazyload"
+                                  data-src={`${process.env.DOMAIN}${items.urlImage}`}
+                                  alt="images"
+                                  
+                                />
+                              </div> */}
                             </div>
                           </div>
                         </div>
