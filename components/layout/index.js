@@ -473,6 +473,38 @@ function Layout({ children, isPrioty, idPage }) {
                         <ul className="menu-top-header" data-style="1">
                           <li className="home"><a href="/"><img src="/static/images/home.svg"/></a><div style={homeCustom} /></li>
                           {nestChild(menuNav)}
+                          {/* <li class="highlight">
+                            <a href="#">
+                            <img src="/static/images/menu.svg" alt=""/>
+                            <span>Login eBanking</span>
+                            </a>
+                            <div className="wrapul">
+                              <ul>
+                                <li>
+                                  <a
+                                    href="https://online.mbbank.com.vn/retail/EstablishSession"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    {t('personal')}
+                                  </a>
+                                </li>
+                                <li>
+                                  <a
+                                    href="https://emb.mbbank.com.vn/corp/EstablishSession"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    {t('enterprise')}
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li> */}
+                        </ul>
+                      </div>
+                      <div className="wrap-menu-header" style={{position:"absolute", right: "0"}}>
+                        <ul className="menu-top-header" data-style="1">
                           <li class="highlight">
                             <a href="#">
                             <img src="/static/images/menu.svg" alt=""/>
