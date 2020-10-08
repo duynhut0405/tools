@@ -343,7 +343,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[1] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-4 ef-img-t" href={data.listCard[0].url}>
+                      <a className="item efch-4 ef-img-t" href={data.listCard[1].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
@@ -356,7 +356,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[2] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-5 ef-img-t" href={data.listCard[0].url}>
+                      <a className="item efch-5 ef-img-t" href={data.listCard[2].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
@@ -369,7 +369,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[3] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-6 ef-img-t" href={data.listCard[0].url}>
+                      <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
@@ -382,7 +382,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[4] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-7 ef-img-t" href={data.listCard[0].url}>
+                      <a className="item efch-7 ef-img-t" href={data.listCard[4].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
@@ -395,7 +395,7 @@ function Card({ data, type, optionWidth, id }) {
                   )}
                   {data && data.listCard && data.listCard[5] ? (
                     <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-8 ef-img-t" href={data.listCard[0].url}>
+                      <a className="item efch-8 ef-img-t" href={data.listCard[5].url}>
                             <img
                               className="lazyload"
                               data-src={`${process.env.DOMAIN}${data.listCard[5].urlImage}`}
