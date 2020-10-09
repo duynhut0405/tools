@@ -6,6 +6,7 @@ import { LinkInput } from '../common/link';
 import { getLang } from '../../utils/cookie';
 import t from '../../translation';
 import TableItem from './Table/Tableitem';
+import UseWindowResize from "../common/Resize";
 
 const propTypes = {
   data: PropTypes.any,
@@ -15,6 +16,7 @@ const propTypes = {
 };
 
 function Card({ data, type, optionWidth, id }) {
+  const size = UseWindowResize();
   let padding = '';
   if (optionWidth === '2') {
     padding = 'sec-tb';
@@ -360,7 +362,12 @@ function Card({ data, type, optionWidth, id }) {
           <section className={`sec-n-h1 group-ef loaded next-shadow`} id={id}>
             <div className="container">
               <div className="wsec">
-                <div className="title efch-1 ef-img-t">{data === null ? '' : ReactHtmlParser(data.title)}</div>
+                {size.width >= 768 ? (
+                  <div className="title efch-1 ef-img-t">{data === null ? '' : ReactHtmlParser(data.title)}</div>
+                ) : (
+                  <div className="title efch-1 ef-img-t" style={{textAlign:"center"}}>{data === null ? '' : ReactHtmlParser(data.title)}</div>
+                )}
+                
                 <div className="inner">
                   <div className="row bottom">
                   {data && data.listCard && data.listCard[0] ? (
