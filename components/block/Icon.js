@@ -3834,6 +3834,73 @@ function Icon({ data, id }) {
         </React.Fragment>
       )}
 
+      {data[0].type === "40" && (
+        <React.Fragment>
+          <section
+            className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
+            id={id}
+          >
+            <div className="question" style={{ backgroundColor: "unset" }}>
+              <div className="container">
+                <div className="title" style={{paddingBottom: "30px"}}>
+                  <div className="text-center" style={{borderBottom: "1px solid #d6d6d6"}}>
+                    <h2 className="ht ">{data[0].title || ""}</h2>
+                  </div>
+                </div>
+                <div className="">
+                  <div
+                    className="accodion-content entry-content"
+                    style={{ marginTop: "-17px" }}
+                  >
+                    <div className="inner-full">
+                      <div className="accodion accodion-1 accodion-1-3">
+                        <div className="row list-item">
+                          {map(data, (items, index) => {
+                            return (
+                              <div
+                                className={`col-sm-6 col-md-${column}`}
+                                key={index}
+                              >
+                                <div
+                                  className="item"
+                                  style={{
+                                    paddingBottom: "30px",
+                                    padding: "30px",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    backgroundColor: "#f3f3ff",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <a href={items.url ? items.url : "#"}>
+                                    
+                                    <div className="divtext">
+                                      <h4
+                                        className="title"
+                                        style={{ textTransform: "none", color: "#333333" }}
+                                      >
+                                        {items.note_1}
+                                      </h4>
+                                      <div className="detail-custom-1">
+                                        {items.note_2}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+
     </React.Fragment>
   );
 }
