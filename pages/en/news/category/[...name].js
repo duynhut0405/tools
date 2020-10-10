@@ -71,7 +71,7 @@ function CategoryDetail({ routerURL, category }) {
       )}
       {data !== null && (
         <div className="main_content">
-          <section className="banner-heading-3 next-shadow">
+          {/* <section className="banner-heading-3 next-shadow">
             <div className="container">
               <div className="divtext">
                 <div className="max750">
@@ -89,7 +89,7 @@ function CategoryDetail({ routerURL, category }) {
               data-src="/static/images/heading-10-mb.svg"
               alt="images"
             />
-          </section>
+          </section> */}
           <AboutCategory data={data} categories={data.categoryNews} />
           <Pagination page={page} setPage={value => setPage(value)} size={data.size} />
         </div>

@@ -17,15 +17,39 @@ const propTypes = {
 function About({ data, id }) {
   const date = new Date();
   const [year, setYear] = useState(moment(date).format('YYYY'));
+  const [yearSearch, serYearSearch] = useState(moment(date).format('YYYY'));
   const [page, setPage] = useState(1);
   const [listYear, setListYear] = useState([]);
   const [listNews, setListNews] = useState([]);
   const lang = getLang();
+  const [isActive, setIsActive] = useState(true);
+  const [monthSearch, setMonthSearch] = useState(moment(date).format('MM'));
 
   const getNews = async (_id, _page, number, _year) => {
+    setListNews([]);
     const res = await findAllByCategory(_id, _page, number, _year);
     if (res && res.status === 200) {
       setListNews(res.data);
+    }
+  };
+
+  const getNewsCustom = async (_id, number, _year) => {
+    const size = listNews.size;
+    for (let i = 1; i <= size; i++) {
+      setIsActive(false);
+      const res = await findAllByCategory(_id, i, number, "2020");
+      if (res && res.status === 200) {
+        const news = res.data.news;
+        let item = news[(news.length)-1];
+        let time = moment(item.created_at).format('MM/YYYY');
+        if (time ===  `${monthSearch}/${yearSearch}`) {
+          setListNews([]);
+          setListNews(res.data);
+          setPage(i);
+          setIsActive(true);
+          return;
+        }
+      }
     }
   };
 
@@ -49,51 +73,73 @@ function About({ data, id }) {
 
   useEffect(() => {
     getYear();
+    setIsActive(true);
   }, []);
 
-  useEffect(() => {
-    if (data.category.value) {
-      getNews(data.category.value, page, data.record, year);
-    }
-  }, [getNews]);
+  // useEffect(() => {
+  //   if (data.category.value) {
+  //     getNews(data.category.value, page, data.record, year);
+  //   }
+  // }, [getNews]);
 
   useEffect(() => {
     if (data.category.value) {
-      getNews(data.category.value, page, data.record, year);
+      getNews(data.category.value, page, data.record, year)
     }
-  }, [year, page]);
+  }, [page]);
+
+  useEffect(() => {
+    if (data.category.value) {
+      getNewsCustom(data.category.value, data.record, yearSearch);
+    }
+  }, [yearSearch, monthSearch]);
 
   return (
     <>
-      <main id="main" className={`${padding} about`}>
+      <main id="main" className={`${padding} about`} style={{ padding: "50px"}}>
         <div className="container" id={id}>
-          {data.title && <h1 className="text-center">{data.title}</h1>}
-          <div className=" sec-b filter-category text-center">
-            <select
-              className="select"
-              onChange={evnets => setYear(evnets.target.value)}
-              value={year}
-            >
-              {map(listYear, item => (
-                <option value={item}>{item}</option>
-              ))}
-            </select>
-          </div>
-          <div className="list-12 row list-item">
+          {data.title && 
+          <div className="entry-head text-center" style={{borderBottom: "1px solid #DADADA",paddingBottom: "10px"}}>
+            <h2 className="ht">{data.title}</h2>
+            <div className=" sec-b filter-category text-center" style={{position:"absolute", top:"0",right:"0"}}>
+              <select
+                className="select"
+                onChange={events => serYearSearch((events.target.value).toString())}
+                value={yearSearch}
+              >
+                {map(listYear, item => (
+                  <option value={item}>{item}</option>
+                ))}
+              </select>
+
+              <select
+                className="select"
+                onChange={events => setMonthSearch((events.target.value).toString())}
+                value={monthSearch}
+              >
+                <option value={"12"}>12</option>
+                <option value={"11"}>11</option>
+                <option value={"10"}>10</option>
+                <option value={"09"}>9</option>
+                <option value={"08"}>8</option>
+                <option value={"07"}>7</option>
+                <option value={"06"}>6</option>
+                <option value={"05"}>5</option>
+                <option value={"04"}>4</option>
+                <option value={"03"}>3</option>
+                <option value={"02"}>2</option>
+                <option value={"01"}>1</option>
+              </select>
+            </div>
+          </div>}
+          <div className="row list-item" style={{display: isActive ? "block" : "none"}}>
             {map(listNews.news, item => {
               return (
-                <div className="col-md-4" key={item.newsId}>
+                <div className="col-md-12" key={item.newsId}>
                   <LinkNew lang={lang} name={item.url}>
                     <a className="item efch-2 ef-img-l equal">
-                      <div className="img">
-                        <img
-                          className="lazyload"
-                          data-src={`${process.env.DOMAIN}${item.base_image}`}
-                          alt="images"
-                        />
-                      </div>
                       <div className="divtext">
-                        <div className="cl6">Ngành ngân hàng</div>
+                        <div className="date">{moment(item.created_at).format('DD/MM/YYYY')}</div>
                         <h4 className="title line2">{item.title}</h4>
                       </div>
                     </a>
@@ -102,7 +148,9 @@ function About({ data, id }) {
               );
             })}
           </div>
-          <Pagination setPage={setPage} page={page} size={listNews.size} />
+          {isActive ? (
+            <Pagination setPage={setPage} page={page} size={listNews.size} />
+          ) : null}
         </div>
       </main>
     </>
