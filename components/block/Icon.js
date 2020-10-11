@@ -2583,7 +2583,7 @@ function Icon({ data, id }) {
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
-            style={{ paddingTop: "90px" }}
+            // style={{ paddingTop: "90px" }}
           >
             <div className="container">
               <div className="inner-full">

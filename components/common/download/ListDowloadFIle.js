@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Fillter } from '../download';
+import { FillterRight } from '../download';
 import FileList from './FileList';
 import File from './File';
 import { Pagination } from '../../common';
@@ -51,9 +51,9 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
     getTypeRegulation(type);
     const width = window.innerWidth;
     if (width < 768) {
-      seachRegulation(type, datatype, 5, page, year);
+      seachRegulation(type, datatype, 6, page, year);
     } else {
-      seachRegulation(type, datatype, 10, page, year);
+      seachRegulation(type, datatype, 6, page, year);
     }
   }, [id]);
 
@@ -61,9 +61,9 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
     setYear(_year);
     const width = window.innerWidth;
     if (width < 768) {
-      seachRegulation(type, datatype, 5, page, _year);
+      seachRegulation(type, datatype, 6, page, _year);
     } else {
-      seachRegulation(type, datatype, 10, page, _year);
+      seachRegulation(type, datatype, 6, page, _year);
     }
   };
 
@@ -71,9 +71,9 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
     setDataType(_type);
     const width = window.innerWidth;
     if (width < 768) {
-      seachRegulation(type, _type, 5, page, year);
+      seachRegulation(type, _type, 6, page, year);
     } else {
-      seachRegulation(type, _type, 10, page, year);
+      seachRegulation(type, _type, 6, page, year);
     }
   };
 
@@ -81,9 +81,9 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
     setPage(_page);
     const width = window.innerWidth;
     if (width < 768) {
-      seachRegulation(type, datatype, 5, _page, year);
+      seachRegulation(type, datatype, 6, _page, year);
     } else {
-      seachRegulation(type, datatype, 10, _page, year);
+      seachRegulation(type, datatype, 6, _page, year);
     }
   };
 
@@ -100,7 +100,7 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
 
   return (
     <div className={`${padding} accodion accodion-2 downloadfile`} id={id}
-    style={{backgroundColor:"#E0F0FF"}}>
+    style={{backgroundColor:"#E0F0FF", paddingBottom: (data.type == 9 && active_title == false) ? "90px" : "28px"}}>
       <div className="container">
       <div className="question" style={{ backgroundColor: "unset" }}>
               <div className="container">
@@ -129,7 +129,7 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
                       <div className="accodion accodion-1 accodion-1-3">
                         <div className="search-block">
         {search && (
-          <Fillter
+          <FillterRight
             center
             year={year}
             type={listType}

@@ -1,4 +1,5 @@
 import Fillter from './Fillter';
+import FillterRight from './FillterRight';
 import DowloadFile from './DowloadFile';
 import DowloadVideo from './DowloadVideo';
 import DowloadFileWapper from './DowloadFileWapper';
@@ -9,6 +10,7 @@ import ListDowloadQA from './ListDowloadQA';
 
 export {
   Fillter,
+  FillterRight,
   DowloadFile,
   DowloadVideo,
   DowloadFileWapper,

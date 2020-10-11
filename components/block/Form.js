@@ -105,7 +105,8 @@ function Form({ data, pageId, id }) {
     borderRadius: "5px",
     backgroundPosition: "right",
     backgroundRepeat: "no-repeat",
-    border: "1px solid rgb(221, 221, 221)"
+    border: "1px solid rgb(221, 221, 221)",
+    backgroundSize: data.possition == "cover" ? "cover" : "contain"
   };
 
   return (
@@ -285,7 +286,7 @@ function Form({ data, pageId, id }) {
             if (item.type === 'paragraph') {
               return (
                 <div className={`col-12`}>
-                  <div className={`form-desc ${item.className}`} key={index} style={{fontSize: "16px", color: "#686868"}}>
+                  <div className={`form-desc ${item.className}`} key={index} style={{fontSize: "16px", marginBottom: "5px"}}>
                     {ReactHtmlParser(item.label)}
                   </div>
                 </div>
