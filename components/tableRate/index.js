@@ -7,21 +7,54 @@ import { searchRate } from '../../services/rate';
 import Proptypes from 'prop-types';
 import { getRateService, getInterestRateService } from '../../services/rate';
 import FormRate from '../../components/formRate';
+import { cond } from 'lodash';
 
 const propTypes = {
   data: Proptypes.object,
   id: Proptypes.number,
   search: Proptypes.bool
 };
-
 const getRate = async (query, setData) => {
+  
+  
   let res;
-  if (query === null) {
-    res = await searchRate();
-  } else {
+  // if (query === null) {
+  //   res = await searchRate();
+  // } else {
+    if(query === null){
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      query = yyyy + '/' + mm + '/' + dd;
+    }
     res = await searchRate({ date: query });
+  // }
+  let day = (query.substr(8,2));
+  let month = query.substr(5,2);
+  let year = query.substr(0,4);
+  while(res === undefined){
+    day = day - 1;
+    if(day <=0){
+      month = month - 1;
+      day = 31;
+      if(month<10){
+        month = "0" + month;
+      }
+    }
+    if(month<=0){
+      year = year -1;
+      month = 12;
+      day = 31;
+    }
+    if(day<10){
+      day = '0' + day;
+    }
+    query = year + '/' + month + '/' + day;
+    res = await searchRate({ date:query});
   }
   if (res && res !== undefined && res.status === 200) {
+  
     setData(res.data);
   }
 };

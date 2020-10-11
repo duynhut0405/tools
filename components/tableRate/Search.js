@@ -25,8 +25,7 @@ function Search({ changeDate, onSubmit, date }) {
     fetchListRate(setlistRate);
   }, []);
 
-  const dateDefault = Object.keys(listRate).length > 0 ? new Date(listRate.created_at) : new Date();
-
+  const dateDefault = new Date();
   return (
     <div className="search_ tigia mb-30 max950 ">
       <div className="row center">

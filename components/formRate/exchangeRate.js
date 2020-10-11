@@ -40,7 +40,7 @@ function ExchangeRate({ data1, data2, loan, gold, type, setTypeTable }) {
           style={{ height: '250px', overflow: 'auto' }}
         >
           <div className="tab-inner">
-            <TableRate type="interest" data={data2} />
+            <TableRate type="interest" data={loan} />
           </div>
         </div>
         </div>
@@ -61,7 +61,7 @@ function ExchangeRate({ data1, data2, loan, gold, type, setTypeTable }) {
           style={{ height: '200px', overflow: 'auto' }}
         >
           <div className="tab-inner">
-            <TableRate type="interest" data={loan} />
+            <TableRate type="interest" data={data2} />
           </div>
         </div>
         </div>
@@ -73,7 +73,7 @@ function ExchangeRate({ data1, data2, loan, gold, type, setTypeTable }) {
       <div className="cttab-v3 divtigia">
         <div className="tab-menu">
           <div className={'tg-tab'}>
-            Vàng<span className="cl5 text-normal fs18">vnđ/chỉ</span>
+    {t('Gold')}<span className="cl5 text-normal fs18">vnđ/{t('chi_vang')}</span>
           </div>
         </div>
         <div className="tab-content">

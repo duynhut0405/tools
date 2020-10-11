@@ -33,6 +33,7 @@ const searchRate = query => {
     params: query
   })
     .then(res => {
+      console.log("Avav",res)
       return res;
     })
     .catch(error => {

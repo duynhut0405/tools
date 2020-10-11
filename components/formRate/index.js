@@ -137,7 +137,6 @@ function FormRate({ data, interestRate, description1, description2, description3
         var dateString = as[0].date; // Oct 23
         var dateParts = dateString.split("/");
 
-        // month is 0-based, that's why we need dataParts[1] - 1
         var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]); 
         setStartDate(dateObject);
       })
@@ -220,14 +219,15 @@ function FormRate({ data, interestRate, description1, description2, description3
     let deposits = [];
     for (let i = 0; i < aa.length; i++) {
       let rate = aa[i];
-      if (rate.descriptionUSA == 'loan') {
-        loan.push(rate);
-      } else {
+      if (rate.descriptionUSA ==null) {
         deposits.push(rate);
+      } else {
+        loan.push(rate);
       }
     }
     setLoan(loan);
     setDeposits(deposits);
+    
     let max = deposits.reduce(function(prev, current) {
       return (prev.interest_rate > current.interest_rate) ? prev : current
     })
@@ -260,10 +260,11 @@ function FormRate({ data, interestRate, description1, description2, description3
       {data !== undefined && (
         <div className="container">
           <div className="row list-item list-2">
+            
             <div className="col-md-4">
               <div className="divquidoi">
                 <h2 className="exchange">{t('change_foreign_currency')}</h2>
-                <h5 style={{color: "#686868", fontSize: "14px", maxWidth: "264px"}}>{t('change_foreign_currency_custom')}</h5>
+                <h5 style={{color: "#686868", fontSize: "14px", maxWidth: "264px",height:"43px"}}>{t('change_foreign_currency_custom')}</h5>
                 <div style={{height:"219px"}}>
                 <div>{t('transfer_from')}</div>
                 <div className="input-group">
@@ -315,7 +316,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                   <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-1" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-1" ,`ghi-chu-group`)}}>
                     <div style={{display:"table"}}>
                       <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
-                      <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                      <div style={{display:"table-cell"}}><span>{t('note')}</span></div>
                     </div>
                   </a>
                   <div><a className="xem-chi-tiet" onClick={() => {
@@ -327,20 +328,20 @@ function FormRate({ data, interestRate, description1, description2, description3
                       setTypeTable(0);
                       setTypeSearch(4)}
                     }
-                  }>{typeSearch == 4 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                  }>{typeSearch == 4 ?t('close_read_more'): t('read_more')}</a></div>
                 </div>
 
               </div>
             </div>
-
+            
             <div className="col-md-4">
               <div className="divquidoi widget widget-2" style={{backgroundColor:"#DCF9ED"}}>
                 <h2 className="exchange">{t('interest_rate')}</h2>
                 <div className="tabset">
-                  <input type="radio" name="tabset3" id="tset3" onClick={() => {openModalTab(`tset4-1`, "tset3-1" ,`loan`, `deposits`)}}></input>
-                  <label for="tset3" id="tset3-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>Tiền vay </label>
                   <input type="radio" name="tabset4" id="tset4" onClick={() => {openModalTab(`tset3-1`, "tset4-1", `deposits`, "loan")}}></input>
-                  <label for="tset4" id="tset4-1">Tiền gửi</label>
+                  <label for="tset4" id="tset4-1">{t('deposits')}</label>
+                  <input type="radio" name="tabset3" id="tset3" onClick={() => {openModalTab(`tset4-1`, "tset3-1" ,`loan`, `deposits`)}}></input>
+                  <label for="tset3" id="tset3-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>{t('loan_interest_rate')} </label>
                   <div className="tab-panels">
                     <div className="tab-panel" id="loan">
                       <div className="content_2" style={{ height: "219px"}}>
@@ -359,7 +360,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
-                            <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                            <div style={{display:"table-cell"}}><span>{t('note')}</span></div>
                           </div>
                         </a>
                         <div><a className="xem-chi-tiet" 
@@ -374,7 +375,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                               setTypeTable(2);
                             }
                           }}
-                          >{typeTable == 2 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                          >{typeTable == 2 ?t('close_read_more') : t('read_more')}</a></div>
                       </div>
                     </div>
                     <div className="tab-panel" style={{display:"none"}} id="deposits">
@@ -395,7 +396,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                       <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
-                            <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                            <div style={{display:"table-cell"}}><span>{t('note')}</span></div>
                           </div>
                         </a>
                         <div><a className="xem-chi-tiet"
@@ -410,7 +411,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                               setTypeTable(3);
                             }
                           }}
-                        >{typeSearch == 3 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                        >{typeSearch == 3 ?t('close_read_more') : t('read_more')}</a></div>
                       </div>
                     </div>
                   </div>
@@ -421,18 +422,18 @@ function FormRate({ data, interestRate, description1, description2, description3
 
             <div className="col-md-4">
               <div className="divquidoi widget widget-2" style={{backgroundColor:"#F2F3FF"}}>
-                <h2 className="exchange">Giá Vàng</h2>
+                        <h2 className="exchange">{t('gold_price')}</h2>
                 <div className="tabset">
                   <input type="radio" name="tabset5" id="tset5" onClick={() => {openModalTab(`tset6-1`, "tset5-1" ,`mua`, `ban`)}}></input>
-                  <label for="tset5" id="tset5-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>Giá mua</label>
+                        <label for="tset5" id="tset5-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>{t('price')}</label>
                   <input type="radio" name="tabset6" id="tset6" onClick={() => {openModalTab(`tset5-1`, "tset6-1", `ban`, "mua")}}></input>
-                  <label for="tset6" id="tset6-1">Giá bán</label>
+                        <label for="tset6" id="tset6-1">{t('purchase_price')}</label>
                   <div className="tab-panels">
                     <div className="tab-panel" id="mua">
                       <div className="content_3" style={{ height: "219px"}}>
                         <div className="t1-custom">
                           {currentGold.buy_exchange}
-                          <span className="t2-custom">vnđ/<br/>chỉ</span>
+                        <span className="t2-custom">vnđ/<br/>{t('chi_vang')}</span>
                         </div>
                         <div className="t3-custom">{currentGold.gold_1_name}</div>
                         <div className="t4-custom">{currentGold.des_vi}</div>
@@ -441,7 +442,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                       <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
-                            <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                            <div style={{display:"table-cell"}}><span>{t('note')}</span></div>
                           </div>
                         </a>
                         <div><a className="xem-chi-tiet" onClick={() => {
@@ -454,14 +455,14 @@ function FormRate({ data, interestRate, description1, description2, description3
                             setTypeSearch(0);
                             setTypeGold(0);
                           }
-                        }}>{typeGold == 1 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                        }}>{typeGold == 1 ?t('close_read_more') : t('read_more')}</a></div>
                       </div>
                     </div>
                     <div className="tab-panel" style={{display:"none"}} id="ban">
                       <div className="content_3" style={{ height: "219px"}}>
                         <div className="t1-custom">
                           {currentGold.sell_exchange}
-                          <span className="t2-custom">vnđ/<br/>chỉ</span>
+                      <span className="t2-custom">vnđ/<br/>{t('chi_vang')}</span>
                         </div>
                         <div className="t3-custom">{currentGold.gold_1_name}</div>
                         <div className="t4-custom">{currentGold.des_2_vi}</div>
@@ -470,7 +471,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
-                            <div style={{display:"table-cell"}}><span>Lưu ý</span></div>
+                            <div style={{display:"table-cell"}}><span>{t('note')}</span></div>
                           </div>
                         </a>
                         <div><a className="xem-chi-tiet" onClick={() => {
@@ -483,7 +484,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                             setTypeSearch(0);
                             setTypeGold(0);
                           }
-                        }}>{typeGold == 1 ?'Đóng chi tiết >' : 'Xem chi tiết >'}</a></div>
+                        }}>{typeGold == 1 ?t('close_read_more') : t('read_more')}</a></div>
                       </div>
                     </div>
                   </div>
@@ -531,7 +532,7 @@ function FormRate({ data, interestRate, description1, description2, description3
               <div className="search_ tigia mb-30 max950 ">
                 <div className="row center">
                   <div className="col-md-4 col-lg-3">
-                    <h3 className="ctext mg-0">Tra cứu giá vàng</h3>
+                      <h3 className="ctext mg-0">{t('Search_gold_price')}</h3>
                   </div>
                   <div className="col-sm-7 col-md-5 col-lg-6">
                     <DatePicker
@@ -556,9 +557,9 @@ function FormRate({ data, interestRate, description1, description2, description3
                 <table className="table table-full table-ti-gia">
                   <tbody>
                     <tr>
-                      <th style={{textAlign:"center"}}>Loại vàng</th>
-                      <th style={{textAlign:"center"}}>Giá mua(VNĐ/chỉ)</th>
-                      <th style={{textAlign:"center"}}>Giá bán(VNĐ/chỉ)</th>
+                      <th style={{textAlign:"center"}}>{t('type_of_gold')}</th>
+                      <th style={{textAlign:"center"}}>{t('price')}(VNĐ/{t('chi_vang')})</th>
+                      <th style={{textAlign:"center"}}>{t('purchase_price')}(VNĐ/{t('chi_vang')})</th>
                     </tr>
 
                     <tr>

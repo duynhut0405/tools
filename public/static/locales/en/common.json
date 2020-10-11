@@ -157,5 +157,17 @@
   "Phone_contact_2":" 024 3767 4050",
   "New_dowload_title_before":"Or contact MB247: ",
   "New_dowload_title_after":" for advice.",
-  "space": " "
+  "note": "Notes",
+  "read_more":"Read more",
+  "close_read_more": "Close read more",
+  "deposits": "Deposits",
+  "loan_interest_rate": "Loan",
+  "price":"Price",
+  "purchase_price":"Purchase price",
+  "chi_vang": "chỉ",
+  "gold_price": "Gold Price",
+  "Search_gold_price": "Search gold price",
+  "type_of_gold":"Type of gold",
+  "Gold":"Gold",
+  "note_table": "Note"
 }

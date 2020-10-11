@@ -19,7 +19,7 @@ const AlertInfo = props => {
                   <img src="/static/images/caution.svg" alt="icon" />
                 </span>
                 <div className="info1">
-                  <h2 className="info1_title1">Lưu ý</h2>
+                  <h2 className="info1_title1">{t('note')}</h2>
                   <p className="info1_text1">
                     Xin quý khách hàng vui lòng đọc và cam kết theo các điều khoản của MB trước khi
                     hoàn thành đăng ký gói MB Home.
