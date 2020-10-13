@@ -35,7 +35,7 @@ function Search({ goldList, currentGold }) {
         </div>
         <div className="col-sm-7 col-md-5 col-lg-6">
           <DatePicker
-            selected={current.date === null ? dateDefault : goldList[0].date}
+            selected={cursearent.date === null ? dateDefault : goldList[0].date}
             // onChange={changeDate}
           ></DatePicker>
         </div>

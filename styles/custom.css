@@ -1514,7 +1514,7 @@ li.active {
   border-radius: 5px;
   line-height: 24px;
   color: #141ED2;
-  padding: 10px 15px;
+  padding: 10px 0px;
   overflow: hidden;
   font-weight: normal;
 }
@@ -3872,4 +3872,42 @@ body.mb-priority #footer-mb {
 
 .text-white {
   color: #fff;
+}
+
+.block2_box1 {
+  position: relative;
+  padding: 20px 25px 20px;
+  border-radius: 8px;
+  border: 2px solid #141ED2;
+  /* -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin-bottom: 50px;
+}
+
+.c-checked-modal__block1 .block2_box1 .box1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+@media only screen and (min-width: 768px)
+{.c-checked-modal__block1 .block2_box1 .box1 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+    border-right: 1px solid #D8D8D8;
+}}
+
+.location {
+  padding: 10px 0px;
 }
