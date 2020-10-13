@@ -15,7 +15,7 @@ const propTypes = {
 
 const searchBranches = async (query, setData) => {
   const res = await searchBranchesService(query);
-  console.log(res.data);
+
   setData(res.data);
   // if (res && res !== undefined && res.status === 200) {
   //   setData(res.data);
@@ -121,7 +121,7 @@ function Transaction({ data, id }) {
     setDistrictValue(null);
     searchBranches2(
       {
-        // districtCity: district,
+        districtCity: district,
         networkCategory: branches_type,
         provinceCity: provinceItem.value,
         search: query
@@ -159,6 +159,8 @@ function Transaction({ data, id }) {
   };
 
   const handleBranchesType = type => {
+    console.log('hello')
+    setBranchesType(type);
     searchBranches(
       {
         districtCity: district,
@@ -168,8 +170,8 @@ function Transaction({ data, id }) {
       },
       setListBranches
     );
-    setZoom(10);
-    setBranchesType(type);
+    setZoom(14);
+    // setBranchesType(type);
   };
 
   const getDetail = branches => {
@@ -258,6 +260,7 @@ function Transaction({ data, id }) {
                 onSearch={onSearch}
                 districtValue={districtValue}
                 setBranchesType={handleBranchesType}
+                setBranchesType2={handleBranchesType}
                 setDistrict={handleDistrict}
                 getDetail={getDetail}
               />

@@ -1627,14 +1627,14 @@ ul.menu.line>li:not(:first-child):before {
 @media only screen and (min-width: 768px)
 {
   .sec-locations .map-list-store {
-    top: 175px !important;
+    top: 270px !important;
   }
 }
 
 @media only screen and (min-width: 1200px){
 .sec-locations .ajax-content-map {
-    top: 45px;
-    bottom: 45px;
+    top: 40px;
+    bottom: 10px;
     left: 45px;
     right: 45px;
 }

@@ -12,6 +12,7 @@ const propTypes = {
   setDistrict: PropTypes.func,
   setQuery: PropTypes.func,
   setBranchesType: PropTypes.func,
+  setBranchesType2: PropTypes.func,
   handleProvince: PropTypes.func,
   t: PropTypes.func,
   getDetail: PropTypes.func,
@@ -28,6 +29,7 @@ function BoxSearch({
   branches_type,
   handleProvince,
   setBranchesType,
+  setBranchesType2,
   setQuery,
   setDistrict,
   getDetail,
@@ -41,8 +43,8 @@ function BoxSearch({
 
   return (
     <div className="ajax-content-map">
-      <h5 class="uppercase">{t('net_work')}</h5>
-      {/* <ul className="menu row grid-space-0">
+      <h5 class="uppercase" style={{marginBottom:"0px"}}>{t('net_work')}</h5>
+      <ul className="menu row grid-space-0">
         <li
           className={branches_type === 'all' ? 'col-4 active' : 'col-4'}
           onClick={() => setBranchesType('all')}
@@ -51,17 +53,17 @@ function BoxSearch({
         </li>
         <li
           className={branches_type === 'transaction' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('transaction')}
+          onClick={() => setBranchesType2('transaction')}
         >
           <span className="item">{t('transaction')}</span>
         </li>
         <li
           className={branches_type === 'atm' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('atm')}
+          onClick={() => setBranchesType2('atm')}
         >
           <span className="item">{t('atm')}</span>
         </li>
-      </ul> */}
+      </ul>
 
       <div className="form-search-focus mb-20">
           <input
@@ -74,7 +76,7 @@ function BoxSearch({
             <i className="icon-search-2"></i>
           </button>
       </div>
-      <div className="mb-20">
+      <div className="mb-10">
         {/* <div>{t('province')}</div> */}
         <Select
           className="fix-select"
@@ -86,6 +88,21 @@ function BoxSearch({
             longitude: province.longitude
           }))}
           onChange={handleProvince}
+        />
+      </div>
+      <div className="mb-20">
+        {/* <div>{t('district')}</div> */}
+        <Select
+          className="fix-select1"
+          placeholder={t('district')}
+          value={districtValue}
+          options={map(listDistrict, district => ({
+            value: district.id,
+            label: district.name,
+            latitude: district.latitude,
+            longitude: district.longitude
+          }))}
+          onChange={provinceItem => setDistrict(provinceItem.value, provinceItem.label)}
         />
       </div>
       <div className="map-list-store">
