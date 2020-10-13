@@ -13,57 +13,9 @@ function create_UUID(){
   return uuid;
 }
 
-const setMoblie = () => {
-  const element = document.getElementById('modal-search-branch');
-  let xmls = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.mbbank.com.vn/service/global/mbsoabussinesssupport/humanresourcemanagement/employeedatamanagement/getcrmrminfobymobile/v1_0">'+
-              '<soapenv:Header/>'+
-              '<soapenv:Body>'+
-                  '<v1:getCRMRmInfoByMobile_v1_0>'+
-                    '<GetCRMRmInfoByMobileInput>'+
-                        '<Header>'+
-                          '<Common>'+
-                              '<ClientMessageId>'+create_UUID()+'</ClientMessageId>'+
-                              
-                              '<AdditionalInformation>'+
-                              '</AdditionalInformation>'+
-                          '</Common>'+
-                          '<Client>'+
-                              '<SourceAppID>t24</SourceAppID>'+
-                          '</Client>'+
-                        '</Header>'+
-                        '<MobileNum>0918295533</MobileNum>'+
-                    '</GetCRMRmInfoByMobileInput>'+
-                  '</v1:getCRMRmInfoByMobile_v1_0>'+
-              '</soapenv:Body>'+
-            '</soapenv:Envelope>';
-
-  var xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
-  
-  xhr.addEventListener("readystatechange", function() {
-    if(this.readyState === 4) {
-      let parser = new DOMParser();
-      let xmlDoc = parser.parseFromString(this.responseText,"text/xml");
-      setBranch(xmlDoc.getElementsByTagName("Branch")[0]);
-      console.log(branch)
-      // setEmail(xmlDoc.getElementsByTagName("Email")[0]);
-      // setFullName(xmlDoc.getElementsByTagName("FullName")[0]);
-      // setGender(xmlDoc.getElementsByTagName("Gender")[0]);
-      // setOfficePhone(xmlDoc.getElementsByTagName("OfficePhone")[0]);
-      // setMobile(xmlDoc.getElementsByTagName("mobile")[0]);
-      // setPosition(xmlDoc.getElementsByTagName("Position")[0]);
-      // setTitle(xmlDoc.getElementsByTagName("Title")[0]);
-    }
-  });
-  
-  xhr.open("POST", "http://localhost:8088/mockMBSOABussinessSupport_HumanResourceManagement_EmployeeDataManagement_Inbound_Service_WebService_Provider_getCRMRmInfoByMobile_v1_0_Binder");
-  xhr.setRequestHeader("Content-Type", "text/plain");
-  
-  xhr.send(xmls);
-}
-
-const Tab2 = props => {
-  const { mobileNumber, setMoblieNumber } = props;
+const Tab2 = () => {
+  // const [initMobileNumber, setInitMoblieNumber] = useState('');
+  const [initMobileNumber, setInitMoblieNumber] = useState('01233444555');
   // const [data, setData] = useState({});
   const [branch, setBranch] = useState('');
   const [Email, setEmail] = useState('');
@@ -73,6 +25,56 @@ const Tab2 = props => {
   const [Mobile, setMobile] = useState('');
   const [Position, setPosition] = useState('');
   const [Title, setTitle] = useState('');
+
+  useEffect(() => {
+    
+    const element = document.getElementById('modal-search-branch');
+
+  }, [initMobileNumber]);
+
+  const handleChange = async event => {
+    console.log(event.target.value);
+    let xmls = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.mbbank.com.vn/service/global/mbsoabussinesssupport/humanresourcemanagement/employeedatamanagement/getcrmrminfobymobile/v1_0">'+
+                '<soapenv:Header/>'+
+                '<soapenv:Body>'+
+                    '<v1:getCRMRmInfoByMobile_v1_0>'+
+                      '<GetCRMRmInfoByMobileInput>'+
+                          '<Header>'+
+                            '<Common>'+
+                                '<ClientMessageId>'+create_UUID()+'</ClientMessageId>'+
+                                
+                                '<AdditionalInformation>'+
+                                '</AdditionalInformation>'+
+                            '</Common>'+
+                            '<Client>'+
+                                '<SourceAppID>t24</SourceAppID>'+
+                            '</Client>'+
+                          '</Header>'+
+                          '<MobileNum>'+initMobileNumber+'</MobileNum>'+
+                      '</GetCRMRmInfoByMobileInput>'+
+                    '</v1:getCRMRmInfoByMobile_v1_0>'+
+                '</soapenv:Body>'+
+              '</soapenv:Envelope>';
+    var config = {
+      method: 'post',
+      url: 'http://localhost:8088/mockMBSOABussinessSupport_HumanResourceManagement_EmployeeDataManagement_Inbound_Service_WebService_Provider_getCRMRmInfoByMobile_v1_0_Binder',
+      headers: { 
+        'Content-Type': 'text/plain'
+      },
+      data : xmls
+    };
+
+    await axios(config)
+    .then(function (response) {
+      let parser = new DOMParser();
+      let xmlDoc = parser.parseFromString(response.data,"text/xml");
+      console.log(xmlDoc);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
+  };
 
 
   return (
@@ -86,14 +88,14 @@ const Tab2 = props => {
                   id="modal-search-branch"
                   type="text"
                   placeholder="Nhập số điện thoại liên hệ"
-                  // value={mobileNumber}
-                  // onChange={e => setMoblie(e)}
+                  value={initMobileNumber}
+                  onChange={e => handleChange(e)}
                 />
                 <i className="icon-search-2"></i>
               </div>
             </div>
             <div className="col-12 col-sm-3 text-center">
-              <button className="btn c-modal-search1-btn1-js" onClick={setMoblie()}>Chọn</button>
+              <button className="btn c-modal-search1-btn1-js">Chọn</button>
             </div>
           </div>
         </div>
@@ -128,9 +130,9 @@ const Tab2 = props => {
   );
 };
 
-Tab2.propTypes = {
-  mobileNumber: PropTypes.string,
-  setMoblieNumber: PropTypes.func,
-};
+// Tab2.propTypes = {
+//   mobileNumber: PropTypes.string,
+//   setMoblieNumber: PropTypes.func,
+// };
 
 export default Tab2;
