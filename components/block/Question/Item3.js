@@ -19,23 +19,24 @@ function QuestionItems({ question, answer, index, id }) {
   }, []);
 
   return (
-    <div className="accodion-tab accodion-1-1 ">
+    <div className="accodion-tab">
       <input
         id={`checkbox_${index}`}
         type="checkbox"
         checked={active}
         onClick={() => setAcive(!active)}
       />
-      <label htmlFor={`checkbox_${id}_${index}`} className="entry-head text-center block-question-index" style={{ marginBottom: "20px"}}>
-        <span>{question}</span>
+      <label htmlFor={`checkbox_${index}`} className="entry-head text-center block-question-index" style={{ marginBottom: "20px"}}>
+        <h2 className="ht ">{question || ''}</h2>
         <span className="triangle">
           <i className="icon-plus"></i>
         </span>
       </label>
       <div className="accodion-content entry-content">
-      <div className="inner-full" style={{padding:"30px", backgroundColor: "#F2F2F2", borderRadius: "8px"}}>{ReactHtmlParser(answer)}</div>
+      <div className="inner-full" style={{padding:"30px", backgroundColor: "#F2F2F2"}}>{ReactHtmlParser(answer)}</div>
       </div>
     </div>
+
   );
 }
 
