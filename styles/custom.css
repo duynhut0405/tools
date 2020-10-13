@@ -2052,9 +2052,9 @@ ul.menu.line>li:not(:first-child):before {
 .accodion-tab input:checked+[class*=-index] .triangle i:before {
   content: "\E931";
 }
-.question{
+/* .question{
   background-color: #F2F2F2;
-}
+} */
 .question .accodion-tab .block-question-index{
   display: flex;
   justify-content: space-between;
