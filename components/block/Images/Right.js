@@ -208,7 +208,7 @@ function ImageRight({ items, padding, id, type }) {
                 )}
               </div>
             </div>
-            <div className="col-lg-6" style={{marginBottom:"0px", padding: "0px"}}>
+            <div className="col-lg-6" style={{marginBottom:"0px"}}>
               {!active && (
                 <div
                   className={items.video_url ? 'single_video  tRes_4_3 max750' : ''}
