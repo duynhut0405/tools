@@ -7,6 +7,17 @@ import ProppTypes from 'prop-types';
 import { getAddressServices } from '../../services/google.api';
 import { searchBranchesService, getProvinceService, getDistrictService } from '../../services/map';
 
+function array_move(arr, old_index, new_index) {
+  if (new_index >= arr.length) {
+      var k = new_index - arr.length + 1;
+      while (k--) {
+          arr.push(undefined);
+      }
+  }
+  arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+  return arr; // for testing
+};
+
 const propTypes = {
   listBranches: ProppTypes.array,
   data: ProppTypes.object,
@@ -25,7 +36,11 @@ const searchBranches = async (query, setData) => {
 const getProvince = async setData => {
   const res = await getProvinceService();
   if (res && res !== undefined && res.status === 200) {
-    setData(res.data);
+    let result = res.data;
+    result = array_move(res.data, 53, 0);
+    result = array_move(res.data, 54, 1);
+    // console.log(result);
+    setData(result);
   }
 };
 
@@ -159,7 +174,7 @@ function Transaction({ data, id }) {
   };
 
   const handleBranchesType = type => {
-    console.log('hello')
+    setListBranches([])
     setBranchesType(type);
     searchBranches(
       {
