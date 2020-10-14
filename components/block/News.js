@@ -1166,7 +1166,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
           {map(listNews, (item, index) => (
                   <div className="col-md-6 efch-5 ef-img-t" key={index} style={{maxHeight:"356.39px"}}>
                     <LinkNew lang={lang} name={item.url}>
-                      <a className={`item tRes_66 blue-shadow`}>
+                      <a className={`item tRes_66 blue-shadow blue-shadow-custom`}>
                           <img
                             className="lazyload"
                             data-src={
@@ -1178,7 +1178,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             style={{borderRadius: "8px"}}
                           />
                         <div className="divtext">
-                          <h4 className="title line2 on-hover-blue">{item.title}</h4>
+                          <h4 className="title line2">{item.title}</h4>
                         </div>
                       </a>
                     </LinkNew>
@@ -1187,7 +1187,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
           {map(listNewsTabs, (item, index) => (
                   <div className="col-md-4 efch-5 ef-img-t" key={index}>
                     <LinkNew lang={lang} name={item.url}>
-                      <a className={`item tRes_66 blue-shadow`}>
+                      <a className={`item tRes_66 blue-shadow blue-shadow-custom`}>
                           <img
                             className="lazyload"
                             data-src={
@@ -1199,7 +1199,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             style={{borderRadius: "8px"}}
                           />
                         <div className="divtext">
-                          <h5 className="title line2 on-hover-blue">{item.title}</h5>
+                          <h5 className="title line2">{item.title}</h5>
                         </div>
                       </a>
                     </LinkNew>

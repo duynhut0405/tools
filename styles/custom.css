@@ -3540,6 +3540,17 @@ ul.menu.line>li:not(:first-child):before {
   background: linear-gradient(0deg, rgba(115, 165, 243, 0.6) 0%, rgba(115, 165, 243, 0.001) 40%) !important;
 }
 
+
+.blue-shadow-custom:hover .divtext {
+  /* color: #141ED2; */
+  background: linear-gradient(0deg, rgba(83, 133, 214, 0.6) 0%, rgba(115, 165, 243, 0.001) 100%) !important;
+}
+
+.blue-shadow-custom:hover img {
+  transform: scale(1.2);
+  
+}
+
 .none-shadow:before {
   background: none !important;
 }
