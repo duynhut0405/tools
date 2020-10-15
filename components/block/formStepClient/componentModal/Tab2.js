@@ -17,6 +17,7 @@ const Tab2 = props => {
   const { formState, setFormState } = props;
   const [initMobileNumber, setInitMoblieNumber] = useState('');
   // const [data, setData] = useState({});
+  // const [rmCode, setRmCode] = useState('');
   const [branch, setBranch] = useState('');
   const [Email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
@@ -58,7 +59,7 @@ const Tab2 = props => {
               '</soapenv:Envelope>';
     var config = {
       method: 'post',
-      url: `${process.env.LANDING_PAGE_URL}`,
+      url: process.env.LANDING_PAGE_URL,
       headers: { 
         'Content-Type': 'text/plain'
       },
@@ -69,6 +70,7 @@ const Tab2 = props => {
     .then(function (response) {
       let parser = new DOMParser();
       let xmlDoc = parser.parseFromString(response.data,"text/xml");
+      console.log(xmlDoc);
       setBranch(xmlDoc.getElementsByTagName("Branch")[0].textContent);
       setEmail(xmlDoc.getElementsByTagName("Email")[0].textContent);
       setFullName(xmlDoc.getElementsByTagName("FullName")[0].textContent);
@@ -79,6 +81,7 @@ const Tab2 = props => {
       setTitle(xmlDoc.getElementsByTagName("Title")[0].textContent);
       setActive(true);
       let staffInfo = {
+        'RmCode': xmlDoc.getElementsByTagName("RmCode")[0].textContent,
         'branch': xmlDoc.getElementsByTagName("Branch")[0].textContent,
         'Email': xmlDoc.getElementsByTagName("Email")[0].textContent,
         'fullName': xmlDoc.getElementsByTagName("FullName")[0].textContent,
@@ -94,29 +97,10 @@ const Tab2 = props => {
       }));
     })
     .catch(function (error) {
-      console.log(error);
+      setActive(false);
+      // console.log(error);
     });
-    
   };
-
-  const setStaff = () => {
-    console.log(branch);
-    // let staffInfo = {
-    //   'branch': branch,
-    //   'Email': Email,
-    //   'fullName': fullName,
-    //   'Mobile': Mobile,
-    //   'OfficePhone': OfficePhone,
-    //   'Position': Position,
-    //   'Title': Title
-    // }
-    // setFormState(() => ({
-    //   ...formState,
-    //   staff_info: staffInfo,
-    // }));
-    // console.log(formState);
-  };
-
 
   return (
     <div className="block2" data-tabname="name2">
@@ -140,7 +124,7 @@ const Tab2 = props => {
             </div> */}
           </div>
         </div>
-        <div className="c-modal-search1-js">
+        <div className="c-modal-search1-js" style={{display: Active ? 'true' : 'false'}}>
           <div className="block2_box1">
             <div className="row">
               <div className="box1 col-12 col-md-6">

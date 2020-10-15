@@ -87,7 +87,7 @@ const FirstSuccessModal = props => {
                   required={true}
                   value="name1"
                   onChange={handleSelect}
-                  defaultChecked="true"
+                  // defaultChecked="true"
                   checked={selected === 'name1'}
                 />
                 <span></span>
