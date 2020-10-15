@@ -13,9 +13,9 @@ function create_UUID(){
   return uuid;
 }
 
-const Tab2 = () => {
-  // const [initMobileNumber, setInitMoblieNumber] = useState('');
-  const [initMobileNumber, setInitMoblieNumber] = useState('01233444555');
+const Tab2 = props => {
+  const { formState, setFormState } = props;
+  const [initMobileNumber, setInitMoblieNumber] = useState('');
   // const [data, setData] = useState({});
   const [branch, setBranch] = useState('');
   const [Email, setEmail] = useState('');
@@ -25,6 +25,7 @@ const Tab2 = () => {
   const [Mobile, setMobile] = useState('');
   const [Position, setPosition] = useState('');
   const [Title, setTitle] = useState('');
+  const [Active, setActive] = useState(false);
 
   useEffect(() => {
     
@@ -33,7 +34,7 @@ const Tab2 = () => {
   }, [initMobileNumber]);
 
   const handleChange = async event => {
-    console.log(event.target.value);
+    setInitMoblieNumber(event.target.value);
     let xmls = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.mbbank.com.vn/service/global/mbsoabussinesssupport/humanresourcemanagement/employeedatamanagement/getcrmrminfobymobile/v1_0">'+
                 '<soapenv:Header/>'+
                 '<soapenv:Body>'+
@@ -57,7 +58,7 @@ const Tab2 = () => {
               '</soapenv:Envelope>';
     var config = {
       method: 'post',
-      url: 'http://localhost:8088/mockMBSOABussinessSupport_HumanResourceManagement_EmployeeDataManagement_Inbound_Service_WebService_Provider_getCRMRmInfoByMobile_v1_0_Binder',
+      url: `${process.env.LANDING_PAGE_URL}`,
       headers: { 
         'Content-Type': 'text/plain'
       },
@@ -68,12 +69,52 @@ const Tab2 = () => {
     .then(function (response) {
       let parser = new DOMParser();
       let xmlDoc = parser.parseFromString(response.data,"text/xml");
-      console.log(xmlDoc);
+      setBranch(xmlDoc.getElementsByTagName("Branch")[0].textContent);
+      setEmail(xmlDoc.getElementsByTagName("Email")[0].textContent);
+      setFullName(xmlDoc.getElementsByTagName("FullName")[0].textContent);
+      setGender(xmlDoc.getElementsByTagName("Gender")[0].textContent);
+      setOfficePhone(xmlDoc.getElementsByTagName("OfficePhone")[0].textContent);
+      setMobile(xmlDoc.getElementsByTagName("Mobile")[0].textContent);
+      setPosition(xmlDoc.getElementsByTagName("Position")[0].textContent);
+      setTitle(xmlDoc.getElementsByTagName("Title")[0].textContent);
+      setActive(true);
+      let staffInfo = {
+        'branch': xmlDoc.getElementsByTagName("Branch")[0].textContent,
+        'Email': xmlDoc.getElementsByTagName("Email")[0].textContent,
+        'fullName': xmlDoc.getElementsByTagName("FullName")[0].textContent,
+        'Gender': xmlDoc.getElementsByTagName("Gender")[0].textContent,
+        'Mobile': xmlDoc.getElementsByTagName("Mobile")[0].textContent,
+        'OfficePhone': xmlDoc.getElementsByTagName("OfficePhone")[0].textContent,
+        'Position': xmlDoc.getElementsByTagName("Position")[0].textContent,
+        'Title': xmlDoc.getElementsByTagName("Title")[0].textContent
+      }
+      setFormState(() => ({
+        ...formState,
+        staff_info: staffInfo,
+      }));
     })
     .catch(function (error) {
       console.log(error);
     });
     
+  };
+
+  const setStaff = () => {
+    console.log(branch);
+    // let staffInfo = {
+    //   'branch': branch,
+    //   'Email': Email,
+    //   'fullName': fullName,
+    //   'Mobile': Mobile,
+    //   'OfficePhone': OfficePhone,
+    //   'Position': Position,
+    //   'Title': Title
+    // }
+    // setFormState(() => ({
+    //   ...formState,
+    //   staff_info: staffInfo,
+    // }));
+    // console.log(formState);
   };
 
 
@@ -82,7 +123,7 @@ const Tab2 = () => {
       <div className="col-12">
         <div className="block2_search1">
           <div className="row">
-            <div className="col-12 col-sm-9">
+            <div className="col-12 col-sm-12">
               <div className="form-search-focus">
                 <input
                   id="modal-search-branch"
@@ -94,9 +135,9 @@ const Tab2 = () => {
                 <i className="icon-search-2"></i>
               </div>
             </div>
-            <div className="col-12 col-sm-3 text-center">
-              <button className="btn c-modal-search1-btn1-js">Chọn</button>
-            </div>
+            {/* <div className="col-12 col-sm-3 text-center">
+              <button className="btn" onClick={setStaff()}>Chọn nhân viên</button>
+            </div> */}
           </div>
         </div>
         <div className="c-modal-search1-js">
@@ -117,7 +158,6 @@ const Tab2 = () => {
               <div className="col-12 col-md-6">
                <div className="box2">
                 <h3>{Title != null || Title != undefined ? Title : ''}</h3>
-                {/* <p>Toà nhà MBBank - Hội sở 21 Cát Linh, Đống Đa, Hà Nội</p> */}
                 <p>{`Điện thoại: ${Mobile != null || Mobile != undefined ? Mobile : ''}`}</p>
                 <p>{`Email: ${Email != null || Email != undefined ? Email : ''}`}</p>
                </div>
@@ -130,9 +170,9 @@ const Tab2 = () => {
   );
 };
 
-// Tab2.propTypes = {
-//   mobileNumber: PropTypes.string,
-//   setMoblieNumber: PropTypes.func,
-// };
+Tab2.propTypes = {
+  formState: PropTypes.object,
+  setFormState: PropTypes.func
+};
 
 export default Tab2;

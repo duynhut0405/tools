@@ -118,8 +118,8 @@ const FirstSuccessModal = props => {
               )}
               {selected === 'name2' && 
                 <Tab2
-                  // mobileNumber={mobileNumber}
-                  // setMoblieNumber={setMoblieNumber}
+                  formState={formState}
+                  setFormState={setFormState}
                 />}
             </div>
           </WrapModal>
