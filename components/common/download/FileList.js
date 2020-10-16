@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { getLang } from '../../../utils/cookie';
 
 const propTypes = {
   year: PropTypes.string,
@@ -13,6 +14,7 @@ const propTypes = {
 
 function FileList({ year, isChecked, iconPlus, data }) {
   const [checked, setChecked] = useState(isChecked);
+  const lang = getLang();
   return (
     <div className="accodion accodion-2">
       <div className="accodion-tab ">
@@ -31,11 +33,31 @@ function FileList({ year, isChecked, iconPlus, data }) {
               <div className="col-md-12">
                 <ul className="list-download ">
                   {map(data, (item, index) => {
-                    if (index % 2 === 0 || index % 2 !== 0) {
+                    if (lang != 'en') {
                       return (
                         <li>
                           <a
                             href={`${process.env.DOMAIN.substring(
+                              0,
+                              process.env.DOMAIN.length - 1
+                            )}/uploads${item.urlFile}`}
+                            download
+                          >
+                            <span className="date" style={{width: "10%",paddingRight: "5px"}}>{moment(item.createdAt).format('DD/MM/YYYY')}</span>
+                            <span className="title">
+                              <i className="icon-t14"></i> {item.name}
+                            </span>
+                            <span className="down">
+                              <i className="icon-arrow-6 ib"></i>
+                            </span>
+                          </a>
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li>
+                          <a
+                            href={ item.imageVideo != undefined & item.imageVideo != '' ? `${process.env.DOMAIN}uploads${item.imageVideo}` : `${process.env.DOMAIN.substring(
                               0,
                               process.env.DOMAIN.length - 1
                             )}/uploads${item.urlFile}`}
