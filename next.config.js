@@ -41,7 +41,8 @@ module.exports = withPWA(
           MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api/fe',
           ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe',
           FRONTEND_URL: 'https://mbbank6.mangoads.com.vn/',
-          FRONTEND_URL_LOAN: 'https://mbbank6.mangoads.com.vn'
+          FRONTEND_URL_LOAN: 'https://mbbank6.mangoads.com.vn',
+          LANDING_PAGE_URL: 'http://localhost:8088/mockMBSOABussinessSupport_HumanResourceManagement_EmployeeDataManagement_Inbound_Service_WebService_Provider_getCRMRmInfoByMobile_v1_0_Binder'
         },
         exportTrailingSlash: true,
         pwa: {

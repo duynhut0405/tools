@@ -7,6 +7,17 @@ import ProppTypes from 'prop-types';
 import { getAddressServices } from '../../services/google.api';
 import { searchBranchesService, getProvinceService, getDistrictService } from '../../services/map';
 
+function array_move(arr, old_index, new_index) {
+  if (new_index >= arr.length) {
+      var k = new_index - arr.length + 1;
+      while (k--) {
+          arr.push(undefined);
+      }
+  }
+  arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+  return arr; // for testing
+};
+
 const propTypes = {
   listBranches: ProppTypes.array,
   data: ProppTypes.object,
@@ -15,7 +26,7 @@ const propTypes = {
 
 const searchBranches = async (query, setData) => {
   const res = await searchBranchesService(query);
-  console.log(res.data);
+
   setData(res.data);
   // if (res && res !== undefined && res.status === 200) {
   //   setData(res.data);
@@ -25,7 +36,11 @@ const searchBranches = async (query, setData) => {
 const getProvince = async setData => {
   const res = await getProvinceService();
   if (res && res !== undefined && res.status === 200) {
-    setData(res.data);
+    let result = res.data;
+    result = array_move(res.data, 53, 0);
+    result = array_move(res.data, 54, 1);
+    // console.log(result);
+    setData(result);
   }
 };
 
@@ -121,7 +136,7 @@ function Transaction({ data, id }) {
     setDistrictValue(null);
     searchBranches2(
       {
-        // districtCity: district,
+        districtCity: district,
         networkCategory: branches_type,
         provinceCity: provinceItem.value,
         search: query
@@ -159,6 +174,8 @@ function Transaction({ data, id }) {
   };
 
   const handleBranchesType = type => {
+    setListBranches([])
+    setBranchesType(type);
     searchBranches(
       {
         districtCity: district,
@@ -168,8 +185,8 @@ function Transaction({ data, id }) {
       },
       setListBranches
     );
-    setZoom(10);
-    setBranchesType(type);
+    setZoom(14);
+    // setBranchesType(type);
   };
 
   const getDetail = branches => {
@@ -258,6 +275,7 @@ function Transaction({ data, id }) {
                 onSearch={onSearch}
                 districtValue={districtValue}
                 setBranchesType={handleBranchesType}
+                setBranchesType2={handleBranchesType}
                 setDistrict={handleDistrict}
                 getDetail={getDetail}
               />

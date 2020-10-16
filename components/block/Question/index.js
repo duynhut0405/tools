@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { map, isEmpty, slice } from 'lodash';
 import Question from './Item';
 import Question2 from './Item2';
+import Question3 from './Item3';
 import Proptypes from 'prop-types';
 import t from '../../../translation';
 import { findAllNewsByCategory } from '../../../services/news';
@@ -64,17 +65,32 @@ function Questions({ data, id }) {
   
 
   if (data.listBlock && data.listBlock.length > 0) {
+    
     return (
       <React.Fragment>
         <section className={`${padding} sec-cauhoi question`} id={id} style={{paddingBottom:"0px"}}>
           <div className="container">
-            {((Number(data.optionChoose) === 1) || (Number(data.optionChoose) === 2)) &&
+            {(((Number(data.optionChoose) === 1) || (Number(data.optionChoose) === 2)) && (data.listBlock[0].title !== '')) &&
               <div className="entry-head text-center block-question-index">
                {data.listBlock && data.listBlock[0].title !== undefined && (
                  <h2 className="ht ">{data.listBlock[0].title || ''}</h2>
                )}
               </div>
             }
+
+                  {Number(data.optionChoose) === 5 &&
+                  map(listPagination, (
+                    item,
+                    index //
+                  ) => (
+                    <Question3
+                      key={index}
+                      index={`1-${index}`}
+                      id={index}
+                      answer={item.answer}
+                      question={item.question}
+                    />
+                  ))}
             
             {(Number(data.optionChoose) === 3)    && 
               <div className="accodion-tab">

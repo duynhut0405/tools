@@ -208,7 +208,7 @@ function ImageRight({ items, padding, id, type }) {
                 )}
               </div>
             </div>
-            <div className="col-lg-6" style={{marginBottom:"0px", padding: "0px"}}>
+            <div className="col-lg-6" style={{marginBottom:"0px"}}>
               {!active && (
                 <div
                   className={items.video_url ? 'single_video  tRes_4_3 max750' : ''}
@@ -526,7 +526,7 @@ function ImageRight({ items, padding, id, type }) {
       <section
         className={`sec-b sec-img-svg group-ef loaded block-icon-${items.type}`}
         id={id}
-        style={{ paddingTop: "90px" }}
+        style={{ paddingTop: items.note_2 !== undefined || items.note_2 !== '' ? "90px" : "72px", paddingBottom: "72px" }}
       >
         <div className="container">
           <div className="text-center blog-custom">
@@ -535,7 +535,7 @@ function ImageRight({ items, padding, id, type }) {
                 { ReactHtmlParser(items.note_2)}
               </h2>
               <div>
-                <h4 className="intro-des-custom-1">
+                <h4 className="intro-des-custom-1" style={{    width: "70%",margin: "auto"}}>
                   {ReactHtmlParser(items.note_3)}
                 </h4>
               </div>

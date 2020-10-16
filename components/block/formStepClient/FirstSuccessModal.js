@@ -87,7 +87,7 @@ const FirstSuccessModal = props => {
                   required={true}
                   value="name1"
                   onChange={handleSelect}
-                  defaultChecked="true"
+                  // defaultChecked="true"
                   checked={selected === 'name1'}
                 />
                 <span></span>
@@ -118,8 +118,8 @@ const FirstSuccessModal = props => {
               )}
               {selected === 'name2' && 
                 <Tab2
-                  mobileNumber={mobileNumber}
-                  setMoblieNumber={setMoblieNumber}
+                  formState={formState}
+                  setFormState={setFormState}
                 />}
             </div>
           </WrapModal>

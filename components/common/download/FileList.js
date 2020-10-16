@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import map from 'lodash/map';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 const propTypes = {
   year: PropTypes.string,
@@ -27,10 +28,10 @@ function FileList({ year, isChecked, iconPlus, data }) {
         <div className="accodion-content">
           <div className="inner">
             <div className="row grid-space-60">
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <ul className="list-download ">
                   {map(data, (item, index) => {
-                    if (index % 2 === 0) {
+                    if (index % 2 === 0 || index % 2 !== 0) {
                       return (
                         <li>
                           <a
@@ -40,6 +41,7 @@ function FileList({ year, isChecked, iconPlus, data }) {
                             )}/uploads${item.urlFile}`}
                             download
                           >
+                            <span className="date" style={{width: "10%",paddingRight: "5px"}}>{moment(item.createdAt).format('DD/MM/YYYY')}</span>
                             <span className="title">
                               <i className="icon-t14"></i> {item.name}
                             </span>
@@ -54,7 +56,7 @@ function FileList({ year, isChecked, iconPlus, data }) {
                   })}
                 </ul>
               </div>
-              <div className="col-md-6">
+              {/* <div className="col-md-12">
                 <ul className="list-download ">
                   {map(data, (item, index) => {
                     if (index % 2 !== 0) {
@@ -80,7 +82,7 @@ function FileList({ year, isChecked, iconPlus, data }) {
                     return null;
                   })}
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

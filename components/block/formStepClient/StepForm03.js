@@ -37,11 +37,12 @@ const StepForm03 = props => {
   };
   const showModalContinue = e => {
     e.preventDefault();
-    if (formState.address_name && formState.address_name) {
+    console.log(formState);
+    if ((formState.address_name) || (formState.staff_info)) {
       setModalContinue(true);
       setActive(false);
     } else {
-      alert('Vui lòng chọn tên chi nhánh ngân hàng');
+      alert('Vui lòng chọn tên chi nhánh ngân hàng hoặc chọn cán bộ tín dụng phù hợp');
     }
   };
   const showActiveAlertInfo = () => {

@@ -8,10 +8,12 @@ const propTypes = {
   size: PropTypes.number
 };
 
-function Pagination({ setPage, size }) {
+function Pagination({ setPage, size, page }) {
+  
   return (
-    <div className="page pb-3 sec-b">
+    <div className="page pb-3">
       <ReactPaginate
+        forceSelected={page}
         previousLabel={<i className="icon-arrow-2 ix"></i>}
         nextLabel={<i className="icon-arrow-2"></i>}
         breakLabel={'...'}
@@ -21,6 +23,7 @@ function Pagination({ setPage, size }) {
         previousLinkClassName="prev page-numbers"
         nextLinkClassName="next page-numbers"
         pageLinkClassName="page-numbers"
+        initialPage = {page - 1}
         marginPagesDisplayed={4}
         pageRangeDisplayed={4}
         onPageChange={value => setPage(value.selected + 1)}

@@ -702,7 +702,7 @@ function Layout({ children, isPrioty, idPage }) {
                           </a>
                           <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px'}}>{t('donwload_app_today')}</h5>
                        </div>
-                       <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
+                       {/* <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
                         <span className="code"><img src="/static/images/svg/qr.svg" style={{width: '50px'}} alt=""/></span>
                         <a href={linkApp ? linkApp.android : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px', paddingLeft: '20px'}}>
                           <img
@@ -713,7 +713,7 @@ function Layout({ children, isPrioty, idPage }) {
                           />
                         </a>
                         <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px'}}>{t('download_app_today_2')}</h5>
-                       </div>
+                       </div> */}
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
@@ -741,7 +741,7 @@ function Layout({ children, isPrioty, idPage }) {
                   <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
                     <div className="widget widget-subscribe">
                       <h5 className="widget-title" style={{color: '#fff'}}>{t('find_ATM')}</h5>
-                      <a class="location" href="/page/diem-giao-dich-atm" style={{backgroundColor: "#A0D2FF", color: "#141ED2"}}><img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
+                      <a class="location" href="/page/diem-giao-dich-atm" style={{backgroundColor: "#A0D2FF", color: "#141ED2", padding: "10px 15px"}}><img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
                     </div>
                   </div>
                 </div>
@@ -861,7 +861,7 @@ function Layout({ children, isPrioty, idPage }) {
                           </a>
                           <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px', marginBottom: "0px"}}>{t('donwload_app_today')}</h5>
                       </div>
-                      <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
+                      {/* <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
                         <a href={linkApp ? linkApp.android : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px'}}>
                           <img
                             className="lazyload"
@@ -871,7 +871,7 @@ function Layout({ children, isPrioty, idPage }) {
                           />
                         </a>
                         <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px', marginBottom: "0px"}}>{t('download_app_today_2')}</h5>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="col-lg-8 col-md-7">

@@ -9,6 +9,7 @@ import { LinkPage } from '../common/link';
 import { getLang } from '../../utils/cookie';
 import t from '../../translation';
 import { forEach } from 'lodash';
+import UseWindowResize from "../common/Resize";
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -23,6 +24,7 @@ function Pages({ data, type, id, optionWidth }) {
   const [listPageAll, setListPageAll] = useState([]);
   const [initIndex, setInitIndex] = useState(0);
   const lang = getLang();
+  const size = UseWindowResize();
 
   const getPageBlockAll = async pages => {
     const ids = map(pages, values => values.value);
@@ -459,25 +461,6 @@ function Pages({ data, type, id, optionWidth }) {
                 </div>
             </div>
             <div className="text-center title-category-custom-backbround convert-grid-to-scroll">
-              {/* <div className="convert-grid-to-scroll">
-                <div className="row-custom list-item grid-space-20" style={{position: "relative", height: "67px", borderBottom: "1px solid #d6d6d6"}}>
-                  {map(data.listTag, (item, index) => (
-                    <div
-                    className="li-menu-custom"
-                    key={index}
-                    >
-                      <div
-                        className="menu-custom-1" style={{height:"67px"}}
-                        key={index}
-                        >
-                        <div className="menu-div-custom-1" style={{height:"67px"}}> 
-                          {item.description}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div> */}
               <div className="border-custom-1">
                 <div style={{width: "max-content", margin: "auto"}}>
                 <div className="">
@@ -503,7 +486,7 @@ function Pages({ data, type, id, optionWidth }) {
                 </div>
               </div>
             </div>
-            <div className="list-category-custom-backbround">
+            <div className="list-category-custom-backbround" style={{paddingLeft: size.width >= 768 ? "8.8%" : "0", paddingRight: size.width >= 768 ? "8.8%" : "0"}}>
                 {map(listPageAll, (items, index) => (
                   <div className={`row list-item des-${id}`} id={`id_8_${items.value}`} style={{display: index == 0 ? "block" : "none"}}>
                     {map(items.listPages, (item, index1) => (
@@ -511,7 +494,7 @@ function Pages({ data, type, id, optionWidth }) {
                         <div className="list-6-custom">
                           <LinkPage lang={lang} name={item.slug}>
                             <a className="item item-inline-table">
-                              <div className="img" style={{width: "30%"}}>
+                              <div className="img" style={{width: size.width >= 768 ? "30%" : "50%"}}>
                                 <img
                                   className="lazyload"
                                   data-src={
@@ -520,6 +503,7 @@ function Pages({ data, type, id, optionWidth }) {
                                       : `${process.env.DOMAIN}${item.baseImage}`
                                   }
                                   alt="icon"
+                                  style={{position: size.width >= 768 ? "absolute" : "relative", height: size.width >= 768 ? "100%" : "unset"}}
                                 />
                               </div>
                               <div className="divtext-custom-list">

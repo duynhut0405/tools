@@ -22,14 +22,14 @@ function Markers({ index, item, isCheck, onOpenCLick, onCloseClick }) {
     >
       {isCheck && (
         <InfoWindow onCloseClick={onCloseClick}>
-          <div className="gm-style-iw-d">
+          <div className="gm-style">
             <div className="infoWindow">
               <div className="divtext">
                 <h5 className="title">{item.address_name}</h5>
-                <div className="address">
-                  <i className="icon-map">{item.address}</i>
+                <div className="address" style={{fontWeight: "300",fontSize: "13px"}}>
+                  <i className="icon-map"></i>{item.address}
                 </div>
-                <div>{ReactHtmlParser(item.description)}</div>
+                {/* <div>{ReactHtmlParser(item.description)}</div> */}
               </div>
             </div>
           </div>
