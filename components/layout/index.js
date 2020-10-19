@@ -741,7 +741,7 @@ function Layout({ children, isPrioty, idPage }) {
                   <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
                     <div className="widget widget-subscribe">
                       <h5 className="widget-title" style={{color: '#fff'}}>{t('find_ATM')}</h5>
-                      <a class="location" href="/page/diem-giao-dich-atm" style={{backgroundColor: "#A0D2FF", color: "#141ED2", padding: "10px 15px"}}><img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
+                      <a class="location" href="/page/diem-giao-dich-atm" style={{backgroundColor: "#A0D2FF", color: "#141ED2", padding: "10px"}}><img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
                     </div>
                   </div>
                 </div>

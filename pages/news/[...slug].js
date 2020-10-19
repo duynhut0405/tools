@@ -200,7 +200,7 @@ function New({ news, category_name, category_url, socialLink }) {
                   ))}
                   {socialLink && <Social data={socialLink} />}
                 </div>
-                <div className="Dowload_information">
+                {/* <div className="Dowload_information">
                 {t('New_dowload_title')} <br></br>
                 {t('dowload_AppStore_title')}
                 <a className="dowload_AppStore" href={t('dowload_AppStore')}>{t('dowload_AppStore')}</a> <br></br>
@@ -212,11 +212,11 @@ function New({ news, category_name, category_url, socialLink }) {
                 {t('New_dowload_title_after')}
                 
 
-                </div>
+                </div> */}
               </div>
             </div>
           </main>
-          <section className="sec-tb">
+          {/* <section className="sec-tb">
             <div className="container">
               <div className="entry-head">
                 <h2 className="ht efch-1 ef-img-t">{t('related_news')}</h2>
@@ -252,7 +252,7 @@ function New({ news, category_name, category_url, socialLink }) {
                 })}
               </div>
             </div>
-          </section>
+          </section> */}
         </>
       )}
     </React.Fragment>
