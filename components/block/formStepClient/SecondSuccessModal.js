@@ -186,7 +186,7 @@ const SecondSuccessModal = props => {
     
     var config = {
       method: 'post',
-      url: 'http://Vus-Van-iMac.local:8088/mockMBSOASalesAndService2_Marketing_CustomerSurveys_Inbound_Service_WebService_Provider_createCRMLandingPageUser_v1_0_Binder',
+      url: process.env.LANDING_PAGE_URL_2,
       headers: { 
         'Content-Type': 'text/plain'
       },
