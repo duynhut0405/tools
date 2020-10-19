@@ -12,6 +12,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { useRouter } from 'next/router';
 
+const axios = require('axios');
 const SecondSuccessModal = props => {
   const {
     closeModal,
@@ -96,6 +97,111 @@ const SecondSuccessModal = props => {
   }
 
   const summitForm = async () => {
+    let loanPurpose = '';
+    if (formState.type_purpose_01 & formState.purpose_loan_01 != undefined) {
+      loanPurpose = formState.purpose_loan_01;
+    }
+    if (formState.type_purpose_02 & formState.purpose_loan_02 != undefined) {
+      loanPurpose = formState.purpose_loan_02;
+    } 
+    // let xmls = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.mbbank.com.vn/service/global/mbsoasalesandservice2/marketing/customersurveys/createcrmlandingpageuser/v1_0">'+
+    //             '<soapenv:Header/>'+
+    //             '<soapenv:Body>'+
+    //               '<v1:createCRMLandingPageUser_v1_0>'+
+    //                   '<CreateCRMLandingPageUserInput>'+
+    //                     '<Header>'+
+    //                         '<Common>'+
+    //                           '<ClientMessageId>ebstets11</ClientMessageId>'+
+    //                         '</Common>'+
+    //                         '<Client>'+
+    //                           '<SourceAppID>landingpage</SourceAppID>'+
+    //                         '</Client>'+
+    //                     '</Header>'+
+    //                     '<CampaignCode>'+'Landing page'+'</CampaignCode>'+
+    //                     '<StartDate/>'+
+    //                     '<EndDate>'+
+    //                     '<AccountName>'+formState.full_name+'</AccountName>'+
+    //                     '<TaxCode/>'+
+    //                     '<RegistrationNumber></RegistrationNumber>'+
+                        
+    //                     '<Gender>'+formState.sex+'</Gender>'+
+    //                     '<NationalId>'+formState.profileNumber+'</NationalId>'+
+    //                     '<Address>'+formState.address.current_home+formState.address.city_address.label+'</Address>'+
+    //                     '<Email>'+formState.email+'</Email>'+
+    //                     '<Mobile>'+formState.email.phone+'</Mobile>'+
+    //                     '<BranchCode>'+ (formState.staff_info !== undefined ? formState.staff_info.branch : '')+'</BranchCode>'+
+    //                     '<PlaceOfResidence>'+formState.address.current_home+formState.address.city_address.label+'</PlaceOfResidence>'+
+    //                     '<LoanPurpose>'+loanPurpose+'</LoanPurpose>'+
+                        
+    //                     '<HousingValue>'+(formState.collateral[0] !== undefined ? formState.collateral[0].decription : '')+'</HousingValue>'+
+    //                     '<ProposedLoanAmount>'+formState.value_loan+'</ProposedLoanAmount>'+
+    //                     '<Collateral>'+formState.collateral+'</Collateral>'+
+    //                     '<IncomeAfterTax/>'+
+    //                     '<SpouseIncome>'+formState.salary+'</SpouseIncome>'+
+    //                     '<LoanRequestId/>'+
+    //                     '<LoanRequestLink>'+formState.link+'</LoanRequestLink>'+
+    //                     '<RmCode>'+ (formState.staff_info !== undefined ? formState.staff_info.RmCode : '') +'</RmCode>'+
+    //                   '</CreateCRMLandingPageUserInput>'+
+    //               '</v1:createCRMLandingPageUser_v1_0>'+
+    //             '</soapenv:Body>'+
+    //         '</soapenv:Envelope>';
+    var xmls = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.mbbank.com.vn/service/global/mbsoasalesandservice2/marketing/customersurveys/createcrmlandingpageuser/v1_0">
+      <soapenv:Header/>
+        <soapenv:Body>
+        <v1:createCRMLandingPageUser_v1_0>
+          <CreateCRMLandingPageUserInput>
+            <Header>
+              <Common>
+                <ClientMessageId>ebstets11</ClientMessageId>
+              </Common>
+              <Client>
+                <SourceAppID>landingpage</SourceAppID>
+              </Client>
+            </Header>
+            <CampaignCode>Landing page</CampaignCode>
+            <StartDate/>
+            <EndDate/>
+            <AccountName>${formState.full_name}</AccountName>
+            <TaxCode/>
+            <RegistrationNumber>${formState.idLandLoan}</RegistrationNumber>
+            <Gender>${formState.sex}</Gender>
+            <NationalId>${formState.profileNumber}</NationalId>
+            <Address>${formState.address.current_home+formState.address.city_address.label}</Address>
+            <Email>${formState.email}</Email>
+            <Mobile>${formState.phone}</Mobile>
+            <BranchCode>${formState.staff_info !== undefined ? formState.staff_info.branch : ''}</BranchCode>
+            <PlaceOfResidence>${formState.address.current_home+formState.address.city_address.label}</PlaceOfResidence>
+            <LoanPurpose>${loanPurpose}</LoanPurpose>
+            <HousingValue>${formState.collateral[0] !== undefined ? formState.collateral[0].decription : ''}</HousingValue>
+            <ProposedLoanAmount>${formState.value_loan}</ProposedLoanAmount>
+            <Collateral>${formState.collateral}</Collateral>
+            <IncomeAfterTax/>
+            <SpouseIncome>${formState.salary}</SpouseIncome>
+            <LoanRequestId>${formState.idLandLoan}</LoanRequestId>
+            <LoanRequestLink>${formState.link}</LoanRequestLink>
+            <RmCode>${formState.staff_info !== undefined ? formState.staff_info.RmCode : ''}</RmCode>
+          </CreateCRMLandingPageUserInput>
+        </v1:createCRMLandingPageUser_v1_0>
+        </soapenv:Body>\n</soapenv:Envelope>`;
+    
+    var config = {
+      method: 'post',
+      url: 'http://Vus-Van-iMac.local:8088/mockMBSOASalesAndService2_Marketing_CustomerSurveys_Inbound_Service_WebService_Provider_createCRMLandingPageUser_v1_0_Binder',
+      headers: { 
+        'Content-Type': 'text/plain'
+      },
+      data : xmls
+    };
+
+    await axios(config)
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      alert(error);
+      return;
+    });
+  
     const email = formState.email;
     const idForm = data.form[0] ? data.form[0].value : 399952;
 
@@ -126,6 +232,7 @@ const SecondSuccessModal = props => {
         }
       });
     }
+    
     closeModal();
   };
 
