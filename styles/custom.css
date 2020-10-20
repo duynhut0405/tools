@@ -1893,7 +1893,7 @@ ul.menu.line>li:not(:first-child):before {
   .sec-n-h2 .item {
     padding: 58px;
     padding-left: 52px;
-    border-radius: 8px;
+    border-radius: 5px;
   }
 }
 @media only screen and (min-width: 1400px)
@@ -1905,7 +1905,7 @@ ul.menu.line>li:not(:first-child):before {
 .sec-n-h2 .item {
   padding: 58px;
   padding-left: 52px;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 }
 @media only screen and (max-width: 1399px)
@@ -1915,7 +1915,7 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .sec-n-h2 .item {
-    border-radius: 8px;
+    border-radius: 5px;
   }
 }
 @media only screen and (min-width: 992px)
