@@ -33,6 +33,9 @@ function FormRate({ data, interestRate, description1, description2, description3
   const [typeTable, setTypeTable] = useState(0);
   const [typeGold, setTypeGold] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
+  const [displayNote1, setDisplayNote1] = useState(false);
+  const [displayNote2, setDisplayNote2] = useState(false);
+  const [displayNote3, setDisplayNote3] = useState(false);
 
   
   const convertToJson = (csv) => {
@@ -275,6 +278,7 @@ function FormRate({ data, interestRate, description1, description2, description3
               <div className="divquidoi">
                 <h2 className="exchange">{t('change_foreign_currency')}</h2>
                 <h5 style={{color: "#686868", fontSize: "14px", maxWidth: "264px",height:"43px"}}>{t('change_foreign_currency_custom')}</h5>
+                <div style={{display: !displayNote1 ? "block": "none"}}>
                 <div style={{height:"219px"}}>
                 <div>{t('transfer_from')}</div>
                 <div className="input-group">
@@ -322,8 +326,12 @@ function FormRate({ data, interestRate, description1, description2, description3
                   'date'
                 )} ${moment(data.created_at).format('DD/MM/YYYY')}`}</p> */}
                 </div>
+                </div>
+                <div style={{display: !displayNote1 ? "none": "block" , height:"219px"}}>
+                  {ReactHtmlParser(description1)}
+                </div>
                 <div className="action-custom" style={{ position: "relative", top: "5px", paddingBottom: "10px"}}>
-                  <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-1" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-1" ,`ghi-chu-group`)}}>
+                  <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setDisplayNote1(true)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setDisplayNote1(false)}}>
                     <div style={{display:"table"}}>
                       <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
                       <div style={{display:"table-cell"}}><span>{t('note')}</span></div>
@@ -354,7 +362,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                   <label for="tset4" id="tset4-1">Tiền gửi</label>
                   <div className="tab-panels">
                     <div className="tab-panel" id="loan">
-                      <div className="content_2" style={{ height: "219px"}}>
+                      <div className="content_2" style={{display: displayNote2 ? "none": "block" , height:"219px"}}>
                         <div className="item-group-custom space-20">
                           <div className="item-group-addon-custom">
                             {minLoan.interest_rate}
@@ -366,8 +374,11 @@ function FormRate({ data, interestRate, description1, description2, description3
                           </div>
                         </div>
                       </div>
+                      <div style={{display: !displayNote2 ? "none": "block" , height:"219px"}}>
+                        {ReactHtmlParser(description2)}
+                      </div>
                       <div className="action-custom">
-                        <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
+                        <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setDisplayNote2(true)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setDisplayNote2(false)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
                             <div style={{display:"table-cell"}}><span>{t('note')}</span></div>
@@ -389,7 +400,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                       </div>
                     </div>
                     <div className="tab-panel" style={{display:"none"}} id="deposits">
-                      <div className="content_2" style={{ height: "219px"}}>
+                      <div className="content_2" style={{display: displayNote2 ? "none": "block" , height:"219px"}}>
                         <div className="item-group-custom space-20">
                           <div className="item-group-addon-custom">
                             {maxDeposits.interest_rate}
@@ -400,7 +411,9 @@ function FormRate({ data, interestRate, description1, description2, description3
                             <div className="t3 w6">{maxDeposits.term}</div>
                           </div>
                         </div>
-                        
+                      </div>
+                      <div style={{display: !displayNote2 ? "none": "block" , height:"219px"}}>
+                        {ReactHtmlParser(description2)}
                       </div>
                       <div className="action-custom">
                       <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-2" ,`ghi-chu-group`)}}>
@@ -440,7 +453,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         <label for="tset6" id="tset6-1">{t('purchase_price')}</label>
                   <div className="tab-panels">
                     <div className="tab-panel" id="mua">
-                      <div className="content_3" style={{ height: "219px"}}>
+                      <div className="content_3" style={{display: displayNote3 ? "none": "block" , height:"219px"}}>
                         <div className="t1-custom">
                           {currentGold.buy_exchange}
                         <span className="t2-custom">vnđ/<br/>{t('chi_vang')}</span>
@@ -448,8 +461,11 @@ function FormRate({ data, interestRate, description1, description2, description3
                         <div className="t3-custom">{currentGold.gold_1_name}</div>
                         <div className="t4-custom">{currentGold.des_vi}</div>
                       </div>
+                      <div style={{display: !displayNote3 ? "none": "block" , height:"219px"}}>
+                        {ReactHtmlParser(description3)}
+                      </div>
                       <div className="action-custom">
-                      <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
+                        <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setDisplayNote3(true)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0);setDisplayNote3(false)}}>
                           <div style={{display:"table"}}>
                             <div style={{display:"table-cell", paddingRight:"5px"}}><i className="icon-custom"></i></div>
                             <div style={{display:"table-cell"}}><span>{t('note')}</span></div>
@@ -469,13 +485,16 @@ function FormRate({ data, interestRate, description1, description2, description3
                       </div>
                     </div>
                     <div className="tab-panel" style={{display:"none"}} id="ban">
-                      <div className="content_3" style={{ height: "219px"}}>
+                      <div className="content_3" style={{display: displayNote3 ? "none": "block" , height:"219px"}}>
                         <div className="t1-custom">
                           {currentGold.sell_exchange}
-                      <span className="t2-custom">vnđ/<br/>{t('chi_vang')}</span>
+                          <span className="t2-custom">vnđ/<br/>{t('chi_vang')}</span>
                         </div>
                         <div className="t3-custom">{currentGold.gold_1_name}</div>
                         <div className="t4-custom">{currentGold.des_2_vi}</div>
+                      </div>
+                      <div style={{display: !displayNote3 ? "none": "block" , height:"219px"}}>
+                        {ReactHtmlParser(description3)}
                       </div>
                       <div className="action-custom">
                         <a className="t5-custom" onMouseOver={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setOpen(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}} onMouseLeave={() => {setTypeSearch(0); setTypeTable(0); setTypeGold(0); setClose(`ghi-chu`, "ghi-chu-3" ,`ghi-chu-group`)}}>
@@ -524,8 +543,7 @@ function FormRate({ data, interestRate, description1, description2, description3
             </div>
           </div>
 
-          <div className="col-lg-8" style={{margin: "auto"}}>
-            <ExchangeRate
+          <ExchangeRate
               tab1={t('exchange_rate')}
               tab2={t('interest_rate')}
               data1={data}
@@ -535,7 +553,6 @@ function FormRate({ data, interestRate, description1, description2, description3
               type={typeTable}
               setTypeTable={setTypeTable}
             />
-          </div>
 
           { typeGold == '1' && (<div className="row list-item list-2">
             <div className="col-lg-12" style={{margin: "auto"}}>

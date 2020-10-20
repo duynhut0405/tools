@@ -46,12 +46,13 @@ function TableRate({ data, type }) {
   }
   if (type === 'interest') {
     return (
-      <table className="table">
+      
+      <table className="table table-full table-ti-gia">
         <tbody>
           <tr>
             <th>{t('period')}</th>
             <th>VND</th>
-            <th style={{width:"30%"}}>{t('note_table')}</th>
+            <th>{t('note_table')}</th>
           </tr>
           {map(data, value => {
             return (
@@ -65,6 +66,7 @@ function TableRate({ data, type }) {
           })}
         </tbody>
       </table>
+      
     );
   }
 }

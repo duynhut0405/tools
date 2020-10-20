@@ -28,42 +28,32 @@ function ExchangeRate({ data1, data2, loan, gold, type, setTypeTable }) {
   }
   if (type == 2) {
     return (
-      <div className="cttab-v3 divtigia">
-        <div className="tab-menu">
-          <div className={'tg-tab'}>
-          Lãi suất tiền vay <span className="cl5 text-normal fs18">{`(%/ ${t('year')})`}</span>
+      <div className="search_ tigia mb-30">
+        <div className="row center">
+          <div className={'col-md-4 col-lg-3'}>
+            <h3 class="ctext mg-0">{`Lãi suất tiền vay (%/${t('year')})`}</h3>
           </div>
         </div>
-        <div className="tab-content">
         <div
-          className="active"
-          style={{ height: '250px', overflow: 'auto' }}
+          className="table-responsive"
         >
-          <div className="tab-inner">
-            <TableRate type="interest" data={loan} />
-          </div>
-        </div>
+          <TableRate type="interest" data={loan} />
         </div>
       </div>
     );
   }
   if (type == 3) {
     return (
-      <div className="cttab-v3 divtigia">
-        <div className="tab-menu">
-          <div className={'tg-tab'}>
-            Lãi suất tiền gửi <span className="cl5 text-normal fs18">{`(%/ ${t('year')})`}</span>
+      <div className="search_ tigia mb-30">
+        <div className="row center">
+          <div className={'col-md-4 col-lg-3'}>
+            <h3 class="ctext mg-0">{`Lãi suất tiền gửi (%/ ${t('year')})`}</h3>
           </div>
         </div>
-        <div className="tab-content">
         <div
-          className="active"
-          style={{ height: '200px', overflow: 'auto' }}
+          className="table-responsive"
         >
-          <div className="tab-inner">
-            <TableRate type="interest" data={data2} />
-          </div>
-        </div>
+          <TableRate type="interest" data={data2} />
         </div>
       </div>
     );
