@@ -31,7 +31,7 @@ function Search({ goldList, currentGold }) {
     <div className="search_ tigia mb-30 max950 ">
       <div className="row center">
         <div className="col-md-4 col-lg-3">
-          <h3 className="ctext mg-0">Tra cứu giá vàng</h3>
+  <h3 className="ctext mg-0">{t('Search_gold_price')}</h3>
         </div>
         <div className="col-sm-7 col-md-5 col-lg-6">
           <DatePicker
