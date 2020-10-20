@@ -703,7 +703,8 @@ function Icon({ data, id }) {
       )}
       {data[0].type === "9" && (
         <React.Fragment>
-          <section className={`sec-b sec-n-h2  group-ef loaded`} id={id}>
+          <section className={`sec-tb sec-n-h2  group-ef loaded`} id={id}>
+            <div className="container">
             <div className="row grid-space-0">
               <div className="col-lg-4 efch-2 ef-img-t">
                 {data && data[0] && data[0].urlImageBackGround ? (
@@ -731,6 +732,7 @@ function Icon({ data, id }) {
                           color: "#A0D2FF",
                           marginBottom: "20px",
                           fontWeight: "600",
+                          fontSize: "28px"
                         }}
                       >
                         {ReactHtmlParser(data[0].note_1)}
@@ -781,6 +783,7 @@ function Icon({ data, id }) {
                           color: "#141ED2",
                           marginBottom: "20px",
                           fontWeight: "600",
+                          fontSize: "28px"
                         }}
                       >
                         {ReactHtmlParser(data[1].note_1)}
@@ -831,6 +834,7 @@ function Icon({ data, id }) {
                           color: "#141ED2",
                           marginBottom: "20px",
                           fontWeight: "600",
+                          fontSize: "28px"
                         }}
                       >
                         {ReactHtmlParser(data[2].note_1)}
@@ -855,6 +859,7 @@ function Icon({ data, id }) {
                   ""
                 )}
               </div>
+            </div>
             </div>
           </section>
         </React.Fragment>
