@@ -51,14 +51,14 @@ function TableRate({ data, type }) {
           <tr>
             <th>{t('period')}</th>
             <th>VND</th>
-            <th>USD</th>
+            {/* <th>USD</th> */}
           </tr>
           {map(data, value => {
             return (
               <tr key={value.id}>
                 <td>{value.term}</td>
                 <td>{`${value.interest_rate} %`}</td>
-                <td>{`${value.interest_rate_usd} %`}</td>
+                {/* <td>{`${value.interest_rate_usd} %`}</td> */}
               </tr>
             );
           })}
