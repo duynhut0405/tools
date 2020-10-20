@@ -421,7 +421,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                               setTypeTable(3);
                             }
                           }}
-                        >{typeSearch == 3 ?t('close_read_more') : t('read_more')}</a></div>
+                        >{typeTable == 3 ?t('close_read_more') : t('read_more')}</a></div>
                       </div>
                     </div>
                   </div>

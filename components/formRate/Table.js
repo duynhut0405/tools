@@ -51,7 +51,7 @@ function TableRate({ data, type }) {
           <tr>
             <th>{t('period')}</th>
             <th>VND</th>
-    <th style={{textAlign:"center",width:"65%"}}>{t('note_table')}</th>
+            <th style={{width:"30%"}}>{t('note_table')}</th>
           </tr>
           {map(data, value => {
             return (
