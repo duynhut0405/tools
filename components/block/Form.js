@@ -110,7 +110,7 @@ function Form({ data, pageId, id }) {
   };
 
   return (
-    <section className={`${padding} sec-tuvan form-register`} id={id} style={{boxShadow: "none"}}>
+    <section className={`${padding} sec-tuvan form-register`} id={id} style={{boxShadow: "none",paddingTop:"unset",background:"#E0F0FF"}}>
       {data.shorten_form === "yes" &&
     <div className="question" style={{backgroundColor:"unset"}}>
       <div className="container">

@@ -1968,6 +1968,19 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
+.category-8 .list-category-custom-backbround .icon-custom-button:hover{
+  -webkit-box-shadow: 5px 5px 10px 0 #BDBDBD !important;
+    box-shadow: 5px 5px 10px 0 #BDBDBD !important;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+}
+.block-icon-27 .intro-title-custom-1{
+  font-size: 33px;
+}
+.category-8 .list-category-custom-backbround .list-item .list-6-custom .item .divtext-custom-list .line2:hover{
+  color: #141ed2;
+}
 .block-image-10 .block-2 .tRes_66 .divtext h4:hover{
   color: #000;
 }

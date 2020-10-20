@@ -2065,7 +2065,7 @@ function Icon({ data, id }) {
                   style={{
                     position: "relative",
                     height: "75px",
-                    borderBottom: "1px solid #d6d6d6",
+                    borderBottom: "2px solid #d6d6d6",
                     margin: "0"
                   }}
                 >
@@ -2089,7 +2089,7 @@ function Icon({ data, id }) {
                               fontWeight:
                                 router.asPath == item.url
                                   ? "600"
-                                  : "400"
+                                  : "400",
                             }}
                           >
                             <Link href="[...name]" as={item.url}>
