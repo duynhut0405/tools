@@ -10,6 +10,7 @@ import { getLang } from '../../utils/cookie';
 import t from '../../translation';
 import { forEach } from 'lodash';
 import UseWindowResize from "../common/Resize";
+import ReactHtmlParser from "react-html-parser";
 
 const propTypes = {
   data: Proptypes.object.isRequired,
@@ -453,11 +454,11 @@ function Pages({ data, type, id, optionWidth }) {
   }
   if (type && type === '8') {
     return (
-      <section className={`${padding} category-${type}`} id={id} style={{backgroundColor:"#E0F0FF", paddingTop: "70px"}}>
+      <section className={`${padding} category-${type}`} id={id} style={{backgroundColor:"#E0F0FF", paddingTop: "70px", paddingBottom:"1px"}}>
         <div className="container">
             <div className="text-center title-category-custom-backbround">
                 <div className="">
-                  <h2 className="intro-title-custom-category" style={{marginBottom:"0px"}}>{ data.title === null ? '' : data.title}</h2>
+                  <h2 className="intro-title-custom-category" style={{marginBottom:"0px"}}>{ data.title === null ? '' : ReactHtmlParser(data.title)}</h2>
                 </div>
             </div>
             <div className="text-center title-category-custom-backbround convert-grid-to-scroll">

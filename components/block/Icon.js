@@ -2070,7 +2070,7 @@ function Icon({ data, id }) {
                   style={{
                     position: "relative",
                     height: "75px",
-                    borderBottom: "1px solid #d6d6d6",
+                    borderBottom: "2px solid #d6d6d6",
                     margin: "0"
                   }}
                 >
@@ -2094,7 +2094,7 @@ function Icon({ data, id }) {
                               fontWeight:
                                 router.asPath == item.url
                                   ? "600"
-                                  : "400"
+                                  : "400",
                             }}
                           >
                             <Link href="[...name]" as={item.url}>
@@ -2689,40 +2689,6 @@ function Icon({ data, id }) {
                   </a>
               </div>
               <div className="col-md-4 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                  <a className={`item tRes_46 blue-shadow blue-shadow-custom`} href={data[2].url}>
-                      <img
-                        className="lazyload"
-                        data-src={
-                          data[2].urlImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${data[2].urlImage}`
-                        }
-                        style={{borderRadius: "8px"}}
-                        alt="images"
-                      />
-                    <div className="divtext">
-                      <h4 className="title line2">{data[2].note_1}</h4>
-                    </div>
-                  </a>
-              </div>
-              <div className="col-md-8 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
-                  <a className={`item tRes_46 blue-shadow blue-shadow-custom`} href={data[3].url}>
-                      <img
-                        className="lazyload"
-                        data-src={
-                          data[3].urlImage === null
-                            ? `/images/imgdefault.jpg`
-                            : `${process.env.DOMAIN}${data[3].urlImage}`
-                        }
-                        style={{borderRadius: "8px"}}
-                        alt="images"
-                      />
-                    <div className="divtext">
-                      <h4 className="title line2">{data[3].note_1}</h4>
-                    </div>
-                  </a>
-              </div>
-              <div className="col-md-4 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
                   <a className={`item tRes_86 blue-shadow blue-shadow-custom`} href={data[4].url}>
                       <img
                         className="lazyload"
@@ -2773,6 +2739,41 @@ function Icon({ data, id }) {
                     </div>
                   </a>
               </div>
+              <div className="col-md-4 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
+                  <a className={`item tRes_46 blue-shadow blue-shadow-custom`} href={data[2].url}>
+                      <img
+                        className="lazyload"
+                        data-src={
+                          data[2].urlImage === null
+                            ? `/images/imgdefault.jpg`
+                            : `${process.env.DOMAIN}${data[2].urlImage}`
+                        }
+                        style={{borderRadius: "8px"}}
+                        alt="images"
+                      />
+                    <div className="divtext">
+                      <h4 className="title line2">{data[2].note_1}</h4>
+                    </div>
+                  </a>
+              </div>
+              <div className="col-md-8 efch-1 ef-img-t block-1" style={{maxHeight:"290px"}}>
+                  <a className={`item tRes_46 blue-shadow blue-shadow-custom`} href={data[3].url}>
+                      <img
+                        className="lazyload"
+                        data-src={
+                          data[3].urlImage === null
+                            ? `/images/imgdefault.jpg`
+                            : `${process.env.DOMAIN}${data[3].urlImage}`
+                        }
+                        style={{borderRadius: "8px"}}
+                        alt="images"
+                      />
+                    <div className="divtext">
+                      <h4 className="title line2">{data[3].note_1}</h4>
+                    </div>
+                  </a>
+              </div>
+              
             </div>
           </div>
         </div>

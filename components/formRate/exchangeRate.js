@@ -73,7 +73,7 @@ function ExchangeRate({ data1, data2, loan, gold, type, setTypeTable }) {
       <div className="cttab-v3 divtigia">
         <div className="tab-menu">
           <div className={'tg-tab'}>
-            Vàng<span className="cl5 text-normal fs18">vnđ/chỉ</span>
+    {t('Gold')}<span className="cl5 text-normal fs18">vnđ/{t('chi_vang')}</span>
           </div>
         </div>
         <div className="tab-content">

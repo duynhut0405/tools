@@ -68,7 +68,7 @@ function Questions({ data, id }) {
     
     return (
       <React.Fragment>
-        <section className={`${padding} sec-cauhoi question`} id={id}>
+        <section className={`${padding} sec-cauhoi question`} id={id} style={{paddingBottom:"0px"}}>
           <div className="container">
             {(((Number(data.optionChoose) === 1) || (Number(data.optionChoose) === 2)) && (data.listBlock[0].title !== '')) &&
               <div className="entry-head text-center block-question-index">
@@ -237,8 +237,7 @@ function Questions({ data, id }) {
                 ))}
             </div>
           </div>
-        </section>
-        {!isEmpty(list) && Number(data.optionChoose) === 1 && (
+          {!isEmpty(list) && Number(data.optionChoose) === 1 && (
           <div className="page pb-3 sec-b">
             <ReactPaginate
               previousLabel={<i className="icon-arrow-2 ix"></i>}
@@ -260,6 +259,8 @@ function Questions({ data, id }) {
         {!isEmpty(newsAnswer) && Number(data.optionChoose) === 2 && (
           <Pagination setPage={setPage} page={page} size={newsAnswer.size} />
         )}
+        </section>
+        
       </React.Fragment>
     );
   }
