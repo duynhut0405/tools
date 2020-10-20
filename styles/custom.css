@@ -1980,6 +1980,18 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
+.block-icon-31{
+  padding-bottom: 30px;
+}
+.block-icon-8{
+  padding-top: 30px !important;
+}
+.block-icon-38{
+  padding-top: 40px;
+}
+.category-8 .list-category-custom-backbround .row.list-item>[class*=col-]{
+  margin-bottom: 20px ;
+}
 .category-8 .list-category-custom-backbround .icon-custom-button:hover{
   -webkit-box-shadow: 5px 5px 10px 0 #BDBDBD !important;
     box-shadow: 5px 5px 10px 0 #BDBDBD !important;
