@@ -57,7 +57,7 @@ function FormRate({ data, interestRate, description1, description2, description3
     return JSON.stringify(result); //JSON
   }
 
-  const openModalTab = (close_id, blue_id, open_id, close_id_2) => {
+  const openModalTab = (close_id, blue_id, open_id, close_id_2, isLaiSuat) => {
     var x = document.getElementById(close_id);
     x.style.borderBottom = "none";
     x.style.color = "#686868";
@@ -72,6 +72,17 @@ function FormRate({ data, interestRate, description1, description2, description3
 
     var closeId2 = document.getElementById(close_id_2);
     closeId2.style.display="none";
+
+    if (isLaiSuat) {
+      if (typeTable == "2") {
+        setTypeTable(3);
+        return;
+      }
+  
+      if (typeTable == "3") {
+        setTypeTable(2);
+      }
+    }
   }
 
   
@@ -260,8 +271,7 @@ function FormRate({ data, interestRate, description1, description2, description3
       {data !== undefined && (
         <div className="container">
           <div className="row list-item list-2">
-            
-            <div className="col-md-4">
+            <div className="col-lg-4">
               <div className="divquidoi">
                 <h2 className="exchange">{t('change_foreign_currency')}</h2>
                 <h5 style={{color: "#686868", fontSize: "14px", maxWidth: "264px",height:"43px"}}>{t('change_foreign_currency_custom')}</h5>
@@ -333,15 +343,15 @@ function FormRate({ data, interestRate, description1, description2, description3
 
               </div>
             </div>
-            
-            <div className="col-md-4">
+
+            <div className="col-lg-4">
               <div className="divquidoi widget widget-2" style={{backgroundColor:"#DCF9ED"}}>
                 <h2 className="exchange">{t('interest_rate')}</h2>
                 <div className="tabset">
-                  <input type="radio" name="tabset4" id="tset4" onClick={() => {openModalTab(`tset3-1`, "tset4-1", `deposits`, "loan")}}></input>
-                  <label for="tset4" id="tset4-1">{t('deposits')}</label>
-                  <input type="radio" name="tabset3" id="tset3" onClick={() => {openModalTab(`tset4-1`, "tset3-1" ,`loan`, `deposits`)}}></input>
-                  <label for="tset3" id="tset3-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>{t('loan_interest_rate')} </label>
+                  <input type="radio" name="tabset3" id="tset3" onClick={() => {openModalTab(`tset4-1`, "tset3-1" ,`loan`, `deposits`, true)}}></input>
+                  <label for="tset3" id="tset3-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>Tiền vay </label>
+                  <input type="radio" name="tabset4" id="tset4" onClick={() => {openModalTab(`tset3-1`, "tset4-1", `deposits`, "loan", true)}}></input>
+                  <label for="tset4" id="tset4-1">Tiền gửi</label>
                   <div className="tab-panels">
                     <div className="tab-panel" id="loan">
                       <div className="content_2" style={{ height: "219px"}}>
@@ -420,7 +430,7 @@ function FormRate({ data, interestRate, description1, description2, description3
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-lg-4">
               <div className="divquidoi widget widget-2" style={{backgroundColor:"#F2F3FF"}}>
                         <h2 className="exchange">{t('gold_price')}</h2>
                 <div className="tabset">
@@ -495,19 +505,19 @@ function FormRate({ data, interestRate, description1, description2, description3
           </div>
 
           <div className="row list-item list-2" id="ghi-chu-group" style={{display:"none"}}>
-            <div className="col-md-4 ghi-chu" id="ghi-chu-1" style={{padding:"30px", visibility:"hidden"}}>
+            <div className="col-lg-4 ghi-chu" id="ghi-chu-1" style={{padding:"30px", visibility:"hidden"}}>
               <div className="divquidoi widget widget-2 shadow-custom-box" style={{backgroundColor:"#fff"}}>
               {ReactHtmlParser(description1)}
               </div>
             </div>
 
-            <div className="col-md-4 ghi-chu" id="ghi-chu-2" style={{padding:"30px", visibility:"hidden"}}>
+            <div className="col-lg-4 ghi-chu" id="ghi-chu-2" style={{padding:"30px", visibility:"hidden"}}>
               <div className="divquidoi widget widget-2 shadow-custom-box" style={{backgroundColor:"#fff"}}>
               {ReactHtmlParser(description2)}
               </div>
             </div>
 
-            <div className="col-md-4 ghi-chu" id="ghi-chu-3" style={{padding:"30px", visibility:"hidden"}}>
+            <div className="col-lg-4 ghi-chu" id="ghi-chu-3" style={{padding:"30px", visibility:"hidden"}}>
               <div className="divquidoi widget widget-2 shadow-custom-box" style={{backgroundColor:"#fff"}}>
               {ReactHtmlParser(description3)}
               </div>
