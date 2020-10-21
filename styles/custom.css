@@ -3961,3 +3961,7 @@ body.mb-priority #footer-mb {
 .location {
   padding: 10px 0px;
 }
+
+.btn {
+  text-transform: none !important;
+}

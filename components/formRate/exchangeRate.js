@@ -30,7 +30,7 @@ function ExchangeRate({ data1, data2, loan, gold, type, setTypeTable }) {
     return (
       <div className="search_ tigia mb-30">
         <div className="row center">
-          <div className={'col-md-4 col-lg-3'}>
+          <div className={'col-md-4 col-lg-3'} style={{paddingBottom:"20px"}}>
             <h3 class="ctext mg-0">{`Lãi suất tiền vay (%/${t('year')})`}</h3>
           </div>
         </div>
@@ -46,7 +46,7 @@ function ExchangeRate({ data1, data2, loan, gold, type, setTypeTable }) {
     return (
       <div className="search_ tigia mb-30">
         <div className="row center">
-          <div className={'col-md-4 col-lg-3'}>
+          <div className={'col-md-4 col-lg-3'} style={{paddingBottom:"20px"}}>
             <h3 class="ctext mg-0">{`Lãi suất tiền gửi (%/ ${t('year')})`}</h3>
           </div>
         </div>

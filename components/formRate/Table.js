@@ -50,17 +50,17 @@ function TableRate({ data, type }) {
       <table className="table table-full table-ti-gia">
         <tbody>
           <tr>
-            <th>{t('period')}</th>
-            <th>VND</th>
-            <th>{t('note_table')}</th>
+            <th style={{textAlign:"center"}}>{t('period')}</th>
+            <th style={{textAlign:"center", width: "10%"}}>VND</th>
+            {/* <th style={{textAlign:"center"}}>{t('note_table')}</th> */}
           </tr>
           {map(data, value => {
             return (
               <tr key={value.id}>
-                <td>{value.term}</td>
-                <td>{`${value.interest_rate} %`}</td>
-                <td>{value.description === null && ``}
-                {value.description != null && `${value.description}`}</td>
+                <td style={{textAlign:"center"}}>{value.term}</td>
+                <td style={{textAlign:"center"}}>{`${value.interest_rate} %`}</td>
+                {/* <td>{value.description === null && ``}
+                {value.description != null && `${value.description}`}</td> */}
               </tr>
             );
           })}
