@@ -2610,7 +2610,7 @@ function Icon({ data, id }) {
                                 {ReactHtmlParser(items.note_1)}
                               </div>
                               <div>
-                                <Link href="[...name]" as={items.url}>
+                                {/* <Link href="[...name]" as={items.url}> */}
                                   <a href={items.url ? items.url : "#"}>
                                     <div
                                       className="title"
@@ -2619,7 +2619,7 @@ function Icon({ data, id }) {
                                       {ReactHtmlParser(items.note_2)} <i className="icon-arrow-1" style={{fontSize: "9px"}}></i>
                                     </div>
                                   </a>
-                                </Link>
+                                {/* </Link> */}
                               </div>
                             </div>
                             {/* <div className="title-gray-custom-3">

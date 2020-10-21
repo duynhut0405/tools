@@ -68,7 +68,7 @@ function Questions({ data, id }) {
     
     return (
       <React.Fragment>
-        <section className={`${padding} sec-cauhoi question`} id={id} style={{paddingBottom:"0px"}}>
+        <section className={`${padding} sec-cauhoi question`} id={id} style={{paddingBottom: data.optionChoose == 5 ? "50px" : "0px"}}>
           <div className="container">
             {(((Number(data.optionChoose) === 1) || (Number(data.optionChoose) === 2)) && (data.listBlock[0].title !== '')) &&
               <div className="entry-head text-center block-question-index">

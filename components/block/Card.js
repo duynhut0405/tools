@@ -359,97 +359,195 @@ function Card({ data, type, optionWidth, id }) {
       )}
       {type && type === '8' && (
         <React.Fragment>
-          <section className={`sec-n-h1 group-ef loaded next-shadow`} id={id}>
+          <section className={`sec-n-h1 group-ef loaded next-shadow next-shadow-none`} id={id}>
             <div className="container">
               <div className="wsec">
                 {size.width >= 768 ? (
                   <div className="title efch-1 ef-img-t">{data === null ? '' : ReactHtmlParser(data.title)}</div>
                 ) : (
-                  <div className="title efch-1 ef-img-t" style={{textAlign:"center"}}>{data === null ? '' : ReactHtmlParser(data.title)}</div>
+                  <div className="title efch-1 ef-img-t" style={{ maxWidth: "150px",paddingLeft: "2%", paddingBottom: "15px"}}>{data === null ? '' : ReactHtmlParser(data.title)}</div>
+                )}
+                {size.width >= 768 ? (
+                  <div className="inner">
+                    <div className="row bottom">
+                    {data && data.listCard && data.listCard[0] ? (
+                      <div className="col-lg-2 col-md-4 col-6">
+                        <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
+                                alt="images"
+                              />
+                        </a>
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                    {data && data.listCard && data.listCard[1] ? (
+                      <div className="col-lg-2 col-md-4 col-6">
+                        <a className="item efch-4 ef-img-t" href={data.listCard[1].url}>
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
+                                alt="images"
+                              />
+                        </a>
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                    {data && data.listCard && data.listCard[2] ? (
+                      <div className="col-lg-2 col-md-4 col-6">
+                        <a className="item efch-5 ef-img-t" href={data.listCard[2].url}>
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
+                                alt="images"
+                              />
+                        </a>
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                    {data && data.listCard && data.listCard[3] ? (
+                      <div className="col-lg-2 col-md-4 col-6">
+                        <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
+                                alt="images"
+                              />
+                        </a>
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                    {data && data.listCard && data.listCard[4] ? (
+                      <div className="col-lg-2 col-md-4 col-6">
+                        <a className="item efch-7 ef-img-t" href={data.listCard[4].url}>
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
+                                alt="images"
+                              />
+                        </a>
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                    {data && data.listCard && data.listCard[5] ? (
+                      <div className="col-lg-2 col-md-4 col-6">
+                        
+                        <a className="item efch-8 ef-img-t" href={data.listCard[5].url}>
+                              <img
+                                className="lazyload"
+                                data-src={`${process.env.DOMAIN}${data.listCard[5].urlImage}`}
+                                alt="images"
+                              />
+                        </a>
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </div>
+                ) : (
+                  <div className="inner">
+                      <div className="row bottom">
+                      {data && data.listCard && data.listCard[0] ? (
+                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
+                                <div className="custom-mobile-div">
+                                  <img
+                                    className="lazyload img-mobile-custom"
+                                    data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
+                                    alt="images"
+                                  />
+                                </div>
+                          </a>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                      {data && data.listCard && data.listCard[1] ? (
+                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item efch-4 ef-img-t" href={data.listCard[1].url}>
+                            <div className="custom-mobile-div">
+                                <img
+                                  className="lazyload img-mobile-custom"
+                                  data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
+                                  alt="images"
+                                />
+                            </div>
+                          </a>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                      {data && data.listCard && data.listCard[2] ? (
+                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item efch-5 ef-img-t" href={data.listCard[2].url}>
+                            <div className="custom-mobile-div">
+                                <img
+                                  className="lazyload img-mobile-custom"
+                                  data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
+                                  alt="images"
+                                />
+                            </div>
+                          </a>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                      {data && data.listCard && data.listCard[3] ? (
+                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
+                            <div className="custom-mobile-div">
+                                <img
+                                  className="lazyload img-mobile-custom"
+                                  data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
+                                  alt="images"
+                                />
+                            </div>
+                          </a>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                      {data && data.listCard && data.listCard[4] ? (
+                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item efch-7 ef-img-t" href={data.listCard[4].url}>
+                            <div className="custom-mobile-div">
+                                <img
+                                  className="lazyload img-mobile-custom"
+                                  data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
+                                  alt="images"
+                                />
+                            </div>
+                          </a>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                      {data && data.listCard && data.listCard[5] ? (
+                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item efch-8 ef-img-t" href={data.listCard[5].url}>
+                            <div className="custom-mobile-div">
+                                <img
+                                  className="lazyload img-mobile-custom"
+                                  data-src={`${process.env.DOMAIN}${data.listCard[5].urlImage}`}
+                                  alt="images"
+                                />
+                            </div>
+                          </a>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  </div>
                 )}
                 
-                <div className="inner">
-                  <div className="row bottom">
-                  {data && data.listCard && data.listCard[0] ? (
-                    <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
-                            <img
-                              className="lazyload"
-                              data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
-                              alt="images"
-                            />
-                      </a>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                  {data && data.listCard && data.listCard[1] ? (
-                    <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-4 ef-img-t" href={data.listCard[1].url}>
-                            <img
-                              className="lazyload"
-                              data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
-                              alt="images"
-                            />
-                      </a>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                  {data && data.listCard && data.listCard[2] ? (
-                    <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-5 ef-img-t" href={data.listCard[2].url}>
-                            <img
-                              className="lazyload"
-                              data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
-                              alt="images"
-                            />
-                      </a>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                  {data && data.listCard && data.listCard[3] ? (
-                    <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
-                            <img
-                              className="lazyload"
-                              data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
-                              alt="images"
-                            />
-                      </a>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                  {data && data.listCard && data.listCard[4] ? (
-                    <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-7 ef-img-t" href={data.listCard[4].url}>
-                            <img
-                              className="lazyload"
-                              data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
-                              alt="images"
-                            />
-                      </a>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                  {data && data.listCard && data.listCard[5] ? (
-                    <div className="col-lg-2 col-md-4 col-6">
-                      <a className="item efch-8 ef-img-t" href={data.listCard[5].url}>
-                            <img
-                              className="lazyload"
-                              data-src={`${process.env.DOMAIN}${data.listCard[5].urlImage}`}
-                              alt="images"
-                            />
-                      </a>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                </div>
-                </div>
               </div>
             </div>
           </section>

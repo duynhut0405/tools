@@ -3965,3 +3965,31 @@ body.mb-priority #footer-mb {
 .btn {
   text-transform: none !important;
 }
+
+.custom-mobile-div {
+  height: 55px;
+  /* width: 159px; */
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border-color: #979797;
+}
+
+.img-mobile-custom {
+  height: 100%;
+}
+
+
+@media only screen and (max-width: 769px){
+  .next-shadow-none + section:before {
+    content: none;
+  }
+
+  .next-shadow + section:after {
+    content: none;
+}
+}

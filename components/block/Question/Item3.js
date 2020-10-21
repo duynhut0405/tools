@@ -33,7 +33,7 @@ function QuestionItems({ question, answer, index, id }) {
         </span>
       </label>
       <div className="accodion-content entry-content">
-      <div className="inner-full" style={{padding:"30px", backgroundColor: "#F2F2F2"}}>{ReactHtmlParser(answer)}</div>
+      <div className="inner-full" style={{padding:"30px", backgroundColor: "#F2F2F2", borderRadius: "8px"}}>{ReactHtmlParser(answer)}</div>
       </div>
     </div>
 
