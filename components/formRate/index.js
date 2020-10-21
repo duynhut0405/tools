@@ -9,6 +9,7 @@ import { getInterestRateService } from '../../services/rate';
 import XLSX from 'xlsx';
 import ReactHtmlParser from "react-html-parser";
 import DatePicker from 'react-datepicker';
+import UseWindowResize from "../common/Resize";
 
 
 const propTypes = {
@@ -20,6 +21,7 @@ const propTypes = {
 };
 
 function FormRate({ data, interestRate, description1, description2, description3, setTypeSearch, typeSearch }) {
+  const size = UseWindowResize();
   const [From, setFrom] = useState(0);
   const [to, setTo] = useState(0);
   const [currencyFrom, setcurrencyFrom] = useState('USD');

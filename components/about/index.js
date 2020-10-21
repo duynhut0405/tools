@@ -36,40 +36,47 @@ function About({ data, id }) {
       setListNews(res.data);
       setIsUpdatePage(true);
       setMonthSearch(moment(res.data.news[res.data.news.length -1].created_at).format('MM'));
-      setYearSearch(moment(res.data.news[res.data.news.length -1].created_at).format('YYYY'));
       setIsUpdatePage(false);
     }
   };
 
-  const getNewsCustom = async (_id, number, _year) => {
-    const size = listNews.size;
-    for (let i = 1; i <= size; i++) {
+  const getNewsCustom = async (_id, _page, number, _year) => {
+    setListNews([]);
+    setIsActive(false);
+    const res = await findAllByCategory(_id, _page, number, _year);
+    if (res && res.status === 200) {
+      setListNews(res.data);
+      setIsUpdatePage(true);
+      setPage(1);
+      setIsActive(true);
+      setMonthSearch(moment(res.data.news[res.data.news.length -1].created_at).format('MM'));
+      setIsUpdatePage(false);
+    }
+  };
+
+  const getNewsCustom1 = async (_id, _page, number, _year) => {
+    const sizeTest = listNews.size;
+    for (let i = 1; i <= sizeTest; i++) {
       setIsActive(false);
-      const res = await findAllByCategory(_id, i, number, moment(date).format('YYYY'));
+      const res = await findAllByCategory(_id, i, number, _year);
       if (res && res.status === 200) {
         const news = res.data.news;
         let item = news[(news.length)-1];
-        let year = moment(item.created_at).format('YYYY');
-        let yearInt = parseInt(year);
-        if ( parseInt(yearSearch) != yearInt) {
-          continue;
-        } else if (parseInt(yearSearch) == yearInt) {
-          let month = moment(item.created_at).format('MM');
-          let monthInt = parseInt(month);
-          if (monthInt > parseInt(monthSearch)) {
-            continue;
-          }
-          if (monthInt == parseInt(monthSearch)) {
-            setListNews([]);
-            setListNews(res.data);
-            setPage(i);
-            setIsActive(true);
-            return;
-          }
+        let month = moment(item.created_at).format('MM');
+        let monthInt = parseInt(month);
+        if (monthInt == parseInt(monthSearch)) {
+          setListNews([]);
+          setListNews(res.data);
+          setPage(i);
+          setIsActive(true);
+          return;
         }
-        return;
+        if (monthInt < parseInt(monthSearch)) {
+          return;
+        }
       }
     }
+
   };
 
   let padding = '';
@@ -103,16 +110,24 @@ function About({ data, id }) {
 
   useEffect(() => {
     if (data.category.value) {
-      getNews(data.category.value, page, data.record, year);
+      getNews(data.category.value, page, data.record, yearSearch);
       // setMonthSearch(moment(listNews[0].created_at).format('MM'))
     }
   }, [page]);
 
   useEffect(() => {
     if (data.category.value && !isUpdatePage) {
-      getNewsCustom(data.category.value, data.record, yearSearch);
+      // getNewsCustom(data.category.value, data.record, yearSearch);
+      getNewsCustom(data.category.value, 1, data.record, yearSearch);
     }
-  }, [yearSearch, monthSearch]);
+  }, [yearSearch]);
+
+  useEffect(() => {
+    if (data.category.value && !isUpdatePage) {
+      // getNewsCustom(data.category.value, data.record, yearSearch);
+      getNewsCustom1(data.category.value, 1, data.record, yearSearch);
+    }
+  }, [monthSearch]);
 
   return (
     <>
@@ -148,7 +163,7 @@ function About({ data, id }) {
                           <div className={size.width > 920 ? 'filter-category mb-5 text-right' : 'filter-category mb-5 text-center'}>
                           <select
                             className="select"
-                            onChange={events => setYearSearch((events.target.value).toString())}
+                            onChange={events => setYearSearch((events.target.value))}
                             value={yearSearch}
                           >
                             {map(listYear, item => (
