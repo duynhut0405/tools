@@ -524,9 +524,9 @@ function ImageRight({ items, padding, id, type }) {
   if (items.type === '8') {
     return (
       <section
-        className={`sec-b sec-img-svg group-ef loaded block-icon-${items.type}`}
+        className={`sec-b sec-img-svg group-ef loaded`}
         id={id}
-        style={{ paddingTop: items.note_2 !== undefined || items.note_2 !== '' ? "90px" : "72px", paddingBottom: "144px" }}
+        style={{ paddingTop: items.note_2 !== undefined || items.note_2 !== '' ? "90px" : "72px", paddingBottom: items.urlImage != undefined ? "144px" : "0px" }}
       >
         <div className="container">
           <div className="text-center blog-custom">
@@ -542,7 +542,7 @@ function ImageRight({ items, padding, id, type }) {
             </div>
           </div>
           
-       <div className="col-lg-10" style={{margin:"auto", textAlign: "center"}}>
+       <div className="col-lg-10" style={{margin:"auto", textAlign: "center", display: items.urlImage != undefined ? "block": "none"}}>
               {!active && (
                 <div
                   className={items.video_url ? 'single_video  tRes_16_9 max750' : ''}

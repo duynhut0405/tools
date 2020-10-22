@@ -924,7 +924,7 @@ function Layout({ children, isPrioty, idPage }) {
 
                   <div className="col-lg-3 col-md-6  efch-6 ef-img-t">
                     <div className="widget widget-subscribe">
-                      <a class="location" href="/page/diem-giao-dich-atm" style= {{backgroundColor: "#A0D2FF", color: "#141ED2"}}> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
+                      <a class="location" href="/page/Chi-nhanh-va-atm-mbbank" style= {{backgroundColor: "#A0D2FF", color: "#141ED2"}}> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
                     </div>
                   </div>
                 </div>

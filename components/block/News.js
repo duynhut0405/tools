@@ -321,7 +321,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             />
                           </div>
                         <div className="divtext">
-                          <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div>
+                          {/* <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div> */}
                           <h5 className="title title-custom-1 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
@@ -424,7 +424,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             />
                           </div>
                         <div className="divtext">
-                          <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div>
+                          {/* <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div> */}
                           <h5 className="title title-custom-1 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
@@ -484,7 +484,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                       border: "1px solid #E2DFDF",
                       overflow: "hidden"}}>
                         <div className="divtext" style={{padding: "30px", height: "165px"}}>
-                          <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div>
+                          {/* <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div> */}
                           <h5 className="title title-custom-1 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>
@@ -556,7 +556,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                       border: "1px solid #E2DFDF",
                       overflow: "hidden"}}>
                         <div className="divtext" style={{padding: "30px", height: "165px"}}>
-                          <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div>
+                          {/* <div className="date" style={{color: "#A6A6A6", marginBottom: "5px", fontSize: "14px", marginBottom: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</div> */}
                           <h5 className="title title-custom-1 on-hover-blue">{item.title}</h5>
                         </div>
                       </a>

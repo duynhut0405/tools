@@ -170,11 +170,11 @@ function MenuIntro({ data, pageId, optionWidth }) {
               </div>
             )}
       </section>
-      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`}>
+      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{paddingTop: "75px"}}>
         <div className="container">
           <div className="row list-item">
             <div className={!data.isForm || data.isForm === 0 ? 'col-lg-7' : 'col-lg-7'}>
-              <div className="entry-content entry-content-custom">
+              <div className="entry-content entry-content-custom" style={{fontSize:"16px"}}>
                 {ReactHtmlParser(data.descriptionTop)}
                 {ReactHtmlParser(data.description)}
               </div>
@@ -187,10 +187,10 @@ function MenuIntro({ data, pageId, optionWidth }) {
                   }}>
                     {ReactHtmlParser(data.descriptionBot)}
                   </div>
-                  <a className="btnPhone-Custom" href="tel:1900545426">
+                  <a className="btnPhone-Custom" href="tel:1900545426" style={{paddingTop: "10px"}}>
                     {data.contact_1}
                   </a>
-                  <a className="btnPhone-Custom" href="tel:+8437674050">
+                  <a className="btnPhone-Custom" href="tel:+8437674050" style={{paddingTop: "0px"}}>
                     {data.contact_2}
                   </a>
                 </div>

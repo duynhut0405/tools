@@ -113,12 +113,7 @@ function New({ news, category_name, category_url, socialLink }) {
             </div>
             <img
               className="img img-pc br loaded loaded lazyload"
-              data-src="/static/images/Group 6.png"
-              alt="images"
-            />
-            <img
-              className="img img-mb br loaded loaded lazyload"
-              data-src="/static/images/heading-10-mb.svg"
+              data-src="/static/images/image_8.png"
               alt="images"
             />
           </section>
@@ -127,10 +122,11 @@ function New({ news, category_name, category_url, socialLink }) {
               <div className="max750">
                 <div className="top-heading" style={{marginTop:"-85px"}}>
                   <div className="date">
-                    {category_name}   | {t('space')}
-                    {moment(news.news.created_at).format('DD/MM/YYYY')}</div>
+                  {category_name} 
+                    {/* {category_name}   | {t('space')} */}
+                    {/* {moment(news.news.created_at).format('DD/MM/YYYY')} */}
+                  </div>
                   {socialLink && <Social data={socialLink} />}
-                  {/* {console.log(socialLink)} */}
                 </div>
                 {news.news.author_name !== null && (
                   <Fragment>

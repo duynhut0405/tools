@@ -1065,7 +1065,7 @@ function Icon({ data, id }) {
               style={{ minHeight: "121px", padding: "inherit" }}
             >
               {size.width >= 768 && (
-                <div className="list-9 list-item max850 pc row">
+                <div className="list-9 list-item max850 pc row" style={{maxWidth:"900px"}}>
                   {map(data, (item, index) => (
                     <div className="col">
                       <a
@@ -1090,15 +1090,16 @@ function Icon({ data, id }) {
                 </div>
               )}
               {size.width < 768 && (
-                <div className="list-9 list-item max850 pc row">
+                <div className="convert-grid-to-scroll">
+                <div className="list-5 row">
                   {map(data, (item, index) => (
-                    <div className="col">
+                    <div className="col-md-3">
                       <a
-                        className="link"
+                        className="link item efch-0 ef-img-l"
                         href={item.url}
                         style={{ minHeight: "121px" }}
                       >
-                        <div className="img-custom-menu">
+                        <div className="img-custom-menu-set">
                           <img
                             className="lazyload"
                             alt="images"
@@ -1106,12 +1107,14 @@ function Icon({ data, id }) {
                             style={{ maxHeight: "100%" }}
                           />
                         </div>
-                        <div className="title-custom-2">
+                        <div className="title-custom-2" style={{padding:"10px"}}>
                           {ReactHtmlParser(item.note_1)}
                         </div>
+                        
                       </a>
                     </div>
                   ))}
+                </div>
                 </div>
               )}
             </div>
@@ -2649,7 +2652,7 @@ function Icon({ data, id }) {
           <div className="container">
             {(data[0].title || data[0].title !== '') && (
               <div className="entry-head text-center" 
-              style={{textAlign:"center",paddingBottom:"25px",paddingTop:"20px",marginBottom:"28px"}}>
+              style={{textAlign:"center",paddingTop:"20px",marginBottom:"28px"}}>
                 <h2 className="title-custom ">{data[0].title}</h2>
               </div>
             )}
@@ -2667,7 +2670,7 @@ function Icon({ data, id }) {
                       alt="images"
                     />
                   <div className="divtext">
-                    <h4 className="title line2">{data[0].note_1}</h4>
+                    <h4 className="title line2" style={{fontSize:"18px", fontWeight:"400"}}>{data[0].note_1}</h4>
                   </div>
                 </a>
             </div>
@@ -2684,7 +2687,7 @@ function Icon({ data, id }) {
                         alt="images"
                       />
                     <div className="divtext">
-                      <h4 className="title line2">{data[1].note_1}</h4>
+                      <h4 className="title line2" style={{fontSize:"18px", fontWeight:"400"}}>{data[1].note_1}</h4>
                     </div>
                   </a>
               </div>
@@ -2701,7 +2704,7 @@ function Icon({ data, id }) {
                         alt="images"
                       />
                     <div className="divtext">
-                      <h4 className="title line2">{data[4].note_1}</h4>
+                      <h4 className="title line2" style={{fontSize:"18px", fontWeight:"400"}}>{data[4].note_1}</h4>
                     </div>
                   </a>
               </div>
@@ -2718,7 +2721,7 @@ function Icon({ data, id }) {
                         alt="images"
                       />
                     <div className="divtext">
-                      <h4 className="title line2">{data[5].note_1}</h4>
+                      <h4 className="title line2" style={{fontSize:"18px", fontWeight:"400"}}>{data[5].note_1}</h4>
                     </div>
                   </a>
               </div>
@@ -2735,7 +2738,7 @@ function Icon({ data, id }) {
                         alt="images"
                       />
                     <div className="divtext">
-                      <h4 className="title line2">{data[6].note_1}</h4>
+                      <h4 className="title line2" style={{fontSize:"18px", fontWeight:"400"}}>{data[6].note_1}</h4>
                     </div>
                   </a>
               </div>
@@ -2752,7 +2755,7 @@ function Icon({ data, id }) {
                         alt="images"
                       />
                     <div className="divtext">
-                      <h4 className="title line2">{data[2].note_1}</h4>
+                      <h4 className="title line2" style={{fontSize:"18px", fontWeight:"400"}}>{data[2].note_1}</h4>
                     </div>
                   </a>
               </div>
@@ -2769,7 +2772,7 @@ function Icon({ data, id }) {
                         alt="images"
                       />
                     <div className="divtext">
-                      <h4 className="title line2">{data[3].note_1}</h4>
+                      <h4 className="title line2" style={{fontSize:"18px", fontWeight:"400"}}>{data[3].note_1}</h4>
                     </div>
                   </a>
               </div>
@@ -2958,7 +2961,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                        <a className={`item tRes_46 blue-shadow blue-shadow-custom`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#" }>
+                        <a className={`item tRes_72 blue-shadow blue-shadow-custom`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#" }>
                           <img
                             className="lazyload"
                             data-src={
@@ -2976,7 +2979,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                        <a className={`item tRes_46 blue-shadow blue-shadow-custom`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
+                        <a className={`item tRes_72 blue-shadow blue-shadow-custom`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -2994,7 +2997,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 none-shadow none-shadow-blue`} style={{backgroundColor: "#a0d2ff"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
+                      <a className={`item tRes_72 none-shadow none-shadow-blue`} style={{backgroundColor: "#a0d2ff"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3433,7 +3436,6 @@ function Icon({ data, id }) {
                 <h2 className="title-custom ">{data[0].title}</h2>
               </div>
             )}
-
             <div className="row list-item list-1">
               <div className={`col-md-8 efch-0 ef-img-t`} key={0} style={{maxHeight:"318.5px"}}>
                       <a className={`item tRes_46 blue-shadow blue-shadow-custom`} href={data[0].url != null & data[0].url != undefined ? data[0].url : "#"}>
@@ -3449,7 +3451,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{ReactHtmlParser(data[0].note_1)}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[0].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px", left:"5px"}}>{ReactHtmlParser(data[0].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3467,7 +3469,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{ReactHtmlParser(data[1].note_1)}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[1].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px", left:"5px"}}>{ReactHtmlParser(data[1].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3485,7 +3487,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{ReactHtmlParser(data[2].note_1)}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[2].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px", left:"5px"}}>{ReactHtmlParser(data[2].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3503,7 +3505,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{ReactHtmlParser(data[3].note_1)}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[3].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px", left:"5px"}}>{ReactHtmlParser(data[3].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3521,7 +3523,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{ReactHtmlParser(data[4].note_1)}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[4].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px", left:"5px"}}>{ReactHtmlParser(data[4].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -3709,7 +3711,8 @@ function Icon({ data, id }) {
                                         style={{
                                           textTransform: "none",
                                           color: "#fff",
-                                          fontSize: "40px",
+                                          fontSize: "50px",
+                                          fontWeight:"500",
                                           marginBottom: "0"
                                         }}
                                       >
@@ -3719,7 +3722,7 @@ function Icon({ data, id }) {
                                         className="desc"
                                         style={{ color: "#fff", fontSize: "20px" }}
                                       >
-                                        {items.note_2}
+                                        {ReactHtmlParser(items.note_2)}
                                       </div>
                                     </div>
                                   </a>
@@ -3761,7 +3764,8 @@ function Icon({ data, id }) {
                                         style={{
                                           textTransform: "none",
                                           color: "#fff",
-                                          fontSize: "40px",
+                                          fontSize: "50px",
+                                          fontWeight:"500",
                                           marginBottom: "0"
                                         }}
                                       >
@@ -3771,7 +3775,7 @@ function Icon({ data, id }) {
                                         className="desc"
                                         style={{ color: "#fff", fontSize: "20px" }}
                                       >
-                                        {items.note_2}
+                                        {ReactHtmlParser(items.note_2)}
                                       </div>
                                     </div>
                                   </a>
@@ -3812,7 +3816,8 @@ function Icon({ data, id }) {
                                         style={{
                                           textTransform: "none",
                                           color: "#fff",
-                                          fontSize: "40px",
+                                          fontSize: "50px",
+                                          fontWeight:"500",
                                           marginBottom: "0"
                                         }}
                                       >
@@ -3822,7 +3827,7 @@ function Icon({ data, id }) {
                                         className="desc"
                                         style={{ color: "#fff", fontSize: "20px" }}
                                       >
-                                        {items.note_2}
+                                        {ReactHtmlParser(items.note_2)}
                                       </div>
                                     </div>
                                   </a>

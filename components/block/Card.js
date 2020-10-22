@@ -91,14 +91,14 @@ function Card({ data, type, optionWidth, id }) {
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${items.urlImage}`}
                                 alt="images"
-                                style={{visibility:"hidden"}}
+                                style={{visibility:"hidden", display: size.width < 768 ? "none": "block"}}
                               />
                             </div>
                           </div>
                           <div className="col-md-6">
                             <span className="circle circle-custom-line"></span>
                             <div className="divtext efch-2 ef-tx-t" style= {{textAlign: (index + 1) % 2 === 0 ? "right" : "left"}}>
-                              <h4 className="">{ReactHtmlParser(items.note_2)}</h4>
+                              <h4 style={{fontWeight: "400"}}>{ReactHtmlParser(items.note_2)}</h4>
                               <div className="desc">
                                 <div
                                     className="toggleAutoHeight toggleAutoHeight-custom"
@@ -109,7 +109,7 @@ function Card({ data, type, optionWidth, id }) {
                                   <TableItem data={items.note_3} maxheight={200} />
                                 </div>
                               </div>
-                              <div className="img" style={{paddingTop:"20px"}}>
+                              <div className="img" style={{paddingTop:"10px"}}>
                                 <img
                                   className="lazyload"
                                   data-src={`${process.env.DOMAIN}${items.urlImage}`}
