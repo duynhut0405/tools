@@ -252,13 +252,13 @@ function Carousels({ silder }) {
               </Carousel>
           )}
           {silder[0].options === '7' && (
-              <div class="custom-slider-1"  style={{backgroundImage: `url(${process.env.DOMAIN}${silder[0].urlImage})`, backgroundPosition: "left", backgroundRepeat: "no-repeat", textAlign: "center", top: "32px", position: "absolute", zIndex: "-3"}}>
+              <div class="custom-slider-1"  style={{backgroundImage: `url(${process.env.DOMAIN}${silder[0].urlImage})`, backgroundPosition: "50px", backgroundRepeat: "no-repeat", textAlign: "center", top: "0px", position: "absolute", zIndex: "-3"}}>
               {/* <img src={`${process.env.DOMAIN}${silder[0].urlImage}`} style="visibility: hidden;" /> */}
               <img src={`${process.env.DOMAIN}${silder[0].urlImage}`} alt="" style= {{visibility: "hidden"}}/>
               <div className="container" style={{position: "relative", bottom: "108px"}}>
                 <div className="divtext">
                   <div className="item-group space-20">
-                  <h1 className=" efch-2 ef-img-l" style={{color: "#141ED2", transform: "none", fontSize: "44px"}}>{ReactHtmlParser(silder[0].note_1)}</h1>
+                  <h1 className=" efch-2 ef-img-l" style={{color: "#141ED2", textTransform: "none", fontSize: "44px"}}>{ReactHtmlParser(silder[0].note_1)}</h1>
                   </div>
                 </div>
               </div>
@@ -272,7 +272,7 @@ function Carousels({ silder }) {
               <Carousel
                 showThumbs={false}
                 showStatus={false}
-                infiniteLoop={true}
+                infiniteLoop={false}
                 emulateTouch
                 showIndicators={false}
               >

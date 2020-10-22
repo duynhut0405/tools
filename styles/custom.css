@@ -3268,12 +3268,10 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .menu-custom-1 {
-  /* padding-left: 30px; */
-  padding-right: 30px;
+  padding-right: 40px;
   height: 75px;
   display: flex!important;
   width: max-content;
-  /* position: relative; */
 }
 
 .center-custom {
@@ -3595,7 +3593,8 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .blue-shadow-custom:hover img {
-  transform: scale(1.2);
+  transform: scale(1.1);
+  border-radius: 8px;
   
 }
 
@@ -3678,7 +3677,7 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .custom-slider-1 + section {
-  padding-top: 320px;
+  padding-top: 300px;
 }
 
 .custom-slider-1 + div {

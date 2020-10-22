@@ -879,7 +879,7 @@ function Icon({ data, id }) {
                 <div className="wrap-carousel max850 pc">
                   <Carousel
                     responsive={responsive3}
-                    draggable
+                    draggable={false}
                     minimumTouchDrag={80}
                     ssr={true} // means to render carousel on server-side.
                     infinite={true}
@@ -1056,7 +1056,7 @@ function Icon({ data, id }) {
       {data[0].type === "11" && (
         <React.Fragment>
           <section
-            className={`sec-menuicon2 group-ef next-shadow loaded`}
+            className={ size.width >= 768 ? `sec-menuicon2 group-ef next-shadow loaded` : `sec-menuicon2 group-ef loaded`}
             id={id}
             style={{ padding: "10px 0" }}
           >
@@ -2791,7 +2791,7 @@ function Icon({ data, id }) {
             {(data[0].title || data[0].title !== '') && (
               <div className="entry-head text-center" 
               style={{textAlign:"center",paddingBottom:"25px",paddingTop:"20px",marginBottom:"40px",borderBottom:"1px solid #AFBFC3"}}>
-                <h2 className="title-custom ">{data[0].title}</h2>
+                <h2 className="title-custom " style={{fontSize: "28px"}}>{data[0].title}</h2>
               </div>
             )}
             <div
@@ -2818,24 +2818,28 @@ function Icon({ data, id }) {
                                     color: "#fff",
                                     borderRadius: "5px",
                                     minHeight: "290px",
-                                    paddingTop: "90px",
-                                    paddingLeft: "40px",
-                                    paddingRight: "40px",
+                                    // paddingTop: "90px",
+                                    // paddingLeft: "40px",
+                                    // paddingRight: "40px",
                                     backgroundRepeat: "no-repeat",
                                     backgroundSize: "cover",
-                                    textAlign: "center"
+                                    textAlign: "center",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    padding: "inherit"
                                   }}
                                 >
-                                  <a href={items.url ? items.url : "#"}>
-                                    
+                                  <div style={{textAlign: "center", margin: "auto"}}>
                                     <div className="divtext">
                                       <h4
                                         className="title"
                                         style={{
                                           textTransform: "none",
-                                          color: "#fff",
-                                          fontSize: "40px",
-                                          marginBottom: "0"
+                                        color: "#fff",
+                                          fontSize: "50px",
+                                          fontWeight:"500",
+                                          marginBottom: "10px",
+                                          lineHeight: "50px"
                                         }}
                                       >
                                         {items.note_1}
@@ -2844,10 +2848,10 @@ function Icon({ data, id }) {
                                         className="desc"
                                         style={{ color: "#fff", fontSize: "20px" }}
                                       >
-                                        {items.note_2}
+                                        {ReactHtmlParser(items.note_2)}
                                       </div>
                                     </div>
-                                  </a>
+                                  </div>
                                 </div>
                               </div>
                             );
@@ -2863,22 +2867,21 @@ function Icon({ data, id }) {
                                   className="item"
                                   style={{
                                     height: "100%",
-                                    textAlign: "left",
+                                    textAlign: "center",
                                     // backgroundColor: colors[index],
                                     backgroundImage: `url(${process.env.DOMAIN}${items.urlImage})`,
                                     color: "#fff",
                                     borderRadius: "5px",
                                     minHeight: "290px",
-                                    paddingTop: "145px",
+                                    paddingTop: "150px",
                                     backgroundRepeat: "no-repeat",
                                     backgroundSize: "cover",
                                     paddingTop: "90px",
                                     paddingLeft: "40px",
                                     paddingRight: "40px",
-                                    textAlign: "center"
                                   }}
                                 >
-                                  <a href={items.url ? items.url : "#"}>
+                                  <div href={items.url ? items.url : "#"}>
                                     
                                     <div className="divtext">
                                       <h4
@@ -2886,8 +2889,10 @@ function Icon({ data, id }) {
                                         style={{
                                           textTransform: "none",
                                           color: "#fff",
-                                          fontSize: "40px",
-                                          marginBottom: "0"
+                                          fontSize: "50px",
+                                          fontWeight:"500",
+                                          marginBottom: "10px",
+                                          lineHeight: "50px"
                                         }}
                                       >
                                         {items.note_1}
@@ -2896,10 +2901,10 @@ function Icon({ data, id }) {
                                         className="desc"
                                         style={{ color: "#fff", fontSize: "20px" }}
                                       >
-                                        {items.note_2}
+                                        {ReactHtmlParser(items.note_2)}
                                       </div>
                                     </div>
-                                  </a>
+                                  </div>
                                 </div>
                               </div>
                             );
@@ -2938,7 +2943,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[0].note_1}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[0].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px"}}>{ReactHtmlParser(data[0].note_2)}</h4>
                         </div>
                       </a>
               </div>
@@ -2956,12 +2961,12 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[1].note_1}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[1].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px"}}>{ReactHtmlParser(data[1].note_2)}</h4>
                         </div>
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                        <a className={`item tRes_72 blue-shadow blue-shadow-custom`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#" }>
+                        <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#" }>
                           <img
                             className="lazyload"
                             data-src={
@@ -2974,12 +2979,12 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[2].note_1}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[2].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px"}}>{ReactHtmlParser(data[2].note_2)}</h4>
                         </div>
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                        <a className={`item tRes_72 blue-shadow blue-shadow-custom`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
+                        <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -2992,12 +2997,12 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[3].note_1}</div>
-                          <h4 className="title line2">{ReactHtmlParser(data[3].note_2)}</h4>
+                          <h4 className="title line2" style={{fontSize: "18px"}}>{ReactHtmlParser(data[3].note_2)}</h4>
                         </div>
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_72 none-shadow none-shadow-blue`} style={{backgroundColor: "#a0d2ff"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
+                      <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} style={{backgroundColor: "#a0d2ff"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3010,7 +3015,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[4].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[4].note_2)} ></h4>
+                          <h4 className="title line2" style={{fontSize: "18px"}}>{ReactHtmlParser(data[4].note_2)} ></h4>
                         </div>
                       </a>
               </div>
@@ -3106,7 +3111,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
+                      <a className={`item tRes_86 blue-shadow blue-shadow-custom`} style={{backgroundColor: "#B4A5FA"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3119,7 +3124,7 @@ function Icon({ data, id }) {
                           />
                         <div className="divtext">
                           <div class="category">{data[4].note_1}</div>
-                          <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[4].note_2)} ></h4>
+                          <h4 className="title line2">{ReactHtmlParser(data[4].note_2)} ></h4>
                         </div>
                       </a>
               </div>
@@ -3253,7 +3258,7 @@ function Icon({ data, id }) {
               </div>
 
               <div className={`col-md-4 efch-0 ef-img-t`} key={6} style={{maxHeight:"318.5px"}}>
-                <a className={`item tRes_86 none-shadow none-shadow-pink`} style={{backgroundColor: "#B4A5FA"}} href={data[6].url != null & data[6].url != undefined ? data[6].url : "#"}>
+                <a className={`item tRes_86 blue-shadow blue-shadow-custom`} style={{backgroundColor: "#B4A5FA"}} href={data[6].url != null & data[6].url != undefined ? data[6].url : "#"}>
                     <img
                       className="lazyload"
                       // data-src={
@@ -3266,7 +3271,7 @@ function Icon({ data, id }) {
                     />
                   <div className="divtext">
                     <div class="category">{data[6].note_1}</div>
-                    <h4 className="title line2 on-hover-blue">{ReactHtmlParser(data[6].note_2)} ></h4>
+                    <h4 className="title line2">{ReactHtmlParser(data[6].note_2)} ></h4>
                   </div>
                 </a>
               </div>
@@ -3474,7 +3479,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_72 blue-shadow blue-shadow-custom`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#"}>
+                      <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3492,7 +3497,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_72 blue-shadow blue-shadow-custom`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
+                      <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3510,7 +3515,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={`item tRes_72 blue-shadow blue-shadow-custom`} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
+                      <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={

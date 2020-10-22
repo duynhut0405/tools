@@ -860,7 +860,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             alt="images"
                           />
                           <div className="divtext">
-                            <h4 className="title on-hover-blue">{item.title}</h4>
+                            <h4 className="title on-hover-blue" style={{paddingLeft: "20px", paddingBottom: "20px"}}>{item.title}</h4>
                           </div>
                         </a>
                       </LinkNew>
