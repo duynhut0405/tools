@@ -1,4 +1,4 @@
-/* Edit by Mango */
+ /* Edit by Mango */
 .sec-tigia .divquidoi .input-group .input-group-addon > i {
   display: none;
 }
@@ -4101,4 +4101,20 @@ body.mb-priority #footer-mb {
     margin-bottom: 10px;
   }
 
+}
+
+.list-5 .item .title {
+  color: #333333;
+}
+
+.list-5 .item:hover .title {
+  color: #141ED2;
+}
+
+.list-6-1 .item .title {
+  color: #333333;
+}
+
+.list-6-1 .item:hover .title {
+  color: #141ED2;
 }

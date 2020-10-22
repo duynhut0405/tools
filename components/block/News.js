@@ -921,7 +921,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               <p className="cl5">{data.description}</p>
               {(data.inputUrl === undefined || data.inputUrl === '') && (
                 <LinkCategory lang={lang} name={slugCategory}>
-                  <a className="viewall">
+                  <a className="viewall-custom">
                     {t('view')}
                     <i className="icon-arrow-1"></i>
                   </a>
@@ -929,7 +929,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               )}
               {data.inputUrl && (
                 <LinkInput lang={lang} name={data.inputUrl}>
-                  <a className="viewall">
+                  <a className="viewall-custom">
                     {t('view')}
                     <i className="icon-arrow-1"></i>
                   </a>
@@ -955,7 +955,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                         />
                       </div>
                       <div className="divtext">
-                        <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
+                        {/* <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div> */}
                         <h4 className="title line2">{item.title}</h4>
                         <div className="desc line2">{item.shortDescription}</div>
                       </div>
@@ -1041,7 +1041,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               <p className="cl5">{data.description}</p>
               {(data.inputUrl === undefined || data.inputUrl === '') && (
                 <LinkCategory lang={lang} name={slugCategory}>
-                  <a className="viewall">
+                  <a className="viewall-custom">
                     {t('view')}
                     <i className="icon-arrow-1"></i>
                   </a>
@@ -1049,7 +1049,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
               )}
               {data.inputUrl && (
                 <LinkInput lang={lang} name={data.inputUrl}>
-                  <a className="viewall">
+                  <a className="viewall-custom">
                     {t('view')}
                     <i className="icon-arrow-1"></i>
                   </a>
@@ -1075,10 +1075,10 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                             alt="images"
                           ></img>
                           <div className="divtext">
-                            <div className="date">
+                            {/* <div className="date">
                               {moment(item.created_at).format('DD-MM-YYYY')}
-                            </div>
-                            <h4 className="title line2">{item.title}</h4>
+                            </div> */}
+                            <h4 className="title line2 on-hover-blue">{item.title}</h4>
                           </div>
                         </a>
                       </LinkNew>
@@ -1107,10 +1107,10 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                                 alt="images"
                               />
                             </div>
-                            <div className="divtext">
-                              <div className="date">
+                            <div className="divtext" style={{padding: "20px 25px"}}>
+                              {/* <div className="date">
                                 {moment(item.created_at).format('DD-MM-YYYY')}
-                              </div>
+                              </div> */}
                               <h4 className="title line2">{item.title}</h4>
                               <div className="desc line3">{item.shortDescription}</div>
                             </div>
