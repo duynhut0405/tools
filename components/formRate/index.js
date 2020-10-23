@@ -359,9 +359,9 @@ function FormRate({ data, interestRate, description1, description2, description3
                 <h2 className="exchange">{t('interest_rate')}</h2>
                 <div className="tabset">
                   <input type="radio" name="tabset3" id="tset3" onClick={() => {openModalTab(`tset4-1`, "tset3-1" ,`loan`, `deposits`, true)}}></input>
-                  <label for="tset3" id="tset3-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>Tiền vay </label>
+                <label for="tset3" id="tset3-1" style={{borderBottom:"2px solid #141ED2", color: "#141ED2"}}>{t('loan_interest_rate')} </label>
                   <input type="radio" name="tabset4" id="tset4" onClick={() => {openModalTab(`tset3-1`, "tset4-1", `deposits`, "loan", true)}}></input>
-                  <label for="tset4" id="tset4-1">Tiền gửi</label>
+                <label for="tset4" id="tset4-1">{t('deposits')}</label>
                   <div className="tab-panels">
                     <div className="tab-panel" id="loan">
                       <div className="content_2" style={{display: displayNote2 ? "none": "block" , height:"219px"}}>
