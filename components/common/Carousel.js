@@ -5,6 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';
+import UseWindowResize from "../common/Resize";
 // import ImgSliderBlack from '../../public/static/images/bgSliderback.jpg';
 
 const propType = {
@@ -13,6 +14,7 @@ const propType = {
 };
 
 function Carousels({ silder }) {
+  const size = UseWindowResize();
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [height, setHeight] = useState("430px");
@@ -175,7 +177,7 @@ function Carousels({ silder }) {
                       </div>
                       <div className="wimg show-768">
                         <img
-                          className="img img-pc" style={{ objectFit: "cover" }}
+                          className="img img-pc " style={{ objectFit: "cover" }}
                           src={`${process.env.DOMAIN}${_item.urlImage}`}
                           alt="icon"
                         />
@@ -243,7 +245,21 @@ function Carousels({ silder }) {
                         </div>
                       </div>
                       <div className="wing wing-custom" style={styleHeight}>
-                        <img className="img" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/>
+                      {size.width >= 768 ? (
+                          <img
+                          className="img-center"
+                          src={`${process.env.DOMAIN}${_item.urlImage}`}
+                          alt="icon"
+                          style= {styleImg}
+                        />
+                        ): (
+                          <img
+                          className="img-center"
+                          src={`${process.env.DOMAIN}${(_item.urlImageMobile !== undefined & _item.urlImageMobile !== null)? _item.urlImageMobile : _item.urlImage}`}
+                          alt="icon"
+                          style= {styleImg}
+                        />
+                        )} 
                       </div>
                       
                       </section>
@@ -288,7 +304,23 @@ function Carousels({ silder }) {
                         </div>
                       </div>
                       <div className="wing wing-custom" style={styleHeight}>
-                        <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/>
+                        {/* <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/> */}
+                        
+                        {size.width >= 768 ? (
+                          <img
+                          className="img-center"
+                          src={`${process.env.DOMAIN}${_item.urlImage}`}
+                          alt="icon"
+                          style= {styleImg}
+                        />
+                        ): (
+                          <img
+                          className="img-center"
+                          src={`${process.env.DOMAIN}${(_item.urlImageMobile !== undefined & _item.urlImageMobile !== null)? _item.urlImageMobile : _item.urlImage}`}
+                          alt="icon"
+                          style= {styleImg}
+                        />
+                        )}
                       </div>
                       
                       </section>
