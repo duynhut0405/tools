@@ -293,7 +293,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         getCurrentTo(value);
                       }}
                     />
-                    <i className="icon-arrow-3"></i>
+                    {/* <i className="icon-arrow-3"></i> */}
                   </span>
                   <input
                     className="input"
@@ -315,7 +315,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                         setcurrencyTo(e);
                       }}
                     />
-                    <i className="icon-arrow-3"></i>
+                    {/* <i className="icon-arrow-3"></i> */}
                   </span>
                   <input
                     className="input"
