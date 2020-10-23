@@ -495,7 +495,7 @@ function Pages({ data, type, id, optionWidth }) {
                         <div className="list-6-custom">
                           <LinkPage lang={lang} name={item.slug}>
                             <a className="item item-inline-table">
-                              <div className="img" style={{width: size.width >= 768 ? "30%" : "50%"}}>
+                              <div className="img" style={{width: size.width >= 768 ? "30%" : "55%"}}>
                                 <img
                                   className="lazyload"
                                   data-src={
@@ -504,7 +504,7 @@ function Pages({ data, type, id, optionWidth }) {
                                       : `${process.env.DOMAIN}${item.baseImage}`
                                   }
                                   alt="icon"
-                                  style={{position: size.width >= 768 ? "absolute" : "relative", height: size.width >= 768 ? "100%" : "unset"}}
+                                  style={{position: size.width >= 768 ? "absolute" : "relative", height: size.width >= 768 ? "100%" : "190px"}}
                                 />
                               </div>
                               <div className="divtext-custom-list">
