@@ -4118,3 +4118,14 @@ body.mb-priority #footer-mb {
 .list-6-1 .item:hover .title {
   color: #141ED2;
 }
+
+@media only screen and (max-width: 992px) {
+  .blog-custom {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .intro-des-custom-1 p {
+    display: contents;
+  }
+}
