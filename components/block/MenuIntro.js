@@ -141,7 +141,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                   </div>
                   )}
                   {index != 0 && (
-                    <div className="menu-custom-0" >
+                    <div className="menu-custom-1" >
                               
                     <div
                             className="menu-div-custom-1"
