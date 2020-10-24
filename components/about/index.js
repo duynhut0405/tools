@@ -194,7 +194,7 @@ function About({ data, id }) {
                         <div className="container">
                           <div className="sec">
                             <div className="accodion-content">
-                              <div className="inner-t" style={{padding: "30px"}}>
+                              <div className="inner-t" style={{width:"97%",margin: "auto"}}>
                                 <div className="row grid-space-60" style={{display: isActive ? "block" : "none", backgroundColor: "#fff",padding: "20px",borderRadius: "8px",paddingBottom:"1px"}}>
                                   <ul className="list-download " style={{margin: "0 0 0 0"}}>
                                     {map(listNews.news, item => {

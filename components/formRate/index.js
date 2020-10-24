@@ -272,7 +272,7 @@ function FormRate({ data, interestRate, description1, description2, description3
     return n;
   };
   return (
-    <section className="sec- sec-tigia sec-h-2">
+    <section className="sec- sec-tigia sec-h-2" style={{marginTop:"-35px"}}>
       {data !== undefined && (
         <div className="container">
           <div className="row list-item list-2">

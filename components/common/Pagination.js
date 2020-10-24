@@ -11,7 +11,7 @@ const propTypes = {
 function Pagination({ setPage, size, page }) {
   
   return (
-    <div className="page pb-3">
+    <div className="page pb-3" style={{paddingTop:"18px"}}>
       <ReactPaginate
         forceSelected={page}
         previousLabel={<i className="icon-arrow-2 ix"></i>}

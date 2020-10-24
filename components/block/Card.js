@@ -98,7 +98,7 @@ function Card({ data, type, optionWidth, id }) {
                           <div className="col-md-6">
                             <span className="circle circle-custom-line"></span>
                             <div className="divtext efch-2 ef-tx-t" style= {{textAlign: (index + 1) % 2 === 0 ? "right" : "left"}}>
-                              <h4 style={{fontWeight: "400"}}>{ReactHtmlParser(items.note_2)}</h4>
+                              <h4 style={{fontWeight: "400",marginTop:"6px"}}>{ReactHtmlParser(items.note_2)}</h4>
                               <div className="desc">
                                 <div
                                     className="toggleAutoHeight toggleAutoHeight-custom"

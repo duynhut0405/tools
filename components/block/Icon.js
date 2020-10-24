@@ -99,6 +99,20 @@ function Icon({ data, id }) {
       items: 2,
     },
   };
+  const responsive7 = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 6,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 3,
+    },
+  };
 
   const responsive4 = {
     desktop: {
@@ -878,7 +892,7 @@ function Icon({ data, id }) {
               {size.width >= 1200 && (
                 <div className="wrap-carousel max850 pc">
                   <Carousel
-                    responsive={responsive3}
+                    responsive={responsive7}
                     draggable={false}
                     minimumTouchDrag={80}
                     ssr={true} // means to render carousel on server-side.
@@ -934,7 +948,7 @@ function Icon({ data, id }) {
               {size.width >= 768 && size.width < 1200 && (
                 <div className="wrap-carousel max850 pc">
                   <Carousel
-                    responsive={responsive3}
+                    responsive={responsive7}
                     draggable
                     minimumTouchDrag={80}
                     ssr={true} // means to render carousel on server-side.
@@ -996,7 +1010,7 @@ function Icon({ data, id }) {
                   style={{ padding: "10px 10px 10px" }}
                 >
                   <Carousel
-                    responsive={responsive3}
+                    responsive={responsive7}
                     draggable
                     minimumTouchDrag={80}
                     ssr={true} // means to render carousel on server-side.
@@ -1029,7 +1043,7 @@ function Icon({ data, id }) {
                       </a>
                     ))}
                   </Carousel>
-                  <div className="carousel-nav center">
+                  {/* <div className="carousel-nav center">
                     <div
                       className="carousel-prev "
                       onClick={() => {
@@ -1046,7 +1060,7 @@ function Icon({ data, id }) {
                     >
                       <i className="icon-arrow-1"></i>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>
@@ -2591,7 +2605,7 @@ function Icon({ data, id }) {
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
-            // style={{ paddingTop: "90px" }}
+            style={{ marginTop: "28px" }}
           >
             <div className="container">
               <div className="inner-full">
@@ -2830,7 +2844,7 @@ function Icon({ data, id }) {
                                   }}
                                 >
                                   <div style={{textAlign: "center", margin: "auto"}}>
-                                    <div className="divtext">
+                                    <div className="divtext" style={{width:"88%",margin:"auto"}}>
                                       <h4
                                         className="title"
                                         style={{
@@ -3672,7 +3686,7 @@ function Icon({ data, id }) {
           <div className="container">
             {(data[0].title || data[0].title !== '') && (
               <div className="entry-head text-center" 
-              style={{textAlign:"center",paddingBottom:"70px",paddingTop:"20px",marginBottom:"70px", maxWidth:"550px", margin:"auto"}}>
+              style={{textAlign:"center",paddingBottom:"70px",marginBottom:"70px", maxWidth:"550px", margin:"auto"}}>
                 <h5 style={{fontWeight: "400"}}>{ReactHtmlParser(data[0].title)}</h5>
               </div>
             )}
@@ -3770,7 +3784,7 @@ function Icon({ data, id }) {
                                           textTransform: "none",
                                           color: "#fff",
                                           fontSize: "50px",
-                                          fontWeight:"500",
+                                          fontWeight:"350",
                                           marginBottom: "0"
                                         }}
                                       >
