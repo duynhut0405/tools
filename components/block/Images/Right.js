@@ -526,7 +526,7 @@ function ImageRight({ items, padding, id, type }) {
       <section
         className={`sec-b sec-img-svg group-ef loaded`}
         id={id}
-        style={{ paddingTop: items.note_2 !== undefined || items.note_2 !== '' ? "90px" : "72px", paddingBottom: items.urlImage != undefined ? "144px" : "0px" }}
+        style={{ paddingTop: items.note_2 !== undefined || items.note_2 !== '' ? "16px" : "72px", paddingBottom: items.urlImage != undefined ? "110px" : "0px" }}
       >
         <div className="container">
           <div className="text-center blog-custom">

@@ -507,7 +507,7 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
   }
   if (type === '14') {
     return (
-      <section className={`${padding} sec-h-4 news-${type}`} id={id}>
+      <section className={`${padding} sec-h-4 news-${type}`} id={id} style={{marginBottom:"-7px"}}>
         <div className="container">
           {(data.title || data.title !== '') && (
             <div className="entry-head text-center" style={{marginBottom: "0"}}>

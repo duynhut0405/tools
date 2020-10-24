@@ -1980,8 +1980,9 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
+
 .block-icon-31{
-  padding-bottom: 30px;
+  padding-bottom: 45px;
 }
 .block-icon-8{
   padding-top: 30px !important;
@@ -2218,6 +2219,12 @@ ul.menu.line>li:not(:first-child):before {
 
 }
 .blog-item-social {float: right;}
+@media only screen and (min-width: 1400px){
+  .sec-n-h2 .grid-space-0 .item{
+    height: 94%;
+    padding-top: 35px;
+  }
+}
 @media only screen and (max-width: 1400px)
 {
   .sec-n-h2 .img {
@@ -2396,7 +2403,6 @@ ul.menu.line>li:not(:first-child):before {
 
 
   /* End edit by An Nguyen */
-
 
 @media only screen and (min-width: 1200px)
 {
