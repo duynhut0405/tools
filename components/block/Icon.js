@@ -96,6 +96,20 @@ function Icon({ data, id }) {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
+      items: 2,
+    },
+  };
+  const responsive7 = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 6,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
       items: 3,
     },
   };
@@ -878,7 +892,7 @@ function Icon({ data, id }) {
               {size.width >= 1200 && (
                 <div className="wrap-carousel max850 pc">
                   <Carousel
-                    responsive={responsive3}
+                    responsive={responsive7}
                     draggable={false}
                     minimumTouchDrag={80}
                     ssr={true} // means to render carousel on server-side.
@@ -934,7 +948,7 @@ function Icon({ data, id }) {
               {size.width >= 768 && size.width < 1200 && (
                 <div className="wrap-carousel max850 pc">
                   <Carousel
-                    responsive={responsive3}
+                    responsive={responsive7}
                     draggable
                     minimumTouchDrag={80}
                     ssr={true} // means to render carousel on server-side.
@@ -996,7 +1010,7 @@ function Icon({ data, id }) {
                   style={{ padding: "10px 10px 10px" }}
                 >
                   <Carousel
-                    responsive={responsive3}
+                    responsive={responsive7}
                     draggable
                     minimumTouchDrag={80}
                     ssr={true} // means to render carousel on server-side.

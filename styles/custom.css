@@ -2487,8 +2487,23 @@ ul.menu.line>li:not(:first-child):before {
     max-height: 237px !important;
     min-height: 237px;
   }
+  .news-10 {
+    margin-top: 18px;
+  }
+  .news-10 .row.list-item>[class*=col-]{
+    margin-bottom: 20px;
+  }
   .sec-cta{
     margin-top: 18px;
+  }
+  .sec-n-h2 .img img {
+    height: unset;
+  }
+  #footer-mb .widget {
+    max-height: 260px;
+  }
+  #footer-mb .widget .location img{
+    padding-left: 10px;
   }
 }
 
