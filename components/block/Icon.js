@@ -96,7 +96,7 @@ function Icon({ data, id }) {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2,
+      items: 3,
     },
   };
 
@@ -1029,7 +1029,7 @@ function Icon({ data, id }) {
                       </a>
                     ))}
                   </Carousel>
-                  <div className="carousel-nav center">
+                  {/* <div className="carousel-nav center">
                     <div
                       className="carousel-prev "
                       onClick={() => {
@@ -1046,7 +1046,7 @@ function Icon({ data, id }) {
                     >
                       <i className="icon-arrow-1"></i>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>
@@ -2591,7 +2591,7 @@ function Icon({ data, id }) {
           <section
             className={`${padding} sec-img-svg group-ef loaded block-icon-${data[0].type}`}
             id={id}
-            // style={{ paddingTop: "90px" }}
+            style={{ marginTop: "28px" }}
           >
             <div className="container">
               <div className="inner-full">
@@ -2830,7 +2830,7 @@ function Icon({ data, id }) {
                                   }}
                                 >
                                   <div style={{textAlign: "center", margin: "auto"}}>
-                                    <div className="divtext">
+                                    <div className="divtext" style={{width:"88%",margin:"auto"}}>
                                       <h4
                                         className="title"
                                         style={{
@@ -3672,7 +3672,7 @@ function Icon({ data, id }) {
           <div className="container">
             {(data[0].title || data[0].title !== '') && (
               <div className="entry-head text-center" 
-              style={{textAlign:"center",paddingBottom:"70px",paddingTop:"20px",marginBottom:"70px", maxWidth:"550px", margin:"auto"}}>
+              style={{textAlign:"center",paddingBottom:"70px",marginBottom:"70px", maxWidth:"550px", margin:"auto"}}>
                 <h5 style={{fontWeight: "400"}}>{ReactHtmlParser(data[0].title)}</h5>
               </div>
             )}
@@ -3770,7 +3770,7 @@ function Icon({ data, id }) {
                                           textTransform: "none",
                                           color: "#fff",
                                           fontSize: "50px",
-                                          fontWeight:"500",
+                                          fontWeight:"350",
                                           marginBottom: "0"
                                         }}
                                       >
