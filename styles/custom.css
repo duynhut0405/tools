@@ -1980,7 +1980,9 @@ ul.menu.line>li:not(:first-child):before {
   margin-left: 0px;
 }
 /* Edit by An Nguyen */
-
+.card-5 .timeline .item .grid-space-80{
+  margin-bottom:87 ;
+}
 .block-icon-31{
   padding-bottom: 45px;
 }
