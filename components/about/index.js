@@ -195,14 +195,14 @@ function About({ data, id }) {
                           <div className="sec">
                             <div className="accodion-content">
                               <div className="inner-t" style={{padding: "30px"}}>
-                                <div className="row grid-space-60" style={{display: isActive ? "block" : "none", backgroundColor: "#fff",padding: "20px",borderRadius: "8px", marginBottom:"58px"}}>
+                                <div className="row grid-space-60" style={{display: isActive ? "block" : "none", backgroundColor: "#fff",padding: "20px",borderRadius: "8px",paddingBottom:"1px"}}>
                                   <ul className="list-download " style={{margin: "0 0 0 0"}}>
                                     {map(listNews.news, item => {
                                       return (
-                                        <li key={item.newsId}>
+                                        <li key={item.newsId} style={{borderBottom:"0.1px solid #DDDDDD"}}>
                                           <LinkNew lang={lang} name={item.url}>
                                             <a>
-                                              <span className="date"  style={{width: "10%",paddingRight: "5px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</span>
+                                              <span className="date"  style={{width: "10%",paddingRight: "5px", fontSize:"14px"}}>{moment(item.created_at).format('DD/MM/YYYY')}</span>
                                               <span className="title">
                                                 <i className="icon-t14"></i> {item.title}
                                               </span>

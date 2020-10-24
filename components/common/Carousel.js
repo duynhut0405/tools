@@ -136,7 +136,7 @@ function Carousels({ silder }) {
             </section>
           )}
           {silder[0].options === '6' && (
-            <section className="silder banner-heading-2 home next-shadow">
+            <section className="silder banner-heading-2 home next-shadow" >
               <Carousel
                 showThumbs={false}
                 showStatus={false}
@@ -176,8 +176,8 @@ function Carousels({ silder }) {
                         </div>
                       </div>
                       <div className="wimg show-768">
-                        <img
-                          className="img img-pc " style={{ objectFit: "cover" }}
+                        <img 
+                          className="img img-pc " style={{ objectFit: "cover"}}
                           src={`${process.env.DOMAIN}${_item.urlImage}`}
                           alt="icon"
                         />
