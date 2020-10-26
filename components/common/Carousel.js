@@ -304,19 +304,20 @@ function Carousels({ silder }) {
                         </div>
                       </div>
                       <div className="wing wing-custom" style={styleHeight}>
-                        {/* <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/> */}
+                        <img className="img-center" src={`${process.env.DOMAIN}${_item.urlImage}`} alt="" style= {styleImg}/>
                         
-                        {size.width >= 768 ? (
-                          <img
-                          className="img-center"
-                          src={`${process.env.DOMAIN}${_item.urlImage}`}
-                          alt="icon"
-                          style= {styleImg}
-                          />
-                        ) : (
+                        {size.width < 768 && (
                           <img
                           className="img-center"
                           src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
+                          alt="icon"
+                          style= {styleImg}
+                          />
+                        )}
+                        {size.width >= 768 && (
+                          <img
+                          className="img-center"
+                          src={`${process.env.DOMAIN}${_item.urlImage}`}
                           alt="icon"
                           style= {styleImg}
                           />
