@@ -312,14 +312,14 @@ function Carousels({ silder }) {
                           src={`${process.env.DOMAIN}${_item.urlImage}`}
                           alt="icon"
                           style= {styleImg}
-                        />
-                        ): (
+                          />
+                        ) : (
                           <img
                           className="img-center"
-                          src={`${process.env.DOMAIN}${(_item.urlImageMobile !== undefined & _item.urlImageMobile !== null)? _item.urlImageMobile : _item.urlImage}`}
+                          src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
                           alt="icon"
                           style= {styleImg}
-                        />
+                          />
                         )}
                       </div>
                       
