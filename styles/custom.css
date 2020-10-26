@@ -1893,7 +1893,7 @@ ul.menu.line>li:not(:first-child):before {
   .sec-n-h2 .item {
     padding: 58px;
     padding-left: 52px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
   }
 }
 @media only screen and (min-width: 1400px)
@@ -1905,7 +1905,7 @@ ul.menu.line>li:not(:first-child):before {
 .sec-n-h2 .item {
   padding: 58px;
   padding-left: 52px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 }
 @media only screen and (max-width: 1399px)
@@ -1915,7 +1915,7 @@ ul.menu.line>li:not(:first-child):before {
 }
 
 .sec-n-h2 .item {
-    border-radius: 5px;
+    /* border-radius: 5px; */
   }
 }
 @media only screen and (min-width: 992px)
@@ -4092,8 +4092,8 @@ body.mb-priority #footer-mb {
   height: 55px;
   /* width: 159px; */
   margin: auto;
-  text-align: center;
-  padding: 20px;
+  /* text-align: center; */
+  padding: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);

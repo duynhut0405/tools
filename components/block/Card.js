@@ -502,7 +502,7 @@ function Card({ data, type, optionWidth, id }) {
                       {data && data.listCard && data.listCard[3] ? (
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
-                            <div className="custom-mobile-div">
+                            <div className="custom-mobile-div"  style={{paddingBottom:"0px", paddingTop:"0px"}}>
                                 <img
                                   className="lazyload img-mobile-custom"
                                   data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}

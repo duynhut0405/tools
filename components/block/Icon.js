@@ -719,8 +719,8 @@ function Icon({ data, id }) {
         <React.Fragment>
           <section className={`sec-tb sec-n-h2  group-ef loaded`} id={id}>
             <div className="container">
-            <div className="row grid-space-0">
-              <div className="col-lg-4 efch-2 ef-img-t">
+            <div className="row grid-space-0" style={{borderRadius:"8px", overflow:"hidden"}}>
+              <div className="col-lg-4 efch-2 ef-img-t" style={{height:"max-content"}}>
                 {data && data[0] && data[0].urlImageBackGround ? (
                   <div
                     className="item item-1 loaded"
@@ -771,7 +771,7 @@ function Icon({ data, id }) {
                   ""
                 )}
               </div>
-              <div className="col-lg-4 efch-2 ef-img-t">
+              <div className="col-lg-4 efch-2 ef-img-t" style={{height:"max-content"}}>
                 {data && data[1] && data[1].urlImageBackGround ? (
                   <div
                     className="item item-1 loaded"
@@ -822,7 +822,7 @@ function Icon({ data, id }) {
                   ""
                 )}
               </div>
-              <div className="col-lg-4 efch-2 ef-img-t">
+              <div className="col-lg-4 efch-2 ef-img-t" style={{height:"max-content"}}>
                 {data && data[2] && data[2].urlImageBackGround ? (
                   <div
                     className="item item-1 loaded"

@@ -37,7 +37,7 @@ const mapOptionsCreator = {
 
 function Map({ data, location, zoom, id }) {
   const [isCheck, setIsCheck] = useState(null);
-  const [GoogleAPI, setGoogleAPI] = useState('https://maps.googleapis.com/maps/api/js?key=null');
+  const [GoogleAPI, setGoogleAPI] = useState('https://maps.googleapis.com/maps/api/js?key=AIzaSyDqDD--LYeNIZMYlQkebsbaGo8P5bVzCCA');
 
   async function getGoogleAPI(){
     // while(GoogleAPI == 'null'){
@@ -67,7 +67,7 @@ function Map({ data, location, zoom, id }) {
 
   const MyMapComponent = compose(
     withProps({
-      googleMapURL:GoogleAPI,// 'https://maps.googleapis.com/maps/api/js?key=AIzaSyArRfxyxqmW2NviGCwmUSethLU5Yr5Qbxw',
+      googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqDD--LYeNIZMYlQkebsbaGo8P5bVzCCA',// 'https://maps.googleapis.com/maps/api/js?key=AIzaSyArRfxyxqmW2NviGCwmUSethLU5Yr5Qbxw',
       loadingElement: <div style={{ height: `100%` }} />,
       containerElement: <div style={{ height: `500px` }} />,
       mapElement: <div style={{ height: `100%` }} />

@@ -14,10 +14,11 @@ const getAddressServices = (lat, long) => {
     url: '/geocode/json',
     params: {
       latlng: `${lat},${long}`,
-      key: `AIzaSyBFtaHtOcwUGvv2pDBtMoPrI5NvnUwe2GU`
+      key: 'AIzaSyDqDD--LYeNIZMYlQkebsbaGo8P5bVzCCA'
     }
   })
     .then(res => {
+      console.log(res);
       return res;
     })
     .catch(error => {
