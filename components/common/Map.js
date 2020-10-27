@@ -67,7 +67,7 @@ function Map({ data, location, zoom, id }) {
 
   const MyMapComponent = compose(
     withProps({
-      googleMapURL: GoogleAPI,// 'https://maps.googleapis.com/maps/api/js?key=AIzaSyArRfxyxqmW2NviGCwmUSethLU5Yr5Qbxw',
+      googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB6tAEdYaa2z4sVRRJ2UXqM9KqXQ7wKfRE',
       loadingElement: <div style={{ height: `100%` }} />,
       containerElement: <div style={{ height: `500px` }} />,
       mapElement: <div style={{ height: `100%` }} />
