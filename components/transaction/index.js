@@ -6,6 +6,8 @@ import debounce from 'lodash/debounce';
 import ProppTypes from 'prop-types';
 import { getAddressServices } from '../../services/google.api';
 import { searchBranchesService, getProvinceService, getDistrictService } from '../../services/map';
+import LazyLoad from 'react-lazyload';
+
 
 function array_move(arr, old_index, new_index) {
   if (new_index >= arr.length) {
@@ -258,6 +260,7 @@ function Transaction({ data, id }) {
 
 
   return (
+    <LazyLoad>
     <session className="sec-tb sec-locations">
       <div className="container">
         <div className={`wrap-list-map ${padding} transaction`} id={id} style={{marginBottom:"70px", minHeight: "500px"}}>
@@ -304,6 +307,7 @@ function Transaction({ data, id }) {
         </div>
       </div>
     </session>
+    </LazyLoad>
   );
 }
 
