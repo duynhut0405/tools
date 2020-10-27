@@ -1095,9 +1095,15 @@ function Icon({ data, id }) {
                             style={{ maxHeight: "100%" }}
                           />
                         </div>
-                        <div className="title-custom-2" style={{color:"black"}}>
+                        {item.Color === '1' ? (
+                          <div className="title-custom-2" style={{padding:"10px",color:"black"}}>
                           {ReactHtmlParser(item.note_1)}
                         </div>
+                        ):(
+                          <div className="title-custom-2">
+                          {ReactHtmlParser(item.note_1)}
+                        </div>
+                        )}
                       </a>
                     </div>
                   ))}
@@ -1121,10 +1127,15 @@ function Icon({ data, id }) {
                             style={{ maxHeight: "100%" }}
                           />
                         </div>
-                        <div className="title-custom-2" style={{padding:"10px",color:"black"}}>
+                        {item.Color === 1 ? (
+                          <div className="title-custom-2" style={{padding:"10px",color:"black"}}>
                           {ReactHtmlParser(item.note_1)}
                         </div>
-                        
+                        ):(
+                          <div className="title-custom-2">
+                          {ReactHtmlParser(item.note_1)}
+                        </div>
+                        )}
                       </a>
                     </div>
                   ))}

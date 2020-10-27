@@ -100,7 +100,8 @@ function Questions({ data, id }) {
                   checked={active_title}
                   onClick={() => setAciveTitle(!active_title)}
                 />
-                <label htmlFor={`checkbox_${id}`} className="entry-head text-center block-question-index">
+                <label htmlFor={`checkbox_${id}`} className="entry-head text-center block-question-index"
+                style={{borderBottomLeftRadius:"unset",borderBottomRightRadius:"unset"}}>
                   {data.listBlock && data.listBlock[0].title !== undefined && (
                     <h2 className="ht ">{data.listBlock[0].title || ''}</h2>
                   )}
