@@ -1121,7 +1121,7 @@ function Icon({ data, id }) {
                             style={{ maxHeight: "100%" }}
                           />
                         </div>
-                        <div className="title-custom-2" style={{padding:"10px"}}>
+                        <div className="title-custom-2" style={{padding:"10px",color:"black"}}>
                           {ReactHtmlParser(item.note_1)}
                         </div>
                         
