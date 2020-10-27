@@ -2980,7 +2980,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={2} style={{maxHeight:"318.5px"}}>
-                        <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#" }>
+                        <a className={size.width < 768 ? `item tRes_46 blue-shadow blue-shadow-custom` : `item tRes_72 blue-shadow blue-shadow-custom`} href={data[2].url != null & data[2].url != undefined ? data[2].url : "#" }>
                           <img
                             className="lazyload"
                             data-src={
@@ -2998,7 +2998,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={3} style={{maxHeight:"318.5px"}}>
-                        <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
+                        <a className={size.width < 768 ? `item tRes_46 blue-shadow blue-shadow-custom` : `item tRes_72 blue-shadow blue-shadow-custom`} href={data[3].url != null & data[3].url != undefined ? data[3].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
@@ -3016,7 +3016,7 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} style={{backgroundColor: "#a0d2ff"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
+                      <a className={size.width < 768 ? `item tRes_46 blue-shadow blue-shadow-custom` : `item tRes_72 blue-shadow blue-shadow-custom`} style={{backgroundColor: "#a0d2ff"}} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
