@@ -297,7 +297,7 @@ function Transaction({ data, id }) {
                 getDetail={getDetail}
               />
             </div>
-            <div className="col-md-7">
+            <div className="col-md-7 lazyload">
               <Map data={listBranches} location={location} zoom={zoom} id={locationId} />
             </div>
           </div>

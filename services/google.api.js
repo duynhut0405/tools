@@ -18,7 +18,6 @@ const getAddressServices = (lat, long) => {
     }
   })
     .then(res => {
-      console.log(res);
       return res;
     })
     .catch(error => {

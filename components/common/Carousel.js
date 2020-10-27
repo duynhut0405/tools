@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';
 import UseWindowResize from "../common/Resize";
+
 // import ImgSliderBlack from '../../public/static/images/bgSliderback.jpg';
 
 const propType = {
@@ -177,7 +178,7 @@ function Carousels({ silder }) {
                       </div>
                       <div className="wimg show-768">
                         <img 
-                          className="img img-pc " style={{ objectFit: "cover"}}
+                          className="img img-pc lazyload" style={{ objectFit: "cover"}}
                           src={`${process.env.DOMAIN}${_item.urlImage}`}
                           alt="icon"
                         />
@@ -186,7 +187,6 @@ function Carousels({ silder }) {
                         <div className="divtext1 text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
                           {ReactHtmlParser(_item.note_2)}
                           <h1 className=" efch-2 ef-img-l h1-custom" style={{color: "#fff"}}>{ReactHtmlParser(_item.note_1)}</h1>
-                          {/* <div className="text_content3">{_item.note_3}</div> */}
                           {_item.text_action === null ||
                           _item.text_action === undefined ||
                           _item.text_action === '' ? (
@@ -212,7 +212,7 @@ function Carousels({ silder }) {
                       </div>
                       <div className="wimg show-767">
                         <img
-                          className="img-center img-mb img-banner-custom"
+                          className="img-center img-mb img-banner-custom lazyload"
                           src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
                           alt="icon"
                         />
