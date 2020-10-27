@@ -1095,7 +1095,7 @@ function Icon({ data, id }) {
                             style={{ maxHeight: "100%" }}
                           />
                         </div>
-                        <div className="title-custom-2">
+                        <div className="title-custom-2" style={{color:"black"}}>
                           {ReactHtmlParser(item.note_1)}
                         </div>
                       </a>

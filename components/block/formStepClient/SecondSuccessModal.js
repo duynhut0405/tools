@@ -195,7 +195,7 @@ const SecondSuccessModal = props => {
 
     await axios(config)
     .then(function (response) {
-      console.log(response)
+      // console.log(response)
     })
     .catch(function (error) {
       alert(error);
