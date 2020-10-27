@@ -29,7 +29,7 @@ function Pages({ data, type, id, optionWidth }) {
 
   const getPageBlockAll = async pages => {
     const ids = map(pages, values => values.value);
-    console.log(ids);
+    // console.log(ids);
     const res = await getPagesByIdService(ids);
     if (res && res.status === 200) {
       return res.data;
@@ -40,7 +40,7 @@ function Pages({ data, type, id, optionWidth }) {
   const openModal = (id, className, index) => {
     var i;
     var x = document.getElementsByClassName(className);
-    console.log(x);
+    // console.log(x);
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";  
     }
@@ -51,7 +51,7 @@ function Pages({ data, type, id, optionWidth }) {
   const openModalTab = (id, className, index) => {
     var i;
     var x = document.getElementsByClassName(className);
-    console.log(x);
+    // console.log(x);
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";  
     }

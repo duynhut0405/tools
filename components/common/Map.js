@@ -50,7 +50,7 @@ function Map({ data, location, zoom, id }) {
         setGoogleAPI(link);
         return link;
       } catch (error) {
-        console.log(error.response); // this is the main part. Use the response property from the error object
+        // console.log(error.response); // this is the main part. Use the response property from the error object
         return null;
       }    
       // }
@@ -67,7 +67,7 @@ function Map({ data, location, zoom, id }) {
 
   const MyMapComponent = compose(
     withProps({
-      googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqDD--LYeNIZMYlQkebsbaGo8P5bVzCCA',// 'https://maps.googleapis.com/maps/api/js?key=AIzaSyArRfxyxqmW2NviGCwmUSethLU5Yr5Qbxw',
+      googleMapURL: GoogleAPI,// 'https://maps.googleapis.com/maps/api/js?key=AIzaSyArRfxyxqmW2NviGCwmUSethLU5Yr5Qbxw',
       loadingElement: <div style={{ height: `100%` }} />,
       containerElement: <div style={{ height: `500px` }} />,
       mapElement: <div style={{ height: `100%` }} />
