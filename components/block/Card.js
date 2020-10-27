@@ -7,6 +7,7 @@ import { getLang } from '../../utils/cookie';
 import t from '../../translation';
 import TableItem from './Table/Tableitem';
 import UseWindowResize from "../common/Resize";
+import LazyLoad from 'react-lazyload';
 
 const propTypes = {
   data: PropTypes.any,
@@ -373,11 +374,13 @@ function Card({ data, type, optionWidth, id }) {
                     {data && data.listCard && data.listCard[0] ? (
                       <div className="col-lg-2 col-md-4 col-6">
                         <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
+                            <LazyLoad>
                               <img
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
                                 alt="images"
                               />
+                            </LazyLoad>
                         </a>
                       </div>
                     ) : (
@@ -386,11 +389,13 @@ function Card({ data, type, optionWidth, id }) {
                     {data && data.listCard && data.listCard[1] ? (
                       <div className="col-lg-2 col-md-4 col-6">
                         <a className="item efch-4 ef-img-t" href={data.listCard[1].url}>
+                            <LazyLoad>
                               <img
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
                                 alt="images"
                               />
+                            </LazyLoad>
                         </a>
                       </div>
                     ) : (
@@ -399,11 +404,13 @@ function Card({ data, type, optionWidth, id }) {
                     {data && data.listCard && data.listCard[2] ? (
                       <div className="col-lg-2 col-md-4 col-6">
                         <a className="item efch-5 ef-img-t" href={data.listCard[2].url}>
+                            <LazyLoad>
                               <img
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
                                 alt="images"
                               />
+                            </LazyLoad>
                         </a>
                       </div>
                     ) : (
@@ -412,11 +419,13 @@ function Card({ data, type, optionWidth, id }) {
                     {data && data.listCard && data.listCard[3] ? (
                       <div className="col-lg-2 col-md-4 col-6">
                         <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
+                            <LazyLoad>
                               <img
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
                                 alt="images"
                               />
+                            </LazyLoad>
                         </a>
                       </div>
                     ) : (
@@ -425,11 +434,13 @@ function Card({ data, type, optionWidth, id }) {
                     {data && data.listCard && data.listCard[4] ? (
                       <div className="col-lg-2 col-md-4 col-6">
                         <a className="item efch-7 ef-img-t" href={data.listCard[4].url}>
+                            <LazyLoad>
                               <img
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
                                 alt="images"
                               />
+                            </LazyLoad>
                         </a>
                       </div>
                     ) : (
@@ -439,11 +450,13 @@ function Card({ data, type, optionWidth, id }) {
                       <div className="col-lg-2 col-md-4 col-6">
                         
                         <a className="item efch-8 ef-img-t" href={data.listCard[5].url}>
+                            <LazyLoad>
                               <img
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${data.listCard[5].urlImage}`}
                                 alt="images"
                               />
+                            </LazyLoad>
                         </a>
                       </div>
                     ) : (
@@ -458,11 +471,13 @@ function Card({ data, type, optionWidth, id }) {
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
                                 <div className="custom-mobile-div">
+                                <LazyLoad>
                                   <img
                                     className="lazyload img-mobile-custom"
                                     data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
                                     alt="images"
                                   />
+                                </LazyLoad>
                                 </div>
                           </a>
                         </div>
@@ -473,11 +488,13 @@ function Card({ data, type, optionWidth, id }) {
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item efch-4 ef-img-t" href={data.listCard[1].url}>
                             <div className="custom-mobile-div">
+                              <LazyLoad>
                                 <img
                                   className="lazyload img-mobile-custom"
                                   data-src={`${process.env.DOMAIN}${data.listCard[1].urlImage}`}
                                   alt="images"
                                 />
+                              </LazyLoad>
                             </div>
                           </a>
                         </div>
@@ -488,11 +505,13 @@ function Card({ data, type, optionWidth, id }) {
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item efch-5 ef-img-t" href={data.listCard[2].url}>
                             <div className="custom-mobile-div">
+                              <LazyLoad>
                                 <img
                                   className="lazyload img-mobile-custom"
                                   data-src={`${process.env.DOMAIN}${data.listCard[2].urlImage}`}
                                   alt="images"
                                 />
+                              </LazyLoad>
                             </div>
                           </a>
                         </div>
@@ -503,11 +522,13 @@ function Card({ data, type, optionWidth, id }) {
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
                             <div className="custom-mobile-div"  style={{paddingBottom:"0px", paddingTop:"0px"}}>
+                              <LazyLoad>
                                 <img
                                   className="lazyload img-mobile-custom"
                                   data-src={`${process.env.DOMAIN}${data.listCard[3].urlImage}`}
                                   alt="images"
                                 />
+                              </LazyLoad>
                             </div>
                           </a>
                         </div>
@@ -518,11 +539,13 @@ function Card({ data, type, optionWidth, id }) {
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item efch-7 ef-img-t" href={data.listCard[4].url}>
                             <div className="custom-mobile-div">
+                              <LazyLoad>
                                 <img
                                   className="lazyload img-mobile-custom"
                                   data-src={`${process.env.DOMAIN}${data.listCard[4].urlImage}`}
                                   alt="images"
                                 />
+                              </LazyLoad>
                             </div>
                           </a>
                         </div>
@@ -533,11 +556,13 @@ function Card({ data, type, optionWidth, id }) {
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item efch-8 ef-img-t" href={data.listCard[5].url}>
                             <div className="custom-mobile-div">
+                              <LazyLoad>
                                 <img
                                   className="lazyload img-mobile-custom"
                                   data-src={`${process.env.DOMAIN}${data.listCard[5].urlImage}`}
                                   alt="images"
                                 />
+                              </LazyLoad>
                             </div>
                           </a>
                         </div>

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { getLang } from "../../utils/cookie";
 import { LinkPage } from "../common/link";
 import { useRouter } from "next/router";
+import LazyLoad from 'react-lazyload';
 
 const propTypes = {
   data: Proptypes.array,
@@ -718,6 +719,7 @@ function Icon({ data, id }) {
       {data[0].type === "9" && (
         <React.Fragment>
           <section className={`sec-tb sec-n-h2  group-ef loaded`} id={id}>
+            <LazyLoad>
             <div className="container">
             <div className="row grid-space-0" style={{borderRadius:"8px", overflow:"hidden"}}>
               <div className="col-lg-4 efch-2 ef-img-t" style={{height:"max-content"}}>
@@ -875,6 +877,7 @@ function Icon({ data, id }) {
               </div>
             </div>
             </div>
+            </LazyLoad>
           </section>
         </React.Fragment>
       )}
