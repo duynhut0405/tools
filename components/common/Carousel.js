@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { Carousel } from 'react-responsive-carousel';
 import UseWindowResize from "../common/Resize";
+import LazyLoad from 'react-lazyload';
 
 // import ImgSliderBlack from '../../public/static/images/bgSliderback.jpg';
 
@@ -148,75 +149,87 @@ function Carousels({ silder }) {
                 {map(silder, (_item, _index) => {
                   return (
                     <div className={`container-custom option-2`} key={_index} style={{ paddingLeft: "0"}}>
-                      <div className="container show-768" style={{height: "-webkit-fill-available"}}>
-                        <div className="divtext text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
-                          {ReactHtmlParser(_item.note_2)}
-                          <h1 className=" efch-2 ef-img-l h1-custom" style={{color: "#fff"}}>{ReactHtmlParser(_item.note_1)}</h1>
-                          {/* <div className="text_content3">{_item.note_3}</div> */}
-                          {_item.text_action === null ||
-                          _item.text_action === undefined ||
-                          _item.text_action === '' ? (
-                            ''
-                          ) : (
-                            <a
-                              className="btn"
-                              href={
-                                _item.url === null || _item.url === undefined || _item.url === ''
-                                  ? '#'
-                                  : _item.url
-                              }
-                            >
-                              {_item.text_action}
-                            </a>
-                          )}
-                          {_item.video_url !== undefined && _item.video_url !== '' && (
-                            <div>
-                              <iframe src={_item.video_url} />
-                            </div>
-                          )}
+                      {size.width >= 768 && (
+                        <div className="container show-768" style={{height: "-webkit-fill-available"}}>
+                          <div className="divtext text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
+                            {ReactHtmlParser(_item.note_2)}
+                            <h1 className=" efch-2 ef-img-l h1-custom" style={{color: "#fff"}}>{ReactHtmlParser(_item.note_1)}</h1>
+                            {/* <div className="text_content3">{_item.note_3}</div> */}
+                            {_item.text_action === null ||
+                            _item.text_action === undefined ||
+                            _item.text_action === '' ? (
+                              ''
+                            ) : (
+                              <a
+                                className="btn"
+                                href={
+                                  _item.url === null || _item.url === undefined || _item.url === ''
+                                    ? '#'
+                                    : _item.url
+                                }
+                              >
+                                {_item.text_action}
+                              </a>
+                            )}
+                            {_item.video_url !== undefined && _item.video_url !== '' && (
+                              <div>
+                                <iframe src={_item.video_url} />
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                      <div className="wimg show-768">
-                        <img 
-                          className="img img-pc lazyload" style={{ objectFit: "cover"}}
-                          src={`${process.env.DOMAIN}${_item.urlImage}`}
-                          alt="icon"
-                        />
-                      </div>
-                      <div className="container show-767" style={{height: "-webkit-fill-available"}}>
-                        <div className="divtext1 text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
-                          {ReactHtmlParser(_item.note_2)}
-                          <h1 className=" efch-2 ef-img-l h1-custom" style={{color: "#fff"}}>{ReactHtmlParser(_item.note_1)}</h1>
-                          {_item.text_action === null ||
-                          _item.text_action === undefined ||
-                          _item.text_action === '' ? (
-                            ''
-                          ) : (
-                            <a
-                              className="btn"
-                              href={
-                                _item.url === null || _item.url === undefined || _item.url === ''
-                                  ? '#'
-                                  : _item.url
-                              }
-                            >
-                              {_item.text_action}
-                            </a>
-                          )}
-                          {_item.video_url !== undefined && _item.video_url !== '' && (
-                            <div>
-                              <iframe src={_item.video_url} />
-                            </div>
-                          )}
+                      )}
+                      {size.width >= 768 && (
+                        <div className="wimg show-768">
+                          <LazyLoad height={200}>
+                            <img 
+                              className="img img-pc lazyload" style={{ objectFit: "cover"}}
+                              src={`${process.env.DOMAIN}${_item.urlImage}`}
+                              alt="icon"
+                            />
+                          </LazyLoad>
                         </div>
-                      </div>
-                      <div className="wimg show-767">
-                        <img
-                          className="img-center img-mb img-banner-custom lazyload"
-                          src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
-                          alt="icon"
-                        />
-                      </div>
+                      )}
+                      {size.width < 768 && (
+                        <div className="container show-767" style={{height: "-webkit-fill-available"}}>
+                          <div className="divtext1 text-left-mg custom-banner-text" style={{color: "#fff", fontSize: "18px", fontWeight: "600", left: "15px",  maxWidth:"740px"}}>
+                            {ReactHtmlParser(_item.note_2)}
+                            <h1 className=" efch-2 ef-img-l h1-custom" style={{color: "#fff"}}>{ReactHtmlParser(_item.note_1)}</h1>
+                            {_item.text_action === null ||
+                            _item.text_action === undefined ||
+                            _item.text_action === '' ? (
+                              ''
+                            ) : (
+                              <a
+                                className="btn"
+                                href={
+                                  _item.url === null || _item.url === undefined || _item.url === ''
+                                    ? '#'
+                                    : _item.url
+                                }
+                              >
+                                {_item.text_action}
+                              </a>
+                            )}
+                            {_item.video_url !== undefined && _item.video_url !== '' && (
+                              <div>
+                                <iframe src={_item.video_url} />
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {size.width < 768 && (
+                        <div className="wimg show-767">
+                          <LazyLoad height={200}>
+                              <img
+                                className="img-center img-mb img-banner-custom lazyload"
+                                src={`${process.env.DOMAIN}${_item.urlImageMobile}`}
+                                alt="icon"
+                              />
+                          </LazyLoad>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
