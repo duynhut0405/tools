@@ -26,7 +26,8 @@ function QuestionItems({ question, answer, index, id }) {
         checked={active}
         onClick={() => setAcive(!active)}
       />
-      <label htmlFor={`checkbox_${index}`} className="accodion-title">
+      <label htmlFor={`checkbox_${index}`} className="accodion-title"
+      style={{borderBottomLeftRadius:"unset",borderBottomRightRadius:"unset"}}>
         <span>{question}</span>
         <span className="triangle">
           <i className="icon-plus"></i>
