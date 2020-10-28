@@ -158,11 +158,11 @@ function MenuIntro({ data, pageId, optionWidth }) {
                 ))}
           </div>
         </div>
-          {size.width > 768 && data.button_title != null && (
+          {/* {size.width > 768 && data.button_title != null && (
                       <div className="button-menu-custom">
                         <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
                       </div>
-                    )}
+                    )} */}
           </div>
             {size.width <= 768 && data.button_title != null && (
               <div className="center-custom" style={{marginTop:"24px"}}>
