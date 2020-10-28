@@ -362,18 +362,18 @@ function Card({ data, type, optionWidth, id }) {
           <section className={`sec-n-h1 group-ef loaded next-shadow next-shadow-none`} id={id}>
             <div className="container">
               <div className="wsec">
-                {size.width >= 768 ? (
+                {size.width > 768 ? (
                   <div className="title efch-1 ef-img-t">{data === null ? '' : ReactHtmlParser(data.title)}</div>
                 ) : (
                   <div className="title efch-1 ef-img-t" style={{ paddingLeft: "2%", paddingBottom: "15px"}}>{data === null ? '' : ReactHtmlParser(data.title)}</div>
                 )}
-                {size.width >= 768 ? (
+                {size.width > 768 ? (
                   <div className="inner">
-                    <div className="row bottom">
+                    <div className="row">
                     {data && data.listCard && data.listCard[0] ? (
                       <div className="col-lg-2 col-md-4 col-6">
                         <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
-                            
+
                               <img
                                 className="lazyload"
                                 data-src={`${process.env.DOMAIN}${data.listCard[0].urlImage}`}
@@ -465,10 +465,10 @@ function Card({ data, type, optionWidth, id }) {
                 </div>
                 ) : (
                   <div className="inner convert-grid-to-scroll">
-                      <div className="list-5 row">
+                      <div className="list-5 row" style={{paddingLeft:"10px", paddingRight:"10px"}}>
                       {data && data.listCard && data.listCard[0] ? (
-                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
-                          <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
+                        <div className="col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item item-with-custom efch-3 ef-img-t" href={data.listCard[0].url}>
                                 <div className="custom-mobile-div">
                                 
                                   <img
@@ -484,8 +484,8 @@ function Card({ data, type, optionWidth, id }) {
                         ''
                       )}
                       {data && data.listCard && data.listCard[1] ? (
-                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
-                          <a className="item efch-4 ef-img-t" href={data.listCard[1].url}>
+                        <div className="col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item item-with-custom efch-4 ef-img-t" href={data.listCard[1].url}>
                             <div className="custom-mobile-div">
                               
                                 <img
@@ -501,8 +501,8 @@ function Card({ data, type, optionWidth, id }) {
                         ''
                       )}
                       {data && data.listCard && data.listCard[2] ? (
-                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
-                          <a className="item efch-5 ef-img-t" href={data.listCard[2].url}>
+                        <div className="col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item item-with-custom efch-5 ef-img-t" href={data.listCard[2].url}>
                             <div className="custom-mobile-div">
                               
                                 <img
@@ -518,8 +518,8 @@ function Card({ data, type, optionWidth, id }) {
                         ''
                       )}
                       {data && data.listCard && data.listCard[3] ? (
-                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
-                          <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
+                        <div className="col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item item-with-custom efch-6 ef-img-t" href={data.listCard[3].url}>
                             <div className="custom-mobile-div" style={{paddingTop:"0px"}}>
                               
                                 <img
@@ -535,8 +535,8 @@ function Card({ data, type, optionWidth, id }) {
                         ''
                       )}
                       {data && data.listCard && data.listCard[4] ? (
-                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
-                          <a className="item efch-7 ef-img-t" href={data.listCard[4].url}>
+                        <div className="col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item item-with-custom efch-7 ef-img-t" href={data.listCard[4].url}>
                             <div className="custom-mobile-div">
                               
                                 <img
@@ -552,8 +552,8 @@ function Card({ data, type, optionWidth, id }) {
                         ''
                       )}
                       {data && data.listCard && data.listCard[5] ? (
-                        <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
-                          <a className="item efch-8 ef-img-t" href={data.listCard[5].url}>
+                        <div className="col-6" style={{paddingBottom:"10px"}}>
+                          <a className="item item-with-custom efch-8 ef-img-t" href={data.listCard[5].url}>
                             <div className="custom-mobile-div">
                               
                                 <img

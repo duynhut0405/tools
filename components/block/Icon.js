@@ -722,7 +722,7 @@ function Icon({ data, id }) {
             <LazyLoad>
             <div className="container">
             <div className="row grid-space-0" style={{borderRadius:"8px", overflow:"hidden"}}>
-              <div className="col-lg-4 efch-2 ef-img-t" style={{height:"max-content"}}>
+              <div className="col-lg-4 efch-2 ef-img-t" style={{height:"max-content", overflow:"hidden"}}>
                 {data && data[0] && data[0].urlImageBackGround ? (
                   <div
                     className="item item-1 loaded"

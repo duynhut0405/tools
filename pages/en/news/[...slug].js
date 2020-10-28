@@ -125,7 +125,7 @@ function New({ news, category_name, category_url, socialLink }) {
               <div className=" max750">
                 <div className="top-heading">
                   {/* <div className="date">{moment(news.news.created_at).format('DD/MM/YYYY')}</div> */}
-                  {socialLink && <Social data={socialLink} />}
+                  {/* {socialLink && <Social data={socialLink} />} */}
                   {/* {console.log(socialLink)} */}
                 </div>
                 {news.news.author_name !== null && (

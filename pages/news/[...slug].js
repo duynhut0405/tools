@@ -194,7 +194,7 @@ function New({ news, category_name, category_url, socialLink }) {
                       <a className="tag">{item.name}</a>
                     </Link>
                   ))}
-                  {socialLink && <Social data={socialLink} />}
+                  {/* {socialLink && <Social data={socialLink} />} */}
                 </div>
                 {/* <div className="Dowload_information">
                 {t('New_dowload_title')} <br></br>
