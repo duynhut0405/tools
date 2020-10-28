@@ -365,7 +365,7 @@ function Card({ data, type, optionWidth, id }) {
                 {size.width >= 768 ? (
                   <div className="title efch-1 ef-img-t">{data === null ? '' : ReactHtmlParser(data.title)}</div>
                 ) : (
-                  <div className="title efch-1 ef-img-t" style={{ maxWidth: "150px",paddingLeft: "2%", paddingBottom: "15px"}}>{data === null ? '' : ReactHtmlParser(data.title)}</div>
+                  <div className="title efch-1 ef-img-t" style={{ paddingLeft: "2%", paddingBottom: "15px"}}>{data === null ? '' : ReactHtmlParser(data.title)}</div>
                 )}
                 {size.width >= 768 ? (
                   <div className="inner">
@@ -464,8 +464,8 @@ function Card({ data, type, optionWidth, id }) {
                   </div>
                 </div>
                 ) : (
-                  <div className="inner">
-                      <div className="row bottom">
+                  <div className="inner convert-grid-to-scroll">
+                      <div className="list-5 row">
                       {data && data.listCard && data.listCard[0] ? (
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item  efch-3 ef-img-t" href={data.listCard[0].url}>
@@ -520,7 +520,7 @@ function Card({ data, type, optionWidth, id }) {
                       {data && data.listCard && data.listCard[3] ? (
                         <div className="col-lg-2 col-md-4 col-6" style={{paddingBottom:"10px"}}>
                           <a className="item efch-6 ef-img-t" href={data.listCard[3].url}>
-                            <div className="custom-mobile-div"  style={{paddingBottom:"0px", paddingTop:"0px"}}>
+                            <div className="custom-mobile-div" style={{paddingTop:"0px"}}>
                               
                                 <img
                                   className="lazyload img-mobile-custom"

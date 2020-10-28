@@ -4111,6 +4111,10 @@ body.mb-priority #footer-mb {
     content: none;
   }
 
+  .next-shadow-none {
+    padding: 20px 0 0px !important;
+  }
+
   .next-shadow + section:after {
     content: none;
 }
