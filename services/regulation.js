@@ -66,6 +66,9 @@ const getRegulationPagation = (type, year, number, page) => {
 };
 
 const getRegulationListYear = (type, detailTypeId, number, page, year) => {
+  if (isNaN(page)) {
+    page = 0;
+  }
   return request({
     url: `/regulation/investors/${type}?detailTypeId=${detailTypeId}&number=${number}&page=${page}&year=${year}`,
     method: 'GET'

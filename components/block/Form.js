@@ -59,7 +59,7 @@ function Form({ data, pageId, id }) {
   };
   const onSend = async event => {
     event.preventDefault();
-    if (capcha) {
+    // if (capcha) {
       setIsLoading(true);
 
       const dataSend = {
@@ -78,7 +78,7 @@ function Form({ data, pageId, id }) {
       } else {
         setIsLoading(false);
       }
-    }
+    // }
   };
 
   const onKeyPress = e => {
@@ -223,13 +223,13 @@ function Form({ data, pageId, id }) {
               return (
                 <React.Fragment>
                   <div className="col-12 wrecaptchar">
-                    {/* <ReCAPTCHA
+                    <ReCAPTCHA
                       style={{ display: 'inline-block' }}
                       ref={recaptchaRef}
                       onChange={handleChangeCapcha}
                       sitekey="6LdlyvoUAAAAAPKjNQN7Zk3YI-21ZaDLstM76POz"
                       // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                    /> */}
+                    />
                   </div>
                   <div className={`d-flex col-12 text-center__ `}>
                     <div style={{ position: 'relative', display: 'inline-block' }}>

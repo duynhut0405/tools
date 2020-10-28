@@ -43,7 +43,7 @@ function FileList({ year, isChecked, iconPlus, data }) {
                             )}/uploads${item.urlFile}`}
                             download
                           >
-                            <span className="date" style={{width: "10%",paddingRight: "5px"}}>{moment(item.createdAt).format('DD/MM/YYYY')}</span>
+                            <span className="date" style={{width: "10%",paddingRight: "5px", paddingLeft:"10px", fontSize:"14px"}}>{moment(item.createdAt).format('DD/MM/YYYY')}</span>
                             <span className="title">
                               <i className="icon-t14"></i> {item.name}
                             </span>
@@ -63,7 +63,7 @@ function FileList({ year, isChecked, iconPlus, data }) {
                             )}/uploads${item.urlFile}`}
                             download
                           >
-                            <span className="date" style={{width: "10%",paddingRight: "5px"}}>{moment(item.createdAt).format('DD/MM/YYYY')}</span>
+                            <span className="date" style={{width: "10%",paddingRight: "5px", paddingLeft:"10px", fontSize:"14px"}}>{moment(item.createdAt).format('DD/MM/YYYY')}</span>
                             <span className="title">
                               <i className="icon-t14"></i> {item.name}
                             </span>

@@ -100,7 +100,7 @@ function ListDowloadFIle({ type, data, optionWidth, search, noQuestion, id }) {
 
   return (
     <div className={`${padding} accodion accodion-2 downloadfile`} id={id}
-    style={{backgroundColor:"#E0F0FF", paddingBottom: (data.type == 9 && active_title == false) ? "90px" : "0px"}}>
+    style={{backgroundColor:"#E0F0FF", paddingBottom: (data.type == 5 && active_title == false) ? "90px" : "0px"}}>
       <div className="container">
       <div className="question" style={{ backgroundColor: "unset" }}>
               <div className="container">
