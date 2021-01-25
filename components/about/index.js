@@ -32,6 +32,7 @@ function About({ data, id }) {
   const getNews = async (_id, _page, number, _year) => {
     setListNews([]);
     const res = await findAllByCategory(_id, _page, number, _year);
+    console.log(res);
     if (res && res.status === 200) {
       setListNews(res.data);
       setIsUpdatePage(true);
@@ -43,6 +44,7 @@ function About({ data, id }) {
   const getNewsCustom = async (_id, _page, number, _year) => {
     setListNews([]);
     setIsActive(false);
+    console.log(_id, _page, number, _year)
     const res = await findAllByCategory(_id, _page, number, _year);
     if (res && res.status === 200) {
       setListNews(res.data);
@@ -56,6 +58,7 @@ function About({ data, id }) {
 
   const getNewsCustom1 = async (_id, _page, number, _year) => {
     const sizeTest = listNews.size;
+    console.log(sizeTest)
     for (let i = 1; i <= sizeTest; i++) {
       setIsActive(false);
       const res = await findAllByCategory(_id, i, number, _year);
@@ -116,7 +119,8 @@ function About({ data, id }) {
   }, [page]);
 
   useEffect(() => {
-    if (data.category.value && !isUpdatePage) {
+    if (data.category.value) {
+    // if (data.category.value && !isUpdatePage) {
       // getNewsCustom(data.category.value, data.record, yearSearch);
       getNewsCustom(data.category.value, 1, data.record, yearSearch);
     }

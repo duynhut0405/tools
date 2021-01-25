@@ -72,6 +72,7 @@ function TableRate({ data, id, search }) {
   const getInterestRate = async () => {
     const interestRateRes = await getInterestRateService();
     if (interestRateRes && interestRateRes !== undefined && interestRateRes.status === 200) {
+      console.log(interestRateRes);
       setListInterestRate(interestRateRes.data);
     }
   };
