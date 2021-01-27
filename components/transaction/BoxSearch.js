@@ -49,7 +49,7 @@ function BoxSearch({
           className={branches_type === 'all' ? 'col-4 active' : 'col-4'}
           onClick={() => setBranchesType('all')}
         >
-          <span className="item">{t('all')}</span>
+          <span className="item">SmartBank</span>
         </li>
         <li
           className={branches_type === 'transaction' ? 'col-4 active' : 'col-4'}

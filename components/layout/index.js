@@ -716,7 +716,7 @@ function Layout({ children, isPrioty, idPage }) {
                        </div> */}
                     </div>
                   </div>
-                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
+                  {/* <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
                     <div className="widget widget-subscribe">
                       <h5 className="widget-title" style={{color: '#fff'}}>{t('sign_up_promotional')}</h5>
                       <form onSubmit={onRegister} class="subscribeForm">
@@ -736,14 +736,14 @@ function Layout({ children, isPrioty, idPage }) {
                         <button type="submit" class=""><i class="icon-arrow-1"></i></button>
                       </form> 
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
+                  {/* <div className="col-lg-3 col-md-6  efch-6 ef-img-t" style={{ paddingBottom:'10px' }}>
                     <div className="widget widget-subscribe">
                       <h5 className="widget-title" style={{color: '#fff'}}>{t('find_ATM')}</h5>
                       <a class="location" href="/page/diem-giao-dich-atm" style={{backgroundColor: "#A0D2FF", color: "#141ED2", padding: "10px"}}><img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 
                 {/* <div className="line"></div>
@@ -815,7 +815,7 @@ function Layout({ children, isPrioty, idPage }) {
                         </ul>
                       </div>
                       <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                        <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                        <div className="copyright">2021 © Copyright MBbank. All rights reserved.</div>
                       </div>
                   </div>
                 </div>
@@ -899,7 +899,7 @@ function Layout({ children, isPrioty, idPage }) {
                   </div>
                   </div>
                 </div>
-                <div className="row bottom">
+                {/* <div className="row bottom">
                   <div className="col-lg-3 col-md-6  efch-6 ef-img-t">
                     <div className="widget widget-subscribe" style={{marginBottom: "15px"}}>
                       <h5 className="widget-title" style={{color: '#fff'}}>{t('sign_up_promotional')}</h5>
@@ -927,7 +927,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <a class="location" href="/page/Chi-nhanh-va-atm-mbbank" style= {{backgroundColor: "#A0D2FF", color: "#141ED2"}}> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 
                 {/* <div className="line"></div>
                 <div className="row grid-space-10">
@@ -998,7 +998,7 @@ function Layout({ children, isPrioty, idPage }) {
                         </ul>
                       </div>
                       <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                        <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                        <div className="copyright">2021 © Copyright MBbank. All rights reserved.</div>
                       </div>
                   </div>
                 </div>
