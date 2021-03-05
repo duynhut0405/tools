@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { GtagNoscript, GtagScript } from '../components/gtm/gtag';
+import { NonceProvider } from 'react-select';
 
 class MyDocument extends Document {
   render() {
@@ -31,9 +32,18 @@ class MyDocument extends Document {
           <GtagScript />
         </Head>
         <body>
-          <GtagNoscript />
           <Main />
           <NextScript />
+          {/* <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDLL9G8"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> */}
+          <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=GTM-WDLL9G8`}
+          height="0"
+          width="0"
+          style={{display:"none", visibility:"hidden"}}
+        />
+      </noscript>
         </body>
       </html>
     );
