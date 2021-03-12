@@ -44,6 +44,14 @@ class MyDocument extends Document {
           style={{display:"none", visibility:"hidden"}}
         />
       </noscript>
+        <div id="fb-root"></div>
+        <script async type="text/javascript" src="/main.js"></script>
+        <div className="fb-customerchat"
+          attribution="setup_tool"
+          page_id="1555676601122727"
+          logged_in_greeting="Xin chào, MB có thể hỗ trợ gì được cho bạn?"
+          logged_out_greeting="Xin chào, MB có thể hỗ trợ gì được cho bạn?">
+        </div>
         </body>
       </html>
     );
