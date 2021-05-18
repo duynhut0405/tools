@@ -47,7 +47,7 @@ function BoxSearch({
       <ul className="menu row grid-space-0">
         <li
           className={branches_type === 'all' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('all')}
+          onClick={() => setBranchesType('branch')}
         >
           <span className="item">SmartBank</span>
         </li>

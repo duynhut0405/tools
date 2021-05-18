@@ -76,7 +76,7 @@ function Transaction({ data, id }) {
   const [locationId, setID] = useState(null);
   const [zoom, setZoom] = useState(14);
   const [district, setDistrict] = useState(null);
-  const [branches_type, setBranchesType] = useState('all');
+  const [branches_type, setBranchesType] = useState('branch');
   const [province, setProvince] = useState(null);
   const [query, setQuery] = useState('');
   const [listBranches, setListBranches] = useState([]);

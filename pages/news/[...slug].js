@@ -262,8 +262,8 @@ New.getInitialProps = async ctx => {
   let routerURL = null;
   let params = '';
   let news = null;
-  let category_name = null;
-  let category_url = null;
+  let category_name = '';
+  let category_url = '';
   // let layoutInvestors = null;
   map(query, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
@@ -284,8 +284,8 @@ New.getInitialProps = async ctx => {
       newResponse.data.news.categories !== null &&
       newResponse.data.news.categories.length > 0
     ) {
-      category_name = newResponse.data.news.categories[0].name;
-      category_url = newResponse.data.news.categories[0].slug;
+      category_name = newResponse?.data?.news?.categories[0]?.name;
+      category_url = newResponse?.data?.news?.categories[0]?.slug;
     }
   }
 
