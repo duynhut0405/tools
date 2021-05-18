@@ -46,8 +46,8 @@ function BoxSearch({
       <h5 class="uppercase" style={{marginBottom:"0px"}}>{t('net_work')}</h5>
       <ul className="menu row grid-space-0">
         <li
-          className={branches_type === 'all' ? 'col-4 active' : 'col-4'}
-          onClick={() => setBranchesType('branch')}
+          className={branches_type === 'transaction_online' ? 'col-4 active' : 'col-4'}
+          onClick={() => setBranchesType('transaction_online')}
         >
           <span className="item">SmartBank</span>
         </li>
