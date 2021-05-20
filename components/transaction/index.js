@@ -60,7 +60,7 @@ const getAddress = async (lat, long, setData, setListBranches) => {
     searchBranches(
       {
         districtCity: null,
-        networkCategory: 'all',
+        networkCategory: 'transaction_online',
         provinceCity: null,
         search: res.data.results[0].address_components[3].short_name
       },
@@ -225,7 +225,7 @@ function Transaction({ data, id }) {
     searchBranches1(
       {
         districtCity: null,
-        networkCategory: 'all',
+        networkCategory: 'transaction_online',
         provinceCity: null,
         search: value
       },
@@ -238,7 +238,7 @@ function Transaction({ data, id }) {
     searchBranches(
       {
         districtCity: null,
-        networkCategory: 'all',
+        networkCategory: 'transaction_online',
         provinceCity: null,
         search: 'Hà Nội'
       },
