@@ -135,7 +135,7 @@ function ModalDrawer({ menu, menuHeader, onSearch, onChangeSearch }) {
                 </li>
                 <li>
                   <a
-                    href="https://emb.mbbank.com.vn/corp/EstablishSession"
+                    href="https://ebank.mbbank.com.vn/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
