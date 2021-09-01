@@ -1250,10 +1250,7 @@ function Icon({ data, id }) {
                       ))}
                       <Link
                         href={
-                          data[0].url_group_1 !== null ||
-                          data[0].url_group_1 !== undefined
-                            ? data[0].url_group_1
-                            : "#"
+                          data[0].url_group_1 || '#'
                         }
                         prefetch={false}
                       >
@@ -1296,10 +1293,7 @@ function Icon({ data, id }) {
                       ))}
                       <Link
                         href={
-                          data[0].url_group_2 !== null ||
-                          data[0].url_group_2 !== undefined
-                            ? data[0].url_group_2
-                            : "#"
+                          data[0]?.url_group_2 || "#"
                         }
                         prefetch={false}
                       >
@@ -3543,20 +3537,20 @@ function Icon({ data, id }) {
                       </a>
               </div>
               <div className={`col-md-4 efch-0 ef-img-t`} key={4} style={{maxHeight:"318.5px"}}>
-                      <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[4].url != null & data[4].url != undefined ? data[4].url : "#"}>
+                      <a className={size.width >= 768 ? `item tRes_72 blue-shadow blue-shadow-custom` : `item tRes_46 blue-shadow blue-shadow-custom`} href={data[4]?.url != null & data[4]?.url != undefined ? data[4]?.url : "#"}>
                           <img
                             className="lazyload"
                             data-src={
-                              data[4].urlImage === null
+                              data[4]?.urlImage === null
                                 ? `/images/imgdefault.jpg`
-                                : `${process.env.DOMAIN}${data[4].urlImage}`
+                                : `${process.env.DOMAIN}${data[4]?.urlImage}`
                             }
                             alt="images"
                             style={{borderRadius: "8px"}}
                           />
                         <div className="divtext">
-                          <div class="category">{ReactHtmlParser(data[4].note_1)}</div>
-                          <h4 className="title line2" style={{fontSize: "18px", left:"5px"}}>{ReactHtmlParser(data[4].note_2)}</h4>
+                          <div class="category">{ReactHtmlParser(data[4]?.note_1)}</div>
+                          <h4 className="title line2" style={{fontSize: "18px", left:"5px"}}>{ReactHtmlParser(data[4]?.note_2)}</h4>
                         </div>
                       </a>
               </div>
