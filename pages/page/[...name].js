@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { Carousel, BlockRender, MenuMiddle, Breadcrumb } from '../../components/common';
-import Head from 'next/head';
-import map from 'lodash/map';
-import filter from 'lodash/filter';
-import { getPageMutiLangBySlug, getListPageBySlug } from '../../services/page';
-import ReactHtmlParser from 'react-html-parser';
-import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import Head from 'next/head';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import ReactHtmlParser from 'react-html-parser';
+import { BlockRender, Breadcrumb, Carousel, MenuMiddle } from '../../components/common';
+import { getListPageBySlug, getPageMutiLangBySlug } from '../../services/page';
 
 const propTypes = {
   page: PropTypes.object,
@@ -103,11 +103,12 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
 }
 
 Page.getInitialProps = async ctx => {
-  const { query } = ctx.ctx;
+  const queryName = ctx.ctx.asPath.split('/');
+  queryName.splice(0, 2);
   let routerURL = null;
   let params = '';
   let slugClass = '';
-  map(query.name, url => {
+  map(queryName, url => {
     slugClass = `${slugClass}-${url}`;
     return (params = `${params}/${url}`);
   });
