@@ -31,8 +31,9 @@ const getListPageBySlug = data => {
 };
 
 const getPageMutiLangBySlug = (lang, name) => {
+  const lastChar = name.substr(name.length - 1);
   return requestLang({
-    url: `${lang}/api/fe/pages/name?name=${name}`,
+    url: `${lang}/api/fe/pages/name?name=${lastChar === '/' ? name.slice(0, -1) : name}`,
     method: 'POST'
   })
     .then(res => {

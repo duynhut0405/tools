@@ -38,11 +38,11 @@ function Questions({ data, id }) {
   };
 
   let padding = '';
-  if (data.listBlock[0].optionWidth === '2') {
+  if (data?.listBlock[0]?.optionWidth === '2') {
     padding = 'sec-tb';
-  } else if (data.listBlock[0].optionWidth === '3') {
+  } else if (data?.listBlock[0]?.optionWidth === '3') {
     padding = 'sec-t';
-  } else if (data.listBlock[0].optionWidth === '4') {
+  } else if (data?.listBlock[0]?.optionWidth === '4') {
     padding = 'sec-b';
   } else {
     padding = 'sec-';

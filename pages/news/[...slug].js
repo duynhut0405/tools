@@ -122,7 +122,7 @@ function New({ news, category_name, category_url, socialLink }) {
               <div className="max750">
                 <div className="top-heading" style={{marginTop:"-85px"}}>
                   <div className="date">
-                  {category_name} 
+                  {category_name}
                     {/* {category_name}   | {t('space')} */}
                     {/* {moment(news.news.created_at).format('DD/MM/YYYY')} */}
                   </div>
@@ -204,9 +204,9 @@ function New({ news, category_name, category_url, socialLink }) {
                 <a className="dowload_GooglePlay" href={t('dowload_GooglePlay')}>{t('dowload_GooglePlay')}</a><br></br>
                 {t('New_dowload_title_before')}
                 <a className="Phone_contact_1" href={t('Phone_contact_1')}>{t('Phone_contact_1')}</a> /
-                <a className="Phone_contact_2" href={t('Phone_contact_2')}>{t('Phone_contact_2')}</a> 
+                <a className="Phone_contact_2" href={t('Phone_contact_2')}>{t('Phone_contact_2')}</a>
                 {t('New_dowload_title_after')}
-                
+
 
                 </div> */}
               </div>
@@ -258,14 +258,15 @@ function New({ news, category_name, category_url, socialLink }) {
 New.propTypes = propTypes;
 
 New.getInitialProps = async ctx => {
-  const { query } = ctx.ctx;
+  const queryName = ctx.ctx.asPath.split('/');
+  queryName.splice(0, 2);
   let routerURL = null;
   let params = '';
   let news = null;
   let category_name = '';
   let category_url = '';
   // let layoutInvestors = null;
-  map(query, url => (params = `${params}/${url}`));
+  map(queryName, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
 
   const common = await getCommon('vi');

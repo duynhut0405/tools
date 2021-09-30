@@ -102,11 +102,12 @@ function Page({ routerURL, page, silder, menuMiddle, listSlug, slugClass, hasSid
 }
 
 Page.getInitialProps = async ctx => {
-  const { query } = ctx.ctx;
+  const queryName = ctx.ctx.asPath.split('/');
+  queryName.splice(0, 3);
   let routerURL = null;
   let params = '';
   let slugClass = '';
-  map(query.name, url => {
+  map(queryName, url => {
     slugClass = `${slugClass}-${url}`;
     return (params = `${params}/${url}`);
   });

@@ -100,11 +100,12 @@ function CategoryDetail({ routerURL, category }) {
 }
 
 CategoryDetail.getInitialProps = async ctx => {
-  const { query } = ctx.ctx;
+  const queryName = ctx.ctx.asPath.split('/');
+  queryName.splice(0, 3);
   let routerURL = null;
   let params = '';
   let category = null;
-  map(query, url => (params = `${params}/${url}`));
+  map(queryName, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
   const res = await getNewsByCategorySlug(routerURL, { number: 10, page: 0 });
   if (res && res !== undefined && res.status === 200) {

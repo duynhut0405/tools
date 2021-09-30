@@ -746,6 +746,8 @@ function ImageRight({ items, padding, id, type }) {
 
     );
   }
+
+  return null;
   
 }
 

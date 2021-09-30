@@ -247,13 +247,14 @@ function New({ news, category_name, category_url, socialLink }) {
 New.propTypes = propTypes;
 
 New.getInitialProps = async ctx => {
-  const { query } = ctx.ctx;
+  const queryName = ctx.ctx.asPath.split('/');
+  queryName.splice(0, 3);
   let routerURL = null;
   let params = '';
   let news = null;
   let category_name = null;
   let category_url = null;
-  map(query, url => (params = `${params}/${url}`));
+  map(queryName, url => (params = `${params}/${url}`));
   routerURL = params.slice(1, params.length);
   const common = await getCommon('en');
   const { socialLink } = common;
