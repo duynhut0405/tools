@@ -55,7 +55,7 @@ const getDistrict = async (id, setData) => {
 
 const getAddress = async (lat, long, setData, setListBranches) => {
   const res = await getAddressServices(lat, long);
-  if (res && res.status === 200) {
+  if (res && res.status === 200 && res.data?.results[0]?.address_components[3]?.short_name) {
     setData(res.data.results[0].address_components[3].short_name);
     searchBranches(
       {
