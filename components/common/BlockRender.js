@@ -56,10 +56,8 @@ function BlockRender({ data, pageId }) {
                 switch (values.name) {
                   case 'Block Icon':
                     return <Icon id={values.id} data={JSON.parse((values.content).replace(rep, ''))} key={index} />;
-                    return null;
                   case 'Block Images':
                     return <Images id={values.id} data={JSON.parse((values.content).replace(rep, ''))} key={index} />;
-                    return null;
                   case 'Block News':
                     return (
                       <News
