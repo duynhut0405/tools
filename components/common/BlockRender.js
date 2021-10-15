@@ -44,6 +44,7 @@ const propTypes = {
 };
 
 function BlockRender({ data, pageId }) {
+  let rep = new RegExp('\n', 'g');
   return (
     <>
       {data !== undefined && (
@@ -54,9 +55,11 @@ function BlockRender({ data, pageId }) {
               if (values.content !== null) {
                 switch (values.name) {
                   case 'Block Icon':
-                    return <Icon id={values.id} data={JSON.parse(values.content)} key={index} />;
+                    return <Icon id={values.id} data={JSON.parse((values.content).replace(rep, ''))} key={index} />;
+                    return null;
                   case 'Block Images':
-                    return <Images id={values.id} data={JSON.parse(values.content)} key={index} />;
+                    return <Images id={values.id} data={JSON.parse((values.content).replace(rep, ''))} key={index} />;
+                    return null;
                   case 'Block News':
                     return (
                       <News

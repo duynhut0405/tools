@@ -128,7 +128,9 @@ Page.getInitialProps = async ctx => {
     const silderData = filter(pageResponse.data.pageBlocks, item => item.name === 'Silder');
     for (let i = 0; i < silderData.length; i++) {
       if (silderData[i].content !== null) {
-        silder = [...silder, ...JSON.parse(silderData[i].content)];
+        var re = new RegExp('\n', 'g');
+        const newData = (silderData[i].content).replace(re, "");
+        silder = [...silder, ...JSON.parse(newData)];
       }
     }
   }
