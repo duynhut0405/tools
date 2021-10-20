@@ -1,8 +1,11 @@
 import moment from 'moment';
 import Proptypes from 'prop-types';
-import { getRateService, getInterestRateService } from '../../services/rate';
+import React, { useEffect, useState } from 'react';
 import FormRate from '../../components/formRate';
-import { cond } from 'lodash';
+import { getInterestRateService, getRateService, searchRate } from '../../services/rate';
+import { getPadding } from '../../utils/convertPadding';
+import Search from './Search';
+import Table from './Table';
 
 const propTypes = {
   data: Proptypes.object,
