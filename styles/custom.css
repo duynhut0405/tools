@@ -4269,3 +4269,7 @@ body.mb-priority #footer-mb {
     height: 100%!important;
     margin: 0!important;
 }}
+
+.tableRate {
+  z-index: 5;
+}
