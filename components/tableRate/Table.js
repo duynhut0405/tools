@@ -21,6 +21,7 @@ function Table({ data }) {
             <th>{t('table_rate_buy_transfer')}</th>
             <th>{t('table_rate_sell')}</th>
           </tr>
+          {(data === null || data === undefined) && <tr><td colSpan={4}>Không tìm thấy thông tin</td></tr>}
           {map(data, rateItmes => (
             <tr key={rateItmes.id}>
               <td>{rateItmes.currency}</td>
