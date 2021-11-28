@@ -4,6 +4,19 @@ const withFonts = require('nextjs-fonts');
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 
+// You can choose which headers to add to the list
+// after learning more below.
+const securityHeaders = [
+  {
+    key: 'X-Frame-Options',
+    value: 'SAMEORIGIN'
+  },
+  {
+    key: 'Content-Security-Policy',
+    value: "script-src 'self'"
+  }
+];
+
 const {
   getRouer,
   getNewRouter,
@@ -17,6 +30,15 @@ module.exports = withPWA(
   withFonts(
     withCSS(
       withSass({
+        async headers() {
+          return [
+            {
+              // Apply these headers to all routes in your application.
+              source: '/(.*)',
+              headers: securityHeaders
+            }
+          ];
+        },
         // eslint-disable-next-line no-unused-vars
         webpack(config, options) {
           config.module.rules.push({
@@ -36,12 +58,12 @@ module.exports = withPWA(
           };
         },
         env: {
-          DOMAIN: 'https://mbbank3.mangoads.com.vn:8443/',
+          DOMAIN: 'https://157.230.47.241:8443/',
           LINK_DOMAIN: 'mbbank.com.vn',
-          BASE_URL: 'https://mbbank3.mangoads.com.vn:8443',
+          BASE_URL: 'https://157.230.47.241:8443',
           MB_URL: 'https://api2.vietstock.vn/data/stocktradinginfo',
-          MAP_URL: 'https://mbbank3.mangoads.com.vn:8443/api/fe',
-          ROUTER_URL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe',
+          MAP_URL: 'https://157.230.47.241:8443/api/fe',
+          ROUTER_URL: 'https://157.230.47.241:8443/vi/api/fe',
           FRONTEND_URL: 'https://mbbank6.mangoads.com.vn/',
           FRONTEND_URL_LOAN: 'https://mbbank6.mangoads.com.vn',
           LANDING_PAGE_URL:
