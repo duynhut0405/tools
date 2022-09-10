@@ -30,6 +30,20 @@ module.exports = withPWA(
   withFonts(
     withCSS(
       withSass({
+        async redirects() {
+          return [
+            {
+              source: '/',
+              destination: '/tool/1',
+              permanent: true
+            },
+            {
+              source: '/tool',
+              destination: '/tool/1',
+              permanent: true
+            }
+          ];
+        },
         async headers() {
           return [
             {

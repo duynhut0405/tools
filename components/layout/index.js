@@ -42,7 +42,30 @@ function Layout({ children, isPrioty, idPage }) {
   // const [activeForm, setActiveForm] = useState(false);
   const [register, setRegister] = useState('');
   const [menuHeader, setMenuHeader] = useState([]);
-  const [menuNav, setMenuNav] = useState([]);
+  const [menuNav, setMenuNav] = useState([
+    {
+      type: '4',
+      url: '/tool',
+      name: 'Tool',
+      children: [
+        { type: '4', url: '/tool/1', name: 'Cho vay mua nhà đất', children: [] },
+        { type: '4', url: '/tool/2', name: 'Vay hạn mức', children: [] },
+        { type: '4', url: '/tool/3', name: 'Cho vay tiêu dùng có TSBĐ', children: [] },
+        { type: '4', url: '/tool/4', name: 'Cho vay tiêu dùng không có TSĐB', children: [] },
+        { type: '4', url: '/tool/5', name: 'Cho vay mua ô tô', children: [] },
+        { type: '4', url: '/tool/6', name: 'Cho vay cầm cố giấy tờ có giá', children: [] },
+        { type: '4', url: '/tool/7', name: 'Cho vay du học', children: [] },
+        {
+          type: '4',
+          url: '/tool/8',
+          name: 'Cho vay người lao động đi làm việc ở nước ngoài',
+          children: []
+        },
+        { type: '4', url: '/tool/9', name: 'Tool 9', children: [] },
+        { type: '4', url: '/tool/10', name: 'Cho vay nhà đất', children: [] }
+      ]
+    }
+  ]);
   const [menuSearch, setMenuSearch] = useState([]);
   const [menuFooterTop, setMenuFooterTop] = useState([]);
   const [menuFooterBottom, setMenuFooterBottom] = useState([]);
@@ -55,13 +78,12 @@ function Layout({ children, isPrioty, idPage }) {
   const [priority, setPriority] = useState('/');
   const [btnForm, setbtnForm] = useState(false);
   const [btnlandingPage, setBtnLandingPage] = useState(false);
-  
+
   const getLayout = async () => {
     const menuData = await getMemnu(getLang());
     const settingData = await getCommon(getLang());
     setMenuHeader(menuData.menuHeader);
     setMenuSearch(menuData.menuSearch);
-    setMenuNav(menuData.menuNav);
     setMenuFooterTop(menuData.menuFooterTop);
     setMenuFooterBottom(menuData.menuFooterBottom);
     setMenuFooterMain(menuData.menuFooterMain);
@@ -125,13 +147,17 @@ function Layout({ children, isPrioty, idPage }) {
           return (
             <li key={item.id} className={item.children.length > 0 ? 'children ' : ''}>
               {item.target === '2' ? (
-                <a href={item.url} target="_blank" rel="noopener noreferrer">
-                  <span>{item.name}</span>
-                </a>
+                <Link href={item.url}>
+                  <a target="_blank" rel="noopener noreferrer">
+                    <span>{item.name}</span>
+                  </a>
+                </Link>
               ) : (
-                <a href={item.url}>
-                  <span>{item.name}</span>
-                </a>
+                <Link href={item.url}>
+                  <a>
+                    <span>{item.name}</span>
+                  </a>
+                </Link>
               )}
               <div className="wrapul">
                 {item.children.length > 0 && <ul>{nestChild(item.children)} </ul>}
