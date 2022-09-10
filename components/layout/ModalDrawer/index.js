@@ -126,7 +126,7 @@ function ModalDrawer({ menu, menuHeader, onSearch, onChangeSearch }) {
               <ul style={{ display: activeTab && indexMenu === -1 ? 'block' : 'none' }}>
                 <li>
                   <a
-                    href="https://online.mbbank.com.vn/retail/EstablishSession"
+                    href="https://online.ACB.com.vn/retail/EstablishSession"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -134,11 +134,7 @@ function ModalDrawer({ menu, menuHeader, onSearch, onChangeSearch }) {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://ebank.mbbank.com.vn/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="https://ebank.ACB.com.vn/" target="_blank" rel="noopener noreferrer">
                     {t('enterprise')}
                   </a>
                 </li>

@@ -17,6 +17,7 @@ const propTypes = {
 };
 
 function Tools({ content, id }) {
+  console.log('🚀 ~ file: index.js ~ line 20 ~ Tools ~ content', content);
   let padding = '';
   if (content.optionWidth === '2') {
     padding = 'sec-tb';

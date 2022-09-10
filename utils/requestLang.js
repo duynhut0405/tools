@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const url = process.env.BASE_URL || 'https://mbbank3.mangoads.com.vn:8443';
+const url = process.env.BASE_URL || 'https://ACB3.mangoads.com.vn:8443';
 
 const request = axios.create({
   baseURL: `${url}/`,
@@ -13,10 +13,10 @@ const request = axios.create({
 // before send request
 request.interceptors.request.use(
   config => {
-    // const lang = getLang();
-    // config.baseURL = `https://mbbank3.mangoads.com.vn:8443/${getLang()}/api/fe`;
-    return config;
-  },
+              // const lang = getLang();
+              // config.baseURL = `https://ACB3.mangoads.com.vn:8443/${getLang()}/api/fe`;
+              return config;
+            },
   error => {
     return error;
   }

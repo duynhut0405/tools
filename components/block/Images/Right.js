@@ -26,7 +26,7 @@ function ImageRight({ items, padding, id, type }) {
       setHeight("280px");
     }
   });
-  const backGroundColor = '#141ED2';
+  const backGroundColor = '#42d0e2';
   if (items.type === '15') {
     return (
       <section className={`${padding}  sec-b sec-video2`} id={id}>

@@ -64,7 +64,7 @@ const WrapModal = props => {
                 <div className="col-12 col-md-6">
                   <div className="modal-footer_text1">
                     <h6>Thông tin chi nhánh:</h6>
-                    <p>Toà nhà MBBank - Hội sở 21 Cát Linh, Đống Đa, Hà Nội</p>
+                    <p>Toà nhà ACB - Hội sở 21 Cát Linh, Đống Đa, Hà Nội</p>
                   </div>
                 </div>
 
@@ -74,7 +74,7 @@ const WrapModal = props => {
                       <strong>Hotline: </strong>1900 54 54 26
                     </p>
                     <p>
-                      <strong>Email: </strong>mb247@mbbank.com.vn
+                      <strong>Email: </strong>mb247@ACB.com.vn
                     </p>
                   </div>
                 </div>

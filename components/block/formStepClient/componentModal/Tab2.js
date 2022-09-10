@@ -36,27 +36,31 @@ const Tab2 = props => {
 
   const handleChange = async event => {
     setInitMoblieNumber(event.target.value);
-    let xmls = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.mbbank.com.vn/service/global/mbsoabussinesssupport/humanresourcemanagement/employeedatamanagement/getcrmrminfobymobile/v1_0">'+
-                '<soapenv:Header/>'+
-                '<soapenv:Body>'+
-                    '<v1:getCRMRmInfoByMobile_v1_0>'+
-                      '<GetCRMRmInfoByMobileInput>'+
-                          '<Header>'+
-                            '<Common>'+
-                                '<ClientMessageId>'+create_UUID()+'</ClientMessageId>'+
-                                
-                                '<AdditionalInformation>'+
-                                '</AdditionalInformation>'+
-                            '</Common>'+
-                            '<Client>'+
-                                '<SourceAppID>t24</SourceAppID>'+
-                            '</Client>'+
-                          '</Header>'+
-                          '<MobileNum>'+initMobileNumber+'</MobileNum>'+
-                      '</GetCRMRmInfoByMobileInput>'+
-                    '</v1:getCRMRmInfoByMobile_v1_0>'+
-                '</soapenv:Body>'+
-              '</soapenv:Envelope>';
+    let xmls =
+      '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.ACB.com.vn/service/global/mbsoabussinesssupport/humanresourcemanagement/employeedatamanagement/getcrmrminfobymobile/v1_0">' +
+      '<soapenv:Header/>' +
+      '<soapenv:Body>' +
+      '<v1:getCRMRmInfoByMobile_v1_0>' +
+      '<GetCRMRmInfoByMobileInput>' +
+      '<Header>' +
+      '<Common>' +
+      '<ClientMessageId>' +
+      create_UUID() +
+      '</ClientMessageId>' +
+      '<AdditionalInformation>' +
+      '</AdditionalInformation>' +
+      '</Common>' +
+      '<Client>' +
+      '<SourceAppID>t24</SourceAppID>' +
+      '</Client>' +
+      '</Header>' +
+      '<MobileNum>' +
+      initMobileNumber +
+      '</MobileNum>' +
+      '</GetCRMRmInfoByMobileInput>' +
+      '</v1:getCRMRmInfoByMobile_v1_0>' +
+      '</soapenv:Body>' +
+      '</soapenv:Envelope>';
     var config = {
       method: 'post',
       url: process.env.LANDING_PAGE_URL,

@@ -9,6 +9,7 @@ import Layout from '../components/layout';
 import '../styles/block.scss';
 import '../styles/styles.css';
 import '../styles/custom.css';
+import '../components/block/formStepClient/Printer/styles.scss';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'react-multi-carousel/lib/styles.css';
 import 'lazysizes';

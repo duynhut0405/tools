@@ -59,13 +59,13 @@ module.exports = withPWA(
         },
         env: {
           DOMAIN: 'https://157.230.47.241:8443/',
-          LINK_DOMAIN: 'mbbank.com.vn',
+          LINK_DOMAIN: 'ACB.com.vn',
           BASE_URL: 'https://157.230.47.241:8443',
           MB_URL: 'https://api2.vietstock.vn/data/stocktradinginfo',
           MAP_URL: 'https://157.230.47.241:8443/api/fe',
           ROUTER_URL: 'https://157.230.47.241:8443/vi/api/fe',
-          FRONTEND_URL: 'https://mbbank6.mangoads.com.vn/',
-          FRONTEND_URL_LOAN: 'https://mbbank6.mangoads.com.vn',
+          FRONTEND_URL: 'https://ACB6.mangoads.com.vn/',
+          FRONTEND_URL_LOAN: 'https://ACB6.mangoads.com.vn',
           LANDING_PAGE_URL:
             'http://localhost:8088/mockMBSOABussinessSupport_HumanResourceManagement_EmployeeDataManagement_Inbound_Service_WebService_Provider_getCRMRmInfoByMobile_v1_0_Binder',
           LANDING_PAGE_URL_2:

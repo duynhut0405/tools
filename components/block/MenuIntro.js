@@ -113,99 +113,122 @@ function MenuIntro({ data, pageId, optionWidth }) {
     <React.Fragment>
       <section className={`sec-menu"`}>
         {/* style={{backgroundColor:"#fff", padding: "0px 15px 0"}}> */}
-        <div className="container"> 
-        {/* style={{backgroundColor:"#fff", height:"82px",display:"flex",justifyContent:"space-between",alignItems:"center"}}> */}
+        <div className="container">
+          {/* style={{backgroundColor:"#fff", height:"82px",display:"flex",justifyContent:"space-between",alignItems:"center"}}> */}
           <div className="convert-grid-to-scroll">
-          <div className="row-custom list-item grid-space-20" style={{borderBottom:"1px solid rgb(214, 214, 214)"}}>
-          
-                {map(data.listBlock, (values, index) => (
-                  <div
+            <div
+              className="row-custom list-item grid-space-20"
+              style={{ borderBottom: '1px solid rgb(214, 214, 214)' }}
+            >
+              {map(data.listBlock, (values, index) => (
+                <div
                   className="li-menu-custom"
                   key={index}
                   onClick={() => {
                     onScroll(values.id);
-                  }}>
-                    {index === 0 && (
-                    <div className="menu-custom-0" >
-                              
-                    <div
-                            className="menu-div-custom-1"
-                            key={index}
-                            onClick={() => {
-                              onScroll(values.id);
-                            }}
-                            style={{minWidth: "75px",borderBottom: "2px solid #141ED2",
-                            fontWeight: "bold",color:"#333333"}}>
-                    <a className="item efch-0 ef-img-l"  >{values.title}</a>
-                  </div>
-                  </div>
+                  }}
+                >
+                  {index === 0 && (
+                    <div className="menu-custom-0">
+                      <div
+                        className="menu-div-custom-1"
+                        key={index}
+                        onClick={() => {
+                          onScroll(values.id);
+                        }}
+                        style={{
+                          minWidth: '75px',
+                          borderBottom: '2px solid #42d0e2',
+                          fontWeight: 'bold',
+                          color: '#333333'
+                        }}
+                      >
+                        <a className="item efch-0 ef-img-l">{values.title}</a>
+                      </div>
+                    </div>
                   )}
                   {index != 0 && (
-                    <div className="menu-custom-1" >
-                              
-                    <div
-                            className="menu-div-custom-1"
-                            key={index}
-                            onClick={() => {
-                              onScroll(values.id);
-                            }}
-                            >
-                    <a className="item efch-0 ef-img-l">{values.title}</a>
-                  </div>
-                  </div>
+                    <div className="menu-custom-1">
+                      <div
+                        className="menu-div-custom-1"
+                        key={index}
+                        onClick={() => {
+                          onScroll(values.id);
+                        }}
+                      >
+                        <a className="item efch-0 ef-img-l">{values.title}</a>
+                      </div>
+                    </div>
                   )}
-                  </div>
-                ))}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
           {/* {size.width > 768 && data.button_title != null && (
                       <div className="button-menu-custom">
                         <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
                       </div>
                     )} */}
+        </div>
+        {size.width <= 768 && data.button_title != null && (
+          <div className="center-custom" style={{ marginTop: '24px' }}>
+            <button className="btn" type="submit">
+              <a href={data.url_button_title}>{data.button_title}</a>
+            </button>
           </div>
-            {size.width <= 768 && data.button_title != null && (
-              <div className="center-custom" style={{marginTop:"24px"}}>
-                <button className="btn" type="submit"><a href={data.url_button_title}>{data.button_title}</a></button>
-              </div>
-            )}
+        )}
       </section>
-      <section className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`} style={{paddingTop: "75px"}}>
+      <section
+        className={`${padding} menuIntro sec-ab-1 sec-form-tuvan`}
+        style={{ paddingTop: '75px' }}
+      >
         <div className="container">
           <div className="row list-item">
             <div className={!data.isForm || data.isForm === 0 ? 'col-lg-7' : 'col-lg-7'}>
-              <div className="entry-content entry-content-custom" style={{fontSize:"16px"}}>
+              <div className="entry-content entry-content-custom" style={{ fontSize: '16px' }}>
                 {ReactHtmlParser(data.descriptionTop)}
                 {ReactHtmlParser(data.description)}
               </div>
-              {(data.descriptionBot !== null & data.descriptionBot !== undefined & data.descriptionBot !== '' ) ? (
+              {(data.descriptionBot !== null) &
+              (data.descriptionBot !== undefined) &
+              (data.descriptionBot !== '') ? (
                 <div className="custom-content-1">
-                  <div style={{
-                    fontWeight: "600",
-                    borderBottom: "1px solid #ddd",
-                    paddingBottom:"10px"
-                  }}>
+                  <div
+                    style={{
+                      fontWeight: '600',
+                      borderBottom: '1px solid #ddd',
+                      paddingBottom: '10px'
+                    }}
+                  >
                     {ReactHtmlParser(data.descriptionBot)}
                   </div>
-                  <a className="btnPhone-Custom" href="tel:1900545426" style={{paddingTop: "10px"}}>
+                  <a
+                    className="btnPhone-Custom"
+                    href="tel:1900545426"
+                    style={{ paddingTop: '10px' }}
+                  >
                     {data.contact_1}
                   </a>
-                  <a className="btnPhone-Custom" href="tel:+8437674050" style={{paddingTop: "0px"}}>
+                  <a
+                    className="btnPhone-Custom"
+                    href="tel:+8437674050"
+                    style={{ paddingTop: '0px' }}
+                  >
                     {data.contact_2}
                   </a>
                 </div>
-              ) : null }
+              ) : null}
             </div>
             <div
               className={data.isForm || data.isForm === 1 ? 'd-none' : 'col-lg-5'}
-              style={{textAlign:"center"}}
+              style={{ textAlign: 'center' }}
             >
-              {(data.urlImage !== null & data.urlImage !== undefined ) ? (
+              {(data.urlImage !== null) & (data.urlImage !== undefined) ? (
                 <a className={`item`} href={data.url_image} style={{}}>
                   <img
                     className="lazyload"
                     data-src={
-                      data.urlImage === null || data.urlImage === undefined 
+                      data.urlImage === null || data.urlImage === undefined
                         ? `/images/imgdefault.jpg`
                         : `${process.env.DOMAIN}${data.urlImage}`
                     }
@@ -214,15 +237,9 @@ function MenuIntro({ data, pageId, optionWidth }) {
                 </a>
               ) : (
                 <a className={`item`} href={data.url_image} style={{}}>
-                  <img
-                    className="lazyload"
-                    data-src={`/images/09.jpg`}
-                    alt="images"
-                  />
+                  <img className="lazyload" data-src={`/images/09.jpg`} alt="images" />
                 </a>
               )}
-
-
 
               {/* <div className="widget widget-tuvan">
                 <form onSubmit={onSend} autoComplete="on" className="form-tuvan">

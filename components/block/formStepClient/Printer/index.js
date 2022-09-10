@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import './styles.scss';
 import moment from 'moment';
 
 class ComponentToPrint extends React.Component {

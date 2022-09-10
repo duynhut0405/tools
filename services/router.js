@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const request = axios.create({
-  baseURL: 'https://mbbank3.mangoads.com.vn:8443/vi/api/fe',
+  baseURL: 'https://ACB3.mangoads.com.vn:8443/vi/api/fe',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'
@@ -9,7 +9,7 @@ const request = axios.create({
 });
 
 const _request = axios.create({
-  baseURL: 'https://mbbank3.mangoads.com.vn:8443/en/api/fe',
+  baseURL: 'https://ACB3.mangoads.com.vn:8443/en/api/fe',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'
