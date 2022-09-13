@@ -82,7 +82,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
   function onScroll(id) {
     const elmnt = document.getElementById(id);
     if (elmnt !== null) {
-      elmnt.scrollIntoView({behavior: 'smooth'});
+      elmnt.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
@@ -138,7 +138,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                         }}
                         style={{
                           minWidth: '75px',
-                          borderBottom: '2px solid #42d0e2',
+                          borderBottom: '2px solid #29B6F6',
                           fontWeight: 'bold',
                           color: '#333333'
                         }}

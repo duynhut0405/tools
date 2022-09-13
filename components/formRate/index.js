@@ -7,10 +7,9 @@ import ExchangeRate from './exchangeRate';
 import RateSelect from './RateSelect';
 import { getInterestRateService } from '../../services/rate';
 import XLSX from 'xlsx';
-import ReactHtmlParser from "react-html-parser";
+import ReactHtmlParser from 'react-html-parser';
 import DatePicker from 'react-datepicker';
-import UseWindowResize from "../common/Resize";
-
+import UseWindowResize from '../common/Resize';
 
 const propTypes = {
   data: PropTypes.any,
@@ -20,7 +19,15 @@ const propTypes = {
   description3: PropTypes.string
 };
 
-function FormRate({ data, interestRate, description1, description2, description3, setTypeSearch, typeSearch }) {
+function FormRate({
+  data,
+  interestRate,
+  description1,
+  description2,
+  description3,
+  setTypeSearch,
+  typeSearch
+}) {
   const size = UseWindowResize();
   const [From, setFrom] = useState(0);
   const [to, setTo] = useState(0);
@@ -39,28 +46,27 @@ function FormRate({ data, interestRate, description1, description2, description3
   const [displayNote2, setDisplayNote2] = useState(false);
   const [displayNote3, setDisplayNote3] = useState(false);
 
-  
-  const convertToJson = (csv) => {
-    var lines = csv.split("\n");
-  
+  const convertToJson = csv => {
+    var lines = csv.split('\n');
+
     var result = [];
-  
-    var headers = lines[0].split(",");
-  
+
+    var headers = lines[0].split(',');
+
     for (var i = 1; i < lines.length; i++) {
       var obj = {};
-      var currentline = lines[i].split(",");
-  
+      var currentline = lines[i].split(',');
+
       for (var j = 0; j < headers.length; j++) {
         obj[headers[j]] = currentline[j];
       }
-  
+
       result.push(obj);
     }
-  
+
     //return result; //JavaScript object
     return JSON.stringify(result); //JSON
-  }
+  };
 
   const openModalTab = (close_id, blue_id, open_id, close_id_2, isLaiSuat) => {
     var x = document.getElementById(close_id);
@@ -68,8 +74,8 @@ function FormRate({ data, interestRate, description1, description2, description3
     x.style.color = '#686868';
 
     var y = document.getElementById(blue_id);
-    y.style.borderBottom = '2px solid #42d0e2';
-    y.style.color = '#42d0e2';
+    y.style.borderBottom = '2px solid #29B6F6';
+    y.style.color = '#29B6F6';
 
     var openId = document.getElementById(open_id);
     openId.style.display = 'block';
@@ -230,29 +236,29 @@ function FormRate({ data, interestRate, description1, description2, description3
   };
 
   const setType = aa => {
-                          let loan = [];
-                          let deposits = [];
-                          for (let i = 0; i < aa.length; i++) {
-                            let rate = aa[i];
-                            if (rate.descriptionUSA == null) {
-                              deposits.push(rate);
-                            } else {
-                              loan.push(rate);
-                            }
-                          }
-                          setLoan(loan);
-                          setDeposits(deposits);
+    let loan = [];
+    let deposits = [];
+    for (let i = 0; i < aa.length; i++) {
+      let rate = aa[i];
+      if (rate.descriptionUSA == null) {
+        deposits.push(rate);
+      } else {
+        loan.push(rate);
+      }
+    }
+    setLoan(loan);
+    setDeposits(deposits);
 
-                          let max = deposits.reduce(function(prev, current) {
-                            return prev.interest_rate > current.interest_rate ? prev : current;
-                          });
+    let max = deposits.reduce(function(prev, current) {
+      return prev.interest_rate > current.interest_rate ? prev : current;
+    });
 
-                          let min = loan.reduce(function(prev, current) {
-                            return prev.interest_rate < current.interest_rate ? prev : current;
-                          });
-                          setMaxDeposits(max);
-                          setMinLoan(min);
-                        };
+    let min = loan.reduce(function(prev, current) {
+      return prev.interest_rate < current.interest_rate ? prev : current;
+    });
+    setMaxDeposits(max);
+    setMinLoan(min);
+  };
 
   useEffect(() => {
     getCurrentTo('USD');
@@ -393,7 +399,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                   <label
                     for="tset3"
                     id="tset3-1"
-                    style={{ borderBottom: '2px solid #42d0e2', color: '#42d0e2' }}
+                    style={{ borderBottom: '2px solid #29B6F6', color: '#29B6F6' }}
                   >
                     {t('loan_interest_rate')}{' '}
                   </label>
@@ -541,7 +547,7 @@ function FormRate({ data, interestRate, description1, description2, description3
                   <label
                     for="tset5"
                     id="tset5-1"
-                    style={{ borderBottom: '2px solid #42d0e2', color: '#42d0e2' }}
+                    style={{ borderBottom: '2px solid #29B6F6', color: '#29B6F6' }}
                   >
                     {t('price')}
                   </label>

@@ -13,16 +13,19 @@ function Tool() {
   }, [router]);
 
   return (
-    <Tools
-      content={{
-        optionWidth: '2',
-        type,
-        interest_rate: 5,
-        minValue: '1000000',
-        maxValue: '10000000000'
-      }}
-      id={1}
-    />
+    <>
+      <Tools
+        content={{
+          optionWidth: '2',
+          type,
+          id: 1,
+          interest_rate: 5,
+          minValue: '1000000',
+          maxValue: '10000000000'
+        }}
+        id={1}
+      />
+    </>
   );
 }
 export default Tool;

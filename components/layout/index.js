@@ -43,6 +43,12 @@ function Layout({ children, isPrioty, idPage }) {
   const [register, setRegister] = useState('');
   const [menuHeader, setMenuHeader] = useState([]);
   const [menuNav, setMenuNav] = useState([
+    { type: '4', url: '/tool', name: 'Tài khoản', children: [] },
+    { type: '4', url: '/tool', name: 'Thẻ', children: [] },
+    { type: '4', url: '/tool', name: 'Vay', children: [] },
+    { type: '4', url: '/tool', name: 'Tiết kiệm', children: [] },
+    { type: '4', url: '/tool', name: 'Bảo hiểm', children: [] },
+    { type: '4', url: '/tool', name: 'Ngân hàng số', children: [] },
     {
       type: '4',
       url: '/tool',
@@ -149,13 +155,13 @@ function Layout({ children, isPrioty, idPage }) {
               {item.target === '2' ? (
                 <Link href={item.url}>
                   <a target="_blank" rel="noopener noreferrer">
-                    <span>{item.name}</span>
+                    <span style={{ color: 'grey' }}>{item.name}</span>
                   </a>
                 </Link>
               ) : (
                 <Link href={item.url}>
                   <a>
-                    <span>{item.name}</span>
+                    <span style={{ color: 'grey' }}>{item.name}</span>
                   </a>
                 </Link>
               )}
@@ -180,7 +186,7 @@ function Layout({ children, isPrioty, idPage }) {
       }
     );
   };
-  
+
   const footerItem = data => {
     return map(data, (item, index) => {
       if (item.children.length > 0) {
@@ -231,7 +237,9 @@ function Layout({ children, isPrioty, idPage }) {
       return (
         <div className="col-md-3 col-6 col-lg-2  efch-2 ef-img-t" key={key}>
           <div className="widget">
-            <h5 className="widget-title" style={{color: "#fff"}}>{values.name}</h5>
+            <h5 className="widget-title" style={{ color: '#fff' }}>
+              {values.name}
+            </h5>
             <ul className="menu">{footerItem(values.children)}</ul>
           </div>
           {/* {key === items.length - 1 && <Social data={socialLink} />} */}
@@ -341,29 +349,29 @@ function Layout({ children, isPrioty, idPage }) {
     margin: 0,
     padding: 0,
     fontSize: '13px'
-  }
+  };
 
   const aStyle = {
     fontWeight: '600',
     fontSize: '13px'
-  }
+  };
 
   const logoStyle = {
     width: '109px',
     height: '45px'
-  }
+  };
 
   const homeCustom = {
-    content: "",
+    content: '',
     width: '1px',
     height: '24px',
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: '#002395',
     position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
     WebkitTransform: 'translateY(-50%)',
     right: '0'
-  }
+  };
 
   // const onChangeSearch = debounce(value => {
   //   setQuery(value);
@@ -373,7 +381,7 @@ function Layout({ children, isPrioty, idPage }) {
       <>
         <StickyContainer>
           <div id="wrapper">
-            <div id="panel">
+            <div id="panel" style={{ backgroundColor: '#EFF9FF' }}>
               <div className="container">
                 <ul className="menu line text-right">
                   <li style={liStyle}>
@@ -461,52 +469,81 @@ function Layout({ children, isPrioty, idPage }) {
             </div>
             <Sticky topOffset={40}>
               {({ style }) => (
-                <div className="setzindex" style={style}>
-                  <header id="header" role="banner">
-                    <div className="container">
-                      {lang === 'en' && (
-                        <React.Fragment>
-                          {priority === '/en' && (
-                            <Link href="/en" as="/en">
-                              <a id="logo" className="isPriotyDefaul">
-                                <img id="img_log" src="/images/acb.png" alt="logo" />
-                              </a>
-                            </Link>
-                          )}
-                          {priority !== '/en' && (
-                            <Link href="/en/page/[...name]" as={`${priority}`}>
-                              <a id="logo" className="isPriotyDefaul">
-                                <img id="img_log" src="/images/acb.png" alt="logo" />
-                              </a>
-                            </Link>
-                          )}
-                        </React.Fragment>
-                      )}
-                      {lang === 'vi' && (
-                        <React.Fragment>
-                          {priority === '/' && (
-                            <Link href="/" as="/">
-                              <a id="logo" className="isPriotyDefaul">
-                                <img id="img_log" src="/images/acb.png" alt="logo" />
-                              </a>
-                            </Link>
-                          )}
-                          {priority !== '/' && (
-                            <Link href="/page/[...name]" as={`${priority}`}>
-                              <a id="logo" className="isPriotyDefaul">
-                                <img id="img_log" src="/images/acb.png" alt="logo" />
-                              </a>
-                            </Link>
-                          )}
-                        </React.Fragment>
-                      )}
+                <div className="setzindex" style={{ ...style }}>
+                  <header id="header" role="banner" style={{ paddingTop: 5, paddingBottom: 12 }}>
+                    <div
+                      className="container"
+                      style={{
+                        backgroundColor: 'white',
+                        borderRadius: 10,
+                        position: 'relative',
+                        padding: 0,
+                        height: 'auto'
+                      }}
+                    >
+                      <div
+                        className="radius-header"
+                        style={{
+                          backgroundColor: '#002395',
+                          display: 'flex',
+                          padding: '15px 25px'
+                        }}
+                      >
+                        <p style={{ marginBottom: 0, color: 'white' }}>Cá nhân</p>
+                        <div
+                          style={{
+                            borderLeft: '1px solid #c9c9c9',
+                            height: 20,
+                            marginLeft: 10,
+                            marginRight: 10
+                          }}
+                        ></div>
+                        <p style={{ marginBottom: 0, color: 'white' }}>Doanh nghiệp</p>
+                        <div
+                          style={{
+                            borderLeft: '1px solid #c9c9c9',
+                            height: 20,
+                            marginLeft: 10,
+                            marginRight: 10
+                          }}
+                        ></div>
+                        <p style={{ marginBottom: 0, color: 'white' }}>Ngân hàng ưu tiên</p>
+                      </div>
+                      {/* <div style={{ display: 'flex', alignItems: 'center', padding: '0 25px' }}>
+                        <img width={80} height={30} id="img_log" src="/images/acb.png" alt="logo" />
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <p
+                            style={{ marginBottom: 4, color: 'grey', fontSize: 30, marginLeft: 40 }}
+                          >
+                            +
+                          </p>
+                          <ul className="menu-top-header" data-style="1">
+                            {nestChild(menuNav)}
+                          </ul>
+                        </div>
+                      </div> */}
                       <div className="wrap-menu-header">
                         <ul className="menu-top-header" data-style="1">
-                          <li className="home">
-                            <a href="/">
-                              <img src="/static/images/home.svg" />
+                          <li style={{ display: 'flex', alignItems: 'center' }}>
+                            <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+                              <img
+                                width={80}
+                                height={30}
+                                id="img_log"
+                                src="/images/acb.png"
+                                alt="logo"
+                              />
                             </a>
-                            <div style={homeCustom} />
+                            <p
+                              style={{
+                                marginBottom: 4,
+                                color: 'grey',
+                                fontSize: 30,
+                                marginLeft: 30
+                              }}
+                            >
+                              +
+                            </p>
                           </li>
                           {nestChild(menuNav)}
                           {/* <li class="highlight">
@@ -539,51 +576,6 @@ function Layout({ children, isPrioty, idPage }) {
                           </li> */}
                         </ul>
                       </div>
-                      <div
-                        className="wrap-menu-header"
-                        style={{ position: 'absolute', right: '0' }}
-                      >
-                        <ul className="menu-top-header" data-style="1">
-                          <li class="highlight">
-                            <a href="#">
-                              <img src="/static/images/menu.svg" alt="" />
-                              <span>Login eBanking</span>
-                            </a>
-                            <div className="wrapul">
-                              <ul>
-                                <li>
-                                  <a
-                                    href="https://online.mbbank.com.vn/retail/EstablishSession"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    {t('personal')}
-                                  </a>
-                                </li>
-                                <li>
-                                  <a
-                                    href="https://ebank.mbbank.com.vn/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    {t('enterprise')}
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                      {btnForm && (
-                        <a className="btnRegister" onClick={() => onScroll('#widget-form-tuvan')}>
-                          {t('register_now')}
-                        </a>
-                      )}
-                      {btnlandingPage && (
-                        <a className="btnRegister" onClick={() => onScroll('form_step_ladding')}>
-                          {t('register_now')}
-                        </a>
-                      )}
                       <div className="group-header">
                         <div className="item ilang">
                           <div className="dropdown language">
@@ -860,7 +852,7 @@ function Layout({ children, isPrioty, idPage }) {
                     </ul>
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                    <div className="copyright">2019 © Copyright acb. All rights reserved.</div>
                   </div>
                 </div> */}
               </div>
@@ -1041,7 +1033,7 @@ function Layout({ children, isPrioty, idPage }) {
 
                   <div className="col-lg-3 col-md-6  efch-6 ef-img-t">
                     <div className="widget widget-subscribe">
-                      <a class="location" href="/page/Chi-nhanh-va-atm-mbbank" style= {{backgroundColor: "#A0D2FF", color: "#33e8ff"}}> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
+                      <a class="location" href="/page/Chi-nhanh-va-atm-acb" style= {{backgroundColor: "#A0D2FF", color: "#33e8ff"}}> <img src="/static/images/location.svg" alt=""/>{t('near_ATM')}</a>
                     </div>
                   </div>
                 </div> */}
@@ -1078,7 +1070,7 @@ function Layout({ children, isPrioty, idPage }) {
                     </ul>
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright MBbank. All rights reserved.</div>
+                    <div className="copyright">2019 © Copyright acb. All rights reserved.</div>
                   </div>
                 </div> */}
               </div>
