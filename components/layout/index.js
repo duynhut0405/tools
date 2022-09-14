@@ -470,7 +470,11 @@ function Layout({ children, isPrioty, idPage }) {
             <Sticky topOffset={40}>
               {({ style }) => (
                 <div className="setzindex" style={{ ...style }}>
-                  <header id="header" role="banner" style={{ paddingTop: 5, paddingBottom: 12 }}>
+                  <header
+                    id="header"
+                    role="banner"
+                    style={{ paddingTop: 5, paddingBottom: 12, backgroundColor: '#29b6f6' }}
+                  >
                     <div
                       className="container"
                       style={{
@@ -742,7 +746,11 @@ function Layout({ children, isPrioty, idPage }) {
                 </div>
               </div>
             </section>
-            <div id="footer-pc" className="group-ef loaded" style={{ color: '#fff' }}>
+            <div
+              id="footer-pc"
+              className="group-ef loaded"
+              style={{ color: '#fff', backgroundColor: '#29b6f6' }}
+            >
               <div className="container" style={{ paddingBottom: '20px' }}>
                 <p>
                   {lang === 'vi' && (

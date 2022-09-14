@@ -74,8 +74,8 @@ function FormRate({
     x.style.color = '#686868';
 
     var y = document.getElementById(blue_id);
-    y.style.borderBottom = '2px solid #29B6F6';
-    y.style.color = '#29B6F6';
+    y.style.borderBottom = '2px solid #002395';
+    y.style.color = '#002395';
 
     var openId = document.getElementById(open_id);
     openId.style.display = 'block';
@@ -399,7 +399,7 @@ function FormRate({
                   <label
                     for="tset3"
                     id="tset3-1"
-                    style={{ borderBottom: '2px solid #29B6F6', color: '#29B6F6' }}
+                    style={{ borderBottom: '2px solid #002395', color: '#002395' }}
                   >
                     {t('loan_interest_rate')}{' '}
                   </label>
@@ -547,7 +547,7 @@ function FormRate({
                   <label
                     for="tset5"
                     id="tset5-1"
-                    style={{ borderBottom: '2px solid #29B6F6', color: '#29B6F6' }}
+                    style={{ borderBottom: '2px solid #002395', color: '#002395' }}
                   >
                     {t('price')}
                   </label>

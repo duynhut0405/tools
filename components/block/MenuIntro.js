@@ -138,7 +138,7 @@ function MenuIntro({ data, pageId, optionWidth }) {
                         }}
                         style={{
                           minWidth: '75px',
-                          borderBottom: '2px solid #29B6F6',
+                          borderBottom: '2px solid #002395',
                           fontWeight: 'bold',
                           color: '#333333'
                         }}
