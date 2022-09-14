@@ -522,7 +522,7 @@ function Layout({ children, isPrioty, idPage }) {
                           </ul>
                         </div>
                       </div> */}
-                      <div className="wrap-menu-header">
+                      <div className="wrap-menu-header" style={{ marginLeft: 10 }}>
                         <ul className="menu-top-header" data-style="1">
                           <li style={{ display: 'flex', alignItems: 'center' }}>
                             <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
