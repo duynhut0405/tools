@@ -381,7 +381,7 @@ function Layout({ children, isPrioty, idPage }) {
       <>
         <StickyContainer>
           <div id="wrapper">
-            <div id="panel" style={{ backgroundColor: '#EFF9FF' }}>
+            <div id="panel" style={{ backgroundColor: '#EFF9FF', display: 'none' }}>
               <div className="container">
                 <ul className="menu line text-right">
                   <li style={liStyle}>
@@ -546,6 +546,39 @@ function Layout({ children, isPrioty, idPage }) {
                             </p>
                           </li>
                           {nestChild(menuNav)}
+                          <li
+                            style={{
+                              flex: 1,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'flex-end'
+                            }}
+                          >
+                            <i
+                              className="icon-search"
+                              style={{ color: 'rgb(0, 35, 149)', fontSize: 25, marginRight: 20 }}
+                            ></i>
+                            <div
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'flex-end',
+                                height: '100%',
+                                marginRight: 20,
+                                paddingLeft: 20,
+                                borderLeft: '1px solid #e4e4e4'
+                              }}
+                            >
+                              <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+                                <img
+                                  id="img_log"
+                                  src="/images/acb-one.png"
+                                  alt="logo"
+                                  style={{ objectFit: 'contain', height: 65 }}
+                                />
+                              </a>
+                            </div>
+                          </li>
                           {/* <li class="highlight">
                             <a href="#">
                             <img src="/static/images/menu.svg" alt=""/>
@@ -752,30 +785,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <div
                         className="wapp"
                         style={{ color: '#fff', display: 'flex', marginBottom: '5px' }}
-                      >
-                        <span className="code">
-                          <img src="/images/acb.png" style={{ width: '50px' }} alt="" />
-                        </span>
-                        <a
-                          href={linkApp ? linkApp.ios : '#'}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ paddingRight: '20px', paddingLeft: '20px' }}
-                        >
-                          <img
-                            className="lazyload"
-                            data-src="/images/acb.png"
-                            importance="low"
-                            alt="images"
-                          />
-                        </a>
-                        <h5
-                          className="widget-title"
-                          style={{ color: '#fff', minWidth: '70px', maxWidth: '90px' }}
-                        >
-                          {t('donwload_app_today')}
-                        </h5>
-                      </div>
+                      ></div>
                       {/* <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
                         <span className="code"><img src="/static/images/svg/qr.svg" style={{width: '50px'}} alt=""/></span>
                         <a href={linkApp ? linkApp.android : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px', paddingLeft: '20px'}}>
