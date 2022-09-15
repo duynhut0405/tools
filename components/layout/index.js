@@ -614,44 +614,6 @@ function Layout({ children, isPrioty, idPage }) {
                         </ul>
                       </div>
                       <div className="group-header">
-                        <div className="item ilang">
-                          <div className="dropdown language">
-                            <div className="title">
-                              <span>
-                                <img
-                                  src={`/static/images/flags/${lang === 'vi' ? 'vn' : 'gb'}.png`}
-                                  alt="images"
-                                />
-                              </span>
-                              <i className="icon-arrow-2 ib"></i>
-                            </div>
-                            <div className="content">
-                              <div className="inner">
-                                <ul className="menu">
-                                  <li
-                                    className={lang === 'vi' ? 'lang-en' : 'lang-en active'}
-                                    onClick={() => changeLang('en')}
-                                  >
-                                    <a style={aStyle} title="English (en)">
-                                      <img src="/static/images/flags/gb.png" alt="" />{' '}
-                                      <span>English</span>
-                                    </a>
-                                  </li>
-                                  <li
-                                    className={lang === 'vi' ? 'lang-vi active' : 'lang-vi'}
-                                    style={{ borderTop: '1px solid rgba(0, 0, 0, 0.2)' }}
-                                    onClick={() => changeLang('vi')}
-                                  >
-                                    <a style={aStyle} title="Tiếng Việt (vi)">
-                                      <img src="/static/images/flags/vn.png" alt="" />{' '}
-                                      <span>Tiếng Việt</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         <div
                           className="item imenu"
                           onClick={() => {
@@ -954,50 +916,6 @@ function Layout({ children, isPrioty, idPage }) {
                     <div className="widget widget-info">
                       <Widget data={settingFooter} />
                       {/* <Social data={socialLink} /> */}
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-sm-12 efch-1 ef-img-t">
-                    <div className="widget widget-wapp" style={{ marginTop: '0', display: 'flex' }}>
-                      <div
-                        className="wapp"
-                        style={{ color: '#fff', display: 'flex', marginBottom: '5px' }}
-                      >
-                        <a
-                          href={linkApp ? linkApp.ios : '#'}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ paddingRight: '20px' }}
-                        >
-                          <img
-                            className="lazyload"
-                            data-src="/images/acb.png"
-                            importance="low"
-                            alt="images"
-                          />
-                        </a>
-                        <h5
-                          className="widget-title"
-                          style={{
-                            color: '#fff',
-                            minWidth: '70px',
-                            maxWidth: '90px',
-                            marginBottom: '0px'
-                          }}
-                        >
-                          {t('donwload_app_today')}
-                        </h5>
-                      </div>
-                      {/* <div className="wapp" style={{ color: '#fff',display: 'flex'}}>
-                        <a href={linkApp ? linkApp.android : '#'} target="_blank" rel="noopener noreferrer" style={{paddingRight: '20px'}}>
-                          <img
-                            className="lazyload"
-                            data-src="/static/images/app-2.png"
-                            importance="low"
-                            alt="images"
-                          />
-                        </a>
-                        <h5 className="widget-title" style={{ color: '#fff', minWidth: '70px', maxWidth: '90px', marginBottom: "0px"}}>{t('download_app_today_2')}</h5>
-                      </div> */}
                     </div>
                   </div>
                   <div className="col-lg-8 col-md-7">
