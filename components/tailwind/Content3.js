@@ -61,7 +61,7 @@ export default function Example() {
             <div className="mx-auto mt-10 flex max-w-prose text-base lg:max-w-none">
               <div className="rounded-md shadow">
                 <a
-                  href="#"
+                  href="/about-us"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700"
                 >
                   Contact sales
@@ -69,7 +69,7 @@ export default function Example() {
               </div>
               <div className="ml-4 rounded-md shadow">
                 <a
-                  href="#"
+                  href="/about-us"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-600 hover:bg-gray-50"
                 >
                   Learn more
