@@ -6,7 +6,6 @@ import Router from 'next/router';
 // import withRedux from 'next-redux-wrapper';
 // import stores from '../store';
 import Layout from '../components/layout';
-import '../styles/globals.css';
 import '../styles/block.scss';
 import '../styles/styles.css';
 import '../styles/custom.css';
@@ -17,7 +16,9 @@ import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
-
+import '../styles/globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 Router.events.on('routeChangeStart', () => {
   NProgress.start();
 });

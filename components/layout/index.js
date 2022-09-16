@@ -493,31 +493,37 @@ function Layout({ children, isPrioty, idPage }) {
                           padding: '15px 25px'
                         }}
                       >
-                        <Link href="/news">
-                          <a style={{ marginBottom: 0, color: 'white' }}>Cá nhân</a>
-                        </Link>
                         <div
                           style={{
-                            borderLeft: '1px solid #c9c9c9',
-                            height: 20,
-                            marginLeft: 10,
-                            marginRight: 10
+                            display: 'flex'
                           }}
-                        ></div>
-                        <Link href="/business">
-                          <a style={{ marginBottom: 0, color: 'white' }}>Doanh nghiệp</a>
-                        </Link>
-                        <div
-                          style={{
-                            borderLeft: '1px solid #c9c9c9',
-                            height: 20,
-                            marginLeft: 10,
-                            marginRight: 10
-                          }}
-                        ></div>
-                        <Link href="/about-us">
-                          <a style={{ marginBottom: 0, color: 'white' }}>Ngân hàng ưu tiên</a>
-                        </Link>
+                        >
+                          <Link href="/news">
+                            <a style={{ marginBottom: 0, color: 'white' }}>Cá nhân</a>
+                          </Link>
+                          <div
+                            style={{
+                              borderLeft: '1px solid #c9c9c9',
+                              height: 20,
+                              marginLeft: 10,
+                              marginRight: 10
+                            }}
+                          ></div>
+                          <Link href="/business">
+                            <a style={{ marginBottom: 0, color: 'white' }}>Doanh nghiệp</a>
+                          </Link>
+                          <div
+                            style={{
+                              borderLeft: '1px solid #c9c9c9',
+                              height: 20,
+                              marginLeft: 10,
+                              marginRight: 10
+                            }}
+                          ></div>
+                          <Link href="/about-us">
+                            <a style={{ marginBottom: 0, color: 'white' }}>Ngân hàng ưu tiên</a>
+                          </Link>
+                        </div>
                       </div>
                       {/* <div style={{ display: 'flex', alignItems: 'center', padding: '0 25px' }}>
                         <img width={80} height={30} id="img_log" src="/images/acb.png" alt="logo" />
