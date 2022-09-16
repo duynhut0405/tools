@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Carousel, BlockRender, MenuMiddle, Breadcrumb, Contact } from '../components/common';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
-import { Content1, Content2, Content3, Content4, Content5 } from '../components/tailwind';
+import { Content1, Content2, Content3, Content4, Content5, Form } from '../components/tailwind';
 import Slider from 'react-slick';
 
 const settings = {
@@ -64,6 +64,7 @@ function Home({}) {
           className="w-full h-[600px]"
         />
         <Content1 />
+        <Form />
         <Content2 />
         <Content3 />
         <Content4 />
