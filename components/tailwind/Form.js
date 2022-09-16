@@ -14,7 +14,10 @@
   }
   ```
 */
+import { useState } from 'react';
 export default function Example() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <>
       {/*
@@ -123,7 +126,24 @@ export default function Example() {
               </div>
 
               <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
+                <form
+                  onSubmit={e => {
+                    e.preventDefault();
+                    fetch('https://tools-blue.vercel.app/api/noop', {
+                      method: 'post',
+                      body: JSON.stringify({
+                        email,
+                        password
+                      })
+                    })
+                      .then(response => response.json())
+                      .then(data => {
+                        return alert('success');
+                      });
+                  }}
+                  method="POST"
+                  className="space-y-6"
+                >
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                       Email address
@@ -134,6 +154,9 @@ export default function Example() {
                         name="email"
                         type="email"
                         autoComplete="email"
+                        onChange={e => {
+                          setEmail(e.target.value);
+                        }}
                         required
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       />
@@ -149,6 +172,7 @@ export default function Example() {
                         id="password"
                         name="password"
                         type="password"
+                        onChange={e => setPassword(e.target.value)}
                         autoComplete="current-password"
                         required
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -199,4 +223,7 @@ export default function Example() {
       </div>
     </>
   );
+  console.log('🚀 ~ file: Form.js ~ line 227 ~ Example ~ data', data);
+  console.log('🚀 ~ file: Form.js ~ line 227 ~ Example ~ data', data);
+  console.log('🚀 ~ file: Form.js ~ line 227 ~ Example ~ data', data);
 }
