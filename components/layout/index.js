@@ -493,7 +493,9 @@ function Layout({ children, isPrioty, idPage }) {
                           padding: '15px 25px'
                         }}
                       >
-                        <p style={{ marginBottom: 0, color: 'white' }}>Cá nhân</p>
+                        <Link href="/news">
+                          <a style={{ marginBottom: 0, color: 'white' }}>Cá nhân</a>
+                        </Link>
                         <div
                           style={{
                             borderLeft: '1px solid #c9c9c9',
@@ -502,7 +504,9 @@ function Layout({ children, isPrioty, idPage }) {
                             marginRight: 10
                           }}
                         ></div>
-                        <p style={{ marginBottom: 0, color: 'white' }}>Doanh nghiệp</p>
+                        <Link href="/business">
+                          <a style={{ marginBottom: 0, color: 'white' }}>Doanh nghiệp</a>
+                        </Link>
                         <div
                           style={{
                             borderLeft: '1px solid #c9c9c9',
@@ -511,7 +515,9 @@ function Layout({ children, isPrioty, idPage }) {
                             marginRight: 10
                           }}
                         ></div>
-                        <p style={{ marginBottom: 0, color: 'white' }}>Ngân hàng ưu tiên</p>
+                        <Link href="/about-us">
+                          <a style={{ marginBottom: 0, color: 'white' }}>Ngân hàng ưu tiên</a>
+                        </Link>
                       </div>
                       {/* <div style={{ display: 'flex', alignItems: 'center', padding: '0 25px' }}>
                         <img width={80} height={30} id="img_log" src="/images/acb.png" alt="logo" />
@@ -558,10 +564,18 @@ function Layout({ children, isPrioty, idPage }) {
                               justifyContent: 'flex-end'
                             }}
                           >
-                            <i
-                              className="icon-search"
-                              style={{ color: 'rgb(0, 35, 149)', fontSize: 25, marginRight: 20 }}
-                            ></i>
+                            <Link href="/search">
+                              <a>
+                                <i
+                                  className="icon-search"
+                                  style={{
+                                    color: 'rgb(0, 35, 149)',
+                                    fontSize: 25,
+                                    marginRight: 20
+                                  }}
+                                ></i>
+                              </a>
+                            </Link>
                             <div
                               style={{
                                 display: 'flex',

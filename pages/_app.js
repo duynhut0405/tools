@@ -6,6 +6,7 @@ import Router from 'next/router';
 // import withRedux from 'next-redux-wrapper';
 // import stores from '../store';
 import Layout from '../components/layout';
+import '../styles/globals.css';
 import '../styles/block.scss';
 import '../styles/styles.css';
 import '../styles/custom.css';
