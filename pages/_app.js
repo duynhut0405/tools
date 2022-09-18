@@ -30,6 +30,10 @@ class NextApp extends App {
     Router.beforePopState(({ as }) => {
       location.href = as;
     });
+
+    window.dataLayer.push({ 
+      event: 'pageview'
+    });
   }
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};

@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon"></link>
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
           <link rel="stylesheet" href="/css/main.css?ver=1" type="text/css" media="all"></link>
           <script
             dangerouslySetInnerHTML={{
