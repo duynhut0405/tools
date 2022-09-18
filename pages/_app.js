@@ -14,7 +14,13 @@ import '../styles/globals.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import TagManager from 'react-gtm-module';
+
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    TagManager.initialize({ gtmId: 'GTM-TCM7LJD' });
+  }, []);
+
   return (
     <Layout>
       <Component {...pageProps}></Component>
