@@ -114,9 +114,7 @@ function Layout({ children, isPrioty, idPage }) {
     setbtnForm(getBtn());
   });
 
-  useEffect(() => {
-    getLayout();
-  }, [idPage, lang]);
+  useEffect(() => {}, [idPage, lang]);
 
   useEffect(() => {
     document.body.onscroll = () => {
