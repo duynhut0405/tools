@@ -15,12 +15,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    window.dataLayer.push({
-      event: 'pageview'
-    });
-  }, []);
-
   return (
     <Layout>
       <Component {...pageProps}></Component>
