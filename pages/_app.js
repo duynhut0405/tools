@@ -1,10 +1,4 @@
-import App from 'next/app';
-import React from 'react';
-import NProgress from 'nprogress';
-import Router from 'next/router';
-// import { Provider } from 'react-redux';
-// import withRedux from 'next-redux-wrapper';
-// import stores from '../store';
+import React, { useEffect } from 'react';
 import Layout from '../components/layout';
 import '../styles/block.scss';
 import '../styles/styles.css';
@@ -19,40 +13,19 @@ import 'lazysizes/plugins/attrchange/ls.attrchange';
 import '../styles/globals.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-Router.events.on('routeChangeStart', () => {
-  NProgress.start();
-});
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
 
-class NextApp extends App {
-  componentDidMount() {
-    Router.beforePopState(({ as }) => {
-      location.href = as;
-    });
-
-    window.dataLayer.push({ 
+function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    window.dataLayer.push({
       event: 'pageview'
     });
-  }
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps({ ctx });
-    }
-    return {
-      pageProps
-    };
-  }
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
-      <Layout>
-        <Component {...pageProps}></Component>
-      </Layout>
-      // </Provider>
-    );
-  }
+  }, []);
+
+  return (
+    <Layout>
+      <Component {...pageProps}></Component>
+    </Layout>
+  );
 }
 
-export default NextApp;
+export default MyApp;
