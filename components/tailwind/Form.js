@@ -15,6 +15,7 @@
   ```
 */
 import { useState } from 'react';
+import TagManager from 'react-gtm-module';
 export default function Example() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -136,6 +137,9 @@ export default function Example() {
                         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                       )
                     ) {
+                      window.dataLayer.push({
+                        event: 'Formemailerror'
+                      });
                       setErrEmail(true);
                       return;
                     } else {
@@ -149,7 +153,7 @@ export default function Example() {
                       setErrPassword(false);
                     }
 
-                    fetch('https://tools-blue.vercel.app/api/noop', {
+                    fetch('/api/noop', {
                       method: 'post',
                       body: JSON.stringify({
                         email,
@@ -160,6 +164,9 @@ export default function Example() {
                       .then(data => {
                         setErrEmail(false);
                         setErrPassword(false);
+                        window.dataLayer.push({
+                          event: 'SubmitForm'
+                        });
                         return alert('success');
                       });
                   }}

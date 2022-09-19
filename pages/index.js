@@ -2,6 +2,13 @@ import React from 'react';
 import { Content1, Content2, Content3, Content4, Content5, Form } from '../components/tailwind';
 import Slider from 'react-slick';
 
+const listImg = [
+  'https://www.acb.com.vn/wps/wcm/connect/4990958c-b461-45f1-8ab6-74c2e59a7373/banner+web.png?MOD=AJPERES&CACHEID=4990958c-b461-45f1-8ab6-74c2e59a7373',
+  'https://www.acb.com.vn/wps/wcm/connect/d9e53a16-1030-43cc-b60b-ad9a09b78ef2/Banner+web+-921x540px.jpg?MOD=AJPERES&CACHEID=d9e53a16-1030-43cc-b60b-ad9a09b78ef2',
+  'https://www.acb.com.vn/wps/wcm/connect/525e4aa7-d563-4db0-8dd6-409e0b518b85/Banner+web+-921x540px-GD3.jpg?MOD=AJPERES&CACHEID=525e4aa7-d563-4db0-8dd6-409e0b518b85',
+  'https://www.acb.com.vn/wps/wcm/connect/94b15c80-9412-4b92-a395-44d58bd2aba9/Banner+web+-921x540px.jpg?MOD=AJPERES&CACHEID=94b15c80-9412-4b92-a395-44d58bd2aba9'
+];
+
 const settings = {
   dots: true,
   infinite: true,
@@ -14,44 +21,17 @@ function Home({}) {
   return (
     <React.Fragment>
       <div className="main_content">
-        <Slider {...settings}>
-          <div>
-            <img
-              className="w-11/12 h-[300px]"
-              alt=""
-              src={
-                'https://images.unsplash.com/photo-1663183539627-adbe2c8ef43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
-              }
-            />
-          </div>
-          <div>
-            <img
-              className="w-11/12  h-[300px]"
-              alt=""
-              src={
-                'https://images.unsplash.com/photo-1663253216319-b9760cd6ef7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
-              }
-            />
-          </div>
-          <div>
-            <img
-              className="w-11/12  h-[300px]"
-              alt=""
-              src={
-                'https://images.unsplash.com/photo-1663237803706-b09171da346e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
-              }
-            />
-          </div>
-          <div>
-            <img
-              className="w-11/12  h-[300px]"
-              alt=""
-              src={
-                'https://images.unsplash.com/photo-1663253313029-ce4a035dbbe2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
-              }
-            />
-          </div>
-        </Slider>
+        <div style={{ marginTop: 20, marginBottom: 20 }}>
+          <Slider {...settings}>
+            {listImg.map((item, index) => {
+              return (
+                <div>
+                  <img className="w-11/12 h-[300px]" key={index} alt="" src={item} />
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
         <iframe
           src="https://www.youtube.com/embed/4MDIZFAAuw0"
           frameborder="0"
