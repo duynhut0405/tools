@@ -18,6 +18,8 @@ import { useState } from 'react';
 export default function Example() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errEmail, setErrEmail] = useState(false);
+  const [errPassword, setErrPassword] = useState(false);
   return (
     <>
       {/*
@@ -129,7 +131,25 @@ export default function Example() {
                 <form
                   onSubmit={e => {
                     e.preventDefault();
-                    fetch('https://tools-blue.vercel.app/api/noop', {
+                    if (
+                      !email.match(
+                        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                      )
+                    ) {
+                      setErrEmail(true);
+                      return;
+                    } else {
+                      setErrEmail(false);
+                    }
+
+                    if (password?.length < 4) {
+                      setErrPassword(true);
+                      return;
+                    } else {
+                      setErrPassword(false);
+                    }
+
+                    fetch('http://localhost:3000/api/noop', {
                       method: 'post',
                       body: JSON.stringify({
                         email,
@@ -138,6 +158,8 @@ export default function Example() {
                     })
                       .then(response => response.json())
                       .then(data => {
+                        setErrEmail(false);
+                        setErrPassword(false);
                         return alert('success');
                       });
                   }}
@@ -152,15 +174,18 @@ export default function Example() {
                       <input
                         id="email"
                         name="email"
-                        type="email"
                         autoComplete="email"
                         onChange={e => {
                           setEmail(e.target.value);
                         }}
-                        required
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
+                    {errEmail && (
+                      <p className="mt-2 text-sm text-red-600" id="email-error">
+                        Email invalidate
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-1">
@@ -174,10 +199,14 @@ export default function Example() {
                         type="password"
                         onChange={e => setPassword(e.target.value)}
                         autoComplete="current-password"
-                        required
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
+                    {errPassword && (
+                      <p className="mt-2 text-sm text-red-600" id="password-error">
+                        Your password must be less than 4 characters.
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex items-center justify-between">
@@ -223,7 +252,4 @@ export default function Example() {
       </div>
     </>
   );
-  console.log('🚀 ~ file: Form.js ~ line 227 ~ Example ~ data', data);
-  console.log('🚀 ~ file: Form.js ~ line 227 ~ Example ~ data', data);
-  console.log('🚀 ~ file: Form.js ~ line 227 ~ Example ~ data', data);
 }
