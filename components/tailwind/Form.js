@@ -149,7 +149,7 @@ export default function Example() {
                       setErrPassword(false);
                     }
 
-                    fetch('http://localhost:3000/api/noop', {
+                    fetch('https://tools-blue.vercel.app/api/noop', {
                       method: 'post',
                       body: JSON.stringify({
                         email,
