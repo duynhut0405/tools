@@ -26,7 +26,13 @@ function Home({}) {
             {listImg.map((item, index) => {
               return (
                 <div>
-                  <img className="w-11/12 h-[300px]" key={index} alt="" src={item} />
+                  <img
+                    style={{ objectFit: 'contain' }}
+                    className="w-11/12 h-[300px]"
+                    key={index}
+                    alt=""
+                    src={item}
+                  />
                 </div>
               );
             })}
