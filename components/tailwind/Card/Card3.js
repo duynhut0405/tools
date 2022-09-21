@@ -153,9 +153,7 @@ export default function Example() {
                 <div className="mt-6">
                   <div className="rounded-md shadow">
                     <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://www.acb.com.vn/wps/portal?1dmy&page=acb.category.sub&urile=wcm:path:ACBWebsite/acb-vn/personal/the/the-tin-dung"
+                      href="/recruit"
                       className="flex items-center justify-center rounded-md border border-transparent bg-[#002395] px-5 py-3 text-base font-medium text-white hover:bg-gray-900"
                     >
                       Mở thẻ
