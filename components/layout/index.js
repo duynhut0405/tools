@@ -43,12 +43,12 @@ function Layout({ children, isPrioty, idPage }) {
   const [register, setRegister] = useState('');
   const [menuHeader, setMenuHeader] = useState([]);
   const [menuNav, setMenuNav] = useState([
-    { type: '4', url: '/tool', name: 'Tài khoản', children: [] },
-    { type: '4', url: '/recruit', name: 'Thẻ', children: [] },
-    { type: '4', url: '/tool', name: 'Vay', children: [] },
-    { type: '4', url: '/tool', name: 'Tiết kiệm', children: [] },
-    { type: '4', url: '/tool', name: 'Bảo hiểm', children: [] },
-    { type: '4', url: '/tool', name: 'Ngân hàng số', children: [] },
+    // { type: '4', url: '/tool', name: 'Tài khoản', children: [] },
+    { type: '4', url: '/recruit', name: 'Tuyển dụng', children: [] },
+    // { type: '4', url: '/tool', name: 'Vay', children: [] },
+    // { type: '4', url: '/tool', name: 'Tiết kiệm', children: [] },
+    // { type: '4', url: '/tool', name: 'Bảo hiểm', children: [] },
+    // { type: '4', url: '/tool', name: 'Ngân hàng số', children: [] },
     {
       type: '4',
       url: '/tool',
@@ -363,9 +363,9 @@ function Layout({ children, isPrioty, idPage }) {
   if (isPrioty !== null) {
     return (
       <div style={{ zIndex: 10000000000 }}>
-        <StickyContainer>
+        <div>
           <div id="wrapper">
-            <div id="panel" style={{ backgroundColor: '#EFF9FF', display: 'none' }}>
+            <div id="panel" style={{ display: 'none' }}>
               <div className="container">
                 <ul className="menu line text-right">
                   <li style={liStyle}>
@@ -451,65 +451,64 @@ function Layout({ children, isPrioty, idPage }) {
               </div>
               <Suggest data={menuSearch} onChangeSuggest={onChangeSuggest} onClose={onClose} />
             </div>
-            <Sticky topOffset={40}>
-              {({ style }) => (
-                <div className="setzindex" style={{ ...style }}>
-                  <header
-                    id="header"
-                    role="banner"
-                    style={{ paddingTop: 5, paddingBottom: 12, backgroundColor: '#29b6f6' }}
+            <div>
+              <div className="setzindex">
+                <header
+                  id="header"
+                  role="banner"
+                  style={{ paddingTop: 5, paddingBottom: 12, backgroundColor: '#29b6f6' }}
+                >
+                  <div
+                    className="container"
+                    style={{
+                      backgroundColor: 'white',
+                      borderRadius: 10,
+                      position: 'relative',
+                      padding: 0,
+                      height: 'auto'
+                    }}
                   >
                     <div
-                      className="container"
+                      className="radius-header"
                       style={{
-                        backgroundColor: 'white',
-                        borderRadius: 10,
-                        position: 'relative',
-                        padding: 0,
-                        height: 'auto'
+                        backgroundColor: '#002395',
+                        display: 'flex',
+                        padding: '15px 25px'
                       }}
                     >
                       <div
-                        className="radius-header"
                         style={{
-                          backgroundColor: '#002395',
-                          display: 'flex',
-                          padding: '15px 25px'
+                          display: 'flex'
                         }}
                       >
+                        <Link href="/news">
+                          <a style={{ marginBottom: 0, color: 'white' }}>Cá nhân</a>
+                        </Link>
                         <div
                           style={{
-                            display: 'flex'
+                            borderLeft: '1px solid #c9c9c9',
+                            height: 20,
+                            marginLeft: 10,
+                            marginRight: 10
                           }}
-                        >
-                          <Link href="/news">
-                            <a style={{ marginBottom: 0, color: 'white' }}>Cá nhân</a>
-                          </Link>
-                          <div
-                            style={{
-                              borderLeft: '1px solid #c9c9c9',
-                              height: 20,
-                              marginLeft: 10,
-                              marginRight: 10
-                            }}
-                          ></div>
-                          <Link href="/business">
-                            <a style={{ marginBottom: 0, color: 'white' }}>Doanh nghiệp</a>
-                          </Link>
-                          <div
-                            style={{
-                              borderLeft: '1px solid #c9c9c9',
-                              height: 20,
-                              marginLeft: 10,
-                              marginRight: 10
-                            }}
-                          ></div>
-                          <Link href="/about-us">
-                            <a style={{ marginBottom: 0, color: 'white' }}>Ngân hàng ưu tiên</a>
-                          </Link>
-                        </div>
+                        ></div>
+                        <Link href="/business">
+                          <a style={{ marginBottom: 0, color: 'white' }}>Doanh nghiệp</a>
+                        </Link>
+                        <div
+                          style={{
+                            borderLeft: '1px solid #c9c9c9',
+                            height: 20,
+                            marginLeft: 10,
+                            marginRight: 10
+                          }}
+                        ></div>
+                        <Link href="/about-us">
+                          <a style={{ marginBottom: 0, color: 'white' }}>Ngân hàng ưu tiên</a>
+                        </Link>
                       </div>
-                      {/* <div style={{ display: 'flex', alignItems: 'center', padding: '0 25px' }}>
+                    </div>
+                    {/* <div style={{ display: 'flex', alignItems: 'center', padding: '0 25px' }}>
                         <img width={80} height={30} id="img_log" src="/images/acb.png" alt="logo" />
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                           <p
@@ -522,72 +521,72 @@ function Layout({ children, isPrioty, idPage }) {
                           </ul>
                         </div>
                       </div> */}
-                      <div className="wrap-menu-header" style={{ marginLeft: 10 }}>
-                        <ul className="menu-top-header" data-style="1">
-                          <li style={{ display: 'flex', alignItems: 'center' }}>
-                            <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
-                              <img
-                                width={80}
-                                height={30}
-                                id="img_log"
-                                src="/images/acb.png"
-                                alt="logo"
-                              />
-                            </a>
-                            <p
-                              style={{
-                                marginBottom: 4,
-                                color: 'grey',
-                                fontSize: 30,
-                                marginLeft: 30
-                              }}
-                            >
-                              +
-                            </p>
-                          </li>
-                          {nestChild(menuNav)}
-                          <li
+                    <div className="wrap-menu-header" style={{ marginLeft: 10 }}>
+                      <ul className="menu-top-header" data-style="1">
+                        <li style={{ display: 'flex', alignItems: 'center' }}>
+                          <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+                            <img
+                              width={80}
+                              height={30}
+                              id="img_log"
+                              src="/images/acb.png"
+                              alt="logo"
+                            />
+                          </a>
+                          <p
                             style={{
-                              flex: 1,
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'flex-end'
+                              marginBottom: 4,
+                              color: 'grey',
+                              fontSize: 30,
+                              marginLeft: 30
                             }}
                           >
-                            <Link href="/search">
-                              <a>
-                                <i
-                                  className="icon-search"
-                                  style={{
-                                    color: 'rgb(0, 35, 149)',
-                                    fontSize: 25,
-                                    marginRight: 20
-                                  }}
-                                ></i>
-                              </a>
-                            </Link>
-                            <div
-                              style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'flex-end',
-                                height: '100%',
-                                marginRight: 20,
-                                paddingLeft: 20,
-                                borderLeft: '1px solid #e4e4e4'
-                              }}
-                            >
-                              <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
-                                <img
-                                  id="img_log"
-                                  src="/images/acb-one.png"
-                                  alt="logo"
-                                  style={{ objectFit: 'contain', height: 65 }}
-                                />
-                              </a>
-                            </div>
-                          </li>
-                          {/* <li class="highlight">
+                            +
+                          </p>
+                        </li>
+                        {nestChild(menuNav)}
+                        <li
+                          style={{
+                            flex: 1,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'flex-end'
+                          }}
+                        >
+                          <Link href="/search">
+                            <a>
+                              <i
+                                className="icon-search"
+                                style={{
+                                  color: 'rgb(0, 35, 149)',
+                                  fontSize: 25,
+                                  marginRight: 20
+                                }}
+                              ></i>
+                            </a>
+                          </Link>
+                          <div
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'flex-end',
+                              height: '100%',
+                              marginRight: 20,
+                              paddingLeft: 20,
+                              borderLeft: '1px solid #e4e4e4'
+                            }}
+                          >
+                            <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+                              <img
+                                id="img_log"
+                                src="/images/acb-one.png"
+                                alt="logo"
+                                style={{ objectFit: 'contain', height: 65 }}
+                              />
+                            </a>
+                          </div>
+                        </li>
+                        {/* <li class="highlight">
                             <a href="#">
                             <img src="/static/images/menu.svg" alt=""/>
                             <span>Login eBanking</span>
@@ -615,25 +614,24 @@ function Layout({ children, isPrioty, idPage }) {
                               </ul>
                             </div>
                           </li> */}
-                        </ul>
-                      </div>
-                      <div className="group-header">
-                        <div
-                          className="item imenu"
-                          onClick={() => {
-                            setActiveDrawwe(!activeDrawer);
-                          }}
-                        >
-                          <span className="menu-btn x">
-                            <span></span>
-                          </span>
-                        </div>
+                      </ul>
+                    </div>
+                    <div className="group-header">
+                      <div
+                        className="item imenu"
+                        onClick={() => {
+                          setActiveDrawwe(!activeDrawer);
+                        }}
+                      >
+                        <span className="menu-btn x">
+                          <span></span>
+                        </span>
                       </div>
                     </div>
-                  </header>
-                </div>
-              )}
-            </Sticky>
+                  </div>
+                </header>
+              </div>
+            </div>
             <div>{children}</div>
             {/* contact */}
 
@@ -1116,7 +1114,7 @@ function Layout({ children, isPrioty, idPage }) {
             idPage={idPage}
             mail={register}
           /> */}
-        </StickyContainer>
+        </div>
         <ModalDrawer
           menu={menuNav}
           menuHeader={menuHeader}
