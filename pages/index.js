@@ -2,6 +2,32 @@ import React from 'react';
 import { Card1, Card2, Card3, Card4, Card5, Card6 } from '../components/tailwind/Card';
 import Slider from 'react-slick';
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <span
+      className="nextArrow  slick-arrow"
+      style={{ ...style, position: 'absolute', right: -25, top: 150 }}
+      onClick={onClick}
+    >
+      <i className="icon-arrow-1 "></i>
+    </span>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <span
+      className="prevArrow slick-arrow"
+      style={{ ...style, position: 'absolute', left: -25, top: 150 }}
+      onClick={onClick}
+    >
+      <i className="icon-arrow-1 ix"></i>
+    </span>
+  );
+}
+
 const listImg = [
   'https://cdn-op.acb.com.vn/document/e-credit/highlight-features/feature-1.jpg',
   'https://cdn-op.acb.com.vn/document/e-credit/highlight-features/feature-2.jpg',
@@ -13,11 +39,14 @@ const listImg = [
 
 const settings = {
   className: 'center',
+  dots: true,
   centerMode: true,
   infinite: true,
   centerPadding: '60px',
   slidesToShow: 3,
-  speed: 2000
+  speed: 2000,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />
 };
 function Home({}) {
   return (
