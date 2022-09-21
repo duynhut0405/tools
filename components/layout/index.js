@@ -85,20 +85,6 @@ function Layout({ children, isPrioty, idPage }) {
   const [btnForm, setbtnForm] = useState(false);
   const [btnlandingPage, setBtnLandingPage] = useState(false);
 
-  const getLayout = async () => {
-    const menuData = await getMemnu(getLang());
-    const settingData = await getCommon(getLang());
-    setMenuHeader(menuData.menuHeader);
-    setMenuSearch(menuData.menuSearch);
-    setMenuFooterTop(menuData.menuFooterTop);
-    setMenuFooterBottom(menuData.menuFooterBottom);
-    setMenuFooterMain(menuData.menuFooterMain);
-    setMenuMobile(menuData.menuMobile);
-    setSettingFooter(settingData.general);
-    setSocialLink(settingData.socialLink);
-    setLinkApp(settingData.linkApp);
-  };
-
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0];
     if (activeDrawer) {
@@ -376,7 +362,7 @@ function Layout({ children, isPrioty, idPage }) {
   // }, 3000);
   if (isPrioty !== null) {
     return (
-      <>
+      <div style={{ zIndex: 10000000000 }}>
         <StickyContainer>
           <div id="wrapper">
             <div id="panel" style={{ backgroundColor: '#EFF9FF', display: 'none' }}>
@@ -1140,7 +1126,7 @@ function Layout({ children, isPrioty, idPage }) {
             setActiveDrawwe(false);
           }}
         />
-      </>
+      </div>
     );
   }
   return null;

@@ -62,7 +62,7 @@ export default function Example() {
               <div className="rounded-md shadow">
                 <a
                   href="/about-us"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-[#002395]"
                 >
                   Contact sales
                 </a>
