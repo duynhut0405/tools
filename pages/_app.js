@@ -15,10 +15,21 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import TagManager from 'react-gtm-module';
+import { Router } from 'next/router';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-TCM7LJD' });
+  }, []);
+
+  useEffect(() => {
+    Router.events.on('routeChangeComplete', () => {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    });
   }, []);
 
   return (
