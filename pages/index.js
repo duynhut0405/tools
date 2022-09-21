@@ -17,10 +17,7 @@ const settings = {
   infinite: true,
   centerPadding: '60px',
   slidesToShow: 3,
-  autoplay: true,
-  speed: 2000,
-  autoplaySpeed: 2000,
-  cssEase: 'linear'
+  speed: 2000
 };
 function Home({}) {
   return (
