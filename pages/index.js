@@ -44,7 +44,7 @@ const settings = {
   infinite: true,
   centerPadding: '60px',
   slidesToShow: 3,
-  speed: 2000,
+  speed: 300,
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />
 };
