@@ -40,7 +40,7 @@ export default function Example() {
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt="Your Company"
               />
-              <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
+              <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#002395]">
                 Sign in to your account
               </h2>
               <p className="mt-2 text-sm text-gray-600">
@@ -224,7 +224,7 @@ export default function Example() {
                         type="checkbox"
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
-                      <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                      <label htmlFor="remember-me" className="ml-2 block text-sm text-[#002395]">
                         Remember me
                       </label>
                     </div>

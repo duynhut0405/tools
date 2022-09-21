@@ -42,7 +42,7 @@ export default function Example() {
         <div className="mx-auto max-w-2xl px-4 lg:max-w-none">
           <div className="grid grid-cols-1 items-center gap-y-10 gap-x-16 lg:grid-cols-2">
             <div>
-              <h2 className="text-4xl font-bold tracking-tight text-gray-900">
+              <h2 className="text-4xl font-bold tracking-tight text-[#002395]">
                 Kế hoạch hành động
               </h2>
               <p className="mt-4 text-gray-500">
@@ -67,7 +67,7 @@ export default function Example() {
                   <img className="h-16 w-16" src={incentive.imageSrc} alt="" />
                 </div>
                 <div className="mt-4 sm:mt-0 sm:ml-6 lg:mt-6 lg:ml-0">
-                  <h3 className="text-sm font-medium text-gray-900">{incentive.name}</h3>
+                  <h3 className="text-sm font-medium text-[#002395]">{incentive.name}</h3>
                   <p className="mt-2 text-sm text-gray-500">{incentive.description}</p>
                 </div>
               </div>

@@ -72,7 +72,7 @@ export default function Example() {
       <div className="pt-12 sm:pt-16 lg:pt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl lg:text-5xl">
               KHÁM PHÁ THẾ GIỚI THẺ ACB
             </h2>
             <p className="mt-4 text-xl text-gray-600">
@@ -82,19 +82,21 @@ export default function Example() {
           </div>
         </div>
       </div>
-      <div className="flex gap-4 mt-3">
-        {tabsData.map((item, index) => {
-          return (
-            <p
-              onClick={() => setTab(index)}
-              className={`text-lg cursor-pointer ${
-                index === tab ? 'font-bold text-[#002395]' : ''
-              }`}
-            >
-              {item.name}
-            </p>
-          );
-        })}
+      <div className="flex gap-4 mt-3 items-center">
+        <div className="flex gap-4 mt-3 bg-[#29b6f6] items-center h-full p-2 rounded-[10px]">
+          {tabsData.map((item, index) => {
+            return (
+              <p
+                onClick={() => setTab(index)}
+                className={`text-lg text-white cursor-pointer p-2 ${
+                  index === tab ? 'font-bold bg-[#002395] rounded-xl' : ''
+                }`}
+              >
+                {item.name}
+              </p>
+            );
+          })}
+        </div>
       </div>
       <div className="mt-8 bg-white pb-16 sm:mt-12 sm:pb-20 lg:pb-28">
         <div className="relative">
@@ -102,7 +104,7 @@ export default function Example() {
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none">
               <div className="flex-1 bg-white px-6 py-8 lg:p-12">
-                <h3 className="text-2xl font-bold text-gray-900 sm:text-3xl sm:tracking-tight">
+                <h3 className="text-2xl font-bold text-[#002395] sm:text-3xl sm:tracking-tight">
                   {tabsData[tab].name}
                 </h3>
                 <p className="mt-6 text-base text-gray-500">{tabsData[tab].desc}</p>
@@ -129,10 +131,10 @@ export default function Example() {
                 </div>
               </div>
               <div className="bg-gray-50 py-8 px-6 text-center lg:flex lg:flex-shrink-0 lg:flex-col lg:justify-center lg:p-12">
-                <p className="text-lg font-medium leading-6 text-gray-900">
+                <p className="text-lg font-medium leading-6 text-[#002395]">
                   Ưu đãi hàng năm lên đến
                 </p>
-                <div className="mt-4 flex items-center justify-center text-5xl font-bold tracking-tight text-gray-900">
+                <div className="mt-4 flex items-center justify-center text-5xl font-bold tracking-tight text-[#002395]">
                   <span>${tabsData[tab].textSale}</span>
                   <span className="ml-3 text-xl font-medium tracking-normal text-gray-500">
                     Đồng
@@ -154,7 +156,7 @@ export default function Example() {
                       target="_blank"
                       rel="noopener noreferrer"
                       href="https://www.acb.com.vn/wps/portal?1dmy&page=acb.category.sub&urile=wcm:path:ACBWebsite/acb-vn/personal/the/the-tin-dung"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-gray-800 px-5 py-3 text-base font-medium text-white hover:bg-gray-900"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-[#002395] px-5 py-3 text-base font-medium text-white hover:bg-gray-900"
                     >
                       Mở thẻ
                     </a>
@@ -165,7 +167,7 @@ export default function Example() {
                     href="https://mail.acb.com.vn/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-gray-900"
+                    className="font-medium text-[#002395]"
                   >
                     Hỗ trợ
                   </a>

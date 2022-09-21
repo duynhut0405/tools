@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card1, Card2, Card3 } from '../components/tailwind/Card';
+import { Card1, Card2, Card3, Card4, Card5, Card6 } from '../components/tailwind/Card';
 import Slider from 'react-slick';
 
 const listImg = [
@@ -28,7 +28,7 @@ function Home({}) {
       <Card1 />
       <div className="bg-white">
         <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
+          <h1 className="text-[#002395]  text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
             TÍNH NĂNG NỔI BẬT
           </h1>
           <Slider {...settings}>
@@ -51,7 +51,7 @@ function Home({}) {
       <div className="bg-white">
         <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
           <iframe
-            src="https://www.youtube.com/embed/crVufCEVuIQ"
+            src="https://www.youtube.com/embed/4MDIZFAAuw0"
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen
@@ -61,7 +61,10 @@ function Home({}) {
         </div>
       </div>
       <Card3 />
+      <Card4 />
       <Card2 />
+      <Card5 />
+      <Card6 />
     </>
   );
 }

@@ -320,7 +320,7 @@ export default function Example() {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
+                        className="block rounded-md px-3 py-2 text-base font-medium text-[#002395] hover:bg-gray-50"
                       >
                         {item.name}
                       </a>
@@ -337,7 +337,7 @@ export default function Example() {
                   <div className="mt-6 px-5">
                     <p className="text-center text-base font-medium text-gray-500">
                       Existing customer?{' '}
-                      <a href="#" className="text-gray-900 hover:underline">
+                      <a href="#" className="text-[#002395] hover:underline">
                         Login
                       </a>
                     </p>
@@ -384,7 +384,7 @@ export default function Example() {
                               id="email"
                               type="email"
                               placeholder="Enter your email"
-                              className="block w-full rounded-md border-0 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                              className="block w-full rounded-md border-0 px-4 py-3 text-base text-[#002395] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900"
                             />
                           </div>
                           <div className="mt-3 sm:mt-0 sm:ml-3">
@@ -427,7 +427,7 @@ export default function Example() {
             <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
               <div>
                 <h2 className="text-lg font-semibold text-cyan-600">Serverless</h2>
-                <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                <p className="mt-2 text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
                   No server? No problem.
                 </p>
                 <p className="mx-auto mt-5 max-w-prose text-xl text-gray-500">
@@ -449,7 +449,7 @@ export default function Example() {
           <div className="relative bg-white py-16 sm:py-24 lg:py-32">
             <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
               <h2 className="text-lg font-semibold text-cyan-600">Deploy faster</h2>
-              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <p className="mt-2 text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
                 Everything you need to deploy your app
               </p>
               <p className="mx-auto mt-5 max-w-prose text-xl text-gray-500">
@@ -467,7 +467,7 @@ export default function Example() {
                               <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
                             </span>
                           </div>
-                          <h3 className="mt-8 text-lg font-medium tracking-tight text-gray-900">
+                          <h3 className="mt-8 text-lg font-medium tracking-tight text-[#002395]">
                             {feature.name}
                           </h3>
                           <p className="mt-5 text-base text-gray-500">{feature.description}</p>
@@ -531,7 +531,7 @@ export default function Example() {
             <div className="relative">
               <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 className="text-lg font-semibold text-cyan-600">Learn</h2>
-                <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                <p className="mt-2 text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
                   Helpful Resources
                 </p>
                 <p className="mx-auto mt-5 max-w-prose text-xl text-gray-500">
@@ -553,7 +553,7 @@ export default function Example() {
                           </a>
                         </p>
                         <a href={post.href} className="mt-2 block">
-                          <p className="text-xl font-semibold text-gray-900">{post.title}</p>
+                          <p className="text-xl font-semibold text-[#002395]">{post.title}</p>
                           <p className="mt-3 text-base text-gray-500">{post.preview}</p>
                         </a>
                       </div>
@@ -568,7 +568,7 @@ export default function Example() {
                           </a>
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm font-medium text-gray-900">
+                          <p className="text-sm font-medium text-[#002395]">
                             <a href={post.author.href} className="hover:underline">
                               {post.author.name}
                             </a>
@@ -615,7 +615,7 @@ export default function Example() {
                   <div className="inline-flex rounded-md shadow">
                     <a
                       href="#"
-                      className="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-gray-900 hover:bg-gray-50"
+                      className="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-[#002395] hover:bg-gray-50"
                     >
                       Visit the help center
                       <ArrowTopRightOnSquareIcon
@@ -660,13 +660,13 @@ export default function Example() {
               <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
                 <div className="md:grid md:grid-cols-2 md:gap-8">
                   <div>
-                    <h3 className="text-base font-medium text-gray-900">Solutions</h3>
+                    <h3 className="text-base font-medium text-[#002395]">Solutions</h3>
                     <ul role="list" className="mt-4 space-y-4">
                       {footerNavigation.solutions.map(item => (
                         <li key={item.name}>
                           <a
                             href={item.href}
-                            className="text-base text-gray-500 hover:text-gray-900"
+                            className="text-base text-gray-500 hover:text-[#002395]"
                           >
                             {item.name}
                           </a>
@@ -675,13 +675,13 @@ export default function Example() {
                     </ul>
                   </div>
                   <div className="mt-12 md:mt-0">
-                    <h3 className="text-base font-medium text-gray-900">Support</h3>
+                    <h3 className="text-base font-medium text-[#002395]">Support</h3>
                     <ul role="list" className="mt-4 space-y-4">
                       {footerNavigation.support.map(item => (
                         <li key={item.name}>
                           <a
                             href={item.href}
-                            className="text-base text-gray-500 hover:text-gray-900"
+                            className="text-base text-gray-500 hover:text-[#002395]"
                           >
                             {item.name}
                           </a>
@@ -692,13 +692,13 @@ export default function Example() {
                 </div>
                 <div className="md:grid md:grid-cols-2 md:gap-8">
                   <div>
-                    <h3 className="text-base font-medium text-gray-900">Company</h3>
+                    <h3 className="text-base font-medium text-[#002395]">Company</h3>
                     <ul role="list" className="mt-4 space-y-4">
                       {footerNavigation.company.map(item => (
                         <li key={item.name}>
                           <a
                             href={item.href}
-                            className="text-base text-gray-500 hover:text-gray-900"
+                            className="text-base text-gray-500 hover:text-[#002395]"
                           >
                             {item.name}
                           </a>
@@ -707,13 +707,13 @@ export default function Example() {
                     </ul>
                   </div>
                   <div className="mt-12 md:mt-0">
-                    <h3 className="text-base font-medium text-gray-900">Legal</h3>
+                    <h3 className="text-base font-medium text-[#002395]">Legal</h3>
                     <ul role="list" className="mt-4 space-y-4">
                       {footerNavigation.legal.map(item => (
                         <li key={item.name}>
                           <a
                             href={item.href}
-                            className="text-base text-gray-500 hover:text-gray-900"
+                            className="text-base text-gray-500 hover:text-[#002395]"
                           >
                             {item.name}
                           </a>

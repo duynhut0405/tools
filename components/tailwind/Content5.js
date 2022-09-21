@@ -94,7 +94,7 @@ export default function Example() {
         <div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
           {/* Content area */}
           <div className="pt-12 sm:pt-16 lg:pt-20">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
               On a mission to empower teams
             </h2>
             <div className="mt-6 space-y-6 text-gray-500">
@@ -126,7 +126,7 @@ export default function Example() {
               {stats.map(stat => (
                 <div key={stat.label} className="border-t-2 border-gray-100 pt-6">
                   <dt className="text-base font-medium text-gray-500">{stat.label}</dt>
-                  <dd className="text-3xl font-bold tracking-tight text-gray-900">{stat.value}</dd>
+                  <dd className="text-3xl font-bold tracking-tight text-[#002395]">{stat.value}</dd>
                 </div>
               ))}
             </dl>

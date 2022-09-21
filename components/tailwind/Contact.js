@@ -206,7 +206,7 @@ export default function Example() {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
+                      className="block rounded-md px-3 py-2 text-base font-medium text-[#002395] hover:bg-gray-50"
                     >
                       {item.name}
                     </a>
@@ -230,7 +230,7 @@ export default function Example() {
         {/* Header */}
         <div className="bg-gray-50 py-24 sm:py-32">
           <div className="mx-auto max-w-md pl-4 pr-8 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:px-8">
-            <h1 className="text-center text-4xl font-bold leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none lg:text-6xl">
+            <h1 className="text-center text-4xl font-bold leading-10 tracking-tight text-[#002395] sm:text-5xl sm:leading-none lg:text-6xl">
               Get in touch
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-center text-xl leading-normal text-gray-500">
