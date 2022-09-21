@@ -14,14 +14,15 @@ const posts = [
     readingTime: '6 min',
     author: {
       name: 'Hiệp hội PCI',
-      href: '#',
+      href: 'https://www.pcisecuritystandards.org/',
       imageUrl:
         'https://e7.pngegg.com/pngimages/1001/763/png-clipart-payment-card-industry-data-security-standard-payment-card-industry-security-standards-council-audit-qualified-security-assessor-others-company-text.png'
     }
   },
   {
     title: 'ACB đã vinh dự nhận được giải thưởng “Nơi làm việc tốt nhất Châu Á 2021” ',
-    href: '#',
+    href:
+      'https://www.acb.com.vn/vn/about/tin-tuc/giai-thuong/acb-thuoc-top-50-dn-niem-yet-tot-nhat-vn-13-12-2021',
     category: { name: 'Giải thưởn', href: '#' },
     description:
       'Đây là giải thưởng thường niên lớn nhất do HR Asia – tạp chí hàng đầu về Nhân sự khu vực Châu Á – nghiên cứu, đánh giá và tổ chức vinh danh. Năm nay là năm thứ ba liên tiếp ACB nhận được giải thưởng “Nơi làm việc tốt nhất châu Á” của HR Asia.',
@@ -31,13 +32,14 @@ const posts = [
     readingTime: '4 min',
     author: {
       name: 'HR Asia',
-      href: '#',
+      href: 'https://hr.asia/',
       imageUrl: 'https://hrasiamedia.com/2017/wp-content/uploads/2015/10/logo-300x74.png'
     }
   },
   {
     title: '50 công ty niêm yết tốt nhất Việt Nam',
-    href: '#',
+    href:
+      'https://www.acb.com.vn/vn/about/tin-tuc/giai-thuong/acb-dc-vinh-danh-la-noi-lam-viec-tot-nhat-chau-a-2021',
     category: { name: 'Case Study', href: '#' },
     description:
       'Đây là lần thứ 6 ACB được Forbes Việt Nam bình chọn và có tên trong danh sách Top 50 công ty niêm yết tốt nhất Việt Nam.',
@@ -48,7 +50,8 @@ const posts = [
     readingTime: '11 min',
     author: {
       name: 'Tạp chí Forbes',
-      href: '#',
+      href:
+        'https://forbes.vn/dat-bao/?utm_source=Google&utm_medium=Search&utm_campaign=Subscription_Sep_2022&gclid=Cj0KCQjw7KqZBhCBARIsAI-fTKJv85JNoPwft5brv0GOmM62bbb9ElH1E--jnuYGL_pwD9TlLf_ie2kaAt2OEALw_wcB',
       imageUrl: 'https://cdn.worldvectorlogo.com/logos/forbes-2.svg'
     }
   }

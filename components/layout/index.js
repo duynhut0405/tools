@@ -44,7 +44,7 @@ function Layout({ children, isPrioty, idPage }) {
   const [menuHeader, setMenuHeader] = useState([]);
   const [menuNav, setMenuNav] = useState([
     { type: '4', url: '/tool', name: 'Tài khoản', children: [] },
-    { type: '4', url: '/tool', name: 'Thẻ', children: [] },
+    { type: '4', url: '/recruit', name: 'Thẻ', children: [] },
     { type: '4', url: '/tool', name: 'Vay', children: [] },
     { type: '4', url: '/tool', name: 'Tiết kiệm', children: [] },
     { type: '4', url: '/tool', name: 'Bảo hiểm', children: [] },
