@@ -8,7 +8,7 @@ import Noti from '../Noti';
 
 const tabsData = [
   {
-    name: 'Thẻ tín dụng',
+    name: 'Thẻ tín dụng 1',
     desc:
       'Khẳng định phong cách sống hiện đại cùng tính năng chi tiêu trước, thanh toán sau với 45 đến 55 ngày miễn lãi của Thẻ Tín Dụng ACB. Thỏa sức tận hưởng các dịch vụ đẳng cấp, ưu đâĩ đặc quyền cho chủ thẻ Tín Dụng ACB theo đúng sở thích tại Việt Nam và khắp thế giới. Tìm hiểu ngay!',
     textSale: '2.000.000',
