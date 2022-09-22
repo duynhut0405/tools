@@ -15,8 +15,7 @@ const posts = [
     author: {
       name: 'Hiệp hội PCI',
       href: 'https://www.pcisecuritystandards.org/',
-      imageUrl:
-        'https://e7.pngegg.com/pngimages/1001/763/png-clipart-payment-card-industry-data-security-standard-payment-card-industry-security-standards-council-audit-qualified-security-assessor-others-company-text.png'
+      imageUrl: 'https://www.pcisecuritystandards.org/wp-content/uploads/2022/03/pci-logo-teal.svg'
     }
   },
   {
@@ -52,7 +51,8 @@ const posts = [
       name: 'Tạp chí Forbes',
       href:
         'https://forbes.vn/dat-bao/?utm_source=Google&utm_medium=Search&utm_campaign=Subscription_Sep_2022&gclid=Cj0KCQjw7KqZBhCBARIsAI-fTKJv85JNoPwft5brv0GOmM62bbb9ElH1E--jnuYGL_pwD9TlLf_ie2kaAt2OEALw_wcB',
-      imageUrl: 'https://cdn.worldvectorlogo.com/logos/forbes-2.svg'
+      imageUrl:
+        'https://w7.pngwing.com/pngs/836/272/png-transparent-forbes-logo-triggerfish-communications-ltd-graphic-design-firefly-animals-company-text.png'
     }
   }
 ];
@@ -75,7 +75,7 @@ export default function Example() {
           {posts.map(post => (
             <div key={post.title} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div className="flex-shrink-0">
-                <img className="h-48 w-full object-cover" src={post.imageUrl} alt="" />
+                <img className="h-48 w-full object-contain" src={post.imageUrl} alt="" />
               </div>
               <div className="flex flex-1 flex-col justify-between bg-white p-6">
                 <div className="flex-1">
@@ -93,7 +93,11 @@ export default function Example() {
                   <div className="flex-shrink-0">
                     <a href={post.author.href}>
                       <span className="sr-only">{post.author.name}</span>
-                      <img className="h-10 w-10 rounded-full" src={post.author.imageUrl} alt="" />
+                      <img
+                        className="h-10 w-10 rounded-full object-contain"
+                        src={post.author.imageUrl}
+                        alt=""
+                      />
                     </a>
                   </div>
                   <div className="ml-3">

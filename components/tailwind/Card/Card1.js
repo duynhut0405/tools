@@ -21,7 +21,7 @@ export default function Example() {
           Không cần chứng minh thu nhập
         </h1>
         <a
-          href="/news"
+          href="#block-sale"
           className="mt-8 inline-flex items-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-600 shadow hover:bg-indigo-50"
         >
           XEM TẠI ĐÂY

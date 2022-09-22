@@ -92,7 +92,10 @@ export default function Example() {
   return (
     <div className="bg-white">
       <div className="relative">
-        <h2 className="text-center text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl">
+        <h2
+          id="block-sale"
+          className="text-center text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl"
+        >
           Ưu đãi mở thẻ
         </h2>
         <p className="mx-auto mt-4 max-w-3xl text-center text-xl text-gray-500">

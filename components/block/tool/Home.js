@@ -132,7 +132,9 @@ function ToolHome({ maxValue, interest_rate, padding, id, type }) {
   return (
     <div className={`${padding} tool-${type}`} id={id}>
       <div className="container">
-        <h2 className="ht">{title}</h2>
+        <h3 className="text-2xl mb-1 font-bold text-[#002395] sm:text-3xl sm:tracking-tight">
+          {title}
+        </h3>
         <div className="cttab-xx  sec-b">
           <div className="w-menu-over">
             <div className="p-tool1__select1 p-tool1__select1-js">

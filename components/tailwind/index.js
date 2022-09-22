@@ -9,6 +9,7 @@ import Content4 from './Content4';
 import Content5 from './Content5';
 import Form from './Form';
 import Success from './Success';
+import Modal from './Modal';
 export {
   Landing1,
   Landing2,
@@ -20,5 +21,6 @@ export {
   Content4,
   Content5,
   Form,
-  Success
+  Success,
+  Modal
 };

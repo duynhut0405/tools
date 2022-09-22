@@ -1,6 +1,10 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { useState } from 'react';
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
+import Modal from '../Modal';
+import Modal2 from '../Modal2';
+import Modal3 from '../Modal3';
+import Noti from '../Noti';
 
 const tabsData = [
   {
@@ -67,6 +71,10 @@ const tabsData = [
 
 export default function Example() {
   const [tab, setTab] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+  const [showModal3, setShowModal3] = useState(false);
+  const [success, setSuccess] = useState(false);
   return (
     <div className="bg-gray-100">
       <div className="pt-12 sm:pt-16 lg:pt-20">
@@ -141,40 +149,46 @@ export default function Example() {
                   </span>
                 </div>
                 <p className="mt-4 text-sm">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.acb.com.vn/wps/portal?1dmy&page=acb.category.detail&urile=wcm:path:ACBWebsite/acb-vn/personal/the/the-tin-dung/acb-visa-infinite"
+                  <button
+                    onClick={() => {
+                      setShowModal2(true);
+                    }}
                     className="font-medium text-gray-500 underline"
                   >
                     Hướng dẫn
-                  </a>
+                  </button>
                 </p>
                 <div className="mt-6">
                   <div className="rounded-md shadow">
-                    <a
-                      href="/recruit"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-[#002395] px-5 py-3 text-base font-medium text-white hover:bg-gray-900"
+                    <button
+                      onClick={() => {
+                        setShowModal(true);
+                      }}
+                      className="w-full flex items-center justify-center rounded-md border border-transparent bg-[#002395] px-5 py-3 text-base font-medium text-white hover:bg-[#29b6f6]"
                     >
                       Mở thẻ
-                    </a>
+                    </button>
                   </div>
                 </div>
                 <div className="mt-4 text-sm">
-                  <a
-                    href="https://mail.acb.com.vn/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => {
+                      setShowModal3(true);
+                    }}
                     className="font-medium text-[#002395]"
                   >
                     Hỗ trợ
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Modal open={showModal} setOpen={setShowModal} setSuccess={setSuccess} />
+      <Modal2 open={showModal2} setOpen={setShowModal2} />
+      <Modal3 open={showModal3} setOpen={setShowModal3} />
+      <Noti show={success} setShow={setSuccess} />
     </div>
   );
 }

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card1, Card2, Card3, Card4, Card5, Card6, Card7 } from '../components/tailwind/Card';
 import Slider from 'react-slick';
-
+import { Tools } from '../components/block';
+import Modal4 from '../components/tailwind/Modal4';
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -79,6 +80,7 @@ const settings = {
   prevArrow: <SamplePrevArrow />
 };
 function Home({}) {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       <Card1 />
@@ -91,7 +93,12 @@ function Home({}) {
             {listImg.map((item, index) => {
               return (
                 <div>
-                  <img className="w-[90%] h-[180px] sm:h-[350px]" key={index} alt="" src={item} />
+                  <img
+                    className="w-[90%] h-[180px] sm:h-[350px] object-contain"
+                    key={index}
+                    alt=""
+                    src={item}
+                  />
                 </div>
               );
             })}
@@ -113,12 +120,14 @@ function Home({}) {
               </p>
               <div className="mt-6 mb-6">
                 <div className="">
-                  <a
-                    href="/news"
-                    className="w-32 rounded-md border border-transparent bg-[#002395] px-10 py-3 text-base font-medium text-white hover:bg-gray-900"
+                  <button
+                    onClick={() => {
+                      setShowModal(true);
+                    }}
+                    className=" w-max rounded-md border border-transparent bg-[#002395] px-10 py-3 text-base font-medium text-white hover:bg-gray-900"
                   >
                     Xem chi tiết
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -136,6 +145,23 @@ function Home({}) {
         </div>
       </div>
       <Card3 />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none">
+          <div className="flex-1 bg-white px-6 py-8 lg:p-12">
+            <Tools
+              content={{
+                optionWidth: '2',
+                type: '1',
+                id: 1,
+                interest_rate: 5,
+                minValue: '1000000',
+                maxValue: '10000000000'
+              }}
+              id={1}
+            />
+          </div>
+        </div>
+      </div>
       <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
         <Card7 />
       </div>
@@ -143,6 +169,7 @@ function Home({}) {
       <Card2 />
       <Card5 />
       <Card6 />
+      <Modal4 open={showModal} setOpen={setShowModal} />
     </>
   );
 }

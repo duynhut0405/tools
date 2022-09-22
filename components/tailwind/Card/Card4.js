@@ -196,8 +196,7 @@ export default function Example() {
               <rect width={784} height={404} fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
             </svg>
             <img
-              className="relative mx-auto"
-              width={490}
+              className="relative mx-auto object-contain"
               src="https://hdbankcareer.com/wp-content/uploads/2022/03/ngan-hang-acb-la-ngan-hang-gi.jpg"
               alt=""
             />
@@ -293,8 +292,7 @@ export default function Example() {
                 <rect width={784} height={404} fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
               </svg>
               <img
-                className="relative mx-auto"
-                width={490}
+                className="relative mx-auto object-contain"
                 src="https://datax-talent.basecdn.net/nganhangacb/pages/about-us-3.jpg"
                 alt=""
               />
@@ -361,80 +359,10 @@ export default function Example() {
               <rect width={784} height={404} fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
             </svg>
             <img
-              className="relative mx-auto"
-              width={490}
+              className="relative mx-auto object-contain"
               src="https://cdn.vietnambiz.vn/171464876016439296/2020/6/1/lai-suat-ngan-hang-acb-moi-nhat-thang-062020-1590985218106227555989.jpg"
               alt=""
             />
-          </div>
-        </div>
-
-        <div className="relative mt-12 sm:mt-16 lg:mt-24">
-          <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8">
-            <div className="lg:col-start-2">
-              <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
-                DÙNG THẺ ACB THANH TOÁN ONLINE - HOÀN TIỀN 50%
-              </h3>
-              <p className="mt-3 text-lg text-gray-500">
-                Từ nay đến hết 30/09/2022, ACB dành tặng Quý khách ưu đãi Hoàn tiền 50% khi giao
-                dịch thanh toán trực tuyến (e-commerce) bằng thẻ ghi nợ và quốc tế ACB Visa, tối đa
-                200.000 VNĐ
-              </p>
-
-              <dl className="mt-10 space-y-10">
-                {communicationFeatures3.map(item => (
-                  <div key={item.id} className="relative">
-                    <dt>
-                      <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#002395] text-white">
-                        <item.icon className="h-6 w-6" aria-hidden="true" />
-                      </div>
-                      <p className="ml-16 text-lg font-medium leading-6 text-[#002395]">
-                        {item.name}
-                      </p>
-                    </dt>
-                    <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <div className="relative -mx-4 mt-10 lg:col-start-1 lg:mt-0">
-              <svg
-                className="absolute left-1/2 -translate-x-1/2 translate-y-16 transform lg:hidden"
-                width={784}
-                height={404}
-                fill="none"
-                viewBox="0 0 784 404"
-                aria-hidden="true"
-              >
-                <defs>
-                  <pattern
-                    id="e80155a9-dfde-425a-b5ea-1f6fadd20131"
-                    x={0}
-                    y={0}
-                    width={20}
-                    height={20}
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <rect
-                      x={0}
-                      y={0}
-                      width={4}
-                      height={4}
-                      className="text-gray-200"
-                      fill="currentColor"
-                    />
-                  </pattern>
-                </defs>
-                <rect width={784} height={404} fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
-              </svg>
-              <img
-                className="relative mx-auto"
-                width={490}
-                src="https://cdn.vietnambiz.vn/2020/1/13/photo-1-15676462601771311062021-15789062834241203293789.jpeg"
-                alt=""
-              />
-            </div>
           </div>
         </div>
       </div>
