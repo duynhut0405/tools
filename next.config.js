@@ -16,6 +16,15 @@ module.exports = {
       }
     };
   },
+  async redirects() {
+    return [
+      {
+        source: '/tool',
+        destination: '/tool/1',
+        permanent: true
+      }
+    ];
+  },
   env: {
     DOMAIN: 'https://157.230.47.241:8443/',
     LINK_DOMAIN: 'ACB.com.vn',
