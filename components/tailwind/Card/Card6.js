@@ -15,8 +15,7 @@ const posts = [
     author: {
       name: 'Hiệp hội PCI',
       href: 'https://www.pcisecuritystandards.org/',
-      imageUrl:
-        'https://www.acb.com.vn/wps/wcm/connect/e5a258e5-d5f5-4eb7-a8a1-fa43d1ccbf95/Banner+web+-+921x540px-01.jpg?MOD=AJPERES&CACHEID=e5a258e5-d5f5-4eb7-a8a1-fa43d1ccbf95'
+      imageUrl: 'https://www.pcisecuritystandards.org/wp-content/uploads/2022/03/pci-logo-teal.svg'
     }
   },
   {
@@ -76,8 +75,8 @@ export default function Example() {
         <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
           {posts.map(post => (
             <div key={post.title} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-              <div className="flex-shrink-0">
-                <img className="h-48 w-full object-contain" src={post.imageUrl} alt="" />
+              <div className="flex-shrink-0 w-full">
+                <img className="h-48 w-full object-cover" src={post.imageUrl} alt="" />
               </div>
               <div className="flex flex-1 flex-col justify-between bg-white p-6">
                 <div className="flex-1">
