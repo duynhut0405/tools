@@ -25,10 +25,9 @@ export default function Example() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
         <div className="rounded-3xl bg-[#29b6f6] py-10 px-6 sm:py-16 sm:px-12 lg:flex lg:items-center lg:p-20">
           <div className="lg:w-0 lg:flex-1">
-            <h2 className="text-3xl font-bold tracking-tight text-white">ĐĂNG KÝ MỞ THẺ</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-white">Đăng ký tư vấn vay</h2>
             <p className="mt-4 max-w-3xl text-lg text-indigo-100">
-              Đăng ký thông tin cá nhân và thực hiện EKYC. • Khách hàng nhận thông tin số tài khoản
-              qua email và mật khẩu ACB ONE (phiên bản App) qua SMS.
+              Quý khách hàng đăng ký email để nhận thông tin các gói ưu đãi vay hiện hành tại ACB.
             </p>
           </div>
           <div className="mt-12 sm:w-full sm:max-w-md lg:mt-0 lg:ml-8 lg:flex-1">

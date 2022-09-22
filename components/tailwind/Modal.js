@@ -52,7 +52,7 @@ export default function Example({ open, setOpen, setSuccess }) {
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left flex-1">
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                      Mở thẻ ACB
+                      Đăng ký Vay
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">Nhập thông tin để đăng ký mở thẻ</p>
@@ -66,6 +66,10 @@ export default function Example({ open, setOpen, setSuccess }) {
                             )
                           ) {
                             setErrEmail(true);
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                              event: 'FormemailerrorLoans'
+                            });
                             setTimeout(() => {
                               setErrEmail(false);
                             }, 5000);
@@ -74,6 +78,10 @@ export default function Example({ open, setOpen, setSuccess }) {
 
                           if (phone?.length < 10) {
                             setErrPhone(true);
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                              event: 'FormphoneerrorLoans'
+                            });
                             setTimeout(() => {
                               setErrPhone(false);
                             }, 5000);
@@ -91,6 +99,10 @@ export default function Example({ open, setOpen, setSuccess }) {
                             .then(data => {
                               setOpen(false);
                               setSuccess(true);
+                              window.dataLayer = window.dataLayer || [];
+                              window.dataLayer.push({
+                                event: 'SubmitFormLoans'
+                              });
                               setTimeout(() => {
                                 setSuccess(false);
                               }, 5000);

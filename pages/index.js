@@ -87,7 +87,7 @@ function Home({}) {
       <div className="bg-white">
         <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
           <h1 className="text-[#002395]  text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
-            TÍNH NĂNG NỔI BẬT
+            ƯU ĐÃI VAY THÁNG 10
           </h1>
           <Slider {...settings}>
             {listImg.map((item, index) => {
@@ -145,28 +145,11 @@ function Home({}) {
         </div>
       </div>
       <Card3 />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none">
-          <div className="flex-1 bg-white px-6 py-8 lg:p-12">
-            <Tools
-              content={{
-                optionWidth: '2',
-                type: '1',
-                id: 1,
-                interest_rate: 5,
-                minValue: '1000000',
-                maxValue: '10000000000'
-              }}
-              id={1}
-            />
-          </div>
-        </div>
-      </div>
       <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
         <Card7 />
       </div>
-      <Card4 />
       <Card2 />
+      <Card4 />
       <Card5 />
       <Card6 />
       <Modal4 open={showModal} setOpen={setShowModal} />

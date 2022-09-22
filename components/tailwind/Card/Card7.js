@@ -29,7 +29,8 @@ import {
   ReceiptRefundIcon,
   UsersIcon
 } from '@heroicons/react/24/outline';
-
+import { useState } from 'react';
+import Model3 from '../Modal3';
 const actions = [
   {
     title: 'Mua sắm - Làm đẹp',
@@ -89,6 +90,7 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="bg-white">
       <div className="relative">
@@ -96,13 +98,13 @@ export default function Example() {
           id="block-sale"
           className="text-center text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl"
         >
-          Ưu đãi mở thẻ
+          Ưu đãi cho vay
         </h2>
         <p className="mx-auto mt-4 max-w-3xl text-center text-xl text-gray-500">
           Ngân hàng ACB là một trong những ngân hàng thương mại cổ phần hàng đầu Việt Nam. Với mạng
           lưới chi nhánh rộng khắp cả nước cùng đa dạng các đối tác trong nhiều loại hình dịch vụ,
-          sản phẩm khác nhau. ACB là ngân hàng mang lại vô vàn ưu đãi hấp dẫn cho khách hàng khi mở
-          thẻ tín dụng.
+          sản phẩm khác nhau. ACB là ngân hàng mang lại vô vàn ưu đãi hấp dẫn cho khách hàng khi vay
+          vốn tại ACB.
         </p>
       </div>
       <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
@@ -132,11 +134,11 @@ export default function Example() {
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-medium">
-                <a href={action.href} className="focus:outline-none">
+                <button onClick={() => setShowModal(true)} className="focus:outline-none">
                   {/* Extend touch target to entire panel */}
                   <span className="absolute inset-0" aria-hidden="true" />
                   {action.title}
-                </a>
+                </button>
               </h3>
               <p className="mt-2 text-sm text-gray-500">{action.desc}</p>
             </div>
@@ -156,6 +158,7 @@ export default function Example() {
           </div>
         ))}
       </div>
+      <Model3 open={showModal} setOpen={setShowModal} />
     </div>
   );
 }

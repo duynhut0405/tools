@@ -55,7 +55,7 @@ function Layout({ children, isPrioty, idPage }) {
       name: 'Tool',
       children: [
         { type: '4', url: '/tool/1', name: 'Cho vay mua nhà đất', children: [] },
-        { type: '4', url: '/tool/2', name: 'Vay hạn mức', children: [] },
+        { type: '4', url: '/tool/2', name: 'Vay vốn kinh doanh', children: [] },
         { type: '4', url: '/tool/3', name: 'Cho vay tiêu dùng có TSBĐ', children: [] },
         { type: '4', url: '/tool/4', name: 'Cho vay tiêu dùng không có TSĐB', children: [] },
         { type: '4', url: '/tool/5', name: 'Cho vay mua ô tô', children: [] },
