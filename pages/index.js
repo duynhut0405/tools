@@ -124,7 +124,7 @@ function Home({}) {
                     onClick={() => {
                       setShowModal(true);
                     }}
-                    className=" w-max rounded-md border border-transparent bg-[#002395] px-10 py-3 text-base font-medium text-white hover:bg-gray-900"
+                    className=" w-max rounded-md border border-transparent bg-[#002395] px-10 py-3 text-base font-medium text-white hover:bg-[#29b6f6]"
                   >
                     Xem chi tiết
                   </button>

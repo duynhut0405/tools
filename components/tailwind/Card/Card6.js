@@ -10,12 +10,13 @@ const posts = [
     date: 'Mar 16, 2020',
     datetime: '2020-03-16',
     imageUrl:
-      'https://www.acb.com.vn/wps/wcm/connect/83ee51ff-acb2-4528-b392-67cc668b7af6/462x385.jpg?MOD=AJPERES&CACHEID=83ee51ff-acb2-4528-b392-67cc668b7af6',
+      'https://www.acb.com.vn/wps/wcm/connect/e5a258e5-d5f5-4eb7-a8a1-fa43d1ccbf95/Banner+web+-+921x540px-01.jpg?MOD=AJPERES&CACHEID=e5a258e5-d5f5-4eb7-a8a1-fa43d1ccbf95',
     readingTime: '6 min',
     author: {
       name: 'Hiệp hội PCI',
       href: 'https://www.pcisecuritystandards.org/',
-      imageUrl: 'https://www.pcisecuritystandards.org/wp-content/uploads/2022/03/pci-logo-teal.svg'
+      imageUrl:
+        'https://www.acb.com.vn/wps/wcm/connect/e5a258e5-d5f5-4eb7-a8a1-fa43d1ccbf95/Banner+web+-+921x540px-01.jpg?MOD=AJPERES&CACHEID=e5a258e5-d5f5-4eb7-a8a1-fa43d1ccbf95'
     }
   },
   {
@@ -27,7 +28,8 @@ const posts = [
       'Đây là giải thưởng thường niên lớn nhất do HR Asia – tạp chí hàng đầu về Nhân sự khu vực Châu Á – nghiên cứu, đánh giá và tổ chức vinh danh. Năm nay là năm thứ ba liên tiếp ACB nhận được giải thưởng “Nơi làm việc tốt nhất châu Á” của HR Asia.',
     date: 'Mar 10, 2020',
     datetime: '2020-03-10',
-    imageUrl: 'https://media.vneconomy.vn/w800/images/upload/2021/10/08/hr-asia-2021.jpg',
+    imageUrl:
+      'https://www.acb.com.vn/wps/wcm/connect/bf46eb44-f569-40e5-b636-bfd726d3bfa7/921x540+v2.jpg?MOD=AJPERES&CACHEID=bf46eb44-f569-40e5-b636-bfd726d3bfa7',
     readingTime: '4 min',
     author: {
       name: 'HR Asia',
@@ -45,7 +47,7 @@ const posts = [
     date: 'Feb 12, 2020',
     datetime: '2020-02-12',
     imageUrl:
-      'https://www.acb.com.vn/wps/wcm/connect/b74af44c-99e2-400b-8fdc-db9191ac61d0/1/800x.jpg?MOD=AJPERES&CACHEID=b74af44c-99e2-400b-8fdc-db9191ac61d0/1',
+      'https://www.acb.com.vn/wps/wcm/connect/55a18e58-b023-4138-a9c7-5975edd5dea8/Banner+web+-921x540px_v+copy+3.jpg?MOD=AJPERES&CACHEID=55a18e58-b023-4138-a9c7-5975edd5dea8',
     readingTime: '11 min',
     author: {
       name: 'Tạp chí Forbes',

@@ -124,7 +124,9 @@ function Tool4({ minValue, maxValue, interest_rate, padding, id, type }) {
   return (
     <div className={`${padding} tool-${type}`} id={id}>
       <div className="container">
-        <h2 className="ht">{t('tool_4_title')}</h2>
+        <h3 className="text-2xl mb-1 font-bold text-[#002395] sm:text-3xl sm:tracking-tight">
+          {t('tool_4_title')}
+        </h3>
         <div className="cttab-xx  sec-b">
           <div className="tab-content">
             <div className="active">

@@ -20,12 +20,14 @@ export default function Example() {
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-3xl lg:text-2xl">
           Không cần chứng minh thu nhập
         </h1>
-        <a
-          href="#block-sale"
-          className="mt-8 inline-flex items-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-600 shadow hover:bg-indigo-50"
-        >
-          XEM TẠI ĐÂY
-        </a>
+        <div className="mt-8">
+          <a
+            href="#block-sale"
+            className=" w-max rounded-md border border-transparent bg-[#002395] px-10 py-3 text-base font-medium text-white hover:bg-[#29b6f6]"
+          >
+            Xem tại đây
+          </a>
+        </div>
       </div>
     </div>
   );

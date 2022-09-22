@@ -143,7 +143,7 @@ export default function Example() {
                   Ưu đãi hàng năm lên đến
                 </p>
                 <div className="mt-4 flex items-center justify-center text-5xl font-bold tracking-tight text-[#002395]">
-                  <span>${tabsData[tab].textSale}</span>
+                  <span>{tabsData[tab].textSale}</span>
                   <span className="ml-3 text-xl font-medium tracking-normal text-gray-500">
                     Đồng
                   </span>
