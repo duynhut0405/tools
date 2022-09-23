@@ -71,29 +71,6 @@ const communicationFeatures2 = [
     icon: BoltIcon
   }
 ];
-
-const communicationFeatures3 = [
-  {
-    id: 1,
-    name: 'Thanh toán liền tay, hoàn tiền mê say  ',
-    description:
-      'Hoàn tiền 50% cho bất kỳ 01 giao dịch thanh toán trực truyến (e-commerce) đầu tiên tối đa 200.000VNĐ/thẻ/khách hàng từ nay đến hết 30/09/2022',
-    icon: ChatBubbleBottomCenterTextIcon
-  },
-  {
-    id: 2,
-    name: 'Cách thức tham gia',
-    description:
-      'Chỉ áp dụng cho khách hàng đăng kí tham gia bằng cách: soạn ACB_KMT_ECOM gửi 997 với "_" là khoảng trắng',
-    icon: EnvelopeIcon
-  },
-  {
-    id: 3,
-    name: 'Thẻ áp dụng',
-    description: 'Tất cả chủ thẻ ghi nợ và tín dụng quốc tế ACB Visa (trừ thẻ ACB Visa Digi)',
-    icon: BoltIcon
-  }
-];
 export default function Example() {
   return (
     <div className="overflow-hidden bg-white py-16 lg:py-24">
@@ -360,7 +337,7 @@ export default function Example() {
             </svg>
             <img
               className="relative mx-auto object-contain"
-              src="https://cdn.vietnambiz.vn/171464876016439296/2020/6/1/lai-suat-ngan-hang-acb-moi-nhat-thang-062020-1590985218106227555989.jpg"
+              src="https://cdnimg.vietnamplus.vn/uploaded/znaets/2022_04_14/tru_so_chinh_acb.jpg"
               alt=""
             />
           </div>
