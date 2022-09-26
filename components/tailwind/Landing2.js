@@ -239,7 +239,7 @@ export default function Example() {
         <Popover as="header" className="relative">
           <div className="bg-gray-900 pt-6">
             <nav
-              className="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6"
+              className="relative mx-auto flex max-w-[1536px] items-center justify-between px-4 sm:px-6"
               aria-label="Global"
             >
               <div className="flex flex-1 items-center">
@@ -349,7 +349,7 @@ export default function Example() {
         </Popover>
         <main>
           <div className="bg-gray-900 pt-10 sm:pt-16 lg:overflow-hidden lg:pt-8 lg:pb-14">
-            <div className="mx-auto max-w-7xl lg:px-8">
+            <div className="mx-auto max-w-[1536px] lg:px-8">
               <div className="lg:grid lg:grid-cols-2 lg:gap-8">
                 <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:flex lg:items-center lg:px-0 lg:text-left">
                   <div className="lg:py-24">
@@ -424,7 +424,7 @@ export default function Example() {
 
           {/* Feature section with screenshot */}
           <div className="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32">
-            <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-[1536px] lg:px-8">
               <div>
                 <h2 className="text-lg font-semibold text-cyan-600">Serverless</h2>
                 <p className="mt-2 text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
@@ -447,7 +447,7 @@ export default function Example() {
 
           {/* Feature section with grid */}
           <div className="relative bg-white py-16 sm:py-24 lg:py-32">
-            <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-[1536px] lg:px-8">
               <h2 className="text-lg font-semibold text-cyan-600">Deploy faster</h2>
               <p className="mt-2 text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
                 Everything you need to deploy your app
@@ -482,7 +482,7 @@ export default function Example() {
 
           {/* Testimonial section */}
           <div className="bg-gradient-to-r from-teal-500 to-cyan-600 pb-16 lg:relative lg:z-10 lg:pb-0">
-            <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
+            <div className="lg:mx-auto lg:grid lg:max-w-[1536px] lg:grid-cols-3 lg:gap-8 lg:px-8">
               <div className="relative lg:-my-8">
                 <div
                   aria-hidden="true"
@@ -529,7 +529,7 @@ export default function Example() {
           {/* Blog section */}
           <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
             <div className="relative">
-              <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+              <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-[1536px] lg:px-8">
                 <h2 className="text-lg font-semibold text-cyan-600">Learn</h2>
                 <p className="mt-2 text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
                   Helpful Resources
@@ -539,7 +539,7 @@ export default function Example() {
                   quis nunc, ullamcorper malesuada. Eleifend condimentum id viverra nulla.
                 </p>
               </div>
-              <div className="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-3 lg:px-8">
+              <div className="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-[1536px] lg:grid-cols-3 lg:px-8">
                 {blogPosts.map(post => (
                   <div key={post.id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
                     <div className="flex-shrink-0">
@@ -600,7 +600,7 @@ export default function Example() {
                 className="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-600 mix-blend-multiply"
               />
             </div>
-            <div className="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
+            <div className="relative mx-auto max-w-md px-4 py-12 sm:max-w-[1536px] sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
               <div className="md:ml-auto md:w-1/2 md:pl-10">
                 <h2 className="text-lg font-semibold text-gray-300">Award winning support</h2>
                 <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -633,7 +633,7 @@ export default function Example() {
           <h2 id="footer-heading" className="sr-only">
             Footer
           </h2>
-          <div className="mx-auto max-w-md px-4 pt-12 sm:max-w-7xl sm:px-6 lg:px-8 lg:pt-16">
+          <div className="mx-auto max-w-md px-4 pt-12 sm:max-w-[1536px] sm:px-6 lg:px-8 lg:pt-16">
             <div className="xl:grid xl:grid-cols-3 xl:gap-8">
               <div className="space-y-8 xl:col-span-1">
                 <img

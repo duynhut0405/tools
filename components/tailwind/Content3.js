@@ -17,7 +17,7 @@
 export default function Example() {
   return (
     <div className="overflow-hidden bg-gray-50 py-16">
-      <div className="mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1536px] space-y-8 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-prose text-base lg:max-w-none">
           <h2 className="text-lg font-semibold text-indigo-600">Transactions</h2>
           <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl">
