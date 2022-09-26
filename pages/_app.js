@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Layout from '../components/layout';
+import 'antd/dist/antd.css';
 import '../styles/block.scss';
 import '../styles/styles.css';
 import '../styles/custom.css';
@@ -13,7 +14,6 @@ import 'lazysizes/plugins/attrchange/ls.attrchange';
 import '../styles/globals.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
 import TagManager from 'react-gtm-module';
 import { Router } from 'next/router';
 

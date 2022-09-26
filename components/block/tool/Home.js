@@ -5,6 +5,7 @@ import Result from './Result';
 import t from '../../../translation';
 import Proptypes from 'prop-types';
 import { rate } from '../../../utils/currency';
+import SliderCustom from './Slider';
 
 const propTypes = {
   maxValue: Proptypes.number,
@@ -14,12 +15,11 @@ const propTypes = {
   id: Proptypes.number,
   type: Proptypes.string
 };
-
 function ToolHome({ maxValue, interest_rate, padding, id, type }) {
   const [estimate_rate, setEstimateRate] = useState('0');
   const [estimate_mortgage, setEstimateMortgage] = useState('0');
   const [amount, SetAmount] = useState('0');
-  const [month, setMonth] = useState('1');
+  const [month, setMonth] = useState('3');
   const [monthlyInterest, setMonthlyInterest] = useState(0); //Tiền lãi hàng tháng
   const [monthlypayment, setMonthlyPayment] = useState(0); //Tiền gốc hàng tháng
   const [checkAmount, setCheckAmount] = useState(0);
@@ -225,6 +225,8 @@ function ToolHome({ maxValue, interest_rate, padding, id, type }) {
                           note
                           onChange={value => setMonth(value)}
                         />
+
+                        <SliderCustom setValue={setMonth} value={Number(month)} />
                       </div>
                     </div>
                     <div className="col-md-5">

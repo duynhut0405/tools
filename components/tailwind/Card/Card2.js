@@ -22,7 +22,7 @@ export default function Example() {
   const [success, setSuccess] = useState(false);
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
+      <div className="mx-auto max-w-[1536px] px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
         <div className="rounded-3xl bg-[#29b6f6] py-10 px-6 sm:py-16 sm:px-12 lg:flex lg:items-center lg:p-20">
           <div className="lg:w-0 lg:flex-1">
             <h2 className="text-3xl font-bold tracking-tight text-white">Đăng ký tư vấn vay</h2>

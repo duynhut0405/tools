@@ -119,7 +119,7 @@ export default function Example() {
       <main>
         {/* Hero section */}
         <div className="overflow-hidden pt-8 sm:pt-12 lg:relative lg:py-48">
-          <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-24 lg:px-8">
+          <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:grid lg:max-w-[1536px] lg:grid-cols-2 lg:gap-24 lg:px-8">
             <div>
               <div>
                 <img
@@ -239,7 +239,7 @@ export default function Example() {
 
         {/* Testimonial/stats section */}
         <div className="relative mt-20">
-          <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
+          <div className="lg:mx-auto lg:grid lg:max-w-[1536px] lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
             <div className="relative sm:py-16 lg:py-0">
               <div
                 aria-hidden="true"
@@ -378,7 +378,7 @@ export default function Example() {
 
         {/* Logo cloud section */}
         <div className="mt-32">
-          <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-[1536px] lg:px-8">
             <div className="lg:grid lg:grid-cols-2 lg:items-center lg:gap-24">
               <div>
                 <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
@@ -443,7 +443,7 @@ export default function Example() {
               <rect width={404} height={392} fill="url(#8228f071-bcee-4ec8-905a-2a059a2cc4fb)" />
             </svg>
           </div>
-          <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-[1536px] lg:px-8">
             <div className="relative overflow-hidden rounded-2xl bg-rose-500 px-6 py-10 shadow-xl sm:px-12 sm:py-20">
               <div aria-hidden="true" className="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0">
                 <svg
@@ -504,7 +504,7 @@ export default function Example() {
 
       {/* Footer section */}
       <footer className="mt-24 bg-gray-900 sm:mt-12">
-        <div className="mx-auto max-w-md overflow-hidden py-12 px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto max-w-md overflow-hidden py-12 px-4 sm:max-w-3xl sm:px-6 lg:max-w-[1536px] lg:px-8">
           <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
             {footerNavigation.main.map(item => (
               <div key={item.name} className="px-5 py-2">
