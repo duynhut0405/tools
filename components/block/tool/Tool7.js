@@ -6,6 +6,7 @@ import t from '../../../translation';
 import { rate } from '../../../utils/currency';
 
 import Proptypes from 'prop-types';
+import SliderCustom from './Slider';
 
 const propTypes = {
   minValue: Proptypes.number,
@@ -19,7 +20,7 @@ const propTypes = {
 
 function Tool7({ minValue, maxValue, interest_rate, padding, id, type }) {
   const [loan_amount, setLoanAmount] = useState('0');
-  const [month, setMonth] = useState('1');
+  const [month, setMonth] = useState('7');
   const [monthlyInterest, setMonthlyInterest] = useState(0);
   const [monthlypayment, setMonthlyPayment] = useState(0);
   // const [totalAmount, setTotalAmount] = useState(0);
@@ -126,6 +127,7 @@ function Tool7({ minValue, maxValue, interest_rate, padding, id, type }) {
                           note
                           onChange={value => setMonth(value)}
                         />
+                        <SliderCustom setValue={setMonth} value={Number(month)} />
                       </div>
                     </div>
                     <div className="col-md-5">

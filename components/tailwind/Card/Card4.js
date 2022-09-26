@@ -97,7 +97,7 @@ const communicationFeatures3 = [
 export default function Example() {
   return (
     <div className="overflow-hidden bg-white py-16 lg:py-24">
-      <div className="relative mx-auto max-w-xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="relative mx-auto max-w-xl px-4 sm:px-6 lg:max-w-[1536px] lg:px-8">
         <svg
           className="absolute left-full hidden -translate-x-1/2 -translate-y-1/4 transform lg:block"
           width={404}

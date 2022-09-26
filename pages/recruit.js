@@ -29,7 +29,7 @@ function Home({}) {
     <>
       <Block1 />
       <div className="bg-white">
-        <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
           <Slider {...settings}>
             {listImg.map((item, index) => {
               return (
@@ -42,7 +42,7 @@ function Home({}) {
         </div>
       </div>
       <div className="bg-white">
-        <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
           <iframe
             src="https://www.youtube.com/embed/4MDIZFAAuw0"
             frameborder="0"

@@ -10,7 +10,7 @@ export default function Example() {
           alt=""
         />
       </div>
-      <div className="relative mx-auto max-w-7xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1536px] py-24 px-4 sm:py-32 sm:px-6 lg:px-8 lg:w-[1536px]">
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-3xl lg:text-2xl">
           Mở thẻ sành điệu, nhận quà hàng hiệu
         </h1>

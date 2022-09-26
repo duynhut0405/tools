@@ -17,7 +17,7 @@
 export default function Example() {
   return (
     <div className="overflow-hidden bg-white py-16 px-4 sm:px-6 lg:px-8 xl:py-36">
-      <div className="mx-auto max-w-max lg:max-w-7xl">
+      <div className="mx-auto max-w-max lg:max-w-[1536px]">
         <div className="relative z-10 mb-8 md:mb-2 md:px-6">
           <div className="max-w-prose text-base lg:max-w-none">
             <h2 className="font-semibold leading-6 text-indigo-600">Transactions</h2>

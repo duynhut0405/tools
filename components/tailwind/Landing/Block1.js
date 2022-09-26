@@ -17,7 +17,7 @@
 export default function Example() {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-lg bg-[#002395] shadow-xl lg:grid lg:grid-cols-2 lg:gap-4">
           <div className="px-6 pt-10 pb-12 sm:px-16 sm:pt-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
             <div className="lg:self-center">

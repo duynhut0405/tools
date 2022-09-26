@@ -130,7 +130,7 @@ export default function Example() {
       <Popover as="header" className="relative z-10">
         <div className="bg-gray-50">
           <nav
-            className="relative mx-auto flex max-w-7xl items-center justify-between px-6 pt-8 xl:px-8"
+            className="relative mx-auto flex max-w-[1536px] items-center justify-between px-6 pt-8 xl:px-8"
             aria-label="Global"
           >
             <div className="flex w-full items-center justify-between lg:w-auto">
@@ -229,7 +229,7 @@ export default function Example() {
       <main>
         {/* Header */}
         <div className="bg-gray-50 py-24 sm:py-32">
-          <div className="mx-auto max-w-md pl-4 pr-8 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="mx-auto max-w-md pl-4 pr-8 sm:max-w-lg sm:px-6 lg:max-w-[1536px] lg:px-8">
             <h1 className="text-center text-4xl font-bold leading-10 tracking-tight text-[#002395] sm:text-5xl sm:leading-none lg:text-6xl">
               Get in touch
             </h1>
@@ -251,7 +251,7 @@ export default function Example() {
               />
             </div>
           </div>
-          <div className="relative py-16 px-4 sm:py-24 sm:px-6 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:px-8 lg:py-32">
+          <div className="relative py-16 px-4 sm:py-24 sm:px-6 lg:mx-auto lg:grid lg:max-w-[1536px] lg:grid-cols-2 lg:px-8 lg:py-32">
             <div className="lg:pr-8">
               <div className="mx-auto max-w-md sm:max-w-lg lg:mx-0">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -476,7 +476,7 @@ export default function Example() {
         <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
-        <div className="mx-auto max-w-md py-12 px-4 sm:max-w-lg sm:px-6 sm:pt-16 lg:max-w-7xl lg:px-8 lg:pt-24 lg:pb-16">
+        <div className="mx-auto max-w-md py-12 px-4 sm:max-w-lg sm:px-6 sm:pt-16 lg:max-w-[1536px] lg:px-8 lg:pt-24 lg:pb-16">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-8 xl:col-span-1">
               <img

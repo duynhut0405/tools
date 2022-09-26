@@ -220,7 +220,7 @@ export default function Example() {
     <div className="bg-white">
       <header>
         <Popover className="relative bg-white">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
+          <div className="mx-auto flex max-w-[1536px] items-center justify-between px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <a href="#">
                 <span className="sr-only">Your Company</span>
@@ -415,7 +415,7 @@ export default function Example() {
         {/* Hero section */}
         <div className="relative">
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100" />
-          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[1536px] sm:px-6 lg:px-8">
             <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
               <div className="absolute inset-0">
                 <img
@@ -457,7 +457,7 @@ export default function Example() {
 
         {/* Logo Cloud */}
         <div className="bg-gray-100">
-          <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
             <p className="text-center text-base font-semibold text-gray-500">
               Trusted by over 5 very average small businesses
             </p>
@@ -508,7 +508,7 @@ export default function Example() {
             className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-gray-100"
           />
           <div className="relative">
-            <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
+            <div className="lg:mx-auto lg:grid lg:max-w-[1536px] lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
               <div className="mx-auto max-w-xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
                 <div>
                   <div>
@@ -573,7 +573,7 @@ export default function Example() {
             </div>
           </div>
           <div className="mt-24">
-            <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
+            <div className="lg:mx-auto lg:grid lg:max-w-[1536px] lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
               <div className="mx-auto max-w-xl px-4 sm:px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-32 lg:px-0">
                 <div>
                   <div>
@@ -617,7 +617,7 @@ export default function Example() {
 
         {/* Gradient Feature Section */}
         <div className="bg-gradient-to-r from-purple-800 to-indigo-700">
-          <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pt-24">
+          <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-[1536px] lg:px-8 lg:pt-24">
             <h2 className="text-3xl font-bold tracking-tight text-white">
               Inbox support built for efficiency
             </h2>
@@ -660,7 +660,7 @@ export default function Example() {
               </div>
             </div>
           </div>
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-[1536px] lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
             <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
               <h2 className="text-base font-semibold">
                 <span className="bg-gradient-to-r from-purple-300 to-indigo-300 bg-clip-text text-transparent">
@@ -692,7 +692,7 @@ export default function Example() {
 
         {/* CTA Section */}
         <div className="bg-white">
-          <div className="mx-auto max-w-4xl py-16 px-4 sm:px-6 sm:py-24 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
+          <div className="mx-auto max-w-4xl py-16 px-4 sm:px-6 sm:py-24 lg:flex lg:max-w-[1536px] lg:items-center lg:justify-between lg:px-8">
             <h2 className="text-4xl font-bold tracking-tight text-[#002395] sm:text-4xl">
               <span className="block">Ready to get started?</span>
               <span className="-mb-1 block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text pb-1 text-transparent">
@@ -721,7 +721,7 @@ export default function Example() {
         <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
-        <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24">
+        <div className="mx-auto max-w-[1536px] px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="grid grid-cols-2 gap-8 xl:col-span-2">
               <div className="md:grid md:grid-cols-2 md:gap-8">
