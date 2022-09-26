@@ -1,0 +1,24 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  only:
+    - main
+    - develop
+  tags:
+    - nondocker
+  before_script:
+    - export PATH=$PATH:/usr/local/bin
+    - export DOT=":"
+    - export PORT=8093
+    - '[[ $CI_COMMIT_REF_SLUG == "develop" ]] && export PORT=8094 || export PORT=8093'
+  script:
+    - rsync -a . /opt/abc-tool/"$CI_COMMIT_REF_SLUG"
+    - cd /opt/abc-tool/$CI_COMMIT_REF_SLUG && yarn
+    - cd /opt/abc-tool/$CI_COMMIT_REF_SLUG && yarn build
+    - echo "Delete abc-tool-${CI_COMMIT_REF_SLUG}"
+    - cd /opt/abc-tool/$CI_COMMIT_REF_SLUG && pm2 delete -s abc-tool-${CI_COMMIT_REF_SLUG} || $DOT
+    - echo "Start abc-tool-${CI_COMMIT_REF_SLUG} port=$PORT"
+    - cd /opt/abc-tool/$CI_COMMIT_REF_SLUG && pm2 start yarn --name abc-tool-${CI_COMMIT_REF_SLUG} -- start -p $PORT
+    
