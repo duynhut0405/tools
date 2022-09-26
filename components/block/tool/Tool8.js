@@ -6,6 +6,7 @@ import t from '../../../translation';
 import { rate } from '../../../utils/currency';
 
 import Proptypes from 'prop-types';
+import SliderCustom from './Slider';
 
 const propTypes = {
   minValue: Proptypes.number,
@@ -126,6 +127,7 @@ function Tool8({ minValue, maxValue, interest_rate, padding, id, type }) {
                           note
                           onChange={value => setMonth(value)}
                         />
+                        <SliderCustom setValue={setMonth} max={36} value={Number(month)} />
                       </div>
                     </div>
                     <div className="col-md-5">

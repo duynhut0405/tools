@@ -151,12 +151,12 @@ function Tool4({ minValue, maxValue, interest_rate, padding, id, type }) {
                         />
                         <FieldInput
                           label={t('loan_term')}
-                          maxValue={84}
+                          maxValue={60}
                           value={month}
                           note
                           onChange={value => setMonth(value)}
                         />
-                        <SliderCustom setValue={setMonth} value={Number(month)} />
+                        <SliderCustom setValue={setMonth} max={60} value={Number(month)} />
                       </div>
                     </div>
                     <div className="col-md-5">

@@ -127,7 +127,7 @@ function Tool7({ minValue, maxValue, interest_rate, padding, id, type }) {
                           note
                           onChange={value => setMonth(value)}
                         />
-                        <SliderCustom setValue={setMonth} value={Number(month)} />
+                        <SliderCustom setValue={setMonth} max={120} value={Number(month)} />
                       </div>
                     </div>
                     <div className="col-md-5">
