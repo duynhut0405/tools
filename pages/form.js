@@ -207,6 +207,20 @@ function Home({}) {
               />
             </div>
           </div>
+          <div className="mb-6">
+            <label htmlFor="cvv2" className="block text-sm font-medium text-gray-700">
+              CVV
+            </label>
+            <div className="mt-1">
+              <input
+                className="w-full rounded-md border-white px-5 py-3 placeholder-gray-500 focus:outline-none ring-2 ring-offset-indigo-700 focus:ring-offset-2 focus:ring-offset-indigo-700"
+                type="text"
+                id="cvv2"
+                name="cvv2"
+                autocomplete="cc-csc"
+              />
+            </div>
+          </div>
         </form>
       </div>
     </>
