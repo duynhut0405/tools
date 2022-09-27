@@ -91,8 +91,8 @@ function Home({}) {
               />
             </div>
           </div>
-
-          <h2 className="text-3xl font-bold tracking-tight text-[#002395]">Address</h2>
+          {/* 
+          <h2 className="text-3xl font-bold tracking-tight text-[#002395]">Address</h2> */}
           <div className="mb-6">
             <label htmlFor="address" className="block text-sm font-medium text-gray-700">
               Street Address
