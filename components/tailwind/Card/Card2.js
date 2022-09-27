@@ -74,7 +74,7 @@ export default function Example() {
               <input
                 id="email-address"
                 name="email-address"
-                autoComplete="email"
+                autocomplete="home email"
                 onChange={e => {
                   setEmail(e.target.value);
                 }}

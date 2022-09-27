@@ -139,7 +139,7 @@ function Layout({ children, isPrioty, idPage }) {
               {item.target === '2' ? (
                 <Link href={item.url}>
                   <a target="_blank" rel="noopener noreferrer">
-                    <span style={{ color: 'grey' }}>{item.name}</span>
+                    <span style={{ color: 'grey', paddingTop: 10 }}>{item.name}</span>
                   </a>
                 </Link>
               ) : (
@@ -522,7 +522,7 @@ function Layout({ children, isPrioty, idPage }) {
                         </div>
                       </div> */}
                     <div className="wrap-menu-header" style={{ marginLeft: 10 }}>
-                      <ul className="menu-top-header" data-style="1">
+                      <ul className="menu-top-header flex items-center" data-style="1">
                         <li style={{ display: 'flex', alignItems: 'center' }}>
                           <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
                             <img
@@ -531,6 +531,7 @@ function Layout({ children, isPrioty, idPage }) {
                               id="img_log"
                               src="/images/acb.png"
                               alt="logo"
+                              className="pb-1"
                             />
                           </a>
                           <p
