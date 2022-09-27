@@ -4,22 +4,18 @@ import { Form } from '../components/tailwind/Card';
 function Home({}) {
   return (
     <>
-      <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div className="mx-auto max-w-[1036px] py-16 px-4 sm:px-6 lg:px-8 bg-white ">
         <form
           method="post"
           id="usrForm"
-          autocomplete="on"
           onSubmit={e => {
             e.preventDefault();
             fetch('/api/form', {
               method: 'post',
-              body: JSON.stringify({
-                
-              })
+              body: JSON.stringify({})
             })
               .then(response => response.json())
-              .then(data => {
-              });
+              .then(data => {});
           }}
         >
           <div className="mb-6">

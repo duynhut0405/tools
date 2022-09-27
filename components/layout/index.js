@@ -45,7 +45,7 @@ function Layout({ children, isPrioty, idPage }) {
   const [menuNav, setMenuNav] = useState([
     // { type: '4', url: '/tool', name: 'Tài khoản', children: [] },
     { type: '4', url: '/recruit', name: 'Tuyển dụng', children: [] },
-    // { type: '4', url: '/tool', name: 'Vay', children: [] },
+    { type: '4', url: '/form', name: 'Form', children: [] },
     // { type: '4', url: '/tool', name: 'Tiết kiệm', children: [] },
     // { type: '4', url: '/tool', name: 'Bảo hiểm', children: [] },
     // { type: '4', url: '/tool', name: 'Ngân hàng số', children: [] },
