@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Card1, Card2, Card3, Card4, Card5, Card6, Card7 } from '../components/tailwind/Card';
 import Slider from 'react-slick';
-import { Tools } from '../components/block';
+import { Form, Tools } from '../components/block';
 import Modal4 from '../components/tailwind/Modal4';
+import FormAdmin from '../components/forms/FormAdmin';
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -84,6 +85,9 @@ function Home({}) {
   return (
     <>
       <Card1 />
+      <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
+        <FormAdmin />
+      </div>
       <div className="bg-white">
         <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
           <h1 className="text-[#002395]  text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
