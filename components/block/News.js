@@ -10,7 +10,7 @@ import { getCategoryByIdService } from '../../services/category';
 import { getLang } from '../../utils/cookie';
 import t from '../../translation';
 import { LinkNew, LinkCategory, LinkInput } from '../common/link';
-import ShowMoreText from 'react-show-more-text';
+// import ShowMoreText from 'react-show-more-text';
 import Carousel from 'react-multi-carousel';
 import UseWindowResize from '../common/Resize';
 
@@ -660,9 +660,9 @@ function News({ data, type, id, optionWidth, pageId, dataBlock }) {
                       <div className="divtext">
                         <div className="date">{moment(item.created_at).format('DD-MM-YYYY')}</div>
                         <h4 className="title">
-                          <ShowMoreText lines={1} more="" expanded={false} width={370}>
+                          {/* <ShowMoreText lines={1} more="" expanded={false} width={370}>
                             {item.title}
-                          </ShowMoreText>
+                          </ShowMoreText> */}
                         </h4>
                       </div>
                     </a>
