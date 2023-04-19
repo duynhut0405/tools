@@ -34,7 +34,7 @@ import Model3 from '../Modal3';
 const actions = [
   {
     title: 'Mua sắm - Làm đẹp',
-    desc: 'Sành điệu, nổi bật và tỏa sáng mỗi ngày với thẻ ACB',
+    desc: 'Thời gian vay phù hợp với nhu cầu của khách hàng.',
     href: '/news',
     icon: ClockIcon,
     iconForeground: 'text-teal-700',
@@ -101,10 +101,11 @@ export default function Example() {
           Ưu đãi cho vay
         </h2>
         <p className="mx-auto mt-4 max-w-3xl text-center text-xl text-gray-500">
-          Ngân hàng ACB là một trong những ngân hàng thương mại cổ phần hàng đầu Việt Nam. Với mạng
-          lưới chi nhánh rộng khắp cả nước cùng đa dạng các đối tác trong nhiều loại hình dịch vụ,
-          sản phẩm khác nhau. ACB là ngân hàng mang lại vô vàn ưu đãi hấp dẫn cho khách hàng khi vay
-          vốn tại ACB.
+          Cung cấp giải pháp tài chính và sản phẩm đa đạng, chất lượng cao, ứng dụng kỹ thuật công
+          nghệ tiên tiến. Tạo môi trường làm việc nhằm khuyến khích và khen thưởng cho những nhân
+          viên có năng lực và nhiệt huyết. Tối ưu hóa giá trị cho tất cả các bên liên quan bao gồm
+          khách hàng, cổ đông, nhân viên và cộng đồng thông qua tăng trưởng ổn định trong hoạt động
+          kinh doanh.
         </p>
       </div>
       <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">

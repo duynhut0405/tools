@@ -1,16 +1,14 @@
 /* This example requires Tailwind CSS v2.0+ */
 const posts = [
   {
-    title: 'ACB ĐẠT CHỨNG NHẬN PCI DSS ',
-    href:
-      'https://www.acb.com.vn/wps/portal/?1dmy&page=acb.news.detail&urile=wcm:path:ACBWebsiteNews/news-vn/about/tin-tuc/giai-thuong/acb-dat-chung-nhan-pci-dss',
+    title: 'Eximbank ĐẠT CHỨNG NHẬN PCI DSS ',
+    href: 'https://eximbank.com.vn/',
     category: { name: 'Giải thưởng', href: '#' },
     description:
-      'ACB được Hiệp hội PCI (PCI Standards Council) cấp chứng nhận bảo mật PCI DSS - level 1, phiên bản mới nhất và cấp độ cao nhất về bảo mật dữ liệu thẻ thanh toán',
+      'Eximbank được Hiệp hội PCI (PCI Standards Council) cấp chứng nhận bảo mật PCI DSS - level 1, phiên bản mới nhất và cấp độ cao nhất về bảo mật dữ liệu thẻ thanh toán',
     date: 'Mar 16, 2020',
     datetime: '2020-03-16',
-    imageUrl:
-      'https://www.acb.com.vn/wps/wcm/connect/e5a258e5-d5f5-4eb7-a8a1-fa43d1ccbf95/Banner+web+-+921x540px-01.jpg?MOD=AJPERES&CACHEID=e5a258e5-d5f5-4eb7-a8a1-fa43d1ccbf95',
+    imageUrl: '/img-1.jpg',
     readingTime: '6 min',
     author: {
       name: 'Hiệp hội PCI',
@@ -19,16 +17,14 @@ const posts = [
     }
   },
   {
-    title: 'ACB đã vinh dự nhận được giải thưởng “Nơi làm việc tốt nhất Châu Á 2021” ',
-    href:
-      'https://www.acb.com.vn/vn/about/tin-tuc/giai-thuong/acb-thuoc-top-50-dn-niem-yet-tot-nhat-vn-13-12-2021',
+    title: 'Eximbank đã vinh dự nhận được giải thưởng “Nơi làm việc tốt nhất Châu Á 2021” ',
+    href: 'https://eximbank.com.vn/',
     category: { name: 'Giải thưởn', href: '#' },
     description:
-      'Đây là giải thưởng thường niên lớn nhất do HR Asia – tạp chí hàng đầu về Nhân sự khu vực Châu Á – nghiên cứu, đánh giá và tổ chức vinh danh. Năm nay là năm thứ ba liên tiếp ACB nhận được giải thưởng “Nơi làm việc tốt nhất châu Á” của HR Asia.',
+      'Đây là giải thưởng thường niên lớn nhất do HR Asia – tạp chí hàng đầu về Nhân sự khu vực Châu Á – nghiên cứu, đánh giá và tổ chức vinh danh. Năm nay là năm thứ ba liên tiếp Eximbank nhận được giải thưởng “Nơi làm việc tốt nhất châu Á” của HR Asia.',
     date: 'Mar 10, 2020',
     datetime: '2020-03-10',
-    imageUrl:
-      'https://www.acb.com.vn/wps/wcm/connect/bf46eb44-f569-40e5-b636-bfd726d3bfa7/921x540+v2.jpg?MOD=AJPERES&CACHEID=bf46eb44-f569-40e5-b636-bfd726d3bfa7',
+    imageUrl: '/img-2.jpg',
     readingTime: '4 min',
     author: {
       name: 'HR Asia',
@@ -38,15 +34,13 @@ const posts = [
   },
   {
     title: '50 công ty niêm yết tốt nhất Việt Nam',
-    href:
-      'https://www.acb.com.vn/vn/about/tin-tuc/giai-thuong/acb-dc-vinh-danh-la-noi-lam-viec-tot-nhat-chau-a-2021',
+    href: 'https://eximbank.com.vn/',
     category: { name: 'Case Study', href: '#' },
     description:
-      'Đây là lần thứ 6 ACB được Forbes Việt Nam bình chọn và có tên trong danh sách Top 50 công ty niêm yết tốt nhất Việt Nam.',
+      'Đây là lần thứ 6 Eximbank được Forbes Việt Nam bình chọn và có tên trong danh sách Top 50 công ty niêm yết tốt nhất Việt Nam.',
     date: 'Feb 12, 2020',
     datetime: '2020-02-12',
-    imageUrl:
-      'https://www.acb.com.vn/wps/wcm/connect/55a18e58-b023-4138-a9c7-5975edd5dea8/Banner+web+-921x540px_v+copy+3.jpg?MOD=AJPERES&CACHEID=55a18e58-b023-4138-a9c7-5975edd5dea8',
+    imageUrl: '/img-1.jpg',
     readingTime: '11 min',
     author: {
       name: 'Tạp chí Forbes',
@@ -66,10 +60,10 @@ export default function Example() {
       </div>
       <div className="relative mx-auto max-w-[1536px]">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">ACB</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">Eximbank</h2>
           <p className="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-            ACB hiện là một trong những ngân hàng có sự hài hòa nhất về sự phát triển ổn định, khả
-            năng sinh lời và chất lượng tài sản.
+            Eximbank hiện là một trong những ngân hàng có sự hài hòa nhất về sự phát triển ổn định,
+            khả năng sinh lời và chất lượng tài sản.
           </p>
         </div>
         <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">

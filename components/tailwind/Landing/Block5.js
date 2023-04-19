@@ -25,13 +25,13 @@ const incentives = [
     name: 'Thăng tiến, phát triển theo lộ trình rõ ràng',
     imageSrc: 'https://datax-talent.basecdn.net/nganhangacb/images/acb-job-2.png',
     description:
-      'ACB mong muốn hợp tác với các Đối Tác Sự Nghiệp, đặc biệt các bạn nhân tài trong mảng kinh doanh, phát triển khách hàng.'
+      'Eximbank mong muốn hợp tác với các Đối Tác Sự Nghiệp, đặc biệt các bạn nhân tài trong mảng kinh doanh, phát triển khách hàng.'
   },
   {
     name: 'Exchanges',
     imageSrc: 'https://datax-talent.basecdn.net/nganhangacb/images/acb-job-3.png',
     description:
-      'Nếu bạn khát khao thể hiện năng lực và kinh nghiệm, mong muốn gặt hái thành quả lớn hơn và làm chủ tham vọng sự nghiệp của bản thân, ACB sẽ có những thử thách và cơ hội phù hợp dành cho bạn.'
+      'Nếu bạn khát khao thể hiện năng lực và kinh nghiệm, mong muốn gặt hái thành quả lớn hơn và làm chủ tham vọng sự nghiệp của bản thân, Eximbank sẽ có những thử thách và cơ hội phù hợp dành cho bạn.'
   }
 ];
 
@@ -46,10 +46,10 @@ export default function Example() {
                 Kế hoạch hành động
               </h2>
               <p className="mt-4 text-gray-500">
-                ACB bước vào giai đoạn 3 – Định vị hàng đầu trong chiến lược phát triển 5 năm của
-                Ngân hàng. Trong bối cảnh cạnh tranh gay gắt, nhu cầu về chất lượng dịch vụ từ khách
-                hàng liên tục thay đổi, ACB sẽ không ngừng tự hoàn thiện và đề ra hàng loạt chiến
-                lược đột phá nhằm nâng cao vị thế trong ngành
+                Eximbank bước vào giai đoạn 3 – Định vị hàng đầu trong chiến lược phát triển 5 năm
+                của Ngân hàng. Trong bối cảnh cạnh tranh gay gắt, nhu cầu về chất lượng dịch vụ từ
+                khách hàng liên tục thay đổi, Eximbank sẽ không ngừng tự hoàn thiện và đề ra hàng
+                loạt chiến lược đột phá nhằm nâng cao vị thế trong ngành
               </p>
             </div>
             <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg bg-gray-100">

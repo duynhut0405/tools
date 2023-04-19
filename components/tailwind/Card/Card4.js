@@ -10,14 +10,15 @@ import {
 const transferFeatures = [
   {
     id: 1,
-    name: 'Hoàn tiền 2% với tất cả thẻ ghi nợ ACB Visa',
-    description: 'Hoàn tiền 2% đến 3,6 triệu / năm với tất cả dòng thẻ ghi nợ ACB thương hiệu Visa',
+    name: 'Hoàn tiền 2% với tất cả thẻ ghi nợ Eximbank Visa',
+    description:
+      'Hoàn tiền 2% đến 3,6 triệu / năm với tất cả dòng thẻ ghi nợ Eximbank thương hiệu Visa',
     icon: GlobeAltIcon
   },
   {
     id: 2,
-    name: 'Hoàn tiền đến 10% với thẻ tín dụng ACB Visa Platinum',
-    description: 'Hoàn tiền đến 10% đến 3,6 triệu / năm với thẻ tín dụng ACB Visa Platinum',
+    name: 'Hoàn tiền đến 10% với thẻ tín dụng Eximbank Visa Platinum',
+    description: 'Hoàn tiền đến 10% đến 3,6 triệu / năm với thẻ tín dụng Eximbank Visa Platinum',
     icon: ScaleIcon
   },
   {
@@ -38,8 +39,8 @@ const communicationFeatures = [
   },
   {
     id: 2,
-    name: 'Đặc quyền dành riêng cho Chủ thẻ ACB Visa Signature',
-    description: 'Tặng thêm 1 đêm nghỉ dưỡng cho Chủ thẻ ACB Visa Signature',
+    name: 'Đặc quyền dành riêng cho Chủ thẻ Eximbank Visa Signature',
+    description: 'Tặng thêm 1 đêm nghỉ dưỡng cho Chủ thẻ Eximbank Visa Signature',
     icon: EnvelopeIcon
   },
   {
@@ -110,20 +111,20 @@ export default function Example() {
             KHUYẾN MÃI THẺ
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-center text-xl text-gray-500">
-            Mua sắm - Làm đẹp. Sành điệu, nổi bật và tỏa sáng mỗi ngày với thẻ ACB · Ẩm thực - Giải
-            trí. Trải nghiệm tinh hoa ẩm thực và tận hưởng thiên đường giải ...
+            Mua sắm - Làm đẹp. Sành điệu, nổi bật và tỏa sáng mỗi ngày với thẻ Eximbank · Ẩm thực -
+            Giải trí. Trải nghiệm tinh hoa ẩm thực và tận hưởng thiên đường giải ...
           </p>
         </div>
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
           <div className="relative">
             <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
-              ĐI SIÊU THỊ THANH TOÁN BẰNG THẺ ACB - LUÔN HOÀN TIỀN ĐẾN 10%
+              ĐI SIÊU THỊ THANH TOÁN BẰNG THẺ Eximbank - LUÔN HOÀN TIỀN ĐẾN 10%
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              Với tính năng hoàn tiền đến 10% cho thẻ tín dụng và hoàn 2% cho tất cả thẻ ghi nợ ACB
-              Visa tại toàn bộ hệ thống siêu thị và cửa hàng tiện lợi trên cả nước, thẻ ACB tự tin
-              là người bạn đồng hành đi siêu thị cùng mọi nhà!
+              Với tính năng hoàn tiền đến 10% cho thẻ tín dụng và hoàn 2% cho tất cả thẻ ghi nợ
+              Eximbank Visa tại toàn bộ hệ thống siêu thị và cửa hàng tiện lợi trên cả nước, thẻ
+              Eximbank tự tin là người bạn đồng hành đi siêu thị cùng mọi nhà!
             </p>
 
             <dl className="mt-10 space-y-10">
@@ -174,7 +175,7 @@ export default function Example() {
             </svg>
             <img
               className="relative mx-auto object-contain"
-              src="https://hdbankcareer.com/wp-content/uploads/2022/03/ngan-hang-acb-la-ngan-hang-gi.jpg"
+              src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YmFua3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
               alt=""
             />
           </div>
@@ -218,7 +219,7 @@ export default function Example() {
               </h3>
               <p className="mt-3 text-lg text-gray-500">
                 Đặt phòng 2 đêm, tận hưởng đến 3 đêm tại 40 khách sạn cao cấp nhất Việt Nam, dành
-                riêng cho chủ thẻ ACB Visa Signature
+                riêng cho chủ thẻ Eximbank Visa Signature
               </p>
 
               <dl className="mt-10 space-y-10">
@@ -270,7 +271,7 @@ export default function Example() {
               </svg>
               <img
                 className="relative mx-auto object-contain"
-                src="https://datax-talent.basecdn.net/nganhangacb/pages/about-us-3.jpg"
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YmFua3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
                 alt=""
               />
             </div>
@@ -280,12 +281,12 @@ export default function Example() {
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
           <div className="relative">
             <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
-              HOÀN TIỀN ĐẾN 2,9 TRIỆU VNĐ KHI MỞ THẺ TÍN DỤNG QUỐC TẾ ACB
+              HOÀN TIỀN ĐẾN 2,9 TRIỆU VNĐ KHI MỞ THẺ TÍN DỤNG QUỐC TẾ Eximbank
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              Bạn muốn sở hữu cho riêng mình chiếc thẻ tín dụng quốc tế ACB nhưng vẫn còn lăn tăn về
-              phí thường niên? Đừng lo, đăng ký mở thẻ ngay để được hoàn 100% phí thường niên và
-              hoàn thêm khi phát sinh giao dịch chi tiêu thoả điều kiện trong vòng 30 ngày kể từ
+              Bạn muốn sở hữu cho riêng mình chiếc thẻ tín dụng quốc tế Eximbank nhưng vẫn còn lăn
+              tăn về phí thường niên? Đừng lo, đăng ký mở thẻ ngay để được hoàn 100% phí thường niên
+              và hoàn thêm khi phát sinh giao dịch chi tiêu thoả điều kiện trong vòng 30 ngày kể từ
               ngày phát hành thẻ
             </p>
 
@@ -337,7 +338,7 @@ export default function Example() {
             </svg>
             <img
               className="relative mx-auto object-contain"
-              src="https://cdnimg.vietnamplus.vn/uploaded/znaets/2022_04_14/tru_so_chinh_acb.jpg"
+              src="https://plus.unsplash.com/premium_photo-1676998622622-7996c9ee3930?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTI2fHxiYW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
               alt=""
             />
           </div>

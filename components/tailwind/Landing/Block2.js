@@ -1,12 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
 const posts = [
   {
-    title: 'ACB ĐẠT CHỨNG NHẬN PCI DSS ',
+    title: 'Eximbank ĐẠT CHỨNG NHẬN PCI DSS ',
     href:
       'https://www.acb.com.vn/wps/portal/?1dmy&page=acb.news.detail&urile=wcm:path:ACBWebsiteNews/news-vn/about/tin-tuc/giai-thuong/acb-dat-chung-nhan-pci-dss',
     category: { name: 'Giải thưởng', href: '#' },
     description:
-      'ACB được Hiệp hội PCI (PCI Standards Council) cấp chứng nhận bảo mật PCI DSS - level 1, phiên bản mới nhất và cấp độ cao nhất về bảo mật dữ liệu thẻ thanh toán',
+      'Eximbank được Hiệp hội PCI (PCI Standards Council) cấp chứng nhận bảo mật PCI DSS - level 1, phiên bản mới nhất và cấp độ cao nhất về bảo mật dữ liệu thẻ thanh toán',
     date: 'Mar 16, 2020',
     datetime: '2020-03-16',
     imageUrl:
@@ -20,12 +20,12 @@ const posts = [
     }
   },
   {
-    title: 'ACB đã vinh dự nhận được giải thưởng “Nơi làm việc tốt nhất Châu Á 2021” ',
+    title: 'Eximbank đã vinh dự nhận được giải thưởng “Nơi làm việc tốt nhất Châu Á 2021” ',
     href:
       'https://www.acb.com.vn/vn/about/tin-tuc/giai-thuong/acb-thuoc-top-50-dn-niem-yet-tot-nhat-vn-13-12-2021',
     category: { name: 'Giải thưởn', href: '#' },
     description:
-      'Đây là giải thưởng thường niên lớn nhất do HR Asia – tạp chí hàng đầu về Nhân sự khu vực Châu Á – nghiên cứu, đánh giá và tổ chức vinh danh. Năm nay là năm thứ ba liên tiếp ACB nhận được giải thưởng “Nơi làm việc tốt nhất châu Á” của HR Asia.',
+      'Đây là giải thưởng thường niên lớn nhất do HR Asia – tạp chí hàng đầu về Nhân sự khu vực Châu Á – nghiên cứu, đánh giá và tổ chức vinh danh. Năm nay là năm thứ ba liên tiếp Eximbank nhận được giải thưởng “Nơi làm việc tốt nhất châu Á” của HR Asia.',
     date: 'Mar 10, 2020',
     datetime: '2020-03-10',
     imageUrl: 'https://media.vneconomy.vn/w800/images/upload/2021/10/08/hr-asia-2021.jpg',
@@ -42,7 +42,7 @@ const posts = [
       'https://www.acb.com.vn/vn/about/tin-tuc/giai-thuong/acb-dc-vinh-danh-la-noi-lam-viec-tot-nhat-chau-a-2021',
     category: { name: 'Case Study', href: '#' },
     description:
-      'Đây là lần thứ 6 ACB được Forbes Việt Nam bình chọn và có tên trong danh sách Top 50 công ty niêm yết tốt nhất Việt Nam.',
+      'Đây là lần thứ 6 Eximbank được Forbes Việt Nam bình chọn và có tên trong danh sách Top 50 công ty niêm yết tốt nhất Việt Nam.',
     date: 'Feb 12, 2020',
     datetime: '2020-02-12',
     imageUrl:
@@ -65,10 +65,10 @@ export default function Example() {
       </div>
       <div className="relative mx-auto max-w-[1536px]">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">ACB</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">Eximbank</h2>
           <p className="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-            ACB hiện là một trong những ngân hàng có sự hài hòa nhất về sự phát triển ổn định, khả
-            năng sinh lời và chất lượng tài sản.
+            Eximbank hiện là một trong những ngân hàng có sự hài hòa nhất về sự phát triển ổn định,
+            khả năng sinh lời và chất lượng tài sản.
           </p>
         </div>
         <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">

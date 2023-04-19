@@ -11,7 +11,7 @@ const tabsData = [
     name: 'Vay mua nhà đất',
     type: '1',
     desc:
-      'Lựa chọn sản phẩm Vay Mua Nhà lý tưởng nhất, và biến dự định sở hữu ngồi nhà mơ ước của bạn thành hiện thực. Thỏa sức tận hưởng các dịch vụ đẳng cấp, ưu đâĩ đặc quyền từ ACB. Tìm hiểu ngay!',
+      'Lựa chọn sản phẩm Vay Mua Nhà lý tưởng nhất, và biến dự định sở hữu ngồi nhà mơ ước của bạn thành hiện thực. Thỏa sức tận hưởng các dịch vụ đẳng cấp, ưu đâĩ đặc quyền từ Eximbank. Tìm hiểu ngay!',
     textSale: '2.000.000',
     list: [
       'Ưu đãi mua nhà chiết khấu từ 10%',
@@ -24,7 +24,7 @@ const tabsData = [
     name: 'Vay vốn kinh doanh',
     type: '2',
     desc:
-      'Bạn cần nguồn vốn lưu động để mở rộng quy mô công ty hay nâng cao năng lực kinh doanh? Nắm bắt ngay cơ hội với các lựa chọn Vay Kinh Doanh của ACB.',
+      'Bạn cần nguồn vốn lưu động để mở rộng quy mô công ty hay nâng cao năng lực kinh doanh? Nắm bắt ngay cơ hội với các lựa chọn Vay Kinh Doanh của Eximbank.',
     textSale: '1.000.000',
     list: [
       'Hoàn tiền đến 10% tất cả hóa đơn tại siêu thị và cửa hàng tiện lợi',
@@ -40,7 +40,7 @@ const tabsData = [
       'Giải quyết dễ dàng và nhanh chóng các nhu cầu chi tiêu cá nhân với sản phẩm Vay Tiêu Dùng, để vấn đề tài chính không còn là gánh nặng trong cuộc sống của bạn.',
     textSale: '5.000.000',
     list: [
-      'Miễn phí rút tiền tại ATM và CN/PGD ACB',
+      'Miễn phí rút tiền tại ATM và CN/PGD Eximbank',
       'Hoàn tiền 0,5% mọi chi tiêu khác',
       'Tặng thêm 2 đêm khi đặt phòng từ 2 đêm tại 20 khách sạn, resort cao cấp nhất Việt Nam',
       'Lãi suất 8% hấp dẫn'
@@ -50,7 +50,7 @@ const tabsData = [
     name: 'Vay mua ô tô',
     type: '5',
     desc:
-      'Lãi suất vay mua xe ô tô ACB khá ưu đãi chỉ từ 6,5%/năm. Biên độ lãi suất sau ưu đãi = Lãi suất tiết kiệm 13 tháng + 2,5 - 4%. Mức lãi suất trên sẽ được điều chỉ mang tính chất tham khảo và được điều chỉnh theo chính sách cho vay của ACB trong từng thời kỳ.',
+      'Lãi suất vay mua xe ô tô Eximbank khá ưu đãi chỉ từ 6,5%/năm. Biên độ lãi suất sau ưu đãi = Lãi suất tiết kiệm 13 tháng + 2,5 - 4%. Mức lãi suất trên sẽ được điều chỉ mang tính chất tham khảo và được điều chỉnh theo chính sách cho vay của Eximbank trong từng thời kỳ.',
     textSale: '10.000.000',
     list: [
       'Lãi suất ưu đãi từ 6,5%',
@@ -63,7 +63,7 @@ const tabsData = [
     name: 'Vay du học',
     type: '7',
     desc:
-      'Biên độ lãi suất sau ưu đãi được tính bằng lãi suất tiết kiệm 13 tháng + 2,5 - 4%. Mức lãi suất trên sẽ được điều chỉnh để phù hợp với từng đối tượng khách hàng. Khách hàng thân thiết của ACB (gửi tiết kiệm, trả lương qua ngân hàng ACB...), có tài sản đảm bảo có giá trị cao sẽ được ưu tiên cho vay với lãi suất ưu đãi.',
+      'Biên độ lãi suất sau ưu đãi được tính bằng lãi suất tiết kiệm 13 tháng + 2,5 - 4%. Mức lãi suất trên sẽ được điều chỉnh để phù hợp với từng đối tượng khách hàng. Khách hàng thân thiết của Eximbank (gửi tiết kiệm, trả lương qua ngân hàng Eximbank...), có tài sản đảm bảo có giá trị cao sẽ được ưu tiên cho vay với lãi suất ưu đãi.',
     textSale: '7.000.000',
     list: [
       'Hoàn tiền đến 10% mọi chi tiêu, tối đa 6 triệu đồng / năm',
@@ -87,7 +87,7 @@ export default function Example() {
           <div className="mx-auto max-w-[1536px] px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl lg:text-5xl">
-                CÁC SẢN PHẨM VAY TẠI ACB
+                CÁC SẢN PHẨM VAY TẠI EXIMBANK
               </h2>
               <p className="mt-4 text-xl text-gray-600">
                 Thỏa sức tận hưởng các dịch vụ đẳng cấp, ưu đãi đặc quyền. Tìm hiểu ngay!

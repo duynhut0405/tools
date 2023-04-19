@@ -5,18 +5,18 @@ import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 const faqs = [
   {
     question: '1. Điều kiện',
-    answer: `Bạn phải đáp ứng đủ 2 điều kiện để thực hiện mở tài khoản và sử dụng ACB online: Đủ 15 tuổi trở lên , có CMND/ thẻ căn cước hoặc hộ chiếu hợp lệ.`
+    answer: `Bạn phải đáp ứng đủ 2 điều kiện để thực hiện mở tài khoản và sử dụng Eximbank online: Đủ 15 tuổi trở lên , có CMND/ thẻ căn cước hoặc hộ chiếu hợp lệ.`
   },
   {
-    question: '2. Thủ tục đăng ký ACB online',
-    answer: `Đầu tiên, bạn cần mang theo CMND/ thẻ căn cước hoặc hộ chiếu đến các chi nhánh, phòng giao dịch ACB gần nhất.`
+    question: '2. Thủ tục đăng ký Eximbank online',
+    answer: `Đầu tiên, bạn cần mang theo CMND/ thẻ căn cước hoặc hộ chiếu đến các chi nhánh, phòng giao dịch Eximbank gần nhất.`
   },
   {
     question: '2.1 Trình bày',
-    answer: `Sau đó, nhân viên ngân hàng sẽ yêu cầu bạn tải ứng dụng ACB Mobile Banking và thực hiện thao tác cấp tên đăng nhập cũng như gửi mật khẩu vào số điện thoại bạn.`
+    answer: `Sau đó, nhân viên ngân hàng sẽ yêu cầu bạn tải ứng dụng Eximbank Mobile Banking và thực hiện thao tác cấp tên đăng nhập cũng như gửi mật khẩu vào số điện thoại bạn.`
   },
   {
-    question: '3. Phí quản lý thẻ khi sử dụng ACB Online',
+    question: '3. Phí quản lý thẻ khi sử dụng Eximbank Online',
     answer: `Miễn phí`
   }
   // More questions...
@@ -68,9 +68,9 @@ export default function Example({ open, setOpen }) {
                           Hỗ trợ trợ mở thẻ
                         </h2>
                         <p className="mt-4 text-lg text-gray-500">
-                          ACB online là dịch vụ ngân hàng điện tử do Ngân hàng Thương mại Cổ phần Á
-                          Châu (ACB) cung cấp và vận hành. Thông qua dịch vụ này, bạn được phép thực
-                          hiện các giao dịch đơn giản.
+                          Eximbank online là dịch vụ ngân hàng điện tử do Ngân hàng Thương mại Cổ
+                          phần Á Châu (ACB) cung cấp và vận hành. Thông qua dịch vụ này, bạn được
+                          phép thực hiện các giao dịch đơn giản.
                         </p>
                       </div>
                       <div className="mt-12 lg:col-span-2 lg:mt-0">

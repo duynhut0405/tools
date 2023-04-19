@@ -12,7 +12,7 @@ const transferFeatures = [
     id: 1,
     name: 'CƠ HỘI ĐƯỢC THĂNG TIẾN',
     description:
-      'Chính sách nhân sự của ACB ưu tiên đề bạt những nhân viên trẻ có năng lực, có lòng nhiệt huyết, và có thành tích tốt trong công việc lên các cấp quản lý cấp trung và cấp cao',
+      'Chính sách nhân sự của Eximbank ưu tiên đề bạt những nhân viên trẻ có năng lực, có lòng nhiệt huyết, và có thành tích tốt trong công việc lên các cấp quản lý cấp trung và cấp cao',
     icon: GlobeAltIcon
   },
   {
@@ -33,9 +33,9 @@ const transferFeatures = [
 const communicationFeatures = [
   {
     id: 1,
-    name: 'HÒA MÌNH VÀO MÔI TRƯỜNG VĂN HÓA ACB',
+    name: 'HÒA MÌNH VÀO MÔI TRƯỜNG VĂN HÓA Eximbank',
     description:
-      'Người ACB luôn thực hành 5 giá trị cốt lõi: Chính Trực, Cẩn Trọng, Cách Tân, Hài Hòa, Hiệu Quả. Đến với ACB bạn sẽ cảm nhận được một nét văn hóa riêng sự đoàn kết giúp đỡ và chia sẻ lẫn nhau của mọi thành viên sẽ tạo nên cho bạn một gia đình thứ hai ngay tại ACB. ',
+      'Người Eximbank luôn thực hành 5 giá trị cốt lõi: Chính Trực, Cẩn Trọng, Cách Tân, Hài Hòa, Hiệu Quả. Đến với Eximbank bạn sẽ cảm nhận được một nét văn hóa riêng sự đoàn kết giúp đỡ và chia sẻ lẫn nhau của mọi thành viên sẽ tạo nên cho bạn một gia đình thứ hai ngay tại Eximbank. ',
     icon: ChatBubbleBottomCenterTextIcon
   },
   {
@@ -97,8 +97,8 @@ export default function Example() {
               Trở thành Đối tác sự nghiệp, chúng ta sẽ cùng nhau
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              Gặt hái thành quả lớn hơn và làm chủ tham vọng sự nghiệp của bản thân, ACB sẽ có những
-              thử thách và cơ hội phù hợp dành cho bạn.
+              Gặt hái thành quả lớn hơn và làm chủ tham vọng sự nghiệp của bản thân, Eximbank sẽ có
+              những thử thách và cơ hội phù hợp dành cho bạn.
             </p>
 
             <dl className="mt-10 space-y-10">
@@ -190,11 +190,11 @@ export default function Example() {
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8">
             <div className="lg:col-start-2">
               <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
-                Trần Hùng Huy - Chủ tịch HĐQT ACB
+                Trần Hùng Huy - Chủ tịch HĐQT Eximbank
               </h3>
               <p className="mt-3 text-lg text-gray-500">
-                ACB cần những con người làm chủ sự phát triển của ngân hàng theo cách chủ động nhất
-                với thời cuộc
+                Eximbank cần những con người làm chủ sự phát triển của ngân hàng theo cách chủ động
+                nhất với thời cuộc
               </p>
 
               <dl className="mt-10 space-y-10">

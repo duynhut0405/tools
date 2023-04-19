@@ -41,7 +41,7 @@ export default function Example({ open, setOpen }) {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Số Hotline ACB hoạt động 24/7:{' '}
+                        Số Hotline Eximbank hoạt động 24/7:{' '}
                         <span className="text-[#002395]]">1900 54 54 86</span>
                       </p>
                     </div>

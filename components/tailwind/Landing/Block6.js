@@ -22,7 +22,8 @@ export default function Example() {
           <div className="lg:w-0 lg:flex-1">
             <h2 className="text-3xl font-bold tracking-tight text-white">ĐĂNG KÝ ỨNG TUYỂN</h2>
             <p className="mt-4 max-w-3xl text-lg text-indigo-100">
-              Hãy trở thành đối tác sự nghiệp để cùng ACB khẳng định vị thế của chính bạn và tổ chức
+              Hãy trở thành đối tác sự nghiệp để cùng Eximbank khẳng định vị thế của chính bạn và tổ
+              chức
             </p>
           </div>
           <div className="mt-12 sm:w-full sm:max-w-md lg:mt-0 lg:ml-8 lg:flex-1">

@@ -43,14 +43,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-const listImg = [
-  'https://cdn-op.acb.com.vn/document/e-credit/highlight-features/feature-1.jpg',
-  'https://cdn-op.acb.com.vn/document/e-credit/highlight-features/feature-2.jpg',
-  'https://cdn-op.acb.com.vn/document/e-credit/highlight-features/feature-3.jpg',
-  'https://cdn-op.acb.com.vn/document/e-credit/highlight-features/feature-4.jpg',
-  'https://cdn-op.acb.com.vn/document/e-credit/highlight-features/feature-5.jpg',
-  'https://cdn-op.acb.com.vn/document/e-credit/highlight-features/feature-6.jpg'
-];
+const listImg = ['/img-1.jpg', '/img-2.jpg', '/img-3.jpg', '/img-4.jpg', '/img-1.jpg'];
 
 const settings = {
   className: 'center',
@@ -91,7 +84,7 @@ function Home({}) {
       <div className="bg-white">
         <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
           <h1 className="text-[#002395]  text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
-            ƯU ĐÃI VAY THÁNG 10
+            ƯU ĐÃI VAY THÁNG 5
           </h1>
           <Slider {...settings}>
             {listImg.map((item, index) => {
@@ -114,13 +107,11 @@ function Home({}) {
           <div className="sm:flex gap-2">
             <div className="flex-1 bg-white">
               <h3 className="text-2xl font-bold text-[#002395] sm:text-3xl sm:tracking-tight">
-                ACB - Năng Lượng Đón Mùa Vui
+                Ứng dụng Eximbank Mobile Banking
               </h3>
               <p className="mt-6 text-base text-gray-500">
-                Với 12.000 nhân viên ACB, được khoác lên mình bộ đồng phục đẹp nhất để chào đón
-                khách hàng, được gặp lại khách hàng thân thương trong niềm vui khỏe mạnh và được
-                phục vụ khách hàng trong nhịp sống bình thường chính là nguồn Năng Lượng lớn nhất
-                của chúng tôi.
+                EXIMBANK EDIGI - NÂNG TẦM TRẢI NGHIỆM SỐ Nắm bắt được xu hướng chuyển đổi số cũng
+                như xu hướng công nghệ hiện đại, Ngân hàng TMCP Xuất Nhập Khẩu Việt Nam
               </p>
               <div className="mt-6 mb-6">
                 <div className="">
@@ -137,7 +128,7 @@ function Home({}) {
             </div>
             <div className="flex-1">
               <iframe
-                src="https://www.youtube.com/embed/4MDIZFAAuw0"
+                src="https://www.youtube.com/embed/7V9SI_tN8Cg"
                 frameborder="0"
                 allow="autoplay; encrypted-media"
                 allowfullscreen

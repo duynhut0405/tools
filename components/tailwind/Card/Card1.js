@@ -6,19 +6,17 @@ export default function Example() {
       <div className="absolute inset-0">
         <img
           className="h-full w-full object-cover"
-          src="https://cdn-op.acb.com.vn/document/e-credit/banner/banner-1.jpg"
+          src="/banner-1.jpg"
           alt=""
+          style={{ height: 500 }}
         />
       </div>
       <div className="relative mx-auto max-w-[1536px] py-24 px-4 sm:py-32 sm:px-6 lg:px-8 lg:w-[1536px]">
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-3xl lg:text-2xl">
-          VAY TẠI ACB
+          Click mở tài khoản
         </h1>
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-3xl lg:text-2xl">
-          Đăng ký 100% online
-        </h1>
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-3xl lg:text-2xl">
-          Không cần chứng minh thu nhập
+          đón vạn đặc quyền
         </h1>
         <div className="mt-8">
           <a

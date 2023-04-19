@@ -509,7 +509,7 @@ function Layout({ children, isPrioty, idPage }) {
                       </div>
                     </div>
                     {/* <div style={{ display: 'flex', alignItems: 'center', padding: '0 25px' }}>
-                        <img width={80} height={30} id="img_log" src="/images/acb.png" alt="logo" />
+                        <img width={80} height={30} id="img_log" src="/logo-acb.svg" alt="logo" />
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                           <p
                             style={{ marginBottom: 4, color: 'grey', fontSize: 30, marginLeft: 40 }}
@@ -526,10 +526,10 @@ function Layout({ children, isPrioty, idPage }) {
                         <li style={{ display: 'flex', alignItems: 'center' }}>
                           <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
                             <img
-                              width={80}
-                              height={30}
+                              width={120}
+                              height={50}
                               id="img_log"
-                              src="/images/acb.png"
+                              src="/logo-acb.svg"
                               alt="logo"
                               className="pb-1"
                             />
@@ -580,7 +580,7 @@ function Layout({ children, isPrioty, idPage }) {
                             <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
                               <img
                                 id="img_log"
-                                src="/images/acb-one.png"
+                                src="/logo-acb.svg"
                                 alt="logo"
                                 style={{ objectFit: 'contain', height: 65 }}
                               />
@@ -723,7 +723,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <a className="logo">
                         <img
                           className="lazyload"
-                          data-src="/images/acb.png"
+                          src="/logo-acb.svg"
                           alt="images"
                           style={logoStyle}
                         />
@@ -735,7 +735,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <a className="logo">
                         <img
                           className="lazyload"
-                          data-src="/images/acb.png"
+                          data-src="/logo-acb.svg"
                           alt="images"
                           style={logoStyle}
                         />
@@ -835,7 +835,7 @@ function Layout({ children, isPrioty, idPage }) {
                     </ul>
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright acb. All rights reserved.</div>
+                    <div className="copyright">2019 © Copyright Eximbank. All rights reserved.</div>
                   </div>
                 </div> */}
               </div>
@@ -872,7 +872,9 @@ function Layout({ children, isPrioty, idPage }) {
                       </ul>
                     </div>
                     <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                      <div className="copyright">2021 © Copyright ACB. All rights reserved.</div>
+                      <div className="copyright">
+                        2023 © Copyright Eximbank . All rights reserved.
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -894,7 +896,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <a className="logo">
                         <img
                           className="lazyload"
-                          data-src="/images/acb.png"
+                          data-src="/logo-acb.svg"
                           alt="images"
                           style={logoStyle}
                         />
@@ -906,7 +908,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <a className="logo">
                         <img
                           className="lazyload"
-                          data-src="/images/acb.png"
+                          data-src="/logo-acb.svg"
                           alt="images"
                           style={logoStyle}
                         />
@@ -1009,7 +1011,7 @@ function Layout({ children, isPrioty, idPage }) {
                     </ul>
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright acb. All rights reserved.</div>
+                    <div className="copyright">2019 © Copyright Eximbank. All rights reserved.</div>
                   </div>
                 </div> */}
               </div>
@@ -1051,7 +1053,9 @@ function Layout({ children, isPrioty, idPage }) {
                       </ul>
                     </div>
                     <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                      <div className="copyright">2021 © Copyright ACB. All rights reserved.</div>
+                      <div className="copyright">
+                        2023 © Copyright Eximbank . All rights reserved.
+                      </div>
                     </div>
                   </div>
                 </div>

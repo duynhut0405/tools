@@ -63,7 +63,7 @@ function FormAdmin({ data }) {
     if (type === 'shortAnswer' || type === 'numberInput') {
       return (
         <input
-          type="text"
+          type={type === 'shortAnswer' ? 'text' : 'number'}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           {...register(id)}
         />
@@ -77,7 +77,7 @@ function FormAdmin({ data }) {
           control={control}
           defaultValue={new Date()}
           render={({ field: { onChange, value } }) => {
-            return <DatePicker selected={value} onChange={onChange} />;
+            return <DatePicker className="rounded-md mt-3" selected={value} onChange={onChange} />;
           }}
         />
       );
@@ -124,7 +124,7 @@ function FormAdmin({ data }) {
             {...register(id)}
           >
             {field.choices?.map(item => (
-              <option>{item.key}</option>
+              <option key={item.key}>{item.key}</option>
             ))}
           </select>
         </>
