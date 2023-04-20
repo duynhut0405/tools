@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="shortcut icon" href="/logo-acb.jpg" type="image/x-icon"></link>
+          <link rel="shortcut icon" href="/favicon.png" type="image/x-icon"></link>
           <title>Eximbank demo</title>
           <script
             dangerouslySetInnerHTML={{
