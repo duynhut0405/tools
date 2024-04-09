@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Form } from '../components/tailwind/Card';
+import React from 'react';
 
 function Home({}) {
   return (

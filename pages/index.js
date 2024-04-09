@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Card1, Card2, Card3, Card4, Card5, Card6, Card7 } from '../components/tailwind/Card';
 import Slider from 'react-slick';
-import { Form, Tools } from '../components/block';
 import Modal4 from '../components/tailwind/Modal4';
 import FormAdmin from '../components/forms/FormAdmin';
 function SampleNextArrow(props) {
