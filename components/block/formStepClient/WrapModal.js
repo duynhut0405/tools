@@ -74,7 +74,7 @@ const WrapModal = props => {
                       <strong>Hotline: </strong>028 3929 5959
                     </p>
                     <p>
-                      <strong>Email: </strong>247@eximbank.com.vn
+                      <strong>Email: </strong>247@Mango.com.vn
                     </p>
                   </div>
                 </div>

@@ -14,28 +14,28 @@ export default function Example() {
           <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
             <img
               className="h-18"
-              src="https://acb.com.vn/wps/wcm/connect/4f8b3a0e-26cc-4c7a-90ee-5a5e3f488d22/2/NG%C3%82N+L%C6%AF%E1%BB%A2NG+100x.jpg?MOD=AJPERES&CACHEID=4f8b3a0e-26cc-4c7a-90ee-5a5e3f488d22/2"
+              src="https://cdn.worldvectorlogo.com/logos/aeon.svg"
               alt="Mirage"
             />
           </div>
           <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
             <img
               className="h-18"
-              src="https://acb.com.vn/wps/wcm/connect/4f8b3a0e-26cc-4c7a-90ee-5a5e3f488d22/3/VIMO+100x.jpg?MOD=AJPERES&CACHEID=4f8b3a0e-26cc-4c7a-90ee-5a5e3f488d22/3"
+              src="https://cdn.worldvectorlogo.com/logos/aeon.svg"
               alt="StaticKit"
             />
           </div>
           <div className="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
             <img
               className="h-18"
-              src="https://acb.com.vn/wps/wcm/connect/4f8b3a0e-26cc-4c7a-90ee-5a5e3f488d22/4/PAYOO+100x.jpg?MOD=AJPERES&CACHEID=4f8b3a0e-26cc-4c7a-90ee-5a5e3f488d22/4"
+              src="https://cdn.worldvectorlogo.com/logos/aeon.svg"
               alt="Transistor"
             />
           </div>
           <div className="col-span-2 flex justify-center md:col-span-3 lg:col-span-1">
             <img
               className="h-18"
-              src="https://acb.com.vn/wps/wcm/connect/0de79cfb-21ea-429a-a903-b13fc7be339f/ONEPAY+100x.jpg?MOD=AJPERES&CACHEID=0de79cfb-21ea-429a-a903-b13fc7be339f"
+              src="https://cdn.worldvectorlogo.com/logos/aeon.svg"
               alt="Workcation"
             />
           </div>

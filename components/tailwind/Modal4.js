@@ -41,10 +41,10 @@ export default function Example({ open, setOpen }) {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Chào Năm Mới, Eximbank tặng thêm lãi suất tiết kiệm 0,2%/năm đối với tiền
-                        gửi kỳ hạn 3 tháng (từ 26/01 – 07/02/2022) & quay số tại quầy chương trình
-                        trúng thưởng 100% nhận quà giá trị, cơ hội trúng giải thưởng cao nhất 100
-                        triệu đồng cho tất cả kỳ hạn gửi.
+                        Chào Năm Mới, Mango tặng thêm lãi suất tiết kiệm 0,2%/năm đối với tiền gửi
+                        kỳ hạn 3 tháng (từ 26/01 – 07/02/2022) & quay số tại quầy chương trình trúng
+                        thưởng 100% nhận quà giá trị, cơ hội trúng giải thưởng cao nhất 100 triệu
+                        đồng cho tất cả kỳ hạn gửi.
                       </p>
                     </div>
                   </div>

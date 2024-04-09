@@ -21,7 +21,7 @@ export default function Example() {
         <div className="relative z-10 mb-8 md:mb-2 md:px-6">
           <div className="max-w-prose text-base lg:max-w-none">
             <h2 className="font-semibold leading-6 text-indigo-600">Transactions</h2>
-            <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl">
+            <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-[#f0a71d] sm:text-4xl">
               A better way to send money
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function Example() {
             <div className="mt-8 inline-flex rounded-md shadow">
               <a
                 href="/about-us"
-                className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-[#002395]"
+                className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-[#f0a71d]"
               >
                 Contact sales
               </a>

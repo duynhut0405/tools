@@ -53,7 +53,7 @@ export default function Example() {
                 src="https://images.unsplash.com/photo-1521510895919-46920266ddb3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&fp-x=0.5&fp-y=0.6&fp-z=3&width=1440&height=1440&sat=-100"
                 alt=""
               />
-              <div className="absolute inset-0 bg-[#002395] mix-blend-multiply" />
+              <div className="absolute inset-0 bg-[#f0a71d] mix-blend-multiply" />
               <div className="absolute inset-0 bg-gradient-to-t from-indigo-600 via-indigo-600 opacity-90" />
               <div className="relative px-8">
                 <div>
@@ -94,7 +94,7 @@ export default function Example() {
         <div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
           {/* Content area */}
           <div className="pt-12 sm:pt-16 lg:pt-20">
-            <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-[#f0a71d] sm:text-4xl">
               On a mission to empower teams
             </h2>
             <div className="mt-6 space-y-6 text-gray-500">
@@ -126,7 +126,7 @@ export default function Example() {
               {stats.map(stat => (
                 <div key={stat.label} className="border-t-2 border-gray-100 pt-6">
                   <dt className="text-base font-medium text-gray-500">{stat.label}</dt>
-                  <dd className="text-3xl font-bold tracking-tight text-[#002395]">{stat.value}</dd>
+                  <dd className="text-3xl font-bold tracking-tight text-[#f0a71d]">{stat.value}</dd>
                 </div>
               ))}
             </dl>

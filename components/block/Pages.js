@@ -493,8 +493,8 @@ function Pages({ data, type, id, optionWidth }) {
                               height: '67px',
                               paddingLeft: '10px',
                               paddingRight: '10px',
-                              color: index == initIndex ? '#002395' : '#606D6F',
-                              borderBottom: index == initIndex ? '2px solid #002395' : 'none',
+                              color: index == initIndex ? '#f0a71d' : '#606D6F',
+                              borderBottom: index == initIndex ? '2px solid #f0a71d' : 'none',
                               fontWeight: index == initIndex ? '600' : 'normal'
                             }}
                           >
@@ -709,7 +709,7 @@ function Pages({ data, type, id, optionWidth }) {
                       <div
                         className="col-3 li-menu-custom"
                         key={index}
-                        style={{ borderBottom: index == initIndex ? '2px solid #002395' : 'none' }}
+                        style={{ borderBottom: index == initIndex ? '2px solid #f0a71d' : 'none' }}
                       >
                         <div
                           className="menu-custom-middle-table"
@@ -722,7 +722,7 @@ function Pages({ data, type, id, optionWidth }) {
                             className={`menu-div-custom-1-table`}
                             style={{
                               height: '58px',
-                              color: index == initIndex ? '#002395' : '#606D6F',
+                              color: index == initIndex ? '#f0a71d' : '#606D6F',
                               fontWeight: index == initIndex ? '600' : 'normal',
                               paddingTop: index == initIndex ? '20px' : '13px'
                             }}

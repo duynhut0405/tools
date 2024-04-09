@@ -10,15 +10,15 @@ import {
 const transferFeatures = [
   {
     id: 1,
-    name: 'Hoàn tiền 2% với tất cả thẻ ghi nợ Eximbank Visa',
+    name: 'Hoàn tiền 2% với tất cả thẻ ghi nợ Mango Visa',
     description:
-      'Hoàn tiền 2% đến 3,6 triệu / năm với tất cả dòng thẻ ghi nợ Eximbank thương hiệu Visa',
+      'Hoàn tiền 2% đến 3,6 triệu / năm với tất cả dòng thẻ ghi nợ Mango thương hiệu Visa',
     icon: GlobeAltIcon
   },
   {
     id: 2,
-    name: 'Hoàn tiền đến 10% với thẻ tín dụng Eximbank Visa Platinum',
-    description: 'Hoàn tiền đến 10% đến 3,6 triệu / năm với thẻ tín dụng Eximbank Visa Platinum',
+    name: 'Hoàn tiền đến 10% với thẻ tín dụng Mango Visa Platinum',
+    description: 'Hoàn tiền đến 10% đến 3,6 triệu / năm với thẻ tín dụng Mango Visa Platinum',
     icon: ScaleIcon
   },
   {
@@ -39,8 +39,8 @@ const communicationFeatures = [
   },
   {
     id: 2,
-    name: 'Đặc quyền dành riêng cho Chủ thẻ Eximbank Visa Signature',
-    description: 'Tặng thêm 1 đêm nghỉ dưỡng cho Chủ thẻ Eximbank Visa Signature',
+    name: 'Đặc quyền dành riêng cho Chủ thẻ Mango Visa Signature',
+    description: 'Tặng thêm 1 đêm nghỉ dưỡng cho Chủ thẻ Mango Visa Signature',
     icon: EnvelopeIcon
   },
   {
@@ -107,34 +107,34 @@ export default function Example() {
         </svg>
 
         <div className="relative">
-          <h2 className="text-center text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold leading-8 tracking-tight text-[#f0a71d] sm:text-4xl">
             KHUYẾN MÃI THẺ
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-center text-xl text-gray-500">
-            Mua sắm - Làm đẹp. Sành điệu, nổi bật và tỏa sáng mỗi ngày với thẻ Eximbank · Ẩm thực -
+            Mua sắm - Làm đẹp. Sành điệu, nổi bật và tỏa sáng mỗi ngày với thẻ Mango · Ẩm thực -
             Giải trí. Trải nghiệm tinh hoa ẩm thực và tận hưởng thiên đường giải ...
           </p>
         </div>
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
           <div className="relative">
-            <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
-              ĐI SIÊU THỊ THANH TOÁN BẰNG THẺ Eximbank - LUÔN HOÀN TIỀN ĐẾN 10%
+            <h3 className="text-2xl font-bold tracking-tight text-[#f0a71d] sm:text-3xl">
+              ĐI SIÊU THỊ THANH TOÁN BẰNG THẺ Mango - LUÔN HOÀN TIỀN ĐẾN 10%
             </h3>
             <p className="mt-3 text-lg text-gray-500">
               Với tính năng hoàn tiền đến 10% cho thẻ tín dụng và hoàn 2% cho tất cả thẻ ghi nợ
-              Eximbank Visa tại toàn bộ hệ thống siêu thị và cửa hàng tiện lợi trên cả nước, thẻ
-              Eximbank tự tin là người bạn đồng hành đi siêu thị cùng mọi nhà!
+              Mango Visa tại toàn bộ hệ thống siêu thị và cửa hàng tiện lợi trên cả nước, thẻ Mango
+              tự tin là người bạn đồng hành đi siêu thị cùng mọi nhà!
             </p>
 
             <dl className="mt-10 space-y-10">
               {transferFeatures.map(item => (
                 <div key={item.id} className="relative">
                   <dt>
-                    <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#002395] text-white">
+                    <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#f0a71d] text-white">
                       <item.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <p className="ml-16 text-lg font-medium leading-6 text-[#002395]">
+                    <p className="ml-16 text-lg font-medium leading-6 text-[#f0a71d]">
                       {item.name}
                     </p>
                   </dt>
@@ -214,22 +214,22 @@ export default function Example() {
         <div className="relative mt-12 sm:mt-16 lg:mt-24">
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8">
             <div className="lg:col-start-2">
-              <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
+              <h3 className="text-2xl font-bold tracking-tight text-[#f0a71d] sm:text-3xl">
                 Đặc quyền nghỉ dưỡng đẳng cấp
               </h3>
               <p className="mt-3 text-lg text-gray-500">
                 Đặt phòng 2 đêm, tận hưởng đến 3 đêm tại 40 khách sạn cao cấp nhất Việt Nam, dành
-                riêng cho chủ thẻ Eximbank Visa Signature
+                riêng cho chủ thẻ Mango Visa Signature
               </p>
 
               <dl className="mt-10 space-y-10">
                 {communicationFeatures.map(item => (
                   <div key={item.id} className="relative">
                     <dt>
-                      <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#002395] text-white">
+                      <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#f0a71d] text-white">
                         <item.icon className="h-6 w-6" aria-hidden="true" />
                       </div>
-                      <p className="ml-16 text-lg font-medium leading-6 text-[#002395]">
+                      <p className="ml-16 text-lg font-medium leading-6 text-[#f0a71d]">
                         {item.name}
                       </p>
                     </dt>
@@ -280,13 +280,13 @@ export default function Example() {
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
           <div className="relative">
-            <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
-              HOÀN TIỀN ĐẾN 2,9 TRIỆU VNĐ KHI MỞ THẺ TÍN DỤNG QUỐC TẾ Eximbank
+            <h3 className="text-2xl font-bold tracking-tight text-[#f0a71d] sm:text-3xl">
+              HOÀN TIỀN ĐẾN 2,9 TRIỆU VNĐ KHI MỞ THẺ TÍN DỤNG QUỐC TẾ Mango
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              Bạn muốn sở hữu cho riêng mình chiếc thẻ tín dụng quốc tế Eximbank nhưng vẫn còn lăn
-              tăn về phí thường niên? Đừng lo, đăng ký mở thẻ ngay để được hoàn 100% phí thường niên
-              và hoàn thêm khi phát sinh giao dịch chi tiêu thoả điều kiện trong vòng 30 ngày kể từ
+              Bạn muốn sở hữu cho riêng mình chiếc thẻ tín dụng quốc tế Mango nhưng vẫn còn lăn tăn
+              về phí thường niên? Đừng lo, đăng ký mở thẻ ngay để được hoàn 100% phí thường niên và
+              hoàn thêm khi phát sinh giao dịch chi tiêu thoả điều kiện trong vòng 30 ngày kể từ
               ngày phát hành thẻ
             </p>
 
@@ -294,10 +294,10 @@ export default function Example() {
               {communicationFeatures2.map(item => (
                 <div key={item.id} className="relative">
                   <dt>
-                    <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#002395] text-white">
+                    <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#f0a71d] text-white">
                       <item.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <p className="ml-16 text-lg font-medium leading-6 text-[#002395]">
+                    <p className="ml-16 text-lg font-medium leading-6 text-[#f0a71d]">
                       {item.name}
                     </p>
                   </dt>

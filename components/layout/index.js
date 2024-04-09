@@ -349,7 +349,7 @@ function Layout({ children, isPrioty, idPage }) {
     content: '',
     width: '1px',
     height: '24px',
-    backgroundColor: '#002395',
+    backgroundColor: '#f0a71d',
     position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
@@ -456,7 +456,7 @@ function Layout({ children, isPrioty, idPage }) {
                 <header
                   id="header"
                   role="banner"
-                  style={{ paddingTop: 5, paddingBottom: 12, backgroundColor: '#29b6f6' }}
+                  style={{ paddingTop: 5, paddingBottom: 12, backgroundColor: '#191919' }}
                 >
                   <div
                     className="container"
@@ -471,7 +471,7 @@ function Layout({ children, isPrioty, idPage }) {
                     <div
                       className="radius-header"
                       style={{
-                        backgroundColor: '#002395',
+                        backgroundColor: '#f0a71d',
                         display: 'flex',
                         padding: '15px 25px'
                       }}
@@ -509,7 +509,7 @@ function Layout({ children, isPrioty, idPage }) {
                       </div>
                     </div>
                     {/* <div style={{ display: 'flex', alignItems: 'center', padding: '0 25px' }}>
-                        <img width={80} height={30} id="img_log" src="/logo-acb.svg" alt="logo" />
+                        <img width={80} height={30} id="img_log" src="/logo.png" alt="logo" />
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                           <p
                             style={{ marginBottom: 4, color: 'grey', fontSize: 30, marginLeft: 40 }}
@@ -529,7 +529,7 @@ function Layout({ children, isPrioty, idPage }) {
                               width={120}
                               height={50}
                               id="img_log"
-                              src="/logo-acb.svg"
+                              src="/logo.png"
                               alt="logo"
                               className="pb-1"
                             />
@@ -580,7 +580,7 @@ function Layout({ children, isPrioty, idPage }) {
                             <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
                               <img
                                 id="img_log"
-                                src="/logo-acb.svg"
+                                src="/logo.png"
                                 alt="logo"
                                 style={{ objectFit: 'contain', height: 65 }}
                               />
@@ -714,19 +714,14 @@ function Layout({ children, isPrioty, idPage }) {
             <div
               id="footer-pc"
               className="group-ef loaded"
-              style={{ color: '#fff', backgroundColor: '#29b6f6' }}
+              style={{ color: '#fff', backgroundColor: '#191919' }}
             >
               <div className="container" style={{ paddingBottom: '20px' }}>
                 <p>
                   {lang === 'vi' && (
                     <Link href="/">
                       <a className="logo">
-                        <img
-                          className="lazyload"
-                          src="/logo-acb.svg"
-                          alt="images"
-                          style={logoStyle}
-                        />
+                        <img className="lazyload" src="/logo.png" alt="images" style={logoStyle} />
                       </a>
                     </Link>
                   )}
@@ -735,7 +730,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <a className="logo">
                         <img
                           className="lazyload"
-                          data-src="/logo-acb.svg"
+                          data-src="/logo.png"
                           alt="images"
                           style={logoStyle}
                         />
@@ -835,7 +830,7 @@ function Layout({ children, isPrioty, idPage }) {
                     </ul>
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright Eximbank. All rights reserved.</div>
+                    <div className="copyright">2019 © Copyright Mango. All rights reserved.</div>
                   </div>
                 </div> */}
               </div>
@@ -872,9 +867,7 @@ function Layout({ children, isPrioty, idPage }) {
                       </ul>
                     </div>
                     <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                      <div className="copyright">
-                        2023 © Copyright Eximbank . All rights reserved.
-                      </div>
+                      <div className="copyright">2023 © Copyright Mango . All rights reserved.</div>
                     </div>
                   </div>
                 </div>
@@ -896,7 +889,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <a className="logo">
                         <img
                           className="lazyload"
-                          data-src="/logo-acb.svg"
+                          data-src="/logo.png"
                           alt="images"
                           style={logoStyle}
                         />
@@ -908,7 +901,7 @@ function Layout({ children, isPrioty, idPage }) {
                       <a className="logo">
                         <img
                           className="lazyload"
-                          data-src="/logo-acb.svg"
+                          data-src="/logo.png"
                           alt="images"
                           style={logoStyle}
                         />
@@ -1011,7 +1004,7 @@ function Layout({ children, isPrioty, idPage }) {
                     </ul>
                   </div>
                   <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                    <div className="copyright">2019 © Copyright Eximbank. All rights reserved.</div>
+                    <div className="copyright">2019 © Copyright Mango. All rights reserved.</div>
                   </div>
                 </div> */}
               </div>
@@ -1053,9 +1046,7 @@ function Layout({ children, isPrioty, idPage }) {
                       </ul>
                     </div>
                     <div className="col-lg-6 col-md-5 efch-6 ef-img-t">
-                      <div className="copyright">
-                        2023 © Copyright Eximbank . All rights reserved.
-                      </div>
+                      <div className="copyright">2023 © Copyright Mango . All rights reserved.</div>
                     </div>
                   </div>
                 </div>

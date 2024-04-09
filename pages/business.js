@@ -54,7 +54,7 @@ function Home({}) {
       <Card1 />
       <div className="bg-white">
         <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-[#002395]  text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
+          <h1 className="text-[#f0a71d]  text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
             TÍNH NĂNG NỔI BẬT
           </h1>
           <Slider {...settings}>

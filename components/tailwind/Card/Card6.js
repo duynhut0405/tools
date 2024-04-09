@@ -1,11 +1,11 @@
 /* This example requires Tailwind CSS v2.0+ */
 const posts = [
   {
-    title: 'Eximbank ĐẠT CHỨNG NHẬN PCI DSS ',
-    href: 'https://eximbank.com.vn/',
+    title: 'Mango ĐẠT CHỨNG NHẬN PCI DSS ',
+    href: 'https://Mango.com.vn/',
     category: { name: 'Giải thưởng', href: '#' },
     description:
-      'Eximbank được Hiệp hội PCI (PCI Standards Council) cấp chứng nhận bảo mật PCI DSS - level 1, phiên bản mới nhất và cấp độ cao nhất về bảo mật dữ liệu thẻ thanh toán',
+      'Mango được Hiệp hội PCI (PCI Standards Council) cấp chứng nhận bảo mật PCI DSS - level 1, phiên bản mới nhất và cấp độ cao nhất về bảo mật dữ liệu thẻ thanh toán',
     date: 'Mar 16, 2020',
     datetime: '2020-03-16',
     imageUrl: '/img-1.jpg',
@@ -17,11 +17,11 @@ const posts = [
     }
   },
   {
-    title: 'Eximbank đã vinh dự nhận được giải thưởng “Nơi làm việc tốt nhất Châu Á 2021” ',
-    href: 'https://eximbank.com.vn/',
+    title: 'Mango đã vinh dự nhận được giải thưởng “Nơi làm việc tốt nhất Châu Á 2021” ',
+    href: 'https://Mango.com.vn/',
     category: { name: 'Giải thưởn', href: '#' },
     description:
-      'Đây là giải thưởng thường niên lớn nhất do HR Asia – tạp chí hàng đầu về Nhân sự khu vực Châu Á – nghiên cứu, đánh giá và tổ chức vinh danh. Năm nay là năm thứ ba liên tiếp Eximbank nhận được giải thưởng “Nơi làm việc tốt nhất châu Á” của HR Asia.',
+      'Đây là giải thưởng thường niên lớn nhất do HR Asia – tạp chí hàng đầu về Nhân sự khu vực Châu Á – nghiên cứu, đánh giá và tổ chức vinh danh. Năm nay là năm thứ ba liên tiếp Mango nhận được giải thưởng “Nơi làm việc tốt nhất châu Á” của HR Asia.',
     date: 'Mar 10, 2020',
     datetime: '2020-03-10',
     imageUrl: '/img-2.jpg',
@@ -34,10 +34,10 @@ const posts = [
   },
   {
     title: '50 công ty niêm yết tốt nhất Việt Nam',
-    href: 'https://eximbank.com.vn/',
+    href: 'https://Mango.com.vn/',
     category: { name: 'Case Study', href: '#' },
     description:
-      'Đây là lần thứ 6 Eximbank được Forbes Việt Nam bình chọn và có tên trong danh sách Top 50 công ty niêm yết tốt nhất Việt Nam.',
+      'Đây là lần thứ 6 Mango được Forbes Việt Nam bình chọn và có tên trong danh sách Top 50 công ty niêm yết tốt nhất Việt Nam.',
     date: 'Feb 12, 2020',
     datetime: '2020-02-12',
     imageUrl: '/img-1.jpg',
@@ -60,10 +60,10 @@ export default function Example() {
       </div>
       <div className="relative mx-auto max-w-[1536px]">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">Eximbank</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-[#f0a71d] sm:text-4xl">Mango</h2>
           <p className="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-            Eximbank hiện là một trong những ngân hàng có sự hài hòa nhất về sự phát triển ổn định,
-            khả năng sinh lời và chất lượng tài sản.
+            Mango hiện là một trong những ngân hàng có sự hài hòa nhất về sự phát triển ổn định, khả
+            năng sinh lời và chất lượng tài sản.
           </p>
         </div>
         <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
@@ -80,7 +80,7 @@ export default function Example() {
                     </a>
                   </p>
                   <a href={post.href} className="mt-2 block">
-                    <p className="text-xl font-semibold text-[#002395]">{post.title}</p>
+                    <p className="text-xl font-semibold text-[#f0a71d]">{post.title}</p>
                     <p className="mt-3 text-base text-gray-500">{post.description}</p>
                   </a>
                 </div>
@@ -96,7 +96,7 @@ export default function Example() {
                     </a>
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-[#002395]">
+                    <p className="text-sm font-medium text-[#f0a71d]">
                       <a href={post.author.href} className="hover:underline">
                         {post.author.name}
                       </a>

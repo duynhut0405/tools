@@ -47,8 +47,8 @@ export default function Example({ open, setOpen, setSuccess }) {
                   </button>
                 </div>
                 <div className="sm:flex sm:items-start">
-                  <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#29b6f6] sm:mx-0 sm:h-10 sm:w-10">
-                    <CheckIcon className="h-6 w-6 text-[#002395]" aria-hidden="true" />
+                  <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#191919] sm:mx-0 sm:h-10 sm:w-10">
+                    <CheckIcon className="h-6 w-6 text-[#f0a71d]" aria-hidden="true" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left flex-1">
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
@@ -126,7 +126,7 @@ export default function Example({ open, setOpen, setSuccess }) {
                               onChange={e => setName(e.target.value)}
                               id="first-name"
                               autoComplete="given-name"
-                              className="block w-full border-[2px] mb-2 rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-[#002395] focus:ring-[#002395]"
+                              className="block w-full border-[2px] mb-2 rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-[#f0a71d] focus:ring-[#f0a71d]"
                             />
                           </div>
                         </div>
@@ -144,7 +144,7 @@ export default function Example({ open, setOpen, setSuccess }) {
                               onChange={e => setEmail(e.target.value)}
                               required
                               autoComplete="email"
-                              className="block w-full border-[2px] mb-2 rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-[#002395] focus:ring-[#002395]"
+                              className="block w-full border-[2px] mb-2 rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-[#f0a71d] focus:ring-[#f0a71d]"
                             />
                           </div>
                           {errEmail && (
@@ -173,7 +173,7 @@ export default function Example({ open, setOpen, setSuccess }) {
                               onChange={e => setPhone(e.target.value)}
                               required
                               autoComplete="tel"
-                              className="block w-full border-[2px] mb-2 rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-[#002395] focus:ring-[#002395]"
+                              className="block w-full border-[2px] mb-2 rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-[#f0a71d] focus:ring-[#f0a71d]"
                               aria-describedby="phone-optional"
                             />
                           </div>
@@ -186,7 +186,7 @@ export default function Example({ open, setOpen, setSuccess }) {
                         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                           <button
                             type="submit"
-                            className="inline-flex w-full justify-center rounded-md border border-transparent bg-[#002395] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-[#29b6f6] focus:outline-none focus:ring-2 focus:ring-[#29b6f6] focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                            className="inline-flex w-full justify-center rounded-md border border-transparent bg-[#f0a71d] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-[#191919] focus:outline-none focus:ring-2 focus:ring-[#191919] focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                           >
                             Gởi
                           </button>

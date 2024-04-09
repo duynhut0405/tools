@@ -141,7 +141,7 @@ export default function Example() {
                   </a>
                 </div>
                 <div className="mt-6 sm:max-w-xl">
-                  <h1 className="text-4xl font-bold tracking-tight text-[#002395] sm:text-5xl">
+                  <h1 className="text-4xl font-bold tracking-tight text-[#f0a71d] sm:text-5xl">
                     Issue management for growing teams
                   </h1>
                   <p className="mt-6 text-xl text-gray-500">
@@ -157,7 +157,7 @@ export default function Example() {
                     <input
                       id="hero-email"
                       type="email"
-                      className="block w-full rounded-md border border-gray-300 px-5 py-3 text-base text-[#002395] placeholder-gray-500 shadow-sm focus:border-rose-500 focus:ring-rose-500"
+                      className="block w-full rounded-md border border-gray-300 px-5 py-3 text-base text-[#f0a71d] placeholder-gray-500 shadow-sm focus:border-rose-500 focus:ring-rose-500"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -180,7 +180,7 @@ export default function Example() {
                       <StarIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1 py-1 pl-5 text-sm text-gray-500 sm:py-3">
-                      <span className="font-medium text-[#002395]">Rated 5 stars</span> by over{' '}
+                      <span className="font-medium text-[#f0a71d]">Rated 5 stars</span> by over{' '}
                       <span className="font-medium text-rose-500">500 beta users</span>
                     </div>
                   </div>
@@ -328,7 +328,7 @@ export default function Example() {
             <div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
               {/* Content area */}
               <div className="pt-12 sm:pt-16 lg:pt-20">
-                <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tight text-[#f0a71d] sm:text-4xl">
                   On a mission to empower teams
                 </h2>
                 <div className="mt-6 space-y-6 text-gray-500">
@@ -360,7 +360,7 @@ export default function Example() {
                   {stats.map(stat => (
                     <div key={stat.label} className="border-t-2 border-gray-100 pt-6">
                       <dt className="text-base font-medium text-gray-500">{stat.label}</dt>
-                      <dd className="text-3xl font-bold tracking-tight text-[#002395]">
+                      <dd className="text-3xl font-bold tracking-tight text-[#f0a71d]">
                         {stat.value}
                       </dd>
                     </div>
@@ -381,7 +381,7 @@ export default function Example() {
           <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-[1536px] lg:px-8">
             <div className="lg:grid lg:grid-cols-2 lg:items-center lg:gap-24">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tight text-[#f0a71d] sm:text-4xl">
                   Backed by world-renowned investors
                 </h2>
                 <p className="mt-6 max-w-3xl text-lg leading-7 text-gray-500">
@@ -483,7 +483,7 @@ export default function Example() {
                     <input
                       id="cta-email"
                       type="email"
-                      className="block w-full rounded-md border border-transparent px-5 py-3 text-base text-[#002395] placeholder-gray-500 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-500"
+                      className="block w-full rounded-md border border-transparent px-5 py-3 text-base text-[#f0a71d] placeholder-gray-500 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-500"
                       placeholder="Enter your email"
                     />
                   </div>

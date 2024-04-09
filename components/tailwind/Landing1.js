@@ -243,8 +243,8 @@ export default function Example() {
                   <>
                     <Popover.Button
                       className={classNames(
-                        open ? 'text-[#002395]' : 'text-gray-500',
-                        'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-[#002395] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                        open ? 'text-[#f0a71d]' : 'text-gray-500',
+                        'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-[#f0a71d] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                       )}
                     >
                       <span>Solutions</span>
@@ -279,7 +279,7 @@ export default function Example() {
                                   <item.icon className="h-6 w-6" aria-hidden="true" />
                                 </div>
                                 <div className="ml-4">
-                                  <p className="text-base font-medium text-[#002395]">
+                                  <p className="text-base font-medium text-[#f0a71d]">
                                     {item.name}
                                   </p>
                                   <p className="mt-1 text-sm text-gray-500">{item.description}</p>
@@ -294,20 +294,20 @@ export default function Example() {
                 )}
               </Popover>
 
-              <a href="#" className="text-base font-medium text-gray-500 hover:text-[#002395]">
+              <a href="#" className="text-base font-medium text-gray-500 hover:text-[#f0a71d]">
                 Pricing
               </a>
-              <a href="#" className="text-base font-medium text-gray-500 hover:text-[#002395]">
+              <a href="#" className="text-base font-medium text-gray-500 hover:text-[#f0a71d]">
                 Partners
               </a>
-              <a href="#" className="text-base font-medium text-gray-500 hover:text-[#002395]">
+              <a href="#" className="text-base font-medium text-gray-500 hover:text-[#f0a71d]">
                 Company
               </a>
             </Popover.Group>
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
               <a
                 href="#"
-                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-[#002395]"
+                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-[#f0a71d]"
               >
                 Sign in
               </a>
@@ -361,7 +361,7 @@ export default function Example() {
                           <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
                             <item.icon className="h-6 w-6" aria-hidden="true" />
                           </div>
-                          <div className="ml-4 text-base font-medium text-[#002395]">
+                          <div className="ml-4 text-base font-medium text-[#f0a71d]">
                             {item.name}
                           </div>
                         </a>
@@ -373,19 +373,19 @@ export default function Example() {
                   <div className="grid grid-cols-2 gap-4">
                     <a
                       href="#"
-                      className="text-base font-medium text-[#002395] hover:text-gray-700"
+                      className="text-base font-medium text-[#f0a71d] hover:text-gray-700"
                     >
                       Pricing
                     </a>
                     <a
                       href="#"
-                      className="text-base font-medium text-[#002395] hover:text-gray-700"
+                      className="text-base font-medium text-[#f0a71d] hover:text-gray-700"
                     >
                       Partners
                     </a>
                     <a
                       href="#"
-                      className="text-base font-medium text-[#002395] hover:text-gray-700"
+                      className="text-base font-medium text-[#f0a71d] hover:text-gray-700"
                     >
                       Company
                     </a>
@@ -399,7 +399,7 @@ export default function Example() {
                     </a>
                     <p className="mt-6 text-center text-base font-medium text-gray-500">
                       Existing customer?
-                      <a href="#" className="text-[#002395]">
+                      <a href="#" className="text-[#f0a71d]">
                         Sign in
                       </a>
                     </p>
@@ -444,7 +444,7 @@ export default function Example() {
                     </a>
                     <a
                       href="#"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-[#002395] bg-opacity-60 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-opacity-70 sm:px-8"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-[#f0a71d] bg-opacity-60 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-opacity-70 sm:px-8"
                     >
                       Live demo
                     </a>
@@ -517,7 +517,7 @@ export default function Example() {
                     </span>
                   </div>
                   <div className="mt-6">
-                    <h2 className="text-3xl font-bold tracking-tight text-[#002395]">
+                    <h2 className="text-3xl font-bold tracking-tight text-[#f0a71d]">
                       Stay on top of customer support
                     </h2>
                     <p className="mt-4 text-lg text-gray-500">
@@ -582,7 +582,7 @@ export default function Example() {
                     </span>
                   </div>
                   <div className="mt-6">
-                    <h2 className="text-3xl font-bold tracking-tight text-[#002395]">
+                    <h2 className="text-3xl font-bold tracking-tight text-[#f0a71d]">
                       Better understand your customers
                     </h2>
                     <p className="mt-4 text-lg text-gray-500">
@@ -693,7 +693,7 @@ export default function Example() {
         {/* CTA Section */}
         <div className="bg-white">
           <div className="mx-auto max-w-4xl py-16 px-4 sm:px-6 sm:py-24 lg:flex lg:max-w-[1536px] lg:items-center lg:justify-between lg:px-8">
-            <h2 className="text-4xl font-bold tracking-tight text-[#002395] sm:text-4xl">
+            <h2 className="text-4xl font-bold tracking-tight text-[#f0a71d] sm:text-4xl">
               <span className="block">Ready to get started?</span>
               <span className="-mb-1 block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text pb-1 text-transparent">
                 Get in touch or create an account.
@@ -726,13 +726,13 @@ export default function Example() {
             <div className="grid grid-cols-2 gap-8 xl:col-span-2">
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
-                  <h3 className="text-base font-medium text-[#002395]">Solutions</h3>
+                  <h3 className="text-base font-medium text-[#f0a71d]">Solutions</h3>
                   <ul role="list" className="mt-4 space-y-4">
                     {footerNavigation.solutions.map(item => (
                       <li key={item.name}>
                         <a
                           href={item.href}
-                          className="text-base text-gray-500 hover:text-[#002395]"
+                          className="text-base text-gray-500 hover:text-[#f0a71d]"
                         >
                           {item.name}
                         </a>
@@ -741,13 +741,13 @@ export default function Example() {
                   </ul>
                 </div>
                 <div className="mt-12 md:mt-0">
-                  <h3 className="text-base font-medium text-[#002395]">Support</h3>
+                  <h3 className="text-base font-medium text-[#f0a71d]">Support</h3>
                   <ul role="list" className="mt-4 space-y-4">
                     {footerNavigation.support.map(item => (
                       <li key={item.name}>
                         <a
                           href={item.href}
-                          className="text-base text-gray-500 hover:text-[#002395]"
+                          className="text-base text-gray-500 hover:text-[#f0a71d]"
                         >
                           {item.name}
                         </a>
@@ -758,13 +758,13 @@ export default function Example() {
               </div>
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
-                  <h3 className="text-base font-medium text-[#002395]">Company</h3>
+                  <h3 className="text-base font-medium text-[#f0a71d]">Company</h3>
                   <ul role="list" className="mt-4 space-y-4">
                     {footerNavigation.company.map(item => (
                       <li key={item.name}>
                         <a
                           href={item.href}
-                          className="text-base text-gray-500 hover:text-[#002395]"
+                          className="text-base text-gray-500 hover:text-[#f0a71d]"
                         >
                           {item.name}
                         </a>
@@ -773,13 +773,13 @@ export default function Example() {
                   </ul>
                 </div>
                 <div className="mt-12 md:mt-0">
-                  <h3 className="text-base font-medium text-[#002395]">Legal</h3>
+                  <h3 className="text-base font-medium text-[#f0a71d]">Legal</h3>
                   <ul role="list" className="mt-4 space-y-4">
                     {footerNavigation.legal.map(item => (
                       <li key={item.name}>
                         <a
                           href={item.href}
-                          className="text-base text-gray-500 hover:text-[#002395]"
+                          className="text-base text-gray-500 hover:text-[#f0a71d]"
                         >
                           {item.name}
                         </a>
@@ -790,7 +790,7 @@ export default function Example() {
               </div>
             </div>
             <div className="mt-12 xl:mt-0">
-              <h3 className="text-base font-medium text-[#002395]">Subscribe to our newsletter</h3>
+              <h3 className="text-base font-medium text-[#f0a71d]">Subscribe to our newsletter</h3>
               <p className="mt-4 text-base text-gray-500">
                 The latest news, articles, and resources, sent to your inbox weekly.
               </p>
@@ -804,7 +804,7 @@ export default function Example() {
                   id="email-address"
                   autoComplete="email"
                   required
-                  className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-[#002395] placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:placeholder-gray-400 focus:outline-none focus:ring-indigo-500"
+                  className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-[#f0a71d] placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:placeholder-gray-400 focus:outline-none focus:ring-indigo-500"
                   placeholder="Enter your email"
                 />
                 <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">

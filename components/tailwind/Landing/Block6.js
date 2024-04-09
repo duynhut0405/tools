@@ -18,11 +18,11 @@ export default function Example() {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-[1536px] px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
-        <div className="rounded-3xl bg-[#002395] py-10 px-6 sm:py-16 sm:px-12 lg:flex lg:items-center lg:p-20">
+        <div className="rounded-3xl bg-[#f0a71d] py-10 px-6 sm:py-16 sm:px-12 lg:flex lg:items-center lg:p-20">
           <div className="lg:w-0 lg:flex-1">
             <h2 className="text-3xl font-bold tracking-tight text-white">ĐĂNG KÝ ỨNG TUYỂN</h2>
             <p className="mt-4 max-w-3xl text-lg text-indigo-100">
-              Hãy trở thành đối tác sự nghiệp để cùng Eximbank khẳng định vị thế của chính bạn và tổ
+              Hãy trở thành đối tác sự nghiệp để cùng Mango khẳng định vị thế của chính bạn và tổ
               chức
             </p>
           </div>
@@ -42,7 +42,7 @@ export default function Example() {
               />
               <button
                 type="submit"
-                className="mt-3 flex w-full items-center justify-center rounded-md border border-transparent bg-[#002395] px-5 py-3 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700 sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0"
+                className="mt-3 flex w-full items-center justify-center rounded-md border border-transparent bg-[#f0a71d] px-5 py-3 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700 sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0"
               >
                 Gởi
               </button>

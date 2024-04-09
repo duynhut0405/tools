@@ -12,7 +12,7 @@ const transferFeatures = [
     id: 1,
     name: 'CƠ HỘI ĐƯỢC THĂNG TIẾN',
     description:
-      'Chính sách nhân sự của Eximbank ưu tiên đề bạt những nhân viên trẻ có năng lực, có lòng nhiệt huyết, và có thành tích tốt trong công việc lên các cấp quản lý cấp trung và cấp cao',
+      'Chính sách nhân sự của Mango ưu tiên đề bạt những nhân viên trẻ có năng lực, có lòng nhiệt huyết, và có thành tích tốt trong công việc lên các cấp quản lý cấp trung và cấp cao',
     icon: GlobeAltIcon
   },
   {
@@ -33,9 +33,9 @@ const transferFeatures = [
 const communicationFeatures = [
   {
     id: 1,
-    name: 'HÒA MÌNH VÀO MÔI TRƯỜNG VĂN HÓA Eximbank',
+    name: 'HÒA MÌNH VÀO MÔI TRƯỜNG VĂN HÓA Mango',
     description:
-      'Người Eximbank luôn thực hành 5 giá trị cốt lõi: Chính Trực, Cẩn Trọng, Cách Tân, Hài Hòa, Hiệu Quả. Đến với Eximbank bạn sẽ cảm nhận được một nét văn hóa riêng sự đoàn kết giúp đỡ và chia sẻ lẫn nhau của mọi thành viên sẽ tạo nên cho bạn một gia đình thứ hai ngay tại Eximbank. ',
+      'Người Mango luôn thực hành 5 giá trị cốt lõi: Chính Trực, Cẩn Trọng, Cách Tân, Hài Hòa, Hiệu Quả. Đến với Mango bạn sẽ cảm nhận được một nét văn hóa riêng sự đoàn kết giúp đỡ và chia sẻ lẫn nhau của mọi thành viên sẽ tạo nên cho bạn một gia đình thứ hai ngay tại Mango. ',
     icon: ChatBubbleBottomCenterTextIcon
   },
   {
@@ -82,7 +82,7 @@ export default function Example() {
         </svg>
 
         <div className="relative">
-          <h2 className="text-center text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold leading-8 tracking-tight text-[#f0a71d] sm:text-4xl">
             CƠ HỘI NGHỀ NGHIỆP
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-center text-xl text-gray-500">
@@ -93,11 +93,11 @@ export default function Example() {
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
           <div className="relative">
-            <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
+            <h3 className="text-2xl font-bold tracking-tight text-[#f0a71d] sm:text-3xl">
               Trở thành Đối tác sự nghiệp, chúng ta sẽ cùng nhau
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              Gặt hái thành quả lớn hơn và làm chủ tham vọng sự nghiệp của bản thân, Eximbank sẽ có
+              Gặt hái thành quả lớn hơn và làm chủ tham vọng sự nghiệp của bản thân, Mango sẽ có
               những thử thách và cơ hội phù hợp dành cho bạn.
             </p>
 
@@ -105,10 +105,10 @@ export default function Example() {
               {transferFeatures.map(item => (
                 <div key={item.id} className="relative">
                   <dt>
-                    <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#002395] text-white">
+                    <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#f0a71d] text-white">
                       <item.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <p className="ml-16 text-lg font-medium leading-6 text-[#002395]">
+                    <p className="ml-16 text-lg font-medium leading-6 text-[#f0a71d]">
                       {item.name}
                     </p>
                   </dt>
@@ -189,11 +189,11 @@ export default function Example() {
         <div className="relative mt-12 sm:mt-16 lg:mt-24">
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8">
             <div className="lg:col-start-2">
-              <h3 className="text-2xl font-bold tracking-tight text-[#002395] sm:text-3xl">
-                Trần Hùng Huy - Chủ tịch HĐQT Eximbank
+              <h3 className="text-2xl font-bold tracking-tight text-[#f0a71d] sm:text-3xl">
+                Trần Hùng Huy - Chủ tịch HĐQT Mango
               </h3>
               <p className="mt-3 text-lg text-gray-500">
-                Eximbank cần những con người làm chủ sự phát triển của ngân hàng theo cách chủ động
+                Mango cần những con người làm chủ sự phát triển của ngân hàng theo cách chủ động
                 nhất với thời cuộc
               </p>
 
@@ -201,10 +201,10 @@ export default function Example() {
                 {communicationFeatures.map(item => (
                   <div key={item.id} className="relative">
                     <dt>
-                      <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#002395] text-white">
+                      <div className="absolute flex h-12 w-12 items-center justify-center rounded-md bg-[#f0a71d] text-white">
                         <item.icon className="h-6 w-6" aria-hidden="true" />
                       </div>
-                      <p className="ml-16 text-lg font-medium leading-6 text-[#002395]">
+                      <p className="ml-16 text-lg font-medium leading-6 text-[#f0a71d]">
                         {item.name}
                       </p>
                     </dt>

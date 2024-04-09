@@ -21,7 +21,7 @@ export default function Example() {
         <div className="mt-8">
           <a
             href="#block-sale"
-            className=" w-max rounded-md border border-transparent bg-[#002395] px-10 py-3 text-base font-medium text-white hover:bg-[#29b6f6]"
+            className=" w-max rounded-md border border-transparent bg-[#f0a71d] px-10 py-3 text-base font-medium text-white hover:bg-[#191919]"
           >
             Xem tại đây
           </a>

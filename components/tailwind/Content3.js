@@ -20,7 +20,7 @@ export default function Example() {
       <div className="mx-auto max-w-[1536px] space-y-8 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-prose text-base lg:max-w-none">
           <h2 className="text-lg font-semibold text-indigo-600">Transactions</h2>
-          <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl">
+          <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-[#f0a71d] sm:text-4xl">
             What makes us different
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function Example() {
               <div className="rounded-md shadow">
                 <a
                   href="/about-us"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-[#002395]"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-[#f0a71d]"
                 >
                   Contact sales
                 </a>

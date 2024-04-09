@@ -111,7 +111,7 @@ export default function Example() {
             <span className="block text-center text-lg font-semibold text-indigo-600">
               Introducing
             </span>
-            <span className="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl">
+            <span className="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-[#f0a71d] sm:text-4xl">
               JavaScript for Beginners
             </span>
           </h1>

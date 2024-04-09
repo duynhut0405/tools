@@ -83,7 +83,7 @@ function Home({}) {
       </div>
       <div className="bg-white">
         <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-[#002395]  text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
+          <h1 className="text-[#f0a71d]  text-4xl font-bold tracking-tight text-red sm:text-3xl lg:text-2xl mb-4 text-center">
             ƯU ĐÃI VAY THÁNG 5
           </h1>
           <Slider {...settings}>
@@ -106,12 +106,12 @@ function Home({}) {
         <div className="mx-auto max-w-[1536px] py-16 px-4 sm:px-6 lg:px-8">
           <div className="sm:flex gap-2">
             <div className="flex-1 bg-white">
-              <h3 className="text-2xl font-bold text-[#002395] sm:text-3xl sm:tracking-tight">
-                Ứng dụng Eximbank Mobile Banking
+              <h3 className="text-2xl font-bold text-[#f0a71d] sm:text-3xl sm:tracking-tight">
+                Ứng dụng Mango Mobile Banking
               </h3>
               <p className="mt-6 text-base text-gray-500">
-                EXIMBANK EDIGI - NÂNG TẦM TRẢI NGHIỆM SỐ Nắm bắt được xu hướng chuyển đổi số cũng
-                như xu hướng công nghệ hiện đại, Ngân hàng TMCP Xuất Nhập Khẩu Việt Nam
+                Mango EDIGI - NÂNG TẦM TRẢI NGHIỆM SỐ Nắm bắt được xu hướng chuyển đổi số cũng như
+                xu hướng công nghệ hiện đại, Ngân hàng TMCP Xuất Nhập Khẩu Việt Nam
               </p>
               <div className="mt-6 mb-6">
                 <div className="">
@@ -119,7 +119,7 @@ function Home({}) {
                     onClick={() => {
                       setShowModal(true);
                     }}
-                    className=" w-max rounded-md border border-transparent bg-[#002395] px-10 py-3 text-base font-medium text-white hover:bg-[#29b6f6]"
+                    className=" w-max rounded-md border border-transparent bg-[#f0a71d] px-10 py-3 text-base font-medium text-white hover:bg-[#191919]"
                   >
                     Xem chi tiết
                   </button>
@@ -128,7 +128,7 @@ function Home({}) {
             </div>
             <div className="flex-1">
               <iframe
-                src="https://www.youtube.com/embed/7V9SI_tN8Cg"
+                src="https://www.youtube.com/embed/oGFIgXia-xg"
                 frameborder="0"
                 allow="autoplay; encrypted-media"
                 allowfullscreen

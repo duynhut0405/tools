@@ -11,7 +11,7 @@ const tabsData = [
     name: 'Vay mua nhà đất',
     type: '1',
     desc:
-      'Lựa chọn sản phẩm Vay Mua Nhà lý tưởng nhất, và biến dự định sở hữu ngồi nhà mơ ước của bạn thành hiện thực. Thỏa sức tận hưởng các dịch vụ đẳng cấp, ưu đâĩ đặc quyền từ Eximbank. Tìm hiểu ngay!',
+      'Lựa chọn sản phẩm Vay Mua Nhà lý tưởng nhất, và biến dự định sở hữu ngồi nhà mơ ước của bạn thành hiện thực. Thỏa sức tận hưởng các dịch vụ đẳng cấp, ưu đâĩ đặc quyền từ Mango. Tìm hiểu ngay!',
     textSale: '2.000.000',
     list: [
       'Ưu đãi mua nhà chiết khấu từ 10%',
@@ -24,7 +24,7 @@ const tabsData = [
     name: 'Vay vốn kinh doanh',
     type: '2',
     desc:
-      'Bạn cần nguồn vốn lưu động để mở rộng quy mô công ty hay nâng cao năng lực kinh doanh? Nắm bắt ngay cơ hội với các lựa chọn Vay Kinh Doanh của Eximbank.',
+      'Bạn cần nguồn vốn lưu động để mở rộng quy mô công ty hay nâng cao năng lực kinh doanh? Nắm bắt ngay cơ hội với các lựa chọn Vay Kinh Doanh của Mango.',
     textSale: '1.000.000',
     list: [
       'Hoàn tiền đến 10% tất cả hóa đơn tại siêu thị và cửa hàng tiện lợi',
@@ -40,7 +40,7 @@ const tabsData = [
       'Giải quyết dễ dàng và nhanh chóng các nhu cầu chi tiêu cá nhân với sản phẩm Vay Tiêu Dùng, để vấn đề tài chính không còn là gánh nặng trong cuộc sống của bạn.',
     textSale: '5.000.000',
     list: [
-      'Miễn phí rút tiền tại ATM và CN/PGD Eximbank',
+      'Miễn phí rút tiền tại ATM và CN/PGD Mango',
       'Hoàn tiền 0,5% mọi chi tiêu khác',
       'Tặng thêm 2 đêm khi đặt phòng từ 2 đêm tại 20 khách sạn, resort cao cấp nhất Việt Nam',
       'Lãi suất 8% hấp dẫn'
@@ -50,7 +50,7 @@ const tabsData = [
     name: 'Vay mua ô tô',
     type: '5',
     desc:
-      'Lãi suất vay mua xe ô tô Eximbank khá ưu đãi chỉ từ 6,5%/năm. Biên độ lãi suất sau ưu đãi = Lãi suất tiết kiệm 13 tháng + 2,5 - 4%. Mức lãi suất trên sẽ được điều chỉ mang tính chất tham khảo và được điều chỉnh theo chính sách cho vay của Eximbank trong từng thời kỳ.',
+      'Lãi suất vay mua xe ô tô Mango khá ưu đãi chỉ từ 6,5%/năm. Biên độ lãi suất sau ưu đãi = Lãi suất tiết kiệm 13 tháng + 2,5 - 4%. Mức lãi suất trên sẽ được điều chỉ mang tính chất tham khảo và được điều chỉnh theo chính sách cho vay của Mango trong từng thời kỳ.',
     textSale: '10.000.000',
     list: [
       'Lãi suất ưu đãi từ 6,5%',
@@ -63,7 +63,7 @@ const tabsData = [
     name: 'Vay du học',
     type: '7',
     desc:
-      'Biên độ lãi suất sau ưu đãi được tính bằng lãi suất tiết kiệm 13 tháng + 2,5 - 4%. Mức lãi suất trên sẽ được điều chỉnh để phù hợp với từng đối tượng khách hàng. Khách hàng thân thiết của Eximbank (gửi tiết kiệm, trả lương qua ngân hàng Eximbank...), có tài sản đảm bảo có giá trị cao sẽ được ưu tiên cho vay với lãi suất ưu đãi.',
+      'Biên độ lãi suất sau ưu đãi được tính bằng lãi suất tiết kiệm 13 tháng + 2,5 - 4%. Mức lãi suất trên sẽ được điều chỉnh để phù hợp với từng đối tượng khách hàng. Khách hàng thân thiết của Mango (gửi tiết kiệm, trả lương qua ngân hàng Mango...), có tài sản đảm bảo có giá trị cao sẽ được ưu tiên cho vay với lãi suất ưu đãi.',
     textSale: '7.000.000',
     list: [
       'Hoàn tiền đến 10% mọi chi tiêu, tối đa 6 triệu đồng / năm',
@@ -86,8 +86,8 @@ export default function Example() {
         <div className="pt-12 sm:pt-16 lg:pt-20">
           <div className="mx-auto max-w-[1536px] px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-[#002395] sm:text-4xl lg:text-5xl">
-                CÁC SẢN PHẨM VAY TẠI EXIMBANK
+              <h2 className="text-3xl font-bold tracking-tight text-[#f0a71d] sm:text-4xl lg:text-5xl">
+                CÁC SẢN PHẨM VAY TẠI MANGO
               </h2>
               <p className="mt-4 text-xl text-gray-600">
                 Thỏa sức tận hưởng các dịch vụ đẳng cấp, ưu đãi đặc quyền. Tìm hiểu ngay!
@@ -96,13 +96,13 @@ export default function Example() {
           </div>
         </div>
         <div className="flex gap-4 mt-3 items-center">
-          <div className="flex gap-4 mt-3 bg-[#29b6f6] items-center h-full p-2 rounded-[10px]">
+          <div className="flex gap-4 mt-3 bg-[#191919] items-center h-full p-2 rounded-[10px]">
             {tabsData.map((item, index) => {
               return (
                 <p
                   onClick={() => setTab(index)}
                   className={`text-lg text-white cursor-pointer p-2 ${
-                    index === tab ? 'font-bold bg-[#002395] rounded-xl' : ''
+                    index === tab ? 'font-bold bg-[#f0a71d] rounded-xl' : ''
                   }`}
                 >
                   {item.name}
@@ -117,7 +117,7 @@ export default function Example() {
             <div className="relative mx-auto max-w-[1536px] px-4 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none">
                 <div className="flex-1 bg-white px-6 py-8 lg:p-12">
-                  <h3 className="text-2xl font-bold text-[#002395] sm:text-3xl sm:tracking-tight">
+                  <h3 className="text-2xl font-bold text-[#f0a71d] sm:text-3xl sm:tracking-tight">
                     {tabsData[tab].name}
                   </h3>
                   <p className="mt-6 text-base text-gray-500">{tabsData[tab].desc}</p>
@@ -147,10 +147,10 @@ export default function Example() {
                   </div>
                 </div>
                 <div className="bg-gray-50 py-8 px-6 text-center lg:flex lg:flex-shrink-0 lg:flex-col lg:justify-center lg:p-12">
-                  <p className="text-lg font-medium leading-6 text-[#002395]">
+                  <p className="text-lg font-medium leading-6 text-[#f0a71d]">
                     Ưu đãi hàng năm lên đến
                   </p>
-                  <div className="mt-4 flex items-center justify-center text-5xl font-bold tracking-tight text-[#002395]">
+                  <div className="mt-4 flex items-center justify-center text-5xl font-bold tracking-tight text-[#f0a71d]">
                     <span>{tabsData[tab].textSale}</span>
                     <span className="ml-3 text-xl font-medium tracking-normal text-gray-500">
                       Đồng
@@ -172,7 +172,7 @@ export default function Example() {
                         onClick={() => {
                           setShowModal(true);
                         }}
-                        className="w-full flex items-center justify-center rounded-md border border-transparent bg-[#002395] px-5 py-3 text-base font-medium text-white hover:bg-[#29b6f6]"
+                        className="w-full flex items-center justify-center rounded-md border border-transparent bg-[#f0a71d] px-5 py-3 text-base font-medium text-white hover:bg-[#191919]"
                       >
                         Đăng ký Vay
                       </button>
@@ -183,7 +183,7 @@ export default function Example() {
                       onClick={() => {
                         setShowModal3(true);
                       }}
-                      className="font-medium text-[#002395]"
+                      className="font-medium text-[#f0a71d]"
                     >
                       Hỗ trợ
                     </button>

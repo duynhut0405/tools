@@ -96,7 +96,7 @@ export default function Example() {
       <div className="relative">
         <h2
           id="block-sale"
-          className="text-center text-3xl font-bold leading-8 tracking-tight text-[#002395] sm:text-4xl"
+          className="text-center text-3xl font-bold leading-8 tracking-tight text-[#f0a71d] sm:text-4xl"
         >
           Ưu đãi cho vay
         </h2>
